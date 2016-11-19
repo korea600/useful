@@ -3,22 +3,20 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- bean 등록할 부분 -->
+			<!-- JDBC 설정 (Connection pool)-->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value='oracle.jdbc.driver.OracleDriver'/>
-		<property name="url" value='jdbc:oracle:thin:@localhost:1521:XE'/>
+		<property name="url" value='jdbc:oracle:thin:@180.70.132.106:1521:CENTORA'/>
 		<property name="username" value='scott'/>
-		<property name="password" value='tiger'/>
+		<property name="password" value='scott'/>
 	</bean>
-	<!-- MyBatis 설정 (DataSource, sqlmapper 등록) -->	
- 	<bean id='sqlSessionFactory' class="org.mybatis.spring.SqlSessionFactoryBean">
+	
+		<!-- MyBatis 설정 (DataSource, sqlmapper 등록) -->	
+	<bean id='sqlSessionFactory' class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
-		<!-- mapper xml 파일 등록 (main/resources/sqlmappers의 모든 하위폴더에서 Mapper로 끝나는 xml 파일 모두 등록) -->
-		<property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"/>	
 	</bean>
-	<!-- MyBatis 설정 (SqlSession - 객체 (mapper에 있는 sql호출) 생성 -->
- 	<bean id='sqlSession' class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<bean id='sqlSession' class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>	
+	</bean>
 </beans>
