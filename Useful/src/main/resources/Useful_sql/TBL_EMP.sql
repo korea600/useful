@@ -1,36 +1,36 @@
 drop table tbl_emp;
 
 create table tbl_emp(
-empno integer primary key, --ì‚¬ë²ˆ
-ename varchar2(10) not null, --ì‚¬ì›ëª…
-pass varchar2(20) not null, -- ë¹„ë°€ë²ˆí˜¸
-ssn varchar2(13) not null,   --ì£¼ë¯¼ë²ˆí˜¸
-phone varchar2(11),          --í°
-address varchar2(50),        --ì§‘ì£¼ì†Œ
-hiredate Date not null,      --ì…ì‚¬ì¼
-deptno integer ,          --ë¶€ì„œë²ˆí˜¸
-position varchar2(10),       --ì§ì±…
-manager varchar2(10),        --ìƒì‚¬
-leave integer,               --ì”ì—¬ì—°ì°¨ì¼
-account varchar2(20) not null, --ê¸‰ì—¬ê³„ì¢Œ
-bank varchar2(10) not null,  -- ì€í•¸
-sign varchar2(20)           --ê²°ì œì´ë¯¸ì§€
+empno integer primary key, --»ç¹ø
+ename varchar2(10) not null, --»ç¿ø¸í
+pass varchar2(20) not null, -- ºñ¹Ğ¹øÈ£
+ssn varchar2(13) not null,   --ÁÖ¹Î¹øÈ£
+phone varchar2(11),          --Æù
+address varchar2(50),        --ÁıÁÖ¼Ò
+hiredate Date not null,      --ÀÔ»çÀÏ
+deptno integer ,          --ºÎ¼­¹øÈ£
+position varchar2(10),       --Á÷Ã¥
+manager varchar2(10),        --»ó»ç
+leave integer,               --ÀÜ¿©¿¬Â÷ÀÏ
+account varchar2(20) not null, --±Ş¿©°èÁÂ
+bank varchar2(10) not null,  -- ÀºÇÚ
+sign varchar2(20)           --°áÁ¦ÀÌ¹ÌÁö
 );
 
 ---------------------------
 create table tbl_emp(
-empno integer primary key, --ì‚¬ë²ˆ
-ename varchar2(10) not null, --ì‚¬ì›ëª…
-pass varchar2(20) not null, -- ë¹„ë°€ë²ˆí˜¸
-ssn varchar2(13) not null,   --ì£¼ë¯¼ë²ˆí˜¸
-phone varchar2(11),          --í°
-address varchar2(50),        --ì§‘ì£¼ì†Œ
-hiredate Date not null,      --ì…ì‚¬ì¼
-deptno integer references tbl_dept(deptno),          --ë¶€ì„œë²ˆí˜¸
-position varchar2(10) references tbl_levelpay(position),       --ì§ì±…
-manager varchar2(10),        --ìƒì‚¬
-leave integer,               --ì”ì—¬ì—°ì°¨ì¼
-account varchar2(20) not null, --ê¸‰ì—¬ê³„ì¢Œ
-bank varchar2(10) not null,  -- ì€í•¸
-sign varchar2(20)           --ê²°ì œì´ë¯¸ì§€
+empno integer primary key, --»ç¹ø
+ename varchar2(10) not null, --»ç¿ø¸í
+pass varchar2(20) not null, -- ºñ¹Ğ¹øÈ£
+ssn varchar2(13) not null,   --ÁÖ¹Î¹øÈ£
+phone varchar2(11),          --Æù
+address varchar2(50),        --ÁıÁÖ¼Ò
+hiredate Date not null,      --ÀÔ»çÀÏ
+deptno integer references tbl_dept(deptno),          --ºÎ¼­¹øÈ£
+position varchar2(10) references tbl_levelpay(position),       --Á÷Ã¥
+manager varchar2(10),        --»ó»ç
+leave integer,               --ÀÜ¿©¿¬Â÷ÀÏ
+account varchar2(20) not null, --±Ş¿©°èÁÂ
+bank varchar2(10) not null,  -- ÀºÇÚ
+sign varchar2(20)           --°áÁ¦ÀÌ¹ÌÁö
 );

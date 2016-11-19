@@ -1,4 +1,4 @@
 create table tbl_levelpay(
-position varchar2(20) primary key, --ì§ì±…
-pay integer  -- ê¸°ë³¸ê¸‰
+position varchar2(20) primary key, --Á÷Ã¥
+pay integer  -- ±âº»±Ş
 );

@@ -1,23 +1,23 @@
 create table tbl_mail(
-serial integer primary key, --ì¼ë ¨ë²ˆí˜¸
-title varchar2(100) not null, --ì œëª©
-sender varchar2(100) not null, --ì‘ì„±ì
-receiver varchar2(100) not null, -- ë°›ëŠ”ì‚¬ëŒ
-gdate date, --ë‚ ì§œ
-content varchar2(2000), --ë‚´ìš©
-attfile varchar2(2000) --ì²¨ë¶€íŒŒì¼
+serial integer primary key, --ÀÏ·Ã¹øÈ£
+title varchar2(100) not null, --Á¦¸ñ
+sender varchar2(100) not null, --ÀÛ¼ºÀÚ
+receiver varchar2(100) not null, -- ¹Ş´Â»ç¶÷
+gdate date, --³¯Â¥
+content varchar2(2000), --³»¿ë
+attfile varchar2(2000) --Ã·ºÎÆÄÀÏ
 );
 
---ì‘ì„±ì ë°›ëŠ”ì‚¬ëŒ ì‚¬ì›í…Œì´ë¸”ì°¸ì¡°
+--ÀÛ¼ºÀÚ ¹Ş´Â»ç¶÷ »ç¿øÅ×ÀÌºíÂüÁ¶
 drop table tbl_mail;
 create table tbl_mail(
-serial integer primary key, --ì¼ë ¨ë²ˆí˜¸
-title varchar2(100) not null, --ì œëª©
-sender varchar2(100) not null references tbl_emp(ename), --ì‘ì„±ì
-receiver varchar2(100) not null references tbl_emp(ename), -- ë°›ëŠ”ì‚¬ëŒ
-gdate date, --ë‚ ì§œ
-content varchar2(2000), --ë‚´ìš©
-attfile varchar2(2000) --ì²¨ë¶€íŒŒì¼
+serial integer primary key, --ÀÏ·Ã¹øÈ£
+title varchar2(100) not null, --Á¦¸ñ
+sender varchar2(100) not null references tbl_emp(ename), --ÀÛ¼ºÀÚ
+receiver varchar2(100) not null references tbl_emp(ename), -- ¹Ş´Â»ç¶÷
+gdate date, --³¯Â¥
+content varchar2(2000), --³»¿ë
+attfile varchar2(2000) --Ã·ºÎÆÄÀÏ
 );
 
 

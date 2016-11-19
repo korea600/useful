@@ -1,9 +1,9 @@
 
 
 create table tbl_votedate(
-serial integer, -- ê¸€ë²ˆí˜¸
-question varchar2(50), --ë³´ê¸°
-regdate date not null --ì‘ì„±ì¼
+serial integer, -- ±Û¹øÈ£
+question varchar2(50), --º¸±â
+regdate date not null --ÀÛ¼ºÀÏ
 );
 
 create sequence tbl_votedate_seq

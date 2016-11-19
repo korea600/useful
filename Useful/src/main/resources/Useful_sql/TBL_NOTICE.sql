@@ -1,19 +1,19 @@
 create table tbl_notice(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-title varchar2(50) not null, --ê¸€ì œëª©
-writer varchar2(20) not null, --ê¸€ì“´ì´
-content varchar2(2000), --ë‚´ìš©
-regdate date not null--ì‘ì„±ì¼ì
+serial integer primary key, --±Û¹øÈ£
+title varchar2(50) not null, --±ÛÁ¦¸ñ
+writer varchar2(20) not null, --±Û¾´ÀÌ
+content varchar2(2000), --³»¿ë
+regdate date not null--ÀÛ¼ºÀÏÀÚ
 );
 
--- ê¸€ì“´ì´ê°€ ì•„ë¬´ì´ë¦„ ì“¸ê°€ë´ ì‚¬ì›í…Œì´ë¸” ì°¸ì¡°í•´ì„œ ì‚¬ìš© í•˜ë ¤ê³  ì‘ì„±
+-- ±Û¾´ÀÌ°¡ ¾Æ¹«ÀÌ¸§ ¾µ°¡ºÁ »ç¿øÅ×ÀÌºí ÂüÁ¶ÇØ¼­ »ç¿ë ÇÏ·Á°í ÀÛ¼º
 drop table tbl_notice;
 create table tbl_notice(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-title varchar2(50) not null, --ê¸€ì œëª©
-ename varchar2(20) not null references tbl_emp(ename), --ê¸€ì“´ì´
-content varchar2(2000), --ë‚´ìš©
-regdate date not null--ì‘ì„±ì¼ì
+serial integer primary key, --±Û¹øÈ£
+title varchar2(50) not null, --±ÛÁ¦¸ñ
+ename varchar2(20) not null references tbl_emp(ename), --±Û¾´ÀÌ
+content varchar2(2000), --³»¿ë
+regdate date not null--ÀÛ¼ºÀÏÀÚ
 );
 
 create sequence tbl_notice_seq

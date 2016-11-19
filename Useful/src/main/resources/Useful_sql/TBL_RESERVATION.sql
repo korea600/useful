@@ -1,21 +1,21 @@
 create table tbl_reservation(
-serial integer primary key, --ì¼ë ¨ë²ˆí˜¸
-roomno integer not null, --íšŒì˜ì‹¤ë²ˆí˜¸
-begin date not null, --ì‹œì‘ì‹œê°„
-end date not null, --ì¢…ë£Œì‹œê°„
-booker varchar2(50), --ì˜ˆì•½ì
-checked varchar2(20) --ìŠ¹ì¸êµ¬ë¶„
+serial integer primary key, --ÀÏ·Ã¹øÈ£
+roomno integer not null, --È¸ÀÇ½Ç¹øÈ£
+begin date not null, --½ÃÀÛ½Ã°£
+end date not null, --Á¾·á½Ã°£
+booker varchar2(50), --¿¹¾àÀÚ
+checked varchar2(20) --½ÂÀÎ±¸ºĞ
 );
 
---ì—ì•½ìëª… ì‚¬ì›ëª… í…Œì´ë¸”ì—ì„œ ì™¸ë˜í‚¤ ì°¸ì¡°
+--¿¡¾àÀÚ¸í »ç¿ø¸í Å×ÀÌºí¿¡¼­ ¿Ü·¡Å° ÂüÁ¶
 drop table tbl_reservation;
 create table tbl_reservation(
-serial integer primary key, --ì¼ë ¨ë²ˆí˜¸
-roomno integer not null, --íšŒì˜ì‹¤ë²ˆí˜¸
-begin date not null, --ì‹œì‘ì‹œê°„
-end date not null, --ì¢…ë£Œì‹œê°„
-ename varchar2(50) references tbl_emp(ename), --ì˜ˆì•½ì
-checked varchar2(20) --ìŠ¹ì¸êµ¬ë¶„
+serial integer primary key, --ÀÏ·Ã¹øÈ£
+roomno integer not null, --È¸ÀÇ½Ç¹øÈ£
+begin date not null, --½ÃÀÛ½Ã°£
+end date not null, --Á¾·á½Ã°£
+ename varchar2(50) references tbl_emp(ename), --¿¹¾àÀÚ
+checked varchar2(20) --½ÂÀÎ±¸ºĞ
 );
 
 create sequence tbl_reservation_seq

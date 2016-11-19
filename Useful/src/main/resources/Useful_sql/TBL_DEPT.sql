@@ -1,5 +1,5 @@
 drop table tbl_dept;
 create table tbl_dept(
-deptno integer primary key, --ë¶€ì„œë²ˆí˜¸
-dname varchar2(15) not null --ë¶€ì„œëª…
+deptno integer primary key, --ºÎ¼­¹øÈ£
+dname varchar2(15) not null --ºÎ¼­¸í
 );

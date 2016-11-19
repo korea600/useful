@@ -1,20 +1,20 @@
 create table tbl_board(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-title varchar2(50) not null, --ê¸€ì œëª©
-writer varchar2(30) not null, --ê¸€ì“´ì´
-content varchar2(2000) not null, --ë‚´ìš©
-regdate date not null, --ì‘ì„±ì¼ì
-viewcnt integer --ì¡°íšŒìˆ˜
+serial integer primary key, --±Û¹øÈ£
+title varchar2(50) not null, --±ÛÁ¦¸ñ
+writer varchar2(30) not null, --±Û¾´ÀÌ
+content varchar2(2000) not null, --³»¿ë
+regdate date not null, --ÀÛ¼ºÀÏÀÚ
+viewcnt integer --Á¶È¸¼ö
 );
 
 drop table tbl_board;
 create table tbl_board(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-title varchar2(50) not null, --ê¸€ì œëª©
-ename varchar2(30) not null references tbl_emp(ename), --ê¸€ì“´ì´
-content varchar2(2000) not null, --ë‚´ìš©
-regdate date not null, --ì‘ì„±ì¼ì
-viewcnt integer --ì¡°íšŒìˆ˜
+serial integer primary key, --±Û¹øÈ£
+title varchar2(50) not null, --±ÛÁ¦¸ñ
+ename varchar2(30) not null references tbl_emp(ename), --±Û¾´ÀÌ
+content varchar2(2000) not null, --³»¿ë
+regdate date not null, --ÀÛ¼ºÀÏÀÚ
+viewcnt integer --Á¶È¸¼ö
 );
 
 create sequence tbl_board_seq

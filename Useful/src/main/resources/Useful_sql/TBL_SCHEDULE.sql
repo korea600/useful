@@ -1,23 +1,23 @@
 create table tbl_schedule(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-category varchar2(20) not null, --êµ¬ë¶„ -ë¶€ì„œ,ì „ì²´
-deptno integer not null, --ë¶€ì„œë²ˆí˜¸
-title varchar2(50) not null, --ì œëª©
-content varchar2(2000), --ê¸€ë‚´ìš©
-begin date not null, --ì‹œìž‘ ì‹œê°„
-end date not null --ì¢…ë£Œì‹œê°„
+serial integer primary key, --±Û¹øÈ£
+category varchar2(20) not null, --±¸ºÐ -ºÎ¼­,ÀüÃ¼
+deptno integer not null, --ºÎ¼­¹øÈ£
+title varchar2(50) not null, --Á¦¸ñ
+content varchar2(2000), --±Û³»¿ë
+begin date not null, --½ÃÀÛ ½Ã°£
+end date not null --Á¾·á½Ã°£
 );
 
---ë¶€ì„œë²ˆí˜¸ ì™œë¦¬í‚¤ ì‚¬ìš©
+--ºÎ¼­¹øÈ£ ¿Ü·¡Å° »ç¿ë
 drop table tbl_schedule;
 create table tbl_schedule(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-category varchar2(20) not null, --êµ¬ë¶„ -ë¶€ì„œ,ì „ì²´
-deptno integer not null references tbl_dept(deptno), --ë¶€ì„œë²ˆí˜¸
-title varchar2(50) not null, --ì œëª©
-content varchar2(2000), --ê¸€ë‚´ìš©
-begin date not null, --ì‹œìž‘ ì‹œê°„
-end date not null --ì¢…ë£Œì‹œê°„
+serial integer primary key, --±Û¹øÈ£
+category varchar2(20) not null, --±¸ºÐ -ºÎ¼­,ÀüÃ¼
+deptno integer not null references tbl_dept(deptno), --ºÎ¼­¹øÈ£
+title varchar2(50) not null, --Á¦¸ñ
+content varchar2(2000), --±Û³»¿ë
+begin date not null, --½ÃÀÛ ½Ã°£
+end date not null --Á¾·á½Ã°£
 );
 
 create sequence tbl_schedule_seq

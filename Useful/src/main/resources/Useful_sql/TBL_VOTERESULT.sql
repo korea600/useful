@@ -1,12 +1,12 @@
 create table tbl_voteresult(
-serial integer, --ê¸€ë²ˆí˜¸
-empno varchar2(100), --ì°¸ì—¬ì ì´ì¤‘ì°¸ì—¬ ë°©ì§€ìš©
-answer varchar2(50) --ì‘ë‹µ
+serial integer, --±Û¹øÈ£
+empno varchar2(100), --Âü¿©ÀÚ ÀÌÁßÂü¿© ¹æÁö¿ë
+answer varchar2(50) --ÀÀ´ä
 );
 
---ì‚¬ë²ˆì„ empí…Œì´ë¸”ì—ì„œ ì°¸ì¡°
+--»ç¹øÀ» empÅ×ÀÌºí¿¡¼­ ÂüÁ¶
 create table tbl_voteresult(
-serial integer, --ê¸€ë²ˆí˜¸
-empno varchar2(100) references tbl_emp(empno), --ì°¸ì—¬ì ì´ì¤‘ì°¸ì—¬ ë°©ì§€ìš©
-answer varchar2(50) --ì‘ë‹µ
+serial integer, --±Û¹øÈ£
+empno varchar2(100) references tbl_emp(empno), --Âü¿©ÀÚ ÀÌÁßÂü¿© ¹æÁö¿ë
+answer varchar2(50) --ÀÀ´ä
 );

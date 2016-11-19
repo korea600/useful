@@ -1,18 +1,18 @@
 create table tbl_vote(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-title varchar2(50) not null, --ê¸€ì œëª©
-writer varchar2(50) not null, --ê¸€ìŠ¨ì´
-content varchar2(2000) not null, --ìƒì„¸ì§ˆë¬¸
-regdate date not null --ì‘ì„±ì¼ì
+serial integer primary key, --±Û¹øÈ£
+title varchar2(50) not null, --±ÛÁ¦¸ñ
+writer varchar2(50) not null, --±Û½¼ÀÌ
+content varchar2(2000) not null, --»ó¼¼Áú¹®
+regdate date not null --ÀÛ¼ºÀÏÀÚ
 );
 
 drop table tbl_vote;
 create table tbl_vote(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-title varchar2(50) not null, --ê¸€ì œëª©
-ename varchar2(50) not null references tbl_emp(ename), --ê¸€ìŠ¨ì´
-content varchar2(2000) not null, --ìƒì„¸ì§ˆë¬¸
-regdate date not null --ì‘ì„±ì¼ì
+serial integer primary key, --±Û¹øÈ£
+title varchar2(50) not null, --±ÛÁ¦¸ñ
+ename varchar2(50) not null references tbl_emp(ename), --±Û½¼ÀÌ
+content varchar2(2000) not null, --»ó¼¼Áú¹®
+regdate date not null --ÀÛ¼ºÀÏÀÚ
 );
 
 create sequence tbl_vote_seq

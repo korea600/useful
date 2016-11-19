@@ -1,25 +1,25 @@
 create table tbl_deptboard(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-deptno integer not null, --ë¶€ì„œë²ˆí˜¸
-title varchar2(100) not null, --ê¸€ì œëª©
-writer varchar2(100) not null, --ê¸€ì“´ì´
-content varchar2(2000) not null, --ë‚´ìš©
-regdate date not null, --ì‘ì„±ì¼ì
-viewcnt integer , --ì¡°íšŒìˆ˜
-checked varchar2(10) -- êµ¬ë¶„ - ì‹ ê·œ/ì§„í–‰ì¤‘/ë³´ë¥˜/ì¤‘ë‹¨/ì™„ë£Œ
+serial integer primary key, --±Û¹øÈ£
+deptno integer not null, --ºÎ¼­¹øÈ£
+title varchar2(100) not null, --±ÛÁ¦¸ñ
+writer varchar2(100) not null, --±Û¾´ÀÌ
+content varchar2(2000) not null, --³»¿ë
+regdate date not null, --ÀÛ¼ºÀÏÀÚ
+viewcnt integer , --Á¶È¸¼ö
+checked varchar2(10) -- ±¸ºĞ - ½Å±Ô/ÁøÇàÁß/º¸·ù/Áß´Ü/¿Ï·á
 );
 
 drop table tbl_deptboard;
--- ë¶€ì„œë²ˆí˜¸ ì°¸ì¡°í•˜ê³  ê¸€ì“´ì´ ì‚¬ì›í…Œì´ë¸”ì—ì„œ ì°¸ì¡°
+-- ºÎ¼­¹øÈ£ ÂüÁ¶ÇÏ°í ±Û¾´ÀÌ »ç¿øÅ×ÀÌºí¿¡¼­ ÂüÁ¶
 create table tbl_deptboard(
-serial integer primary key, --ê¸€ë²ˆí˜¸
-deptno integer not null references tbl_dept(deptno), --ë¶€ì„œë²ˆí˜¸
-title varchar2(100) not null, --ê¸€ì œëª©
-ename varchar2(100) not null references tbl_emp(ename), --ê¸€ì“´ì´
-content varchar2(2000) not null, --ë‚´ìš©
-regdate date not null, --ì‘ì„±ì¼ì
-viewcnt integer , --ì¡°íšŒìˆ˜
-checked varchar2(10) -- êµ¬ë¶„ - ì‹ ê·œ/ì§„í–‰ì¤‘/ë³´ë¥˜/ì¤‘ë‹¨/ì™„ë£Œ
+serial integer primary key, --±Û¹øÈ£
+deptno integer not null references tbl_dept(deptno), --ºÎ¼­¹øÈ£
+title varchar2(100) not null, --±ÛÁ¦¸ñ
+ename varchar2(100) not null references tbl_emp(ename), --±Û¾´ÀÌ
+content varchar2(2000) not null, --³»¿ë
+regdate date not null, --ÀÛ¼ºÀÏÀÚ
+viewcnt integer , --Á¶È¸¼ö
+checked varchar2(10) -- ±¸ºĞ - ½Å±Ô/ÁøÇàÁß/º¸·ù/Áß´Ü/¿Ï·á
 );
 
 create sequence tbl_deptboard_seq

@@ -1,20 +1,20 @@
 create table tbl_lazyness(
-serial integer primary key, --ì¼ë ¨ë²ˆí˜¸
-empno integer not null, -- ì‚¬ë²ˆ
-category varchar2(20) not null, -- ì¢…ë¥˜
-begin date , --ì‹œì‘
-term date , --ê¸°ê°„
-etc date --ë¹„ê³ 
+serial integer primary key, --ÀÏ·Ã¹øÈ£
+empno integer not null, -- »ç¹ø
+category varchar2(20) not null, -- Á¾·ù
+begin date , --½ÃÀÛ
+term date , --±â°£
+etc date --ºñ°í
 );
 
 drop table tbl_lazyness;
 create table tbl_lazyness(
-serial integer primary key, --ì¼ë ¨ë²ˆí˜¸
-empno integer not null references tbl_emp(empno), -- ì‚¬ë²ˆ
-category varchar2(20) not null, -- ì¢…ë¥˜
-begin date , --ì‹œì‘
-term date , --ê¸°ê°„
-etc date --ë¹„ê³ 
+serial integer primary key, --ÀÏ·Ã¹øÈ£
+empno integer not null references tbl_emp(empno), -- »ç¹ø
+category varchar2(20) not null, -- Á¾·ù
+begin date , --½ÃÀÛ
+term date , --±â°£
+etc date --ºñ°í
 );
 
 create sequence tb1_lazyness_seq
