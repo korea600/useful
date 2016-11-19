@@ -7,8 +7,6 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven>
 		<!-- @ResponseBody의 한글처리 -->
@@ -29,7 +27,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.co.useful" />
-	
 	
 	
 </beans:beans>
