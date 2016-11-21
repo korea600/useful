@@ -5,33 +5,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>직원관리</title>
+ <link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/css/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="screen"
-	href="useful/resources/css/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="useful/resources/jqgrid/css/ui.jqgrid.css" />
-<script type="text/javascript" src="useful/resources/js/jquery-3.1.1.js"></script>
-<script type="text/javascript" src="useful/resources/js/jquery-ui.js"></script>
+	href="${pageContext.request.contextPath}/resources/jqgrid/css/ui.jqgrid.css" /> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
 <script type="text/javascript"
-	src="useful/resources/jqgrid/js/jquery.jqGrid.src.js"></script>
+	src="${pageContext.request.contextPath}/resources/jqgrid/js/i18n/grid.locale-en.js"></script> 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jqgrid/js/jquery.jqGrid.src.js"></script> 
 <script type="text/javascript">
 	$(function(){
-		$.ajax({
-			url:'/manager/list',	
-			headers: { 
-			      "Content-Type": "application/json",
-			       },
-			dataType:'json', 
-			success:function(result){
-			
-  			  for(var i=0;i<=gridData.length;i++){
-        	    $("#list").jqGrid('addRowData',i+1,gridData[i]);
-  			  }
-		}
-			
-		});
 		
 		$("#employee_tbl").jqGrid({
-			datatype:"local",
+			url:'/manager/list',	
+			dataType:'json', 
+			mtype:'POST'
             height: 250,
             colNames:['사번','성명','부서','직책','핸드폰번호'],
             colModel:[
