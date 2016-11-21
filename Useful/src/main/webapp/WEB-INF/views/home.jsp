@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC>
+<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -38,7 +38,7 @@ div {
 	height: 1000px;
 }
 </style>
-<script src="/resources/js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		var menupos = $("#menu").offset().top;
