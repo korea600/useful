@@ -27,7 +27,7 @@
 	<!-- 프로젝트 세팅 관련 부분  end-->
 	
 	<!-- beans 또는 component-scan 등록 부분 -->
-	<context:component-scan base-package="kr.co.useful" />
+	<context:component-scan base-package="kr.co.useful.organization.controller" />
 	
 	
 </beans:beans>
