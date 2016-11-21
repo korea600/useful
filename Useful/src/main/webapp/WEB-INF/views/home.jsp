@@ -49,6 +49,7 @@ div {
 			} else {
 				$("#menu").css("position", "relative");
 				$("#menu").css("top", "");
+				
 			}
 		});
 	});
