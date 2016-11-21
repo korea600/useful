@@ -1,6 +1,6 @@
 create table tbl_lazyness(
-serial integer primary key, --일련번호
-empno integer not null, -- 사번
+serial number primary key, --일련번호
+empno number not null, -- 사번
 category varchar2(20) not null, -- 종류
 begin date , --시작
 term date , --기간
@@ -9,8 +9,8 @@ etc date --비고
 
 drop table tbl_lazyness;
 create table tbl_lazyness(
-serial integer primary key, --일련번호
-empno integer not null references tbl_emp(empno), -- 사번
+serial number primary key, --일련번호
+empno number not null references tbl_emp(empno), -- 사번
 category varchar2(20) not null, -- 종류
 begin date , --시작
 term date , --기간

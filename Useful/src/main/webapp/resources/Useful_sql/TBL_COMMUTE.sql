@@ -1,14 +1,14 @@
 create table tbl_commute(
-serial integer primary key,
-empno integer not null,
+serial number primary key,
+empno number not null,
 commute date not null,
 checked varchar2(10)
 );
 
 drop table tbl_commute;
 create table tbl_commute(
-serial integer primary key,
-empno integer not null references tbl_emp(empno),
+serial number primary key,
+empno number not null references tbl_emp(empno),
 commute date not null,
 checked varchar2(10)
 );

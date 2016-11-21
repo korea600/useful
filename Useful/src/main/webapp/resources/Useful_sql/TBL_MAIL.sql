@@ -1,5 +1,5 @@
 create table tbl_mail(
-serial integer primary key, --일련번호
+serial number primary key, --일련번호
 title varchar2(100) not null, --제목
 sender varchar2(100) not null, --작성자
 receiver varchar2(100) not null, -- 받는사람
@@ -11,7 +11,7 @@ attfile varchar2(2000) --첨부파일
 --작성자 받는사람 사원테이블참조
 drop table tbl_mail;
 create table tbl_mail(
-serial integer primary key, --일련번호
+serial number primary key, --일련번호
 title varchar2(100) not null, --제목
 sender varchar2(100) not null references tbl_emp(ename), --작성자
 receiver varchar2(100) not null references tbl_emp(ename), -- 받는사람

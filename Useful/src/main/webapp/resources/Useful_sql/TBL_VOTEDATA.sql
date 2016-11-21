@@ -1,7 +1,7 @@
 
 
 create table tbl_votedate(
-serial integer, -- 글번호
+serial number, -- 글번호
 question varchar2(50), --보기
 regdate date not null --작성일
 );
