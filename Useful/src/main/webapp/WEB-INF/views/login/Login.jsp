@@ -53,7 +53,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="main.jsp" class="btn btn-lg btn-success btn-block">Login</a>
+                                <a href="Main" class="btn btn-lg btn-success btn-block">Login</a>
 						</form>
                     </div>
                 </div>

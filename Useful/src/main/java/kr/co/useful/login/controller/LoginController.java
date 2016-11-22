@@ -15,7 +15,12 @@ public class LoginController {
 	private LoginService service;
 	
 	@RequestMapping("/Login")
-	public String login(){
-		return "login/Login";
+	public void login(){
+		
+	}
+	
+	@RequestMapping("/Main")
+	public void main(){
+		
 	}
 }
