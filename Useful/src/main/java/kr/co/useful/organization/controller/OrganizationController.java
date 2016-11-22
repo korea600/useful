@@ -11,8 +11,8 @@ import kr.co.useful.organization.service.OrganizationService;
 @RequestMapping("/organization")
 public class OrganizationController {
 	
-	@Inject
-	private OrganizationService service;
+	/*@Inject
+	private OrganizationService service;*/
 	
 	@RequestMapping(value="")
 	public String view_organization(){
