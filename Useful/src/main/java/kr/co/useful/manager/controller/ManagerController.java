@@ -12,10 +12,7 @@ public class ManagerController {
 		
 	}
 	
-	@RequestMapping("/List")
-	public void list(){
-		
-	}
+
 	@RequestMapping("/jquery_Test")
 	public void jquery_Test(){
 		

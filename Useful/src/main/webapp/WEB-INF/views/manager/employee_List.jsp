@@ -6,32 +6,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>직원관리</title>
  <link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/css/jquery-ui.css" />
+	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqgrid/css/ui.jqgrid.css" /> 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqgrid/js/i18n/grid.locale-en.js"></script> 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqgrid/js/jquery.jqGrid.src.js"></script> 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
 <script type="text/javascript">
 	$(function(){
 		
 		$("#employee_tbl").jqGrid({
-			url:'/manager/list',	
-			dataType:'json', 
+			url:'/useful/manager/list2',	
+			datatype:'json', 
 			mtype:'POST',
             height: 250,
             colNames:['사번','성명','부서','직책','핸드폰번호'],
             colModel:[
-                {name:'empno'},
-                {name:'ename'},
-                {name:'deptno'},
-                {name:'position'},     
-                {name:'phone'}     
+                {name:'empno',index:'empno'},
+                {name:'ename',index:'ename'},
+                {name:'deptno',index:'deptno'},
+                {name:'position',index:'positon'},     
+                {name:'phone',index:'phone'}     
             ],
+           	rowNum:10,
             caption: "사원목록"
+
 		});
 	
 	});
