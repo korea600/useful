@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="organization">
-	
+	<!-- 조직도에 출력할 부서들의 부서번호 얻어오기 (사장 제외)-->
+	<select id='getDeptno' resultType="Organization">
+		select distinct tbl_emp.deptno,tbl_dept.dname
+		from tbl_emp, tbl_dept
+		where tbl_emp.deptno=tbl_dept.deptno
+		and tbl_emp.deptno!=0
+		order by tbl_emp.deptno
+	</select>
+	<!-- 해당 부서내 출력할 사원정보 얻어오기 -->
+	<select id="list_by_deptno" parameterType="int" resultType="Organization">
+		select ename, position
+		from tbl_emp
+		where tbl_emp.deptno=#{deptno}
+		order by tbl_position.posno
+	</select>
+	<!-- 특정 사원의 세부 정보 얻어오기 -->
+	<select id="getDetails" parameterType="int" resultType="Organization">
+		select ename, phone, address, dname, position 
+		from tbl_emp, tbl_dept
+		where tbl_emp.deptno=tbl_dept.deptno
+		and empno=#{empno}
+	</select>
 </mapper>
