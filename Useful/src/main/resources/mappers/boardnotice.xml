@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="notice">
+	
+	<!-- 게시물 선택보기 -->
+    <select id="selectRead" resultType="kr.co.useful.board.domain.NoticeVO">
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM TBL_NOTICE WHERE SERIAL=#{serial}
+    </select>
+    <!-- 게시물 전체보기 -->
+    <select id="listAll" resultType="kr.co.useful.board.domain.NoticeVO">
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM TBL_NOTICE ORDER BY SERIAL DESC
+    </select>
+    <!-- 게시물 업데이트 -->
+    <update id="update">
+    UPDATE TBL_NOTICE SET TITLE=#{title},WRITER=#{writer},CONTENT=#{content} FROM TBL_NOTICE
+    </update>
+    <!-- 게시물등록 -->
+    <insert id="insert">
+    INSERT INTO TBL_NOTICE(SERIAL,TITLE,WRITER,CONTENT,RAGDATE) 
+    VALUES(tbl_notice_seq.nextval,#{title},#{writer},#{content},sysdate)
+    </insert>
+    
+    <!-- 게시물 삭제 -->
+    <delete id="delete">
+    DELETE FROM TBL_NOTICE WHERE SERIAL=#{serial}
+    </delete>
+    
+    <select id="count">
+    SELECT COUNT(*) FROM TBL_NOTICE
+    </select>
+    
+    <select id="listSearch" resultType="kr.co.useful.board.domain.NoticeVO">
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE from tbl_notice
+    <include refid="Search"/>
+    order by serial desc
+    </select>
+    
+    <select id="listcount" resultType="int">
+    select count(*) from tbl_notice
+    <include refid="Search"/>
+    </select>
+    
+    <sql id="Search">
+    <if test="searchType!=null">
+    <if test="searchType=='t'">
+    where title like '%'||#{keyword}||'%'
+    </if>
+     <if test="searchType=='w'">
+    where writer like '%'||#{keyword}||'%'
+    </if>
+     <if test="searchType=='c'">
+    where content like '%'||#{keyword}||'%'
+    </if>
+    </if>
+    </sql>
+    
+    
+</mapper>
