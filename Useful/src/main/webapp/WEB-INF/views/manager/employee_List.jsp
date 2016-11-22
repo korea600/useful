@@ -52,7 +52,23 @@
 </script>
 </head>
 <body>
-<div><font size="5">사원목록</font></div>
+	<p>
+		<font size="5" style="font-style: inherit;">직원관리</font><br>
+	</p>
+	<div>
+		- 검색어 
+		<select id="searchGbn" name="searchGbn" class="select">
+			<option value="divGbn" selected="selected">전체        </option>
+			<option value="ename">성명        </option>
+			<option value="empno">사번        </option>
+			<option value="deptno">부서</option>
+			<option value="position">직책       </option>
+		</select>	
+		<input type="text" id="search">
+		<button id="btn_Search">조회</button>
+		<button id="btn_NewUser">신규</button>
+		<button id="btn_Delete">삭제</button>
+	</div>
 <hr>
 	<table id="employee_tbl"></table>
 	<div id="employee_div"></div>

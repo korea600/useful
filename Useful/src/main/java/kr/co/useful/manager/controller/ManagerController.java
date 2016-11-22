@@ -12,6 +12,15 @@ public class ManagerController {
 		
 	}
 	
+	@RequestMapping("/employee_Insert")
+	public void employee_Insert(){
+		
+	}
+	
+	@RequestMapping("/employee_Update")
+	public void employee_Update(){
+		
+	}
 
 	@RequestMapping("/jquery_Test")
 	public void jquery_Test(){
