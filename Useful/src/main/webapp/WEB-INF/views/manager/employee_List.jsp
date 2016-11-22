@@ -21,7 +21,7 @@
 		$("#employee_tbl").jqGrid({
 			url:'/manager/list',	
 			dataType:'json', 
-			mtype:'POST'
+			mtype:'POST',
             height: 250,
             colNames:['사번','성명','부서','직책','핸드폰번호'],
             colModel:[

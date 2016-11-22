@@ -16,4 +16,10 @@ public class ManagerController {
 	public void list(){
 		
 	}
+	@RequestMapping("/jquery_Test")
+	public void jquery_Test(){
+		
+	}
+	
+	
 }
