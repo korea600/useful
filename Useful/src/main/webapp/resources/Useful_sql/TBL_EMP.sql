@@ -15,6 +15,7 @@ leave number,               --잔여연차일
 account varchar2(20) not null, --급여계좌
 bank varchar2(15) not null,  -- 은행
 sign varchar2(20)           --결제이미지
+email varchar2(30)			-- 이메일
 );
 
 ---------------------------
