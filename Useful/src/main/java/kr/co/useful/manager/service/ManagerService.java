@@ -1,5 +1,6 @@
 package kr.co.useful.manager.service;
 
-public interface ManagerService {
+import org.springframework.stereotype.Service;
 
+public interface ManagerService {
 }
