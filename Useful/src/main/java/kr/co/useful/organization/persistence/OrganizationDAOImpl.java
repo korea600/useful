@@ -5,9 +5,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import kr.co.useful.organization.domain.OrganizationVO;
 
+@Repository
 public class OrganizationDAOImpl implements OrganizationDAO{
 	@Inject
 	private SqlSession sqlSession;

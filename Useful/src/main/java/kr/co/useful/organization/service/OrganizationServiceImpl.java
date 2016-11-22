@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import kr.co.useful.organization.domain.OrganizationVO;
 import kr.co.useful.organization.persistence.OrganizationDAO;
 
+@Service
 public class OrganizationServiceImpl implements OrganizationService{
 	@Inject
 	private OrganizationDAO dao;

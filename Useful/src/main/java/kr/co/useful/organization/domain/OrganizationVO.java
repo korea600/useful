@@ -9,8 +9,17 @@ public class OrganizationVO {
 	private String dname;		// 부서명 (tbl_dept)
 	private String position;	// 직책 (tbl_emp, tbl_position)
 	private int posno;			// 직책번호 (tbl_position)
-	
+	private String email;		// 이메일 (tbl_emp)
 	public OrganizationVO() {}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	
 	public int getEmpno() {
 		return empno;

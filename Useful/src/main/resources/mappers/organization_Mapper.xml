@@ -11,14 +11,15 @@
 	</select>
 	<!-- 해당 부서내 출력할 사원정보 얻어오기 -->
 	<select id="list_by_deptno" parameterType="int" resultType="Organization">
-		select ename, position
-		from tbl_emp
-		where tbl_emp.deptno=#{deptno}
-		order by tbl_position.posno
+		select empno, ename, tbl_emp.position, posno
+		from tbl_emp, tbl_position
+		where tbl_emp.position=tbl_position.position
+		and tbl_emp.deptno=#{deptno}
+		order by posno, hiredate
 	</select>
 	<!-- 특정 사원의 세부 정보 얻어오기 -->
 	<select id="getDetails" parameterType="int" resultType="Organization">
-		select ename, phone, address, dname, position 
+		select ename, phone, address, dname, position,email
 		from tbl_emp, tbl_dept
 		where tbl_emp.deptno=tbl_dept.deptno
 		and empno=#{empno}
