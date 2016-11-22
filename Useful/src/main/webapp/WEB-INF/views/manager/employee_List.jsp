@@ -37,8 +37,8 @@
             ],
             rowNum:10,
             rowList:[10,20,30],
-            pager:'#pager',
-            sortname:'id',
+            pager:'#employee_div',
+            sortname:'EMPNO',
             viewrecords: true,
             sortorder:"desc",
             caption: "사원목록",
@@ -47,7 +47,7 @@
             }
 
 		});
-	
+		$("#employee_tbl").jqGrid('navGrid','#employee_div',{edit:false,add:false,del:false});
 	});
 </script>
 </head>
@@ -56,6 +56,5 @@
 <hr>
 	<table id="employee_tbl"></table>
 	<div id="employee_div"></div>
-	<div id="pager"></div>
 </body>
 </html>
