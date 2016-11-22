@@ -28,14 +28,23 @@
             height: 250,
             colNames:['사번','성명','부서','직책','핸드폰번호'],
             colModel:[
-                {name:'empno',index:'empno'},
-                {name:'ename',index:'ename'},
-                {name:'deptno',index:'deptno'},
-                {name:'position',index:'positon'},     
-                {name:'phone',index:'phone'}     
+                {name:'EMPNO',index:'EMPNO'},
+                {name:'ENAME',index:'ENAME'},
+                {name:'DEPTNO',index:'DEPTNO'},
+                {name:'POSITION',index:'POSITION'},     
+                {name:'PHONE',index:'PHONE'}  
+         
             ],
-           	rowNum:10,
-            caption: "사원목록"
+            rowNum:10,
+            rowList:[10,20,30],
+            pager:'#pager',
+            sortname:'id',
+            viewrecords: true,
+            sortorder:"desc",
+            caption: "사원목록",
+            jsonReader: {
+                 repeatitems:false
+            }
 
 		});
 	
@@ -43,7 +52,10 @@
 </script>
 </head>
 <body>
+<div><font size="5">사원목록</font></div>
+<hr>
 	<table id="employee_tbl"></table>
 	<div id="employee_div"></div>
+	<div id="pager"></div>
 </body>
 </html>

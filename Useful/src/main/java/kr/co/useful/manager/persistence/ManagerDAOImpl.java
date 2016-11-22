@@ -1,6 +1,7 @@
 package kr.co.useful.manager.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,7 +17,7 @@ public class ManagerDAOImpl implements ManagerDAO {
 	private SqlSession sqlSession;	
 	
 	@Override
-	public List<EmpVO> emplist() throws Exception {
+	public List<Map<String, Object>> emplist() throws Exception {
 		return sqlSession.selectList("manager.emplist");
 	}
 }
