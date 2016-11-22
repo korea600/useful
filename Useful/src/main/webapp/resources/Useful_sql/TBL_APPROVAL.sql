@@ -10,3 +10,8 @@ create table tbl_approval(	-- 결재정보 테이블
 	next_approval varchar2(15),		-- 다음 결재자 (null이면 결재 완료)
 	addfile blob					-- 첨부파일 (blob : 최대 4GB의 binary 파일 저장)
 )
+
+create sequence tbl_approval_seq	-- 문서번호용 sequence
+start with 1
+increment by 1
+nocache nocycle;

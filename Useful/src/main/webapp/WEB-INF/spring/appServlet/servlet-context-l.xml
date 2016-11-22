@@ -27,7 +27,8 @@
 	<!-- 프로젝트 세팅 관련 부분  end-->
 	
 	<!-- beans 또는 component-scan 등록 부분 -->
+	<!-- 조직도 + 연락처 -->
 	<context:component-scan base-package="kr.co.useful.organization.controller" />
-	
-	
+	<!-- 전자결재 -->
+	<context:component-scan base-package="kr.co.useful.approval.controller" />
 </beans:beans>
