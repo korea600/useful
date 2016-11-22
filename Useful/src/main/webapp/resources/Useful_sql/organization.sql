@@ -11,6 +11,43 @@ insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, 
 values (1004, '이대원', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',null, 30,'123456-7890123','한국은행');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
 values (1005, '전성원', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',null, 30,'123456-7890123','한국은행');
+
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1006, '이길학', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '부장',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1007, '최용석', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '대리',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1008, '기호창', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1009, '김소영', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1010, '윤철', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1011, '황혜정', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원',null, 30,'123456-7890123','한국은행');
+
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1012, '이하은', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '부장',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1013, '최필한', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '대리',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1014, '정다운', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1015, '권성준', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1016, '오정훈', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1017, '최상균', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',null, 30,'123456-7890123','한국은행');
+
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1018, '박종민', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '부장',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1019, '박재현', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '대리',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1020, '이성욱', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '사원',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1021, '이종환', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '사원',null, 30,'123456-7890123','한국은행');
+insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
+values (1022, '김혜정', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '사원',null, 30,'123456-7890123','한국은행');
 -- 컬럼 데이터 크기 수정
 alter table tbl_emp modify (ssn varchar2(15));
 alter table tbl_emp modify (phone varchar2(15));
@@ -24,6 +61,6 @@ insert into tbl_position values ('대리', 20);
 insert into tbl_position values ('사원', 30);
 -- 부서테이블 (tbl_dept) 샘플데이터 삽입
 insert into tbl_dept values (10,'잘했조');
-insert into tbl_dept values (20,'강조');
-insert into tbl_dept values (30,'보여조');
+insert into tbl_dept values (20,'보여조');
+insert into tbl_dept values (30,'강조');
 insert into tbl_dept values (40,'삼삼오오조');
