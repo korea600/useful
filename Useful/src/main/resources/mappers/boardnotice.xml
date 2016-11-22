@@ -36,20 +36,20 @@
     </select>
     
     <select id="listcount" resultType="int">
-    select count(*) from tbl_notice
+    select count(*) from tbl_notice where serial>0
     <include refid="Search"/>
     </select>
     
     <sql id="Search">
     <if test="searchType!=null">
     <if test="searchType=='t'">
-    where title like '%'||#{keyword}||'%'
+    and title like concat("%",#{keyword},"%")
     </if>
      <if test="searchType=='w'">
-    where writer like '%'||#{keyword}||'%'
+    and writer like concat("%",#{keyword},"%")
     </if>
      <if test="searchType=='c'">
-    where content like '%'||#{keyword}||'%'
+    and content like concat("%",#{keyword},"%")
     </if>
     </if>
     </sql>

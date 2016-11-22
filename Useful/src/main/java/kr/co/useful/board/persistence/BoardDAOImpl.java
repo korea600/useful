@@ -52,7 +52,7 @@ private SqlSession sqlsession;
 	@Override
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
 		
-		return sqlsession.selectList("board.listSearch", cri);
+		return sqlsession.selectList("board.listSearch", cri,new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
 	@Override
@@ -66,5 +66,6 @@ private SqlSession sqlsession;
 		// TODO Auto-generated method stub
 		return sqlsession.selectList("board.readAll", null, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
+
 
 }

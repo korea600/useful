@@ -11,9 +11,9 @@ public interface BoardDAO {
 	public void update(BoardVO vo)throws Exception;
 	public void delete(int serial)throws Exception;
 	public List<BoardVO> readAll()throws Exception;
-	public int boardTotalCount()throws Exception;
-	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
-	public List<BoardVO> listSearch(SearchCriteria cri)throws Exception;
-	public int listFindCount(SearchCriteria cri)throws Exception;
+	public int boardTotalCount()throws Exception; //게시판 전체수
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception; //특정페이지조회
+	public List<BoardVO> listSearch(SearchCriteria cri)throws Exception; //검색어조회
+	public int listFindCount(SearchCriteria cri)throws Exception; //검색어조회수
 	
 }
