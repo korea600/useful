@@ -8,7 +8,7 @@ values (tbl_board_seq.nextval,#{title},#{writer},#{content})
 </insert>
 
 <select id="read" resultType="kr.co.useful.board.domain.BoardVO">
-select * from tbl_board where serial=#{serial}
+select serial,title,writer,content,regdate,viewcnt from tbl_board where serial=#{serial}
 </select>
 
 <update id="update">
@@ -23,6 +23,44 @@ delete from tbl_board where serial=#{serial}
 select * from tb1_board order by serial desc
 </select>
 
+<select id="Count" resultType="int">
+select count(*) from tb1_baord;
+</select>
+
+<select id="listSearch" resultType="kr.co.useful.board.domain.BoardVO">
+select serial,title,writer,content,regdate,viewcnt from tbl_board
+<include refid="Search"/>
+order by serial desc
+</select>
+
+<select id="listcount" resultType="int">
+select count(*) from tbl_board
+<include refid="Search"/>
+order by serial desc
+</select>
+
+
+
+
+
+<sql id="Search">
+
+<if test="searchType!=null">
+<if test="searchType=='t'">
+where title like '%'||#{keyword}||'%'
+</if>
+
+<if test="searchType=='w'">
+where writer like '%'||#{keyword}||'%'
+</if>
+
+<if test="searchType=='c'">
+where content like '%'||#{keyword}||'%'
+</if>
+
+</if>
+
+</sql>
 
 
 </mapper>
