@@ -45,8 +45,7 @@ private SqlSession sqlsession;
 
 	@Override
 	public int boardTotalCount() throws Exception {
-		// TODO Auto-generated method stub
-		return sqlsession.selectOne("board.readAll");
+		return sqlsession.selectOne("board.listcount");
 	}
 
 	@Override

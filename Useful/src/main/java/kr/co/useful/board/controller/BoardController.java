@@ -30,8 +30,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/listPage")
-	public void listPage(@RequestParam("cri")Criteria cri,Model model)throws Exception {
-	Map<String, Object> map=new HashMap<String,Object>();
+	public void listPage(Criteria cri,Model model)throws Exception {
+//	Map<String, Object> map=new HashMap<String,Object>();
 	PageMaker maker=new PageMaker();
 	maker.setCri(cri);
 	maker.setTotalCount(service.boardTotalcount());

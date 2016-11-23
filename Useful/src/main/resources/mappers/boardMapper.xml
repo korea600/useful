@@ -20,11 +20,11 @@ delete from tbl_board where serial=#{serial}
 </delete>
 
 <select id="readAll" resultType="kr.co.useful.board.domain.BoardVO">
-select * from tb1_board order by serial desc
+select * from tbl_board order by serial desc
 </select>
 
 <select id="Count" resultType="int">
-select count(*) from tb1_baord;
+select count(*) from tbl_baord;
 </select>
 
 <select id="listSearch" resultType="kr.co.useful.board.domain.BoardVO">
