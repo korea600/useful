@@ -24,18 +24,9 @@ public class ManagerRestController {
 	@Inject
 	private ManagerDAO dao;
 	
+
 	@RequestMapping("/list")
-	public List<EmpVO> list(){
-		List<Map<String, Object>> list1 =null;
-		try {
-			list1=dao.emplist();
-		} catch (Exception e) {
-			
-		}
-		return null;
-	}
-	@RequestMapping("/list2")
-	public JsonObj list2(
+	public JsonObj list(
 			@RequestParam(value = "page", required=false) String page,//page : 몇번째 페이지를 요청했는지
             @RequestParam(value = "rows", required=false) String rows,//rows : 페이지 당 몇개의 행이 보여질건지
             @RequestParam(value = "sidx", required=false) String sidx,//sidx : 소팅하는 기준이 되는 인덱스
@@ -71,6 +62,38 @@ public class ManagerRestController {
 	        // 총 페이지 갯수는 데이터 갯수 / 한페이지에 보여줄 갯수 이런 식
 	        int totalPage = (int)Math.ceil(list.size()/Double.parseDouble(rows));
 	        obj.setTotal( totalPage ); // 총 페이지 수 (마지막 페이지 번호)
+		return obj;
+	}
+	
+	@RequestMapping("/listSearch")
+	public JsonObj list2(
+			@RequestParam(value = "page", required=false) String page,
+            @RequestParam(value = "rows", required=false) String rows,
+            @RequestParam(value = "sidx", required=false) String sidx,
+            @RequestParam(value = "sord", required=false) String sord,
+            String keyword,String searchType
+            ) {
+		
+			JsonObj obj = new JsonObj(); 
+			
+			List<Map<String, Object>> list =null;
+			
+	        int int_page = Integer.parseInt(page);// 1 2 3
+	        int perPageNum = (int)Double.parseDouble(rows);
+	         
+	        try {
+				list=dao.emplistSearch(searchType, keyword);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	        
+	        obj.setRows(list);
+	        obj.setPage(int_page);
+	        obj.setRecords(list.size());
+	         
+
+	        int totalPage = (int)Math.ceil(list.size()/Double.parseDouble(rows));
+	        obj.setTotal( totalPage ); 
 		return obj;
 	}
 }

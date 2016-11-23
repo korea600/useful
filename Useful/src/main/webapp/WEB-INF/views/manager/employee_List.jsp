@@ -19,35 +19,71 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
 <script type="text/javascript">
-	$(function(){
+	$(function(){	
 		
-		$("#employee_tbl").jqGrid({
-			url:'/useful/manager/list2',	
-			datatype:'json', 
-			mtype:'POST',
-            height: 250,
-            colNames:['사번','성명','부서','직책','핸드폰번호'],
-            colModel:[
-                {name:'EMPNO',index:'EMPNO'},
-                {name:'ENAME',index:'ENAME'},
-                {name:'DEPTNO',index:'DEPTNO'},
-                {name:'POSITION',index:'POSITION'},     
-                {name:'PHONE',index:'PHONE'}  
-         
-            ],
-            rowNum:10,
-            rowList:[10,20,30],
-            pager:'#employee_div',
-            sortname:'EMPNO',
-            viewrecords: true,
-            sortorder:"desc",
-            caption: "사원목록",
-            jsonReader: {
-                 repeatitems:false
-            }
+/* 		$("#employee_tbl").jqGrid({
+		url:'/useful/manager/list',	
+		datatype:'json', 
+		mtype:'POST',
+        height: 250,
+        colNames:['사번','성명','부서','직책','핸드폰번호'],
+        colModel:[
+            {name:'EMPNO',index:'EMPNO'},
+            {name:'ENAME',index:'ENAME'},
+            {name:'DEPTNO',index:'DEPTNO'},
+            {name:'POSITION',index:'POSITION'},     
+            {name:'PHONE',index:'PHONE'}  
+     
+        ],
+        rowNum:10,
+        rowList:[10,20,30],
+        pager:'#employee_div',
+        sortname:'EMPNO',
+        viewrecords: true,
+        sortorder:"desc",
+        caption: "사원목록",
+        jsonReader: {
+             repeatitems:false
+        }
 
-		});
-		$("#employee_tbl").jqGrid('navGrid','#employee_div',{edit:false,add:false,del:false});
+	});
+	$("#employee_tbl").jqGrid('navGrid','#employee_div',{edit:false,add:false,del:false});*/
+	
+	$('#btn_Search').click(function(){
+
+					$("#employee_tbl").jqGrid({
+						url:'/useful/manager/listSearch?'
+						+"searchType=" + $("select option:selected").val()
+						+ "&keyword=" + $('#keyword').val(),	
+						datatype:'json', 
+						mtype:'POST',
+			            height: 250,
+			            colNames:['사번','성명','부서','직책','핸드폰번호'],
+			            colModel:[
+			                {name:'EMPNO',index:'EMPNO'},
+			                {name:'ENAME',index:'ENAME'},
+			                {name:'DEPTNO',index:'DEPTNO'},
+			                {name:'POSITION',index:'POSITION'},     
+			                {name:'PHONE',index:'PHONE'}  
+			         
+			            ],
+			            rowNum:10,
+			            rowList:[10,20,30],
+			            pager:'#employee_div',
+			            sortname:'EMPNO',
+			            viewrecords: true,
+			            sortorder:"desc",
+			            caption: "사원목록",
+			            jsonReader: {
+			                 repeatitems:false
+			            }
+
+					});
+					$("#employee_tbl").jqGrid('navGrid','#employee_div',{edit:false,add:false,del:false});
+					("#employee_tbl").trigger("reloadGrid");
+				});
+		
+
 	});
 </script>
 </head>
@@ -57,14 +93,14 @@
 	</p>
 	<div>
 		- 검색어 
-		<select id="searchGbn" name="searchGbn" class="select">
+		<select id="searchType" name="searchType" class="select">
 			<option value="divGbn" selected="selected">전체        </option>
-			<option value="ename">성명        </option>
-			<option value="empno">사번        </option>
-			<option value="deptno">부서</option>
+			<option value="name">성명        </option>
+			<option value="no'">사번        </option>
+			<option value="dept">부서</option>
 			<option value="position">직책       </option>
 		</select>	
-		<input type="text" id="search">
+		<input type="text" id="keyword" name="keyword">
 		<button id="btn_Search">조회</button>
 		<button id="btn_NewUser">신규</button>
 		<button id="btn_Delete">삭제</button>

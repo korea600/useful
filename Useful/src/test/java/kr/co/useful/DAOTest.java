@@ -21,9 +21,12 @@ public class DAOTest {
 	@Inject
 	private ManagerDAO dao;
 	
-	@Test
+	//@Test
 	public void list()throws Exception{
 		System.out.println(dao.emplist());
 	}
-	
+	@Test
+	public void listSearch()throws Exception{
+		System.out.println(dao.emplistSearch("dept", "10"));
+	}
 }
