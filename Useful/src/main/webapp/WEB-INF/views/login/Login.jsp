@@ -25,8 +25,38 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script type="text/javascript" src="../resources/js/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+	function checkLogin(){
+		if($.trim($("#empnoinput").val()) == ""){
+			alert("아이디를 입력해 주세요.");
+			$("#empnoinput").focus();
+			return;
+		}
+		if($.trim($("#passinput").val()) == ""){
+			alert("비밀번호를 입력해 주세요.");
+			$("#passinput").focus();
+			return;
+		}
+		
+		$.ajax({
+			type:'post',
+			async:true,
+			url:'/useful/login/Main',
+			data:$("#form").serialize(),
+			success:function(result){
 
-
+				if(result=="SUCCESS"){
+					alert("로그인 성공!!");
+					location.href="/useful/login/Mainview";
+				}else{
+					alert("로그인 실패!!");
+					self.location = "/useful/login/Login";
+				}
+			}
+		});
+	}
+</script>
 </head>
 <body>
 <div class="container">
@@ -37,23 +67,25 @@
                         <h3 class="panel-title">Please Sign In...</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form name="form" id="form" action="/useful/login/Main" method="post">
 							<div class="form-group">
-                                    ID : <input class="form-control"  name="empno" type="text" autofocus>
+                                    Empno : <input class="form-control"  name="empno" type="text" id="empnoinput" autofocus>
                                 </div>
                                 <div class="form-group">
-                                   Password : <input class="form-control"  name="pass" type="password">
+                                   Password : <input class="form-control"  name="pass" type="password" id="passinput">
                                 </div>
                                 <div class="radio" align="center">
                                     <label>
-                                        <input name="member" type="radio" value="사원">사원
+                                        <input name="member" type="radio" value="사원" checked="checked">사원
                                     </label>
                                     <label>
                                         <input name="member" type="radio" value="관리자">관리자
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="Main" class="btn btn-lg btn-success btn-block">Login</a>
+                                <div>
+                                <button type="button" class="btn btn-lg btn-success btn-block" id="btn" onclick="checkLogin()">Login</button>
+                                </div>
 						</form>
                     </div>
                 </div>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="login">
-	
+	<select id="select" resultType="kr.co.useful.manager.domain.EmpVO">
+		select pass
+		from tbl_emp
+		where empno=#{empno}
+	</select>
   
 </mapper>
