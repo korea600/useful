@@ -14,6 +14,15 @@ public class ApprovalVO {
 	private String curr_approval;	// 최근 결재자 (기안자와 같을 경우 결재 대기상태)
 	private String next_approval;	// 다음 결재자 (null일 경우 결재 완료상태)
 	private File addfile;			// 첨부파일 (최대 4GB binary file 저장 가능)
+	private String filename;		// 첨부파일의 파일명
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
 	public int getNo() {
 		return no;
