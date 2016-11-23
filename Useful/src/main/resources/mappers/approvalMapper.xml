@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace='approval'>
+	<!-- 결재문서 등록 -->
+	<!-- 반려문서 수정하기 -->
+	<!-- 문서리스트조회 (동적SQL)-->
+	<select id="list" resultType="Approval">
+		select no, status, tbl_emp.ename writer_name, tbl_dept.dname receiver_name, title,regdate
+		from tbl_approval, tbl_emp, tbl_dept
+		where tbl_approval.writer=tbl_emp.empno
+		and tbl_approval.receiver=tbl_dept.deptno
+		<if test="writer!=0">
+			and tbl_approval.writer=#{writer}
+		</if>  
+		<if test="receiver!=0">
+			and tbl_approval.receiver=#{receiver}
+		</if>  
+		<if test='next_approval!=0'>
+			and tbl_approval.next_approval=#{next_approval}
+		</if>
+	</select>
+	<!-- 문서내용조회 -->
+	<select id='select' resultType="Approval">
+		select no, tbl_emp.ename writer_name, writer, tbl_dept.dname receiver_name, receiver,title,content, filename
+		from tbl_approval, tbl_emp, tbl_dept
+		where tbl_approval.writer=tbl_emp.empno
+		and tbl_approval.receiver=tbl_dept.deptno
+		and no=#{no}
+	</select>
+	<!-- 결재하기 -->
+</mapper>

@@ -37,9 +37,13 @@
 	<!-- 프로젝트 세팅 관련 부분  end-->
 	
 	<!-- beans 또는 component-scan 등록 부분 -->
-	<context:component-scan base-package="kr.co.useful.organization.service"></context:component-scan>
-	<context:component-scan base-package="kr.co.useful.organization.persistence"></context:component-scan>
+	<!-- 조직도 -->
+		<context:component-scan base-package="kr.co.useful.organization.service"/>
+		<context:component-scan base-package="kr.co.useful.organization.persistence"/>
+	<!-- 전자결재 -->	
+		<context:component-scan base-package="kr.co.useful.approval.persistence"/>
+		<context:component-scan base-package="kr.co.useful.approval.service"/>
 	
 	<!-- 자동적인 proxy 객체 등록 (AOP) -->
-	<!-- <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>

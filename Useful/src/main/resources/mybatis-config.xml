@@ -3,5 +3,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="kr.co.useful.organization.domain.OrganizationVO" alias="Organization"/>
+		<typeAlias type="kr.co.useful.approval.domain.ApprovalVO" alias="Approval"/>
 	</typeAliases>
 </configuration>
