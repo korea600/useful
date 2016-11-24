@@ -108,7 +108,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../mypage/Mypage"><i class="fa fa-user fa-fw"></i> Mypage</a>
+                        <li><a href="../mypage"><i class="fa fa-user fa-fw"></i> Mypage</a>
                         </li>
                          <li>
                             <a href="../organization">
