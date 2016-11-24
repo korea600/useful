@@ -11,5 +11,7 @@ public interface LoginDAO {
 	public EmpVO select(int empno)throws Exception;
 	
 	//技记贸府且 empno,pass 免仿
-	public EmpVO selectLoginUser(int empno, String pass)throws Exception; //
+	public EmpVO selectLoginUser(int empno, String pass)throws Exception;
+	
+	public int update(int empno)throws Exception;
 }

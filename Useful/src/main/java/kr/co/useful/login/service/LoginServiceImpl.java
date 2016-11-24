@@ -26,4 +26,9 @@ public class LoginServiceImpl implements LoginService{
 		return dao.selectLoginUser(empno, pass);
 	}
 
+	@Override
+	public int update(int empno) throws Exception {
+		return dao.update(empno);
+	}
+
 }

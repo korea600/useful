@@ -34,4 +34,9 @@ public class LoginDAOImpl implements LoginDAO {
 		return sqlSession.selectOne("login.selectLoginUser", map);
 	}
 
+	@Override
+	public int update(int empno) throws Exception {
+		return sqlSession.update("login.update",empno);
+	}
+
 }

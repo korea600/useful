@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -110,7 +111,7 @@
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> Mypage</a>
                         </li>
                          <li>
-                            <a href="#">
+                            <a href="../organization">
                                 <div>
                                     <i class="fa fa-comment fa-fw"></i> 조직도
                                 </div>
@@ -138,10 +139,17 @@
                            </div>
                            <p></p>
                            <div>
-                           
+                           <center>
+                           <span>
                               <button type="button" id="logout">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
                               <button type="button" id="commute_in">출근</button>
                               <button type="button" id="commute_out">퇴근</button>
+                           </span>
+                           </center>
+                           </div>
+                           <p></p>
+                           <div>
+                           		<span>최근접속일자 : <fmt:formatDate value="${LoginUser.regdate}" pattern="yyyy-MM-dd HH:mm"/> </span>
                            </div>
                         </div>
                             </span>

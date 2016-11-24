@@ -41,6 +41,7 @@ public class LoginController {
 			if(pass.equals(dpass)){
 				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 			}
+			service.update(Integer.parseInt(empno));
 			EmpVO vo = service.selectLoginUser(Integer.parseInt(empno), dpass);
 			if(vo != null){
 				session.setAttribute("LoginUser", vo);

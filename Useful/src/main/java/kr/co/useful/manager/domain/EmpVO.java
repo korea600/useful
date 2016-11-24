@@ -1,6 +1,6 @@
 package kr.co.useful.manager.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class EmpVO {
 	private int empno;
@@ -17,12 +17,14 @@ public class EmpVO {
 	private String account;
 	private String bank;
 	private String sign;
+	private Date regdate;
 	
 	public EmpVO() {
 	}
-	
+
 	public EmpVO(int empno, String ename, String pass, String ssn, String phone, String address, Date hiredate,
-			int deptno, String position, String manager, double leave, String account, String bank, String sign) {
+			int deptno, String position, String manager, double leave, String account, String bank, String sign,
+			Date regdate) {
 		super();
 		this.empno = empno;
 		this.ename = ename;
@@ -38,6 +40,15 @@ public class EmpVO {
 		this.account = account;
 		this.bank = bank;
 		this.sign = sign;
+		this.regdate = regdate;
+	}
+
+	public Date getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
 
 	public int getEmpno() {
