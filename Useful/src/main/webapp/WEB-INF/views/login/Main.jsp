@@ -134,7 +134,7 @@
                             <div class="input-group custom-search-form">
                                 <div>
                            <div>
-                              <center><span>채 효 원님 안녕하세요~!!</span></center> 
+                              <center><span>${LoginUser.ename}님 안녕하세요~!!</span></center> 
                            </div>
                            <p></p>
                            <div>

@@ -64,3 +64,5 @@ insert into tbl_dept values (10,'잘했조');
 insert into tbl_dept values (20,'보여조');
 insert into tbl_dept values (30,'강조');
 insert into tbl_dept values (40,'삼삼오오조');
+
+select * from tbl_emp;

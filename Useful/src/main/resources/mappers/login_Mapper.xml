@@ -7,4 +7,9 @@
 		where empno=#{empno}
 	</select>
   
+	<select id="selectLoginUser" resultType="kr.co.useful.manager.domain.EmpVO">
+		select * 
+		from tbl_emp
+		where empno=#{empno} and pass=#{pass}
+	</select>  
 </mapper>

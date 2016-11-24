@@ -7,5 +7,9 @@ import kr.co.useful.manager.domain.EmpVO;
 
 public interface LoginDAO {
 	
-	public EmpVO select(int empno)throws Exception; //사원 리스트 출력
+	//로그인할 사원 출력
+	public EmpVO select(int empno)throws Exception;
+	
+	//세션처리할 empno,pass 출력
+	public EmpVO selectLoginUser(int empno, String pass)throws Exception; //
 }
