@@ -22,3 +22,17 @@ create sequence tbl_notice_seq
    nocycle
    nocache;
    
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트1','테스트1','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트2','테스트2','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트3','테스트3','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트4','테스트4','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트5','테스트5','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트6','테스트6','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트7','테스트7','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트8','테스트8','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트9','테스트9','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트10','테스트10','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트11','테스트11','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트12','테스트12','내용1',sysdate);
+   insert into tbl_notice (serial,title,writer,content,regdate) values (tbl_notice_seq.nextval,'테스트13','테스트13','내용1',sysdate);
+   

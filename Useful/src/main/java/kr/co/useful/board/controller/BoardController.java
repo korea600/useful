@@ -32,11 +32,11 @@ public class BoardController {
 	@RequestMapping("/listPage")
 	public void listPage(Criteria cri,Model model)throws Exception {
 //	Map<String, Object> map=new HashMap<String,Object>();
-	PageMaker maker=new PageMaker();
-	maker.setCri(cri);
-	maker.setTotalCount(service.boardTotalcount());
-	maker.calc();
-	model.addAttribute("maker", maker);
+	PageMaker pageMaker=new PageMaker();
+	pageMaker.setCri(cri);
+	pageMaker.setTotalCount(service.boardTotalcount());
+	pageMaker.calc();
+	model.addAttribute("pageMaker", pageMaker);
 	model.addAttribute("list", service.listCriteria(cri));
 //	map.put("maker", maker);
 //	map.put("list", service.listCriteria(cri));
