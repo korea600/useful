@@ -21,7 +21,7 @@
   		<if test="searchType =='dept'.toString()">
   		where deptno like '%'||#{keyword}||'%'
   		</if>
-  		<if test="searchType =='po'.toString()">
+  		<if test="searchType =='posi'.toString()">
   		where position like '%'||#{keyword}||'%'
   		</if>
   		<if test="searchType =='phone'.toString()">
@@ -31,4 +31,21 @@
   	</if>
   	order by empno
   </select>
+  
+  <insert id="emp_insert">
+  	insert into tbl_emp (empno,ename,pass,phone,address,hiredate,deptno,position,account,bank,email,leave,ssn)
+  		values(#{empno},#{ename},#{pass},#{phone},#{address},#{hiredate},#{deptno},#{position},#{account},#{bank},#{email},15,#{ssn})
+  </insert>
+  
+  <select id="emp_select" resultType="kr.co.useful.manager.domain.EmpVO">
+  	select * from tbl_emp where empno=#{empno} 
+  </select>
+  
+  <update id="emp_update">
+  	update tbl_emp set ename=#{ename},phone=#{phone},address=#{address},hiredate=#{hiredate},deptno=#{deptno},position=#{position},account=#{account},bank=#{bank},email=#{email} where empno=#{empno} 
+  </update>
+  
+  <delete id="emp_delete">
+  	delete from tbl_emp where empno=#{empno}
+  </delete>
 </mapper>

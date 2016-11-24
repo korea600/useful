@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.persistence.ManagerDAO;
 
 @Service
@@ -23,5 +24,25 @@ class ManagerServiceImpl implements ManagerService {
 	@Override
 	public List<Map<String, Object>> listSearch(String searchType,String keyword) throws Exception {
 		return dao.emplistSearch(searchType, keyword);
+	}
+	
+	@Override
+	public void emp_Insert(EmpVO vo) throws Exception {
+		dao.emp_Insert(vo);
+	}
+	
+	@Override
+	public EmpVO emp_select(int empno) throws Exception {
+		return dao.emp_select(empno);
+	}
+	
+	@Override
+	public void emp_update(EmpVO vo) throws Exception {
+		dao.emp_update(vo);
+	}
+	
+	@Override
+	public void emp_delete(int empno) throws Exception {
+		dao.emp_delete(empno);
 	}
 }

@@ -20,8 +20,8 @@
 	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
 <script type="text/javascript">
 	$(function(){	
-		
-/* 		$("#employee_tbl").jqGrid({
+ 		$("#employee_tbl").jqGrid("GridUnload");
+ 		$("#employee_tbl").jqGrid({
 		url:'/useful/manager/list',	
 		datatype:'json', 
 		mtype:'POST',
@@ -35,22 +35,31 @@
             {name:'PHONE',index:'PHONE'}  
      
         ],
+        onSelectRow: function(ids) {   
+            //row 선택시 처리. ids는 선택한 row
+            var empno= $("#employee_tbl").jqGrid('getRowData',ids).EMPNO;
+            location.href="/useful/manager/employee_Update"+"?empno="+empno;
+        },   
         rowNum:10,
+        loadonce:true,
         rowList:[10,20,30],
         pager:'#employee_div',
         sortname:'EMPNO',
         viewrecords: true,
-        sortorder:"desc",
+        sortorder:"ASC",
         caption: "사원목록",
         jsonReader: {
-             repeatitems:false
+            page: "page",
+            total: "total",
+            records:"records",
+            repeatitems:false
         }
 
-	});
-	$("#employee_tbl").jqGrid('navGrid','#employee_div',{edit:false,add:false,del:false});*/
+	}).trigger('reloadGrid');
+	$("#employee_tbl").jqGrid('navGrid','#employee_div',{edit:false,add:false,del:false}); 
 	
 	$('#btn_Search').click(function(){
-
+					$("#employee_tbl").jqGrid("GridUnload");
 					$("#employee_tbl").jqGrid({
 						url:'/useful/manager/listSearch?'
 						+"searchType=" + $("select option:selected").val()
@@ -67,23 +76,37 @@
 			                {name:'PHONE',index:'PHONE'}  
 			         
 			            ],
+			             onSelectRow: function(ids) {   
+			                 //row 선택시 처리. ids는 선택한 row
+			                 var empno= $("#employee_tbl").jqGrid('getRowData',ids).EMPNO;
+			                 location.href="/useful/manager/employee_Update"+"?empno="+empno;
+			             },   
+						loadonce: true,
 			            rowNum:10,
 			            rowList:[10,20,30],
 			            pager:'#employee_div',
 			            sortname:'EMPNO',
 			            viewrecords: true,
-			            sortorder:"desc",
+			            sortorder:"asc",
 			            caption: "사원목록",
 			            jsonReader: {
-			                 repeatitems:false
+                            page: "page",
+                            total: "total",
+                            records:"record",
+			                repeatitems:false
 			            }
 
-					});
+					}).trigger('reloadGrid');
 					$("#employee_tbl").jqGrid('navGrid','#employee_div',{edit:false,add:false,del:false});
-					("#employee_tbl").trigger("reloadGrid");
-				});
 		
+				});
+	$('#btn_NewUser').click(function(){
+		
+		location.href="/useful/manager/employee_Insert";
+		
+		});
 
+	
 	});
 </script>
 </head>
@@ -94,16 +117,16 @@
 	<div>
 		- 검색어 
 		<select id="searchType" name="searchType" class="select">
-			<option value="divGbn" selected="selected">전체        </option>
-			<option value="name">성명        </option>
-			<option value="no'">사번        </option>
+			<option value="divGbn" selected="selected">전체</option>
+			<option value="name">성명</option>
+			<option value="no">사번 </option>
 			<option value="dept">부서</option>
-			<option value="position">직책       </option>
+			<option value="posi">직책</option>
 		</select>	
 		<input type="text" id="keyword" name="keyword">
 		<button id="btn_Search">조회</button>
 		<button id="btn_NewUser">신규</button>
-		<button id="btn_Delete">삭제</button>
+
 	</div>
 <hr>
 	<table id="employee_tbl"></table>

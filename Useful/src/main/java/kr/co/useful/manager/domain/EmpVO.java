@@ -18,30 +18,12 @@ public class EmpVO {
 	private String bank;
 	private String sign;
 	private Date regdate;
+	private String email;
 	
 	public EmpVO() {
 	}
 
-	public EmpVO(int empno, String ename, String pass, String ssn, String phone, String address, Date hiredate,
-			int deptno, String position, String manager, double leave, String account, String bank, String sign,
-			Date regdate) {
-		super();
-		this.empno = empno;
-		this.ename = ename;
-		this.pass = pass;
-		this.ssn = ssn;
-		this.phone = phone;
-		this.address = address;
-		this.hiredate = hiredate;
-		this.deptno = deptno;
-		this.position = position;
-		this.manager = manager;
-		this.leave = leave;
-		this.account = account;
-		this.bank = bank;
-		this.sign = sign;
-		this.regdate = regdate;
-	}
+
 
 	public Date getRegdate() {
 		return regdate;
@@ -161,5 +143,49 @@ public class EmpVO {
 
 	public void setSign(String sign) {
 		this.sign = sign;
+	}
+
+	@Override
+	public String toString() {
+		return "EmpVO [empno=" + empno + ", ename=" + ename + ", pass=" + pass + ", ssn=" + ssn + ", phone=" + phone
+				+ ", address=" + address + ", hiredate=" + hiredate + ", deptno=" + deptno + ", position=" + position
+				+ ", manager=" + manager + ", leave=" + leave + ", account=" + account + ", bank=" + bank + ", sign="
+				+ sign + ", regdate=" + regdate + "]";
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public EmpVO(int empno, String ename, String pass, String ssn, String phone, String address, Date hiredate,
+			int deptno, String position, String manager, double leave, String account, String bank, String sign,
+			Date regdate, String email) {
+		super();
+		this.empno = empno;
+		this.ename = ename;
+		this.pass = pass;
+		this.ssn = ssn;
+		this.phone = phone;
+		this.address = address;
+		this.hiredate = hiredate;
+		this.deptno = deptno;
+		this.position = position;
+		this.manager = manager;
+		this.leave = leave;
+		this.account = account;
+		this.bank = bank;
+		this.sign = sign;
+		this.regdate = regdate;
+		this.email = email;
 	}
 }

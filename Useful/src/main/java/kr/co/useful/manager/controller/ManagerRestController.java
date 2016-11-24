@@ -51,7 +51,6 @@ public class ManagerRestController {
 				e.printStackTrace();
 			}
 	        obj.setRows(list);  // list<map>형태의 받아온 데이터를 가공해서 셋( 그리드에 뿌려줄 행 데이터들 )
-            
 	        //page : 현재 페이지
 	        obj.setPage(int_page);// 현재 페이지를 매개변수로 넘어온 page로 지정해준다. 
 	         
@@ -61,7 +60,7 @@ public class ManagerRestController {
 	        //total : rows에 의한 총 페이지수
 	        // 총 페이지 갯수는 데이터 갯수 / 한페이지에 보여줄 갯수 이런 식
 	        int totalPage = (int)Math.ceil(list.size()/Double.parseDouble(rows));
-	        obj.setTotal( totalPage ); // 총 페이지 수 (마지막 페이지 번호)
+	        obj.setTotal(totalPage); // 총 페이지 수 (마지막 페이지 번호)
 		return obj;
 	}
 	
