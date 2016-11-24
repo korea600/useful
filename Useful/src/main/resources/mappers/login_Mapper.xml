@@ -8,7 +8,7 @@
 	</select>
   
 	<select id="selectLoginUser" resultType="kr.co.useful.manager.domain.EmpVO">
-		select * 
+		select empno, ename, deptno, position
 		from tbl_emp
 		where empno=#{empno} and pass=#{pass}
 	</select>  
