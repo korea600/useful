@@ -145,7 +145,7 @@ th {
 							<th>입사일   </th>
 							<td>
 								<div id="div_inDt">
-								<input id="hiredate" name="hiredate" class="text" type="text" value="2016-11-23" maxlength="11"/>
+								<input id="hiredate" name="hiredate" class="text" type="text" value="" maxlength="11"/>
 								</div>	
 							</td>
 						</tr>  
