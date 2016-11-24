@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="main.jsp">Useful Logo</a>
+                <a class="navbar-brand" href="Mainview">Useful Logo</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -108,7 +108,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Mypage</a>
+                        <li><a href="../mypage/Mypage"><i class="fa fa-user fa-fw"></i> Mypage</a>
                         </li>
                          <li>
                             <a href="../organization">
@@ -118,7 +118,7 @@
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="Login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

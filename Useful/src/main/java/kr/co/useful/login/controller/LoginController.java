@@ -55,9 +55,12 @@ public class LoginController {
 	
 	@RequestMapping("/Mainview")
 	public String main_view(){
-		
-		
+
 		return "/login/Main";
 	}
 	
+	@RequestMapping("/Logout")
+	public void logout(HttpSession session){
+		
+	}
 }
