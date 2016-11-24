@@ -31,5 +31,6 @@
 	
 	
 	<context:component-scan base-package="kr.co.useful.login.controller" />
+	<context:component-scan base-package="kr.co.useful.mypage.controller" />
 	
 </beans:beans>

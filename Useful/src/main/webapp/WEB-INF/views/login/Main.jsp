@@ -135,21 +135,21 @@
                             <div class="input-group custom-search-form">
                                 <div>
                            <div>
-                              <center><span>[${LoginUser.position }] ${LoginUser.ename}님 안녕하세요~!!</span></center> 
+                              <center><span><i class="fa fa-user fa-fw"></i>[${LoginUser.position }] ${LoginUser.ename}님 안녕하세요~!!</span></center> 
                            </div>
                            <p></p>
                            <div>
                            <center>
                            <span>
                               <button type="button" id="logout">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
-                              <button type="button" id="commute_in">출근</button>
-                              <button type="button" id="commute_out">퇴근</button>
+                              <button type="button" id="commute_in"><i class="fa fa-sort-up fa-fw"></i>출근</button>
+                              <button type="button" id="commute_out"><i class="fa fa-sort-down fa-fw"></i>퇴근</button>
                            </span>
                            </center>
                            </div>
                            <p></p>
                            <div>
-                           		<span>최근접속일자 : <fmt:formatDate value="${LoginUser.regdate}" pattern="yyyy-MM-dd HH:mm"/> </span>
+                           		<span><i class="fa fa-clock-o fa-fw"></i>최근접속 : <fmt:formatDate value="${LoginUser.regdate}" pattern="yyyy-MM-dd HH:mm"/> </span>
                            </div>
                         </div>
                             </span>
