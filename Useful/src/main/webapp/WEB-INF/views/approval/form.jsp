@@ -10,6 +10,8 @@ td {text-align: center}
 </style>
 <script type="text/javascript" src='/useful/resources/js/jquery-3.1.1.js'></script>
 <script type="text/javascript">
+	alert(${LoginUser.empno});
+	alert(${LoginUser.deptno});
 	function show_receiver_select(){
 		var target=$('[name=target_select]').val();
 		if(target=='outer')
