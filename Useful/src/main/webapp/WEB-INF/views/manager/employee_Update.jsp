@@ -181,14 +181,15 @@ th {
 				<th>은행</th>
 					<td>
 					<select id="bank" name="bank" class="select" style="width:200px;">
-						<option value="">--선택--</option>
-						<option value="신한">신한</option>
-						<option value="우리">우리</option>
-						<option value="국민">국민</option>
-						<option value="농협">농협</option>
-						<option value="외환">외환</option>
-						<option value="하나">하나</option>
-					</select>
+                        <option value="">--선택--</option>
+                        <option value="신한은행">신한</option>
+                        <option value="우리은행">우리</option>
+                        <option value="국민은행">국민</option>
+                        <option value="농협은행">농협</option>
+                        <option value="외환은행">외환</option>
+                        <option value="하나은행">하나</option>
+                        <option value="한국은행">한국</option>
+                  </select>
 				</td>
 			</tr>
 			<tr>
@@ -208,7 +209,7 @@ th {
 			<tr>
 				<th>최근접속일</th>
 				<td>
-				<fmt:formatDate value="${vo.regdate}" type="date" pattern="yyyy-mm-dd "/>
+				<fmt:formatDate value="${vo.regdate}" type="date" pattern="yyyy-MM-dd "/>
 				</td>
 				
 			</tr>

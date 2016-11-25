@@ -63,6 +63,22 @@ public class ManagerController {
 		return entity;
 	}
 
+	@RequestMapping("/commute_Employee")
+	public void commute_Employee(){
+		
+	}
+	@RequestMapping("/commute_Dept")
+	public void commute_Dept(){
+		
+	}
+	@RequestMapping("/commute_Daily")
+	public void commute_Daily(){
+		
+	}
+	@RequestMapping("/commute_Monthly")
+	public void commute_Monthly(){
+		
+	}
 	@RequestMapping("/salary_List")
 	public void salary_List(){
 		
