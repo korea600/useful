@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mypage">
   	<select id="select" resultType="kr.co.useful.manager.domain.EmpVO">
-  		select empno,ename,pass,ssn,deptno,position,email,phone,address,bank,account,hiredate
+  		select ename,pass,ssn,deptno,position,email,phone,address,bank,account,hiredate
   		from tbl_emp
   		where empno=#{empno}
   	</select>

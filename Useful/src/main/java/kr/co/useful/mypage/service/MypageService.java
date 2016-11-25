@@ -6,5 +6,5 @@ public interface MypageService {
 	
 	public EmpVO select(int empno)throws Exception;
 	
-	public int update(int empno)throws Exception;
+	public void update(EmpVO vo)throws Exception;
 }
