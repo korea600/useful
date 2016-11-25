@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="main.jsp">Useful Logo</a>
+                <a class="navbar-brand" href="Mainview">Useful Logo</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -107,17 +108,17 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Mypage</a>
+                        <li><a href="../mypage"><i class="fa fa-user fa-fw"></i> Mypage</a>
                         </li>
                          <li>
-                            <a href="#">
+                            <a href="../organization">
                                 <div>
                                     <i class="fa fa-comment fa-fw"></i> 조직도
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="Login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -134,14 +135,21 @@
                             <div class="input-group custom-search-form">
                                 <div>
                            <div>
-                              <center><span>채 효 원님 안녕하세요~!!</span></center> 
+                              <center><span><i class="fa fa-user fa-fw"></i>[${LoginUser.position }] ${LoginUser.ename}님 안녕하세요~!!</span></center> 
                            </div>
                            <p></p>
                            <div>
-                           
+                           <center>
+                           <span>
                               <button type="button" id="logout">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
-                              <button type="button" id="commute_in">출근</button>
-                              <button type="button" id="commute_out">퇴근</button>
+                              <button type="button" id="commute_in"><i class="fa fa-sort-up fa-fw"></i>출근</button>
+                              <button type="button" id="commute_out"><i class="fa fa-sort-down fa-fw"></i>퇴근</button>
+                           </span>
+                           </center>
+                           </div>
+                           <p></p>
+                           <div>
+                           		<span><i class="fa fa-clock-o fa-fw"></i>최근접속 : <fmt:formatDate value="${LoginUser.regdate}" pattern="yyyy-MM-dd HH:mm"/> </span>
                            </div>
                         </div>
                             </span>

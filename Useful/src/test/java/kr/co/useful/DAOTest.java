@@ -27,6 +27,9 @@ public class DAOTest {
 	}
 	@Test
 	public void listSearch()throws Exception{
-		System.out.println(dao.emplistSearch("dept", "10"));
+		//System.out.println(dao.emplistSearch("dept", "10"));
+//		System.out.println(dao.emp_select(1000));
+		
+		dao.emp_delete(2000);
 	}
 }

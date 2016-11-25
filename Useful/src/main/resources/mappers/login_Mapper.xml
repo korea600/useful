@@ -7,4 +7,13 @@
 		where empno=#{empno}
 	</select>
   
+	<select id="selectLoginUser" resultType="kr.co.useful.manager.domain.EmpVO">
+		select empno, ename, deptno, position, regdate
+		from tbl_emp
+		where empno=#{empno} and pass=#{pass}
+	</select>  
+	
+	<update id="update">
+		update tbl_emp set regdate=sysdate where empno=#{empno}
+	</update>
 </mapper>

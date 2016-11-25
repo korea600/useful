@@ -4,13 +4,72 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>직원정보등록</title>
 <style type="text/css">
 th {
 	background-color: #CCC;
 }
 
 </style>
+ <link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
+<script type="text/javascript">
+
+	$(function() {
+ 	   $( "#hiredate" ).datepicker({
+ 		  changeMonth: true, 
+          changeYear: true,
+ 		  dateFormat: 'yy-mm-dd'
+ 	   });
+ 	   
+ 	   $("#btn_Save").click(function(){
+ 		  $.ajax({
+ 			  type: 'POST',
+ 			  url: '/useful/manager/employee_Insert',
+ 			  headers : {
+ 				  "Content-Type" : "application/json",
+ 				  "X-HTTP-Method-Override":"POST"
+ 			  },
+ 			  dataType: 'text',
+ 			  data: JSON.stringify({
+ 				 empno:$("#emp_no").val(),
+ 				ename:$("#emp_nm").val(),
+ 				pass:$("#emp_pw").val(),
+ 				ssn:$("#ssn").val(),
+ 				deptno:$("#dept option:selected").val(),
+ 				position:$("#position option:selected").val(),
+ 				email:$("#email").val(),
+ 				phone:$("#mobile").val(),
+ 				address:$("#addr").val(),
+ 				bank:$("#bank option:selected").val(),
+ 				account:$("#account_no").val(),
+ 				hiredate:$("#hiredate").val(),
+ 				  }),
+ 			  success: function(){
+ 				  alert("사원이 추가되었습니다")
+ 				location.href="/useful/manager/employee_List";
+ 			  }
+ 			});
+ 	   });
+ 	   $("#btn_List").click(function(){
+ 		   
+ 			location.href="/useful/manager/employee_List";
+ 		   
+ 	   });
+	});
+
+</script>
 </head>
 <body>
 	<div>
@@ -20,7 +79,7 @@ th {
 		<br>
 	</div>
 <hr>
-	<table class="bbs_row">
+	<table>
 		<colgroup>
 			<col width="150" />
 			<col />
@@ -28,9 +87,8 @@ th {
 		<tbody style="">
 			<tr>
 				<th>사원코드*</th>
-				<td><input type="hidden" id="emp_no_dup_check" value="N" /> <input
-					id="emp_no" name="emp_no" class="text" type="text" value="1"
-					maxlength="20" /> <span id="sp_empNoDupMsg" class="blackColor b"></span>
+				<td><input id="emp_no" name="emp_no" class="text" type="text"
+					maxlength="20" /> 
 
 
 
@@ -39,50 +97,45 @@ th {
 			<tr>
 				<th>성명 *</th>
 				<td><input id="emp_nm" name="emp_nm" class="text" type="text"
-					value="김데모" maxlength="15" /></td>
+					 maxlength="15" /></td>
 			</tr>
 			<tr>
 				<th>비밀번호*</th>
-				<td><input id="emp_pw" name="emp_pw" class="text" value="0000"
-					type="password" value="" maxlength="20" /></td>
-			</tr>
-			<tr>
-				<th>비밀번호 확인*</th>
-				<td><input type="password" id="emp_pw_confirm" class="text"
-					maxlength="20" value="0000" /></td>
+				<td><input id="emp_pw" name="emp_pw" class="text"
+					type="password" maxlength="20" /></td>
 			</tr>
 			<tr>
 				<th>주민번호 *</th>
 				<td><input id="ssn" name="ssn" class="text" type="text"
-					value="810416-1234001" maxlength="14" /></td>
+					 maxlength="14" /></td>
 			</tr>
 			<tr>
 				<th>부서명*</th>
-				<td><select id="dept_cd" name="dept_cd" class="select"
+				<td><select id="dept" name="dept" class="select"
 					style="width: 200px;">
-						<option value="">-- 선택 --</option>
-
-						<option value="002">ㅣㅓㅏㅝ</option>
-
-						<option value="001" selected="selected">디자인팀</option>
+						<option value="" selected="selected">-- 선택 --</option>
+						<option value="10">잘했조</option>
+						<option value="20">보여조</option>
+						<option value="30">강조</option>
+						<option value="40">삼삼오오조</option>
 
 				</select></td>
 			</tr>
 			<tr>
 				<th>직책 *</th>
-				<td><select id="position_cd" name="position_cd" class="select"
+				<td><select id="position" name="position" class="select"
 					style="width: 200px;">
-						<option value="">-- 선택 --</option>
+						<option value="" selected="selected">-- 선택 --</option>
 
-						<option value="003">대표</option>
+						<option value="사장">사장</option>
 
-						<option value="001" selected="selected">과장</option>
+						<option value="부장">부장</option>
 
-						<option value="005">팀장</option>
+						<option value="팀장">팀장</option>
 
-						<option value="002">대리</option>
+						<option value="대리">대리</option>
 
-						<option value="004">사원</option>
+						<option value="사원">사원</option>
 
 				</select></td>
 			</tr>
@@ -90,21 +143,35 @@ th {
 			<tr>
 				<th>이메일</th>
 				<td><input id="email" name="email" class="text"
-					style="width: 200px;" type="text" value="demo00@demo.co.kr"
+					style="width: 200px;" type="text"
 					maxlength="50" /></td>
 			</tr>
 			<tr>
 				<th>핸드폰 *</th>
 				<td><input id="mobile" name="mobile" class="text"
-					style="width: 200px;" type="text" value="010-0000-0000"
-					maxlength="20" />&nbsp;&nbsp;(ex 010-1234-1234)</td>
+					style="width: 200px;" type="text"
+					maxlength="20" />&nbsp;&nbsp;</td>
 			</tr>
 			<tr>
 				<th>주소</th>
 				<td><input id="addr" name="addr" class="text"
-					style="width: 100%;" type="text" value="서울시 영등포구 여의도동 XXXX"
+					style="width: 100%;" type="text"
 					maxlength="100" /></td>
 			</tr>
+			<tr>
+				<th>은행</th>
+					<td>
+					<select id="bank" name="bank" class="select" style="width:200px;">
+						<option value="" selected="selected">--선택--</option>
+						<option value="신한">신한</option>
+						<option value="우리">우리</option>
+						<option value="국민">국민</option>
+						<option value="농협">농협</option>
+						<option value="외환">외환</option>
+						<option value="하나">하나</option>
+					</select>
+					</td>
+				</tr>
 			<tr>
 				<th>계좌번호</th>
 				<td><input id="account_no" name="account_no" class="text"
@@ -114,24 +181,8 @@ th {
 			<tr>
 				<th>입사일</th>
 				<td>
-					<div id="div_inDt"></div>
+					<input type="text" id="hiredate">  
 				</td>
-			</tr>
-
-			<tr>
-				<th>재직상태</th>
-				<td><select id="work_status" name="work_status" class="select">
-
-						<option value="E">퇴직</option>
-
-						<option value="W" selected="selected">재직</option>
-
-				</select></td>
-			</tr>
-
-			<tr>
-				<th>최근접속일시</th>
-				<td>2016-11-22 22:51:29</td>
 			</tr>
 		</tbody>
 	</table>

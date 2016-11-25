@@ -29,4 +29,23 @@ public class ManagerDAOImpl implements ManagerDAO {
 		map.put("keyword",	keyword);
 		return sqlSession.selectList("manager.emplistSearch",map);
 	}
+	
+	@Override
+	public void emp_Insert(EmpVO vo) throws Exception {
+		sqlSession.insert("manager.emp_insert",vo);
+	}
+	
+	@Override
+	public EmpVO emp_select(int empno) throws Exception {
+		return sqlSession.selectOne("manager.emp_select",empno);
+	}
+	@Override
+	public void emp_update(EmpVO vo) throws Exception {
+		sqlSession.update("manager.emp_update",vo);
+	}
+	
+	@Override
+	public void emp_delete(int empno) throws Exception {
+		sqlSession.delete("manager.emp_delete",empno);
+	}
 }

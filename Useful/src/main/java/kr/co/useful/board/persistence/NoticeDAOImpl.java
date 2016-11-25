@@ -48,7 +48,7 @@ private SqlSession sqlsession;
 	@Override
 	public List<NoticeVO> listSearch(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectList("notice.listSearch", null,new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+		return sqlsession.selectList("notice.listSearch", cri,new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
 	@Override

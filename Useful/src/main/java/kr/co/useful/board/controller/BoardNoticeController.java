@@ -12,18 +12,18 @@ import kr.co.useful.board.domain.SearchCriteria;
 import kr.co.useful.board.service.NoticeService;
 
 @RestController
-@RequestMapping("/notice")
+@RequestMapping("/board")
 public class BoardNoticeController {
 
 	@Inject
 	private NoticeService service;
 
-	@RequestMapping(value = "/createPage", method = RequestMethod.GET) // 입력 게시물
+	@RequestMapping(value = "/NcreatePage", method = RequestMethod.GET) // 입력 게시물
 																		// 불러오기
 	public void createPageGET() throws Exception {
 	}
 
-	@RequestMapping(value = "/createPage", method = RequestMethod.POST) // 게시물
+	@RequestMapping(value = "/NcreatePage", method = RequestMethod.POST) // 게시물
 																		// 입력후
 																		// 리스트
 																		// 이동
@@ -33,14 +33,14 @@ public class BoardNoticeController {
 		return "redirect:/notice/listPage";
 	}
 
-	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET) // 게시물 수정
+	@RequestMapping(value = "/NmodifyPage", method = RequestMethod.GET) // 게시물 수정
 																		// 불러옴
 	public void modifyPageGET(int serial, Model model, SearchCriteria cri) throws Exception {
 		model.addAttribute("cri", cri);
 		model.addAttribute(service.read(serial));
 	}
 
-	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST) // 게시물
+	@RequestMapping(value = "/NmodifyPage", method = RequestMethod.POST) // 게시물
 																		// 수정후
 																		// 입력
 	public String modifyPagePOST(NoticeVO vo, SearchCriteria cri, RedirectAttributes attr) throws Exception {
@@ -53,14 +53,14 @@ public class BoardNoticeController {
 		return "redirect:/notice/listPage";
 	}
 
-	@RequestMapping("/readPage") // 게시물 읽기
+	@RequestMapping("/NreadPage") // 게시물 읽기
 	public void readPage(int serial, Model model, SearchCriteria cri) throws Exception {
 
 		model.addAttribute(service.read(serial));
 		model.addAttribute("cri", cri);
 	}
 
-	@RequestMapping("/deletePage") // 게시물 삭제
+	@RequestMapping("/NdeletePage") // 게시물 삭제
 	public String deletePage(int serial, RedirectAttributes attr, SearchCriteria cri) throws Exception {
 		service.remove(serial);
 		attr.addFlashAttribute("page", cri.getPage());
@@ -70,13 +70,13 @@ public class BoardNoticeController {
 		return "redirect:/notice/listPage";
 	}
 
-	@RequestMapping(value = "listPage", method = RequestMethod.GET)
+	@RequestMapping("/noticePage")
 	public void listPage(SearchCriteria cri, Model model) throws Exception {
-	model.addAttribute("cri", cri);
-	model.addAttribute("list", service.listSearch(cri));
+	
 	PageMaker pageMaker=new PageMaker();
 	pageMaker.setCri(cri);
 	pageMaker.setTotalCount(service.listCount());
 	model.addAttribute("pageMaker", pageMaker);
+	model.addAttribute("list", service.listSearch(cri));
 	}
 }

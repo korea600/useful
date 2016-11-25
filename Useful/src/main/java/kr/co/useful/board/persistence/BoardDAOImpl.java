@@ -57,7 +57,7 @@ private SqlSession sqlsession;
 	@Override
 	public int listFindCount(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne("board.listcount");
+		return sqlsession.selectOne("board.listcount",cri);
 	}
 
 	@Override
