@@ -127,7 +127,146 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-   
+      <!-- 왼쪽 사이드바 쪽  -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <div>
+                           <div>
+                              <center><span><i class="fa fa-user fa-fw"></i>[${LoginUser.position }] ${LoginUser.ename}님 안녕하세요~!!</span></center> 
+                           </div>
+                           <p></p>
+                           <div>
+                           <center>
+                           <span>
+                              <button type="button" id="logout">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
+                              <button type="button" id="commute_in"><i class="fa fa-sort-up fa-fw"></i>출근</button>
+                              <button type="button" id="commute_out"><i class="fa fa-sort-down fa-fw"></i>퇴근</button>
+                           </span>
+                           </center>
+                           </div>
+                           <p></p>
+                           <div>
+                           		<span><i class="fa fa-clock-o fa-fw"></i>최근접속 : <fmt:formatDate value="${LoginUser.regdate}" pattern="yyyy-MM-dd HH:mm"/> </span>
+                           </div>
+                        </div>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 전자결재</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">급여관리</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">근태관리</a>
+                                </li>
+                                <li>
+                                   <a href="#">사원정보관리</a>
+                                </li>
+                                <li>
+                                   <a href="#">증명서관리</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> 게시판<span class="fa arrow"></span></a>
+                           <ul class="nav nav-second-level">
+                           <li>
+                              <a href="#">공지게시판</a>
+                           </li>
+                           <li>
+                              <a href="#">사내게시판</a>
+                           </li>
+                           <li>
+                              <a href="#">부서게시판</a>
+                           </li>
+                           </ul>
+                        </li>
+                        
+                        <li>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 업무공유</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> 일정관리<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="panels-wells.html">회사일정관리</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html">부서별일정관리</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 회의실예약<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">예약하기</a>
+                                </li>
+                                <li>
+                                    <a href="#">예약내역</a>
+                                </li>
+                                
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                               </li>
+                        
+                         <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 출퇴근내역조회<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">출근내역조회</a>
+                                </li>
+                                <li>
+                                    <a href="#">퇴근내역조회</a>
+                                </li>
+                                <li>
+                                   <a href="#">출퇴근관리</a>
+                                </li>
+                                
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                               </li>
+                        
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+      <!-- 메인 바디부분 -->
+      
+        <div id="page-wrapper">
+        
+          <div id=""></div>
+           
+			                              
+				<!-- footer  -->
+                        <div class="">
+                            <div class="">
+                             
+                            </div>
+                        </div>
+                        <!-- /.panel-footer -->
+                        
+                       
+                
+
+    </div>
+    <!-- /#wrapper -->
+
     <!-- jQuery -->
     <script src="../resources/vendor/jquery/jquery.min.js"></script>
 
