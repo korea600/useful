@@ -22,16 +22,20 @@ public class MypageController {
 	@Inject
 	private MypageService service;
 	
+	@RequestMapping("/Pass_Check")
+	public void passForm(@RequestParam String empno, Model m)throws Exception{
+		m.addAttribute("vo", service.select_pass(Integer.parseInt(empno)));
+		
+	}
 	
-	@RequestMapping(value="/Mypage",method=RequestMethod.GET)
-	public void updateForm(@RequestParam String empno,Model m)throws Exception{
-			
+	@RequestMapping(value="/Mypage",method=RequestMethod.POST)
+	public void updateForm( String empno, Model m)throws Exception{
 			m.addAttribute("vo", service.select(Integer.parseInt(empno)));
 		
 	}
 	
 	
-	@RequestMapping(value="/Mypage",method=RequestMethod.POST)
+	@RequestMapping(value="/MypageUp",method=RequestMethod.POST)
 	public ResponseEntity<String> updateInfo(@RequestBody EmpVO vo){
 		ResponseEntity<String> entity = null;
 		try {

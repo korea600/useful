@@ -12,4 +12,10 @@
   		bank=#{bank},account=#{account}
   		where empno=#{empno}
   	</update>
+  	
+  	<select id="select_pass" resultType="kr.co.useful.manager.domain.EmpVO">
+  		select pass
+  		from tbl_emp
+  		where empno=#{empno}
+  	</select>
 </mapper>

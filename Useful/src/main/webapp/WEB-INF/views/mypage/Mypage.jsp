@@ -45,6 +45,7 @@
 			data:$('#frm').serialize(),
 			success:function(result){
 				if(result=="SUCCESS"){
+					
 					alert("정보 수정완료!!");
 					location.href="/useful/login/Mainview";
 				}
@@ -59,6 +60,10 @@
 		$("#bank").val("${vo.bank}").prop("selected", true);
 		
 	}); 
+	
+	function cancel(){
+		location.href="/useful/login/Mainview";
+	}
 </script>
 
 
@@ -87,7 +92,7 @@ th {
 				<font size="5" style="font-style: inherit; margin-right: 300px;">직원정보수정
 				</font>
 				<button type="button" id="btn_Save" onclick="InfoSave()">저장</button>
-				<button type="button" id="btn_List">취소</button>
+				<button type="button" id="btn_List" onclick="cancel()">취소</button>
 				<br>
 			</div>
 			<hr>

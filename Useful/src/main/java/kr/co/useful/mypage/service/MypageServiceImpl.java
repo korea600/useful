@@ -23,4 +23,9 @@ public class MypageServiceImpl implements MypageService{
 		 dao.update(vo);
 	}
 
+	@Override
+	public EmpVO select_pass(int empno) throws Exception {
+		return dao.select_pass(empno);
+	}
+
 }

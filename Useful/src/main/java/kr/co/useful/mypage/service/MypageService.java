@@ -7,4 +7,6 @@ public interface MypageService {
 	public EmpVO select(int empno)throws Exception;
 	
 	public void update(EmpVO vo)throws Exception;
+	
+	public EmpVO select_pass(int empno)throws Exception;
 }
