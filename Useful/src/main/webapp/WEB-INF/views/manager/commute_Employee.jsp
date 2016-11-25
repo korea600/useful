@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,17 +25,28 @@ th {
 	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
+<fmt:formatDate value="${sysdate }" type="date" pattern="yyyy-MM-dd " var="fmtSysdate"/>
 <script type="text/javascript">
 
 	$(function() {
- 	   $( "#hiredate" ).datepicker({
+		
+		
+ 	   $( "#startdate" ).datepicker({
+ 		  changeMonth: true, 
+          changeYear: true,
+ 		  dateFormat: 'yy-mm-dd'
+ 	   });
+ 	   $( "#enddate" ).datepicker({
  		  changeMonth: true, 
           changeYear: true,
  		  dateFormat: 'yy-mm-dd'
  	   });
  	   
- 	   $("#btn_search").click(function(){
-
+		var now =new Date();
+		now.format("yyyy-MM-dd");
+ 	   $("#btn_today").click(function(){
+ 		   alert(now);
+ 		  $("#startdate").val(now);
  	   });
  	   $("#btn_List").click(function(){
  		   
@@ -43,25 +54,25 @@ th {
  		   
  	   });
 	});
-
+ 
 </script>
 </head>
+<header><%@include file="/WEB-INF/views/login/Main.jsp"%></header>
 <body>
 <!-- commute_Employee.jsp -->
 <font size="5" style="font-style: inherit;">사원별 근태현황</font><br><hr>
 <table>
 <tbody>
 	<tr>
-	
-	<td>검색기간</td>
+	<th style="height: 40px">검색기간</th>
 	<td>
 	<button id="btn_today">당일</button>
 	<button id="btn_week">1주일</button>
 	<button id="btn_month">1개월</button>
-	<button id="btn_3month">3개월</button><br>
+	<button id="btn_3month">3개월</button><p>
 	<jsp:useBean id="sysdate" class="java.util.Date"></jsp:useBean>
-	<fmt:formatDate value="${sysdate }" type="date" pattern="yyyy-MM-dd "/>
-		<input type="text" id="startdate" value="${sysdate}">~<input type="text" id="enddate" value="${sysdate}">
+		<input type="text" id="startdate" value="<fmt:formatDate value="${sysdate }" type="date" pattern="yyyy-MM-dd "/>">
+		~<input type="text" id="enddate" value="<fmt:formatDate value="${sysdate }" type="date" pattern="yyyy-MM-dd "/>">
 	</td>
 	</tr>
 	<tr>
@@ -75,15 +86,15 @@ th {
 				</select></td>
 			</tr>
 	<tr>
-		<td>사원번호</td>
+		<th>사원번호</th>
 		<td><input type="text" id="empno"></td>
 	</tr>
 	<tr>
-		<td>사원명</td>
+		<th>사원명</th>
 		<td><input type="text" id="ename"></td>
 	</tr>
 </tbody>
-	<div><button id="btn_search">검색</button></div>
 </table>
+	<div><button id="btn_search">검색</button></div>
 </body>
 </html>
