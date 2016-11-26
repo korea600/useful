@@ -355,7 +355,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">게시판 폼</h1>
+                    <h1 class="page-header">게시판 작성 하기</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -364,24 +364,24 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Basic Form Elements
+                            작성페이지
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" method="post" action="createPage">
                                         <div class="form-group">
                                             <label>글 제목</label>
-                                            <input class="form-control" type="text" id="title">
-                                            <p class="help-block">Example block-level help text here.</p>
+                                            <input class="form-control" type="text" id="title" placeholder="글 제목을 입력해주세요" name="title">
+                                            
                                         </div>
                                         <div class="form-group">
                                             <label>글쓴이</label>
-                                            <input type="text" id="writer" class="form-control" placeholder="Enter text">
+                                            <input type="text" id="writer" class="form-control" placeholder="Enter text" name="writer">
                                         </div>
 										<div class="form-group">
                                             <label>글쓰기</label>
-                                            <textarea id="content" class="form-control" rows="3"></textarea>
+                                            <textarea id="content" class="form-control" rows="3" placeholder="내용을 입력해주세요" name="content"></textarea>
                                         </div>
 
                                         <div class="form-group">
@@ -391,10 +391,14 @@
                                             <label>파일 올리기</label>
                                             <input type="file">
                                         </div>
-                                        
-										 <button type="submit" class="btn btn-default">작성완료</button>
-                                        <button type="reset" class="btn btn-default">다시작성하기</button>
-										<button type="reset" class="btn btn-default">되돌아가기</button>
+                                        <input type="hidden" name="page" value="${pageMaker.cri.page }">
+                                        <input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum }">
+                                       
+                                         <button type="submit" class="btn btn-default" id="submit">작성완료</button>
+                                        <button type="reset" class="btn btn-default" id="reset">다시작성하기</button>
+										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
+                                        </form>
+										
 
 </div>
                 <!-- /.col-lg-12 -->
@@ -407,16 +411,33 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../resources/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../resources/dist/js/sb-admin-2.js"></script>
+    <!-- 게시물 버튼 설정 -->
+    <script>
+    $(document).ready(function(){
+    	var formsubmit=$("from[role='form']");
+    	/* $("#submit").on("click",function(event){
+    		event.preventDefault();
+    		formsubmit.submit;
+    	}); */
+    	$("#backPage").on("click",function(){
+    		history.back();
+    	});
+  /*   	$("#reset").on("click",function(event){
+    		event.preventDefault();
+    		formsubmit.reset;
+    	}); */
+    });
+    </script>
 
 </body>
 </body>

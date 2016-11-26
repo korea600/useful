@@ -315,37 +315,14 @@
 			</div>
 
 
-			<form>
+			<form action="boardform">
 			<div class="col-lg-6" style="width: 100%;">
 				<div class="panel panel-default">
 					<div class="panel-heading">Context Classes</div>
-						<div class="list_number">
-						
-									<!-- 검색버튼 -->
-									 <div class="panel-footer">
-                            <div class="input-group" >
-                            
-                            
-                              <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 30px;">
-                                                    <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
-                                                    <option value="t"<c:out value="${cri.searchType=='t'?'selected':'' }"/> >글제목</option>
-                                                    <option value="w" <c:out value="${cri.searchType=='w'?'selected':'' }"/> >글쓴이</option>
-                                                    <option value="c" <c:out value="${cri.searchType=='c'?'selected':'' }"/>>내용
-                                                </select>
-                                <input name="keyword" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="searchBtn" style="height: 30px;">
-                                        검색
-                                    </button>
-                                </span>
-                            </div>
-									<!-- 검색버튼 -->
 					<!-- /.panel-heading -->
-					
 					<div class="panel-body">
 						<div class="table-responsive">
 							<table class="table" width="100%">
-							
 								<thead>
 									<tr>
 										<th>글번호</th>
@@ -360,50 +337,48 @@
 									<c:forEach items="${list }" var="BoardVO">
 										<tr>
 											<td>${BoardVO.serial }</td>
-											<td><a href="/useful/board/readPage${pageMaker.query(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td>
+											<td>${BoardVO.title }</td>
 											<td>${BoardVO.writer }</td>
 											<td>${BoardVO.content }</td>
-											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${BoardVO.regdate }"/></td>
+											<td>${BoardVO.regdate }</td>
 											<td>${BoardVO.viewcnt }</td>
 										</tr>
 									</c:forEach>
+									<div class="list_number">
 									
-									
-								</tbody>
-
-							</table>
-						
-									
-									
-									<!-- 페이지번호 -->
 										<div>
 											<p>
 											<div class="list_n_menu">
 											<c:if test="${pageMaker.prev }">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.startPage -1) }">이전</a></span>
+											<span><a href="${pageMaker.startPage-1 }"></a>이전</span>
 											
 											</c:if>
 												
 												<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 												<span <c:out value="${pageMaker.cri.page==idx?'class=active':'' }"/>>
-												<a href="/useful/board/listPage${pageMaker.query(idx) }">${idx }</a>
+												<a href="${idx }">${idx }</a>
 												</span>
 												</c:forEach>
 												
 													<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.endPage +1)}">다음</a></span>
+											<span><a href="${pageMaker.endPage +1}"></a>다음</span>
 											</c:if>
 											</div>
 											</p>
 										</div>
 									</div>
-									<!-- 페이지번호 -->
+									</div>
+									</div>
+									
+								</tbody>
+
+							</table>
+							
 						</div>
 						  <input type='hidden' name="page" value='${pageMaker.cri.perPageNum}'>
                           <input type='hidden' name="perPageNum" value='${pageMaker.cri.perPageNum}'>
-						
+						<button type="submit" class="btn btn-default" id="register">글스기</button>
 						</form>
-						<button class="btn btn-default" id="register">글쓰기</button>
 						<!-- /.table-responsive -->
 					</div>
 					<!-- /.panel-body -->
@@ -447,22 +422,22 @@
 	<script src="../dist/js/sb-admin-2.js"></script>
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-$(document).ready(function(){
-	$("#register").on("click",function(event){
-		event.preventDefault();
-		self.location="/useful/board/createPage";
-	});
-	$("#searchBtn").on("click",function(){
-		self.location="/useful/board/createPage"+
-		'${pageMaker.serach(1)}'+
-		"$searchType="+
-		$("select option:selected").val()+
-		"&keyword=" + $('#btn-input').val();
-	});
-	
-});
-</script>
+	<script>
+		$(document).ready(function() {
+			${"#register"}.click(function({
+				self.location='/board/create';
+			});
+			${".list_number span a"}.on("click",function(event){
+				event.preventDefault();
+				var targetPage = $(this).attr("href");
+				
+				var boardform = $("#boardform");
+				boardform.find("[name='page']").val(targetPage);
+				boardform.attr("action","/board/listPage").attr("method", "get");
+				boardform.submit();
+			
+		});
+	</script>
 
 </body>
 </html>
