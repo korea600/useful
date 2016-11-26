@@ -19,9 +19,8 @@ public class ApprovalRestServiceImpl implements ApprovalRestService{
 		return dao.getDept(deptno);
 	}
 
-	public List<ApprovalRestVO> getLine(int deptno) throws Exception {
-
-		return null;
+	public List<ApprovalRestVO> getLine(ApprovalRestVO vo) throws Exception {
+		return dao.getLine(vo);
 	}
 
 }

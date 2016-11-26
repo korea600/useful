@@ -17,9 +17,15 @@ public class ApprovalRestController {	// 각 페이지 내에서 Ajax 처리를 위한 contr
 	@Inject
 	private ApprovalRestService service;
 	
-	@RequestMapping("/getDept")
+	@RequestMapping("/approval/getDept")		// 결재선 정보 얻기
 	public List<ApprovalRestVO> getDept(int deptno) throws Exception{
 		List<ApprovalRestVO> list = service.getDept(deptno);
+		return list;
+	}
+	
+	@RequestMapping("/approval/getLine")		// 결재선 정보 얻기
+	public List<ApprovalRestVO> getLine(ApprovalRestVO vo) throws Exception{
+		List<ApprovalRestVO> list = service.getLine(vo);
 		return list;
 	}
 	

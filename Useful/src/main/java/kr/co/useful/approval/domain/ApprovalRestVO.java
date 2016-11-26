@@ -6,9 +6,18 @@ public class ApprovalRestVO {
 	private String ename;
 	private int deptno;
 	private String dname;
+	private String position;
 	
 	public ApprovalRestVO() {}
 	
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
 	public int getEmpno() {
 		return empno;
 	}

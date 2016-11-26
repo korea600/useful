@@ -1,53 +1,53 @@
 -- 사원정보(tbl_emp) 샘플 데이터 삽입
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank,email)
-values (1000, '이길재', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 0, '사장',null, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1000, '이길재', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 0, '사장',0, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1001, '채효원', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '부장','1000', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1001, '채효원', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '부장',1000, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1002, '박지혜', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '대리','1001', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1002, '박지혜', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '대리',1001, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1003, '안선영', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원','1002', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1003, '안선영', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',1002, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1004, '이대원', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원','1002', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1004, '이대원', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',1002, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1005, '전성원', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원','1002', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1005, '전성원', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',1002, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1006, '이길학', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '부장','1000', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1006, '이길학', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '부장',1000, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1007, '최용석', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '대리','1006', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1007, '최용석', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '대리',1006, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1008, '기호창', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원','1007', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1008, '기호창', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원',1007, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1009, '김소영', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원','1007', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1009, '김소영', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원',1007, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1010, '윤철', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원','1007', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1010, '윤철', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원',1007, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1011, '황혜정', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원','1007', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1011, '황혜정', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '사원',1007, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1012, '이하은', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '부장','1000', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1012, '이하은', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '부장',1000, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1013, '최필한', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '대리','1012', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1013, '최필한', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '대리',1012, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1014, '정다운', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원','1013', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1014, '정다운', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원',1013, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1015, '권성준', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원','1013', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1015, '권성준', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원',1013, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1016, '오정훈', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원','1013', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1016, '오정훈', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원',1013, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1017, '최상균', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원','1013', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1017, '최상균', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 30, '사원',1013, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1018, '박종민', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '부장','1000', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1018, '박종민', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '부장',1000, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1019, '박재현', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '대리','1018', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1019, '박재현', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '대리',1018, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1020, '이성욱', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '사원','1019', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1020, '이성욱', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '사원',1019, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1021, '이종환', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '사원','1019', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1021, '이종환', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '사원',1019, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1022, '김혜정', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '사원','1019', 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1022, '김혜정', '1111','121212-1234567','010-123-4567','가산디지털',sysdate, 40, '사원',1019, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 -- 컬럼 데이터 크기 수정
 alter table tbl_emp modify (ssn varchar2(15));
 alter table tbl_emp modify (phone varchar2(15));

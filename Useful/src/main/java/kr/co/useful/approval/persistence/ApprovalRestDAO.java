@@ -8,5 +8,5 @@ public interface ApprovalRestDAO {
 	// 타부서 이름 얻어오기
 	public List<ApprovalRestVO> getDept(int deptno) throws Exception;
 	// 결재선 얻어오기
-	public List<ApprovalRestVO> getLine(int deptno) throws Exception;
+	public List<ApprovalRestVO> getLine(ApprovalRestVO vo) throws Exception;
 }

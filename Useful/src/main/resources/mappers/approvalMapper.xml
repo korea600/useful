@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace='approval'>
 	<!-- 결재문서 등록 -->
+	<insert id="create">
+		insert into tbl_approval
+		(no,status,title, content, writer, receiver, curr_approval, next_approval)
+		values (tbl_approval_seq.nextval, #{status},#{title},#{writer},#{receiver},#{curr_approval},#{next_approval})	
+	</insert>
 	<!-- 반려문서 수정하기 -->
 	<!-- 문서리스트조회 (동적SQL)-->
 	<select id="list" resultType="Approval">
@@ -27,29 +32,38 @@
 		and tbl_approval.receiver=tbl_dept.deptno
 		and no=#{no}
 	</select>
-	<!-- 타부서 정보 얻기 -->
-	<select id="getDept" resultType="ApprovalRest">
-		select distinct tbl_dept.deptno, dname
-		from tbl_dept, tbl_emp
-		where tbl_emp.deptno=tbl_dept.deptno
-		and tbl_dept.deptno!=#{deptno}
-		and tbl_dept.deptno!=0
-		order by tbl_dept.deptno
+	<!-- 상사의 사번 얻기 -->
+	<select id="getManager" resultType='int'>
+		select manager from tbl_emp where empno=#{empno}
 	</select>
-	<!-- 다음 결재선 정보 얻기 -->
-	<select id='getLine' resultType="ApprovalRest">
-		<![CDATA[
-			select empno, ename, tbl_emp.position
-			from tbl_emp,tbl_position
-			where tbl_emp.position=tbl_position.position
-			and tbl_emp.deptno=
-				(select deptno from tbl_emp where empno=#{empno})
-			and tbl_position.posno <
-				(select posno from tbl_emp, tbl_position
-				where tbl_emp.position=tbl_position.position
-				and tbl_emp.empno='1003')
-			order by empno desc
-		]]> 
-	</select>	
 	<!-- 결재하기 -->
+	
+	<!-- for Ajax -->
+		<!-- 타부서 정보 얻기 -->
+		<select id="getDept" resultType="ApprovalRest">
+			select distinct tbl_dept.deptno, dname
+			from tbl_dept, tbl_emp
+			where tbl_emp.deptno=tbl_dept.deptno
+			and tbl_dept.deptno!=#{deptno}
+			and tbl_dept.deptno!=0
+			order by tbl_dept.deptno
+		</select>
+		<!-- 다음 결재선 정보 얻기 -->
+		<select id='getLine' resultType="ApprovalRest">
+			<![CDATA[
+				select distinct empno, ename, tbl_emp.position
+				from tbl_emp,tbl_position
+				where tbl_emp.position=tbl_position.position
+				and (tbl_emp.deptno=(select deptno from tbl_emp where empno=#{empno})
+				and tbl_position.posno < (select posno from tbl_emp, tbl_position
+										where tbl_emp.position=tbl_position.position
+										and tbl_emp.empno=#{empno}))
+			]]> 
+				<if test="deptno==0">
+					or tbl_emp.empno=1000
+				</if>
+				order by empno desc
+			
+		</select>	
+
 </mapper>

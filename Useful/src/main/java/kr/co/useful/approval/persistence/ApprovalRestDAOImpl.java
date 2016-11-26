@@ -16,9 +16,9 @@ public class ApprovalRestDAOImpl implements ApprovalRestDAO{
 	private SqlSession sqlSession;
 	
 	public List<ApprovalRestVO> getDept(int deptno) throws Exception{
-		return sqlSession.selectList("approval.getLine",deptno);
+		return sqlSession.selectList("approval.getDept",deptno);
 	}
-	public List<ApprovalRestVO> getLine(int deptno) throws Exception{
-		return null;
+	public List<ApprovalRestVO> getLine(ApprovalRestVO vo) throws Exception{
+		return sqlSession.selectList("approval.getLine",vo);
 	}
 }
