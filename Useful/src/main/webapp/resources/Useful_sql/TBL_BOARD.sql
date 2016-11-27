@@ -23,6 +23,10 @@ create sequence tbl_board_seq
    nocycle
    nocache;
    
+   select viewcnt from tbl_board where serial=3;
+   update tbl_board set viewcnt=viewcnt+1
+where serial=3;
+   
    insert into tbl_board (serial,title,writer,content,regdate) values (tbl_board_seq.nextval,'테스트','테스트','테스트',sysdate);
    insert into tbl_board (serial,title,writer,content,regdate) values (tbl_board_seq.nextval,'테스트','테스트','테스트',sysdate);
    insert into tbl_board (serial,title,writer,content,regdate) values (tbl_board_seq.nextval,'테스트','테스트','테스트',sysdate);

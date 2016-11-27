@@ -66,5 +66,11 @@ private SqlSession sqlsession;
 		return sqlsession.selectList("board.readAll", cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
+	@Override
+	public void viewcnt(int serial) throws Exception {
+		sqlsession.update("board.viewcnt", serial);
+		
+	}
+
 
 }

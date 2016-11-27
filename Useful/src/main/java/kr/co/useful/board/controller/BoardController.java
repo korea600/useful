@@ -50,6 +50,7 @@ public class BoardController {
 	BoardVO board=service.read(serial);
 	PageMaker pageMaker=new PageMaker();
 	List<ReplyVO> list=reservice.listAll(serial);
+	service.viewcnt(serial);
 	pageMaker.setCri(cri);
 	pageMaker.calc();
 	model.addAttribute("maker", pageMaker);
@@ -79,7 +80,7 @@ public class BoardController {
 	//----------------------------여기까지 게시판 관련 ----------------------------------------------------
 	
 	//----------------------------여기부터 댓글 관련 ----------------------------------------------------
-	@RequestMapping(value="replycreatePage",method=RequestMethod.POST)
+	@RequestMapping(value="",method=RequestMethod.POST)
 	public void replycreate(ReplyVO vo)throws Exception{
 	reservice.create(vo);
 	};

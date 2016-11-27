@@ -14,30 +14,30 @@
 <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
+<link href="../../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../resources/vendor/bootstrap/css/button.css"
+<link href="../../resources/vendor/bootstrap/css/button.css"
 	rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link href="../resources/vendor/metisMenu/metisMenu.min.css"
+<link href="../../resources/vendor/metisMenu/metisMenu.min.css"
 	rel="stylesheet">
 
 <!-- DataTables CSS -->
 <link
-	href="../resources/vendor/datatables-plugins/dataTables.bootstrap.css"
+	href="../../resources/vendor/datatables-plugins/dataTables.bootstrap.css"
 	rel="stylesheet">
 
 <!-- DataTables Responsive CSS -->
 <link
-	href="../resources/vendor/datatables-responsive/dataTables.responsive.css"
+	href="../../resources/vendor/datatables-responsive/dataTables.responsive.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet">
+<link href="../../resources/dist/css/sb-admin-2.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="../resources/vendor/font-awesome/css/font-awesome.min.css"
+<link href="../../resources/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -309,7 +309,7 @@
 		<div id="page-wrapper" style="height: 100%;">
 			<div class="row" style="height: 100%;">
 				<div class="col-lg-12">
-					<h1 class="page-header">사내게시판</h1>
+					<h1 class="page-header">익명 게시판</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -350,21 +350,19 @@
 									<tr>
 										<th>글번호</th>
 										<th>글제목</th>
-										<th>글쓴이</th>
 										<th>내용</th>
 										<th>작성일자</th>
-										<th>조회수</th>
+										
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${list }" var="BoardVO">
 										<tr>
 											<td>${BoardVO.serial }</td>
-											<td><a href="/useful/board/readPage${pageMaker.query(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td>
-											<td>${BoardVO.writer }</td>
+											<td><a href="/useful/board/anonymity/readPage${pageMaker.query(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td>
 											<td>${BoardVO.content }</td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${BoardVO.regdate }"/></td>
-											<td>${BoardVO.viewcnt }</td>
+										
 										</tr>
 									</c:forEach>
 									
@@ -380,18 +378,18 @@
 											<p>
 											<div class="list_n_menu">
 											<c:if test="${pageMaker.prev }">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.startPage -1) }">이전</a></span>
+											<span><a href="/useful/board/anonymity/listPage${pageMaker.serach(pageMaker.startPage -1) }">이전</a></span>
 											
 											</c:if>
 												
 												<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 												<span <c:out value="${pageMaker.cri.page==idx?'class=active':'' }"/>>
-												<a href="/useful/board/listPage${pageMaker.query(idx) }">${idx }</a>
+												<a href="/useful/board/anonymity/listPage${pageMaker.query(idx) }">${idx }</a>
 												</span>
 												</c:forEach>
 												
 													<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.endPage +1)}">다음</a></span>
+											<span><a href="/useful/board/anonymity/listPage${pageMaker.serach(pageMaker.endPage +1)}">다음</a></span>
 											</c:if>
 											</div>
 											</p>
@@ -427,34 +425,34 @@
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
-	<script src="../resources/vendor/jquery/jquery.min.js"></script>
+	<script src="../../resources/vendor/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
+	<script src="../../resources/vendor/metisMenu/metisMenu.min.js"></script>
 
 	<!-- DataTables JavaScript -->
 	<script
-		src="../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+		src="../../resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
 	<script
-		src="../resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+		src="../../resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 	<script
-		src="../resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+		src="../../resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
 	<!-- Custom Theme JavaScript -->
-	<script src="../dist/js/sb-admin-2.js"></script>
+	<script src="../../dist/js/sb-admin-2.js"></script>
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
 $(document).ready(function(){
 	$("#register").on("click",function(event){
 		event.preventDefault();
-		self.location="/useful/board/createPage";
+		self.location="/useful/board/anonymity/createPage";
 	});
 	$("#searchBtn").on("click",function(){
-		self.location="/useful/board/createPage"+
+		self.location="/useful/board/anonymity/createPage"+
 		'${pageMaker.serach(1)}'+
 		"$searchType="+
 		$("select option:selected").val()+

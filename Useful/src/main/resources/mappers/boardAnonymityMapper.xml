@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="board">
+<mapper namespace="anonymity">
 
 <insert id="create">
-insert into tbl_board (serial,title,writer,content)
-values (tbl_board_seq.nextval,#{title},#{writer},#{content})
+insert into tbl_anonymity (serial,title,content)
+values (tbl_anonymity_seq.nextval,#{title},#{content})
 </insert>
 
 <select id="read" resultType="kr.co.useful.board.domain.BoardVO">
-select serial,title,writer,content,regdate,viewcnt from tbl_board where serial=#{serial}
+select serial,title,content,regdate from tbl_anonymity where serial=#{serial}
 </select>
 
 <update id="update">
-update tbl_board set title=#{title},content=#{content} where serial=#{serial}
+update tbl_anonymity set title=#{title},content=#{content} where serial=#{serial}
 </update>
 
 <delete id="delete">
-delete from tbl_board where serial=#{serial}
+delete from tbl_anonymity where serial=#{serial}
 </delete>
 
 <select id="readAll" resultType="kr.co.useful.board.domain.BoardVO">
-select * from tbl_board order by serial desc
+select * from tbl_anonymity order by serial desc
 </select>
 
 <select id="Count" resultType="int">
-select count(*) from tbl_baord;
+select count(*) from tbl_anonymity;
 </select>
 
 <select id="listSearch" resultType="kr.co.useful.board.domain.BoardVO">
-select serial,title,writer,content,regdate,viewcnt from tbl_board
+select serial,title,content,regdate from tbl_anonymity
 <include refid="Search"/>
 order by serial desc
 </select>
 
 <select id="listcount" resultType="int">
-select count(*) from tbl_board
+select count(*) from tbl_anonymity
 <include refid="Search"/>
 order by serial desc
 </select>
 
 <update id="viewcnt" parameterType="int">
-update tbl_board set viewcnt=viewcnt+1
+update tbl_anonymity set viewcnt=viewcnt+1
 where serial=#{serial}
 </update>
 
