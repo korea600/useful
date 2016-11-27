@@ -71,7 +71,7 @@ public class ManagerRestController {
             @RequestParam(value = "sidx", required=false) String sidx,
             @RequestParam(value = "sord", required=false) String sord,
             String keyword,String searchType
-            ) {
+            ){
 		
 			JsonObj obj = new JsonObj(); 
 			
@@ -93,6 +93,4 @@ public class ManagerRestController {
 
 	        int totalPage = (int)Math.ceil(list.size()/Double.parseDouble(rows));
 	        obj.setTotal( totalPage ); 
-		return obj;
-	}
-}
+		return obj;}}

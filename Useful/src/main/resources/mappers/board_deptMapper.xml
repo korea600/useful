@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="deptboard">
+
+	<select id="mainlist" resultType="kr.co.useful.board.domain.NoticeVO">
+	select title,content,regdate from deptboard order by serial  desc
+	</select>
+	
+	<!-- 게시물 선택보기 -->
+    <select id="selectRead" resultType="kr.co.useful.board.domain.NoticeVO">
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM deptboard WHERE SERIAL=#{serial}
+    </select>
+    <!-- 게시물 전체보기 -->
+    <select id="listAll" resultType="kr.co.useful.board.domain.NoticeVO">
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM deptboard ORDER BY SERIAL DESC
+    </select>
+    <!-- 게시물 업데이트 -->
+    <update id="update">
+    UPDATE deptboard SET TITLE=#{title},WRITER=#{writer},CONTENT=#{content} FROM TBL_NOTICE
+    </update>
+    <!-- 게시물등록 -->
+    <insert id="insert">
+    INSERT INTO deptboard(SERIAL,TITLE,WRITER,CONTENT,RAGDATE) 
+    VALUES(tbl_notice_seq.nextval,#{title},#{writer},#{content},sysdate)
+    </insert>
+    
+    <!-- 게시물 삭제 -->
+    <delete id="delete">
+    DELETE FROM deptboard WHERE SERIAL=#{serial}
+    </delete>
+    
+    <select id="count" resultType="int">
+    SELECT COUNT(*) FROM deptboard
+    </select>
+    
+    <select id="listSearch" resultType="kr.co.useful.board.domain.NoticeVO">
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE from deptboard
+    <include refid="Search"/>
+    order by serial desc
+    </select>
+    
+    <select id="listcount" resultType="int">
+    select count(*) from deptboard where serial>0
+    <include refid="Search"/>
+    </select>
+    
+    <sql id="Search">
+    <if test="searchType!=null">
+    <if test="searchType=='t'">
+    and title like concat("%",#{keyword},"%")
+    </if>
+     <if test="searchType=='w'">
+    and writer like concat("%",#{keyword},"%")
+    </if>
+     <if test="searchType=='c'">
+    and content like concat("%",#{keyword},"%")
+    </if>
+    </if>
+    </sql>
+    
+
+</mapper>

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>직원관리</title>
+ <title>직원관리</title>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="screen"
@@ -13,11 +13,12 @@
 	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" 
+	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script>  
 <script type="text/javascript">
 	$(function(){	
  		$("#employee_tbl").jqGrid("GridUnload");
@@ -111,6 +112,12 @@
 </script>
 </head>
 <body>
+ <header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header> 
+<div>
+	<%--<jsp:include page="/WEB-INF/views/login/Sidebar.jsp"></jsp:include>  --%>
+</div>
+<div id="page-wrapper">
+
 	<p>
 		<font size="5" style="font-style: inherit;">직원관리</font><br>
 	</p>
@@ -131,5 +138,7 @@
 <hr>
 	<table id="employee_tbl"></table>
 	<div id="employee_div"></div>
+	
+</div>
 </body>
 </html>

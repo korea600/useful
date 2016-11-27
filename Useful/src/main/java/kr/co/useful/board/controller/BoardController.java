@@ -17,20 +17,29 @@ import kr.co.useful.board.service.*;
 public class BoardController {
 	@Inject
 	private BoardService service;
-	
-	@RequestMapping(value="/create",method=RequestMethod.GET)
-	public void createPageGET()throws Exception{
-	
+	@Inject
+	private ReplyService reservice;
+	@Inject 
+	private NoticeService noservice;
+	//----------------------------여기부터 게시판 관련 ----------------------------------------------------
+	@RequestMapping("/Mainboard")
+	public void createPageGET1(Model model)throws Exception{
+	model.addAttribute("list", noservice.mainlist());
 	}
-	@RequestMapping(value="/create",method=RequestMethod.POST)
+
+	@RequestMapping(value="/createPage",method=RequestMethod.GET)
+	public void createPageGET()throws Exception{
+		
+	}
+	@RequestMapping(value="/createPage",method=RequestMethod.POST)
 	public String createPagePOST(BoardVO vo,RedirectAttributes att)throws Exception{
 	service.insert(vo);
 	att.addFlashAttribute("message", "SUCCESS");
-	return "redirct:/board/listPage";
+	return "redirect:/board/listPage";
 	}
 	
 	@RequestMapping("/listPage")
-	public void listPage(Criteria cri,Model model)throws Exception {
+	public void listPage(SearchCriteria cri,Model model)throws Exception {
 //	Map<String, Object> map=new HashMap<String,Object>();
 	PageMaker pageMaker=new PageMaker();
 	pageMaker.setCri(cri);
@@ -44,8 +53,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/readPage")
-	public void readPage(int serial,Model model,Criteria cri)throws Exception {
+	public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 	BoardVO board=service.read(serial);
+	PageMaker pageMaker=new PageMaker();
+	List<ReplyVO> list=reservice.listAll(serial);
+	service.viewcnt(serial);
+	pageMaker.setCri(cri);
+	pageMaker.calc();
+	model.addAttribute("maker", pageMaker);
+	model.addAttribute("list", list);
 	model.addAttribute("board", board);
 	model.addAttribute("cri", cri);
 	}
@@ -58,7 +74,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="modifyPage",method=RequestMethod.POST) 
-	public String modifyPage(BoardVO vo,RedirectAttributes attr,Criteria cri)throws Exception {
+	public String modifyPage(BoardVO vo,RedirectAttributes attr,SearchCriteria cri)throws Exception {
 		service.modify(vo);
 		attr.addFlashAttribute("page", cri.getPage());
 		attr.addFlashAttribute("perpageNum", cri.getPerPageNum());
@@ -68,4 +84,15 @@ public class BoardController {
 	public String deletePage(int serial) {
 		return "redirect:/board/listPage";
 	}
+	//----------------------------여기까지 게시판 관련 ----------------------------------------------------
+	
+	//----------------------------여기부터 댓글 관련 ----------------------------------------------------
+	@RequestMapping(value="",method=RequestMethod.POST)
+	public void replycreate(ReplyVO vo)throws Exception{
+	reservice.create(vo);
+	};
+	public void replyupdate()throws Exception{};
+	public void replydelete()throws Exception{};
+	//----------------------------여기까지 댓글 관련 ----------------------------------------------------
+
 }

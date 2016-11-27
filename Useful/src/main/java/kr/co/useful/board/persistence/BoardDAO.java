@@ -10,6 +10,7 @@ public interface BoardDAO {
 	public BoardVO read(int serial)throws Exception;
 	public void update(BoardVO vo)throws Exception;
 	public void delete(int serial)throws Exception;
+	public void viewcnt(int serial)throws Exception;
 	public List<BoardVO> readAll()throws Exception;
 	public int boardTotalCount()throws Exception; //게시판 전체수
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception; //특정페이지조회

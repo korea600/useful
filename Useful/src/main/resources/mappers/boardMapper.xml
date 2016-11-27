@@ -39,6 +39,10 @@ select count(*) from tbl_board
 order by serial desc
 </select>
 
+<update id="viewcnt" parameterType="int">
+update tbl_board set viewcnt=viewcnt+1
+where serial=#{serial}
+</update>
 
 
 

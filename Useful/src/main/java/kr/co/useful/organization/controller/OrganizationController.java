@@ -18,8 +18,8 @@ public class OrganizationController {
 	@Inject
 	private OrganizationService service;
 	
-	@RequestMapping(value="")
-	public String view_organization(Model m){
+	@RequestMapping(value="/view")
+	public void view_organization(Model m){
 		List<List<OrganizationVO>> list = new ArrayList<>();
 		List<OrganizationVO> dept = null;
 		try {
@@ -34,10 +34,9 @@ public class OrganizationController {
 		}
 		m.addAttribute("dept", dept);
 		m.addAttribute("list", list);
-		return "/organization/view";
 	}
 	
-	@RequestMapping("/{empno}")
+	@RequestMapping("/detail/{empno}")
 	public String view_details(@PathVariable int empno, Model m){
 		OrganizationVO vo = null;
 		try {

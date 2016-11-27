@@ -35,7 +35,7 @@ public class LoginController {
 		
 		String empno = req.getParameter("empno");
 		String pass = req.getParameter("pass");
-			
+
 		try {
 			String dpass = service.select(Integer.parseInt(empno)).getPass();
 			if(pass.equals(dpass)){
@@ -56,11 +56,26 @@ public class LoginController {
 	@RequestMapping("/Mainview")
 	public String main_view(){
 
-		return "/login/Main";
+		return "/login/Main2";
 	}
 	
 	@RequestMapping("/Logout")
 	public void logout(HttpSession session){
+		
+	}
+	
+	@RequestMapping("/Search_Pass")
+	public void searchPass(){
+		
+	}
+	
+	@RequestMapping("/Modify_Pass")
+	public void modifyPass(){
+		
+	}
+	
+	@RequestMapping("/Encrypt")
+	public void encrypt(){
 		
 	}
 }

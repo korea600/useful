@@ -63,7 +63,13 @@ private SqlSession sqlsession;
 	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectList("board.readAll", null, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+		return sqlsession.selectList("board.readAll", cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	}
+
+	@Override
+	public void viewcnt(int serial) throws Exception {
+		sqlsession.update("board.viewcnt", serial);
+		
 	}
 
 

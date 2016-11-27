@@ -67,4 +67,10 @@ private BoardDAO dao;
 		return dao.listCriteria(cri);
 	}
 
+	@Override
+	public void viewcnt(int serial) throws Exception {
+		dao.viewcnt(serial);
+		
+	}
+
 }

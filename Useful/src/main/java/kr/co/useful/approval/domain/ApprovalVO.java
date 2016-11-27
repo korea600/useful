@@ -20,6 +20,15 @@ public class ApprovalVO {
 	
 	public ApprovalVO() {}
 
+	public String toString() {
+		return "ApprovalVO [no=" + no + ", status=" + status + ", title=" + title + ", content=" + content + ", writer="
+				+ writer + ", writer_name=" + writer_name + ", receiver=" + receiver + ", receiver_dname="
+				+ receiver_dname + ", regdate=" + regdate + ", curr_approval=" + curr_approval + ", next_approval="
+				+ next_approval + ", addfile=" + addfile + ", filename=" + filename + "]";
+	}
+
+
+
 	public int getNo() {
 		return no;
 	}

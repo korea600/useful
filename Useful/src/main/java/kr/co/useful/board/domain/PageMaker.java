@@ -22,7 +22,7 @@ public void calc(){
 	prev=startPage==1?false:true;
 	next=endPage*cri.getPerPageNum()>=totalCount?false:true;
 }
-public String Query(int page){
+public String query(int page){
 	UriComponents uriComponents=UriComponentsBuilder.newInstance()
 			.queryParam("page", page)
 			.queryParam("perPageNum", cri.getPerPageNum())
@@ -30,7 +30,7 @@ public String Query(int page){
 	return uriComponents.toUriString();
 }
 
-public String Serach(int page){
+public String serach(int page){
 	UriComponents uriComponents=UriComponentsBuilder.newInstance()
 			.queryParam("page", page)
 			.queryParam("perPageNum", cri.getPerPageNum())

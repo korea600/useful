@@ -69,4 +69,10 @@ private SqlSession sqlsession;
 		return sqlsession.selectOne("notice.count");
 	}
 
+	@Override
+	public List<NoticeVO> mainlist() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("notice.mainlist");
+	}
+
 }

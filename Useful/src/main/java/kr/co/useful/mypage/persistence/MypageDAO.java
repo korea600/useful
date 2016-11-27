@@ -8,5 +8,8 @@ public interface MypageDAO {
 	public EmpVO select(int empno)throws Exception;
 	
 	//사원 개인정보 수정
-	public int update(int empno)throws Exception;
+	public void update(EmpVO vo)throws Exception;
+	
+	//비밀번호 확인
+	public EmpVO select_pass(int empno)throws Exception;
 }

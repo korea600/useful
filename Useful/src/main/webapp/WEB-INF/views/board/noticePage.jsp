@@ -315,7 +315,7 @@
 			</div>
 
 
-
+			<form action="boardform">
 			<div class="col-lg-6" style="width: 100%;">
 				<div class="panel panel-default">
 					<div class="panel-heading">Context Classes</div>
@@ -330,7 +330,7 @@
 										<th>글쓴이</th>
 										<th>내용</th>
 										<th>작성일자</th>
-									
+										<th>조회수</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -341,15 +341,17 @@
 											<td>${BoardVO.writer }</td>
 											<td>${BoardVO.content }</td>
 											<td>${BoardVO.regdate }</td>
-											
+											<td>${BoardVO.viewcnt }</td>
 										</tr>
 									</c:forEach>
 									<div class="list_number">
+									
 										<div>
 											<p>
 											<div class="list_n_menu">
 											<c:if test="${pageMaker.prev }">
-											<span><a href="${pageMaker.startPage-1 }">이전</a></span>
+											<span><a href="${pageMaker.startPage-1 }"></a>이전</span>
+											
 											</c:if>
 												
 												<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
@@ -367,10 +369,16 @@
 									</div>
 									</div>
 									</div>
+									
 								</tbody>
 
 							</table>
+							
 						</div>
+						  <input type='hidden' name="page" value='${pageMaker.cri.perPageNum}'>
+                          <input type='hidden' name="perPageNum" value='${pageMaker.cri.perPageNum}'>
+						<button type="submit" class="btn btn-default" id="register">글스기</button>
+						</form>
 						<!-- /.table-responsive -->
 					</div>
 					<!-- /.panel-body -->
@@ -416,9 +424,18 @@
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
 		$(document).ready(function() {
-			$('#dataTables-example').DataTable({
-				responsive : true
+			${"#register"}.click(function({
+				self.location='/board/create';
 			});
+			${".list_number span a"}.on("click",function(event){
+				event.preventDefault();
+				var targetPage = $(this).attr("href");
+				
+				var boardform = $("#boardform");
+				boardform.find("[name='page']").val(targetPage);
+				boardform.attr("action","/board/listPage").attr("method", "get");
+				boardform.submit();
+			
 		});
 	</script>
 

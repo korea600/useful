@@ -19,8 +19,13 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 
 	@Override
-	public int update(int empno) throws Exception {
-		return sqlSession.update("mypage.update", empno);
+	public void update(EmpVO vo) throws Exception {
+		sqlSession.update("mypage.update", vo);
+	}
+
+	@Override
+	public EmpVO select_pass(int empno) throws Exception {
+		return sqlSession.selectOne("mypage.select_pass", empno);
 	}
 
 }

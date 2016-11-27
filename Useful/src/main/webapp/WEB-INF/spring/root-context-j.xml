@@ -10,34 +10,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 		<!-- bean 등록할 부분 -->
-			<!-- 프로젝트 세팅 관련 부분  start-->
-	<!-- JDBC 설정 (Connection pool)-->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value='oracle.jdbc.driver.OracleDriver'/>
-		<property name="url" value='jdbc:oracle:thin:@180.70.132.106:1521:CENTORA'/>
-		<property name="username" value='scott'/>
-		<property name="password" value='scott'/>
-	</bean>
-	
-	<!-- MyBatis 설정 (DataSource, sqlmapper 등록) -->	
-	<bean id='sqlSessionFactory' class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation"
-					value="classpath:/mybatis-config.xml"/>
-		<property name="mapperLocations"
-					value="classpath:mappers/*Mapper.xml"></property>
-	</bean>
-	<bean id='sqlSession' class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-	
-	<!-- Transaction 설정 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
 
-	<!-- 프로젝트 세팅 관련 부분  end-->
-	
 	<!-- beans 또는 component-scan 등록 부분 -->
 	<context:component-scan base-package="kr.co.useful.board.service"></context:component-scan>
 	<context:component-scan base-package="kr.co.useful.board.persistence"></context:component-scan>
