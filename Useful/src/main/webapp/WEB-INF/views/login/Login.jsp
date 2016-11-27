@@ -88,7 +88,7 @@
                                 </div>
                                 <p></p>
                                 <div>
-                                	<center><a href="#" >비밀번호 찾기</a></center>
+                                	<center><a href="Search_Pass" >비밀번호 찾기</a></center>
                                 </div>
 						</form>
                     </div>

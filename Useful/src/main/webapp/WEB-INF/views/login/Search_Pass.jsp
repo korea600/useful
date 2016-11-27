@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>비밀번호 확인</title>
-<%@include file="../login/Main.jsp" %>
+
 <!-- Bootstrap Core CSS -->
     <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -20,10 +20,10 @@
 
 <script type="text/javascript">
 	function cancel(){
-			location.href="/useful/login/Mainview";
+			location.href="/useful/login/Login";
 		}
 	
-	function passCheck(){
+	/* function passCheck(){
 	
 		var pass = document.form.pass.value;
 		var mypass= ${vo.pass};
@@ -38,7 +38,7 @@
         }else{
         	document.form.submit();
 		}
-	}	
+	}	 */
 		
 	</script>
 
@@ -58,7 +58,7 @@
 }
 </style>
 
-</head><%@include file="../login/Sidebar.jsp" %>
+</head>
 <body>
 	<div class="container">
         <div class="row">
@@ -66,16 +66,26 @@
                 <div class="login-panel panel panel-default">
                
                     <div class="panel-body">
-                        <form name="form" id="form" action="Mypage" method="post">
+                        <form name="form" id="form" action="/useful/mypage/Mypage" method="post">
                         	<div>
                         		<input type="hidden" name="empno" value="${LoginUser.empno }">
                         	</div>
 								<div class="panel-heading">
-                      			  	<h3 class="panel-title" align="center">본인 확인을 위하여 비밀번호를  <br>
-                      			  		입력해주세요.</h3>
+                      			  	<h3 class="panel-title" align="center">비밀번호 찾기</h3>
                    				 </div>
                                 <div class="form-group" >
-                                   <b>Password : </b><input class="form-control"  name="pass" type="password" id="passinput">
+                                   <b>사원번호 : </b><input class="form-control"  name="empno" type="text" id="empnoinput">
+                                </div>
+                                <div class="form-group" >
+                                   <b>이름 : </b><input class="form-control"  name="name" type="text" id="nameinput">
+                                </div>
+                                <div class="form-group" >
+                                   <b>이메일 : </b><input class="form-control"  name="email" type="text" id="emailinput">
+                                   <p></p>
+                                   <button type="button" id="btn_email">인증번호받기</button>
+                                </div>
+                                <div class="form-group" >
+                                   <b>인증번호 : </b><input class="form-control"  name="emailnum" type="text" id="emailnuminput">
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->

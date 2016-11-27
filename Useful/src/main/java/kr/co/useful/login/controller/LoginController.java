@@ -63,4 +63,9 @@ public class LoginController {
 	public void logout(HttpSession session){
 		
 	}
+	
+	@RequestMapping("/Search_Pass")
+	public void searchPass(){
+		
+	}
 }
