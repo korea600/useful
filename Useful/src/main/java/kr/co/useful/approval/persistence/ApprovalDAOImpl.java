@@ -16,8 +16,8 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 	private SqlSession sqlSession;
 
 	public void create(ApprovalVO vo) throws Exception {
-		System.out.println(vo.toString());
-		//sqlSession.insert("approval.create",vo);
+	//	System.out.println(vo.toString());
+		sqlSession.insert("approval.create",vo);
 	}
 
 	public void modify(ApprovalVO vo) throws Exception {

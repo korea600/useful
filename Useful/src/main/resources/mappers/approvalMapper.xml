@@ -5,7 +5,7 @@
 	<insert id="create">
 		insert into tbl_approval
 		(no,status,title, content, writer, receiver, curr_approval, next_approval)
-		values (tbl_approval_seq.nextval, #{status},#{title},#{writer},#{receiver},#{curr_approval},#{next_approval})	
+		values (tbl_approval_seq.nextval, #{status},#{title},#{content},#{writer},#{receiver},#{curr_approval},#{next_approval})	
 	</insert>
 	<!-- 반려문서 수정하기 -->
 	<!-- 문서리스트조회 (동적SQL)-->
