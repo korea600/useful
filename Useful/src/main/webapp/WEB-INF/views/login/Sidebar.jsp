@@ -62,7 +62,7 @@
                            <div>
                            <center>
                            <span>
-                              <button type="button" id="logout">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
+                              <button type="button" id="#">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
                               <button type="button" id="commute_in"><i class="fa fa-sort-up fa-fw"></i>출근</button>
                               <button type="button" id="commute_out"><i class="fa fa-sort-down fa-fw"></i>퇴근</button>
                            </span>
@@ -90,7 +90,7 @@
                                     <a href="morris.html">근태관리</a>
                                 </li>
                                 <li>
-                                   <a href="#">사원정보관리</a>
+                                   <a href="/useful/manager/employee_List">사원정보관리</a>
                                 </li>
                                 <li>
                                    <a href="#">증명서관리</a>

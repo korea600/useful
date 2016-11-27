@@ -86,6 +86,10 @@
                                 <div>
                                 <button type="button" class="btn btn-lg btn-success btn-block" id="btn" onclick="checkLogin()">Login</button>
                                 </div>
+                                <p></p>
+                                <div>
+                                	<center><a href="#" >비밀번호 찾기</a></center>
+                                </div>
 						</form>
                     </div>
                 </div>
