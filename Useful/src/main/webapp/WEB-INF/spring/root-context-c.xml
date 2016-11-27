@@ -6,6 +6,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 		<!-- bean 등록할 부분 -->
+		
+		
 	<!-- DAOImpl클래스 객체 등록 -->
    <context:component-scan base-package="kr.co.useful.login.persistence"/>
    <context:component-scan base-package="kr.co.useful.mypage.persistence"/>

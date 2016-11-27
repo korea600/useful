@@ -66,7 +66,7 @@
                 <div class="login-panel panel panel-default">
                
                     <div class="panel-body">
-                        <form name="form" id="form" action="/useful/mypage/Mypage" method="post">
+                        <form name="form" id="form" action="/useful/login2/sendpw" method="post">
                         	<div>
                         		<input type="hidden" name="empno" value="${LoginUser.empno }">
                         	</div>
@@ -82,7 +82,7 @@
                                 <div class="form-group" >
                                    <b>이메일 : </b><input class="form-control"  name="email" type="text" id="emailinput">
                                    <p></p>
-                                   <button type="button" id="btn_email">인증번호받기</button>
+                                   <button type="submit" id="btn_email">인증번호받기</button>
                                 </div>
                                 <div class="form-group" >
                                    <b>인증번호 : </b><input class="form-control"  name="emailnum" type="text" id="emailnuminput">
@@ -90,7 +90,7 @@
                                 
                                 <!-- Change this to a button or input when using this as a form -->
                                 <div align="center">
-                                <button type="button" id="btn" onclick="passCheck()" >확인</button>
+                                <button type="button" id="btn">확인</button>
                                 <button type="reset" id="btn_cancel" onclick="cancel()">취소</button>
                                 
                                 </div>

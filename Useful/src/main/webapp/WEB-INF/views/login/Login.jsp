@@ -48,7 +48,7 @@
 
 				if(result=="SUCCESS"){
 					alert("로그인 성공!!");
-					location.href="/useful/login/Modify_Pass";
+					location.href="/useful/login/Mainview";
 				}else{
 					alert("로그인 실패!!");
 					self.location = "/useful/login/Login";

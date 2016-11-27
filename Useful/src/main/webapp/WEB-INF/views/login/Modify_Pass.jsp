@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div>
-	<h3> 비밀번호 변경</h3>
+	<h3> 비밀번호 변경(8~15자리, 숫자+영문)</h3>
 	<div>
 	<form action="/useful/login/Encrypt" method="post">
 	<div>
