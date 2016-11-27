@@ -42,21 +42,8 @@ public class ApprovalServiceImpl implements ApprovalService{
 		
 	}
 
-
-	public List<ApprovalVO> list(int deptno) throws Exception {
-		return null;
-	}
-
-
-	public List<ApprovalVO> list_from_me(int writer) throws Exception {
-
-		return null;
-	}
-
-
-	public List<ApprovalVO> list_approval(int next_approval) throws Exception {
-
-		return null;
+	public List<ApprovalVO> list(ApprovalVO vo) throws Exception {
+		return dao.list(vo);
 	}
 
 	public void do_approval(ApprovalVO vo) throws Exception {
@@ -66,5 +53,6 @@ public class ApprovalServiceImpl implements ApprovalService{
 	public ApprovalVO select(int no) throws Exception {
 		return null;
 	}
+
 
 }

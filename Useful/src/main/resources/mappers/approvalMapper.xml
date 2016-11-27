@@ -10,7 +10,7 @@
 	<!-- 반려문서 수정하기 -->
 	<!-- 문서리스트조회 (동적SQL)-->
 	<select id="list" resultType="Approval">
-		select no, status, tbl_emp.ename writer_name, tbl_dept.dname receiver_name, title,regdate
+		select no, status, tbl_emp.ename writer_name, tbl_dept.dname receiver_dname, title,tbl_approval.regdate
 		from tbl_approval, tbl_emp, tbl_dept
 		where tbl_approval.writer=tbl_emp.empno
 		and tbl_approval.receiver=tbl_dept.deptno

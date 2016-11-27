@@ -33,4 +33,11 @@ public class ApprovalController {
 		return "/approval/form";
 	}
 	
+	@RequestMapping("/listAll")
+	public String listAll(Model m) throws Exception{
+		ApprovalVO vo = new ApprovalVO();
+		m.addAttribute("list", service.list(vo));
+		return "/approval/list";
+	}
+	
 }

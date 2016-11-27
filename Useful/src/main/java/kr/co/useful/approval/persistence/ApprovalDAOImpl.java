@@ -16,7 +16,6 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 	private SqlSession sqlSession;
 
 	public void create(ApprovalVO vo) throws Exception {
-	//	System.out.println(vo.toString());
 		sqlSession.insert("approval.create",vo);
 	}
 
@@ -29,20 +28,8 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 		return null;
 	}
 
-	public List<ApprovalVO> list(int deptno) throws Exception {
-
-		return null;
-	}
-
-	public List<ApprovalVO> list_from_me(int writer) throws Exception {
-
-		return null;
-	}
-
-
-	public List<ApprovalVO> list_approval(int next_approval) throws Exception {
-
-		return null;
+	public List<ApprovalVO> list(ApprovalVO vo) throws Exception {
+		return sqlSession.selectList("approval.list", vo);
 	}
 
 	public void do_approval(ApprovalVO vo) throws Exception {
@@ -51,5 +38,6 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 	public int getManager(int empno)throws Exception{
 		return sqlSession.selectOne("approval.getManager", empno);
 	}
+
 
 }
