@@ -111,7 +111,7 @@
                         <li><a href="../mypage/Pass_Check?empno=${LoginUser.empno }"><i class="fa fa-user fa-fw"></i> Mypage</a>
                         </li>
                          <li>
-                            <a href="../organization">
+                            <a href="../organization/view">
                                 <div>
                                     <i class="fa fa-comment fa-fw"></i> 조직도
                                 </div>
