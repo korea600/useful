@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>개인정보수정</title>
+<%@include file="../login/Main.jsp" %>
 <script type="text/javascript" src="../resources/js/jquery-3.1.1.js"></script>
 <script type="text/javascript">
 	function InfoSave(){
@@ -76,8 +77,10 @@ th {
 
 
 
-</head>
+</head><%@include file="../login/Sidebar.jsp" %>
 <body>
+	<center>
+	
 	<!-- //contents -->
 			<div id="contents">
 				<form id="frm">
@@ -95,7 +98,7 @@ th {
 				<button type="button" id="btn_List" onclick="cancel()">취소</button>
 				<br>
 			</div>
-			<hr>
+			
 			<!-- form -->
 				<table class="bbs_row">
 					<colgroup>
@@ -125,14 +128,15 @@ th {
 						</tr>  
 					
 						<tr>  
-							<th>비밀번호 *</th>
+							<th>비밀번호 </th>
 							<td>
 								<input id="pass" name="pass" class="text" type="password" maxlength="20" value="${vo.pass }"/>
 							</td>
 						</tr>  
 					
 						<tr>  
-							<th>주민번호        *</th>
+							<th>주민번호        </th>
+
 							<td>
 								<input id="ssn" name="ssn" class="text" type="text" maxlength="14" value="${vo.ssn }"/>
 							</td>
@@ -170,25 +174,25 @@ th {
 						</tr> 
 						
 						<tr>
-							<th>이메일      *</th>
+							<th>이메일      </th>
 							<td>
 								<input id="email" name="email" class="text" style="width:200px;" type="text" maxlength="50" value="${vo.email }"/>
 							</td>
 						</tr>  
 						<tr>  
-							<th>핸드폰      *</th>
+							<th>핸드폰      </th>
 							<td>
 								<input id="phone" name="phone" class="text" style="width:200px;" type="text" maxlength="20" value="${vo.phone }"/>&nbsp;&nbsp;(ex: 010-1234-1234)
 							</td>
 						</tr> 
 						<tr>  
-							<th>주소      *</th>
+							<th>주소      </th>
 							<td>
 								<input id="address" name="address" class="text" style="width:100%;" type="text" maxlength="100" value="${vo.address }"/>
 							</td>
 						</tr>
 					<tr>
-						<th>은행 *</th>
+						<th>은행 </th>
 						<td><select id="bank" name="bank" class="select" style="width:200px;">
 								<option value="">--선택--</option>
 								<option value="신한은행">신한</option>
@@ -202,7 +206,7 @@ th {
 						</td>
 					</tr>
 					<tr>  
-							<th>계좌번호 *</th>
+							<th>계좌번호 </th>
 							<td>
 								<input id="account" name="account" class="text" style="width:200px;" type="text" maxlength="100" value="${vo.account }"/>
 							</td>
@@ -215,12 +219,19 @@ th {
 								</div>	
 							</td>
 						</tr>  
+					<tr>
+						<th>최근접속일</th>
+						<td>
+							<fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd HH:mm"/>
+						</td>
+					</tr>
 					
 					</tbody>  
 				</table>  
 				</form>
 			</div>
 			<!-- contents// -->
-		</div>
+		</center>
+		
 </body>
 </html>

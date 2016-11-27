@@ -59,7 +59,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Mainview">Useful Logo</a>
+                <a class="navbar-brand" href="/useful/login/Mainview">Useful Logo</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -133,7 +133,7 @@
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="/useful/login/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

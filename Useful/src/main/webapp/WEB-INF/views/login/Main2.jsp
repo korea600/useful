@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Mainview">Useful Logo</a>
+                <a class="navbar-brand" href="/useful/login/Mainview">Useful Logo</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -169,7 +169,7 @@
                                     <a href="morris.html">근태관리</a>
                                 </li>
                                 <li>
-                                   <a href="#">사원정보관리</a>
+                                   <a href="/useful/manager/employee_List">사원정보관리</a>
                                 </li>
                                 <li>
                                    <a href="#">증명서관리</a>
