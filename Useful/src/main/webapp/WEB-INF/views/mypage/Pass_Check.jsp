@@ -26,10 +26,10 @@
 	function passCheck(){
 		
 		alert(document.form.pass.value);
-		alert(${vo.pass});
+		alert('${vo.pass}');
 		
 		var pass = document.form.pass.value;
-		var mypass= ${vo.pass};
+		var mypass= '${vo.pass}';
 
 		if(pass.trim()==''){
             alert("비밀번호를 입력해주세요");
