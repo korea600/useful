@@ -20,9 +20,17 @@ public class BoardController {
 	@Inject
 	private ReplyService reservice;
 	//----------------------------여기부터 게시판 관련 ----------------------------------------------------
+	@RequestMapping(value="/view",method=RequestMethod.GET)
+	public void createPageGET1()throws Exception{
+	
+	}
+	@RequestMapping(value="/Main",method=RequestMethod.GET)
+	public void createPageGET2()throws Exception{
+		
+	}
 	@RequestMapping(value="/createPage",method=RequestMethod.GET)
 	public void createPageGET()throws Exception{
-	
+		
 	}
 	@RequestMapping(value="/createPage",method=RequestMethod.POST)
 	public String createPagePOST(BoardVO vo,RedirectAttributes att)throws Exception{
