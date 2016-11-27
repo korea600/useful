@@ -56,7 +56,7 @@ public class LoginController {
 	@RequestMapping("/Mainview")
 	public String main_view(){
 
-		return "/login/Main";
+		return "/login/Main2";
 	}
 	
 	@RequestMapping("/Logout")
