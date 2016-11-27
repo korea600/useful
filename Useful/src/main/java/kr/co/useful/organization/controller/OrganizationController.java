@@ -36,7 +36,7 @@ public class OrganizationController {
 		m.addAttribute("list", list);
 	}
 	
-	@RequestMapping("/{empno}")
+	@RequestMapping("/detail/{empno}")
 	public String view_details(@PathVariable int empno, Model m){
 		OrganizationVO vo = null;
 		try {

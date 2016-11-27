@@ -48,7 +48,7 @@
 	$(function(){
 		$('.empno').click(function(){
 			var id = $(this).attr('id');
-			window.open('organization/'+id,'detail','toolbar=no,location=no,status=no'
+			window.open('detail/'+id,'detail','toolbar=no,location=no,status=no'
 					+'menubar=no,scrollbars=no,resizable=0,width=400,height=300,top=100,left=100');
 		})
 	});
@@ -64,25 +64,19 @@
 	</div>
 	<div class="col-lg-6" style="width: 100%;">
 		<div class='deptlist'>
-			<ul>
-				<c:forEach items="${dept}" var='i'>
-					<li>${i.dname}</li>
-				</c:forEach>
-			</ul>
+			<c:forEach items="${dept}" var='i'>
+				<div class='dept' style="float: left; width: 25%; text-align: center;"><h4>${i.dname}</h4></div>
+			</c:forEach>
 		</div>
-		<div class='panel-body'>
-			<div class='table-responsive'>
-				<c:forEach items="${list}" var='i'>
-					<table class='table' style="width: 20%">
-						<c:forEach items="${i}" var='j'>
-							<tr>
-								<td class='empno' id='${j.empno}' style="cursor: pointer;">${j.ename}</td><td class='position'> ${j.position}</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</c:forEach>
-			</div>
-		</div>
+		<div class='emplist'>
+			<c:forEach items="${list}" var='i'>
+				<div class='emp' style="float: left; width:25%; text-align: center;">
+					<c:forEach items="${i}" var='j'>
+						<span class='empno' id='${j.empno}' style="cursor: pointer; text-align: center; width: 55%;">${j.ename}</span><span class='position' style="text-align: center; width: 45%;"> ${j.position}</span><br>
+					</c:forEach>
+				</div>
+			</c:forEach>
+		</div>		
 	</div>
 </div>
 </body>
