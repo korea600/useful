@@ -16,5 +16,6 @@ public int listcount()throws Exception;
 public List<NoticeVO> listSearch(SearchCriteria cri)throws Exception;
 public int SearchCount(SearchCriteria cri)throws Exception;
 public List<NoticeVO> listCriteria(Criteria cri)throws Exception;
+public List<NoticeVO> mainlist()throws Exception;
 
 }

@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="notice">
+<mapper namespace="deptboard">
 
 	<select id="mainlist" resultType="kr.co.useful.board.domain.NoticeVO">
-	select title,content,regdate from tbl_notice order by serial  desc
+	select title,content,regdate from deptboard order by serial  desc
 	</select>
 	
 	<!-- 게시물 선택보기 -->
     <select id="selectRead" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM TBL_NOTICE WHERE SERIAL=#{serial}
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM deptboard WHERE SERIAL=#{serial}
     </select>
     <!-- 게시물 전체보기 -->
     <select id="listAll" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM TBL_NOTICE ORDER BY SERIAL DESC
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM deptboard ORDER BY SERIAL DESC
     </select>
     <!-- 게시물 업데이트 -->
     <update id="update">
-    UPDATE TBL_NOTICE SET TITLE=#{title},WRITER=#{writer},CONTENT=#{content} FROM TBL_NOTICE
+    UPDATE deptboard SET TITLE=#{title},WRITER=#{writer},CONTENT=#{content} FROM TBL_NOTICE
     </update>
     <!-- 게시물등록 -->
     <insert id="insert">
-    INSERT INTO TBL_NOTICE(SERIAL,TITLE,WRITER,CONTENT,RAGDATE) 
+    INSERT INTO deptboard(SERIAL,TITLE,WRITER,CONTENT,RAGDATE) 
     VALUES(tbl_notice_seq.nextval,#{title},#{writer},#{content},sysdate)
     </insert>
     
     <!-- 게시물 삭제 -->
     <delete id="delete">
-    DELETE FROM TBL_NOTICE WHERE SERIAL=#{serial}
+    DELETE FROM deptboard WHERE SERIAL=#{serial}
     </delete>
     
     <select id="count" resultType="int">
-    SELECT COUNT(*) FROM TBL_NOTICE
+    SELECT COUNT(*) FROM deptboard
     </select>
     
     <select id="listSearch" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE from tbl_notice
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE from deptboard
     <include refid="Search"/>
     order by serial desc
     </select>
     
     <select id="listcount" resultType="int">
-    select count(*) from tbl_notice where serial>0
+    select count(*) from deptboard where serial>0
     <include refid="Search"/>
     </select>
     
@@ -58,5 +58,5 @@
     </if>
     </sql>
     
-    
+
 </mapper>

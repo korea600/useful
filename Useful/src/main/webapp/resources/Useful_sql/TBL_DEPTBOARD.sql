@@ -4,8 +4,8 @@ deptno number not null, --부서번호
 title varchar2(100) not null, --글제목
 writer varchar2(100) not null, --글쓴이
 content varchar2(2000) not null, --내용
-regdate date not null, --작성일자
-viewcnt number , --조회수
+regdate date default sysdate not null, --작성일자
+viewcnt number default 0, --조회수
 checked varchar2(10) -- 구분 - 신규/진행중/보류/중단/완료
 );
 

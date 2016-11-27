@@ -68,4 +68,10 @@ private NoticeDAO dao;
 		return dao.SearchCount(cri);
 	}
 
+	@Override
+	public List<NoticeVO> mainlist() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.mainlist();
+	}
+
 }

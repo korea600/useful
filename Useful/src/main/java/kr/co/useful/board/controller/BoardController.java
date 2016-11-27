@@ -19,15 +19,14 @@ public class BoardController {
 	private BoardService service;
 	@Inject
 	private ReplyService reservice;
+	@Inject 
+	private NoticeService noservice;
 	//----------------------------여기부터 게시판 관련 ----------------------------------------------------
-	@RequestMapping(value="/view",method=RequestMethod.GET)
-	public void createPageGET1()throws Exception{
-	
+	@RequestMapping("/Mainboard")
+	public void createPageGET1(Model model)throws Exception{
+	model.addAttribute("list", noservice.mainlist());
 	}
-	@RequestMapping(value="/Main",method=RequestMethod.GET)
-	public void createPageGET2()throws Exception{
-		
-	}
+
 	@RequestMapping(value="/createPage",method=RequestMethod.GET)
 	public void createPageGET()throws Exception{
 		

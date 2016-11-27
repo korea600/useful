@@ -16,5 +16,5 @@ public List<NoticeVO> listCriteria(Criteria cri)throws Exception; // 페이지�
 public int listCount()throws Exception;  //전체 카운트
 public List<NoticeVO> listSearch(SearchCriteria cri)throws Exception; //리스트검색
 public int SearchCount(SearchCriteria cri)throws Exception; //검색어 카운트
-
+public List<NoticeVO> mainlist()throws Exception;
 }
