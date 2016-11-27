@@ -208,7 +208,7 @@ th {
 					<tr>  
 							<th>계좌번호 </th>
 							<td>
-								<input id="account" name="account" class="text" style="width:200px;" type="text" maxlength="100" value="${vo.account }"/>
+								<input id="account" name="account" class="text" style="width:200px;" type="text" maxlength="15" value="${vo.account }"/>
 							</td>
 						</tr> 
 						<tr>  
