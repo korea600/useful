@@ -34,7 +34,6 @@ public class ApprovalServiceImpl implements ApprovalService{
 			vo.setNext_approval(vo.getWriter());	// 다음 결재자가 없으면 작성자가 다음 결재자가 됨
 			vo.setStatus("완료");
 		}
-		System.out.println(vo.toString());
 		dao.create(vo);
 	}
 

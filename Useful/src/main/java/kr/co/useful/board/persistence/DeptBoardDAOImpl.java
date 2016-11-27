@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import kr.co.useful.board.domain.BoardVO;
 import kr.co.useful.board.domain.Criteria;
@@ -13,16 +14,17 @@ import kr.co.useful.board.domain.DeptBoardVO;
 import kr.co.useful.board.domain.NoticeVO;
 import kr.co.useful.board.domain.SearchCriteria;
 
+@Repository
 public class DeptBoardDAOImpl implements DeptBoardDAO{
 	@Inject
 	private SqlSession sqlsession;
-	@Override //ê²Œì‹œë¬¼ ì¶”ê°€
+	@Override //°Ô½Ã¹° Ãß°¡
 	public void create(DeptBoardVO vo) throws Exception {
 		sqlsession.insert("deptboard.insert", vo);
 
 	}
 
-	@Override //ê²Œì‹œë¬¼ ì„ íƒœë³´ê¸°
+	@Override //°Ô½Ã¹° ¼±ÅÂº¸±â
 	public DeptBoardVO read(int serial) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne("deptboard.selectRead", serial);
