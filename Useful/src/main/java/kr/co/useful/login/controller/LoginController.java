@@ -68,4 +68,14 @@ public class LoginController {
 	public void searchPass(){
 		
 	}
+	
+	@RequestMapping("/Modify_Pass")
+	public void modifyPass(){
+		
+	}
+	
+	@RequestMapping("/Encrypt")
+	public void encrypt(){
+		
+	}
 }
