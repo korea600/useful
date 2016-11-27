@@ -112,9 +112,9 @@
 </script>
 </head>
 <body>
-<%-- <header><%@include file="/WEB-INF/views/login/Main.jsp"%></header>  --%>
+ <header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header> 
 <div>
-	<jsp:include page="/WEB-INF/views/login/Sidebar.jsp"></jsp:include> 
+	<%--<jsp:include page="/WEB-INF/views/login/Sidebar.jsp"></jsp:include>  --%>
 </div>
 <div id="page-wrapper">
 

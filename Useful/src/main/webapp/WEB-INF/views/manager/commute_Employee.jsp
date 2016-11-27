@@ -59,7 +59,12 @@ th {
 </head>
 <header><%@include file="/WEB-INF/views/login/Main.jsp"%></header>
 <body>
+<div>
+	<jsp:include page="/WEB-INF/views/login/Sidebar.jsp"></jsp:include> 
+</div>
 <!-- commute_Employee.jsp -->
+<div id="page-wrapper">
+<p><br>
 <font size="5" style="font-style: inherit;">사원별 근태현황</font><br><hr>
 <table>
 <tbody>
@@ -96,5 +101,26 @@ th {
 </tbody>
 </table>
 	<div><button id="btn_search">검색</button></div>
+	
+	<div>
+	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+	<tr>
+		<th width="30%">부서(사원)</th>
+		<th width="15%">출근일자</th>
+		<th width="15%">출근시간</th>
+		<th width="15%">퇴근일자</th>
+		<th width="15%">퇴근시간</th>
+		<th width="13%">구분</th>
+		<th width="10%">상세</th>
+	</tr>
+			<tr>
+			<td colspan="8">
+			<b>데이터가 없습니다.</b>
+			</td>
+		</tr>
+		</table>
+	
+	</div>
+</div>
 </body>
 </html>
