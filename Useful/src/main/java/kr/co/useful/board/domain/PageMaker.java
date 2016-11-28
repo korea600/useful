@@ -11,7 +11,7 @@ private int displayPageNum=10;
 private boolean prev;
 private boolean next;
 private Criteria cri;
-
+ 
 public void calc(){
 	endPage=(int) (Math.ceil(cri.getPage()/(double)displayPageNum)*displayPageNum);
 	startPage=(endPage-displayPageNum)+1;
