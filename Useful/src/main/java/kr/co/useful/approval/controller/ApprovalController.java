@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,11 +23,13 @@ public class ApprovalController {
 	@Inject
 	private ApprovalService service;
 	
-	@RequestMapping("")
-	public String list(Model model){
-		return "/approval/list";		
+	@RequestMapping(value="/read/{no}", method=RequestMethod.GET)
+	public String read(Model m,@PathVariable int no) throws Exception{
+		m.addAttribute("vo", service.select(no));
+		return "/approval/read";
 	}
 	
+
 	@RequestMapping(value="/form", method=RequestMethod.GET)
 	public String form(){
 		return "/approval/form";

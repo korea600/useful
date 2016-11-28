@@ -55,7 +55,7 @@ public class ApprovalServiceImpl implements ApprovalService{
 	}
 
 	public ApprovalVO select(int no) throws Exception {
-		return null;
+		return dao.select(no);
 	}
 
 	public List<ApprovalVO> listStatus(Map<String, Object> map) throws Exception {

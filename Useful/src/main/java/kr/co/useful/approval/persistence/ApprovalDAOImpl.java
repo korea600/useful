@@ -25,8 +25,7 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 	}
 
 	public ApprovalVO select(int no) throws Exception {
-
-		return null;
+		return sqlSession.selectOne("approval.select", no);
 	}
 
 	public List<ApprovalVO> list(ApprovalVO vo) throws Exception {

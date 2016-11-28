@@ -18,10 +18,9 @@ td{text-align: center; width: 150px}
 
 <table align="right" style="margin-right: 5%" border="1">
 <tr><th>문서번호</th><th>상태</th><th>작성자</th><th>수신처</th><th>제목</th><th>작성일자</th></tr>
-<!-- no, status, tbl_emp.ename writer_name, tbl_dept.dname receiver_name, title,tbl_approval.regdate -->
 <c:forEach items="${list}" var='i'>
 	<tr>
-		<td>${i.no}</td><td>${i.status}</td><td>${i.writer_name}</td><td>${i.receiver_dname}</td><td>${i.title}</td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td>
+		<td>${i.no}</td><td>${i.status}</td><td>${i.writer_name}</td><td>${i.receiver_dname}</td><td><a href='/useful/approval/read/${i.no}'>${i.title}</a></td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td>
 	</tr>
 </c:forEach>
 </table>
