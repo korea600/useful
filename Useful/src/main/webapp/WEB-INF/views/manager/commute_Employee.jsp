@@ -18,49 +18,77 @@ th {
 	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
+<%-- <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> --%>
+ <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>   
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
-<fmt:formatDate value="${sysdate }" type="date" pattern="yyyy-MM-dd " var="fmtSysdate"/>
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.min.js"></script> 
 <script type="text/javascript">
 
 	$(function() {
 		
 		
- 	   $( "#startdate" ).datepicker({
+ 	   $("#startdate").datepicker({
  		  changeMonth: true, 
           changeYear: true,
- 		  dateFormat: 'yy-mm-dd'
- 	   });
- 	   $( "#enddate" ).datepicker({
+ 		  dateFormat: 'yy-mm-dd',
+ 	   }).datepicker("setDate", new Date());
+ 	   $("#enddate").datepicker({
  		  changeMonth: true, 
           changeYear: true,
- 		  dateFormat: 'yy-mm-dd'
- 	   });
- 	   
-		var now =new Date();
-		now.format("yyyy-MM-dd");
+ 		  dateFormat: 'yy-mm-dd',
+ 	   }).datepicker("setDate", new Date());
  	   $("#btn_today").click(function(){
- 		   alert(now);
- 		  $("#startdate").val(now);
+ 		  $("#startdate").datepicker("setDate", new Date());
+ 		  $("#enddate").datepicker("setDate", new Date());
  	   });
- 	   $("#btn_List").click(function(){
+ 	   $("#btn_week").click(function(){
+ 		  $("#startdate").datepicker("setDate", -7);
+ 		  $("#enddate").datepicker("setDate", new Date());
+ 	   });
+ 	   $("#btn_month").click(function(){
+ 		  $("#startdate").datepicker("setDate", -30);
+ 		  $("#enddate").datepicker("setDate", new Date());
+ 	   });
+ 	   $("#btn_3month").click(function(){
+ 		  $("#startdate").datepicker("setDate", -90);
+ 		  $("#enddate").datepicker("setDate", new Date());
+ 	   });
+ 	   $("#btn_search").click(function(){
  		   
- 			location.href="/useful/manager/employee_List";
- 		   
+ 		  $.ajax({
+ 			  type: 'POST',
+ 			  url: '/useful/manager/commute_Employee',
+ 			  headers : {
+ 				  "Content-Type" : "application/json",
+ 				  "X-HTTP-Method-Override":"POST"
+ 			  },
+ 			  dataType: 'text',
+ 			  data: JSON.stringify({
+ 				startdate:$("#startdate").val(),
+ 				enddate:$("#enddate").val(),
+ 				dept:$("#dept option:selected").val(),
+ 				empno:$("#empno").val(),
+ 				ename:$("#ename").val()
+				
+ 				  }),
+ 			  success: function(result){
+ 					$("#div_print").innerHTML(result);
+ 			  }
+ 			});
  	   });
 	});
  
 </script>
 </head>
-<header><%@include file="/WEB-INF/views/login/Main.jsp"%></header>
+<header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header>
 <body>
 <div>
-	<jsp:include page="/WEB-INF/views/login/Sidebar.jsp"></jsp:include> 
+	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include> 
 </div>
 <!-- commute_Employee.jsp -->
 <div id="page-wrapper">
@@ -75,9 +103,8 @@ th {
 	<button id="btn_week">1주일</button>
 	<button id="btn_month">1개월</button>
 	<button id="btn_3month">3개월</button><p>
-	<jsp:useBean id="sysdate" class="java.util.Date"></jsp:useBean>
-		<input type="text" id="startdate" value="<fmt:formatDate value="${sysdate }" type="date" pattern="yyyy-MM-dd "/>">
-		~<input type="text" id="enddate" value="<fmt:formatDate value="${sysdate }" type="date" pattern="yyyy-MM-dd "/>">
+		<input type="text" id="startdate" value="">
+		~<input type="text" id="enddate" value="">
 	</td>
 	</tr>
 	<tr>
@@ -102,16 +129,16 @@ th {
 </table>
 	<div><button id="btn_search">검색</button></div>
 	
-	<div>
+	<div id="div_print">
 	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
 	<tr>
 		<th width="30%">부서(사원)</th>
-		<th width="15%">출근일자</th>
+		<th width="14%">출근일자</th>
 		<th width="15%">출근시간</th>
-		<th width="15%">퇴근일자</th>
+		<th width="14%">퇴근일자</th>
 		<th width="15%">퇴근시간</th>
 		<th width="13%">구분</th>
-		<th width="10%">상세</th>
+		<th width="12%">변경</th>
 	</tr>
 			<tr>
 			<td colspan="8">

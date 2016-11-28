@@ -1,5 +1,7 @@
 package kr.co.useful.manager.controller;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
@@ -63,12 +65,21 @@ public class ManagerController {
 		return entity;
 	}
 
-	@RequestMapping("/commute_Employee")
-	public void commute_Employee(){
+	@RequestMapping(value="/commute_Employee",method=RequestMethod.GET)
+	public void commute_Employee_Form(){
 		
 	}
-	@RequestMapping("/commute_Dept")
-	public void commute_Dept(){
+	@RequestMapping(value="/commute_Employee",method=RequestMethod.POST)
+	public void commute_Employee(@RequestBody Map map){
+		String startdate = (String) map.get("startdate");
+		startdate = startdate.replaceAll("-","");
+	}
+	@RequestMapping(value="/commute_Dept",method=RequestMethod.GET)
+	public void commute_Dept_Form(){
+		
+	}
+	@RequestMapping(value="/commute_Dept",method=RequestMethod.POST)
+	public void commute_Dept(String dept,String year,String month){
 		
 	}
 	@RequestMapping("/commute_Daily")

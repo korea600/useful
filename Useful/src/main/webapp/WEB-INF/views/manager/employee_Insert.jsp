@@ -1,29 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Á÷¿øÁ¤º¸µî·Ï</title>
+<title>ì§ì›ì •ë³´ë“±ë¡</title>
 <style type="text/css">
 th {
 	background-color: #CCC;
 }
 
 </style>
- <link rel="stylesheet" type="text/css" media="screen"
+<link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
+ <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>  
+	
+ <script type="text/javascript" 
+	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-kr.js"></script> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.min.js"></script> 
 <script type="text/javascript">
 
 	$(function() {
@@ -57,7 +61,7 @@ th {
  				hiredate:$("#hiredate").val(),
  				  }),
  			  success: function(){
- 				  alert("»ç¿øÀÌ Ãß°¡µÇ¾ú½À´Ï´Ù")
+ 				  alert("ì‚¬ì›ì´ ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤")
  				location.href="/useful/manager/employee_List";
  			  }
  			});
@@ -72,10 +76,17 @@ th {
 </script>
 </head>
 <body>
+ <header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header> 
+<div>
+	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include>  
+</div>
+<div id="page-wrapper">
+
 	<div>
-		<font size="5" style="font-style: inherit;margin-right: 300px;">Á÷¿øÁ¤º¸µî·Ï </font>
-		<button id="btn_Save">ÀúÀå</button>
-		<button id="btn_List">¸ñ·Ï</button>
+	<br>
+		<font size="5" style="font-style: inherit;margin-right: 300px;">ì§ì›ì •ë³´ë“±ë¡ </font>
+		<button id="btn_Save">ì €ìž¥</button>
+		<button id="btn_List">ëª©ë¡</button>
 		<br>
 	</div>
 <hr>
@@ -86,7 +97,7 @@ th {
 		</colgroup>
 		<tbody style="">
 			<tr>
-				<th>»ç¿øÄÚµå*</th>
+				<th>ì‚¬ì›ì½”ë“œ*</th>
 				<td><input id="emp_no" name="emp_no" class="text" type="text"
 					maxlength="20" /> 
 
@@ -95,97 +106,98 @@ th {
 				</td>
 			</tr>
 			<tr>
-				<th>¼º¸í *</th>
+				<th>ì„±ëª… *</th>
 				<td><input id="emp_nm" name="emp_nm" class="text" type="text"
 					 maxlength="15" /></td>
 			</tr>
 			<tr>
-				<th>ºñ¹Ð¹øÈ£*</th>
+				<th>ë¹„ë°€ë²ˆí˜¸*</th>
 				<td><input id="emp_pw" name="emp_pw" class="text"
 					type="password" maxlength="20" /></td>
 			</tr>
 			<tr>
-				<th>ÁÖ¹Î¹øÈ£ *</th>
+				<th>ì£¼ë¯¼ë²ˆí˜¸ *</th>
 				<td><input id="ssn" name="ssn" class="text" type="text"
 					 maxlength="14" /></td>
 			</tr>
 			<tr>
-				<th>ºÎ¼­¸í*</th>
+				<th>ë¶€ì„œëª…*</th>
 				<td><select id="dept" name="dept" class="select"
 					style="width: 200px;">
-						<option value="" selected="selected">-- ¼±ÅÃ --</option>
-						<option value="10">ÀßÇßÁ¶</option>
-						<option value="20">º¸¿©Á¶</option>
-						<option value="30">°­Á¶</option>
-						<option value="40">»ï»ï¿À¿ÀÁ¶</option>
+						<option value="" selected="selected">-- ì„ íƒ --</option>
+						<option value="10">ìž˜í–ˆì¡°</option>
+						<option value="20">ë³´ì—¬ì¡°</option>
+						<option value="30">ê°•ì¡°</option>
+						<option value="40">ì‚¼ì‚¼ì˜¤ì˜¤ì¡°</option>
 
 				</select></td>
 			</tr>
 			<tr>
-				<th>Á÷Ã¥ *</th>
+				<th>ì§ì±… *</th>
 				<td><select id="position" name="position" class="select"
 					style="width: 200px;">
-						<option value="" selected="selected">-- ¼±ÅÃ --</option>
+						<option value="" selected="selected">-- ì„ íƒ --</option>
 
-						<option value="»çÀå">»çÀå</option>
+						<option value="ì‚¬ìž¥">ì‚¬ìž¥</option>
 
-						<option value="ºÎÀå">ºÎÀå</option>
+						<option value="ë¶€ìž¥">ë¶€ìž¥</option>
 
-						<option value="ÆÀÀå">ÆÀÀå</option>
+						<option value="íŒ€ìž¥">íŒ€ìž¥</option>
 
-						<option value="´ë¸®">´ë¸®</option>
+						<option value="ëŒ€ë¦¬">ëŒ€ë¦¬</option>
 
-						<option value="»ç¿ø">»ç¿ø</option>
+						<option value="ì‚¬ì›">ì‚¬ì›</option>
 
 				</select></td>
 			</tr>
 			
 			<tr>
-				<th>ÀÌ¸ÞÀÏ</th>
+				<th>ì´ë©”ì¼</th>
 				<td><input id="email" name="email" class="text"
 					style="width: 200px;" type="text"
 					maxlength="50" /></td>
 			</tr>
 			<tr>
-				<th>ÇÚµåÆù *</th>
+				<th>í•¸ë“œí° *</th>
 				<td><input id="mobile" name="mobile" class="text"
 					style="width: 200px;" type="text"
 					maxlength="20" />&nbsp;&nbsp;</td>
 			</tr>
 			<tr>
-				<th>ÁÖ¼Ò</th>
+				<th>ì£¼ì†Œ</th>
 				<td><input id="addr" name="addr" class="text"
 					style="width: 100%;" type="text"
 					maxlength="100" /></td>
 			</tr>
 			<tr>
-				<th>ÀºÇà</th>
+				<th>ì€í–‰</th>
 					<td>
 					<select id="bank" name="bank" class="select" style="width:200px;">
-                        <option value="">--¼±ÅÃ--</option>
-                        <option value="½ÅÇÑÀºÇà">½ÅÇÑ</option>
-                        <option value="¿ì¸®ÀºÇà">¿ì¸®</option>
-                        <option value="±¹¹ÎÀºÇà">±¹¹Î</option>
-                        <option value="³óÇùÀºÇà">³óÇù</option>
-                        <option value="¿ÜÈ¯ÀºÇà">¿ÜÈ¯</option>
-                        <option value="ÇÏ³ªÀºÇà">ÇÏ³ª</option>
-                        <option value="ÇÑ±¹ÀºÇà">ÇÑ±¹</option>
+                        <option value="">--ì„ íƒ--</option>
+                        <option value="ì‹ í•œì€í–‰">ì‹ í•œ</option>
+                        <option value="ìš°ë¦¬ì€í–‰">ìš°ë¦¬</option>
+                        <option value="êµ­ë¯¼ì€í–‰">êµ­ë¯¼</option>
+                        <option value="ë†í˜‘ì€í–‰">ë†í˜‘</option>
+                        <option value="ì™¸í™˜ì€í–‰">ì™¸í™˜</option>
+                        <option value="í•˜ë‚˜ì€í–‰">í•˜ë‚˜</option>
+                        <option value="í•œêµ­ì€í–‰">í•œêµ­</option>
                   </select>
 					</td>
 				</tr>
 			<tr>
-				<th>°èÁÂ¹øÈ£</th>
+				<th>ê³„ì¢Œë²ˆí˜¸</th>
 				<td><input id="account_no" name="account_no" class="text"
 					style="width: 200px;" type="text" value="" maxlength="100" /></td>
 			</tr>
 
 			<tr>
-				<th>ÀÔ»çÀÏ</th>
+				<th>ìž…ì‚¬ì¼</th>
 				<td>
 					<input type="text" id="hiredate">  
 				</td>
 			</tr>
 		</tbody>
 	</table>
+	</div>
 </body>
 </html>
