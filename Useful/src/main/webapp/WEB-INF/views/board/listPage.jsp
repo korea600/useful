@@ -76,7 +76,7 @@
                                                 </select>
                                 <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="searchBtn" style="height: 30px;">
+                                    <button class="btn btn-warning btn-sm" id="searchBtn"  style="height: 30px;">
                                         검색
                                     </button>
                                 </span>
@@ -196,9 +196,10 @@ $(document).ready(function(){
 		self.location="/useful/board/createPage";
 	});
 	$("#searchBtn").on("click",function(event){
+		event.preventDefault();
 		self.location="listPage"+
-		'${pageMaker.serach(1)}'+
-		"$searchType="+
+		'${pageMaker.query(1)}'+
+		"&searchType="+
 		$("select option:selected").val()+
 		"&keyword=" + $('#btn-input').val();
 	});

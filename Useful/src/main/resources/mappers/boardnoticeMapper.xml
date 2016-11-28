@@ -40,11 +40,12 @@
     </select>
     
     <select id="listcount" resultType="int">
-    select count(*) from tbl_notice where serial>0
+    select count(*) from tbl_notice 
     <include refid="Search"/>
+    order by serial desc
     </select>
     
-    <sql id="Search">
+ <!--   <sql id="Search">
     <if test="searchType!=null">
     <if test="searchType=='t'">
     and title like concat("%",#{keyword},"%")
@@ -56,7 +57,25 @@
     and content like concat("%",#{keyword},"%")
     </if>
     </if>
-    </sql>
+    </sql>  -->
     
+   <sql id="Search">
+
+<if test="searchType!=null">
+<if test="searchType=='t'.toString()">
+where title like '%'||#{keyword}||'%'
+</if>
+
+<if test="searchType=='w'.toString()">
+where writer like '%'||#{keyword}||'%'
+</if>
+
+<if test="searchType=='c'.toString()">
+where content like '%'||#{keyword}||'%'
+</if>
+
+</if>
+
+</sql> 
     
 </mapper>
