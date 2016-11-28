@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결재문서 리스트</title>
-<%@include file="../login/Main.jsp" %>
-<%@include file="../login/Sidebar.jsp" %>
+<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <style type="text/css">
 th{text-align: center; width: 150px}
 td{text-align: center; width: 150px}

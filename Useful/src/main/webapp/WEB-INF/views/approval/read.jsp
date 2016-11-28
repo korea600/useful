@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결재문서 조회</title>
-<%@include file="../login/Main.jsp" %>
-<%@include file="../login/Sidebar.jsp" %>
+<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <script type="text/javascript" src='/useful/resources/js/jquery-3.1.1.js'></script>
 </head>
 <body>
@@ -18,7 +19,8 @@
 	<td>
 		<input type='text' name='writer_name' size='80' value='${vo.writer_name}' readonly>
 		<input type='hidden' name='writer' size='80' value='${vo.writer}'>
-		<input type='hidden' name='no' value=''>
+		<input type='hidden' name='no' value='${vo.no}'>
+		<input type='hidden' name='next_approval' value='${vo.next_approval}'>
 	</td>
 </tr>
 <tr>
@@ -33,6 +35,10 @@
 <tr><td width='20%' align='center'>첨부파일</td><td><input type="file" name='addfile' size='63'></td></tr>
 <tr></tr>
 </table>
+<c:if test="${vo.next_approval eq LoginUser.empno}">
+	<input type='button' name='accept' value='결재'>
+	<input type='button' name='reject' value='반려'>
+</c:if>
 <input type='button' name='cancel' value='닫기'>
 </form>
 </center>

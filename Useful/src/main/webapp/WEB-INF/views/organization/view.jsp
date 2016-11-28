@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>조직도</title>
-<%@include file="../login/Main.jsp" %>
-<%@include file="../login/Sidebar.jsp" %>
+<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 
 <!-- Bootstrap Core CSS -->
 <link href="../resources/vendor/bootstrap/css/bootstrap.min.css"

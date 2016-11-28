@@ -41,7 +41,7 @@
 	</select>
 	<!-- 문서내용조회 -->
 	<select id='select' resultType="Approval">
-		select no, tbl_emp.ename writer_name, writer, tbl_dept.dname receiver_dname, receiver,title,content, filename
+		select no, tbl_emp.ename writer_name, writer, tbl_dept.dname receiver_dname, receiver,title,content,next_approval, filename
 		from tbl_approval, tbl_emp, tbl_dept
 		where tbl_approval.writer=tbl_emp.empno
 		and tbl_approval.receiver=tbl_dept.deptno
