@@ -181,13 +181,16 @@
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> 게시판<span class="fa arrow"></span></a>
                            <ul class="nav nav-second-level">
                            <li>
-                              <a href="#">공지게시판</a>
+                              <a href="/useful/board/notice/listPage">공지게시판</a>
                            </li>
                            <li>
-                              <a href="#">사내게시판</a>
+                              <a href="/useful/board/listPage">사내게시판</a>
                            </li>
                            <li>
                               <a href="#">부서게시판</a>
+                           </li>
+                           <li>
+                              <a href="/useful/board/anonymity/listPage">익명게시판</a>
                            </li>
                            </ul>
                         </li>
