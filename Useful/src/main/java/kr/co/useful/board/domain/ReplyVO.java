@@ -3,6 +3,7 @@ package kr.co.useful.board.domain;
 import java.util.Date;
 
 public class ReplyVO {
+	private int rno;
 	private int serial ;
 	private String replyid;
 	private String replytext;
