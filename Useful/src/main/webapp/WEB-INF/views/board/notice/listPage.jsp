@@ -75,7 +75,7 @@
                                                     <option value="w" <c:out value="${cri.searchType=='w'?'selected':'' }"/> >글쓴이</option>
                                                     <option value="c" <c:out value="${cri.searchType=='c'?'selected':'' }"/>>내용
                                                 </select>
-                                <input name="keyword" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
+                                <input value="" name="keyword" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-warning btn-sm" id="searchBtn" style="height: 30px;">
                                         검색
@@ -196,10 +196,11 @@ $(document).ready(function(){
 		event.preventDefault();
 		self.location="/useful/board/notice/createPage";
 	});
-	$("#searchBtn").on("click",function(){
-		self.location="/useful/board/notice/createPage"+
-		'${pageMaker.serach(1)}'+
-		"$searchType="+
+	$("#searchBtn").on("click",function(event){
+		event.preventDefault();
+		self.location="listPage"+
+		'${pageMaker.query(1)}'+
+		"&searchType="+
 		$("select option:selected").val()+
 		"&keyword=" + $('#btn-input').val();
 	});

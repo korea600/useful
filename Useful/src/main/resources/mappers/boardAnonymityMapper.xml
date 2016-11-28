@@ -7,7 +7,7 @@ insert into tbl_anonymity (serial,title,content)
 values (tbl_anonymity_seq.nextval,#{title},#{content})
 </insert>
 
-<select id="read" resultType="kr.co.useful.board.domain.BoardVO">
+<select id="read" resultType="kr.co.useful.board.domain.AnonymityVO">
 select serial,title,content,regdate from tbl_anonymity where serial=#{serial}
 </select>
 
@@ -19,7 +19,7 @@ update tbl_anonymity set title=#{title},content=#{content} where serial=#{serial
 delete from tbl_anonymity where serial=#{serial}
 </delete>
 
-<select id="readAll" resultType="kr.co.useful.board.domain.BoardVO">
+<select id="readAll" resultType="kr.co.useful.board.domain.AnonymityVO">
 select * from tbl_anonymity order by serial desc
 </select>
 
@@ -27,7 +27,7 @@ select * from tbl_anonymity order by serial desc
 select count(*) from tbl_anonymity;
 </select>
 
-<select id="listSearch" resultType="kr.co.useful.board.domain.BoardVO">
+<select id="listSearch" resultType="kr.co.useful.board.domain.AnonymityVO">
 select serial,title,content,regdate from tbl_anonymity
 <include refid="Search"/>
 order by serial desc
@@ -50,21 +50,20 @@ where serial=#{serial}
 <sql id="Search">
 
 <if test="searchType!=null">
-<if test="searchType=='t'">
+<if test="searchType=='t'.toString()">
 where title like '%'||#{keyword}||'%'
 </if>
 
-<if test="searchType=='w'">
+<if test="searchType=='w'.toString()">
 where writer like '%'||#{keyword}||'%'
 </if>
 
-<if test="searchType=='c'">
+<if test="searchType=='c'.toString()">
 where content like '%'||#{keyword}||'%'
 </if>
 
 </if>
 
 </sql>
-
 
 </mapper>
