@@ -17,37 +17,45 @@ private SqlSession session;
 	@Override
 	public List<ReplyVO> listAll(int serial) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList("reply.listpage", serial);
+		return session.selectList("board_reply.list", serial);
 	}//전체 댓글보기
 
 	@Override
-	public List<ReplyVO> listAllPage(int serial, Criteria cri) throws Exception {
+	public List<ReplyVO> listPage(int serial, Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList("reply.listcount", serial, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+		return session.selectList("board_reply.list", serial, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}//댓글 게시판 처럼 페이지처리
 
 	@Override
 	public int count(int serial) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectOne("reply.count", serial);
+		return session.selectOne("board_reply.count", serial);
 	}//댓글수
 
 	@Override
 	public void create(ReplyVO vo) throws Exception {
-		session.insert("reply.create", vo);
+		session.insert("board_reply.create", vo);
 
 	}//댓글쓰기
 
 	@Override
 	public void update(ReplyVO vo) throws Exception {
-		session.update("reply.update", vo);
+		session.update("board_reply.update", vo);
 
 	}//댓글수정
+
+
 
 	@Override
-	public void delete(int serial) throws Exception {
-		session.delete("reply.delete", serial);
+	public void delete(ReplyVO vo) throws Exception {
+		session.delete("board_reply.delete", vo);
+		
+	}
 
-	}//댓글수정
+	@Override
+	public int getno(int rno) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne("board_reply.getbno", rno);
+	}
 
 }
