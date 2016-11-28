@@ -118,7 +118,7 @@
                          <li>
                             <a href="../organization/view">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> 조직도
+                                    <i class="fa fa-sitemap fa-fw"></i> 조직도
                                 </div>
                             </a>
                         </li>
