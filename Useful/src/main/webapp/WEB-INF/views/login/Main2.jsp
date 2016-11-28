@@ -157,10 +157,10 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 전자결재</a>
+                            <a href="index.html"><i class="fa fa-file-text fa-fw"></i> 전자결재</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="flot.html">급여관리</a>
@@ -181,22 +181,25 @@
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> 게시판<span class="fa arrow"></span></a>
                            <ul class="nav nav-second-level">
                            <li>
-                              <a href="#">공지게시판</a>
+                              <a href="/useful/board/notice/listPage">공지게시판</a>
                            </li>
                            <li>
-                              <a href="#">사내게시판</a>
+                              <a href="/useful/board/listPage">사내게시판</a>
                            </li>
                            <li>
                               <a href="#">부서게시판</a>
+                           </li>
+                           <li>
+                              <a href="/useful/board/anonymity/listPage">익명게시판</a>
                            </li>
                            </ul>
                         </li>
                         
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 업무공유</a>
+                            <a href="forms.html"><i class="fa fa-list-alt fa-fw"></i> 업무공유</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> 일정관리<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-calendar fa-fw"></i> 일정관리<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="panels-wells.html">회사일정관리</a>
@@ -209,7 +212,7 @@
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 회의실예약<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-calendar-o fa-fw"></i> 회의실예약<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#">예약하기</a>
@@ -223,7 +226,7 @@
                                </li>
                         
                          <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 출퇴근내역조회<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sort fa-fw"></i> 출퇴근내역조회<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#">출근내역조회</a>

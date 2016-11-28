@@ -50,15 +50,15 @@ where serial=#{serial}
 <sql id="Search">
 
 <if test="searchType!=null">
-<if test="searchType=='t'">
+<if test="searchType=='t'.toString()">
 where title like '%'||#{keyword}||'%'
 </if>
 
-<if test="searchType=='w'">
+<if test="searchType=='w'.toString()">
 where writer like '%'||#{keyword}||'%'
 </if>
 
-<if test="searchType=='c'">
+<if test="searchType=='c'.toString()">
 where content like '%'||#{keyword}||'%'
 </if>
 

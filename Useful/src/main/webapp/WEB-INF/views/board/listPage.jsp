@@ -5,13 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
 
-<title>SB Admin 2 - Bootstrap Admin Theme</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
@@ -48,7 +42,6 @@
     <![endif]-->
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 
 </head>
 <body>
@@ -79,9 +72,9 @@
                                                     <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
                                                     <option value="t"<c:out value="${cri.searchType=='t'?'selected':'' }"/> >글제목</option>
                                                     <option value="w" <c:out value="${cri.searchType=='w'?'selected':'' }"/> >글쓴이</option>
-                                                    <option value="c" <c:out value="${cri.searchType=='c'?'selected':'' }"/>>내용
+                                                    <option value="c" <c:out value="${cri.searchType=='c'?'selected':'' }"/>>내용</option>
                                                 </select>
-                                <input name="keyword" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
+                                <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-warning btn-sm" id="searchBtn" style="height: 30px;">
                                         검색
@@ -109,7 +102,7 @@
 									<c:forEach items="${list }" var="BoardVO">
 										<tr>
 											<td>${BoardVO.serial }</td>
-											<td><a href="/useful/board/readPage${pageMaker.query(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td>
+											<td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td>
 											<td>${BoardVO.writer }</td>
 											<td>${BoardVO.content }</td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${BoardVO.regdate }"/></td>
@@ -202,8 +195,8 @@ $(document).ready(function(){
 		event.preventDefault();
 		self.location="/useful/board/createPage";
 	});
-	$("#searchBtn").on("click",function(){
-		self.location="/useful/board/createPage"+
+	$("#searchBtn").on("click",function(event){
+		self.location="listPage"+
 		'${pageMaker.serach(1)}'+
 		"$searchType="+
 		$("select option:selected").val()+

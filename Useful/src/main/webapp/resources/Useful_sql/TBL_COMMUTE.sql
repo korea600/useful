@@ -1,7 +1,8 @@
 create table tbl_commute(
 serial number primary key,
 empno number not null,
-commute date not null,
+login date default sysdate,
+logout date default sysdate,
 checked varchar2(10)
 );
 
