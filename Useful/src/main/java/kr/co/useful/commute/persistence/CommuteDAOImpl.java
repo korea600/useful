@@ -1,5 +1,10 @@
 package kr.co.useful.commute.persistence;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,13 +19,27 @@ public class CommuteDAOImpl implements CommuteDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public void insert(CommuteVO vo) throws Exception {
-		sqlSession.insert("commute.insert", vo);
+	public void insert(int empno) throws Exception {
+		String checked;
+		
+		Calendar now = Calendar.getInstance( );
+		now.get(Calendar.HOUR_OF_DAY);
+			
+		Map<String, Object> map = new HashMap<>();
+			if(now.get(Calendar.HOUR_OF_DAY) < 9){
+				checked = "출근";
+			}else{
+				checked = "지각";
+			}
+		map.put("empno", empno);
+		map.put("checked",checked);
+		
+		sqlSession.insert("commute.insert", map);
 	}
 
 	@Override
-	public void update(CommuteVO vo) throws Exception {
-		sqlSession.update("commute.update", vo);
+	public void update(int empno) throws Exception {
+		sqlSession.update("commute.update", empno);
 	}
 
 }

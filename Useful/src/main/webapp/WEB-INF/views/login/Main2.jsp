@@ -283,7 +283,7 @@
 				$.ajax({
 					type:'post',
 					async:true,
-					url:'/useful/commute/Commute_In',
+					url:'/useful/commute/Commute_In?empno='+${LoginUser.empno},
 					success:function(){
 						alert('정상적으로 출근처리 되었습니다.');
 					}
@@ -291,7 +291,14 @@
 			});
 			
 			$('#commute_out').on("click",function(){
-				alert('정상적으로 퇴근처리 되었습니다.');
+				$.ajax({
+					type:'post',
+					async:true,
+					url:'/useful/commute/Commute_Out?empno='+${LoginUser.empno},
+					success:function(){
+						alert('정상적으로 퇴근처리 되었습니다.');
+					}
+				});
 			});
 			
 		});
