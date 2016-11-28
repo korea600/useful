@@ -1,6 +1,7 @@
 package kr.co.useful.approval.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -36,7 +37,10 @@ public class ApprovalServiceImpl implements ApprovalService{
 		}
 		dao.create(vo);
 	}
-
+	
+	public int getMyDeptno(int empno) throws Exception {
+		return dao.getMyDeptno(empno);
+	}
 
 	public void modify(ApprovalVO vo) throws Exception {
 		
@@ -54,5 +58,7 @@ public class ApprovalServiceImpl implements ApprovalService{
 		return null;
 	}
 
-
+	public List<ApprovalVO> listStatus(Map<String, Object> map) throws Exception {
+		return dao.listStatus(map);
+	}
 }

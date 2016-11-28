@@ -14,15 +14,30 @@
 		from tbl_approval, tbl_emp, tbl_dept
 		where tbl_approval.writer=tbl_emp.empno
 		and tbl_approval.receiver=tbl_dept.deptno
+		<if test='next_approval!=0'>
+			and tbl_approval.next_approval=#{next_approval}	<!-- 내가 결재할 차례인 문서 조회 -->
+		</if>
 		<if test="writer!=0">
-			and tbl_approval.writer=#{writer}
+			<if test="status==null">
+				and tbl_approval.writer=#{writer}			<!-- 내가 작성한 문서 조회할때 -->
+			</if>
 		</if>  
 		<if test="receiver!=0">
-			and tbl_approval.receiver=#{receiver}
-		</if>  
-		<if test='next_approval!=0'>
-			and tbl_approval.next_approval=#{next_approval}
+			and tbl_approval.status=#{status}			<!-- 수신부서가 우리부서/전체부서 인 문서 조회 -->
+			and (tbl_approval.receiver=#{receiver} or tbl_approval.receiver=0)
 		</if>
+	</select>
+	<select id='liststatus' resultType="Approval">
+		select no, status, tbl_emp.ename writer_name,
+		tbl_dept.dname receiver_dname, title,tbl_approval.regdate
+		from tbl_approval, tbl_emp, tbl_dept
+		where tbl_approval.writer=tbl_emp.empno
+		and tbl_emp.deptno=tbl_dept.deptno
+		and tbl_dept.deptno=#{deptno}
+		and tbl_approval.status!=#{status}
+	</select>
+	<select id="getmydeptno" resultType="int">
+		select deptno from tbl_emp where empno=#{empno}
 	</select>
 	<!-- 문서내용조회 -->
 	<select id='select' resultType="Approval">
