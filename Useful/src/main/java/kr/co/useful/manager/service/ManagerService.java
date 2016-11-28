@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.EmpVO;
 
 public interface ManagerService {
@@ -14,4 +15,7 @@ public interface ManagerService {
 	public EmpVO emp_select(int empno)throws Exception;
 	public void emp_update(EmpVO vo)throws Exception;
 	public void emp_delete(int empno)throws Exception;
+	public List<CommuteVO> commute_list_ename(String ename)throws Exception;
+	public List<CommuteVO> commute_list_empno(int empno)throws Exception;
+	public List<CommuteVO> commute_list_dept(int deptno, String startdate, String enddate) throws Exception;
 }

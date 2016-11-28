@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.EmpVO;
 
 @Repository
@@ -47,5 +48,21 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public void emp_delete(int empno) throws Exception {
 		sqlSession.delete("manager.emp_delete",empno);
+	}
+	
+	
+	@Override
+	public List<CommuteVO> commute_emplist(Map map) throws Exception {
+		return sqlSession.selectList("manager.commute_emplist",map);
+	}
+	
+	@Override
+	public int search_empno_fromEname(String ename) throws Exception {
+		return sqlSession.selectOne("manager.search_empno_fromEname",ename);
+	}
+	
+	@Override
+	public List<Integer> search_empnolist(int deptno) throws Exception {
+		return sqlSession.selectList("manager.search_empnolist",deptno);
 	}
 }

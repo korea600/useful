@@ -70,9 +70,21 @@ public class ManagerController {
 		
 	}
 	@RequestMapping(value="/commute_Employee",method=RequestMethod.POST)
-	public void commute_Employee(@RequestBody Map map){
+	public void commute_Employee(@RequestBody Map<String,Object> map){
+		
+		
 		String startdate = (String) map.get("startdate");
+		String enddate = (String) map.get("enddate");
 		startdate = startdate.replaceAll("-","");
+		enddate = enddate.replaceAll("-","");
+		
+		if(map.get("empno")==null||map.get("empno")==""){
+			
+			
+			if(map.get("ename")==null||map.get("ename")==""){
+				
+			}
+		}
 	}
 	@RequestMapping(value="/commute_Dept",method=RequestMethod.GET)
 	public void commute_Dept_Form(){

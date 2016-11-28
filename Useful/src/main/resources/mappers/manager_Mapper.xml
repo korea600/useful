@@ -48,4 +48,17 @@
   <delete id="emp_delete">
   	delete from tbl_emp where empno=#{empno}
   </delete>
+  
+  <select id="commute_emplist" resultType="kr.co.useful.manager.domain.CommuteVO">
+  	select * from tbl_commute 
+  	where empno=#{empno} and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1
+  </select>
+  
+  <select id="search_empno_fromEname" resultType="int">
+  	select empno from tbl_emp where ename=#{ename}
+  </select>
+  
+  <select id="search_empnolist" resultType="int">
+  	select empno from tbl_emp where deptno=#{deptno}
+  </select>
 </mapper>
