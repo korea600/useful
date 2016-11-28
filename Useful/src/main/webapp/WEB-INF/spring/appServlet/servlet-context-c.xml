@@ -32,5 +32,6 @@
 	
 	<context:component-scan base-package="kr.co.useful.login.controller" />
 	<context:component-scan base-package="kr.co.useful.mypage.controller" />
+	<context:component-scan base-package="kr.co.useful.commute.controller" />
 	
 </beans:beans>
