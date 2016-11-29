@@ -48,17 +48,29 @@
   <delete id="emp_delete">
   	delete from tbl_emp where empno=#{empno}
   </delete>
+ 
   
-  <select id="commute_emplist" resultType="kr.co.useful.manager.domain.CommuteVO">
+  <select id="commute_emplist_all" resultType="kr.co.useful.manager.domain.CommuteVO">
+  	select a.empno,a.ename,b.dname,a.login,a.logout,a.checked
+  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked
+ 		 	from tbl_emp emp,(select * from tbl_commute where login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) cmt
+ 		 	where emp.empno=cmt.empno) a, tbl_dept b
+  	where a.deptno=b.deptno
+  	order by a.empno
+  </select>
+  
+  <select id="commute_emplist_empno" resultType="kr.co.useful.manager.domain.CommuteVO">
   	select * from tbl_commute 
   	where empno=#{empno} and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1
   </select>
   
-  <select id="search_empno_fromEname" resultType="int">
-  	select empno from tbl_emp where ename=#{ename}
+  <select id="commute_emplist_deptno" resultType="kr.co.useful.manager.domain.CommuteVO">
+   select * from tbl_commute where empno in(select empno from tbl_emp where deptno=#{deptno})
+  and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1
   </select>
   
-  <select id="search_empnolist" resultType="int">
-  	select empno from tbl_emp where deptno=#{deptno}
+  <select id="commute_emplist_ename" resultType="kr.co.useful.manager.domain.CommuteVO">
+   select * from tbl_commute where empno in(select empno from tbl_emp where ename=#{ename})
+  and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1
   </select>
 </mapper>

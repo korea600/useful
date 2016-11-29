@@ -1,6 +1,8 @@
 package kr.co.useful.manager.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -47,26 +49,31 @@ class ManagerServiceImpl implements ManagerService {
 	public void emp_delete(int empno) throws Exception {
 		dao.emp_delete(empno);
 	}
-	
 	@Override
-	public List<CommuteVO> commute_list_dept(int deptno, String startdate, String enddate) throws Exception {
-/*		List<CommuteVO> vo;
-		List<CommuteVO> vo2;
-		List<Integer> list = dao.search_empnolist(deptno);
-		Map<String,Object> map = new HashMap<>();
-		for (int i = 0; i < list.size(); i++) {
-			
-			vo = dao.commute_emplist(map);
-		}*/
-		return null;
+	public List<CommuteVO> commute_list_all(Map<String, Object> map) throws Exception {
+		 List<CommuteVO> list = new ArrayList<>();
+		 list=dao.commute_emplist_all(map);
+		 for(int i=0;i<list.size();i++){
+			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 19));
+			 list.get(i).setLogin(list.get(i).getLogin().substring(0, 10));
+			 if(list.get(i).getLogout_Time()!=null){
+			 list.get(i).setLogout_Time(list.get(i).getLogout().substring(11, 19));
+			 list.get(i).setLogout_Time(list.get(i).getLogout().substring(0, 10));
+			 }
+		 }
+		return list;
 	}
 	@Override
-	public List<CommuteVO> commute_list_empno(int empno) throws Exception {
-		return null;
+	public List<CommuteVO> commute_list_empno(Map<String,Object> map) throws Exception {
+		return dao.commute_emplist_empno(map);
+	}
+	@Override
+	public List<CommuteVO> commute_list_dept(Map<String,Object> map) throws Exception {
+		return dao.commute_emplist_deptno(map);
 	}
 	
 	@Override
-	public List<CommuteVO> commute_list_ename(String ename) throws Exception {
-		return null;
+	public List<CommuteVO> commute_list_ename(Map<String,Object> map) throws Exception {
+		return dao.commute_emplist_ename(map);
 	}
 }

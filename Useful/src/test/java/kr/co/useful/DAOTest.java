@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.persistence.ManagerDAO;
+import kr.co.useful.manager.service.ManagerService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/*.xml"})
@@ -25,6 +26,8 @@ public class DAOTest {
 	@Inject
 	private ManagerDAO dao;
 	
+	@Inject
+	private ManagerService service;
 	//@Test
 	public void list()throws Exception{
 		System.out.println(dao.emplist());
@@ -34,16 +37,24 @@ public class DAOTest {
 		//System.out.println(dao.emplistSearch("dept", "10"));
 //		System.out.println(dao.emp_select(1000));
 //		dao.emp_delete(2000);
-		
+//		
 		Map<String, Object> map = new HashMap<>();
-		map.put("empno", 1002);
+//		map.put("deptno", 10);
 		map.put("startdate", "20161128");
-		map.put("enddate", "20161128");
+		map.put("enddate", "20161129");
+//		
+//		List<CommuteVO> vo = dao.commute_emplist(map);
+//		System.out.println(vo.get(0).toString());
+//		
+//		System.out.println(dao.search_empno_fromEname("이길재"));
+//		System.out.println(dao.search_empnolist(10));
 		
-		List<CommuteVO> vo = dao.commute_emplist(map);
-		System.out.println(vo.get(0).toString());
 		
-		System.out.println(dao.search_empno_fromEname("이길재"));
-		System.out.println(dao.search_empnolist(10));
+//		System.out.println( dao.commute_emplist_deptno(map));
+		
+		System.out.println(service.commute_list_all(map));
+		
 	}
+	
+	
 }
