@@ -17,8 +17,7 @@ import kr.co.useful.board.service.*;
 public class BoardController {
 	@Inject
 	private BoardService service;
-	@Inject
-	private ReplyService reservice;
+	
 	@Inject 
 	private NoticeService noservice;
 	
@@ -56,12 +55,12 @@ public class BoardController {
 	public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 	BoardVO board=service.read(serial);
 	PageMaker pageMaker=new PageMaker();
-	List<ReplyVO> list=reservice.listAll(serial);
+
 	service.viewcnt(serial);
 	pageMaker.setCri(cri);
 	pageMaker.calc();
 	model.addAttribute("maker", pageMaker);
-	model.addAttribute("list", list);
+
 	model.addAttribute("board", board);
 	model.addAttribute("cri", cri);
 	}
@@ -87,10 +86,8 @@ public class BoardController {
 	
 	@RequestMapping(value="",method=RequestMethod.POST)
 	public void replycreate(ReplyVO vo)throws Exception{
-	reservice.create(vo);
+
 	};
-	public void replyupdate()throws Exception{};
-	public void replydelete()throws Exception{};
-	//---------------------------- ----------------------------------------------------
+	
 
 }

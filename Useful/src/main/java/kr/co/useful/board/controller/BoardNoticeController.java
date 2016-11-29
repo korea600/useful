@@ -25,8 +25,7 @@ import kr.co.useful.board.service.ReplyService;
 public class BoardNoticeController {
 	@Inject
 	private NoticeService service;
-	@Inject
-	private ReplyService reservice;
+
 	
 	@RequestMapping("/listPage")
 	public void listPage(SearchCriteria cri,Model model) throws Exception {
@@ -72,11 +71,11 @@ public class BoardNoticeController {
 	public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 	NoticeVO board=service.read(serial);
 	PageMaker pageMaker=new PageMaker();
-	List<ReplyVO> list=reservice.listAll(serial);
+
 	pageMaker.setCri(cri);
 	pageMaker.calc();
 	model.addAttribute("maker", pageMaker);
-	model.addAttribute("list", list);
+
 	model.addAttribute("board", board);
 	model.addAttribute("cri", cri);
 	}

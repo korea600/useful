@@ -24,8 +24,7 @@ public class BoardanonymityController {
 	
 		@Inject
 		private AnonymityService service;
-		@Inject
-		private ReplyService reservice;
+
 		
 		@RequestMapping("/listPage")
 		public void listPage(SearchCriteria cri,Model model) throws Exception {
@@ -71,11 +70,11 @@ public class BoardanonymityController {
 		public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 		AnonymityVO board=service.read(serial);
 		PageMaker pageMaker=new PageMaker();
-		List<ReplyVO> list=reservice.listAll(serial);
+
 		pageMaker.setCri(cri);
 		pageMaker.calc();
 		model.addAttribute("maker", pageMaker);
-		model.addAttribute("list", list);
+
 		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
 		}

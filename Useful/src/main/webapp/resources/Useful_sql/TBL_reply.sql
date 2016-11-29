@@ -1,6 +1,7 @@
 drop table tbl_reply;
 create table tbl_reply(
 serial number primary key,
+rno number not null,
 replyid varchar2(20),
 replytext varchar2(2000) not null,
 regdate Date default sysdate not null

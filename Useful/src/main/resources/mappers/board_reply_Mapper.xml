@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board_reply">
+
+<select id="list" parameterType="int" resultType="kr.co.useful.board.domain.ReplyVO">
+select serial,rno,replyid,replytext,regdate from tbl_reply where serial=#{serial} order by desc
+</select>
+
+<insert id="create">
+insert into tbl_reply (serial,rno,replyid,replytext) values(#{serial},tbl_reply_seq.nextval,#{replyid},#{replytext})
+</insert>
+
+<update id="update">
+update tbl_reply set replytext=#{replytext} where rno=#{rno} and serial=#{serial}
+</update>
+
+<delete id="delete">
+delete from tbl_reply where rno=#{rno} and serial=#{serial}
+</delete>
+
+<select id="count" resultType="int">
+select count(*) from tbl_reply where rno=#{rno} and serial=#{serial}
+</select>
+
+<select id="getbno" resultType="int">
+select serial from tbl_reply where rno=#{rno}
+</select>
+
+</mapper>
