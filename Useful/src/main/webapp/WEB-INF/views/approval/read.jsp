@@ -9,6 +9,24 @@
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <script type="text/javascript" src='/useful/resources/js/jquery-3.1.1.js'></script>
+<script type="text/javascript">
+$(function(){
+	var frm=$('form');
+	$('[name=accept]').click(function(){
+		frm.attr('action','');
+		frm.attr('method','post');
+		frm.submit();
+	});
+	$('[name=reject]').click(function(){
+		frm.attr('action','');
+		frm.attr('method','post');
+		frm.submit();
+	});
+	$('[name=modify]').click(function(){
+		location.href='';
+	});
+})
+</script>
 </head>
 <body>
 <center>
@@ -35,11 +53,16 @@
 <tr><td width='20%' align='center'>첨부파일</td><td><input type="file" name='addfile' size='63'></td></tr>
 <tr></tr>
 </table>
+<c:if test="${vo.curr_approval eq vo.next_approval}">
+	<c:if test="${vo.next_approval eq LoginUser.empno}">
+		<input type='button' name='modify' value='수정'>
+	</c:if>
+</c:if>
 <c:if test="${vo.next_approval eq LoginUser.empno}">
 	<input type='button' name='accept' value='결재'>
 	<input type='button' name='reject' value='반려'>
 </c:if>
-<input type='button' name='cancel' value='닫기'>
+<input type='button' name='cancel' value='뒤로' onclick='history.back()'>
 </form>
 </center>
 </body>
