@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%-- Commute_In.jsp --%>
-<title>Insert title here</title>
+<title>출근내역조회</title>
 </head>
 <body>
-
+	와우!! 등록되었나...?
 </body>
 </html>

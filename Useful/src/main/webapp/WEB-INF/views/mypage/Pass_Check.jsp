@@ -25,9 +25,6 @@
 	
 	function passCheck(){
 		
-		alert(document.form.pass.value);
-		alert('${vo.pass}');
-		
 		var pass = document.form.pass.value;
 		var mypass= '${vo.pass}';
 

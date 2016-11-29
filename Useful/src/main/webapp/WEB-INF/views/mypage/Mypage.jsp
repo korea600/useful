@@ -83,7 +83,7 @@ th {
 	
 	<!-- //contents -->
 			<div id="contents">
-				<form id="frm">
+				<form id="frm" name="frm">
 				
 				<input id="menu_cd" name="menu_cd" value="0003" type="hidden" value=""/>
 				<input id="pageIdx" name="pageIdx" type="hidden" value=""/>
