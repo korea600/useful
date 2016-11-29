@@ -35,8 +35,8 @@ public class MypageController {
 	}
 	
 	
-	@RequestMapping(value="/MypageUp",method=RequestMethod.POST)
-	public ResponseEntity<String> updateInfo(@RequestBody EmpVO vo){
+	@RequestMapping("/MypageUp")
+	public ResponseEntity<String> updateInfo(EmpVO vo){
 		ResponseEntity<String> entity = null;
 		try {
 			service.update(vo);
