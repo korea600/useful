@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결재결과</title>
 <script type="text/javascript">
-	alert('결재완료')
+	alert('처리완료')
 </script>
 </head>
 <body>

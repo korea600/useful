@@ -43,10 +43,11 @@
 	</select>
 	<!-- 문서내용조회 -->
 	<select id='select' resultType="Approval">
-		select no, tbl_emp.ename writer_name, writer, tbl_dept.dname receiver_dname, receiver,title,content,next_approval, filename
+		select no, status, tbl_emp.ename writer_name, tbl_dept.dname receiver_dname,
+		title,content, curr_approval,next_approval
 		from tbl_approval, tbl_emp, tbl_dept
 		where tbl_approval.writer=tbl_emp.empno
-		and tbl_approval.receiver=tbl_dept.deptno
+		and tbl_emp.deptno=tbl_dept.deptno
 		and no=#{no}
 	</select>
 	<!-- 상사의 사번 얻기 -->
