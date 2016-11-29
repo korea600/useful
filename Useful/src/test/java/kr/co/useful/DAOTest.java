@@ -37,11 +37,9 @@ public class DAOTest {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("empno", 1002);
-<<<<<<< HEAD
+
 		map.put("startdate", "20161128"); 
-=======
-		map.put("startdate", "20161128");
->>>>>>> branch 'master' of https://github.com/korea600/useful.git
+
 		map.put("enddate", "20161128");
 		
 		List<CommuteVO> vo = dao.commute_emplist(map);
