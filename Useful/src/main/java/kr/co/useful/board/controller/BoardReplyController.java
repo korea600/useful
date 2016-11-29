@@ -39,5 +39,17 @@ public ResponseEntity<String> delete(@RequestBody ReplyVO vo){
 	}
 	return entity;
 }
+@RequestMapping(value="/update",method=RequestMethod.POST)
+public ResponseEntity<String> update(@RequestBody ReplyVO vo){
+	ResponseEntity<String> entity=null;
+	try {
+		service.update(vo);
+		entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return entity;
+}
 
 }

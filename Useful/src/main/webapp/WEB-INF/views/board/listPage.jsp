@@ -60,7 +60,7 @@
 			<form>
 			<div class="col-lg-6" style="width: 100%;">
 				<div class="panel panel-default">
-					<div class="panel-heading">Context Classes</div>
+					<div class="panel-heading">${LoginUser.ename}님 안녕하세요~!!</div>
 						<div class="list_number">
 						
 									<!-- 검색버튼 -->
@@ -85,6 +85,7 @@
 					<!-- /.panel-heading -->
 					
 					<div class="panel-body">
+					
 						<div class="table-responsive">
 							<table class="table" width="100%">
 							
@@ -141,11 +142,13 @@
 									</div>
 									<!-- 페이지번호 -->
 						</div>
+						
 						  <input type='hidden' name="page" value='${pageMaker.cri.perPageNum}'>
                           <input type='hidden' name="perPageNum" value='${pageMaker.cri.perPageNum}'>
 						
 						</form>
 						<button class="btn btn-default" id="register">글쓰기</button>
+						
 						<!-- /.table-responsive -->
 					</div>
 					<!-- /.panel-body -->

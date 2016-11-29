@@ -118,7 +118,7 @@ var flag=true;
                             <p>${list.replytext }</p>
                         </div>
                          <div class="panel-footer">
-<button type="button" class="btn btn-default" id="m${list.rno }" name="modify">수정하기</button>
+<button type="button" class="btn btn-default" id="${list.rno }" name="modify">수정하기</button>
 <button type="button" class="btn btn-default" id="remove">삭제하기</button>
                         </div>
                        
@@ -146,7 +146,7 @@ var flag=true;
 											<input name="keyword" id="btn-input" type="text"
 												class="form-control input-sm" placeholder="댓글을 입력해주세요"
 												style="height: 65px; " /> <span class="input-group-btn">
-												<button type="submit" class="btn btn-warning btn-sm" id="replybtn"
+												<button type="button" class="btn btn-warning btn-sm" id="replybtn"
 													style="height: 65px; width: 100px;">
 													<h3>입력</h3>
 												</button>
@@ -213,7 +213,36 @@ var flag=true;
 										}
 										
 									});//댓글 수정버튼
-									
+									$("#replybtn2").on("click",function(){
+										alert()
+										var rno=$("#hi-input").val();
+										var replytext=$("#btn-input2").val();
+										var serial=$("#serial").val();
+										var page=$("#page").val();
+										var perPagNum=$("#perPageNum").val();
+										var keyword=$("#keyword").val();
+										var searchType=$("#searchType").val();
+										alert("rno="+rno)
+										 $.ajax({
+											type:'post',
+											url:'/useful/reply/delete',
+											dataType:'text',
+											headers:{
+												"Content-Type":"application/json",
+												"X-HTTP-Method-Override":"POST"
+											},
+											data:JSON.stringify({replytext:replytext,rno:rno,serial:serial}),
+											success:function(result){
+												console.log("result:"+result);
+												if(result=='SUCCESS'){
+													self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+												
+													$(this).hide();
+													flag=true;
+												}
+											}
+										}) 
+									});
 									
 									$("#replybtn").on("click",function(){
 										var replytext=$("#btn-input").val();
