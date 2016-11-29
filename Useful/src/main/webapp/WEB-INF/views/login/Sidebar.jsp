@@ -78,7 +78,24 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-file-text fa-fw"></i> 전자결재</a>
+                            <a href="index.html"><i class="fa fa-file-text fa-fw"></i> 전자결재 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/useful/approval/form">기안하기</a>
+                                </li>
+                                <li>
+                                    <a href="/useful/approval/liststatus">결재진행</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/approval/listdept">결재완료(수신)</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/approval/listmine">내 기안문서</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/approval/listmyturn">내 결재문서</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
