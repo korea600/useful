@@ -1,6 +1,8 @@
 package kr.co.useful.commute.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -18,12 +20,21 @@ public class CommuteServiceImpl implements CommuteService{
 	
 	@Override
 	public void insert(int empno) throws Exception {
-		dao.insert(empno);
+		
+		if(dao.select(empno) == 0){	
+			dao.insert(empno);
+		}
 	}
 
 	@Override
 	public void update(int empno) throws Exception {
 		dao.update(empno);
 	}
+
+
+
+	
+
+	
 
 }

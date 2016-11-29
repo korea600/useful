@@ -8,9 +8,12 @@
 	<!-- 퇴근 시간 체크해주는 query문 신기!!! -->
 	<update id="update">
 		update tbl_commute set logout = sysdate 
-			where empno=#{empno} and to_char(login,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
-												
+			where empno=#{empno} and to_char(login,'yyyymmdd') = to_char(sysdate,'yyyymmdd')							
 	</update>
 
-
+	<select id="select" resultType="int">
+		select count(*)
+		from tbl_commute
+		where empno=#{empno} and to_char(login,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</select>
 </mapper>
