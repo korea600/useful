@@ -115,6 +115,7 @@
                         </div>
                         <!-- div class="panel-footer">
                             버튼추가할지 아직몰라서 남김
+                            
                         </div> -->
                     </div>
                 </div>

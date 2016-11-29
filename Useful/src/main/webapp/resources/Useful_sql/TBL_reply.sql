@@ -1,14 +1,14 @@
 drop table tbl_reply;
 create table tbl_reply(
-serial number primary key,
-rno number not null,
-replyid varchar2(20),
+serial number not null,
+rno number not null primary key,
+replyid varchar2(20) ,
 replytext varchar2(2000) not null,
-regdate Date default sysdate not null
+regdate Date default sysdate
 );
-
+drop sequence tbl_reply_seq;
 create sequence tbl_reply_seq;
 
-insert into TBL_REPLY (serial,replyid,replytext,regdate) values(tbl_reply_seq.nextval,'tjddnjs003','´Ù¹øÂ° ´ñ±Û',sysdate);
+insert into TBL_REPLY (serial,rno,replyid,replytext) values(5,tbl_reply_seq.nextval,'tjddnjs003','´Ù¹øÂ° ´ñ±Û');
 select serial from tbl_reply;
 
