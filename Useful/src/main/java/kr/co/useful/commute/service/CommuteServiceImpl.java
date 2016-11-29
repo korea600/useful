@@ -19,11 +19,13 @@ public class CommuteServiceImpl implements CommuteService{
 	private CommuteDAO dao;
 	
 	@Override
-	public void insert(int empno) throws Exception {
+	public boolean insert(int empno) throws Exception {
 		
 		if(dao.select(empno) == 0){	
 			dao.insert(empno);
+			return true;
 		}
+		return false;
 	}
 
 	@Override

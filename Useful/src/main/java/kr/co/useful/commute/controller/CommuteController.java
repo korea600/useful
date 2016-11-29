@@ -26,8 +26,11 @@ public class CommuteController {
 		ResponseEntity<String> entity = null;
 		
 		try {
-			service.insert(empno);
+			if(service.insert(empno)){
 			entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+			}else{
+				entity = new ResponseEntity<String>("FAIL",HttpStatus.OK);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
