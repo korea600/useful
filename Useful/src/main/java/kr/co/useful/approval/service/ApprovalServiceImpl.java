@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.useful.approval.domain.ApprovalProgressVO;
 import kr.co.useful.approval.domain.ApprovalRestVO;
 import kr.co.useful.approval.domain.ApprovalVO;
 import kr.co.useful.approval.persistence.ApprovalDAO;
@@ -46,12 +47,12 @@ public class ApprovalServiceImpl implements ApprovalService{
 		
 	}
 
-	public List<ApprovalVO> list(ApprovalVO vo) throws Exception {
-		return dao.list(vo);
+	public void do_approval(ApprovalVO vo,ApprovalProgressVO progressVO) throws Exception {
+		
 	}
 
-	public void do_approval(ApprovalVO vo) throws Exception {
-		
+	public List<ApprovalVO> list(ApprovalVO vo) throws Exception {
+		return dao.list(vo);
 	}
 
 	public ApprovalVO select(int no) throws Exception {
