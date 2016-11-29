@@ -73,8 +73,8 @@ public class ManagerController {
 		
 	}
 	@RequestMapping(value="/commute_Employee",method=RequestMethod.POST)
-	public String commute_Employee(@RequestBody Map<String,Object> requestMap)throws Exception{
-		Model model = new ExtendedModelMap();
+	public String commute_Employee(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+//		model = new ExtendedModelMap();
 		
 		Map<String,Object> map = new HashMap<>();
 		String startdate = (String) requestMap.get("startdate");
@@ -84,26 +84,42 @@ public class ManagerController {
 		
 		map.put("startdate", startdate);
 		map.put("enddate", enddate);
-		if(requestMap.get("deptno")==null||requestMap.get("deptno")==""){
-			
-			if(requestMap.get("empno")==null||requestMap.get("empno")==""){
-			
-				if(requestMap.get("ename")==null||requestMap.get("ename")==""){
-				
-					
-					model.addAttribute("list",service.commute_list_all(map));
-					return "/manager/commute_Print";
-				}
-				map.put("ename", requestMap.get("ename"));
-				model.addAttribute("list",service.commute_list_ename(map));
-				return "";
-			}
+		if(requestMap.get("empno")!=null&&requestMap.get("empno")!=""){
 			map.put("empno", requestMap.get("empno"));
-			model.addAttribute("list",service.commute_list_empno(map));
-			return "";
+			model.addAttribute("commute",service.commute_list_empno(map));
+			System.out.println(service.commute_list_empno(map));
+			System.out.println("empno");
+			return "/manager/commute_Print";
 		}
-		return "";
+		
+		else if(requestMap.get("ename")!=null&&requestMap.get("ename")!=""){
+			map.put("ename", requestMap.get("ename"));
+			model.addAttribute("commute",service.commute_list_ename(map));
+			System.out.println(service.commute_list_ename(map));
+			System.out.println("ename");
+			return "/manager/commute_Print";
+		}		
+				
+		else if(requestMap.get("deptno")!=null&&requestMap.get("deptno")!=""){
+			map.put("deptno", requestMap.get("deptno"));
+			System.out.println(requestMap.get("deptno"));
+			model.addAttribute("commute",service.commute_list_dept(map));
+			System.out.println(service.commute_list_dept(map));
+			System.out.println("dept");
+			return "/manager/commute_Print";
+			
+		}else {
+			System.out.println(service.commute_list_all(map));
+			model.addAttribute("commute",service.commute_list_all(map));
+			System.out.println(service.commute_list_all(map));
+			System.out.println("all");
+			return "/manager/commute_Print";
+		}
 	}
+
+		
+
+	
 	@RequestMapping(value="/commute_Dept",method=RequestMethod.GET)
 	public void commute_Dept_Form(){
 		

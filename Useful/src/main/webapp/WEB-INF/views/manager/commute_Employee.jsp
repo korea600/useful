@@ -77,8 +77,8 @@ th {
 				
  				  }),
  			  success: function(result){
- 				 document.getElementById("div_print").innerHTML = result;
- 				//	$("#div_print").html("useful/manager/commute_Print");
+ 				 //document.getElementById("div_print").innerHTML = result;
+ 					$("#div_print").html(result);
  				  },
  			error:function(request,status,error){
  			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}

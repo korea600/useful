@@ -51,29 +51,35 @@ class ManagerServiceImpl implements ManagerService {
 	}
 	@Override
 	public List<CommuteVO> commute_list_all(Map<String, Object> map) throws Exception {
-		 List<CommuteVO> list = new ArrayList<>();
-		 list=dao.commute_emplist_all(map);
-		 for(int i=0;i<list.size();i++){
-			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 19));
-			 list.get(i).setLogin(list.get(i).getLogin().substring(0, 10));
-			 if(list.get(i).getLogout_Time()!=null){
-			 list.get(i).setLogout_Time(list.get(i).getLogout().substring(11, 19));
-			 list.get(i).setLogout_Time(list.get(i).getLogout().substring(0, 10));
-			 }
-		 }
-		return list;
+		
+		return  time_Division(dao.commute_emplist_all(map));
 	}
+	
 	@Override
 	public List<CommuteVO> commute_list_empno(Map<String,Object> map) throws Exception {
-		return dao.commute_emplist_empno(map);
+
+		return  time_Division(dao.commute_emplist_empno(map));
 	}
+	
 	@Override
 	public List<CommuteVO> commute_list_dept(Map<String,Object> map) throws Exception {
-		return dao.commute_emplist_deptno(map);
+		return  time_Division(dao.commute_emplist_deptno(map));
 	}
 	
 	@Override
 	public List<CommuteVO> commute_list_ename(Map<String,Object> map) throws Exception {
-		return dao.commute_emplist_ename(map);
+		return  time_Division(dao.commute_emplist_ename(map));
+	}
+	
+	public List<CommuteVO> time_Division(List<CommuteVO> list){
+		 for(int i=0;i<list.size();i++){
+			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 19));
+			 list.get(i).setLogin(list.get(i).getLogin().substring(0, 10));
+			 if(list.get(i).getLogout()!=null&&list.get(i).getLogout()!=""){
+				 list.get(i).setLogout_Time(list.get(i).getLogout().substring(11, 19));
+				 list.get(i).setLogout(list.get(i).getLogout().substring(0, 10));
+			 }
+		 }
+		return list;
 	}
 }

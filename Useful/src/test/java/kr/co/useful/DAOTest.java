@@ -42,7 +42,9 @@ public class DAOTest {
 
 //		map.put("deptno", 10);
 		map.put("startdate", "20161128");
-		map.put("enddate", "20161129");
+		map.put("enddate", "20161130");
+		map.put("ename", "Àü¼º¿ø");
+//		map.put("empno", "1022");
 //		
 //		List<CommuteVO> vo = dao.commute_emplist(map);
 //		System.out.println(vo.get(0).toString());
@@ -51,15 +53,13 @@ public class DAOTest {
 //		System.out.println(dao.search_empnolist(10));
 
 
-		map.put("startdate", "20161128"); 
 
 
 
 		
+		System.out.println("daoTest");
+		System.out.println(dao.commute_emplist_ename(map));
 		
-//		System.out.println( dao.commute_emplist_deptno(map));
-		
-		System.out.println(service.commute_list_all(map));
 		
 	}
 	

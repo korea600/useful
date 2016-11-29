@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -16,10 +17,20 @@
 		<th width="12%">변경</th>
 	</tr>
 
+		<c:forEach items="${commute }" var="print" >
+		<tr>
+			<td>${print.dname }</td>
+			<td>${print.ename }</td>
+			<td>${print.login }</td>
+			<td>${print.login_Time }</td>
+			<td>${print.logout }</td>
+			<td>${print.logout_Time }</td>
+			<td>${print.checked }</td>
+			<td>변경</td>
+		</tr>
+		</c:forEach>
+
 
 		</table>
-  ${model }
-  ${model.list }
-  ${list }
 </body>
 </html>

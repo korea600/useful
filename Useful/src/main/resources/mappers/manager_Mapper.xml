@@ -60,17 +60,31 @@
   </select>
   
   <select id="commute_emplist_empno" resultType="kr.co.useful.manager.domain.CommuteVO">
-  	select * from tbl_commute 
-  	where empno=#{empno} and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1
+    select a.empno,a.ename,b.dname,a.login,a.logout,a.checked
+  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked
+ 		 	from tbl_emp emp,(select * from tbl_commute where empno=#{empno} and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1 ) cmt
+ 		 	where emp.empno=cmt.empno) a, tbl_dept b
+  	where a.deptno=b.deptno
+  	order by a.empno
   </select>
   
   <select id="commute_emplist_deptno" resultType="kr.co.useful.manager.domain.CommuteVO">
-   select * from tbl_commute where empno in(select empno from tbl_emp where deptno=#{deptno})
-  and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1
+    select a.empno,a.ename,b.dname,a.login,a.logout,a.checked
+  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked
+ 		 	from tbl_emp emp,(select * from tbl_commute where empno in(select empno from tbl_emp where deptno=#{deptno})
+ 				and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) cmt
+ 		 	where emp.empno=cmt.empno) a, tbl_dept b
+  	where a.deptno=b.deptno
+  	order by a.empno
   </select>
   
   <select id="commute_emplist_ename" resultType="kr.co.useful.manager.domain.CommuteVO">
-   select * from tbl_commute where empno in(select empno from tbl_emp where ename=#{ename})
-  and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1
+ 	select a.empno,a.ename,b.dname,a.login,a.logout,a.checked
+  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked
+ 		 	from tbl_emp emp,( select * from tbl_commute where empno in(select empno from tbl_emp where ename=#{ename})
+  				and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) cmt
+ 		 	where emp.empno=cmt.empno) a, tbl_dept b
+  	where a.deptno=b.deptno
+  	order by a.empno
   </select>
 </mapper>
