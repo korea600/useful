@@ -3,10 +3,14 @@
 <mapper namespace="board_reply">
 
 <select id="list" parameterType="int" resultType="kr.co.useful.board.domain.ReplyVO">
-select serial,rno,replyid,replytext,regdate from tbl_reply where serial=#{serial} order by desc
+select serial,rno,replyid,replytext,regdate from tbl_reply where serial=#{serial} order by rno desc
 </select>
 
-<insert id="create">
+<select id="select" resultType="kr.co.useful.board.domain.ReplyVO">
+select serial,rno,replytext from tbl_reply where rno=#{rno} and serial=#{serial}
+</select>
+
+<insert id="create" parameterType="kr.co.useful.board.domain.ReplyVO">
 insert into tbl_reply (serial,rno,replyid,replytext) values(#{serial},tbl_reply_seq.nextval,#{replyid},#{replytext})
 </insert>
 
