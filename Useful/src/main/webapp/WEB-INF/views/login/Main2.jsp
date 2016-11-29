@@ -6,6 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>UsefulWare</title>
+	<script type="text/javascript">
+		
+	</script>
+
+
 
     <!-- Bootstrap Core CSS -->
     <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -113,7 +118,7 @@
                          <li>
                             <a href="../organization/view">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> 조직도
+                                    <i class="fa fa-sitemap fa-fw"></i> 조직도
                                 </div>
                             </a>
                         </li>
@@ -272,7 +277,33 @@
 
     <!-- jQuery -->
     <script src="../resources/vendor/jquery/jquery.min.js"></script>
-
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#commute_in').on("click",function(){
+				$.ajax({
+					type:'post',
+					async:true,
+					url:'/useful/commute/Commute_In?empno='+${LoginUser.empno},
+					success:function(){
+						alert('정상적으로 출근처리 되었습니다.');
+					}
+				});
+			});
+			
+			$('#commute_out').on("click",function(){
+				$.ajax({
+					type:'post',
+					async:true,
+					url:'/useful/commute/Commute_Out?empno='+${LoginUser.empno},
+					success:function(){
+						alert('정상적으로 퇴근처리 되었습니다.');
+					}
+				});
+			});
+			
+		});
+	
+	</script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 

@@ -5,23 +5,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>직원관리</title>
- <link rel="stylesheet" type="text/css" media="screen"
+<link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
-<script type="text/javascript" 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
+ <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>  
+	
+ <script type="text/javascript" 
 	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-kr.js"></script> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script>  
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.min.js"></script> 
 <script type="text/javascript">
 	$(function(){	
- 		$("#employee_tbl").jqGrid("GridUnload");
+ 		//$("#employee_tbl").jqGrid("GridUnload");
  		$("#employee_tbl").jqGrid({
 		url:'/useful/manager/list',	
 		datatype:'json', 
@@ -60,8 +63,9 @@
 	$("#employee_tbl").jqGrid('navGrid','#employee_div',{edit:false,add:false,del:false}); 
 	
 	$('#btn_Search').click(function(){
-					$("#employee_tbl").jqGrid("GridUnload");
-					$("#employee_tbl").jqGrid({
+					$("#employee_tbl").clearGridData();
+					//$("#employee_tbl").jqGrid("GridUnload");
+					$("#employee_tbl").setGridParam({
 						url:'/useful/manager/listSearch?'
 						+"searchType=" + $("select option:selected").val()
 						+ "&keyword=" + $('#keyword').val(),	
@@ -114,13 +118,11 @@
 <body>
  <header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header> 
 <div>
-	<%--<jsp:include page="/WEB-INF/views/login/Sidebar.jsp"></jsp:include>  --%>
+	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include>  
 </div>
 <div id="page-wrapper">
 
-	<p>
-		<font size="5" style="font-style: inherit;">직원관리</font><br>
-	</p>
+		<br><font size="5" style="font-style: inherit;">직원관리</font><br>
 	<div>
 		- 검색어 
 		<select id="searchType" name="searchType" class="select">

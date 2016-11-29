@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="commute">
+	<insert id="insert">
+		insert into tbl_commute (serial,empno,login,checked) values(tbl_commute_seq.nextval,#{empno},sysdate,#{checked})
+	</insert>
+	
+	<!-- 퇴근 시간 체크해주는 query문 신기!!! -->
+	<update id="update">
+		update tbl_commute set logout = sysdate 
+			where empno=#{empno} and to_char(login,'yyyymmdd') = to_char(sysdate,'yyyymmdd')									
+	</update>
+
+
+</mapper>

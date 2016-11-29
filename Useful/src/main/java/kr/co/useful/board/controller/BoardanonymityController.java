@@ -24,17 +24,16 @@ public class BoardanonymityController {
 	
 		@Inject
 		private AnonymityService service;
-		@Inject
-		private ReplyService reservice;
+
 		
 		@RequestMapping("/listPage")
 		public void listPage(SearchCriteria cri,Model model) throws Exception {
 			PageMaker pageMaker=new PageMaker();
 			pageMaker.setCri(cri);
-			pageMaker.setTotalCount(service.boardTotalCount());
+			pageMaker.setTotalCount(service.listFindCount(cri));
 			pageMaker.calc();
 			model.addAttribute("pageMaker", pageMaker);
-			model.addAttribute("list", service.listCriteria(cri));
+			model.addAttribute("list", service.listSearch(cri));
 		};
 		@RequestMapping(value="/createPage",method=RequestMethod.GET)
 		public void createPageGET() throws Exception {
@@ -44,7 +43,7 @@ public class BoardanonymityController {
 		public String createPagePOST(AnonymityVO vo,RedirectAttributes att)throws Exception{
 		service.create(vo);
 		att.addFlashAttribute("message", "SUCCESS");
-		return "redirect:/board/notice/listPage";
+		return "redirect:/board/anonymity/listPage";
 		}
 
 		@RequestMapping(value="/modifyPage",method=RequestMethod.GET) 
@@ -59,23 +58,23 @@ public class BoardanonymityController {
 			service.update(vo);
 			attr.addFlashAttribute("page", cri.getPage());
 			attr.addFlashAttribute("perpageNum", cri.getPerPageNum());
-			return "redirect:/board/listPage";
+			return "redirect:/board/anonymity/listPage";
 		}
 
 		@RequestMapping("/deletePage") 
 		public String deletePage(int serial) {
-			return "redirect:/board/listPage";
+			return "redirect:/board/anonymity/listPage";
 		}
 
 		@RequestMapping("/readPage")
 		public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 		AnonymityVO board=service.read(serial);
 		PageMaker pageMaker=new PageMaker();
-		List<ReplyVO> list=reservice.listAll(serial);
+
 		pageMaker.setCri(cri);
 		pageMaker.calc();
 		model.addAttribute("maker", pageMaker);
-		model.addAttribute("list", list);
+
 		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
 		}

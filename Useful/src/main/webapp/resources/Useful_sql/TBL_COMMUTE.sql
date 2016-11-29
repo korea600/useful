@@ -2,7 +2,7 @@ create table tbl_commute(
 serial number primary key,
 empno number not null,
 login date default sysdate,
-logout date default sysdate,
+logout date,
 checked varchar2(10)
 );
 
@@ -14,9 +14,12 @@ commute date not null,
 checked varchar2(10)
 );
 
+drop sequence tbl_commute_seq;
 create sequence tbl_commute_seq
    start with 1
    increment by 1
    nocycle
    nocache;
-   
+  
+  select * from tbl_commute;
+  

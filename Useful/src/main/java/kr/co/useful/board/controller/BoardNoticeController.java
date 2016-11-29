@@ -25,17 +25,16 @@ import kr.co.useful.board.service.ReplyService;
 public class BoardNoticeController {
 	@Inject
 	private NoticeService service;
-	@Inject
-	private ReplyService reservice;
+
 	
 	@RequestMapping("/listPage")
 	public void listPage(SearchCriteria cri,Model model) throws Exception {
 		PageMaker pageMaker=new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listCount());
+		pageMaker.setTotalCount(service.SearchCount(cri));
 		pageMaker.calc();
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("list", service.listCriteria(cri));
+		model.addAttribute("list", service.listSearch(cri));
 	};
 	@RequestMapping(value="/createPage",method=RequestMethod.GET)
 	public void createPageGET() throws Exception {
@@ -72,11 +71,11 @@ public class BoardNoticeController {
 	public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 	NoticeVO board=service.read(serial);
 	PageMaker pageMaker=new PageMaker();
-	List<ReplyVO> list=reservice.listAll(serial);
+
 	pageMaker.setCri(cri);
 	pageMaker.calc();
 	model.addAttribute("maker", pageMaker);
-	model.addAttribute("list", list);
+
 	model.addAttribute("board", board);
 	model.addAttribute("cri", cri);
 	}

@@ -22,8 +22,7 @@ import kr.co.useful.board.service.ReplyService;
 public class BoardDeptController {
 	@Inject
 	private DeptService service;
-	@Inject
-	private ReplyService reservice;
+
 	
 	@RequestMapping("/listPage")
 	public void listPage(SearchCriteria cri,Model model) throws Exception {
@@ -69,11 +68,11 @@ public class BoardDeptController {
 	public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 	DeptBoardVO board=service.read(serial);
 	PageMaker pageMaker=new PageMaker();
-	List<ReplyVO> list=reservice.listAll(serial);
+
 	pageMaker.setCri(cri);
 	pageMaker.calc();
 	model.addAttribute("maker", pageMaker);
-	model.addAttribute("list", list);
+
 	model.addAttribute("board", board);
 	model.addAttribute("cri", cri);
 	}

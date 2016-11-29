@@ -11,8 +11,10 @@
 	<!-- DAOImpl클래스 객체 등록 -->
    <context:component-scan base-package="kr.co.useful.login.persistence"/>
    <context:component-scan base-package="kr.co.useful.mypage.persistence"/>
+   <context:component-scan base-package="kr.co.useful.commute.persistence"/>
    
    <!-- 비즈니스객체 등록 -->
    <context:component-scan base-package="kr.co.useful.login.service"/>
    <context:component-scan base-package="kr.co.useful.mypage.service"/>
+   <context:component-scan base-package="kr.co.useful.commute.service"/>
 </beans>

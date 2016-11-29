@@ -8,19 +8,19 @@
 <title>UsefulWare</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../resources/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
  	<link rel="stylesheet" type="text/css" media="screen"
@@ -59,7 +59,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/useful/login/Mainview">Useful Logo</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/login/Mainview">Useful Logo</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -123,12 +123,12 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../mypage/Pass_Check?empno=${LoginUser.empno }"><i class="fa fa-user fa-fw"></i> Mypage</a>
+                        <li><a href="${pageContext.request.contextPath}/mypage/Pass_Check?empno=${LoginUser.empno }"><i class="fa fa-user fa-fw"></i> Mypage</a>
                         </li>
                          <li>
-                            <a href="../organization/view">
+                            <a href="${pageContext.request.contextPath}/organization/view">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> 조직도
+                                    <i class="fa fa-sitemap fa-fw"></i> 조직도
                                 </div>
                             </a>
                         </li>
@@ -144,21 +144,21 @@
 
    
     <!-- jQuery -->
-    <script src="../resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="../resources/vendor/raphael/raphael.min.js"></script>
-    <script src="../resources/vendor/morrisjs/morris.min.js"></script>
-    <script src="../resources/data/morris-data.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/raphael/raphael.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/morrisjs/morris.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../resources/dist/js/sb-admin-2.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 
 </body>
 </html>
