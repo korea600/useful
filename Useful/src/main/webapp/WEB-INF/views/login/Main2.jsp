@@ -325,6 +325,7 @@
 			});
 			
 		});
+		
 	
 	</script>
     <!-- Bootstrap Core JavaScript -->
