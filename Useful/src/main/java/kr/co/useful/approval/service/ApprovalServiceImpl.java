@@ -97,6 +97,8 @@ public class ApprovalServiceImpl implements ApprovalService{
 			newVO.setNext_approval(vo.getWriter());
 			dao.change_status(newVO);
 		}
+		System.out.println("vo:"+newVO.toString());
+		System.out.println(manager_empno);
 		dao.change_status(newVO);
 		dao.change_approval(newVO);
 	}

@@ -53,8 +53,8 @@ $(function(){
 <tr><td width='20%' align='center'>첨부파일</td><td><input type="file" name='addfile' size='63'></td></tr>
 <tr></tr>
 </table>
-<c:if test="${vo.curr_approval eq vo.next_approval}">
-	<c:if test="${vo.next_approval eq LoginUser.empno}">
+<c:if test="${vo.status eq '반려'}">
+	<c:if test="${vo.writer eq LoginUser.empno}">
 		<input type='button' name='modify' value='수정'>
 	</c:if>
 </c:if>
