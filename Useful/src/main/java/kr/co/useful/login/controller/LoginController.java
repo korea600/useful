@@ -37,7 +37,7 @@ public class LoginController {
 		
 		String empno = req.getParameter("empno");
 		String pass = req.getParameter("pass");
-		System.out.println("pass : " + pass);
+		
 		try {
 			String dpass = service.select(Integer.parseInt(empno)).getPass();
 			if(pass.equals(dpass)){
