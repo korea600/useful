@@ -101,18 +101,20 @@ public class ApprovalController {
 	/* ApprovalVO : 결재문서 정보, ApprovalProgressVO : 결재자 정보 */
 	
 	// 결재 승인(다음결재자로 정보갱신 or 결재완료처리)
-	@RequestMapping("/approval/accept")
-	public void approval_accept(ApprovalVO vo, HttpSession session) throws Exception{
+	@RequestMapping(value="/accept",method=RequestMethod.POST)
+	public String approval_accept(ApprovalVO vo, HttpSession session) throws Exception{
 		EmpVO emp = (EmpVO) session.getAttribute("LoginUser");
 		ApprovalProgressVO progressVO = new ApprovalProgressVO(vo.getNo(),emp.getEmpno(),emp.getPosition(),emp.getEname(),emp.getDeptno(),true);
 		service.do_approval(vo, progressVO);
+		return "/approval/complete";
 	}
 	
 	// 결재 반려(결재자 정보를 작성자로 변경, 상태정보를 반려로 변경)
-	@RequestMapping("/approval/reject")
-	public void approval_reject(ApprovalVO vo, HttpSession session) throws Exception{
+	@RequestMapping(value="/reject", method=RequestMethod.POST)
+	public String approval_reject(ApprovalVO vo, HttpSession session) throws Exception{
 		EmpVO emp = (EmpVO) session.getAttribute("LoginUser");
 		ApprovalProgressVO progressVO = new ApprovalProgressVO(vo.getNo(),emp.getEmpno(),emp.getPosition(),emp.getEname(),emp.getDeptno(),false);
 		service.do_approval(vo, progressVO);
+		return "/approval/complete";
 	}
 }

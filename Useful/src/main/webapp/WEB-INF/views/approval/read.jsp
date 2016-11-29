@@ -13,12 +13,12 @@
 $(function(){
 	var frm=$('form');
 	$('[name=accept]').click(function(){
-		frm.attr('action','');
+		frm.attr('action','/useful/approval/accept');
 		frm.attr('method','post');
 		frm.submit();
 	});
 	$('[name=reject]').click(function(){
-		frm.attr('action','');
+		frm.attr('action','/useful/approval/reject');
 		frm.attr('method','post');
 		frm.submit();
 	});
