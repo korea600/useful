@@ -1,3 +1,4 @@
+drop table tbl_commute;
 create table tbl_commute(
 serial number primary key,
 empno number not null,
@@ -6,7 +7,6 @@ logout date,
 checked varchar2(10)
 );
 
-drop table tbl_commute;
 create table tbl_commute(
 serial number primary key,
 empno number not null references tbl_emp(empno),
@@ -21,5 +21,8 @@ create sequence tbl_commute_seq
    nocycle
    nocache;
   
-  select * from tbl_commute;
+  select * from tbl_commute order by login;
+  select login
+		from tbl_commute
+		where empno='1002' and to_char(login,'yyyymmdd') = to_char(sysdate,'yyyymmdd');
   

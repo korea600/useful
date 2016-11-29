@@ -16,4 +16,6 @@
 	<update id="update">
 		update tbl_emp set regdate=sysdate where empno=#{empno}
 	</update>
+	
+	
 </mapper>

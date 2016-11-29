@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%-- Commute_In.jsp --%>
-<title>출근내역조회</title>
+<title>결재결과</title>
+<script type="text/javascript">
+	alert('처리완료')
+</script>
 </head>
 <body>
-	와우!! 등록되었나...?
+
 </body>
 </html>

@@ -19,5 +19,7 @@
     %>
     <h3> Encrypt 된 문자열을 Decrypt 한 결과 : <%= decryptcode %></h3>
     <hr>
+    <% response.sendRedirect("Mainview");%>
+    
 </body>
 </html>

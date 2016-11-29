@@ -39,6 +39,7 @@ public class DAOTest {
 //		dao.emp_delete(2000);
 //		
 		Map<String, Object> map = new HashMap<>();
+<<<<<<< HEAD
 //		map.put("deptno", 10);
 		map.put("startdate", "20161128");
 		map.put("enddate", "20161129");
@@ -48,6 +49,13 @@ public class DAOTest {
 //		
 //		System.out.println(dao.search_empno_fromEname("ÀÌ±æÀç"));
 //		System.out.println(dao.search_empnolist(10));
+=======
+		map.put("empno", 1002);
+
+		map.put("startdate", "20161128"); 
+
+		map.put("enddate", "20161128");
+>>>>>>> branch 'master' of https://github.com/korea600/useful.git
 		
 		
 //		System.out.println( dao.commute_emplist_deptno(map));
