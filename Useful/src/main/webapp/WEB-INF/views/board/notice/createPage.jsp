@@ -173,7 +173,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" method="post" action="createPage">
+                      <form role="form" method="post" action="createPage">
                                         <div class="form-group">
                                             <label>글 제목</label>
                                             <input class="form-control" type="text" id="title" placeholder="글 제목을 입력해주세요" name="title">
@@ -181,7 +181,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>글쓴이</label>
-                                            <input type="text" id="writer" class="form-control" placeholder="Enter text" name="writer">
+                                            <input type="text" id="writer" class="form-control" value="${LoginUser.ename }" name="writer" readonly="readonly">
                                         </div>
 										<div class="form-group">
                                             <label>글쓰기</label>
