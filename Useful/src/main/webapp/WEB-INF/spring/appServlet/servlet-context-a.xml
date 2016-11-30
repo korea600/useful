@@ -7,8 +7,6 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
 	<!-- Enables the Spring MVC @Controller programming model -->
 		<!-- @Rest 한글처리 -->
 	  <annotation-driven>
@@ -32,7 +30,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kr.co.useful" />
+
 	<context:component-scan base-package="kr.co.useful.controller" />
 	<context:component-scan base-package="kr.co.useful.meeting.controller" />
 	<context:component-scan base-package="kr.co.useful.schedule.controller" />
