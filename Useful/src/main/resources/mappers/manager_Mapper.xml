@@ -51,8 +51,8 @@
  
   
   <select id="commute_emplist_all" resultType="kr.co.useful.manager.domain.CommuteVO">
-  	select a.empno,a.ename,b.dname,a.login,a.logout,a.checked
-  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked
+  	select a.empno,a.ename,b.dname,a.login,a.logout,a.checked,a.serial
+  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked,cmt.serial
  		 	from tbl_emp emp,(select * from tbl_commute where login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) cmt
  		 	where emp.empno=cmt.empno) a, tbl_dept b
   	where a.deptno=b.deptno
@@ -60,8 +60,8 @@
   </select>
   
   <select id="commute_emplist_empno" resultType="kr.co.useful.manager.domain.CommuteVO">
-    select a.empno,a.ename,b.dname,a.login,a.logout,a.checked
-  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked
+    select a.empno,a.ename,b.dname,a.login,a.logout,a.checked,a.serial
+  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked,cmt.serial
  		 	from tbl_emp emp,(select * from tbl_commute where empno=#{empno} and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1 ) cmt
  		 	where emp.empno=cmt.empno) a, tbl_dept b
   	where a.deptno=b.deptno
@@ -69,8 +69,8 @@
   </select>
   
   <select id="commute_emplist_deptno" resultType="kr.co.useful.manager.domain.CommuteVO">
-    select a.empno,a.ename,b.dname,a.login,a.logout,a.checked
-  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked
+    select a.empno,a.ename,b.dname,a.login,a.logout,a.checked,a.serial
+  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked,cmt.serial
  		 	from tbl_emp emp,(select * from tbl_commute where empno in(select empno from tbl_emp where deptno=#{deptno})
  				and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) cmt
  		 	where emp.empno=cmt.empno) a, tbl_dept b
@@ -79,12 +79,22 @@
   </select>
   
   <select id="commute_emplist_ename" resultType="kr.co.useful.manager.domain.CommuteVO">
- 	select a.empno,a.ename,b.dname,a.login,a.logout,a.checked
-  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked
+ 	select a.empno,a.ename,b.dname,a.login,a.logout,a.checked,a.serial
+  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked,cmt.serial
  		 	from tbl_emp emp,( select * from tbl_commute where empno in(select empno from tbl_emp where ename=#{ename})
   				and login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) cmt
  		 	where emp.empno=cmt.empno) a, tbl_dept b
   	where a.deptno=b.deptno
   	order by a.empno
   </select>
+  
+  <update id="commute_update">
+  	update tbl_commute set login=to_date(#{login  },'YYYY-MM-DD HH24:MI:SS')
+  	<if test="logout != null">
+  		,logout=to_date(#{logout},'YYYY-MM-DD HH24:MI:SS')
+  	</if>
+  	,checked=#{checked} where serial=#{serial } 
+  </update>
+
+  
 </mapper>

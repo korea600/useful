@@ -65,19 +65,53 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 전자결재</a>
+                            <a href="index.html"><i class="fa fa-file-text fa-fw"></i> 전자결재 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/useful/approval/form">기안하기</a>
+                                </li>
+                                <li>
+                                    <a href="/useful/approval/liststatus">결재진행</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/approval/listdept">결재완료(수신)</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/approval/listmine">내 기안문서</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/approval/listmyturn">내 결재문서</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">급여관리</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">근태관리</a>
-                                </li>
-                                <li>
                                    <a href="/useful/manager/employee_List">사원정보관리</a>
+                                </li>
+                                <li>
+                                   <a href="#">근태관리<span class="fa arrow"></span></a>
+                                   <ul class="nav nav-second-level">
+                                   	 	<li>
+                                  			 <a href="/useful/manager/commute_Employee">사원별근태현황</a>
+                              			</li>
+                                   	 	<li>
+                                  			 <a href="/useful/manager/commute_Dept">부서별근태집계</a>
+                              			</li>
+                                   	 	<li>
+                                  			 <a href="/useful/manager/commute_Daily">일별근태현황</a>
+                              			</li>
+                                   	 	<li>
+                                  			 <a href="/useful/manager/commute_Monthly">월별근태현황</a>
+                              			</li>
+                                   </ul>
+                                </li>
+                                <li>
+                                    <a href="/useful/manager/salary_List">급여관리</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/manager/employee_List">연차관리</a>
                                 </li>
                                 <li>
                                    <a href="#">증명서관리</a>

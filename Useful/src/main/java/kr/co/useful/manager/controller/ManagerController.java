@@ -117,7 +117,7 @@ public class ManagerController {
 		}
 	}
 
-		
+
 
 	
 	@RequestMapping(value="/commute_Dept",method=RequestMethod.GET)
@@ -148,6 +148,8 @@ public class ManagerController {
 	public void commute_Print(){
 		
 	}
+	
+	
 	
 	
 }

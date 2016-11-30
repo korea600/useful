@@ -98,16 +98,33 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">급여관리</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">근태관리</a>
-                                </li>
-                                <li>
                                    <a href="/useful/manager/employee_List">사원정보관리</a>
+                                </li>
+                                <li>
+                                   <a href="#">근태관리<span class="fa arrow"></span></a>
+                                   <ul class="nav nav-second-level">
+                                   	 	<li>
+                                  			 <a href="/useful/manager/commute_Employee">사원별근태현황</a>
+                              			</li>
+                                   	 	<li>
+                                  			 <a href="/useful/manager/commute_Dept">부서별근태집계</a>
+                              			</li>
+                                   	 	<li>
+                                  			 <a href="/useful/manager/commute_Daily">일별근태현황</a>
+                              			</li>
+                                   	 	<li>
+                                  			 <a href="/useful/manager/commute_Monthly">월별근태현황</a>
+                              			</li>
+                                   </ul>
+                                </li>
+                                <li>
+                                    <a href="/useful/manager/salary_List">급여관리</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/manager/employee_List">연차관리</a>
                                 </li>
                                 <li>
                                    <a href="#">증명서관리</a>

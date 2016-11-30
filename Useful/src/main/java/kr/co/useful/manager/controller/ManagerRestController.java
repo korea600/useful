@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,8 @@ public class ManagerRestController {
 	@Inject
 	private ManagerDAO dao;
 	
+	@Inject
+	private ManagerService service;
 
 	@RequestMapping("/list")
 	public JsonObj list(
@@ -93,4 +97,12 @@ public class ManagerRestController {
 
 	        int totalPage = (int)Math.ceil(list.size()/Double.parseDouble(rows));
 	        obj.setTotal( totalPage ); 
-		return obj;}}
+		return obj;
+		}
+	
+	@RequestMapping("/commute_Update")
+	public String commute_Update(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+		service.commute_update(requestMap);
+		return "SUCCESS";
+		}
+	}

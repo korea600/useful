@@ -68,4 +68,9 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public List<CommuteVO> commute_emplist_ename(Map<String,Object> map) throws Exception {
 		return sqlSession.selectList("manager.commute_emplist_ename",map);
 	}
+	
+	@Override
+	public void commute_update(Map<String, Object> map) throws Exception {
+		sqlSession.update("manager.commute_update",map);
+	}
 }
