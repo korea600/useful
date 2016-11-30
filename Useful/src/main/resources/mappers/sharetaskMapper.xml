@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="sharetask">
+
+
+   <!-- 전체 -->
+	<select id="listAll" resultType="kr.co.useful.sharetask.domain.ShareTaskVO">
+		select bno, category, title, content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
+		from tbl_sharetask, tbl_emp
+		where tbl_sharetask.writer = tbl_emp.empno and
+		tbl_sharetask.deptno=#{deptno}
+		order by bno desc
+	</select>
+	
+
+	<!-- 하나읽기 -->
+	<select id="oneRead" resultType="kr.co.useful.sharetask.domain.ShareTaskVO">
+		select bno, category, title, content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt
+		from tbl_sharetask, tbl_emp
+		where tbl_sharetask.writer=tbl_emp.empno and bno=#{bno}
+	</select>
+
+	<!-- select bno, category, title, content, writer, regdate, viewcnt from 
+		tbl_sharetask where bno=#{bno} -->
+
+
+
+	<!-- 입력 -->
+	<insert id="create">
+		insert into tbl_sharetask (bno, category, title, content, writer, regdate, viewcnt, deptno) values
+		(tbl_sharetask_seq.nextval, #{category}, #{title}, #{content}, #{writer}, sysdate, 0, #{deptno})
+	</insert>
+
+
+
+	<!-- 수정 -->
+	<update id="update">
+		update tbl_sharetask set title=#{title}, category=#{category}, content=#{content}, regdate=sysdate
+		where bno=#{bno}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete from tbl_sharetask where bno=#{bno}
+	</delete>
+
+
+	<!-- 페이지 리스트 수 -->
+	<select id="shareListCount" resultType="int">
+		select count(*) from tbl_sharetask where deptno=#{deptno}
+	</select>
+
+
+      <!--  검색어 + 리스트  -->
+	<select id="listSearch" resultType="ShareTask">
+		select bno, category, title, content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
+		from tbl_sharetask, tbl_emp
+		where tbl_sharetask.writer = tbl_emp.empno and
+		tbl_sharetask.deptno=#{deptno}
+		<if test="searchType != null">
+			<if test="searchType == 'n'.toString()">and bno like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 't'.toString()">and title like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'w'.toString() ">and writer like '%'||#{keyword}||'%'</if>
+		</if>
+		order by bno desc
+	</select>
+
+
+	<!-- 검색 리스트 수 -->
+	<select id="listSearchCount" resultType="int">
+		select count(bno) from
+		tbl_sharetask
+	</select>
+
+
+	<!-- 이전글 -->
+	<select id="prevShare" resultType="ShareTask">
+		select bno, category, title,
+		content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
+		from tbl_sharetask, tbl_emp
+		where bno=(select max(bno) from tbl_sharetask where #{bno} > bno)
+	</select>
+
+
+	<!-- 다음글 -->
+	<select id="nextShare" resultType="ShareTask">
+        select bno, category, title,
+		content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
+		from tbl_sharetask, tbl_emp
+		where bno=(select min(bno) from tbl_sharetask where bno > #{bno})
+
+	</select>
+
+
+
+</mapper>

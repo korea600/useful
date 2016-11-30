@@ -5,5 +5,6 @@
 		<typeAlias type="kr.co.useful.organization.domain.OrganizationVO" alias="Organization"/>
 		<typeAlias type="kr.co.useful.approval.domain.ApprovalVO" alias="Approval"/>
 		<typeAlias type="kr.co.useful.approval.domain.ApprovalRestVO" alias="ApprovalRest"/>
+		 <typeAlias type="kr.co.useful.sharetask.domain.ShareTaskVO" alias="sharetask"/>
 	</typeAliases>
 </configuration>
