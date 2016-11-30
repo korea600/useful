@@ -24,18 +24,20 @@ public class ApprovalController {
 	@Inject
 	private ApprovalService service;
 	
+	// 특정 문서 조회
 	@RequestMapping(value="/read/{no}", method=RequestMethod.GET)
 	public String read(Model m,@PathVariable int no) throws Exception{
 		m.addAttribute("vo", service.select(no));
 		return "/approval/read";
 	}
 	
-
+	// 기안 작성폼 열기
 	@RequestMapping(value="/form", method=RequestMethod.GET)
 	public String form(){
 		return "/approval/form";
 	}
 	
+	// 작성된 기안 등록
 	@RequestMapping(value="/form", method=RequestMethod.POST)
 	public String insert(ApprovalVO vo) throws Exception{
 		int deptno=vo.getReceiver();
@@ -44,8 +46,23 @@ public class ApprovalController {
 		else
 			vo.setReceiver_dname("전체");			// 수신처 부서번호가 0이면 vo에 수신부서명을 전체로 지정
 		service.create(vo);
-		return "/approval/form";
+		return "/approval/complete";
 	}
+	
+	// 기안 수정폼 열기 (반려된 문서의 작성자가 열었을 때에 한함)
+	@RequestMapping(value="/modify",method=RequestMethod.GET)
+	public void modify(int no,Model m) throws Exception{
+		m.addAttribute("vo", service.select(no));
+	}
+	
+	// 기안 수정하기 (내용수정 + 문서상태를 '반려->진행'으로 변경)
+	@RequestMapping(value="/modify",method=RequestMethod.POST)
+	public String update(ApprovalVO vo,HttpSession session,Model m) throws Exception{
+		vo.setCurr_approval(((EmpVO)session.getAttribute("LoginUser")).getEmpno());
+		service.update(vo);
+		return "/approval/complete";
+	}
+
 	
 	/* 문서 리스트 조회
 	1. 결재완료이고 수신부서가 우리부서 또는 전체인것 조회 -> 세부내용조회
@@ -53,7 +70,6 @@ public class ApprovalController {
 	3. 내가 작성한 것 -> 반려된거는 수정기능
 	4. 내가 결재할 차례인것 -> 결재하기
 	 */
-
 	@RequestMapping("/listmine")	// 내가 작성한 문서 조회
 	public String listmine(HttpSession session, Model m) throws Exception{
 		ApprovalVO vo = new ApprovalVO();

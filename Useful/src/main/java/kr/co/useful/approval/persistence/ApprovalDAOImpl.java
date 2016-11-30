@@ -20,8 +20,8 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 		sqlSession.insert("approval.create",vo);
 	}
 
-	public void modify(ApprovalVO vo) throws Exception {
-		
+	public void update(ApprovalVO vo) throws Exception {
+		sqlSession.update("approval.update",vo);
 	}
 
 	public ApprovalVO select(int no) throws Exception {

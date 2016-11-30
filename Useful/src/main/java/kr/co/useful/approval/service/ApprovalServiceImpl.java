@@ -45,8 +45,22 @@ public class ApprovalServiceImpl implements ApprovalService{
 		return dao.getMyDeptno(empno);
 	}
 
-	public void modify(ApprovalVO vo) throws Exception {
-		
+	@Transactional
+	public void update(ApprovalVO vo) throws Exception {
+		// 다음 결재자가 있는지 확인
+		ApprovalRestVO restVO = new ApprovalRestVO(); 
+		restVO.setDeptno(vo.getReceiver());				
+		restVO.setEmpno(vo.getWriter());
+		if(restdao.getLine(restVO).size()>0){		// 다음 결재자가 있으면 다음 결재자로 직속상사 지정
+			vo.setNext_approval(dao.getManager(vo.getWriter()));
+			vo.setStatus("진행");
+		}
+		else{
+			vo.setNext_approval(vo.getWriter());	// 다음 결재자가 없으면 작성자가 다음 결재자가 됨
+			vo.setStatus("완료");
+		}
+		System.out.println(vo.toString());
+		dao.update(vo);
 	}
 
 	@Transactional
