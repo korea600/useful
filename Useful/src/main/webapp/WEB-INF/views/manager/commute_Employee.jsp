@@ -9,7 +9,9 @@
 <style type="text/css">
 th {
 	background-color: #CCC;
+	text-align: center;
 }
+
 
 </style>
  <link rel="stylesheet" type="text/css" media="screen"
@@ -150,10 +152,10 @@ function div_load(){
 <div id="page-wrapper">
 <p><br>
 <font size="5" style="font-style: inherit;">사원별 근태현황</font><br><hr>
-<table>
+<table style="border-color: black;">
 <tbody>
 	<tr>
-	<th style="height: 40px">검색기간</th>
+	<th style="height: 40px;width: 200px;	text-align: center;">검색기간</th>
 	<td>
 	<button id="btn_today" class="btn btn-default" >당일</button>
 	<button id="btn_week" class="btn btn-default" >1주일</button>
@@ -164,7 +166,7 @@ function div_load(){
 	</td>
 	</tr>
 	<tr>
-		<th>부서명</th>
+		<th style="	text-align: center;">부서명</th>
 			<td><select id="deptno" name="deptno" class="select" style="width: 200px;">
 						<option value="" selected="selected">-- 선택 --</option>
 						<option value="10">잘했조</option>
@@ -174,11 +176,11 @@ function div_load(){
 				</select></td>
 			</tr>
 	<tr>
-		<th>사원번호</th>
+		<th  style="	text-align: center;">사원번호</th>
 		<td><input type="text" id="empno"></td>
 	</tr>
 	<tr>
-		<th>사원명</th>
+		<th  style="	text-align: center;">사원명</th>
 		<td><input type="text" id="ename"></td>
 	</tr>
 </tbody>
@@ -212,21 +214,24 @@ function div_load(){
 			style="background-color: white; width: 50%; height: 60%; margin-left: 20%; margin-top: 10%;  border: 1px solid black;">
 
 			<br>
-			<table class="table" style="border-left: 10px;border-top: 10px;border-right: 10px;">
+			<table class="table" style="margin-left: 30px;margin-top: 10px;margin-right: 30px;width: 90%;">
 				<tr>
-					<td width="30%">부서명</td>
+				<td colspan="2" align="center">근태상태 변경페이지</td>
+				</tr>
+				<tr>
+					<th width="30%" align="center">부서명</th>
 					<td><div id="update_Dname"></div></td>
 				</tr>
 				<tr>
-					<td>사원명</td>
+					<th>사원명</th>
 					<td><div id="update_Ename"></div></td>
 				</tr>
 				<tr>
-					<td>출근일자</td>
+					<th>출근일자</th>
 					<td><input type="text" id="update_Login"></td>
 				</tr>
 				<tr>
-					<td>출근시간</td>
+					<th>출근시간</th>
 					<td>
 						<select id="update_Login_TimeHH"  class="select" style="width: 50px;">
 						<option value="" selected="selected">선택</option>
@@ -251,11 +256,11 @@ function div_load(){
 				</td>
 				</tr>
 				<tr>
-					<td>퇴근일자</td>
+					<th>퇴근일자</th>
 					<td><input type="text" id="update_Logout"></td>
 				</tr>
 				<tr>
-					<td>퇴근시간</td>
+					<th>퇴근시간</th>
 					<td>
 						<select id="update_Logout_TimeHH"  class="select" style="width: 50px;">
 						<option value="" selected="selected">-- 선택 --</option>
@@ -280,7 +285,7 @@ function div_load(){
 					</td>
 				</tr>
 				<tr>
-					<td>구분</td>
+					<th>구분</th>
 					<td><select id="update_Checked">
 					<option value="출근">출근</option>
 					<option value="지각">지각</option>

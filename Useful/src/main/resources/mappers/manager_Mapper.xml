@@ -96,5 +96,14 @@
   	,checked=#{checked} where serial=#{serial } 
   </update>
 
-  
+  <select id="commute_dept" resultType="kr.co.useful.manager.domain.CommuteVO">
+    select a.empno,a.ename,b.dname,a.login,a.logout,a.checked,a.serial
+  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked,cmt.serial
+ 		 	from tbl_emp emp,(select * from tbl_commute where empno in(select empno from tbl_emp 
+ 		 		<if test="deptno!=null">where deptno=#{deptno}</if> )
+ 				and login between to_date(#{login}, 'YYYYMM') and to_date(#{login}, 'YYYYMM')+1) cmt
+ 		 	where emp.empno=cmt.empno) a, tbl_dept b
+  	where a.deptno=b.deptno
+  	order by a.empno
+  </select>
 </mapper>
