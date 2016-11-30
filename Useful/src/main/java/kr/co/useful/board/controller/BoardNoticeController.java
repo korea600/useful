@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -18,6 +19,7 @@ import kr.co.useful.board.domain.PageMaker;
 import kr.co.useful.board.domain.ReplyVO;
 import kr.co.useful.board.domain.SearchCriteria;
 import kr.co.useful.board.service.NoticeService;
+import kr.co.useful.board.service.ReplyNoticeService;
 import kr.co.useful.board.service.ReplyService;
 
 @Controller
@@ -25,6 +27,9 @@ import kr.co.useful.board.service.ReplyService;
 public class BoardNoticeController {
 	@Inject
 	private NoticeService service;
+	@Inject 
+	private ReplyNoticeService reservice;
+
 
 	
 	@RequestMapping("/listPage")
@@ -48,7 +53,7 @@ public class BoardNoticeController {
 	}
 
 	@RequestMapping(value="/modifyPage",method=RequestMethod.GET) 
-	public void modifyPage(int serial,Model model)throws Exception{
+	public void modifyPage(int serial,Model model,@ModelAttribute("cri") SearchCriteria cri)throws Exception{
 		NoticeVO board=service.read(serial);
 		model.addAttribute("board", board);
 		
@@ -59,6 +64,8 @@ public class BoardNoticeController {
 		service.modify(vo);
 		attr.addFlashAttribute("page", cri.getPage());
 		attr.addFlashAttribute("perpageNum", cri.getPerPageNum());
+		attr.addAttribute("searchType", cri.getSearchType() );
+		attr.addAttribute("keyword", cri.getKeyword() );
 		return "redirect:/board/listPage";
 	}
 
@@ -70,12 +77,13 @@ public class BoardNoticeController {
 	@RequestMapping("/readPage")
 	public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 	NoticeVO board=service.read(serial);
+	List<ReplyVO> list=reservice.listAll(serial);
 	PageMaker pageMaker=new PageMaker();
 
 	pageMaker.setCri(cri);
 	pageMaker.calc();
 	model.addAttribute("maker", pageMaker);
-
+	model.addAttribute("list", list);
 	model.addAttribute("board", board);
 	model.addAttribute("cri", cri);
 	}

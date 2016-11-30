@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,11 +24,11 @@
 var flag=true;
 function modifyreply(){
 	alert("눌림");
-	/* var rno=$("#hi-input").val();
+	var rno=$("#hi-input").val();
 	var replytext=$("#btn-input2").val();
 	var serial=$("#serial").val();
 	var page=$("#page").val();
-	var perPagNum=$("#perPageNum").val();
+	var perPageNum=$("#perPageNum").val();
 	var keyword=$("#keyword").val();
 	var searchType=$("#searchType").val(); 
 	alert("rno="+rno)
@@ -51,7 +50,7 @@ function modifyreply(){
 				flag=true;
 			}
 		}
-	}) */
+	})
 
 	
 }
@@ -62,12 +61,12 @@ function modifyreply(){
 				$("#hi-input").val(name);
 				alert(name);
 				var str="<div class='input-group' id='input-group'"
-						+"style='height: 30px; width: 85%; size: 30; left: 10px; display: none;'>"
-						+"<input name='keyword' id='btn-input2' type='text'"
-						+"class='form-control input-sm' placeholder='댓글을 입력해주세요'"
-						+"style='height: 65px; ' /> <span class='input-group-btn'>"
+						+" style='height: 30px; width: 85%; size: 30; left: 10px; display: none;'>"
+						+"<input name='keyword' id='btn-input2' type='text' value=''"
+						+" class='form-control input-sm' placeholder='내용을 작성해주세요'"
+						+" style='height: 65px; ' /> <span class='input-group-btn'>"
 						+"<button type='button' class='btn btn-warning btn-sm' id='replybtn2' onclick=modifyreply()"
-						+"style='height: 65px; width: 100px;'><h3>입력</h3></button></span></div>";
+						+" style='height: 65px; width: 100px;'><h3>입력</h3></button></span></div>";
 			  $(this).parent().append(str);
 	          $("#input-group").show();
 			  flag=false;
@@ -125,26 +124,39 @@ function modifyreply(){
 				}
 			})
 		});
-		/* $("#modify").on("click",function(){
+		
+		$(document)
+		.ready(
+				function() {
+					var formsubmit = $("from[role='form']");
+					$("#backPage")
+							.on(
+									"click",
+									function() {
+										history
+												.back();
+									});
+				
+					  
+				});
+		
+		$("#remove").on("click",function(){
 			var replytext=$("#btn-input").val();
-			var serial=${board.serial };
+			var serial=$("#serial").val();
 			var page=$("#page").val();
 			var perPageNum=$("#perPageNum").val();
 			var keyword=$("#keyword").val();
 			var searchType=$("#searchType").val();
 			var rno=$("#rno").val();
-			var modifybutton=${"#modify-button"};
-			modifybutton.style.display="";
-			modifybutton.style("disply","");
 			$.ajax({
-				type:'get',
-				url:'/useful/reply/update',
-				dateType:'text',
+				type:'delete',
+				url:'/useful/reply/delete',
+				datetype:'text',
 				headers:{
 					"Content-Type":"application/json",
-					"X-HTTP-Method-Override":"get"
+					"X-HTTP-Method-Override":"delete"
 				},
-				data:JSON.stringify({rno:rno,serial:"${board.serial}"}),
+				data: JSON.stringify({serial:serial,rno:rno }),
 				success:function(result){
 					console.log("result:"+result);
 					if(result=='SUCCESS'){
@@ -152,8 +164,18 @@ function modifyreply(){
 						replytext.val("rno="+rno);
 					}
 				}
-			}) 
-		}); */
+			})
+		});
+		
+		$("#modifybt").on("click",function(){
+			var serial=$("#serial").val();
+			var page=$("#page").val();
+			var perPageNum=$("#perPageNum").val();
+			var keyword=$("#keyword").val();
+			var searchType=$("#searchType").val();
+			self.location="/useful/board/modifyPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+		});
+		
 });
 </script>
 								
@@ -199,9 +221,7 @@ function modifyreply(){
 										</div>
 										<div class="form-group">
 											<label>글쓰기</label>
-											<textarea id="content" class="form-control" rows="3"
-												placeholder="내용을 입력해주세요" value="${board.content }"
-												readonly="readonly" name="content"></textarea>
+											<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${board.content }</textarea>
 										</div>
 
 										<div class="form-group"></div>
@@ -209,14 +229,18 @@ function modifyreply(){
 										<input type="hidden" name="page" id="page"
 											value="${cri.page }"> <input type="hidden"
 											name="perPageNum" value="${cri.perPageNum }" id="perPageNum">
+											<core:if test="${board.writer==LoginUser.ename }">
 
-										<button type="submit" class="btn btn-default" id="submit">작성완료</button>
-
+										<button type="button" class="btn btn-default" id="modifybt" value="${board.serial }">수정하기</button>
+</core:if>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
+										<input type='hidden' name="page" value='${pageMaker.cri.page}'>
+                          <input type='hidden' name="perPageNum" value='${pageMaker.cri.perPageNum}'>
 									</form>
 
 
 								</div>
+								
 								<!-- /.col-lg-12 -->
 							</div>
 							<!-- /.row -->
@@ -250,12 +274,14 @@ function modifyreply(){
                          <h5>${list.replyid } :<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
                         </div><input type="hidden" id="rno" value="${list.rno }">
                         <div class="panel-body">
-                            <p>${list.replytext }</p>
+                            <p id="text">${list.replytext }</p>
                         </div>
+                        <core:if test="${board.writer==LoginUser.ename }">
                          <div class="panel-footer">
 <button type="button" class="btn btn-default" id="${list.rno }" name="modify">수정하기</button>
 <button type="button" class="btn btn-default" id="remove">삭제하기</button>
                         </div>
+                        </core:if>
                        
                       	
 										

@@ -55,6 +55,12 @@ public int getno(int rno) throws Exception {
 	// TODO Auto-generated method stub
 	return dao.getno(rno);
 }
+
+@Override
+public String idcheck(int empno) throws Exception {
+	// TODO Auto-generated method stub
+	return dao.idcheck(empno);
+}
 	
 
 }
