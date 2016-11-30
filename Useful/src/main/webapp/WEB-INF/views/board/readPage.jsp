@@ -7,26 +7,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../resources/vendor/jquery/jquery.js"></script>
-<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
+<script type="text/javascript" src="/useful/resources/vendor/jquery/jquery.js"></script>
+<link href="/useful/resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link href="../resources/vendor/metisMenu/metisMenu.min.css"
+<link href="/useful/resources/vendor/metisMenu/metisMenu.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet">
+<link href="/useful/resources/dist/css/sb-admin-2.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="../resources/vendor/font-awesome/css/font-awesome.min.css"
+<link href="/useful/resources/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-</head>
-
 <script type="text/javascript">
 var flag=true;
 function modifyreply(){
-	alert("눌림")
+	alert("눌림");
 	/* var rno=$("#hi-input").val();
 	var replytext=$("#btn-input2").val();
 	var serial=$("#serial").val();
@@ -57,126 +55,116 @@ function modifyreply(){
 
 	
 }
-								$(document).ready(function(){
-									$("[name=modify]").on("click",function(){
-										
-										if(flag){var name=$(this).attr("id");
-										$("#hi-input").val(name);
-										alert(name)
-										var str="<div class='input-group' id='input-group'"
-										+"style='height: 30px; width: 85%; size: 30; left: 10px; display: none;'>"
-										+"<input name='keyword' id='btn-input2' type='text'"
-										+"class='form-control input-sm' placeholder='댓글을 입력해주세요'"
-										+"style='height: 65px; ' /> <span class='input-group-btn'>"
-										+"<button type='button' class='btn btn-warning btn-sm' id='replybtn2' onclick=modifyreply()"
-										+"style='height: 65px; width: 100px;'><h3>입력</h3></button></span></div>";
-										  
-										  $(this).parent().append(str);
-										$("#input-group").show();
-										flag=false;
-										}
-										
-									});//댓글 수정버튼
-/* 									$("#replybtn2").on("click",function(){
-									});
- */									
-									$("#replybtn").on("click",function(){
-										var replytext=$("#btn-input").val();
-										var serial=$("#serial").val();
-										var page=$("#page").val();
-										var perPageNum=$("#perPageNum").val();
-										var keyword=$("#keyword").val();
-										var searchType=$("#searchType").val();
-										$.ajax({
-											type:'post',
-											url:'/useful/reply/create',
-											dataType:'text',
-											headers:{
-												"Content-Type":"application/json",
-												"X-HTTP-Method-Override":"POST"
-											},
-											data: JSON.stringify({serial:serial, replyid:"${LoginUser.empno}",replytext:replytext }),
-											
-											success:function(result){
-												console.log("result:"+result);
-												if(result=='SUCCESS'){
-													self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
-												
-													replytext.val("");
-												}
-											}
-										}) 
-										
-									});
-									$("#remove").on("click",function(){
-										var replytext=$("#btn-input").val();
-										var serial=$("#serial").val();
-										var page=$("#page").val();
-										var perPageNum=$("#perPageNum").val();
-										var keyword=$("#keyword").val();
-										var searchType=$("#searchType").val();
-										var rno=$("#rno").val();
-										$.ajax({
-											type:'delete',
-											url:'/useful/reply/delete',
-											datetype:'text',
-											headers:{
-												"Content-Type":"application/json",
-												"X-HTTP-Method-Override":"delete"
-											},
-											data: JSON.stringify({serial:serial,rno:rno }),
-											success:function(result){
-												console.log("result:"+result);
-												if(result=='SUCCESS'){
-													self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
-													
-													replytext.val("rno="+rno);
-												}
-											}
-										})
-									});
-									
-									/* $("#modify").on("click",function(){
-										var replytext=$("#btn-input").val();
-										var serial=${board.serial };
-										var page=$("#page").val();
-										var perPageNum=$("#perPageNum").val();
-										var keyword=$("#keyword").val();
-										var searchType=$("#searchType").val();
-										var rno=$("#rno").val();
-										var modifybutton=${"#modify-button"};
-										//modifybutton.style.display="";
-										modifybutton.style("disply","");
-										
-										$.ajax({
-											type:'get',
-											url:'/useful/reply/update',
-											dateType:'text',
-											headers:{
-												"Content-Type":"application/json",
-												"X-HTTP-Method-Override":"get"
-											},
-											data:JSON.stringify({rno:rno,serial:"${board.serial}"}),
-											success:function(result){
-												console.log("result:"+result);
-												if(result=='SUCCESS'){
-													self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
-													
-													replytext.val("rno="+rno);
-												}
-											}
-										}) 
-									}); */
-									
-								});
+	$(function(){
+		$("[name=modify]").on("click",function(){
+			if(flag){
+				var name=$(this).attr("id");
+				$("#hi-input").val(name);
+				alert(name);
+				var str="<div class='input-group' id='input-group'"
+						+"style='height: 30px; width: 85%; size: 30; left: 10px; display: none;'>"
+						+"<input name='keyword' id='btn-input2' type='text'"
+						+"class='form-control input-sm' placeholder='댓글을 입력해주세요'"
+						+"style='height: 65px; ' /> <span class='input-group-btn'>"
+						+"<button type='button' class='btn btn-warning btn-sm' id='replybtn2' onclick=modifyreply()"
+						+"style='height: 65px; width: 100px;'><h3>입력</h3></button></span></div>";
+			  $(this).parent().append(str);
+	          $("#input-group").show();
+			  flag=false;
+			}
+		});//댓글 수정버튼
+		/* $("#replybtn2").on("click",function(){}); */
+		$("#replybtn").on("click",function(){
+			var replytext=$("#btn-input").val();
+			var serial=$("#serial").val();
+			var page=$("#page").val();
+			var perPageNum=$("#perPageNum").val();
+			var keyword=$("#keyword").val();
+			var searchType=$("#searchType").val();
+			$.ajax({
+				type:'post',
+				url:'/useful/reply/create',
+				dataType:'text',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"POST"
+				},
+				data: JSON.stringify({serial:serial, replyid:"${LoginUser.empno}",replytext:replytext }),
+				success:function(result){
+					console.log("result:"+result);
+					if(result=='SUCCESS'){
+						self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+						replytext.val("");
+					}
+				}
+			}) 
+		});
+		$("#remove").on("click",function(){
+			var replytext=$("#btn-input").val();
+			var serial=$("#serial").val();
+			var page=$("#page").val();
+			var perPageNum=$("#perPageNum").val();
+			var keyword=$("#keyword").val();
+			var searchType=$("#searchType").val();
+			var rno=$("#rno").val();
+			$.ajax({
+				type:'delete',
+				url:'/useful/reply/delete',
+				datetype:'text',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"delete"
+				},
+				data: JSON.stringify({serial:serial,rno:rno }),
+				success:function(result){
+					console.log("result:"+result);
+					if(result=='SUCCESS'){
+						self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+						replytext.val("rno="+rno);
+					}
+				}
+			})
+		});
+		/* $("#modify").on("click",function(){
+			var replytext=$("#btn-input").val();
+			var serial=${board.serial };
+			var page=$("#page").val();
+			var perPageNum=$("#perPageNum").val();
+			var keyword=$("#keyword").val();
+			var searchType=$("#searchType").val();
+			var rno=$("#rno").val();
+			var modifybutton=${"#modify-button"};
+			modifybutton.style.display="";
+			modifybutton.style("disply","");
+			$.ajax({
+				type:'get',
+				url:'/useful/reply/update',
+				dateType:'text',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"get"
+				},
+				data:JSON.stringify({rno:rno,serial:"${board.serial}"}),
+				success:function(result){
+					console.log("result:"+result);
+					if(result=='SUCCESS'){
+						self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+						replytext.val("rno="+rno);
+					}
+				}
+			}) 
+		}); */
+});
+</script>
 								
-								</script>
-								
+<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
+</head>
+
+
 <body>
 
 
-<%@include file="../login/Main.jsp" %>
-<%@include file="../login/Sidebar.jsp" %>
 		<!-- /.navbar-static-side --> 
 
 		<div id="page-wrapper">
@@ -328,16 +316,16 @@ function modifyreply(){
 								<!-- /#wrapper -->
 
 								<!-- jQuery -->
-								<script src="../resources/vendor/jquery/jquery.min.js"></script>
+								<script src="/useful/resources/vendor/jquery/jquery.min.js"></script>
 
 								<!-- Bootstrap Core JavaScript -->
-								<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+								<script src="/useful/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 								<!-- Metis Menu Plugin JavaScript -->
-								<script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
+								<script src="/useful/resources/vendor/metisMenu/metisMenu.min.js"></script>
 
 								<!-- Custom Theme JavaScript -->
-								<script src="../resources/dist/js/sb-admin-2.js"></script>
+								<script src="/useful/resources/dist/js/sb-admin-2.js"></script>
 							
 								
 </body>
