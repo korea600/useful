@@ -12,6 +12,16 @@
 <script type="text/javascript">
 $(function(){
 	var frm=$('form');
+	$.ajax({
+		url:'/useful/approval/comment/count/'+${vo.no},
+		type:'POST',
+		success:function(result){
+			if(result>0){
+				window.open('/useful/approval/comment/list/'+${vo.no},'list','toolbar=no,location=no,status=no'
+						+'menubar=no,scrollbars=no,resizable=0,width=400,height=300,top=100,left=100');
+			}
+		}
+	})
 	$('[name=accept]').click(function(){
 		frm.attr('action','/useful/approval/accept');
 		frm.attr('method','post');

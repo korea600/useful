@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="approval_comment">
+	<!-- 코멘트 리스트 출력 -->
+	<select id='list' resultType="kr.co.useful.approval.domain.ApprovalCommentVO">
+		select writer_name, checked, comments, regdate from tbl_approval_comment where no=#{no} order by regdate
+	</select>
+	<!-- 코멘트 리스트 사이즈 출력 -->
+	<select id='listcount' resultType="int">
+		select count(*) from tbl_approval_comment where no=#{no}
+	</select>
+	<!-- 코멘트 입력 -->
+	<insert id='insert'>
+		insert into tbl_approval_comment
+		values (tbl_approval_comment_seq.nextval, #{no},#{writer},#{writer_name},#{checked},#{comments},sysdate)
+	</insert>
+</mapper>

@@ -8,9 +8,18 @@ public class ApprovalCommentVO {
 	private int writer;			// 코멘트 작성자 사번
 	private String writer_name;	// 코멘트 작성자 성명
 	private String comments;	// 코멘트 내용
+	private String checked;		// 코멘트 작성당시 상태 (결재/반려)
 	private Date regdate;		// 코멘트 작성시간
 	
 	public ApprovalCommentVO() {}
+	
+	public String getChecked() {
+		return checked;
+	}
+
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
 
 	public int getCno() {
 		return cno;
