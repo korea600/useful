@@ -48,6 +48,13 @@ public class CommuteDAOImpl implements CommuteDAO{
 		return sqlSession.selectOne("commute.select", empno);
 	}
 
+	@Override
+	public List<CommuteVO> commuteselect(int empno) throws Exception {
+		return sqlSession.selectList("commute.commuteselect", empno);
+	}
+
+	
+
 
 
 	

@@ -38,3 +38,4 @@ sign varchar2(20)           --결제이미지
 
 
 select * from tbl_emp;
+

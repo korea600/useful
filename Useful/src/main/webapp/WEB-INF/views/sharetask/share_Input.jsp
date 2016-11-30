@@ -69,7 +69,7 @@
 
 <body>
 	<center>
-		<form action="/sharetask/insert" method="post">
+		<form action="/useful/sharetask/insert" method="post">
 			<table border="1"
 				style="border-collapse: collapse; line-height: 30px;"
 				width="900px">

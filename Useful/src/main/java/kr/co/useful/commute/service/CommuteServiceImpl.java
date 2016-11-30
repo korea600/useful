@@ -33,6 +33,11 @@ public class CommuteServiceImpl implements CommuteService{
 		dao.update(empno);
 	}
 
+	@Override
+	public List<CommuteVO> commuteselect(int empno) throws Exception {
+		return dao.commuteselect(empno);
+	}
+
 
 
 	

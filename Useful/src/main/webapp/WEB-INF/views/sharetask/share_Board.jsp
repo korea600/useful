@@ -22,11 +22,11 @@
 			function() {
 
 				$('#newBtn').on("click", function(e) {
-					self.location = "Share_Input";
+					self.location = "share_Input";
 				});
 				
 				$('#searchBtn').on("click", function(e){
-					self.location = "Share_Board"
+					self.location = "share_Board"
 						+ '${pageMaker.makeQuery(1)}'
 						+ "&searchType="
 						+ $("select option:selected").val()
@@ -113,7 +113,7 @@
 
 							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 								<li	<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-									<a href="Share_Board?page=${idx}">${idx}</a>
+									<a href="share_Board?page=${idx}">${idx}</a>
 								</li>
 							</c:forEach>
 

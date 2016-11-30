@@ -11,4 +11,6 @@ public interface CommuteDAO {
 	public void update(int empno)throws Exception;
 	
 	public int select(int empno)throws Exception;
+	
+	public List<CommuteVO> commuteselect(int empno)throws Exception;
 }

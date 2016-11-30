@@ -16,4 +16,15 @@
 		from tbl_commute
 		where empno=#{empno} and to_char(login,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
 	</select>
+	
+	<select id="commuteselect" resultType="kr.co.useful.commute.domain.CommuteVO">
+		select dname, ename, login, logout, checked
+		from tbl_emp,tbl_dept
+		where empno=#{empno}
+		order by login
+	</select>
+	
+	
+	
+	
 </mapper>

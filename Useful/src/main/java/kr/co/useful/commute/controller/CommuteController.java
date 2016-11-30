@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.useful.commute.domain.CommuteVO;
@@ -43,9 +44,15 @@ public class CommuteController {
 		service.update(empno);
 	}
 	
-	@RequestMapping("/Login_Commute")
-	public void commute(){
+	@RequestMapping(value="/Login_Commute",method=RequestMethod.GET)
+	public void commuteForm(){
 		 
+	}
+	
+	@RequestMapping(value="/Login_Commute",method=RequestMethod.POST)
+	public void commute(@RequestParam int empno, Model m)throws Exception{
+		
+		m.addAttribute("commute",service.commuteselect(empno));
 	}
 	
 }
