@@ -53,7 +53,7 @@
 
 
       <!--  검색어 + 리스트  -->
-	<select id="listSearch" resultType="ShareTask">
+	<select id="listSearch" resultType="shareTask">
 		select bno, category, title, content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
 		from tbl_sharetask, tbl_emp
 		where tbl_sharetask.writer = tbl_emp.empno and
@@ -75,19 +75,21 @@
 
 
 	<!-- 이전글 -->
-	<select id="prevShare" resultType="ShareTask">
-		select bno, category, title,
-		content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
+	<select id="prevShare" resultType="shareTask">
+		select bno, category, title, content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
 		from tbl_sharetask, tbl_emp
-		where bno=(select max(bno) from tbl_sharetask where #{bno} > bno)
+		where tbl_sharetask.writer=tbl_emp.empno 
+		      and tbl_sharetask.deptno=#{deptno}
+		      and bno=(select max(bno) from tbl_sharetask where #{bno} > bno)
 	</select>
 
 
 	<!-- 다음글 -->
-	<select id="nextShare" resultType="ShareTask">
-        select bno, category, title,
-		content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
+	<select id="nextShare" resultType="shareTask">
+        select bno, category, title, content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
 		from tbl_sharetask, tbl_emp
+		where tbl_sharetask.writer=tbl_emp.empno 
+		      and tbl_sharetask.deptno=#{depto}
 		where bno=(select min(bno) from tbl_sharetask where bno > #{bno})
 
 	</select>
