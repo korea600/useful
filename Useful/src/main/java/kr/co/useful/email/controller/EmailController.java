@@ -15,12 +15,15 @@ public class EmailController {
      
     @RequestMapping("/send")
     public String sendEmailAction () throws Exception {
- 
+    	
         Email email = new Email();
-         
+        
+        int num = EmailSender.generateNumber(6);
+        
         String reciver = "boxer1992@naver.com"; //받을사람의 이메일입니다.
         String subject = "임시 비밀번호입니다.";
-        String content = "임시 비밀번호는 12345입니다.";
+        String content = "임시 비밀번호는" + num + "입니다.";
+      
          
         email.setReciver(reciver);
         email.setSubject(subject);
