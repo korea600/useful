@@ -103,7 +103,7 @@
  		 		<if test="deptno!=null">where deptno=#{deptno}</if> )
  				and login between to_date(#{login}, 'YYYYMM') and to_date(#{login}, 'YYYYMM')+1) cmt
  		 	where emp.empno=cmt.empno) a, tbl_dept b
-  	where a.deptno=b.deptno
+  	where a.deptno=b.deptno 
   	order by a.empno
   </select>
 </mapper>
