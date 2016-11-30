@@ -5,7 +5,7 @@ import java.util.List;
 import kr.co.useful.board.domain.Criteria;
 import kr.co.useful.board.domain.ReplyVO;
 
-public interface RelyNoticeDAO {
+public interface ReplyAnonymityDAO {
 	public List<ReplyVO> listAll(int serial)throws Exception;
 	public List<ReplyVO> listPage(int serial,Criteria cri)throws Exception;
 	public int count(int serial)throws Exception;

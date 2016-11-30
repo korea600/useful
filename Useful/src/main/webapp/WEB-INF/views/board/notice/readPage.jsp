@@ -25,7 +25,7 @@
 	<script type="text/javascript">
 var flag=true;
 function modifyreply(){
-	alert("눌림");
+	//alert("눌림");
 	var rno=$("#hi-input").val();
 	var replytext=$("#btn-input2").val();
 	var serial=$("#serial").val();
@@ -33,7 +33,7 @@ function modifyreply(){
 	var perPageNum=$("#perPageNum").val();
 	var keyword=$("#keyword").val();
 	var searchType=$("#searchType").val(); 
-	alert("rno="+rno)
+	//alert("rno="+rno)
 	 $.ajax({
 		type:'post',
 		url:'/useful/reply/notice/update',
@@ -61,7 +61,7 @@ function modifyreply(){
 			if(flag){
 				var name=$(this).attr("id");
 				$("#hi-input").val(name);
-				alert(name);
+				//alert(name);
 				var str="<div class='input-group' id='input-group'"
 						+" style='height: 30px; width: 85%; size: 30; left: 10px; display: none;'>"
 						+"<input name='keyword' id='btn-input2' type='text' value=''"
