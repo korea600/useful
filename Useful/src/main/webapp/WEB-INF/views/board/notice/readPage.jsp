@@ -21,6 +21,129 @@
 <!-- Custom Fonts -->
 <link href="../../resources/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
+	
+	<script type="text/javascript">
+var flag=true;
+function modifyreply(){
+	alert("눌림");
+	var rno=$("#hi-input").val();
+	var replytext=$("#btn-input2").val();
+	var serial=$("#serial").val();
+	var page=$("#page").val();
+	var perPageNum=$("#perPageNum").val();
+	var keyword=$("#keyword").val();
+	var searchType=$("#searchType").val(); 
+	alert("rno="+rno)
+	 $.ajax({
+		type:'post',
+		url:'/useful/reply/notice/update',
+		dataType:'text',
+		headers:{
+			"Content-Type":"application/json",
+			"X-HTTP-Method-Override":"POST"
+		},
+		data:JSON.stringify({replytext:replytext,rno:rno,serial:serial}),
+		success:function(result){
+			console.log("result:"+result);
+			if(result=='SUCCESS'){
+				self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+			
+				$(this).hide();
+				flag=true;
+			}
+		}
+	})
+
+	
+}
+	$(function(){
+		$("[name=modify]").on("click",function(){
+			if(flag){
+				var name=$(this).attr("id");
+				$("#hi-input").val(name);
+				alert(name);
+				var str="<div class='input-group' id='input-group'"
+						+" style='height: 30px; width: 85%; size: 30; left: 10px; display: none;'>"
+						+"<input name='keyword' id='btn-input2' type='text' value=''"
+						+" class='form-control input-sm' placeholder='내용을 작성해주세요'"
+						+" style='height: 65px; ' /> <span class='input-group-btn'>"
+						+"<button type='button' class='btn btn-warning btn-sm' id='replybtn2' onclick=modifyreply()"
+						+" style='height: 65px; width: 100px;'><h3>입력</h3></button></span></div>";
+			  $(this).parent().append(str);
+	          $("#input-group").show();
+			  flag=false;
+			}
+		});//댓글 수정버튼
+		/* $("#replybtn2").on("click",function(){}); */
+		$("#replybtn").on("click",function(){
+			var replytext=$("#btn-input").val();
+			var serial=$("#serial").val();
+			var page=$("#page").val();
+			var perPageNum=$("#perPageNum").val();
+			var keyword=$("#keyword").val();
+			var searchType=$("#searchType").val();
+			$.ajax({
+				type:'post',
+				url:'/useful/reply/notice/create',
+				dataType:'text',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"POST"
+				},
+				data: JSON.stringify({serial:serial, replyid:"${LoginUser.empno}",replytext:replytext }),
+				success:function(result){
+					console.log("result:"+result);
+					if(result=='SUCCESS'){
+						self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+						replytext.val("");
+					}
+				}
+			}) 
+		});
+		$("#remove").on("click",function(){
+			var replytext=$("#btn-input").val();
+			var serial=$("#serial").val();
+			var page=$("#page").val();
+			var perPageNum=$("#perPageNum").val();
+			var keyword=$("#keyword").val();
+			var searchType=$("#searchType").val();
+			var rno=$("#rno").val();
+			$.ajax({
+				type:'delete',
+				url:'/useful/reply/notice/delete',
+				datetype:'text',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"delete"
+				},
+				data: JSON.stringify({serial:serial,rno:rno }),
+				success:function(result){
+					console.log("result:"+result);
+					if(result=='SUCCESS'){
+						self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+						replytext.val("rno="+rno);
+					}
+				}
+			})
+		});
+		
+		$(document)
+		.ready(
+				function() {
+					var formsubmit = $("from[role='form']");
+					$("#backPage")
+							.on(
+									"click",
+									function() {
+										history
+												.back();
+									});
+				
+					  
+				});
+		
+});
+</script>
 </head>
 <body>
 <body>
@@ -68,8 +191,8 @@
 										<div class="form-group"></div>
 
 										<input type="hidden" name="page"
-											value="${pageMaker.cri.page }"> <input type="hidden"
-											name="perPageNum" value="${pageMaker.cri.perPageNum }">
+											value="${cri.page }"> <input type="hidden"
+											name="perPageNum" value="${cri.perPageNum }">
 
 										<button type="submit" class="btn btn-default" id="submit">작성완료</button>
 
@@ -113,15 +236,18 @@
                         <div class="panel-body">
                             <p>${list.replytext }</p>
                         </div>
-                        <!-- div class="panel-footer">
-                            버튼추가할지 아직몰라서 남김
-                            
-                        </div> -->
+                    <core:if test="${board.writer==LoginUser.ename }">
+                         <div class="panel-footer">
+<button type="button" class="btn btn-default" id="${list.rno }" name="modify">수정하기</button>
+<button type="button" class="btn btn-default" id="remove">삭제하기</button>
+                        </div>
+                         </core:if>
                     </div>
                 </div>
                 
 										</core:forEach>
 										</table>
+										<input type="hidden" id="hi-input" >
 										<!-- 댓글목록 -->
 
 
@@ -178,55 +304,7 @@
 								<!-- Custom Theme JavaScript -->
 								<script src="../resources/dist/js/sb-admin-2.js"></script>
 								<!-- 게시물 버튼 설정 -->
-								<script>
-									$(document)
-											.ready(
-													function() {
-														var formsubmit = $("from[role='form']");
-														/* $("#submit").on("click",function(event){
-															event.preventDefault();
-															formsubmit.submit;
-														}); */
-														$("#backPage")
-																.on(
-																		"click",
-																		function() {
-																			history
-																					.back();
-																		});
-														/*   	$("#reset").on("click",function(event){
-														  		event.preventDefault();
-														  		formsubmit.reset;
-														  	}); */
-														  
-													});
-								</script>
-								<script type="text/javascript">
-								$(document).ready(function(){
-									$("#replybtn").on("click",function(){
-										var replytext=$("#btn-input").val();
-										var page=${".page"}
-										var perPageNum=${".perPageNum"}
-										var serial=${board.serial }
-										
-										
-										$.ajax({
-											type:'post',
-											url:'/useful/board/replycreatePage'+replytext,
-											dataType:'text',
-											success:function(result){
-												console.log("result:"+result);
-												if(result=='success'){
-													alert("등록완료");
-													getPage("/useful/board/readPage?page="+page+"&perPageNum="+perPageNum+"&serial="+serial+")";
-												}
-											}
-										})
-										
-									});
-									
-								});
-								</script>
+							
 </body>
 </body>
 </html>
