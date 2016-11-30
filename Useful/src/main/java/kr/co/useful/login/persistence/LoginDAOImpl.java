@@ -39,4 +39,13 @@ public class LoginDAOImpl implements LoginDAO {
 		return sqlSession.update("login.update",empno);
 	}
 
+	@Override
+	public EmpVO selectAll(EmpVO vo) throws Exception {
+		return sqlSession.selectOne("login.selectAll",vo);
+	}
+
+	
+
+	
+
 }

@@ -9,8 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.useful.login.service.LoginService;
 import kr.co.useful.manager.domain.EmpVO;
@@ -70,8 +74,18 @@ public class LoginController {
 	
 	//로그인 폼에서 비밀번호 찾기 눌렀을 때 폼
 	@RequestMapping("/Search_Pass")
-	public void searchPass(){
+	public void searchPass()throws Exception{
 		
+	}
+
+	//비밀번호 찾기 폼에서 사번과 이메일주소에 해당하는 레코드가 있는지 확인
+	@RequestMapping(value="/check",method=RequestMethod.POST)
+	public @ResponseBody String check(EmpVO vo)throws Exception{
+
+		if(service.selectAll(vo)!=null)
+			return "SUCCESS";
+		else
+			return "FAIL";
 	}
 	
 	//초기 로그인 성공시 비밀번호 변경폼

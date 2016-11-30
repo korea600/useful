@@ -17,5 +17,10 @@
 		update tbl_emp set regdate=sysdate where empno=#{empno}
 	</update>
 	
+	<select id="selectAll" resultType="kr.co.useful.manager.domain.EmpVO">
+		select *
+		from tbl_emp
+		where empno=#{empno} and ename=#{ename} and email=#{email}
+	</select>
 	
 </mapper>

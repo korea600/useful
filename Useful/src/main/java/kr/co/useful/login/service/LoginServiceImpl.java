@@ -31,4 +31,11 @@ public class LoginServiceImpl implements LoginService{
 		return dao.update(empno);
 	}
 
+	@Override
+	public EmpVO selectAll(EmpVO vo) throws Exception {
+		return dao.selectAll(vo);
+	}
+
+	
+
 }

@@ -19,6 +19,46 @@
     <link href="../resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
+
+	function Infocheck(){
+
+		if($.trim($("#empnoinput").val()) == ""){
+			alert("사원번호를 입력해 주세요.");
+			$("#empnoinput").focus();
+		}else if($.trim($("#nameinput").val()) == ""){
+			alert("이름를 입력해 주세요.");
+			$("#nameinput").focus();
+		}else if($.trim($("#emailinput").val()) == ""){
+			alert("이메일을 입력해 주세요.");
+			$("#emailinput").focus();
+		}
+		
+		$.ajax({
+			type:'post',
+			async:true,
+			url:'/useful/login/check',
+			data:{
+				empno : $("#empnoinput").val(),
+				ename : $("#nameinput").val(),
+				email : $("#emailinput").val()
+			},
+			success:function(result){
+				if(result=='SUCCESS'){
+					location.href="/useful/email/send";
+				}else if(result=='FAIL'){
+					alert("입력하신 정보가 일치하지 않습니다.");
+					$("#empnoinput").val("");
+					$("#nameinput").val("");
+					$("#emailinput").val("");
+					$("#empnoinput").focus();
+					
+				}
+			}
+			
+		});
+		
+	}
+
 	function cancel(){
 			location.href="/useful/login/Login";
 		}
@@ -49,7 +89,7 @@
                 <div class="login-panel panel panel-default">
                
                     <div class="panel-body">
-                        <form name="form" id="form" action="/useful/email/send" method="post">
+                        <form name="frm" id="frm" method="post" action="/useful/email/send"> 
                         	<div>
                         		<input type="hidden" name="empno" value="${LoginUser.empno }">
                         	</div>
@@ -57,7 +97,7 @@
                       			  	<h3 class="panel-title" align="center">비밀번호 찾기</h3>
                    				 </div>
                                 <div class="form-group" >
-                                   <b>사원번호 : </b><input class="form-control"  name="empno" type="text" id="empnoinput">
+                                   <b>사원번호 : </b><input class="form-control"  name="emp" type="text" id="empnoinput">
                                 </div>
                                 <div class="form-group" >
                                    <b>이름 : </b><input class="form-control"  name="name" type="text" id="nameinput">
@@ -69,7 +109,7 @@
                                 
                                 <!-- Change this to a button or input when using this as a form -->
                                 <div align="center">
-                                <button type="submit" id="btn">확인</button>
+                                <button type="button" id="btn" onclick="Infocheck()">확인</button>
                                 <button type="reset" id="btn_cancel" onclick="cancel()">취소</button>
                                 
                                 </div>

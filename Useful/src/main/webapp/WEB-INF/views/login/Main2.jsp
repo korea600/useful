@@ -181,8 +181,8 @@
                                 </li>
                             </ul>
                         </li>
-                       <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                    <a href="/useful/manager/employee_List">사원정보관리</a>
@@ -204,6 +204,18 @@
                               			</li>
                                    </ul>
                                 </li>
+                                <li>
+                                    <a href="/useful/manager/salary_List">급여관리</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/manager/employee_List">연차관리</a>
+                                </li>
+                                <li>
+                                   <a href="#">증명서관리</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                         <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> 게시판<span class="fa arrow"></span></a>
                            <ul class="nav nav-second-level">

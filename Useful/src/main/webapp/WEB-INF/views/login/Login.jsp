@@ -29,7 +29,7 @@
 <script type="text/javascript">
 	function checkLogin(){
 		if($.trim($("#empnoinput").val()) == ""){
-			alert("아이디를 입력해 주세요.");
+			alert("사원번호를 입력해 주세요.");
 			$("#empnoinput").focus();
 			return;
 		}
