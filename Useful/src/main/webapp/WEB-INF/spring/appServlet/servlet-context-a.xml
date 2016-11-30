@@ -32,8 +32,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kr.co.useful" />
-	<context:component-scan base-package="kr.co.useful.controller" />
+	
 	<context:component-scan base-package="kr.co.useful.meeting.controller" />
 	<context:component-scan base-package="kr.co.useful.schedule.controller" />
 	<context:component-scan base-package="kr.co.useful.sharetask.controller" />
