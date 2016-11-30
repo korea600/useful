@@ -16,12 +16,12 @@
     </select>
     <!-- 게시물 업데이트 -->
     <update id="update">
-    UPDATE TBL_NOTICE SET TITLE=#{title},WRITER=#{writer},CONTENT=#{content} FROM TBL_NOTICE
+    UPDATE TBL_NOTICE SET TITLE=#{title},CONTENT=#{content} WHERE SERIAL=#{serial}
     </update>
     <!-- 게시물등록 -->
     <insert id="insert">
-    INSERT INTO TBL_NOTICE(SERIAL,TITLE,WRITER,CONTENT,RAGDATE) 
-    VALUES(tbl_notice_seq.nextval,#{title},#{writer},#{content},sysdate)
+    INSERT INTO TBL_NOTICE(SERIAL,TITLE,WRITER,CONTENT) 
+    VALUES(tbl_notice_seq.nextval,#{title},#{writer},#{content})
     </insert>
     
     <!-- 게시물 삭제 -->

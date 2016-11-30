@@ -141,15 +141,22 @@ function modifyreply(){
 				
 					  
 				});
+		$("#modifybt").on("click",function(){
+			var serial=$("#serial").val();
+			var page=$("#page").val();
+			var perPageNum=$("#perPageNum").val();
+			var keyword=$("#keyword").val();
+			var searchType=$("#searchType").val();
+			self.location="/useful/board/notice/modifyPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+		});
 		
 });
 </script>
 </head>
 <body>
-<body>
 
-	<%@include file="../../login/Main.jsp" %>
-<%@include file="../../login/Sidebar.jsp" %>
+
+		<!-- /.navbar-static-side --> 
 
 		<div id="page-wrapper">
 			<div class="row">
@@ -168,9 +175,9 @@ function modifyreply(){
 								<div class="col-lg-6">
 									<form role="form" method="post" action="createPage">
 										<div class="form-group">
-											<input type="hidden" name="serial" value="${board.serial }">
-											<input type="hidden" name="searchType"
-												value="${cri.searchType }"> <input type="hidden"
+											<input type="hidden" id="serial" name="serial" value="${board.serial }">
+											<input type="hidden" id="searchType" name="searchType"
+												value="${cri.searchType }"> <input type="hidden" id="keyword"
 												name="keyword" value="${cri.keyword }"> <label>글
 												제목</label> <input class="form-control" type="text" id="title"
 												name="title" readonly="readonly" value="${board.title }">
@@ -183,24 +190,26 @@ function modifyreply(){
 										</div>
 										<div class="form-group">
 											<label>글쓰기</label>
-											<textarea id="content" class="form-control" rows="3"
-												placeholder="내용을 입력해주세요" value="${board.content }"
-												readonly="readonly" name="content"></textarea>
+											<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${board.content }</textarea>
 										</div>
 
 										<div class="form-group"></div>
 
-										<input type="hidden" name="page"
+										<input type="hidden" name="page" id="page"
 											value="${cri.page }"> <input type="hidden"
-											name="perPageNum" value="${cri.perPageNum }">
+											name="perPageNum" value="${cri.perPageNum }" id="perPageNum">
+											<core:if test="${board.writer==LoginUser.ename }">
 
-										<button type="submit" class="btn btn-default" id="submit">작성완료</button>
-
+										<button type="button" class="btn btn-default" id="modifybt" value="${board.serial }">수정하기</button>
+</core:if>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
+										<input type='hidden' name="page" value='${pageMaker.cri.page}'>
+                          <input type='hidden' name="perPageNum" value='${pageMaker.cri.perPageNum}'>
 									</form>
 
 
 								</div>
+								
 								<!-- /.col-lg-12 -->
 							</div>
 							<!-- /.row -->
@@ -232,22 +241,30 @@ function modifyreply(){
                     <div class="panel panel-info">
                         <div class="panel-heading">
                          <h5>${list.replyid } :<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
-                        </div>
+                        </div><input type="hidden" id="rno" value="${list.rno }">
                         <div class="panel-body">
-                            <p>${list.replytext }</p>
+                            <p id="text">${list.replytext }</p>
                         </div>
-                    <core:if test="${board.writer==LoginUser.ename }">
+                        <core:if test="${board.writer==LoginUser.ename }">
                          <div class="panel-footer">
 <button type="button" class="btn btn-default" id="${list.rno }" name="modify">수정하기</button>
 <button type="button" class="btn btn-default" id="remove">삭제하기</button>
                         </div>
-                         </core:if>
+                        </core:if>
+                       
+                      	
+										
+                        
                     </div>
+                    
+                    
                 </div>
                 
+                
 										</core:forEach>
+										
 										</table>
-										<input type="hidden" id="hi-input" >
+										 <input type="hidden" id="hi-input" >
 										<!-- 댓글목록 -->
 
 
@@ -259,7 +276,7 @@ function modifyreply(){
 											<input name="keyword" id="btn-input" type="text"
 												class="form-control input-sm" placeholder="댓글을 입력해주세요"
 												style="height: 65px; " /> <span class="input-group-btn">
-												<button type="submit" class="btn btn-warning btn-sm" id="replybtn"
+												<button type="button" class="btn btn-warning btn-sm" id="replybtn"
 													style="height: 65px; width: 100px;">
 													<h3>입력</h3>
 												</button>
@@ -288,23 +305,24 @@ function modifyreply(){
 
 								</div>
 							</div>
+							
 
 
 								<!-- /#wrapper -->
 
 								<!-- jQuery -->
-								<script src="../resources/vendor/jquery/jquery.min.js"></script>
+								<script src="/useful/resources/vendor/jquery/jquery.min.js"></script>
 
 								<!-- Bootstrap Core JavaScript -->
-								<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+								<script src="/useful/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 								<!-- Metis Menu Plugin JavaScript -->
-								<script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
+								<script src="/useful/resources/vendor/metisMenu/metisMenu.min.js"></script>
 
 								<!-- Custom Theme JavaScript -->
-								<script src="../resources/dist/js/sb-admin-2.js"></script>
-								<!-- 게시물 버튼 설정 -->
+								<script src="/useful/resources/dist/js/sb-admin-2.js"></script>
 							
+								
 </body>
 </body>
 </html>
