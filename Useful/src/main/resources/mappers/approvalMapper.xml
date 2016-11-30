@@ -13,6 +13,10 @@
 		set status=#{status},title=#{title}, content=#{content},curr_approval=#{curr_approval},next_approval=#{next_approval}
 		where no=#{no} 
 	</update>
+	<!-- 반려문서 삭제하기 -->
+	<delete id='delete'>
+		delete from tbl_approval where no=#{no}
+	</delete>
 	<!-- 문서리스트조회 (동적SQL)-->
 	<select id="list" resultType="Approval">
 		select no, status, writer_name, receiver_dname, title,regdate

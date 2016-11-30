@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class ApprovalController {
 	
 	// 특정 문서 조회
 	@RequestMapping(value="/read/{no}", method=RequestMethod.GET)
-	public String read(Model m,@PathVariable int no) throws Exception{
+	public String read(HttpServletRequest request,Model m,@PathVariable int no) throws Exception{
 		m.addAttribute("vo", service.select(no));
 		return "/approval/read";
 	}
@@ -63,6 +64,12 @@ public class ApprovalController {
 		return "/approval/complete";
 	}
 
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String delete(ApprovalVO vo) throws Exception{
+		int no=vo.getNo();
+		service.delete(no);
+		return "/approval/complete";
+	}
 	
 	/* 문서 리스트 조회
 	1. 결재완료이고 수신부서가 우리부서 또는 전체인것 조회 -> 세부내용조회

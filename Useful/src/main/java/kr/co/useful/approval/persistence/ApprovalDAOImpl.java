@@ -57,5 +57,10 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 		return sqlSession.selectOne("approval.getdname",deptno);
 	}
 
+	public void delete(int no) throws Exception {
+		sqlSession.delete("approval.delete",no);
+		
+	}
+
 
 }

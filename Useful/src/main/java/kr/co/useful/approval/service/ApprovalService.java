@@ -9,6 +9,7 @@ import kr.co.useful.approval.domain.ApprovalVO;
 public interface ApprovalService {
 	public void create(ApprovalVO vo) throws Exception;						// 결재문서 등록
 	public void update(ApprovalVO vo) throws Exception;						// 수정하기 (반려된 문서)
+	public void delete(int no) throws Exception;						// 수정하기 (반려된 문서)
 	public ApprovalVO select(int no) throws Exception;						// 특정문서 조회
 	public List<ApprovalVO> list(ApprovalVO vo)throws Exception;			// 조건에 따른 문서 리스트 조회
 	public List<ApprovalVO> listStatus(Map<String, Object> map)
