@@ -10,7 +10,7 @@ private String writer;
 private String content;
 private Date regdate;
 private int viewcnt;
-public BoardVO() {
+/*public BoardVO() {
 	// TODO Auto-generated constructor stub
 }
 
@@ -22,7 +22,7 @@ public BoardVO(int serial, String title, String writer, String content, Date reg
 	this.content = content;
 	this.regdate = regdate;
 	this.viewcnt = viewcnt;
-}
+}*/
 
 public int getSerial() {
 	return serial;

@@ -4,7 +4,7 @@ title varchar2(50) not null, --글제목
 writer varchar2(30) not null, --글쓴이
 content varchar2(2000) not null, --내용
 regdate date default sysdate not null, --작성일자
-viewcnt number --조회수
+viewcnt number default 0 --조회수
 );
 
 drop table tbl_board;
@@ -26,7 +26,7 @@ create sequence tbl_board_seq
    select viewcnt from tbl_board where serial=3;
    update tbl_board set viewcnt=viewcnt+1
 where serial=3;
-   
+   alter table tbl_board modify (viewcnt number default 0);
    insert into tbl_board (serial,title,writer,content,regdate) values (tbl_board_seq.nextval,'테스트','테스트','테스트',sysdate);
    insert into tbl_board (serial,title,writer,content,regdate) values (tbl_board_seq.nextval,'테스트','테스트','테스트',sysdate);
    insert into tbl_board (serial,title,writer,content,regdate) values (tbl_board_seq.nextval,'테스트','테스트','테스트',sysdate);

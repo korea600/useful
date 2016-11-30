@@ -25,7 +25,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">게시판 작성 하기</h1>
+                    <h1 class="page-header">게시글 수정</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -39,19 +39,20 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" method="post" action="createPage">
+                                    <form role="form" method="post" action="modifyPage">
+                                    	
                                         <div class="form-group">
                                             <label>글 제목</label>
-                                            <input class="form-control" type="text" id="title" placeholder="글 제목을 입력해주세요" name="title">
-                                            
+                                            <input class="form-control" type="text" id="title" name="title" value="${board.title }"></input>
+                                            <input type='hidden' name="serial" value=${board.serial }>
                                         </div>
                                         <div class="form-group">
                                             <label>글쓴이</label>
-                                            <input type="text" id="writer" class="form-control" value="${LoginUser.ename }" name="writer" readonly="readonly">
+                                            <input type="text" id="writer" class="form-control" name="writer" value="${board.writer }" readonly="readonly"></input>
                                         </div>
 										<div class="form-group">
-                                            <label>글쓰기</label>
-                                            <textarea id="content" class="form-control" rows="3" placeholder="내용을 입력해주세요" name="content"></textarea>
+                                            <label>글내용</label>
+                                            <textarea id="content" class="form-control" rows="3" name="content">${board.content }</textarea>
                                         </div>
 
                                         <div class="form-group">
@@ -61,9 +62,10 @@
                                             <label>파일 올리기</label>
                                             <input type="file">
                                         </div>
-                                        <input type="hidden" name="page" value="${pageMaker.cri.page }">
-                                        <input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum }">
-                                       
+                                        <input type="hidden" name="page" value="${cri.page }">
+                                        <input type="hidden" name="perPageNum" value="${cri.perPageNum }">
+                                       <input type='hidden' name='searchType' value="${cri.searchType}">
+	                                   <input type='hidden' name='keyword' value="${cri.keyword}">
                                          <button type="submit" class="btn btn-default" id="submit">작성완료</button>
                                         <button type="reset" class="btn btn-default" id="reset">다시작성하기</button>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
@@ -94,18 +96,11 @@
     <!-- 게시물 버튼 설정 -->
     <script>
     $(document).ready(function(){
-    	var formsubmit=$("from[role='form']");
-    	/* $("#submit").on("click",function(event){
-    		event.preventDefault();
-    		formsubmit.submit;
-    	}); */
+    	 
     	$("#backPage").on("click",function(){
     		history.back();
     	});
-  /*   	$("#reset").on("click",function(event){
-    		event.preventDefault();
-    		formsubmit.reset;
-    	}); */
+
     });
     </script>
 

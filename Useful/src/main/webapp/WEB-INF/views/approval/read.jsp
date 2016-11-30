@@ -13,11 +13,11 @@
 $(function(){
 	var frm=$('form');
 	$.ajax({
-		url:'/useful/approval/comment/count/'+${vo.no},
+		url:'/useful/approval/comment/count/${vo.no}',
 		type:'POST',
 		success:function(result){
 			if(result>0){
-				window.open('/useful/approval/comment/list/'+${vo.no},'list','toolbar=no,location=no,status=no'
+				window.open('/useful/approval/comment/list/${vo.no}','list','toolbar=no,location=no,status=no'
 						+'menubar=no,scrollbars=no,resizable=0,width=400,height=300,top=100,left=100');
 			}
 		}
@@ -74,6 +74,11 @@ $(function(){
 </c:if>
 <input type='button' name='cancel' value='뒤로' onclick='history.back()'>
 </form>
+<div id='comment' style='display: none;'>
+<input type='hidden' id='comment_writer' value='${LoginUser.empno}'>
+<input type='hidden' id='comment_writer_name' value='${LoginUser.ename}'>
+	한마디 : <input type='text' id='comments'>
+</div>
 </center>
 </body>
 </html>

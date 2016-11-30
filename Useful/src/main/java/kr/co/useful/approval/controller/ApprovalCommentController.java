@@ -28,6 +28,7 @@ public class ApprovalCommentController {
 		return service.listcount(no);
 	}
 	
+	
 	@RequestMapping(value="/accept",method=RequestMethod.POST)
 	public @ResponseBody String insertAcceptComment(ApprovalCommentVO vo)throws Exception{
 		vo.setChecked("∞·¿Á");
