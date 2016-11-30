@@ -105,7 +105,7 @@
                                 </li>
                                 <li>
                                    <a href="#">근태관리<span class="fa arrow"></span></a>
-                                   <ul class="nav nav-second-level">
+                                   <ul class="nav nav-third-level">
                                    	 	<li>
                                   			 <a href="/useful/manager/commute_Employee">사원별근태현황</a>
                               			</li>
