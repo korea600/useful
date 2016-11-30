@@ -43,5 +43,9 @@ public class CommuteController {
 		service.update(empno);
 	}
 	
+	@RequestMapping("/Login_Commute")
+	public void commute(){
+		 
+	}
 	
 }
