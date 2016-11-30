@@ -4,38 +4,34 @@
 	<!-- 결재문서 등록 -->
 	<insert id="create">
 		insert into tbl_approval
-		(no,status,title, content, writer, receiver, curr_approval, next_approval)
-		values (tbl_approval_seq.nextval, #{status},#{title},#{content},#{writer},#{receiver},#{curr_approval},#{next_approval})	
+		(no,status,title, content, writer, writer_name, receiver,receiver_dname, curr_approval, next_approval)
+		values (tbl_approval_seq.nextval, #{status},#{title},#{content},#{writer},#{writer_name},#{receiver},#{receiver_dname},#{curr_approval},#{next_approval})	
 	</insert>
 	<!-- 반려문서 수정하기 -->
+	
 	<!-- 문서리스트조회 (동적SQL)-->
 	<select id="list" resultType="Approval">
-		select no, status, tbl_emp.ename writer_name, tbl_dept.dname receiver_dname, title,tbl_approval.regdate
-		from tbl_approval, tbl_emp, tbl_dept
-		where tbl_approval.writer=tbl_emp.empno
-		and tbl_emp.deptno=tbl_dept.deptno
+		select no, status, writer_name, receiver_dname, title,regdate
+		from tbl_approval
 		<if test='next_approval!=0'>
-			and tbl_approval.next_approval=#{next_approval}	<!-- 내가 결재할 차례인 문서 조회 -->
+			where next_approval=#{next_approval}	<!-- 내가 결재할 차례인 문서 조회 -->
 		</if>
 		<if test="writer!=0">
 			<if test="status==null">
-				and tbl_approval.writer=#{writer}			<!-- 내가 작성한 문서 조회할때 -->
+				where writer=#{writer}			<!-- 내가 작성한 문서 조회할때 -->
 			</if>
 		</if>  
 		<if test="receiver!=0">
-			and tbl_approval.status=#{status}			<!-- 수신부서가 우리부서/전체부서 인 문서 조회 -->
-			and (tbl_approval.receiver=#{receiver} or tbl_approval.receiver=0)
+			where status=#{status}			<!-- 수신부서가 우리부서/전체부서 인 문서 조회 -->
+			and (receiver=#{receiver} or receiver=0)
 		</if>
 		order by regdate desc
 	</select>
 	<select id='liststatus' resultType="Approval">
-		select no, status, tbl_emp.ename writer_name,
-		tbl_dept.dname receiver_dname, title,tbl_approval.regdate
-		from tbl_approval, tbl_emp, tbl_dept
-		where tbl_approval.writer=tbl_emp.empno
-		and tbl_emp.deptno=tbl_dept.deptno
-		and tbl_dept.deptno=#{deptno}
-		and tbl_approval.status!=#{status}
+		select no, status, writer_name,	receiver_dname, title,regdate
+		from tbl_approval
+		where receiver=#{deptno}
+		and status!=#{status}
 		order by regdate desc
 	</select>
 	<select id="getmydeptno" resultType="int">
@@ -43,12 +39,14 @@
 	</select>
 	<!-- 문서내용조회 -->
 	<select id='select' resultType="Approval">
-		select no, status, writer, tbl_emp.ename writer_name, tbl_dept.dname receiver_dname, receiver
-		title,content, curr_approval,next_approval
-		from tbl_approval, tbl_emp, tbl_dept
-		where tbl_approval.writer=tbl_emp.empno
-		and tbl_emp.deptno=tbl_dept.deptno
-		and no=#{no}
+		select no, status, writer, writer_name, receiver_dname,
+		receiver, title,content, curr_approval,next_approval
+		from tbl_approval
+		where no=#{no}
+	</select>
+	<!-- 특정 부서번호의 부서명 정보 얻기 -->
+	<select id='getdname'>
+		select dname from tbl_dept where deptno=#{deptno}
 	</select>
 	<!-- 상사의 사번 얻기 -->
 	<select id="getManager" resultType='int'>
@@ -70,12 +68,10 @@
 	<!-- for Ajax -->
 		<!-- 타부서 정보 얻기 -->
 		<select id="getDept" resultType="ApprovalRest">
-			select distinct tbl_dept.deptno, dname
-			from tbl_dept, tbl_emp
-			where tbl_emp.deptno=tbl_dept.deptno
-			and tbl_dept.deptno!=#{deptno}
-			and tbl_dept.deptno!=0
-			order by tbl_dept.deptno
+			select deptno, dname
+			from tbl_dept
+			where deptno!=#{deptno}
+			order by deptno
 		</select>
 		<!-- 다음 결재선 정보 얻기 -->
 		<select id='getLine' resultType="ApprovalRest">
@@ -92,7 +88,5 @@
 					or tbl_emp.empno=1000
 				</if>
 				order by empno desc
-			
 		</select>	
-
 </mapper>

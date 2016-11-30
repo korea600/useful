@@ -16,5 +16,6 @@ public interface ApprovalService {
 	public void do_approval(ApprovalVO vo,ApprovalProgressVO progressVO)
 											throws Exception;				// 결재/반려 하기 (코멘트 달기)
 	public int getMyDeptno(int empno) throws Exception;						// 자신의 부서번호 조회
+	public String getDname(int deptno) throws Exception;					// 특정부서번호의 부서명 조회
 
 }

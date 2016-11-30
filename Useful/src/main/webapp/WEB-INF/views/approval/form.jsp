@@ -35,11 +35,14 @@ tr{height: 30px}
 			url:'/useful/approval/getLine',
 			type:'POST',
 			success:function(result){
-				var str='';
+				var str='--- 결재선 정보입니다. ---\n';
 				for(var i=0;i<result.length;i++){
 					str+="empno : "+result[i].empno+", ename : "+result[i].ename+", position : "+result[i].position+"\n";
 				}
-				alert(str);
+			 	str+='\n결재문서 등록을 진행하시겠습니까?';
+				if(confirm(str)){
+					$(form).submit();
+				};
 			}
 		})
 	}
@@ -59,7 +62,8 @@ tr{height: 30px}
 					}
 					$('[name=receiver]').empty();
 					$('[name=receiver]').append(str);
-					$('[name=receiver]').show();		
+					$('[name=receiver]').show();
+//					show_signer();
 				}
 			})
 		}
@@ -67,13 +71,13 @@ tr{height: 30px}
 			$('[name=receiver]').hide();
 			$('[name=receiver]').empty();
 			$('[name=receiver]').append("<option value="+${LoginUser.deptno}+"></option>");
-			show_signer();
+//			show_signer();
 		}
 		else{
 			$('[name=receiver]').hide();
 			$('[name=receiver]').empty();
 			$('[name=receiver]').append("<option value='0'></option>");
-			show_signer();
+//			show_signer();
 		}
 	}
 </script>
@@ -96,7 +100,7 @@ tr{height: 30px}
 			<option value='outer'>타부서</option>
 			<option value='all'>전체부서</option>
 		</select>
-		<select name='receiver' style="display: none;" onchange='show_signer()'>
+		<select name='receiver' style="display: none;">
 			<option value='${LoginUser.deptno}'>
 		</select>
 	</td>

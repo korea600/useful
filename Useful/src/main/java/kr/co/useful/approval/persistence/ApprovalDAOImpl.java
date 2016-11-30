@@ -53,5 +53,9 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 		sqlSession.update("approval.change_status",vo);	
 	}
 
+	public String getDname(int deptno) throws Exception {
+		return sqlSession.selectOne("approval.getdname",deptno);
+	}
+
 
 }

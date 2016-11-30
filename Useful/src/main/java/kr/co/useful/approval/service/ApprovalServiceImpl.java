@@ -97,8 +97,6 @@ public class ApprovalServiceImpl implements ApprovalService{
 			newVO.setNext_approval(vo.getWriter());
 			dao.change_status(newVO);
 		}
-		System.out.println("vo:"+newVO.toString());
-		System.out.println(manager_empno);
 		dao.change_status(newVO);
 		dao.change_approval(newVO);
 	}
@@ -113,5 +111,9 @@ public class ApprovalServiceImpl implements ApprovalService{
 
 	public List<ApprovalVO> listStatus(Map<String, Object> map) throws Exception {
 		return dao.listStatus(map);
+	}
+
+	public String getDname(int deptno) throws Exception {
+		return dao.getDname(deptno);
 	}
 }

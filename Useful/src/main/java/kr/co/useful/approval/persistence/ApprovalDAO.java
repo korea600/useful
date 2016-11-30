@@ -16,4 +16,5 @@ public interface ApprovalDAO {
 	public void change_status(ApprovalVO vo) throws Exception;		// 결재(승인/반려)에 따른 결재진행상태 변경
 	public int getManager(int empno)throws Exception;				// 직속상사 사번 정보 조회
 	public int getMyDeptno(int empno) throws Exception;				// 자신의 부서번호 조회
+	public String getDname(int deptno) throws Exception;			// 특정 부서번호의 부서명 조회
 }

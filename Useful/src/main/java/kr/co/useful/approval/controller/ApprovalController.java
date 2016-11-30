@@ -38,6 +38,11 @@ public class ApprovalController {
 	
 	@RequestMapping(value="/form", method=RequestMethod.POST)
 	public String insert(ApprovalVO vo) throws Exception{
+		int deptno=vo.getReceiver();
+		if(deptno!=0)
+			vo.setReceiver_dname(service.getDname(deptno));	// 수신처 부서번호로 부서명 얻어서 vo에 저장
+		else
+			vo.setReceiver_dname("전체");			// 수신처 부서번호가 0이면 vo에 수신부서명을 전체로 지정
 		service.create(vo);
 		return "/approval/form";
 	}
@@ -77,10 +82,10 @@ public class ApprovalController {
 	
 	@RequestMapping("/liststatus")	// 우리부서내에서 결재 진행중인것 조회 (발신부서 조회)
 	public String liststatus(HttpSession session, Model m) throws Exception{
-		int empno=((EmpVO)session.getAttribute("LoginUser")).getEmpno();
+		int deptno=((EmpVO)session.getAttribute("LoginUser")).getDeptno();
 		Map<String, Object> map = new HashMap<>();
 		map.put("status","완료");
-		map.put("deptno", service.getMyDeptno(empno));	// 사번으로 부서번호 얻어서 조회 조건 지정
+		map.put("deptno", deptno);
 		m.addAttribute("list", service.listStatus(map));
 		return "/approval/list";
 	}
