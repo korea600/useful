@@ -3,7 +3,10 @@ package kr.co.useful.commute.controller;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,9 +22,20 @@ public class CommuteController {
 	private CommuteService service;
 	
 	@RequestMapping("/Commute_In")
-	public void insert(@RequestParam int empno,HttpSession session)throws Exception{
+	public ResponseEntity<String> insert(@RequestParam int empno){
+		ResponseEntity<String> entity = null;
 		
-		service.insert(empno);
+		try {
+			if(service.insert(empno)){
+			entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+			}else{
+				entity = new ResponseEntity<String>("FAIL",HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return entity;
 	}
 	
 	@RequestMapping("/Commute_Out")

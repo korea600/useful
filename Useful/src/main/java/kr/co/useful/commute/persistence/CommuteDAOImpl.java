@@ -3,6 +3,7 @@ package kr.co.useful.commute.persistence;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -41,5 +42,16 @@ public class CommuteDAOImpl implements CommuteDAO{
 	public void update(int empno) throws Exception {
 		sqlSession.update("commute.update", empno);
 	}
+
+	@Override
+	public int select(int empno) throws Exception {
+		return sqlSession.selectOne("commute.select", empno);
+	}
+
+
+
+	
+
+	
 
 }

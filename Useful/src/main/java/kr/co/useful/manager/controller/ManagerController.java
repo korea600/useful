@@ -1,5 +1,7 @@
 package kr.co.useful.manager.controller;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.useful.manager.domain.EmpVO;
@@ -70,22 +73,53 @@ public class ManagerController {
 		
 	}
 	@RequestMapping(value="/commute_Employee",method=RequestMethod.POST)
-	public void commute_Employee(@RequestBody Map<String,Object> map){
+	public String commute_Employee(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+//		model = new ExtendedModelMap();
 		
-		
-		String startdate = (String) map.get("startdate");
-		String enddate = (String) map.get("enddate");
+		Map<String,Object> map = new HashMap<>();
+		String startdate = (String) requestMap.get("startdate");
+		String enddate = (String) requestMap.get("enddate");
 		startdate = startdate.replaceAll("-","");
 		enddate = enddate.replaceAll("-","");
 		
-		if(map.get("empno")==null||map.get("empno")==""){
-			
-			
-			if(map.get("ename")==null||map.get("ename")==""){
+		map.put("startdate", startdate);
+		map.put("enddate", enddate);
+		if(requestMap.get("empno")!=null&&requestMap.get("empno")!=""){
+			map.put("empno", requestMap.get("empno"));
+			model.addAttribute("commute",service.commute_list_empno(map));
+			System.out.println(service.commute_list_empno(map));
+			System.out.println("empno");
+			return "/manager/commute_Print";
+		}
+		
+		else if(requestMap.get("ename")!=null&&requestMap.get("ename")!=""){
+			map.put("ename", requestMap.get("ename"));
+			model.addAttribute("commute",service.commute_list_ename(map));
+			System.out.println(service.commute_list_ename(map));
+			System.out.println("ename");
+			return "/manager/commute_Print";
+		}		
 				
-			}
+		else if(requestMap.get("deptno")!=null&&requestMap.get("deptno")!=""){
+			map.put("deptno", requestMap.get("deptno"));
+			System.out.println(requestMap.get("deptno"));
+			model.addAttribute("commute",service.commute_list_dept(map));
+			System.out.println(service.commute_list_dept(map));
+			System.out.println("dept");
+			return "/manager/commute_Print";
+			
+		}else {
+			System.out.println(service.commute_list_all(map));
+			model.addAttribute("commute",service.commute_list_all(map));
+			System.out.println(service.commute_list_all(map));
+			System.out.println("all");
+			return "/manager/commute_Print";
 		}
 	}
+
+		
+
+	
 	@RequestMapping(value="/commute_Dept",method=RequestMethod.GET)
 	public void commute_Dept_Form(){
 		
@@ -108,6 +142,10 @@ public class ManagerController {
 	}
 	@RequestMapping("/jquery_Test")
 	public void jquery_Test(){
+		
+	}
+	@RequestMapping("/commute_Print")
+	public void commute_Print(){
 		
 	}
 	

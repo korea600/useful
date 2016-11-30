@@ -13,7 +13,7 @@
 		select no, status, tbl_emp.ename writer_name, tbl_dept.dname receiver_dname, title,tbl_approval.regdate
 		from tbl_approval, tbl_emp, tbl_dept
 		where tbl_approval.writer=tbl_emp.empno
-		and tbl_approval.receiver=tbl_dept.deptno
+		and tbl_emp.deptno=tbl_dept.deptno
 		<if test='next_approval!=0'>
 			and tbl_approval.next_approval=#{next_approval}	<!-- 내가 결재할 차례인 문서 조회 -->
 		</if>
@@ -26,6 +26,7 @@
 			and tbl_approval.status=#{status}			<!-- 수신부서가 우리부서/전체부서 인 문서 조회 -->
 			and (tbl_approval.receiver=#{receiver} or tbl_approval.receiver=0)
 		</if>
+		order by regdate desc
 	</select>
 	<select id='liststatus' resultType="Approval">
 		select no, status, tbl_emp.ename writer_name,
@@ -35,16 +36,18 @@
 		and tbl_emp.deptno=tbl_dept.deptno
 		and tbl_dept.deptno=#{deptno}
 		and tbl_approval.status!=#{status}
+		order by regdate desc
 	</select>
 	<select id="getmydeptno" resultType="int">
 		select deptno from tbl_emp where empno=#{empno}
 	</select>
 	<!-- 문서내용조회 -->
 	<select id='select' resultType="Approval">
-		select no, tbl_emp.ename writer_name, writer, tbl_dept.dname receiver_dname, receiver,title,content,next_approval, filename
+		select no, status, writer, tbl_emp.ename writer_name, tbl_dept.dname receiver_dname, receiver
+		title,content, curr_approval,next_approval
 		from tbl_approval, tbl_emp, tbl_dept
 		where tbl_approval.writer=tbl_emp.empno
-		and tbl_approval.receiver=tbl_dept.deptno
+		and tbl_emp.deptno=tbl_dept.deptno
 		and no=#{no}
 	</select>
 	<!-- 상사의 사번 얻기 -->
@@ -52,7 +55,18 @@
 		select manager from tbl_emp where empno=#{empno}
 	</select>
 	<!-- 결재하기 -->
-	
+		<!-- 현재와 다음결재자 정보 바꾸기 -->
+			<update id='change_approval'>
+				update tbl_approval
+				set curr_approval=#{curr_approval}, next_approval=#{next_approval}
+				where no=#{no}
+			</update>
+		<!-- 해당 문서의 상태 바꾸기 -->
+			<update id="change_status">
+				update tbl_approval
+				set status=#{status}
+				where no=#{no}
+			</update>	
 	<!-- for Ajax -->
 		<!-- 타부서 정보 얻기 -->
 		<select id="getDept" resultType="ApprovalRest">

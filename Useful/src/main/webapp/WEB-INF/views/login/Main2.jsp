@@ -162,7 +162,24 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-file-text fa-fw"></i> 전자결재</a>
+                            <a href="index.html"><i class="fa fa-file-text fa-fw"></i> 전자결재 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/useful/approval/form">기안하기</a>
+                                </li>
+                                <li>
+                                    <a href="/useful/approval/liststatus">결재진행</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/approval/listdept">결재완료(수신)</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/approval/listmine">내 기안문서</a>
+                                </li>
+                                <li>
+                                   <a href="/useful/approval/listmyturn">내 결재문서</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
@@ -280,12 +297,17 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#commute_in').on("click",function(){
+				
 				$.ajax({
 					type:'post',
 					async:true,
 					url:'/useful/commute/Commute_In?empno='+${LoginUser.empno},
-					success:function(){
-						alert('정상적으로 출근처리 되었습니다.');
+					success:function(result){
+						if(result == 'SUCCESS'){
+							alert('정상적으로 출근처리 되었습니다.');
+						}else if(result == 'FAIL'){
+							alert('이미 출근처리 되었습니다.');
+						}
 					}
 				});
 			});
@@ -297,11 +319,13 @@
 					url:'/useful/commute/Commute_Out?empno='+${LoginUser.empno},
 					success:function(){
 						alert('정상적으로 퇴근처리 되었습니다.');
+						location.href="/useful/login/Logout";
 					}
 				});
 			});
 			
 		});
+		
 	
 	</script>
     <!-- Bootstrap Core JavaScript -->

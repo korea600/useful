@@ -15,7 +15,8 @@ public interface ManagerService {
 	public EmpVO emp_select(int empno)throws Exception;
 	public void emp_update(EmpVO vo)throws Exception;
 	public void emp_delete(int empno)throws Exception;
-	public List<CommuteVO> commute_list_ename(String ename)throws Exception;
-	public List<CommuteVO> commute_list_empno(int empno)throws Exception;
-	public List<CommuteVO> commute_list_dept(int deptno, String startdate, String enddate) throws Exception;
+	public List<CommuteVO> commute_list_all(Map<String,Object> map)throws Exception;
+	public List<CommuteVO> commute_list_empno(Map<String,Object> map)throws Exception;
+	public List<CommuteVO> commute_list_ename(Map<String,Object> map)throws Exception;
+	public List<CommuteVO> commute_list_dept(Map<String,Object> map) throws Exception;
 }

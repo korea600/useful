@@ -13,7 +13,8 @@ public interface ManagerDAO {
 	public EmpVO emp_select(int empno)throws Exception;
 	public void emp_update(EmpVO vo)throws Exception;
 	public void emp_delete(int empno)throws Exception;
-	public List<CommuteVO> commute_emplist(Map map)throws Exception;
-	public int search_empno_fromEname(String ename)throws Exception;
-	public List<Integer> search_empnolist(int deptno)throws Exception;
+	public List<CommuteVO> commute_emplist_all(Map<String,Object> map)throws Exception;
+	public List<CommuteVO> commute_emplist_empno(Map<String,Object> map)throws Exception;
+	public List<CommuteVO> commute_emplist_deptno(Map<String,Object> map)throws Exception;
+	public List<CommuteVO> commute_emplist_ename(Map<String,Object> map)throws Exception;
 }

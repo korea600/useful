@@ -53,13 +53,13 @@ th {
  	   $("#btn_month").click(function(){
  		  $("#startdate").datepicker("setDate", -30);
  		  $("#enddate").datepicker("setDate", new Date());
- 	   });
+ 	   }); 	
  	   $("#btn_3month").click(function(){
  		  $("#startdate").datepicker("setDate", -90);
  		  $("#enddate").datepicker("setDate", new Date());
  	   });
  	   $("#btn_search").click(function(){
- 		   
+
  		  $.ajax({
  			  type: 'POST',
  			  url: '/useful/manager/commute_Employee',
@@ -71,15 +71,18 @@ th {
  			  data: JSON.stringify({
  				startdate:$("#startdate").val(),
  				enddate:$("#enddate").val(),
- 				dept:$("#dept option:selected").val(),
+ 				deptno:$("#deptno option:selected").val(),
  				empno:$("#empno").val(),
  				ename:$("#ename").val()
 				
  				  }),
  			  success: function(result){
- 					$("#div_print").innerHTML(result);
- 			  }
- 			});
+ 				 //document.getElementById("div_print").innerHTML = result;
+ 					$("#div_print").html(result);
+ 				  },
+ 			error:function(request,status,error){
+ 			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+ 			}); 
  	   });
 	});
  
@@ -109,7 +112,7 @@ th {
 	</tr>
 	<tr>
 		<th>부서명</th>
-			<td><select id="dept" name="dept" class="select" style="width: 200px;">
+			<td><select id="deptno" name="deptno" class="select" style="width: 200px;">
 						<option value="" selected="selected">-- 선택 --</option>
 						<option value="10">잘했조</option>
 						<option value="20">보여조</option>
@@ -132,7 +135,8 @@ th {
 	<div id="div_print">
 	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
 	<tr>
-		<th width="30%">부서(사원)</th>
+		<th width="15%">부서명</th>
+		<th width="15%">사원명</th>
 		<th width="14%">출근일자</th>
 		<th width="15%">출근시간</th>
 		<th width="14%">퇴근일자</th>

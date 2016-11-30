@@ -4,13 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>새 결재문서 작성</title>
+<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
+<style type="text/css">
+tr{height: 30px}
+</style>
 <script type="text/javascript" src='/useful/resources/js/jquery-3.1.1.js'></script>
 <script type="text/javascript">
 	$(function(){
 		$('[name=insert]').click(function(){
-/* 			$('[name=writer_name]').val('${LoginUser.empno}'); */
-			$('form').submit();
+/*			var title=$('[name=title]').val();
+			var content=$('[name=content]).text();
+			if(title.length==0)
+				alert('제목을 입력하세요!!');
+			else if(content.length==0)
+				alert('내용을 입력하세요!!');
+			else */
+				$('form').submit();
 		})	
 	})
 	function show_signer(){
@@ -68,18 +79,17 @@
 </script>
 </head>
 <body>
-<center>
 <form method="post">
-<table border='1' width='35%'>
+<table align="right" style="margin-right: 10%" border='1' width='30%'>
 <tr>
-	<td width='20%' align='center'>발신자</td>
+	<td align='center'>발신자</td>
 	<td>
-		<input type='text' name='writer_name' size='80' value='${LoginUser.ename}' readonly>
-		<input type='hidden' name='writer' size='80' value='${LoginUser.empno}'>
+		<input type='text' name='writer_name' size='65' value='${LoginUser.ename}' readonly>
+		<input type='hidden' name='writer' size='65' value='${LoginUser.empno}'>
 	</td>
 </tr>
 <tr>
-<td width='20%' align='center'>수신처</td>
+<td align='center'>수신처</td>
 	<td>
 		<select id='target_select' onchange="show_receiver_select()">
 			<option value='inner'>내부결재</option>
@@ -91,14 +101,14 @@
 		</select>
 	</td>
 </tr>
-<tr><td width='20%' align='center'>제목</td><td><input type='text' name='title' size='80'></td></tr>
-<tr><td colspan="2"  align='center'><textarea name='content' cols="65" rows="20"></textarea></td></tr>
-<tr><td width='20%' align='center'>첨부파일</td><td><input type="file" name='addfile' size='63'></td></tr>
-<tr></tr>
+<tr><td align='center'>제목</td><td><input type='text' name='title' size='65'></td></tr>
+<tr><td colspan="2"  align='center'><textarea name='content' cols="60" rows="20"></textarea></td></tr>
+<tr><td align='center'>첨부파일</td><td><input type="file" name='addfile' size='55'></td></tr>
+<tr><td colspan="2" align='center'>
+	<input type='button' name='insert' value='작성'>
+	<input type='button' name='cancel' value='취소' onclick='history.back()'>
+</td></tr>
 </table>
-<input type='button' name='insert' value='작성'>
-<input type='button' name='cancel' value='취소'>
 </form>
-</center>
 </body>
 </html>

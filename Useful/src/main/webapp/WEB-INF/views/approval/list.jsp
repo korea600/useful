@@ -12,11 +12,12 @@
 <style type="text/css">
 th{text-align: center; width: 150px}
 td{text-align: center; width: 150px}
+
 </style>
 </head>
 <body>
 
-<table align="right" style="margin-right: 5%" border="1">
+<table align="right" style="margin-right: 10%" border="1">
 <tr><th>문서번호</th><th>상태</th><th>작성자</th><th>수신처</th><th>제목</th><th>작성일자</th></tr>
 <c:forEach items="${list}" var='i'>
 	<tr>

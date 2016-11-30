@@ -22,6 +22,9 @@
 <link href="../resources/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 </head>
+<script type="text/javascript">
+var flag=true;
+</script>
 <body>
 <body>
 
@@ -46,9 +49,9 @@
 								<div class="col-lg-6">
 									<form role="form" method="post" action="createPage">
 										<div class="form-group">
-											<input type="hidden" name="serial" value="${board.serial }">
-											<input type="hidden" name="searchType"
-												value="${cri.searchType }"> <input type="hidden"
+											<input type="hidden" id="serial" name="serial" value="${board.serial }">
+											<input type="hidden" id="searchType" name="searchType"
+												value="${cri.searchType }"> <input type="hidden" id="keyword"
 												name="keyword" value="${cri.keyword }"> <label>글
 												제목</label> <input class="form-control" type="text" id="title"
 												name="title" readonly="readonly" value="${board.title }">
@@ -68,9 +71,9 @@
 
 										<div class="form-group"></div>
 
-										<input type="hidden" name="page"
-											value="${pageMaker.cri.page }"> <input type="hidden"
-											name="perPageNum" value="${pageMaker.cri.perPageNum }">
+										<input type="hidden" name="page" id="page"
+											value="${cri.page }"> <input type="hidden"
+											name="perPageNum" value="${cri.perPageNum }" id="perPageNum">
 
 										<button type="submit" class="btn btn-default" id="submit">작성완료</button>
 
@@ -110,18 +113,28 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">
                          <h5>${list.replyid } :<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
-                        </div>
+                        </div><input type="hidden" id="rno" value="${list.rno }">
                         <div class="panel-body">
                             <p>${list.replytext }</p>
                         </div>
-                        <!-- div class="panel-footer">
-                            버튼추가할지 아직몰라서 남김
-                        </div> -->
+                         <div class="panel-footer">
+<button type="button" class="btn btn-default" id="${list.rno }" name="modify">수정하기</button>
+<button type="button" class="btn btn-default" id="remove">삭제하기</button>
+                        </div>
+                       
+                      	
+										
+                        
                     </div>
+                    
+                    
                 </div>
                 
+                
 										</core:forEach>
+										
 										</table>
+										 <input type="hidden" id="hi-input" >
 										<!-- 댓글목록 -->
 
 
@@ -133,7 +146,7 @@
 											<input name="keyword" id="btn-input" type="text"
 												class="form-control input-sm" placeholder="댓글을 입력해주세요"
 												style="height: 65px; " /> <span class="input-group-btn">
-												<button type="submit" class="btn btn-warning btn-sm" id="replybtn"
+												<button type="button" class="btn btn-warning btn-sm" id="replybtn"
 													style="height: 65px; width: 100px;">
 													<h3>입력</h3>
 												</button>
@@ -162,6 +175,7 @@
 
 								</div>
 							</div>
+							
 
 
 								<!-- /#wrapper -->
@@ -177,55 +191,149 @@
 
 								<!-- Custom Theme JavaScript -->
 								<script src="../resources/dist/js/sb-admin-2.js"></script>
-								<!-- 게시물 버튼 설정 -->
-								<script>
-									$(document)
-											.ready(
-													function() {
-														var formsubmit = $("from[role='form']");
-														/* $("#submit").on("click",function(event){
-															event.preventDefault();
-															formsubmit.submit;
-														}); */
-														$("#backPage")
-																.on(
-																		"click",
-																		function() {
-																			history
-																					.back();
-																		});
-														/*   	$("#reset").on("click",function(event){
-														  		event.preventDefault();
-														  		formsubmit.reset;
-														  	}); */
-														  
-													});
-								</script>
+							
 								<script type="text/javascript">
-								$(document).ready(function(){
-									$("#replybtn").on("click",function(){
-										var replytext=$("#btn-input").val();
-										var page=${".page"}
-										var perPageNum=${".perPageNum"}
-										var serial=${board.serial }
+								
+									$("[name=modify]").on("click",function(){
 										
+										if(flag){var name=$(this).attr("id");
+										$("#hi-input").val(name);
+										alert(name)
+										var str="<div class='input-group' id='input-group'"
+										+"style='height: 30px; width: 85%; size: 30; left: 10px; display: none;'>"
+										+"<input name='keyword' id='btn-input2' type='text'"
+										+"class='form-control input-sm' placeholder='댓글을 입력해주세요'"
+										+"style='height: 65px; ' /> <span class='input-group-btn'>"
+										+"<button type='button' class='btn btn-warning btn-sm' id='replybtn2'"
+										+"style='height: 65px; width: 100px;'><h3>입력</h3></button></span></div>";
+										  
+										  $(this).parent().append(str);
+										$("#input-group").show();
+										flag=false;
+										}
 										
-										$.ajax({
+									});//댓글 수정버튼
+									$("#replybtn2").on("click",function(){
+										alert()
+										var rno=$("#hi-input").val();
+										var replytext=$("#btn-input2").val();
+										var serial=$("#serial").val();
+										var page=$("#page").val();
+										var perPagNum=$("#perPageNum").val();
+										var keyword=$("#keyword").val();
+										var searchType=$("#searchType").val();
+										alert("rno="+rno)
+										 $.ajax({
 											type:'post',
-											url:'/useful/board/replycreatePage'+replytext,
+											url:'/useful/reply/delete',
 											dataType:'text',
+											headers:{
+												"Content-Type":"application/json",
+												"X-HTTP-Method-Override":"POST"
+											},
+											data:JSON.stringify({replytext:replytext,rno:rno,serial:serial}),
 											success:function(result){
 												console.log("result:"+result);
-												if(result=='success'){
-													alert("등록완료");
-													getPage("/useful/board/readPage?page="+page+"&perPageNum="+perPageNum+"&serial="+serial+")";
+												if(result=='SUCCESS'){
+													self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+												
+													$(this).hide();
+													flag=true;
+												}
+											}
+										}) 
+									});
+									
+									$("#replybtn").on("click",function(){
+										var replytext=$("#btn-input").val();
+										var serial=$("#serial").val();
+										var page=$("#page").val();
+										var perPageNum=$("#perPageNum").val();
+										var keyword=$("#keyword").val();
+										var searchType=$("#searchType").val();
+										$.ajax({
+											type:'post',
+											url:'/useful/reply/create',
+											dataType:'text',
+											headers:{
+												"Content-Type":"application/json",
+												"X-HTTP-Method-Override":"POST"
+											},
+											data: JSON.stringify({serial:serial, replyid:"${LoginUser.empno}",replytext:replytext }),
+											
+											success:function(result){
+												console.log("result:"+result);
+												if(result=='SUCCESS'){
+													self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+												
+													replytext.val("");
+												}
+											}
+										}) 
+										
+									});
+									$("#remove").on("click",function(){
+										var replytext=$("#btn-input").val();
+										var serial=$("#serial").val();
+										var page=$("#page").val();
+										var perPageNum=$("#perPageNum").val();
+										var keyword=$("#keyword").val();
+										var searchType=$("#searchType").val();
+										var rno=$("#rno").val();
+										$.ajax({
+											type:'delete',
+											url:'/useful/reply/delete',
+											datetype:'text',
+											headers:{
+												"Content-Type":"application/json",
+												"X-HTTP-Method-Override":"delete"
+											},
+											data: JSON.stringify({serial:serial,rno:rno }),
+											success:function(result){
+												console.log("result:"+result);
+												if(result=='SUCCESS'){
+													self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+													
+													replytext.val("rno="+rno);
 												}
 											}
 										})
-										
 									});
 									
-								});
+									/* $("#modify").on("click",function(){
+										var replytext=$("#btn-input").val();
+										var serial=${board.serial };
+										var page=$("#page").val();
+										var perPageNum=$("#perPageNum").val();
+										var keyword=$("#keyword").val();
+										var searchType=$("#searchType").val();
+										var rno=$("#rno").val();
+										var modifybutton=${"#modify-button"};
+										//modifybutton.style.display="";
+										modifybutton.style("disply","");
+										
+										$.ajax({
+											type:'get',
+											url:'/useful/reply/update',
+											dateType:'text',
+											headers:{
+												"Content-Type":"application/json",
+												"X-HTTP-Method-Override":"get"
+											},
+											data:JSON.stringify({rno:rno,serial:"${board.serial}"}),
+											success:function(result){
+												console.log("result:"+result);
+												if(result=='SUCCESS'){
+													self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+													
+													replytext.val("rno="+rno);
+												}
+											}
+										}) 
+									}); */
+									
+									
+								
 								</script>
 </body>
 </body>

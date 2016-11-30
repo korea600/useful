@@ -14,4 +14,5 @@ public void update(ReplyVO vo)throws Exception;
 //public void delete(int serial,int rno)throws Exception;
 public void delete(ReplyVO vo)throws Exception;
 public int getno(int rno)throws Exception;
+public ReplyVO select(ReplyVO vo)throws Exception;
 }

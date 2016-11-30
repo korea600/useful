@@ -21,6 +21,9 @@ public class BoardController {
 	@Inject 
 	private NoticeService noservice;
 	
+	@Inject
+	private ReplyService reservice;
+	
 	@RequestMapping("/Mainboard")
 	public void createPageGET1(Model model)throws Exception{
 	model.addAttribute("list", noservice.mainlist());
@@ -46,6 +49,7 @@ public class BoardController {
 	pageMaker.calc();
 	model.addAttribute("pageMaker", pageMaker);
 	model.addAttribute("list", service.listSearch(cri));
+	
 //	map.put("maker", maker);
 //	map.put("list", service.listCriteria(cri));
 //	model.addAttribute("map", map);
@@ -55,12 +59,12 @@ public class BoardController {
 	public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 	BoardVO board=service.read(serial);
 	PageMaker pageMaker=new PageMaker();
-
+	List<ReplyVO> list=reservice.listAll(serial);
 	service.viewcnt(serial);
 	pageMaker.setCri(cri);
 	pageMaker.calc();
 	model.addAttribute("maker", pageMaker);
-
+	model.addAttribute("list", list);
 	model.addAttribute("board", board);
 	model.addAttribute("cri", cri);
 	}

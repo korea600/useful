@@ -3,6 +3,8 @@ package kr.co.useful.manager.domain;
 public class CommuteVO {
 	private int serial;
 	private int empno;
+	private String ename;
+	private String dname;
 	private String login;
 	private String login_Time;
 	private String logout;
@@ -12,17 +14,7 @@ public class CommuteVO {
 	public CommuteVO() {
 
 	}
-	public CommuteVO(int serial, int empno, String login, String login_Time, String logout, String logout_Time,
-			String checked) {
-		super();
-		this.serial = serial;
-		this.empno = empno;
-		this.login = login;
-		this.login_Time = login_Time;
-		this.logout = logout;
-		this.logout_Time = logout_Time;
-		this.checked = checked;
-	}
+
 	public int getSerial() {
 		return serial;
 	}
@@ -65,10 +57,37 @@ public class CommuteVO {
 	public void setChecked(String checked) {
 		this.checked = checked;
 	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public String getDname() {
+		return dname;
+	}
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+	public CommuteVO(int serial, int empno, String ename, String dname, String login, String login_Time, String logout,
+			String logout_Time, String checked) {
+		super();
+		this.serial = serial;
+		this.empno = empno;
+		this.ename = ename;
+		this.dname = dname;
+		this.login = login;
+		this.login_Time = login_Time;
+		this.logout = logout;
+		this.logout_Time = logout_Time;
+		this.checked = checked;
+	}
+
 	@Override
 	public String toString() {
-		return "CommuteVO [serial=" + serial + ", empno=" + empno + ", login=" + login + ", login_Time=" + login_Time
-				+ ", logout=" + logout + ", logout_Time=" + logout_Time + ", checked=" + checked + "]";
+		return "CommuteVO [serial=" + serial + ", empno=" + empno + ", ename=" + ename + ", dname=" + dname + ", login="
+				+ login + ", login_Time=" + login_Time + ", logout=" + logout + ", logout_Time=" + logout_Time
+				+ ", checked=" + checked + "]";
 	}
 	
 	

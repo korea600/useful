@@ -32,9 +32,7 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 		return sqlSession.selectList("approval.list", vo);
 	}
 
-	public void do_approval(ApprovalVO vo) throws Exception {
-
-	}
+	
 	public int getManager(int empno)throws Exception{
 		return sqlSession.selectOne("approval.getManager", empno);
 	}
@@ -45,6 +43,14 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 
 	public List<ApprovalVO> listStatus(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList("approval.liststatus",map);
+	}
+
+	public void change_approval(ApprovalVO vo) throws Exception {
+		sqlSession.update("approval.change_approval",vo);	
+	}
+
+	public void change_status(ApprovalVO vo) throws Exception {
+		sqlSession.update("approval.change_status",vo);	
 	}
 
 
