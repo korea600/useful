@@ -26,7 +26,8 @@
 			<td>${print.logout }</td>
 			<td>${print.logout_Time }</td>
 			<td>${print.checked }</td>
-			<td>변경</td>
+			<td><button id="btn_update" class="btn btn-default" onclick="call_Update('${print.dname }',
+				'${print.ename }','${print.login }','${print.login_Time }','${print.logout }','${print.logout_Time }','${print.checked }','${print.serial }')">변경</button></td>
 		</tr>
 		</c:forEach>
 

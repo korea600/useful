@@ -19,4 +19,5 @@ public interface ManagerService {
 	public List<CommuteVO> commute_list_empno(Map<String,Object> map)throws Exception;
 	public List<CommuteVO> commute_list_ename(Map<String,Object> map)throws Exception;
 	public List<CommuteVO> commute_list_dept(Map<String,Object> map) throws Exception;
+	public void commute_update(Map<String,Object> map)throws Exception;
 }
