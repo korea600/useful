@@ -20,8 +20,8 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 		sqlSession.insert("approval.create",vo);
 	}
 
-	public void modify(ApprovalVO vo) throws Exception {
-		
+	public void update(ApprovalVO vo) throws Exception {
+		sqlSession.update("approval.update",vo);
 	}
 
 	public ApprovalVO select(int no) throws Exception {
@@ -51,6 +51,15 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 
 	public void change_status(ApprovalVO vo) throws Exception {
 		sqlSession.update("approval.change_status",vo);	
+	}
+
+	public String getDname(int deptno) throws Exception {
+		return sqlSession.selectOne("approval.getdname",deptno);
+	}
+
+	public void delete(int no) throws Exception {
+		sqlSession.delete("approval.delete",no);
+		
 	}
 
 

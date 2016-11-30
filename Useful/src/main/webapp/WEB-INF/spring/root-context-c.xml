@@ -6,7 +6,21 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 		<!-- bean 등록할 부분 -->
-		
+
+ 
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<property name="host" value="smtp.gmail.com" />
+	<property name="port" value="587" />
+	<property name="username" value="usefulware.5@gmail.com" />
+	<property name="password" value="usefulware5" /> 
+	<property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>                                
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+	</property>
+</bean>
 		
 	<!-- DAOImpl클래스 객체 등록 -->
    <context:component-scan base-package="kr.co.useful.login.persistence"/>
@@ -17,4 +31,5 @@
    <context:component-scan base-package="kr.co.useful.login.service"/>
    <context:component-scan base-package="kr.co.useful.mypage.service"/>
    <context:component-scan base-package="kr.co.useful.commute.service"/>
+   <context:component-scan base-package="kr.co.useful.email.service"/>
 </beans>
