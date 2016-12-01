@@ -1,6 +1,7 @@
 package kr.co.useful.sharetask.domain;
 
 public class SearchCriteria extends Criteria{
+	
 	private String searchType;//검색타입
 	private String keyword;//검색어
 	private int deptno;

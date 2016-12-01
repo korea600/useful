@@ -18,9 +18,13 @@
 
 	<!-- DAOImpl클래스 객체 등록 -->
 	<context:component-scan base-package="kr.co.useful.sharetask.persistence" />
+	<context:component-scan base-package="kr.co.useful.meeting.persistence" />
+	<context:component-scan base-package="kr.co.useful.schedule.persistence" />
 
 	<!-- 비즈니스객체 등록 -->
 	<context:component-scan base-package="kr.co.useful.sharetask.service" />
+	<context:component-scan base-package="kr.co.useful.meeting.service" />
+	<context:component-scan base-package="kr.co.useful.schedule.service" />
 	
 	
 		

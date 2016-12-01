@@ -86,11 +86,15 @@ public class ShareTaskVO {
 		this.viewcnt = viewcnt;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "ShareTaskVO [bno=" + bno + ", category="+category+", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + "]";
+		return "ShareTaskVO [bno=" + bno + ", category=" + category + ", title=" + title + ", content=" + content
+				+ ", writer=" + writer + ", ename=" + ename + ", regdate=" + regdate + ", viewcnt=" + viewcnt
+				+ ", deptno=" + deptno + "]";
 	}
-	
+
+
 	
 }

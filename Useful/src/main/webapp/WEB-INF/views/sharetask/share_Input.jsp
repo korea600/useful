@@ -80,8 +80,8 @@
 				<tr>
 					<td bgcolor="#dae6f4"  align="center" width="150px">작성자</td>
 					<td align="center" width="750px">
-					<input type="text" name="writer" readonly="readonly" value="id같을때이름">
-					<input type="hidden" name="writer" readonly="readonly" value="id같을때이름">
+					전성원
+					<input type="hidden" name="writer" value="1005">
 					</td>
 				</tr>
 				<tr>
@@ -119,10 +119,11 @@
 				<tr>
 					<td colspan="2" align="right">
 					<input type="submit"  value="등록" /> 
-					<input type="button"  value="취소" onclick="" /></td>
+					<input type="button"  value="취소" onclick=""/></td>
 				</tr>
 				<tr height="100px"></tr>
 			</table>
+			<input type="hidden" name="deptno" value="20">
 		</form>
 	</center>
 </body>

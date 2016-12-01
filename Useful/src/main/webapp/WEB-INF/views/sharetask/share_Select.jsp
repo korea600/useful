@@ -75,39 +75,25 @@ $(document).ready(function(){
 
 <body>
 	<center>
-		<form action="/sharetask/change" method="post">
+		<form action="/useful/sharetask/change" method="post">
 			<table border="1"
 				style="border-collapse: collapse; line-height: 30px;" width="900px">
 				<tr>
-					<td align="center" colspan="4" height="110px" align="center">업무
-						상세</td>
+					<td align="center" colspan="4" height="110px" align="center">업무	상세</td>
 				</tr>
 				<tr>
 					<td colspan="4" align="right"><input type="hidden" name="bno" value="${shareTaskVO.bno}"> 글번호: ${shareTaskVO.bno} 조회수: 3 
 					
-					<a href="#" >이전</a> 
+					<a href="/useful/sharetask/prev?page=${cri.page }&perPageNum=${cri.perPageNum }&bno=${shareTaskVO.bno}" >이전</a> 
 					<a href="#">다음</a>  
 					
-					<%--  <c:if test="${shareTaskVO.bno==1}">이전</c:if>
-	                <c:if test="${shareTaskVO.bno>1}">
-	                
-	                <a href="detail?bno=${shareTaskVO.bno-1}">이전</a>
-	                
-	                </c:if>
-	                <c:if test="${cri.page==cri.endPage}">다음</c:if>
-	                <c:if test="${cri.page<cri.endPage}">
-	                
-	                <c:if test="${shareTaskVO.bno==null}">
-	                	                
-	                </c:if>
-	                <a href="detail?bno=${shareTaskVO.bno+1}">
-	                
-	                다음</a></c:if>
-					  --%>
+					<%-- /sharetask/prev?page=${cri.page }&perPageNum=${cri.perPageNum }&bno=${shareTaskVO.bno} --%>
+	           
 				</tr>
 				<tr>
 					<td bgcolor="#dae6f4" align="center" width="150px">작성자</td>
-					<td align="center" width="300px"><input type="text" name="ename" readonly="readonly" value="${shareTaskVO.ename}"></td>
+					<td align="center" width="300px">
+					${shareTaskVO.ename}</td>
 
 					<td bgcolor="#dae6f4" align="center" width="150px">분류</td>
 					<td align="center" colspan="3">
@@ -165,13 +151,17 @@ $(document).ready(function(){
 				<tr>
 					<td colspan="4" align="right">
 					<%-- <% if(session.getAttribute("id")==""){} %> --%>
+					     <input type="hidden" name="deptno" value="${shareTaskVO.deptno }">
+					     <input type="hidden" name="writer" value="${shareTaskVO.writer }">
+					     
+
 					    <input type="button" id="change" value="수정" />
 					    <input type="submit" id="changeOK" value="확인">
 						<input type="button" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 
-						<input type="button"	value="목록" onClick="location.href='sharetask/Share_Board?page=${cri.page}'" /></td>
+						<input type="button"	value="목록" onClick="location.href='/useful/sharetask/Share_Board?page=${cri.page}'" /></td>
 					<!-- '" -->
 				</tr>
-                  <input type="hidden" name="writer" value="${shareTaskVO.writer}">
+				 
 			</table>
 		</form>
 	</center>
