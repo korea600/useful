@@ -7,16 +7,16 @@
 <title>비밀번호 확인</title>
 
 <!-- Bootstrap Core CSS -->
-    <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
 
@@ -44,7 +44,9 @@
 			},
 			success:function(result){
 				if(result=='SUCCESS'){
-					location.href="/useful/email/send";
+					alert('임시 비밀번호가 발송되었습니다. \n'
+  			  		+'임시 비밀번호로 다시 로그인 해주세요.' );
+					location.href="/useful";
 				}else if(result=='FAIL'){
 					alert("입력하신 정보가 일치하지 않습니다.");
 					$("#empnoinput").val("");
@@ -121,16 +123,16 @@
     </div>
 
  <!-- jQuery -->
-    <script src="../resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../resources/dist/js/sb-admin-2.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 
 </body>
 </html>

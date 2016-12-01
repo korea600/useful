@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.useful.email.domain.Email;
+import kr.co.useful.email.service.EmailSender;
 import kr.co.useful.login.service.LoginService;
 import kr.co.useful.manager.domain.EmpVO;
 
@@ -26,6 +30,9 @@ public class LoginController {
 	
 	@Inject
 	private LoginService service;
+	
+	 @Autowired
+	    private EmailSender emailSender;
 	
 	//로그인 폼 보이기
 	@RequestMapping("/Login")
@@ -81,10 +88,22 @@ public class LoginController {
 	//비밀번호 찾기 폼에서 사번과 이메일주소에 해당하는 레코드가 있는지 확인
 	@RequestMapping(value="/check",method=RequestMethod.POST)
 	public @ResponseBody String check(EmpVO vo)throws Exception{
-
-		if(service.selectAll(vo)!=null)
+		String receiver=service.selectAll(vo).getEmail();
+		if(receiver!=null){
+			 Email email = new Email();
+		        
+		        int num = EmailSender.generateNumber(6);
+		                
+		        String subject = "임시 비밀번호를 발송해드립니다.";
+		        String content = "임시 비밀번호는" + num + "입니다.";
+		      
+		        email.setReciver(receiver);
+		        email.setSubject(subject);
+		        email.setContent(content);
+		        emailSender.SendEmail(email);
+		        
 			return "SUCCESS";
-		else
+		}else
 			return "FAIL";
 	}
 	
