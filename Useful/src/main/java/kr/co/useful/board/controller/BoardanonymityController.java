@@ -16,6 +16,7 @@ import kr.co.useful.board.domain.PageMaker;
 import kr.co.useful.board.domain.ReplyVO;
 import kr.co.useful.board.domain.SearchCriteria;
 import kr.co.useful.board.service.AnonymityService;
+import kr.co.useful.board.service.ReplyAnonymityService;
 import kr.co.useful.board.service.ReplyService;
 
 @Controller
@@ -24,7 +25,8 @@ public class BoardanonymityController {
 	
 		@Inject
 		private AnonymityService service;
-
+		@Inject
+		private ReplyAnonymityService reservice; 
 		
 		@RequestMapping("/listPage")
 		public void listPage(SearchCriteria cri,Model model) throws Exception {
@@ -69,12 +71,13 @@ public class BoardanonymityController {
 		@RequestMapping("/readPage")
 		public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 		AnonymityVO board=service.read(serial);
+		List<ReplyVO> list=reservice.listAll(serial);
 		PageMaker pageMaker=new PageMaker();
 
 		pageMaker.setCri(cri);
 		pageMaker.calc();
 		model.addAttribute("maker", pageMaker);
-
+		model.addAttribute("list", list);
 		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
 		}

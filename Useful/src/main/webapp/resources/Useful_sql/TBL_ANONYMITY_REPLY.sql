@@ -9,6 +9,6 @@ regdate Date default sysdate
 drop sequence tbl_anonymity_reply_seq;
 create sequence tbl_anonymity_reply_seq;
 
-insert into tbl_anonymity_reply (serial,rno,replyid,replytext) values(5,tbl_reply_seq.nextval,'tjddnjs003','´Ù¹øÂ° ´ñ±Û');
-select serial from tbl_anonymity_reply;
+insert into tbl_anonymity_reply (serial,rno,replyid,replytext) values(42,tbl_reply_seq.nextval,'tjddnjs003','´Ù¹øÂ° ´ñ±Û');
+select * from tbl_anonymity_reply;
 

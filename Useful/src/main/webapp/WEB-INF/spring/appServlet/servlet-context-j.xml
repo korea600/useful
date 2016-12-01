@@ -33,5 +33,6 @@
 	<!-- beans 또는 component-scan 등록 부분 -->
 	<!-- 보드컨트롤 -->
 	<context:component-scan base-package="kr.co.useful.board.controller" />
+	<context:component-scan base-package="kr.co.useful.note.controller"/>
 	
 </beans:beans>

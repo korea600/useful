@@ -6,3 +6,4 @@ regdate date default sysdate
 );
 
 create sequence tbl_anonymity_seq;
+select * from tbl_anonymity;

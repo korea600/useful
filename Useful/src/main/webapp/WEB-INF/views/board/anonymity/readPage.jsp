@@ -34,7 +34,7 @@ function modifyreply(){
 	var searchType=$("#searchType").val(); 
 	 $.ajax({
 		type:'post',
-		url:'/useful/reply/update',
+		url:'/useful/reply/anonymity/update',
 		dataType:'text',
 		headers:{
 			"Content-Type":"application/json",
@@ -81,7 +81,7 @@ function modifyreply(){
 			var searchType=$("#searchType").val();
 			$.ajax({
 				type:'post',
-				url:'/useful/reply/create',
+				url:'/useful/reply/anonymity/create',
 				dataType:'text',
 				headers:{
 					"Content-Type":"application/json",
@@ -107,7 +107,7 @@ function modifyreply(){
 			var rno=$("#rno").val();
 			$.ajax({
 				type:'delete',
-				url:'/useful/reply/delete',
+				url:'/useful/reply/anonymity/delete',
 				datetype:'text',
 				headers:{
 					"Content-Type":"application/json",
@@ -149,7 +149,7 @@ function modifyreply(){
 			var rno=$("#rno").val();
 			$.ajax({
 				type:'delete',
-				url:'/useful/reply/delete',
+				url:'/useful/reply/anonymity/delete',
 				datetype:'text',
 				headers:{
 					"Content-Type":"application/json",
@@ -210,7 +210,7 @@ function modifyreply(){
 										</div>
 										<div class="form-group">
 											<label>글쓴이</label> <input type="text" id="writer"
-												class="form-control" placeholder="Enter text" name="writer"
+												class="form-control" name="writer"
 												readonly="readonly" value="${board.writer }">
 										</div>
 										<div class="form-group">
