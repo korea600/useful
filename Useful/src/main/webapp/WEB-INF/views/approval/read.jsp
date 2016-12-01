@@ -8,7 +8,6 @@
 <title>결재문서 조회</title>
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
-<script type="text/javascript" src='/useful/resources/js/jquery-3.1.1.js'></script>
 <script type="text/javascript">
 $(function(){
 	var frm=$('form');
