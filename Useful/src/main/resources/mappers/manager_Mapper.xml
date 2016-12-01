@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="manager">
+<!-- 
+	manager_Mapper.xml 
+	작성자 : 박지혜
+	작성일자 : 2016-12-01
+ -->	
   <select id="emplist" resultType="map">
   	select empno,ename,deptno,position,phone from tbl_emp order by empno
   </select>
@@ -10,7 +15,7 @@
   	
   	<if test="searchType != null">
   		<if test="searchType =='divGbn'.toString()">
-		
+  		<!-- if문 명시적사용 -->
   		</if>
   		<if test="searchType =='name'.toString()">
   		where ename like '%'||#{keyword}||'%'
