@@ -151,7 +151,7 @@
                         </li>
                         
                         <li>
-                            <a href="forms.html"><i class="fa fa-list-alt fa-fw"></i> 업무공유</a>
+                            <a href="/useful/sharetask/share_Board"><i class="fa fa-list-alt fa-fw"></i> 업무공유</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-calendar fa-fw"></i> 일정관리<span class="fa arrow"></span></a>
