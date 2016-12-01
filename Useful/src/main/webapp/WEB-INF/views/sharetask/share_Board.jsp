@@ -92,17 +92,17 @@
 			</c:if>
 			</select>
 			</td>
-			<td><a href='/sharetask/detail${pageMaker.makeQuery(pageMaker.cri.page) }&bno=${ShareTaskVO.bno}'>${ShareTaskVO.title}</a></td>
+			<td><a href='/useful/sharetask/detail${pageMaker.makeQuery(pageMaker.cri.page) }&bno=${ShareTaskVO.bno}&deptno=${ShareTaskVO.deptno}'>${ShareTaskVO.title}</a></td>
 			<td align="right">
 		첨부가 되어있는지 표시-이미지사용/글
 			</td>
-			<td align="center">${ShareTaskVO.ename} ${ShareTaskVO.deptno}</td>
+			<td align="center">${ShareTaskVO.ename}</td>
 			<td align="center"><fmt:formatDate pattern="yyyy.MM.dd HH:mm"
 										value="${ShareTaskVO.regdate}" /></td>
 		</tr>
 		
 		</c:forEach>
-    <!-- <tr><td colspan="6" align="center"><a href="#">1</a> <a href="#">2</a> <a href="#">3</a></td></tr> -->
+    
     
     <tr><td colspan="6" align="center">
     <ul class="pagination">
@@ -113,7 +113,7 @@
 
 							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 								<li	<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-									<a href="share_Board?page=${idx}">${idx}</a>
+									<a href="Share_Board?page=${idx}">${idx}</a>
 								</li>
 							</c:forEach>
 
