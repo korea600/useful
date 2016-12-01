@@ -88,8 +88,9 @@ public class LoginController {
 	//비밀번호 찾기 폼에서 사번과 이메일주소에 해당하는 레코드가 있는지 확인
 	@RequestMapping(value="/check",method=RequestMethod.POST)
 	public @ResponseBody String check(EmpVO vo)throws Exception{
-		String receiver=service.selectAll(vo).getEmail();
-		if(receiver!=null){
+		EmpVO empVO=service.selectAll(vo);
+		if(empVO!=null){
+			
 			 Email email = new Email();
 		        
 		        int num = EmailSender.generateNumber(6);
@@ -97,7 +98,7 @@ public class LoginController {
 		        String subject = "임시 비밀번호를 발송해드립니다.";
 		        String content = "임시 비밀번호는" + num + "입니다.";
 		      
-		        email.setReciver(receiver);
+		        email.setReciver(empVO.getEmail());
 		        email.setSubject(subject);
 		        email.setContent(content);
 		        emailSender.SendEmail(email);
