@@ -9,26 +9,18 @@
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <!-- jQuery -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- DataTables JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
-
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- DataTables JavaScript -->
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script type="text/javascript">
 $(function(){
 	var frm=$('form');
@@ -37,12 +29,12 @@ $(function(){
 		type:'POST',
 		success:function(result){
 			if(result>0){
-				window.open('/useful/approval/comment/list/${vo.no}','list','toolbar=no,location=no,status=no'
-						+'menubar=no,scrollbars=no,resizable=0,width=400,height=300,top=100,left=100');
+				window.open('${pageContext.request.contextPath}/approval/comment/list/${vo.no}','list','toolbar=no,location=no,status=no'
+						+'menubar=no,scrollbars=yes,resizable=1,width=900,height=300,top=100,left=100');
 			}
 		}
 	})
-	$('[name=accept]').click(function(){
+/* 	$('[name=accept]').click(function(){
 		frm.attr('action','/useful/approval/accept');
 		frm.attr('method','post');
 		frm.submit();
@@ -51,16 +43,20 @@ $(function(){
 		frm.attr('action','/useful/approval/reject');
 		frm.attr('method','post');
 		frm.submit();
-	});
+	}); */
+	$('[name=approval]').click(function(){
+		window.open('${pageContext.request.contextPath}/approval/comment/form','add_comment','toolbar=no,location=no,status=no'
+				+'menubar=no,scrollbars=no,resizable=0,width=500,height=200,top=100,left=100');
+	})
 	$('[name=modify]').click(function(){
-		location.href='/useful/approval/modify?no='+${vo.no}
+		location.href='${pageContext.request.contextPath}/approval/modify?no='+${vo.no}
 	});
 })
 </script>
 </head>
 <body>
 <center>
-<form method="post">
+<form id='frm' method="post" action='${pageContext.request.contextPath}/approval/do_approval'>
 <table border='1' width='35%'>
 <tr>
 	<td width='20%' align='center'>발신자</td>
@@ -88,17 +84,17 @@ $(function(){
 		<input type='button' name='modify' value='수정'>
 	</c:if>
 </c:if>
-<c:if test="${vo.next_approval eq LoginUser.empno}">
+<%-- <c:if test="${vo.next_approval eq LoginUser.empno}">
 	<input type='button' name='accept' value='결재'>
 	<input type='button' name='reject' value='반려'>
+</c:if> --%>
+<c:if test="${vo.next_approval eq LoginUser.empno}">
+	<input type='button' name='approval' value='결재/반려'>
 </c:if>
 <input type='button' name='cancel' value='뒤로' onclick='history.back()'>
+<input type='hidden' name='comments'>
+<input type='hidden' name='status'>
 </form>
-<div id='comment' style='display: none;'>
-<input type='hidden' id='comment_writer' value='${LoginUser.empno}'>
-<input type='hidden' id='comment_writer_name' value='${LoginUser.ename}'>
-	한마디 : <input type='text' id='comments'>
-</div>
 </center>
 </body>
 </html>

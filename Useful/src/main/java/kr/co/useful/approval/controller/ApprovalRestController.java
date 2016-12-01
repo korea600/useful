@@ -12,12 +12,12 @@ import kr.co.useful.approval.domain.ApprovalRestVO;
 import kr.co.useful.approval.service.ApprovalRestService;
 
 @RestController
-public class ApprovalRestController {	// 각 페이지 내에서 Ajax 처리를 위한 controller
+public class ApprovalRestController {	// 입력폼 페이지 내에서 Ajax 처리를 위한 controller
 	
 	@Inject
 	private ApprovalRestService service;
 	
-	@RequestMapping("/approval/getDept")		// 결재선 정보 얻기
+	@RequestMapping("/approval/getDept")		// 작성자의 부서 외 타부서의 정보 얻기
 	public List<ApprovalRestVO> getDept(int deptno) throws Exception{
 		List<ApprovalRestVO> list = service.getDept(deptno);
 		return list;

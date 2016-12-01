@@ -12,6 +12,6 @@
 	<!-- 코멘트 입력 -->
 	<insert id='insert'>
 		insert into tbl_approval_comment
-		values (tbl_approval_comment_seq.nextval, #{no},#{writer},#{writer_name},#{checked},#{comments},sysdate)
+		values (tbl_approval_comment_seq.nextval, #{no},#{writer},#{writer_name},#{comments},sysdate,#{checked})
 	</insert>
 </mapper>

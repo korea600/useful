@@ -8,13 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>문서에 대한 댓글 리스트</title>
 <style type="text/css">
-th{text-align: center; width: 150px}
-td{text-align: center; width: 150px}
+td{text-align: center}
 </style>
 </head>
 <body><center>
 <table border='1'>
-<tr><th>작성자</th><th>상태</th><th>내용</th><th>작성시간</th></tr>
+<tr><th width='150px'>작성자</th><th width='150px'>상태</th><th width='450px'>내용</th><th width='150px'>작성시간</th></tr>
 <c:forEach items="${list}" var="i">
 <tr><td>${i.writer_name}</td><td>${i.checked}</td><td>${i.comments}</td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td></tr>
 </c:forEach>

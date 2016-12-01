@@ -7,13 +7,23 @@ public class ApprovalProgressVO {
 	private String ename;	// 결재자 성명
 	private int deptno; 	// 결재자의 부서번호
 	private boolean sign;	// 결재여부
+	private String comments;// 결재 코멘트
 	
 	public ApprovalProgressVO() {}
 	
-	public ApprovalProgressVO(int no, int empno, String position,String ename, int deptno, boolean sign) {
+	public ApprovalProgressVO(int no, int empno, String position,String ename, int deptno, boolean sign,String comments) {
 		this.no=no;				this.empno = empno;
 		this.ename = ename;		this.deptno = deptno;
 		this.sign = sign;		this.position=position;
+		this.comments=comments;
+	}
+	
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 
 	public String getPosition() {

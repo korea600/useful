@@ -49,7 +49,7 @@ public class ApprovalController {
 		service.create(vo);
 		return "/approval/complete";
 	}
-	
+		
 	// 기안 수정폼 열기 (반려된 문서의 작성자가 열었을 때에 한함)
 	@RequestMapping(value="/modify",method=RequestMethod.GET)
 	public void modify(int no,Model m) throws Exception{
@@ -128,7 +128,7 @@ public class ApprovalController {
 	
 	/* ApprovalVO : 결재문서 정보, ApprovalProgressVO : 결재자 정보 */
 	
-	// 결재 승인(다음결재자로 정보갱신 or 결재완료처리)
+/*	// 결재 승인(다음결재자로 정보갱신 or 결재완료처리)
 	@RequestMapping(value="/accept",method=RequestMethod.POST)
 	public String approval_accept(ApprovalVO vo, HttpSession session) throws Exception{
 		EmpVO emp = (EmpVO) session.getAttribute("LoginUser");
@@ -144,5 +144,18 @@ public class ApprovalController {
 		ApprovalProgressVO progressVO = new ApprovalProgressVO(vo.getNo(),emp.getEmpno(),emp.getPosition(),emp.getEname(),emp.getDeptno(),false);
 		service.do_approval(vo, progressVO);
 		return "/approval/complete";
+	}*/
+	
+	// 결재하기 (결재/반려)
+	@RequestMapping(value="/do_approval",method=RequestMethod.POST)
+	public String do_approval(ApprovalVO vo, String comments, String status,HttpSession session) throws Exception{
+		EmpVO emp = (EmpVO) session.getAttribute("LoginUser");
+		ApprovalProgressVO progressVO = new ApprovalProgressVO(vo.getNo(),emp.getEmpno(),emp.getPosition(),emp.getEname(),emp.getDeptno(),status.equals("accept"),comments);
+		service.do_approval(vo, progressVO);
+		return "/approval/complete"; 
 	}
+	
+	// 결재/반려시 입력할 코멘트폼 띄우기
+	@RequestMapping("/comment/form")
+	public void approval_comment_form()throws Exception{}
 }
