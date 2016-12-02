@@ -24,6 +24,11 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
+	<!-- File upload -->
+	<beans:bean id='multipartResolver' class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="20971520"/>
+	</beans:bean>
 	<!-- 프로젝트 세팅 관련 부분  end-->
 	
 	<!-- beans 또는 component-scan 등록 부분 -->
