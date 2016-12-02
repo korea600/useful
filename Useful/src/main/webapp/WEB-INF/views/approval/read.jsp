@@ -67,18 +67,19 @@ $(function(){
 </tr>
 <tr><td width='20%' align='center'>제목</td><td><input type='text' name='title' size='80' value="${vo.title}" readonly></td></tr>
 <tr><td colspan="2" align='center'><textarea name='content' cols="65" readonly rows="20">${vo.content}</textarea></td></tr>
-<tr><td width='20%' align='center'>첨부파일</td><td><input type="file" name='addfile' size='63'></td></tr>
-<tr></tr>
+<tr>
+	<td width='20%' align='center'>첨부파일</td>
+	<td>
+		<c:if test="${vo.filename==null}">첨부된 파일이 없습니다.</c:if>
+		<c:if test="${vo.filename!=null}"><a href='${pageContext.request.contextPath}/upload/${vo.filename}'>${vo.filename}</a></c:if>
+	</td>
+</tr>
 </table>
 <c:if test="${vo.status eq '반려'}">
 	<c:if test="${vo.writer eq LoginUser.empno}">
 		<input type='button' name='modify' value='수정'>
 	</c:if>
 </c:if>
-<%-- <c:if test="${vo.next_approval eq LoginUser.empno}">
-	<input type='button' name='accept' value='결재'>
-	<input type='button' name='reject' value='반려'>
-</c:if> --%>
 <c:if test="${vo.next_approval eq LoginUser.empno}">
 	<input type='button' name='approval' value='결재/반려'>
 </c:if>

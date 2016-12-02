@@ -4,8 +4,8 @@
 	<!-- 결재문서 등록 -->
 	<insert id="create">
 		insert into tbl_approval
-		(no,status,title, content, writer, writer_name, receiver,receiver_dname, curr_approval, next_approval)
-		values (tbl_approval_seq.nextval, #{status},#{title},#{content},#{writer},#{writer_name},#{receiver},#{receiver_dname},#{curr_approval},#{next_approval})	
+		(no,status,title, content, writer, writer_name, receiver,receiver_dname, curr_approval, next_approval,filename)
+		values (tbl_approval_seq.nextval, #{status},#{title},#{content},#{writer},#{writer_name},#{receiver},#{receiver_dname},#{curr_approval},#{next_approval},#{filename})	
 	</insert>
 	<!-- 반려문서 수정하기 -->
 	<update id='update'>
@@ -48,12 +48,12 @@
 	<!-- 문서내용조회 -->
 	<select id='select' resultType="Approval">
 		select no, status, writer, writer_name, receiver_dname,
-		receiver, title,content, curr_approval,next_approval
+		receiver, title,content, curr_approval,next_approval, filename
 		from tbl_approval
 		where no=#{no}
 	</select>
 	<!-- 특정 부서번호의 부서명 정보 얻기 -->
-	<select id='getdname'>
+	<select id='getdname' resultType="String">
 		select dname from tbl_dept where deptno=#{deptno}
 	</select>
 	<!-- 상사의 사번 얻기 -->
@@ -79,6 +79,7 @@
 			select deptno, dname
 			from tbl_dept
 			where deptno!=#{deptno}
+			and deptno!=0
 			order by deptno
 		</select>
 		<!-- 다음 결재선 정보 얻기 -->

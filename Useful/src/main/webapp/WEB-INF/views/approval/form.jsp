@@ -34,15 +34,7 @@ tr{height: 30px}
 <script type="text/javascript">
 	$(function(){
 		$('[name=insert]').click(function(){
-/*			var title=$('[name=title]').val();
-			var content=$('[name=content]).text();
-			if(title.length==0)
-				alert('제목을 입력하세요!!');
-			else if(content.length==0) 
-				alert('내용을 입력하세요!!');
-			else */
-				show_signer();
-				$('form').submit();
+			show_signer();
 		})	
 	})
 	function show_signer(){
@@ -58,11 +50,12 @@ tr{height: 30px}
 			success:function(result){
 				var str='--- 결재선 정보입니다. ---\n';
 				for(var i=0;i<result.length;i++){
-					str+="empno : "+result[i].empno+", ename : "+result[i].ename+", position : "+result[i].position+"\n";
+					str+=result[i].ename+" "+result[i].position+"\n";
 				}
+				str+='-----------------------\n';
 			 	str+='\n결재문서 등록을 진행하시겠습니까?';
 				if(confirm(str)){
-					$(form).submit();
+					$('[name=frm]').submit();
 				};
 			}
 		})
@@ -84,7 +77,6 @@ tr{height: 30px}
 					$('[name=receiver]').empty();
 					$('[name=receiver]').append(str);
 					$('[name=receiver]').show();
-//					show_signer();
 				}
 			})
 		}
@@ -92,19 +84,18 @@ tr{height: 30px}
 			$('[name=receiver]').hide();
 			$('[name=receiver]').empty();
 			$('[name=receiver]').append("<option value="+${LoginUser.deptno}+"></option>");
-//			show_signer();
 		}
 		else{
 			$('[name=receiver]').hide();
 			$('[name=receiver]').empty();
 			$('[name=receiver]').append("<option value='0'></option>");
-//			show_signer();
 		}
 	}
 </script>
 </head>
 <body>
-<form method="post">
+<!-- <form name='frm' method="post" > -->
+<form name='frm' method="post" enctype='multipart/form-data'>
 <table align="right" style="margin-right: 10%" border='1' width='30%'>
 <tr>
 	<td align='center'>발신자</td>
@@ -128,7 +119,7 @@ tr{height: 30px}
 </tr>
 <tr><td align='center'>제목</td><td><input type='text' name='title' size='65'></td></tr>
 <tr><td colspan="2"  align='center'><textarea name='content' cols="60" rows="20"></textarea></td></tr>
-<tr><td align='center'>첨부파일</td><td><input type="file" name='addfile' size='55'></td></tr>
+<tr><td align='center'>첨부파일</td><td><input type="file" name='file' size='55'></td></tr>
 <tr><td colspan="2" align='center'>
 	<input type='button' name='insert' value='작성'>
 	<input type='button' name='cancel' value='취소' onclick='history.back()'>
