@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.useful.board.domain.SearchCriteria;
+import kr.co.useful.note.domain.NoteFindUserVO;
 import kr.co.useful.note.domain.SendVO;
 @Repository
 public class SendDAOImpl implements SendDAO {
@@ -55,6 +56,12 @@ private SqlSession session;
 	public int search_count_note(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne("send_note.search_Count_note", cri);
+	}
+
+	@Override
+	public List<NoteFindUserVO> find_user_note(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList("send_note.note_find_user", cri);
 	}
 
 }

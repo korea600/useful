@@ -8,3 +8,5 @@ senddate date default sysdate --보낸날짜
 );
 
 create sequence tbl_send_note_seq;
+select * from tbl_send_note;
+insert into tbl_send_note(serial,mynote,sendman,sendcontent) values(tbl_send_note_seq.nextval,'전성원','tjddnjs','보낸내용테테스트');
