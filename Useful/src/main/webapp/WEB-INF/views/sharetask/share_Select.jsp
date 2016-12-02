@@ -84,9 +84,16 @@ $(document).ready(function(){
 				<tr>
 					<td colspan="4" align="right"><input type="hidden" name="bno" value="${shareTaskVO.bno}"> 글번호: ${shareTaskVO.bno} 조회수: 3 
 					
-					<a href="/useful/sharetask/prev?page=${cri.page }&perPageNum=${cri.perPageNum }&bno=${shareTaskVO.bno}" >이전</a> 
-					<a href="#">다음</a>  
+				   <c:choose>
+					   <c:when test="${prevBno==null }">이전</c:when>
+					   <c:otherwise><a href="/useful/sharetask/prev?bno= ${shareTaskVO.bno}" >이전</a></c:otherwise>
+					</c:choose> 
 					
+					<c:choose>
+					   <c:when test="${nextBno==null }">다음</c:when>
+					   <c:otherwise><a href="/useful/sharetask/next?bno= ${shareTaskVO.bno}" >다음</a></c:otherwise>
+					</c:choose> 
+				   
 					<%-- /sharetask/prev?page=${cri.page }&perPageNum=${cri.perPageNum }&bno=${shareTaskVO.bno} --%>
 	           
 				</tr>
@@ -158,7 +165,7 @@ $(document).ready(function(){
 					    <input type="button" id="change" value="수정" />
 					    <input type="submit" id="changeOK" value="확인">
 						<input type="button" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 
-						<input type="button"	value="목록" onClick="location.href='/useful/sharetask/Share_Board?page=${cri.page}'" /></td>
+						<input type="button"	value="목록" onClick="location.href='share_Board?page=${cri.page}'" /></td>
 					<!-- '" -->
 				</tr>
 				 

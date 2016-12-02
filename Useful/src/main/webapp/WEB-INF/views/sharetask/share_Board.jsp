@@ -108,18 +108,18 @@
     <ul class="pagination">
 
 							<c:if test="${pageMaker.prev}">
-								<li><a href="${pageMaker.startPage - 1}">◀</a></li>
+								<li><a href="share_Board?${pageMaker.startPage - 1}">◀</a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 								<li	<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-									<a href="Share_Board?page=${idx}">${idx}</a>
+									<a href="share_Board?page=${idx}">${idx}</a>
 								</li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="${pageMaker.endPage +1}">▶</a></li>
+									href="share_Board?${pageMaker.endPage +1}">▶</a></li>
 							</c:if>
 
 						</ul>

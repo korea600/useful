@@ -86,8 +86,8 @@
 
 	<!-- 다음글 -->
 	<select id="nextShare" resultType="ShareTask">
-        select bno, category, title,
-		content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
+        select bno, category, title, content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
+		from tbl_sharetask, tbl_emp
 		where tbl_sharetask.writer=tbl_emp.empno 
 		and tbl_sharetask.deptno=20
 		and bno=(select min(bno) from tbl_sharetask where bno > #{bno})

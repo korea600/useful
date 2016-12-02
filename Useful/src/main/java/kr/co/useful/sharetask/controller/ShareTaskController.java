@@ -2,6 +2,7 @@ package kr.co.useful.sharetask.controller;
 
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -69,38 +71,77 @@ public class ShareTaskController {
 	
 	//상세 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String modifyPageGet(int bno,
+	public String modifyPageGet(@RequestParam("bno")int bno,
             @ModelAttribute("cri") SearchCriteria cri,
             Model model) throws Exception {
 
 		// 데이터 저장
-		model.addAttribute(service.read(bno));
-		model.addAttribute("cri", cri);
-		System.out.println(model);
-		System.out.println(cri);
+		ShareTaskVO prevvo=service.prevRead(bno);
+		ShareTaskVO nextvo=service.nextRead(bno);
+		if(prevvo!=null){
+	    model.addAttribute("prevBno", prevvo.getBno());//이전 값 저장		
 		
+		}
+		
+		if(nextvo!=null){
+			model.addAttribute("nextBno", nextvo.getBno());
+			
+		}
+		model.addAttribute(service.read(bno));//현재값
+		model.addAttribute("cri", cri);
 		return "/sharetask/share_Select";
 	}
 	
-	
-	@RequestMapping("/prev")
-	public String prevRead(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
-		//데이터 저장
-		model.addAttribute(service.prevRead(bno));
-		model.addAttribute("cri", cri);
-		System.out.println(model);
-		return "/sharetask/share_Select";	
-	}
-	
-	public String nextRead(){
-		return "";
-	}
+	//이전글
+		@RequestMapping("/prev")
+		public String prevRead(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
+
+			ShareTaskVO pvo = service.prevRead(bno);//이전 클릭 값 --> 25-->24
+		    int prev=pvo.getBno();//24를 담음
+		    ShareTaskVO nextvo = service.nextRead(prev); //24--->25
+
+			ShareTaskVO prevvo=service.prevRead(prev);//24를 한번더 넣어준 값--->23인 vo
+			
+			if(prevvo!=null){
+				model.addAttribute("prevBno", prevvo.getBno());
+			}
+			
+			if(nextvo !=null){
+				model.addAttribute("nextBno", nextvo.getBno());
+			}
+			model.addAttribute(pvo);
+			model.addAttribute("cri",cri);
+			
+			
+			return "/sharetask/share_Select";	
+		}
+
+		//다음글
+		 @RequestMapping("/next")
+		public String nextRead(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest req)throws Exception{
+			 ShareTaskVO nvo = service.nextRead(bno);
+			 int next=nvo.getBno();
+			 ShareTaskVO nextvo=service.nextRead(next);
+			 ShareTaskVO prevvo=service.prevRead(next);
+			 
+			 if(nextvo!=null){
+				 model.addAttribute("nextBno", nextvo.getBno());
+			 }
+			 if(prevvo!=null){
+				 model.addAttribute("prevBno", prevvo.getBno());
+			 }
+			 
+			model.addAttribute(nvo);
+			model.addAttribute("cri", cri);
+		
+			return "/sharetask/share_Select";	
+		}
 	  
 	// 상세에서 수정
 	@RequestMapping(value ="/change", method = RequestMethod.POST)
 	public String modifyPagePost(ShareTaskVO vo, SearchCriteria cri, RedirectAttributes attr) throws Exception {
 		   
-		System.out.println("수정진행 = "+vo);
+		System.out.println("수정진행 = "+ vo);
 		   service.change(vo);//수정작업
 	
 		   attr.addAttribute("page", cri.getPage() );
