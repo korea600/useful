@@ -19,7 +19,7 @@ public class EmpVO {
 	private String sign;
 	private Date regdate;
 	private String email;
-	
+	private String dname;
 	public EmpVO() {
 	}
 
@@ -145,13 +145,7 @@ public class EmpVO {
 		this.sign = sign;
 	}
 
-	@Override
-	public String toString() {
-		return "EmpVO [empno=" + empno + ", ename=" + ename + ", pass=" + pass + ", ssn=" + ssn + ", phone=" + phone
-				+ ", address=" + address + ", hiredate=" + hiredate + ", deptno=" + deptno + ", position=" + position
-				+ ", manager=" + manager + ", leave=" + leave + ", account=" + account + ", bank=" + bank + ", sign="
-				+ sign + ", regdate=" + regdate + "]";
-	}
+
 
 
 
@@ -187,5 +181,52 @@ public class EmpVO {
 		this.sign = sign;
 		this.regdate = regdate;
 		this.email = email;
+	}
+
+
+
+	public EmpVO(int empno, String ename, String pass, String ssn, String phone, String address, Date hiredate,
+			int deptno, String position, String manager, double leave, String account, String bank, String sign,
+			Date regdate, String email, String dname) {
+		super();
+		this.empno = empno;
+		this.ename = ename;
+		this.pass = pass;
+		this.ssn = ssn;
+		this.phone = phone;
+		this.address = address;
+		this.hiredate = hiredate;
+		this.deptno = deptno;
+		this.position = position;
+		this.manager = manager;
+		this.leave = leave;
+		this.account = account;
+		this.bank = bank;
+		this.sign = sign;
+		this.regdate = regdate;
+		this.email = email;
+		this.dname = dname;
+	}
+
+
+
+	public String getDname() {
+		return dname;
+	}
+
+
+
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "EmpVO [empno=" + empno + ", ename=" + ename + ", pass=" + pass + ", ssn=" + ssn + ", phone=" + phone
+				+ ", address=" + address + ", hiredate=" + hiredate + ", deptno=" + deptno + ", position=" + position
+				+ ", manager=" + manager + ", leave=" + leave + ", account=" + account + ", bank=" + bank + ", sign="
+				+ sign + ", regdate=" + regdate + ", email=" + email + ", dname=" + dname + "]";
 	}
 }

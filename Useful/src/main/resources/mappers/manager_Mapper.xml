@@ -46,6 +46,10 @@
   	select * from tbl_emp where empno=#{empno} 
   </select>
   
+  <select id="emp_select_include_dname" resultType="kr.co.useful.manager.domain.EmpVO">
+  	select * from tbl_emp a,tbl_dept b where a.deptno=b.deptno and empno=#{empno} 
+  </select>
+  
   <update id="emp_update">
   	update tbl_emp set ename=#{ename},phone=#{phone},address=#{address},hiredate=#{hiredate},deptno=#{deptno},position=#{position},account=#{account},bank=#{bank},email=#{email} where empno=#{empno} 
   </update>
@@ -104,11 +108,20 @@
   <select id="commute_dept" resultType="kr.co.useful.manager.domain.CommuteVO">
     select a.empno,a.ename,b.dname,a.login,a.logout,a.checked,a.serial
   	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked,cmt.serial
- 		 	from tbl_emp emp,(select * from tbl_commute where empno in(select empno from tbl_emp 
- 		 		<if test="deptno!=null">where deptno=#{deptno}</if> )
- 				and login between to_date(#{login}, 'YYYYMM') and to_date(#{login}, 'YYYYMM')+1) cmt
+ 		 	from tbl_emp emp,(select * from tbl_commute where 
+ 		 			<if test="empno!=null">
+ 		 			empno=#{empno} and 
+ 		 			</if>
+ 		 			to_char(login, 'YYYYMM')=#{login} ) cmt
  		 	where emp.empno=cmt.empno) a, tbl_dept b
   	where a.deptno=b.deptno 
   	order by a.empno
+  </select>
+  
+  <select id="search_ename_from_dept" resultType="int">
+  	select empno from tbl_emp 
+  	<if test="deptno != 0">
+  	where deptno=#{deptno}
+  	</if>
   </select>
 </mapper>
