@@ -45,22 +45,12 @@
 
 </head>
 <body>
-<%@include file="../login/Main.jsp" %>
-<%@include file="../login/Sidebar.jsp" %>
 
-		<div id="page-wrapper" style="height: 100%;">
-			<div class="row" style="height: 100%;">
-				<div class="col-lg-12">
-					<h1 class="page-header">내쪽지함</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
+		
 
 
 			<form>
 			<div class="col-lg-6" style="width: 100%;">
-				<div class="panel panel-default">
-					<div class="panel-heading">${LoginUser.ename}님 안녕하세요~!!</div>
 						<div class="list_number">
 						
 									<!-- 검색버튼 -->
@@ -69,9 +59,10 @@
                             
                             
                               <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 30px;">
-                                                    <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
-                                                    <option value="t"<c:out value="${cri.searchType=='sendman'?'selected':'' }"/> >보낸사람</option>
-                                                    <option value="c" <c:out value="${cri.searchType=='sendcontent'?'selected':'' }"/>>내용</option>
+                                                    <option selected="selected" value="null" <c:out value="${cri.searchType==''?'selected':'' }"/> >검색어선택</option>
+                                                    <option value="dname" <c:out value="${cri.searchType=='dname'?'selected':'' }"/> >부서명</option>
+                                                    <option value="ename" <c:out value="${cri.searchType=='ename'?'selected':'' }"/> >사원명</option>
+
                                                 </select>
                                 <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
                                 <span class="input-group-btn">
@@ -90,21 +81,23 @@
 							
 								<thead>
 									<tr>
-										<th>받는사람</th>
-										<th>내용</th>
-										<th>보낸날짜</th>
+										<th>부서명</th>
+										<th>직책</th>
+										<th>사원명</th>
+										<th>연락처</th>
+										<th>이메일</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${list }" var="sendVO">
+									<c:forEach items="${list }" var="findEmpVO">
 										<tr>
-											<%-- <td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td> --%>
-
-											<td>${sendVO.sendman }</td>
-											<td>${sendVO.sendcontent }</td>
-											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${sendVO.senddate }"/></td>
-											
-										</tr>
+											<td>${findEmpVO.dname }</td>
+											<td>${findEmpVO.position }</td>
+											<td>${findEmpVO.ename }</td>
+											<td>${findEmpVO.phone }</td>
+											<td>${findEmpVO.email }</td>
+											<td><button class="btn btn-warning btn-sm" id="find"  style="height: 30px;" value="${findEmpVO.ename }">선택</button></td>
+											</tr>
 									</c:forEach>
 									
 									
@@ -115,7 +108,7 @@
 									
 									
 									<!-- 페이지번호 -->
-										<div>
+									<%-- 	<div>
 											<p>
 											<div class="list_n_menu">
 											<c:if test="${pageMaker.prev }">
@@ -134,7 +127,7 @@
 											</c:if>
 											</div>
 											</p>
-										</div>
+										</div> --%>
 									</div>
 									<!-- 페이지번호 -->
 						</div>
@@ -143,7 +136,6 @@
                           <input type='hidden' name="perPageNum" value='${pageMaker.cri.perPageNum}'>
 						
 						</form>
-						<button class="btn btn-default" id="register">쪽지보내기</button>
 						
 						<!-- /.table-responsive -->
 					</div>
@@ -159,12 +151,7 @@
 
 	</div>
 
-	<div id="page-wrapper" style="height: 100%;">
-		<div class="row" style="height: 100%;">
-			<div class="col-lg-12"></div>
-			<!-- /.col-lg-12 -->
-		</div>
-	</div>
+
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
@@ -190,20 +177,26 @@
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
 $(document).ready(function(){
-	$("#register").on("click",function(event){
-		event.preventDefault();
-		self.location="/useful/note/noteCreatePage";
-	});
 	$("#searchBtn").on("click",function(event){
 		event.preventDefault();
-		self.location="listPage"+
-		'${pageMaker.query(1)}'+
+		self.location="finduserPage?"+
 		"&searchType="+
 		$("select option:selected").val()+
 		"&keyword=" + $('#btn-input').val();
 	});
 	
+	$('#find').click(function(event) {
+		event.preventDefault();
+		var result=$(this).val();
+		//alert(result)
+		 
+		//alert("??")
+		  opener.getReturnValue(result);
+		  //alert("닫기전")
+		  window.close();
+		});
 });
+
 </script>
 
 </body>

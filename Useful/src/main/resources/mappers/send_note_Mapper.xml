@@ -7,7 +7,7 @@
 	</select>
 	
 	<insert id="create_note" parameterType="kr.co.useful.note.domain.SendVO"> <!--쪽지보내기  -->
-	insert into tbl_send_note (serial,mynote,sendman,sendcontent,senddate)
+	insert into tbl_send_note (serial,mynote,sendman,sendcontent)
 	 values(tbl_send_note_seq,#{mynote},#{sendman},#{sendcontent})
 	</insert>
 	
@@ -36,15 +36,44 @@
 	and mynote=#{mynote}
 	</select>
 	
+	<select id="note_find_user" resultType="kr.co.useful.note.domain.NoteFindUserVO">
+	select dname,position,ename,phone,email from tbl_emp,tbl_dept 
+	where tbl_emp.deptno = tbl_dept.deptno
+	<if test="searchType!=null">
+	<if test="searchType=='dname'">
+	and ename like '%'||#{keyword}||'%'
+	</if>
+	<if test="searchType=='ename'">
+	and ename like '%'||#{keyword}||'%'
+	</if>
+	</if>
+	
+	
+	</select>
+	
 	<sql id="search">
 	
 	<if test="searchType!=null">
 	<if test="searchType=='sendman'">
 	where sendman like '%'||#{keyword}||'%'
 	</if>
-	<if test="searchType=='sendman'"></if>
+	<if test="searchType=='sendcontent'">
 	where sendcontent like '%'||#{keyword}||'%'
 	</if>
+	</if>
+	
+	</sql>
+	
+	<sql id="finduser">
+	<if test="searchType!=null">
+	<if test="searchType=='dname'">
+	and dname like '%'||#{keyword}||'%'
+	</if>
+	<if test="searchType=='ename'">
+	and ename like '%'||#{keyword}||'%'
+	</if>
+	</if>
+	
 	
 	</sql>
 	

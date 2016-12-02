@@ -3,6 +3,7 @@ package kr.co.useful.note.service;
 import java.util.List;
 
 import kr.co.useful.board.domain.SearchCriteria;
+import kr.co.useful.note.domain.NoteFindUserVO;
 import kr.co.useful.note.domain.SendVO;
 
 public interface SendService {
@@ -13,4 +14,5 @@ public interface SendService {
 	public int count_note(String mynote)throws Exception;
 	public List<SendVO> search_not(SearchCriteria cri)throws Exception;
 	public int search_count_note(SearchCriteria cri)throws Exception;
+	public List<NoteFindUserVO> find_user_note(SearchCriteria cri)throws Exception;
 }
