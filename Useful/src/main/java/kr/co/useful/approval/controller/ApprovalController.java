@@ -1,9 +1,11 @@
 package kr.co.useful.approval.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -35,6 +37,14 @@ public class ApprovalController {
 	// 기안 작성폼 열기
 	@RequestMapping(value="/form", method=RequestMethod.GET)
 	public String form(HttpServletRequest request){
+		ServletContext application = request.getServletContext();
+		String realpath=application.getRealPath("").replace('\\', '/');
+		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
+							+application.getContextPath()+"/"+application.getInitParameter("projectName")
+							+"/src/main/webapp/upload";
+		System.out.println("uploadfolder : "+uploadFolder);
+		File uploadFile = new File(uploadFolder);
+		if(!uploadFile.exists()) uploadFile.mkdir();	// upload폴더 없을시 생성
 		return "/approval/form";
 	}
 	

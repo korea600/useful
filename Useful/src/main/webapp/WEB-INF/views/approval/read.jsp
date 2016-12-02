@@ -34,16 +34,7 @@ $(function(){
 			}
 		}
 	})
-/* 	$('[name=accept]').click(function(){
-		frm.attr('action','/useful/approval/accept');
-		frm.attr('method','post');
-		frm.submit();
-	});
-	$('[name=reject]').click(function(){
-		frm.attr('action','/useful/approval/reject');
-		frm.attr('method','post');
-		frm.submit();
-	}); */
+
 	$('[name=approval]').click(function(){
 		window.open('${pageContext.request.contextPath}/approval/comment/form','add_comment','toolbar=no,location=no,status=no'
 				+'menubar=no,scrollbars=no,resizable=0,width=500,height=200,top=100,left=100');
