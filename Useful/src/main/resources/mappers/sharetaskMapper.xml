@@ -79,7 +79,7 @@
 	select bno, category, title, content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
 		from tbl_sharetask, tbl_emp
 		where tbl_sharetask.writer=tbl_emp.empno 
-		and tbl_sharetask.deptno=20
+		and tbl_sharetask.deptno=10
 		and bno=(select max(bno) from tbl_sharetask where #{bno} > bno)
 	</select>
 
@@ -89,7 +89,7 @@
         select bno, category, title, content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt, tbl_sharetask.deptno
 		from tbl_sharetask, tbl_emp
 		where tbl_sharetask.writer=tbl_emp.empno 
-		and tbl_sharetask.deptno=20
+		and tbl_sharetask.deptno=10
 		and bno=(select min(bno) from tbl_sharetask where bno > #{bno})
 
 	</select>
