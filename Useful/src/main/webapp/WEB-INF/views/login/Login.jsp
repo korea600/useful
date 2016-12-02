@@ -8,16 +8,16 @@
 <title>로 그 인</title>
 
 	<!-- Bootstrap Core CSS -->
-    <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,6 +28,11 @@
 
 <script type="text/javascript">
 	function checkLogin(){
+		var test='aaaa';
+		var regExp =/aaaa/gi;
+		
+		var test2 = test.match(regExp);
+
 		if($.trim($("#empnoinput").val()) == ""){
 			alert("사원번호를 입력해 주세요.");
 			$("#empnoinput").focus();
@@ -39,6 +44,7 @@
 			return;
 		}
 		
+		
 		$.ajax({
 			type:'post',
 			async:true,
@@ -47,10 +53,14 @@
 			success:function(result){
 
 				if(result=="SUCCESS"){
-					alert("로그인 성공!!");
-					location.href="/useful/login/Mainview";
+					if($.trim($("#passinput").val()) == test2){
+						alert("첫 로그인을 환영합니다. \n" 
+								+"먼저 비밀번호를 변경하여주세요.");		
+						location.href="/useful/login/Modify_Pass";
+						
+					}
 				}else{
-					alert("로그인 실패!!");
+					alert("사원번호와 비밀번호를 다시 확인해주세요.");
 					self.location = "/useful/login/Login";
 				}
 			}
@@ -98,16 +108,16 @@
     </div>
 
  <!-- jQuery -->
-    <script src="../resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../resources/dist/js/sb-admin-2.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 
 </body>
 </html>

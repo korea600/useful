@@ -53,14 +53,15 @@ public class LoginDAOImpl implements LoginDAO {
 		return sqlSession.update("login.updatepass", map);
 	}
 
-	
+	@Override
+	public EmpVO selectempno(int empno, String pass) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+			map.put("empno", empno);
+			map.put("pass", pass);
+		return sqlSession.selectOne("login.selectempno", map);
+	}
 
 	
 
-	
-
-	
-
-	
 
 }

@@ -39,8 +39,6 @@ sign varchar2(20)           --결제이미지
 
 select * from tbl_emp;
 
-select empno,ename,email
-		from tbl_emp
-		where empno='1002' and ename='박지혜';
-		
-update tbl_emp set pass='aaaa' where empno='1001';
+select empno
+from tbl_emp
+where empno='1001';

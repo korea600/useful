@@ -26,8 +26,8 @@
 		href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
 	<link rel="stylesheet" type="text/css" media="screen"
 		href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-	<link rel="stylesheet" type="text/css" media="screen"
-		href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
+<%-- 	<link rel="stylesheet" type="text/css" media="screen"
+		href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.js" />  --%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
 	<script type="text/javascript" 
@@ -62,7 +62,7 @@
                            <div>
                            <center>
                            <span>
-                              <button type="button" id="#">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
+                              <button type="button" id="note">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
                               <button type="button" id="commute_in"><i class="fa fa-sort-up fa-fw"></i>출근</button>
                               <button type="button" id="commute_out"><i class="fa fa-sort-down fa-fw"></i>퇴근</button>
                            </span>
