@@ -114,7 +114,7 @@ public class ApprovalServiceImpl implements ApprovalService{
 			commentVO.setChecked("반려");
 			newVO.setStatus("반려");
 			newVO.setCurr_approval(vo.getWriter());
-			newVO.setNext_approval(vo.getWriter());
+			newVO.setNext_approval(0);
 			dao.change_status(newVO);
 		}
 		
@@ -146,8 +146,10 @@ public class ApprovalServiceImpl implements ApprovalService{
 	public String getDname(int deptno) throws Exception {
 		return dao.getDname(deptno);
 	}
-
+	
+	@Transactional
 	public void delete(int no) throws Exception {
 		dao.delete(no);
+		commentdao.delelte(no);
 	}
 }

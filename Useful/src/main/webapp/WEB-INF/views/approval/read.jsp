@@ -30,7 +30,7 @@ $(function(){
 		success:function(result){
 			if(result>0){
 				window.open('${pageContext.request.contextPath}/approval/comment/list/${vo.no}','list','toolbar=no,location=no,status=no'
-						+'menubar=no,scrollbars=yes,resizable=1,width=900,height=300,top=100,left=100');
+						+'menubar=no,scrollbars=yes,resizable=1,height=300,top=100,left=100');
 			}
 		}
 	})

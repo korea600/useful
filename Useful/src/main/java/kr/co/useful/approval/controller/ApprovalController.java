@@ -34,7 +34,7 @@ public class ApprovalController {
 	
 	// 기안 작성폼 열기
 	@RequestMapping(value="/form", method=RequestMethod.GET)
-	public String form(){
+	public String form(HttpServletRequest request){
 		return "/approval/form";
 	}
 	
@@ -77,12 +77,13 @@ public class ApprovalController {
 	3. 내가 작성한 것 -> 반려된거는 수정기능
 	4. 내가 결재할 차례인것 -> 결재하기
 	 */
+	
 	@RequestMapping("/listmine")	// 내가 작성한 문서 조회
 	public String listmine(HttpSession session, Model m) throws Exception{
 		ApprovalVO vo = new ApprovalVO();
 		vo.setWriter(((EmpVO)session.getAttribute("LoginUser")).getEmpno());
 		m.addAttribute("list", service.list(vo));
-		return "/approval/list";
+		return "/approval/listmine";
 	}
 
 	@RequestMapping("/listmyturn")	// 내가 결재할 차례인것 조회
@@ -90,7 +91,7 @@ public class ApprovalController {
 		ApprovalVO vo = new ApprovalVO();
 		vo.setNext_approval(((EmpVO)session.getAttribute("LoginUser")).getEmpno());
 		m.addAttribute("list", service.list(vo));
-		return "/approval/list";
+		return "/approval/listmyturn";
 	}
 	
 	@RequestMapping("/listdept")	// 수신부서가 우리부서 or 전체용 문서 조회
@@ -100,7 +101,7 @@ public class ApprovalController {
 		vo.setReceiver(service.getMyDeptno(empno));	// 사번으로 부서번호 얻어서 조회 조건 지정
 		vo.setStatus("완료");							// 결재완료인 상태로 조건 지정
 		m.addAttribute("list", service.list(vo));
-		return "/approval/list";
+		return "/approval/listdept";
 	}
 	
 	@RequestMapping("/liststatus")	// 우리부서내에서 결재 진행중인것 조회 (발신부서 조회)
@@ -110,13 +111,13 @@ public class ApprovalController {
 		map.put("status","완료");
 		map.put("deptno", deptno);
 		m.addAttribute("list", service.listStatus(map));
-		return "/approval/list";
+		return "/approval/liststatus";
 	}
 	
 	/* <결재하기>
 	 * 결재시 update 할것  : curr_approval은 결재한사람, next_approval은 결재한사람의 상사로 바꾸기
 	 * <반려하기>
-	 * 반려시 update 할것 : curr_approval, next_approval 모두 작성자로 바꾸기, status를 반려로 바꾸기
+	 * 반려시 update 할것 : curr_approval은 작성자로, next_approval은 0으로 바꾸기, status를 반려로 바꾸기
 	 * <수정하기 - 작성자에게 반려된 문서만 수정가능>
 	 * status는 진행, next_approval을 작성자의 상사로 바꾸기
 	 * <결재선>
@@ -127,25 +128,7 @@ public class ApprovalController {
 	 * status를 완료로 바꾸기 */
 	
 	/* ApprovalVO : 결재문서 정보, ApprovalProgressVO : 결재자 정보 */
-	
-/*	// 결재 승인(다음결재자로 정보갱신 or 결재완료처리)
-	@RequestMapping(value="/accept",method=RequestMethod.POST)
-	public String approval_accept(ApprovalVO vo, HttpSession session) throws Exception{
-		EmpVO emp = (EmpVO) session.getAttribute("LoginUser");
-		ApprovalProgressVO progressVO = new ApprovalProgressVO(vo.getNo(),emp.getEmpno(),emp.getPosition(),emp.getEname(),emp.getDeptno(),true);
-		service.do_approval(vo, progressVO);
-		return "/approval/complete";
-	}
-	
-	// 결재 반려(결재자 정보를 작성자로 변경, 상태정보를 반려로 변경)
-	@RequestMapping(value="/reject", method=RequestMethod.POST)
-	public String approval_reject(ApprovalVO vo, HttpSession session) throws Exception{
-		EmpVO emp = (EmpVO) session.getAttribute("LoginUser");
-		ApprovalProgressVO progressVO = new ApprovalProgressVO(vo.getNo(),emp.getEmpno(),emp.getPosition(),emp.getEname(),emp.getDeptno(),false);
-		service.do_approval(vo, progressVO);
-		return "/approval/complete";
-	}*/
-	
+		
 	// 결재하기 (결재/반려)
 	@RequestMapping(value="/do_approval",method=RequestMethod.POST)
 	public String do_approval(ApprovalVO vo, String comments, String status,HttpSession session) throws Exception{

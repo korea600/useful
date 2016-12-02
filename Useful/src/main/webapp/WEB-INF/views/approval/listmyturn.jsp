@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>결재문서 리스트</title>
+<title>내가 결재할 문서</title>
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <style type="text/css">
 th{text-align: center; width: 150px}
-td{text-align: center; width: 150px}
+td{text-align: center}
 </style>
 <!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -36,14 +36,21 @@ td{text-align: center; width: 150px}
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 </head>
 <body>
-
+<div class="col-lg-12">
+	<h1 class="page-header" style="text-align: right;">내가 결재할 문서</h1>
+</div>
 <table align="right" style="margin-right: 10%" border="1">
 <tr><th>문서번호</th><th>상태</th><th>작성자</th><th>수신처</th><th>제목</th><th>작성일자</th></tr>
+<c:if test="${list.size()==0}">
+<tr><td colspan="6">문서가 없습니다.</td></tr>
+</c:if>
+<c:if test="${list.size()>0}">
 <c:forEach items="${list}" var='i'>
 	<tr>
 		<td>${i.no}</td><td>${i.status}</td><td>${i.writer_name}</td><td>${i.receiver_dname}</td><td><a href='/useful/approval/read/${i.no}'>${i.title}</a></td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td>
 	</tr>
 </c:forEach>
+</c:if>
 </table>
 </body>
 </html>
