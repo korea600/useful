@@ -4,13 +4,13 @@ values (1000, '이길재', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysd
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
 values (1001, '채효원', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '부장',1000, 30,'123456-7890123','한국은행','boxer1992@naver.com');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1002, '박지혜', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '대리',1001, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1002, '박지혜', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '대리',1001, 30,'123456-7890123','한국은행','eosfjqm@naver.com');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
 values (1003, '안선영', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',1002, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1004, '이대원', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',1002, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1004, '이대원', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',1002, 30,'123456-7890123','한국은행','korea600@naver.com');
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
-values (1005, '전성원', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',1002, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
+values (1005, '전성원', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysdate, 10, '사원',1002, 30,'123456-7890123','한국은행','tjddnjs003@naver.com');
 
 insert into tbl_emp (empno, ename, pass, ssn, phone, address, hiredate, deptno, position, manager, leave, account, bank)
 values (1006, '이길학', 'aaaa','121212-1234567','010-123-4567','가산디지털',sysdate, 20, '부장',1000, 30,'123456-7890123','한국은행','abc@kosta.or.kr');
