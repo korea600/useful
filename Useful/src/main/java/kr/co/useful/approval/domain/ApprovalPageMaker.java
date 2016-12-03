@@ -7,7 +7,7 @@ public class ApprovalPageMaker {
 	private int totalCount;
 	private int startPage;
 	private int endPage;
-	private int displayPage;
+	private int displayPage=10;
 	private boolean prev;
 	private boolean next;
 	private ApprovalCriteria cri;

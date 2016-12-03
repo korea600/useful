@@ -51,6 +51,20 @@ td{text-align: center}
 	</tr>
 </c:forEach>
 </c:if>
+<tr><td colspan="6" align="center">
+	<c:if test="${pagemaker.prev}">
+		<a href="listmyturn${pagemaker.makeSearch(pagemaker.startPage-1)}">이전</a>
+	</c:if>
+	<c:forEach begin='${pagemaker.startPage}' end="${pagemaker.endPage }" var='i'>
+		<c:if test="${pagemaker.cri.page==i}"> ${i}</c:if>
+		<c:if test="${pagemaker.cri.page!=i}">
+			<a href="listmyturn${pagemaker.makeSearch(i)}"> ${i} </a>
+		</c:if>
+	</c:forEach>
+	<c:if test="${pagemaker.next && pagemaker.endPage>0 }">
+		<a href="listmyturn${pagemaker.makeSearch(pagemaker.endPage+1)}">다음</a>
+	</c:if>
+</td></tr>
 </table>
 </body>
 </html>

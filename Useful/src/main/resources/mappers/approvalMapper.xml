@@ -10,7 +10,7 @@
 	<!-- 반려문서 수정하기 -->
 	<update id='update'>
 		update tbl_approval
-		set status=#{status},title=#{title}, content=#{content},curr_approval=#{curr_approval},next_approval=#{next_approval}
+		set status=#{status},title=#{title}, content=#{content},curr_approval=#{curr_approval},next_approval=#{next_approval}, regdate=sysdate
 		where no=#{no} 
 	</update>
 	<!-- 반려문서 삭제하기 -->
@@ -25,6 +25,7 @@
 		<if test='vo.next_approval!=0'>
 			where next_approval=#{vo.next_approval}
 			<include refid="search"/>
+			order by regdate desc
 		</if>
 		<!-- 내가 작성한 문서 조회할때 -->
 		<if test="vo.writer!=0">
@@ -32,14 +33,15 @@
 				where writer=#{vo.writer}
 				<include refid="search"/>				
 			</if>
+			order by no desc
 		</if>  
 		<!-- 수신부서가 우리부서/전체부서 인 문서 조회 -->
 		<if test="vo.receiver!=0">
 			where status=#{vo.status}					
 			and (receiver=#{vo.receiver} or receiver=0)
 			<include refid="search"/>
+			order by no desc
 		</if>
-		order by regdate desc
 	</select>
 	<!-- 우리부서 내에서 결재 진행중인 문서 조회 -->
 	<select id='liststatus' resultType="Approval" >
@@ -48,7 +50,7 @@
 		where receiver=#{deptno}
 		and status!=#{status}
 		<include refid="search"/>
-		order by regdate desc
+		order by no desc
 	</select>
 	<select id="listCount" resultType="int">
 		select count(*) from tbl_approval
@@ -76,7 +78,6 @@
 		where receiver=#{deptno}
 		and status!=#{status}
 		<include refid="search"/>
-		order by regdate desc
 	</select>
 	<!-- 리스트 조회시 검색기능 -->
 	<sql id='search'>
