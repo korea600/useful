@@ -77,7 +77,7 @@ $(function(){
 </table>
 <c:if test="${vo.status eq '반려'}">
 	<c:if test="${vo.writer eq LoginUser.empno}">
-		<input type='button' name='modify' value='수정'>
+		<input type='button' name='modify' value='수정/삭제'>
 	</c:if>
 </c:if>
 <c:if test="${vo.next_approval eq LoginUser.empno}">

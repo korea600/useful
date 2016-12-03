@@ -18,15 +18,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.sun.media.jfxmediaimpl.MediaUtils;
 
 import kr.co.useful.approval.domain.ApprovalCriteria;
 import kr.co.useful.approval.domain.ApprovalPageMaker;
@@ -59,13 +55,7 @@ public class ApprovalController {
 	@RequestMapping(value="/form", method=RequestMethod.POST)
 	public String insert(ApprovalVO vo, MultipartFile file, HttpServletRequest request) throws Exception{
 		// 파일업로드 경로 지정 (각 pc의 git 폴더내 src/main/webapp/upload )
-		ServletContext application = request.getServletContext();
-		String realpath=application.getRealPath("").replace('\\', '/');
-		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
-							+application.getContextPath()
-							+"/"+application.getInitParameter("projectName")
-							+"/src/main/webapp/upload";
-		service.create(vo, file, uploadFolder);
+		service.create(vo, file, request);
 		return "/approval/complete";
 	}
 		
@@ -77,16 +67,19 @@ public class ApprovalController {
 	
 	// 기안 수정하기 (내용수정 + 문서상태를 '반려->진행'으로 변경)
 	@RequestMapping(value="/modify",method=RequestMethod.POST)
-	public String update(ApprovalVO vo,HttpSession session,Model m) throws Exception{
-		vo.setCurr_approval(((EmpVO)session.getAttribute("LoginUser")).getEmpno());
-		service.update(vo);
+	public String update(ApprovalVO vo,MultipartFile file,
+								String oldfilename, HttpServletRequest request) throws Exception{
+		EmpVO empVO = (EmpVO) request.getSession().getAttribute("LoginUser");
+		vo.setCurr_approval(empVO.getEmpno());
+		service.update(vo,file,request,oldfilename);
 		return "/approval/complete";
 	}
 
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public String delete(ApprovalVO vo) throws Exception{
-		int no=vo.getNo();
-		service.delete(no);
+	public String delete(ApprovalVO vo,String oldfilename,HttpServletRequest request) throws Exception{
+		vo.setFilename(oldfilename);
+		System.out.println(vo.toString());
+		/*service.delete(vo,request);*/
 		return "/approval/complete";
 	}
 	
