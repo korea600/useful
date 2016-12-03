@@ -1,6 +1,8 @@
 package kr.co.useful.approval.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +11,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -16,7 +23,10 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.sun.media.jfxmediaimpl.MediaUtils;
 
 import kr.co.useful.approval.domain.ApprovalCriteria;
 import kr.co.useful.approval.domain.ApprovalPageMaker;
@@ -168,17 +178,32 @@ public class ApprovalController {
 	public void approval_comment_form()throws Exception{}
 	
 	// 결재문서에 등록된 첨부파일 다운받기
-	@RequestMapping("/filedownload/{filename}")
-	public String file_download(@PathVariable String filename,HttpServletRequest request)throws Exception{
+	@ResponseBody
+	@RequestMapping(value="/filedownload")
+	public ResponseEntity<byte[]> file_download(String filename,HttpServletRequest request)throws Exception{
 		ServletContext application = request.getServletContext();
 		String realpath=application.getRealPath("").replace('\\', '/');
 		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
-							+application.getContextPath()
-							+"/"+application.getInitParameter("projectName")
-							+"/src/main/webapp/upload";
-		
-		ModelMap map = new ModelMap();
-		map.addAttribute("fileDownload", new File(uploadFolder+filename));
-		return "springDownload";
+				+application.getContextPath()
+				+"/"+application.getInitParameter("projectName")
+				+"/src/main/webapp/upload";
+		ResponseEntity<byte[]> entity = null;
+		InputStream fis = null;
+		try{
+			HttpHeaders headers = new HttpHeaders();
+			fis = new FileInputStream(uploadFolder+"/"+filename);
+			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+			headers.add("Content-Disposition", "attachment;filename=\""
+							+filename+"\"");
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(fis),headers,HttpStatus.CREATED);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		}
+		finally{
+			fis.close();
+		}
+		return entity;
 	}
 }

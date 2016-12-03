@@ -71,7 +71,7 @@ $(function(){
 	<td width='20%' align='center'>첨부파일</td>
 	<td>
 		<c:if test="${vo.filename==null}">첨부된 파일이 없습니다.</c:if>
-		<c:if test="${vo.filename!=null}"><a href='${pageContext.request.contextPath}/approval/filedownload/${vo.filename}' target="hidden">${vo.filename}</a></c:if>
+		<c:if test="${vo.filename!=null}"><a href='${pageContext.request.contextPath}/approval/filedownload?filename=${vo.filename}'>${vo.filename}</a></c:if>
 	</td>
 </tr>
 </table>
