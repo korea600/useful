@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.useful.approval.domain.ApprovalCriteria;
+import kr.co.useful.approval.domain.ApprovalPageMaker;
 import kr.co.useful.approval.domain.ApprovalProgressVO;
 import kr.co.useful.approval.domain.ApprovalVO;
 import kr.co.useful.approval.service.ApprovalService;
@@ -86,38 +88,54 @@ public class ApprovalController {
 	 */
 	
 	@RequestMapping("/listmine")	// 내가 작성한 문서 조회
-	public String listmine(HttpSession session, Model m) throws Exception{
+	public String listmine(HttpSession session, ApprovalCriteria cri,Model m) throws Exception{
 		ApprovalVO vo = new ApprovalVO();
 		vo.setWriter(((EmpVO)session.getAttribute("LoginUser")).getEmpno());
-		m.addAttribute("list", service.list(vo));
+		ApprovalPageMaker pagemaker = new ApprovalPageMaker();
+		pagemaker.setCri(cri);
+		pagemaker.setTotalCount(service.listCount(vo, cri));
+		m.addAttribute("pagemaker",pagemaker);
+		m.addAttribute("list", service.list(vo,cri));
 		return "/approval/listmine";
 	}
 
 	@RequestMapping("/listmyturn")	// 내가 결재할 차례인것 조회
-	public String listmyturn(HttpSession session,Model m) throws Exception{
+	public String listmyturn(HttpSession session, ApprovalCriteria cri,Model m) throws Exception{
 		ApprovalVO vo = new ApprovalVO();
 		vo.setNext_approval(((EmpVO)session.getAttribute("LoginUser")).getEmpno());
-		m.addAttribute("list", service.list(vo));
+		ApprovalPageMaker pagemaker = new ApprovalPageMaker();
+		pagemaker.setCri(cri);
+		pagemaker.setTotalCount(service.listCount(vo, cri));
+		m.addAttribute("pagemaker",pagemaker);
+		m.addAttribute("list", service.list(vo,cri));
 		return "/approval/listmyturn";
 	}
 	
 	@RequestMapping("/listdept")	// 수신부서가 우리부서 or 전체용 문서 조회
-	public String listdept(HttpSession session, Model m) throws Exception{
+	public String listdept(HttpSession session, ApprovalCriteria cri, Model m) throws Exception{
 		ApprovalVO vo = new ApprovalVO();
 		int empno=((EmpVO)session.getAttribute("LoginUser")).getEmpno();
 		vo.setReceiver(service.getMyDeptno(empno));	// 사번으로 부서번호 얻어서 조회 조건 지정
 		vo.setStatus("완료");							// 결재완료인 상태로 조건 지정
-		m.addAttribute("list", service.list(vo));
+		ApprovalPageMaker pagemaker = new ApprovalPageMaker();
+		pagemaker.setCri(cri);
+		pagemaker.setTotalCount(service.listCount(vo, cri));
+		m.addAttribute("pagemaker",pagemaker);
+		m.addAttribute("list", service.list(vo,cri));
 		return "/approval/listdept";
 	}
 	
 	@RequestMapping("/liststatus")	// 우리부서내에서 결재 진행중인것 조회 (발신부서 조회)
-	public String liststatus(HttpSession session, Model m) throws Exception{
+	public String liststatus(HttpSession session, ApprovalCriteria cri, Model m) throws Exception{
 		int deptno=((EmpVO)session.getAttribute("LoginUser")).getDeptno();
 		Map<String, Object> map = new HashMap<>();
 		map.put("status","완료");
 		map.put("deptno", deptno);
-		m.addAttribute("list", service.listStatus(map));
+		ApprovalPageMaker pagemaker = new ApprovalPageMaker();
+		pagemaker.setCri(cri);
+		pagemaker.setTotalCount(service.listStatusCount(map, cri));
+		m.addAttribute("pagemaker",pagemaker);
+		m.addAttribute("list", service.listStatus(map,cri));
 		return "/approval/liststatus";
 	}
 	

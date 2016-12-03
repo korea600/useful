@@ -12,6 +12,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.useful.approval.domain.ApprovalCommentVO;
+import kr.co.useful.approval.domain.ApprovalCriteria;
 import kr.co.useful.approval.domain.ApprovalProgressVO;
 import kr.co.useful.approval.domain.ApprovalRestVO;
 import kr.co.useful.approval.domain.ApprovalVO;
@@ -145,21 +146,29 @@ public class ApprovalServiceImpl implements ApprovalService{
 		}
 	}
 
-	public List<ApprovalVO> list(ApprovalVO vo) throws Exception {
-		return dao.list(vo);
+	public List<ApprovalVO> list(ApprovalVO vo, ApprovalCriteria cri) throws Exception {
+		return dao.list(vo,cri);
 	}
 
 	public ApprovalVO select(int no) throws Exception {
 		return dao.select(no);
 	}
 
-	public List<ApprovalVO> listStatus(Map<String, Object> map) throws Exception {
-		return dao.listStatus(map);
+	public List<ApprovalVO> listStatus(Map<String, Object> map, ApprovalCriteria cri) throws Exception {
+		return dao.listStatus(map,cri);
 	}
 	
 	@Transactional
 	public void delete(int no) throws Exception {
 		dao.delete(no);
 		commentdao.delelte(no);
+	}
+
+	public int listCount(ApprovalVO vo, ApprovalCriteria cri) throws Exception {
+		return dao.listCount(vo, cri);
+	}
+
+	public int listStatusCount(Map<String, Object> map, ApprovalCriteria cri) throws Exception {
+		return dao.listStatusCount(map, cri);
 	}
 }

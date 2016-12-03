@@ -43,6 +43,8 @@
 	<context:component-scan base-package="kr.co.useful.organization.controller" />
 	<!-- 전자결재 -->
 	<context:component-scan base-package="kr.co.useful.approval.controller" />
+	<!-- 오류페이지 -->
+	<context:component-scan base-package="kr.co.useful.error" />
 	<!-- 첫페이지 자동이동(redirect) -->
 	<beans:bean class="kr.co.useful.HomeController"/>
 </beans:beans>
