@@ -51,7 +51,7 @@
 		<div id="page-wrapper" style="height: 100%;">
 			<div class="row" style="height: 100%;">
 				<div class="col-lg-12">
-					<h1 class="page-header">내 보낸쪽지함</h1>
+					<h1 class="page-header">내 받은쪽지함</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -70,8 +70,8 @@
                             
                               <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 30px;">
                                                     <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
-                                                    <option value="sendman"<c:out value="${cri.searchType=='sendman'?'selected':'' }"/> >보낸사람</option>
-                                                    <option value="sendcontent" <c:out value="${cri.searchType=='sendcontent'?'selected':'' }"/>>내용</option>
+                                                    <option value="reciid"<c:out value="${cri.searchType=='reciid'?'selected':'' }"/> >보낸사람</option>
+                                                    <option value="recontent" <c:out value="${cri.searchType=='recontent'?'selected':'' }"/>>내용</option>
                                                 </select>
                                 <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
                                 <span class="input-group-btn">
@@ -90,20 +90,20 @@
 							
 								<thead>
 									<tr>
-										<th>받는사람</th>
+										<th>보낸사람</th>
 										<th>내용</th>
 										<th>보낸날짜</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${list }" var="sendVO">
+									<c:forEach items="${list }" var="RecipientVO">
 										<tr>
 											<%-- <td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td> --%>
 
-											<td>${sendVO.sendman }</td>
-											<td><a href="/useful/note/noteReadPage?serial=${sendVO.serial }">${sendVO.sendcontent }</a></td>
-											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${sendVO.senddate }"/></td>
-											<td style="display: none" value="${sendVO.serial }"></td>
+											<td>${RecipientVO.reciid }</td>
+											<td><a href="/useful/note/noteMyPage?serial=${RecipientVO.serial }">${RecipientVO.recontent }</a></td>
+											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${RecipientVO.recipientdate }"/></td>
+											<td style="display: none" value="${RecipientVO.serial }"></td>
 										</tr>
 									</c:forEach>
 									

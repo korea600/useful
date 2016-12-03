@@ -25,7 +25,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">쪽지보내기</h1>
+                    <h1 class="page-header">쪽지보기</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -39,7 +39,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form method="post" action="noteCreatePage">
+                                    <form method="post" action="deletePage">
                                         <div class="form-group">
                                             <label>받는사람</label>  <button type="button" class="fa fa-user" id="userfind" style="width: 40px;height: 20px;"></button>
                                             <input class="form-control" type="text" id="sendman" name="sendman" readonly="readonly" value="${list.sendman }"></input>
@@ -51,22 +51,22 @@
                                         </div>
                                          <div class="form-group">
                                         <label>보낸날짜</label>
-                                        <input type="text" id="senddate" class="form-control" value="${list.senddate}" name="senddate" readonly="readonly">
-                                        <fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${sendVO.senddate }"/>
+                                        <input type="text" id="senddate" class="form-control" value="${list.senddate}" name="senddate" readonly="readonly"></input>
+                                       <%--  <fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${sendVO.senddate }"/> --%>
                                          </div>
 										<div class="form-group">
                                             <label>쪽지내용</label>
-                                            <textarea id="sendcontent" class="form-control" rows="3" name="sendcontent">${list.sendcontent }</textarea>
+                                            <textarea id="sendcontent" class="form-control" rows="3" name="sendcontent" readonly="readonly">${list.sendcontent }</textarea>
                                         </div>
 
                                         <div class="form-group">
                                         
                                         </div>
+                                        <input type="hidden" name="serial" value="${list.serial }">
                                         <input type="hidden" name="page" value="${pageMaker.cri.page }">
                                         <input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum }">
                                        
-                                         <button type="submit" class="btn btn-default" id="submit">보내기</button>
-                                        <button type="reset" class="btn btn-default" id="reset">다시 쓰기</button>
+                                         <button type="submit" class="btn btn-default" id="delete">삭제</button>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
                                         </form>
 										
@@ -99,28 +99,9 @@
     	$("#backPage").on("click",function(){
     		history.back();
     	});
-    	
-    	
-     	function openNewWindow(url) {
-  		  var name = 'finduserPage';
-  		  var specs = 'toolbar=no,location=no,status=no'
-				+'menubar=no,scrollbars=no,resizable=0,width=800,height=300,top=100,left=100';
-  		  var newWindow = window.open(url, name, specs);
-  		  newWindow.focus();
-  		}
-
-  		
-  		$("#userfind").on("click",function(){
-  			//alert("눌림")
-  			openNewWindow('finduserPage');
-  			
-  		});
     
-    });
-    function getReturnValue(result) {
-		  //alert(result);
-		  $("#sendman").val(result);
-		}
+    	
+     	
  
     </script>
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="send_note">
+<mapper namespace="recipien_note">
 	
-	<select id="list_note" resultType="kr.co.useful.note.domain.SendVO"> <!--자신 메일내역조회  -->
-	select serial,sendman,sendcontent,senddate,mynote from tbl_send_note where mynote=#{mynote} order by serial desc
+	<select id="list_note" resultType="kr.co.useful.note.domain.RecipientVO"> <!--자신 메일내역조회  -->
+	select serial,mynote,reciid,recontent,recipientdate from tbl_recipient_note where mynote=#{mynote} order by serial desc
 	</select>
 	
-	<insert id="create_note" parameterType="kr.co.useful.note.domain.SendVO"> <!--쪽지보내기  -->
+	 <insert id="create_send_note" parameterType="kr.co.useful.note.domain.SendVO"> 쪽지보내기 
 	insert into tbl_send_note (serial,mynote,sendman,sendcontent)
 	 values(tbl_send_note_seq.nextval,#{mynote},#{sendman},#{sendcontent})
 	</insert>
@@ -15,26 +15,27 @@
 	insert into tbl_recipient_note (serial,mynote,reciid,recontent) values(tbl_recipient_note_seq.nextval,#{mynote},#{reciid},#{recontent})
 	</insert>
 	
-	<select id="select_note" resultType="kr.co.useful.note.domain.SendVO"> <!--쪽지 선택해서 보기  -->
-	select serial,sendman,sendcontent,senddate,mynote from tbl_send_note where mynote=#{mynote} and serial=#{serial}
+	<select id="select_note" resultType="kr.co.useful.note.domain.RecipientVO"> 쪽지 선택해서 보기 
+	select serial,mynote,reciid,recontent,senddate,recipientdate from tbl_recipient_note where mynote=#{mynote} and serial=#{serial}
 	</select>
 	
-	<delete id="delete_note" parameterType="kr.co.useful.note.domain.SendVO"> <!-- 메일삭제 -->
-	delete from tbl_send_note where serial=#{serial} and mynote=#{mynote}
+	<delete id="delete_note" parameterType="kr.co.useful.note.domain.RecipientVO"> 메일삭제
+	delete from tbl_recipient_note where serial=#{serial} and mynote=#{mynote}
 	</delete>
 	
-	<select id="count_note" resultType="int"> <!-- 자기 쪽지 전체 카운트  -->
+	<!-- 
+	 <select id="count_note" resultType="int"> 자기 쪽지 전체 카운트 
 	select count(*) from tbl_send_note where mynote=#{mynote}
 	</select>
 	
-	<select id="search_note" resultType="kr.co.useful.note.domain.SendVO"> <!-- 쪽지검색  -->
+	<select id="search_note" resultType="kr.co.useful.note.domain.SendVO"> 쪽지검색 
 	select serial,sendman,sendcontent,senddate from tbl_send_note
 	<include refid="search"/>
 	and mynote=#{mynote}
 	order by serial desc
 	</select>
 	
-	<select id="search_Count_note" resultType="int"> <!-- 검색쪽지 카운트  -->
+	<select id="search_Count_note" resultType="int"> 검색쪽지 카운트 
 	select count(*) from tbl_send_note
 	<include refid="search"/>
 	and mynote=#{mynote}
@@ -79,6 +80,6 @@
 	</if>
 	
 	
-	</sql>
+	</sql>  -->
 	
 </mapper>
