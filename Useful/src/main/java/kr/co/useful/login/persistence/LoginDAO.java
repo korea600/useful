@@ -18,5 +18,7 @@ public interface LoginDAO {
 	public EmpVO selectAll(EmpVO vo)throws Exception;
 	
 	public int updatepass(int empno, String pass)throws Exception;
+	
+	public EmpVO selectempno(int empno, String pass)throws Exception;
 
 }

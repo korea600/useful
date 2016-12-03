@@ -11,9 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.useful.approval.domain.ApprovalProgressVO;
 import kr.co.useful.approval.domain.ApprovalVO;
@@ -36,27 +39,21 @@ public class ApprovalController {
 	
 	// 기안 작성폼 열기
 	@RequestMapping(value="/form", method=RequestMethod.GET)
-	public String form(HttpServletRequest request){
-		ServletContext application = request.getServletContext();
-		String realpath=application.getRealPath("").replace('\\', '/');
-		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
-							+application.getContextPath()+"/"+application.getInitParameter("projectName")
-							+"/src/main/webapp/upload";
-		System.out.println("uploadfolder : "+uploadFolder);
-		File uploadFile = new File(uploadFolder);
-		if(!uploadFile.exists()) uploadFile.mkdir();	// upload폴더 없을시 생성
+	public String form(){
 		return "/approval/form";
 	}
 	
 	// 작성된 기안 등록
 	@RequestMapping(value="/form", method=RequestMethod.POST)
-	public String insert(ApprovalVO vo) throws Exception{
-		int deptno=vo.getReceiver();
-		if(deptno!=0)
-			vo.setReceiver_dname(service.getDname(deptno));	// 수신처 부서번호로 부서명 얻어서 vo에 저장
-		else
-			vo.setReceiver_dname("전체");			// 수신처 부서번호가 0이면 vo에 수신부서명을 전체로 지정
-		service.create(vo);
+	public String insert(ApprovalVO vo, MultipartFile file, HttpServletRequest request) throws Exception{
+		// 파일업로드 경로 지정 (각 pc의 git 폴더내 src/main/webapp/upload )
+		ServletContext application = request.getServletContext();
+		String realpath=application.getRealPath("").replace('\\', '/');
+		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
+							+application.getContextPath()
+							+"/"+application.getInitParameter("projectName")
+							+"/src/main/webapp/upload";
+		service.create(vo, file, uploadFolder);
 		return "/approval/complete";
 	}
 		
@@ -151,4 +148,19 @@ public class ApprovalController {
 	// 결재/반려시 입력할 코멘트폼 띄우기
 	@RequestMapping("/comment/form")
 	public void approval_comment_form()throws Exception{}
+	
+	// 결재문서에 등록된 첨부파일 다운받기
+	@RequestMapping("/filedownload/{filename}")
+	public String file_download(@PathVariable String filename,HttpServletRequest request)throws Exception{
+		ServletContext application = request.getServletContext();
+		String realpath=application.getRealPath("").replace('\\', '/');
+		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
+							+application.getContextPath()
+							+"/"+application.getInitParameter("projectName")
+							+"/src/main/webapp/upload";
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("fileDownload", new File(uploadFolder+filename));
+		return "springDownload";
+	}
 }

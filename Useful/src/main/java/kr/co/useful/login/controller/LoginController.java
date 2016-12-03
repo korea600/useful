@@ -66,6 +66,22 @@ public class LoginController {
 		return entity;
 	}
 	
+	//초기 로그인 성공시 비밀번호 변경폼
+	@RequestMapping("/Modify_Pass")
+	public void modifyPass(){
+		
+	}
+	
+	@RequestMapping(value="/checkpass",method=RequestMethod.POST)
+	public @ResponseBody String checkPass(HttpServletRequest req)throws Exception{
+		int empno = ((EmpVO)(req.getSession().getAttribute("LoginUser"))).getEmpno();
+		String password = req.getParameter("password");
+		
+		service.updatepass(empno, password);
+		
+		return "SUCCESS";
+	}
+	
 	//로그인 성공시 보여주는 메인뷰
 	@RequestMapping("/Mainview")
 	public String main_view(){
@@ -112,11 +128,8 @@ public class LoginController {
 			return "FAIL";
 	}
 	
-	//초기 로그인 성공시 비밀번호 변경폼
-	@RequestMapping("/Modify_Pass")
-	public void modifyPass(){
-		
-	}
+	
+	
 	
 	//비밀번호 암호화 작업
 	@RequestMapping("/Encrypt")

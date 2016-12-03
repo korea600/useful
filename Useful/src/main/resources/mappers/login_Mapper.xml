@@ -6,6 +6,12 @@
 		from tbl_emp
 		where empno=#{empno}
 	</select>
+	
+	<select id="selectempno" resultType="kr.co.useful.manager.domain.EmpVO">
+		select empno
+		from tbl_emp
+		where empno=#{empno} and pass=#{pass}
+	</select>
   
 	<select id="selectLoginUser" resultType="kr.co.useful.manager.domain.EmpVO">
 		select empno, ename, deptno, position, regdate

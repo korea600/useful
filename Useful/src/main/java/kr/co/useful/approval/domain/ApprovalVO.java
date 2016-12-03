@@ -1,6 +1,5 @@
 package kr.co.useful.approval.domain;
 
-import java.io.File;
 import java.util.Date;
 
 public class ApprovalVO {
@@ -15,7 +14,6 @@ public class ApprovalVO {
 	private Date regdate;			// 작성일자
 	private int curr_approval;		// 최근 결재자 사번(기안자와 같을 경우 결재 대기상태)
 	private int next_approval;		// 다음 결재자 사번(0일 경우 결재 완료상태)
-	private File addfile;			// 첨부파일 (최대 4GB binary file 저장 가능)
 	private String filename;		// 첨부파일의 파일명
 	
 	public ApprovalVO() {}
@@ -24,10 +22,8 @@ public class ApprovalVO {
 		return "ApprovalVO [no=" + no + ", status=" + status + ", title=" + title + ", content=" + content + ", writer="
 				+ writer + ", writer_name=" + writer_name + ", receiver=" + receiver + ", receiver_dname="
 				+ receiver_dname + ", regdate=" + regdate + ", curr_approval=" + curr_approval + ", next_approval="
-				+ next_approval + ", addfile=" + addfile + ", filename=" + filename + "]";
+				+ next_approval + ", filename=" + filename + "]";
 	}
-
-
 
 	public int getNo() {
 		return no;
@@ -115,14 +111,6 @@ public class ApprovalVO {
 
 	public void setNext_approval(int next_approval) {
 		this.next_approval = next_approval;
-	}
-
-	public File getAddfile() {
-		return addfile;
-	}
-
-	public void setAddfile(File addfile) {
-		this.addfile = addfile;
 	}
 
 	public String getFilename() {

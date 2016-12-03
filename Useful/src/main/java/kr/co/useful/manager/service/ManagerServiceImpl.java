@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.co.useful.manager.domain.CommuteVO;
+import kr.co.useful.manager.domain.Commute_DeptVO;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.persistence.ManagerDAO;
 
@@ -75,8 +76,51 @@ class ManagerServiceImpl implements ManagerService {
 		dao.commute_update(map);
 	}
 	
-	
-	
+
+	@Override
+	public List<Commute_DeptVO> commute_deptlist(Map<String, Object> map) throws Exception {
+		List<Integer> list2 = dao.search_ename_from_dept(Integer.parseInt((String) map.get("deptno")));
+		List<Commute_DeptVO> dept_List = new ArrayList<>();
+		
+		for(int i=0;i<list2.size();i++){
+			Map<String,Object> newMap = new HashMap<>();
+			newMap.put("login", map.get("login"));
+			newMap.put("empno",list2.get(i));
+			System.out.println(newMap);
+			List<CommuteVO> list = dao.commute_deptlist(newMap);
+			int attendance=0,late=0,absence=0,vacation=0,businessTrip=0,earlyLeave=0;
+			for(int j=0;j<list.size();j++){
+				switch (list.get(j).getChecked()) {
+					case "출근":
+						attendance++;
+						break;
+					case "지각":
+						late++;
+						break;
+					case "결근":
+						absence++;
+						break;
+					case "휴가":
+						vacation++;
+						break;
+					case "출장":
+						businessTrip++;
+						break;
+					case "조퇴":
+						earlyLeave++;
+						break;
+					default:
+						break;
+					}
+			}
+			EmpVO empvo = dao.emp_select_include_dname(list2.get(i));
+			Commute_DeptVO vo = new Commute_DeptVO(empvo.getDname(),empvo.getEname(), attendance, late, absence, vacation, businessTrip, earlyLeave); 
+			System.out.println("vo"+vo);
+			dept_List.add(vo);
+
+		}
+		return dept_List;
+	}
 	public List<CommuteVO> time_Division(List<CommuteVO> list){
 		 for(int i=0;i<list.size();i++){
 			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 16));

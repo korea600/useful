@@ -42,6 +42,17 @@ public class LoginServiceImpl implements LoginService{
 		return dao.updatepass(empno, pass);
 	}
 
+	@Override
+	public EmpVO selectempno(int empno, String pass) throws Exception {
+		return dao.selectempno(empno, pass);
+	}
+
+	
+
+	
+
+	
+
 
 	
 

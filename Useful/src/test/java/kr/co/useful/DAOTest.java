@@ -40,10 +40,9 @@ public class DAOTest {
 //		
 		Map<String, Object> map = new HashMap<>();
 
-//		map.put("deptno", 10);
-		map.put("startdate", "20161128");
-		map.put("enddate", "20161130");
-		map.put("ename", "전성원");
+//		map.put("startdate", "20161128");
+//		map.put("enddate", "20161130");
+//		map.put("ename", "전성원");
 //		map.put("empno", "1022");
 //		
 //		List<CommuteVO> vo = dao.commute_emplist(map);
@@ -55,10 +54,12 @@ public class DAOTest {
 
 
 
-
-		
-		System.out.println("daoTest");
-		System.out.println(dao.commute_emplist_ename(map));
+		//map.put("deptno", 10);
+		map.put("empno", 1010);
+		map.put("login", "201612");
+		//System.out.println(dao.search_ename_from_dept(10));
+		System.out.println("daoTest2");
+		System.out.println(dao.commute_deptlist(map));
 		
 		
 	}
