@@ -57,8 +57,11 @@
 						alert("첫 로그인을 환영합니다. \n" 
 								+"먼저 비밀번호를 변경하여주세요.");		
 						location.href="/useful/login/Modify_Pass";
-						
+					}else{
+						alert("로그인에 성공하였습니다.");
+						location.href="Mainview";
 					}
+					
 				}else{
 					alert("사원번호와 비밀번호를 다시 확인해주세요.");
 					self.location = "/useful/login/Login";
