@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -147,5 +148,19 @@ public class ApprovalController {
 	// 결재/반려시 입력할 코멘트폼 띄우기
 	@RequestMapping("/comment/form")
 	public void approval_comment_form()throws Exception{}
-
+	
+	// 결재문서에 등록된 첨부파일 다운받기
+	@RequestMapping("/filedownload/{filename}")
+	public String file_download(@PathVariable String filename,HttpServletRequest request)throws Exception{
+		ServletContext application = request.getServletContext();
+		String realpath=application.getRealPath("").replace('\\', '/');
+		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
+							+application.getContextPath()
+							+"/"+application.getInitParameter("projectName")
+							+"/src/main/webapp/upload";
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("fileDownload", new File(uploadFolder+filename));
+		return "springDownload";
+	}
 }
