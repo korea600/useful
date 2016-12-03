@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.co.useful.board.domain.SearchCriteria;
+import kr.co.useful.note.domain.NoteFindUserVO;
+import kr.co.useful.note.domain.RecipientVO;
 import kr.co.useful.note.domain.SendVO;
 import kr.co.useful.note.persistence.SendDAO;
 @Service
@@ -32,9 +34,9 @@ dao.create_note(vo);
 	}
 
 	@Override
-	public void delete_note(int serial) throws Exception {
+	public void delete_note(SendVO vo) throws Exception {
 		// TODO Auto-generated method stub
-dao.delete_note(serial);
+dao.delete_note(vo);
 	}
 
 	@Override
@@ -53,6 +55,18 @@ dao.delete_note(serial);
 	public int search_count_note(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.search_count_note(cri);
+	}
+
+	@Override
+	public List<NoteFindUserVO> find_user_note(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.find_user_note(cri);
+	}
+
+	@Override
+	public void recipient_note(RecipientVO recipientVO) throws Exception {
+		dao.recipient_note(recipientVO);
+		
 	}
 
 }

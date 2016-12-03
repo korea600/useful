@@ -4,13 +4,13 @@
 	<!-- 결재문서 등록 -->
 	<insert id="create">
 		insert into tbl_approval
-		(no,status,title, content, writer, writer_name, receiver,receiver_dname, curr_approval, next_approval)
-		values (tbl_approval_seq.nextval, #{status},#{title},#{content},#{writer},#{writer_name},#{receiver},#{receiver_dname},#{curr_approval},#{next_approval})	
+		(no,status,title, content, writer, writer_name, receiver,receiver_dname, curr_approval, next_approval,filename)
+		values (tbl_approval_seq.nextval, #{status},#{title},#{content},#{writer},#{writer_name},#{receiver},#{receiver_dname},#{curr_approval},#{next_approval},#{filename})	
 	</insert>
 	<!-- 반려문서 수정하기 -->
 	<update id='update'>
 		update tbl_approval
-		set status=#{status},title=#{title}, content=#{content},curr_approval=#{curr_approval},next_approval=#{next_approval}
+		set status=#{status},title=#{title}, content=#{content},curr_approval=#{curr_approval},next_approval=#{next_approval}, regdate=sysdate
 		where no=#{no} 
 	</update>
 	<!-- 반려문서 삭제하기 -->
@@ -21,39 +21,92 @@
 	<select id="list" resultType="Approval">
 		select no, status, writer_name, receiver_dname, title,regdate
 		from tbl_approval
-		<if test='next_approval!=0'>
-			where next_approval=#{next_approval}	<!-- 내가 결재할 차례인 문서 조회 -->
+		<!-- 내가 결재할 차례인 문서 조회 -->
+		<if test='vo.next_approval!=0'>
+			where next_approval=#{vo.next_approval}
+			<include refid="search"/>
 		</if>
-		<if test="writer!=0">
-			<if test="status==null">
-				where writer=#{writer}			<!-- 내가 작성한 문서 조회할때 -->
+		<!-- 내가 작성한 문서 조회할때 -->
+		<if test="vo.writer!=0">
+			<if test="vo.status==null">
+				where writer=#{vo.writer}
+				<include refid="search"/>				
 			</if>
 		</if>  
-		<if test="receiver!=0">
-			where status=#{status}			<!-- 수신부서가 우리부서/전체부서 인 문서 조회 -->
-			and (receiver=#{receiver} or receiver=0)
+		<!-- 수신부서가 우리부서/전체부서 인 문서 조회 -->
+		<if test="vo.receiver!=0">
+			where status=#{vo.status}					
+			and (receiver=#{vo.receiver} or receiver=0)
+			<include refid="search"/>
 		</if>
 		order by regdate desc
 	</select>
-	<select id='liststatus' resultType="Approval">
+	<!-- 우리부서 내에서 결재 진행중인 문서 조회 -->
+	<select id='liststatus' resultType="Approval" >
 		select no, status, writer_name,	receiver_dname, title,regdate
 		from tbl_approval
 		where receiver=#{deptno}
 		and status!=#{status}
+		<include refid="search"/>
 		order by regdate desc
 	</select>
+	<select id="listCount" resultType="int">
+		select count(*) from tbl_approval
+		<if test='vo.next_approval!=0'>
+			where next_approval=#{vo.next_approval}
+			<include refid="search"/>
+		</if>
+		<!-- 내가 작성한 문서 조회할때 -->
+		<if test="vo.writer!=0">
+			<if test="vo.status==null">
+				where writer=#{vo.writer}
+				<include refid="search"/>				
+			</if>
+		</if>  
+		<!-- 수신부서가 우리부서/전체부서 인 문서 조회 -->
+		<if test="vo.receiver!=0">
+			where status=#{vo.status}					
+			and (receiver=#{vo.receiver} or receiver=0)
+			<include refid="search"/>
+		</if>
+	</select>
+	<select id='liststatusCount' resultType="int">
+		select count(*)
+		from tbl_approval
+		where receiver=#{deptno}
+		and status!=#{status}
+		<include refid="search"/>
+	</select>
+	<!-- 리스트 조회시 검색기능 -->
+	<sql id='search'>
+		<if test="cri.searchBy != null">
+			<if test='cri.searchBy.equals("title")'>
+				and title like '%'||#{cri.keyword}||'%'			
+			</if>
+			<if test='cri.searchBy.equals("writer_name")'>
+				and writer_name like '%'||#{cri.keyword}||'%'
+			</if>
+			<if test='cri.searchBy.equals("receiver_name")'>
+				and receiver=#{cri.keyword}
+			</if>
+			<if test='cri.searchBy.equals("status")'>
+				and status=#{cri.keyword}
+			</if>
+		</if>
+	</sql>
+	<!-- 사원의 부서번호 조회 -->
 	<select id="getmydeptno" resultType="int">
 		select deptno from tbl_emp where empno=#{empno}
 	</select>
 	<!-- 문서내용조회 -->
 	<select id='select' resultType="Approval">
 		select no, status, writer, writer_name, receiver_dname,
-		receiver, title,content, curr_approval,next_approval
+		receiver, title,content, curr_approval,next_approval, filename
 		from tbl_approval
 		where no=#{no}
 	</select>
 	<!-- 특정 부서번호의 부서명 정보 얻기 -->
-	<select id='getdname'>
+	<select id='getdname' resultType="String">
 		select dname from tbl_dept where deptno=#{deptno}
 	</select>
 	<!-- 상사의 사번 얻기 -->
@@ -79,6 +132,7 @@
 			select deptno, dname
 			from tbl_dept
 			where deptno!=#{deptno}
+			and deptno!=0
 			order by deptno
 		</select>
 		<!-- 다음 결재선 정보 얻기 -->

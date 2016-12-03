@@ -1,6 +1,8 @@
 package kr.co.useful.approval.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,12 +11,25 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.media.jfxmediaimpl.MediaUtils;
+
+import kr.co.useful.approval.domain.ApprovalCriteria;
+import kr.co.useful.approval.domain.ApprovalPageMaker;
 import kr.co.useful.approval.domain.ApprovalProgressVO;
 import kr.co.useful.approval.domain.ApprovalVO;
 import kr.co.useful.approval.service.ApprovalService;
@@ -36,27 +51,21 @@ public class ApprovalController {
 	
 	// 기안 작성폼 열기
 	@RequestMapping(value="/form", method=RequestMethod.GET)
-	public String form(HttpServletRequest request){
-		ServletContext application = request.getServletContext();
-		String realpath=application.getRealPath("").replace('\\', '/');
-		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
-							+application.getContextPath()+"/"+application.getInitParameter("projectName")
-							+"/src/main/webapp/upload";
-		System.out.println("uploadfolder : "+uploadFolder);
-		File uploadFile = new File(uploadFolder);
-		if(!uploadFile.exists()) uploadFile.mkdir();	// upload폴더 없을시 생성
+	public String form(){
 		return "/approval/form";
 	}
 	
 	// 작성된 기안 등록
 	@RequestMapping(value="/form", method=RequestMethod.POST)
-	public String insert(ApprovalVO vo) throws Exception{
-		int deptno=vo.getReceiver();
-		if(deptno!=0)
-			vo.setReceiver_dname(service.getDname(deptno));	// 수신처 부서번호로 부서명 얻어서 vo에 저장
-		else
-			vo.setReceiver_dname("전체");			// 수신처 부서번호가 0이면 vo에 수신부서명을 전체로 지정
-		service.create(vo);
+	public String insert(ApprovalVO vo, MultipartFile file, HttpServletRequest request) throws Exception{
+		// 파일업로드 경로 지정 (각 pc의 git 폴더내 src/main/webapp/upload )
+		ServletContext application = request.getServletContext();
+		String realpath=application.getRealPath("").replace('\\', '/');
+		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
+							+application.getContextPath()
+							+"/"+application.getInitParameter("projectName")
+							+"/src/main/webapp/upload";
+		service.create(vo, file, uploadFolder);
 		return "/approval/complete";
 	}
 		
@@ -89,38 +98,54 @@ public class ApprovalController {
 	 */
 	
 	@RequestMapping("/listmine")	// 내가 작성한 문서 조회
-	public String listmine(HttpSession session, Model m) throws Exception{
+	public String listmine(HttpSession session, ApprovalCriteria cri,Model m) throws Exception{
 		ApprovalVO vo = new ApprovalVO();
 		vo.setWriter(((EmpVO)session.getAttribute("LoginUser")).getEmpno());
-		m.addAttribute("list", service.list(vo));
+		ApprovalPageMaker pagemaker = new ApprovalPageMaker();
+		pagemaker.setCri(cri);
+		pagemaker.setTotalCount(service.listCount(vo, cri));
+		m.addAttribute("pagemaker",pagemaker);
+		m.addAttribute("list", service.list(vo,cri));
 		return "/approval/listmine";
 	}
 
 	@RequestMapping("/listmyturn")	// 내가 결재할 차례인것 조회
-	public String listmyturn(HttpSession session,Model m) throws Exception{
+	public String listmyturn(HttpSession session, ApprovalCriteria cri,Model m) throws Exception{
 		ApprovalVO vo = new ApprovalVO();
 		vo.setNext_approval(((EmpVO)session.getAttribute("LoginUser")).getEmpno());
-		m.addAttribute("list", service.list(vo));
+		ApprovalPageMaker pagemaker = new ApprovalPageMaker();
+		pagemaker.setCri(cri);
+		pagemaker.setTotalCount(service.listCount(vo, cri));
+		m.addAttribute("pagemaker",pagemaker);
+		m.addAttribute("list", service.list(vo,cri));
 		return "/approval/listmyturn";
 	}
 	
 	@RequestMapping("/listdept")	// 수신부서가 우리부서 or 전체용 문서 조회
-	public String listdept(HttpSession session, Model m) throws Exception{
+	public String listdept(HttpSession session, ApprovalCriteria cri, Model m) throws Exception{
 		ApprovalVO vo = new ApprovalVO();
 		int empno=((EmpVO)session.getAttribute("LoginUser")).getEmpno();
 		vo.setReceiver(service.getMyDeptno(empno));	// 사번으로 부서번호 얻어서 조회 조건 지정
 		vo.setStatus("완료");							// 결재완료인 상태로 조건 지정
-		m.addAttribute("list", service.list(vo));
+		ApprovalPageMaker pagemaker = new ApprovalPageMaker();
+		pagemaker.setCri(cri);
+		pagemaker.setTotalCount(service.listCount(vo, cri));
+		m.addAttribute("pagemaker",pagemaker);
+		m.addAttribute("list", service.list(vo,cri));
 		return "/approval/listdept";
 	}
 	
 	@RequestMapping("/liststatus")	// 우리부서내에서 결재 진행중인것 조회 (발신부서 조회)
-	public String liststatus(HttpSession session, Model m) throws Exception{
+	public String liststatus(HttpSession session, ApprovalCriteria cri, Model m) throws Exception{
 		int deptno=((EmpVO)session.getAttribute("LoginUser")).getDeptno();
 		Map<String, Object> map = new HashMap<>();
 		map.put("status","완료");
 		map.put("deptno", deptno);
-		m.addAttribute("list", service.listStatus(map));
+		ApprovalPageMaker pagemaker = new ApprovalPageMaker();
+		pagemaker.setCri(cri);
+		pagemaker.setTotalCount(service.listStatusCount(map, cri));
+		m.addAttribute("pagemaker",pagemaker);
+		m.addAttribute("list", service.listStatus(map,cri));
 		return "/approval/liststatus";
 	}
 	
@@ -151,4 +176,34 @@ public class ApprovalController {
 	// 결재/반려시 입력할 코멘트폼 띄우기
 	@RequestMapping("/comment/form")
 	public void approval_comment_form()throws Exception{}
+	
+	// 결재문서에 등록된 첨부파일 다운받기
+	@ResponseBody
+	@RequestMapping(value="/filedownload")
+	public ResponseEntity<byte[]> file_download(String filename,HttpServletRequest request)throws Exception{
+		ServletContext application = request.getServletContext();
+		String realpath=application.getRealPath("").replace('\\', '/');
+		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
+				+application.getContextPath()
+				+"/"+application.getInitParameter("projectName")
+				+"/src/main/webapp/upload";
+		ResponseEntity<byte[]> entity = null;
+		InputStream fis = null;
+		try{
+			HttpHeaders headers = new HttpHeaders();
+			fis = new FileInputStream(uploadFolder+"/"+filename);
+			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+			headers.add("Content-Disposition", "attachment;filename=\""
+							+filename+"\"");
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(fis),headers,HttpStatus.CREATED);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		}
+		finally{
+			fis.close();
+		}
+		return entity;
+	}
 }

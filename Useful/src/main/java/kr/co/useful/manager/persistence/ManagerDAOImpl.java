@@ -40,6 +40,11 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public EmpVO emp_select(int empno) throws Exception {
 		return sqlSession.selectOne("manager.emp_select",empno);
 	}
+	
+	@Override
+	public EmpVO emp_select_include_dname(int empno) throws Exception {
+		return sqlSession.selectOne("manager.emp_select_include_dname",empno);
+	}
 	@Override
 	public void emp_update(EmpVO vo) throws Exception {
 		sqlSession.update("manager.emp_update",vo);
@@ -72,5 +77,18 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public void commute_update(Map<String, Object> map) throws Exception {
 		sqlSession.update("manager.commute_update",map);
+	}
+	
+	@Override
+	public List<CommuteVO> commute_deptlist(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList("manager.commute_dept",map);
+
+	}
+	
+	@Override
+	public List<Integer> search_ename_from_dept(int deptno) throws Exception {
+		Map<String,Integer> map =new HashMap<>();
+		map.put("deptno", deptno);
+		return sqlSession.selectList("manager.search_ename_from_dept",map);
 	}
 }

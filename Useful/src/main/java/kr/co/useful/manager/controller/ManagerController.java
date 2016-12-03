@@ -2,6 +2,7 @@ package kr.co.useful.manager.controller;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.useful.manager.domain.Commute_DeptVO;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.service.ManagerService;
 
@@ -107,10 +109,14 @@ public class ManagerController {
 		
 	}
 	@RequestMapping(value="/commute_Dept",method=RequestMethod.POST)
-	public void commute_Dept(@RequestBody Map<String,Object> requestMap,Model model){
+	public String commute_Dept(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		Map<String,Object> map = new HashMap<>();
-		map.put("deptno",requestMap.get("deptno"));
+		map.put("deptno",requestMap.get("dept"));
 		map.put("login",(String)requestMap.get("year")+(String)requestMap.get("month"));
+		System.out.println("컨트롤러");
+		System.out.println(service.commute_deptlist(map));
+		model.addAttribute("commute",service.commute_deptlist(map));
+		return "/manager/commute_Printdept";
 	}
 	@RequestMapping("/commute_Daily")
 	public void commute_Daily(){
@@ -130,6 +136,10 @@ public class ManagerController {
 	}
 	@RequestMapping("/commute_Print")
 	public void commute_Print(){
+		
+	}
+	@RequestMapping("/commute_Printdept")
+	public void commute_Printdept(){
 		
 	}
 	

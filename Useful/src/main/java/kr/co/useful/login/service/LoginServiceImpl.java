@@ -1,6 +1,7 @@
 package kr.co.useful.login.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -35,6 +36,25 @@ public class LoginServiceImpl implements LoginService{
 	public EmpVO selectAll(EmpVO vo) throws Exception {
 		return dao.selectAll(vo);
 	}
+
+	@Override
+	public int updatepass(int empno, String pass) throws Exception {
+		return dao.updatepass(empno, pass);
+	}
+
+	@Override
+	public EmpVO selectempno(int empno, String pass) throws Exception {
+		return dao.selectempno(empno, pass);
+	}
+
+	
+
+	
+
+	
+
+
+	
 
 	
 

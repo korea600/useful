@@ -1,5 +1,6 @@
 package kr.co.useful.approval.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +8,11 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.useful.approval.domain.ApprovalCommentVO;
+import kr.co.useful.approval.domain.ApprovalCriteria;
 import kr.co.useful.approval.domain.ApprovalProgressVO;
 import kr.co.useful.approval.domain.ApprovalRestVO;
 import kr.co.useful.approval.domain.ApprovalVO;
@@ -27,14 +31,14 @@ public class ApprovalServiceImpl implements ApprovalService{
 	private ApprovalCommentDAO commentdao;
 	
 	@Transactional
-	public void create(ApprovalVO vo) throws Exception {
-		vo.setCurr_approval(vo.getWriter());			// 작성자를 최근 결재자로 지정
-		
+	public void create(ApprovalVO vo, MultipartFile file, String path) throws Exception {
+		vo.setCurr_approval(vo.getWriter());					// 작성자를 최근 결재자로 지정
+		vo.setReceiver_dname(dao.getDname(vo.getReceiver()));	// 수신처 부서번호를 이용하여 수신부서명 지정
 		// 다음 결재자가 있는지 확인
 		ApprovalRestVO restVO = new ApprovalRestVO(); 
 		restVO.setDeptno(vo.getReceiver());				
 		restVO.setEmpno(vo.getWriter());
-		if(restdao.getLine(restVO).size()>0){		// 다음 결재자가 있으면 다음 결재자로 직속상사 지정
+		if(restdao.getLine(restVO).size()>0){					// 다음 결재자가 있으면 다음 결재자로 직속상사 지정
 			vo.setNext_approval(dao.getManager(vo.getWriter()));
 			vo.setStatus("진행");
 		}
@@ -42,6 +46,17 @@ public class ApprovalServiceImpl implements ApprovalService{
 			vo.setNext_approval(vo.getWriter());	// 다음 결재자가 없으면 작성자가 다음 결재자가 됨
 			vo.setStatus("완료");
 		}
+		// 지정된 파일업로드 폴더가 없을경우 생성 
+		File uploadLocation = new File(path);
+		if(!uploadLocation.exists()) uploadLocation.mkdir();
+		String filename = file.getOriginalFilename();
+		System.out.println("filename : "+filename);
+		// 업로드된 파일이 있을경우 업로드 처리
+		if(filename!=null && filename.length()>0){
+			File out = new File(path+"/"+filename);
+			FileCopyUtils.copy(file.getBytes(), out);	// 지정된 경로로 업로드 파일 복사
+		}
+		vo.setFilename(filename);						// 업로드된 파일명을 DB에 저장하기 위해 VO에 값 저장
 		dao.create(vo);
 	}
 	
@@ -131,25 +146,29 @@ public class ApprovalServiceImpl implements ApprovalService{
 		}
 	}
 
-	public List<ApprovalVO> list(ApprovalVO vo) throws Exception {
-		return dao.list(vo);
+	public List<ApprovalVO> list(ApprovalVO vo, ApprovalCriteria cri) throws Exception {
+		return dao.list(vo,cri);
 	}
 
 	public ApprovalVO select(int no) throws Exception {
 		return dao.select(no);
 	}
 
-	public List<ApprovalVO> listStatus(Map<String, Object> map) throws Exception {
-		return dao.listStatus(map);
-	}
-
-	public String getDname(int deptno) throws Exception {
-		return dao.getDname(deptno);
+	public List<ApprovalVO> listStatus(Map<String, Object> map, ApprovalCriteria cri) throws Exception {
+		return dao.listStatus(map,cri);
 	}
 	
 	@Transactional
 	public void delete(int no) throws Exception {
 		dao.delete(no);
 		commentdao.delelte(no);
+	}
+
+	public int listCount(ApprovalVO vo, ApprovalCriteria cri) throws Exception {
+		return dao.listCount(vo, cri);
+	}
+
+	public int listStatusCount(Map<String, Object> map, ApprovalCriteria cri) throws Exception {
+		return dao.listStatusCount(map, cri);
 	}
 }

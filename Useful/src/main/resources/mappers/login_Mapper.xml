@@ -6,6 +6,12 @@
 		from tbl_emp
 		where empno=#{empno}
 	</select>
+	
+	<select id="selectempno" resultType="kr.co.useful.manager.domain.EmpVO">
+		select empno
+		from tbl_emp
+		where empno=#{empno} and pass=#{pass}
+	</select>
   
 	<select id="selectLoginUser" resultType="kr.co.useful.manager.domain.EmpVO">
 		select empno, ename, deptno, position, regdate
@@ -15,6 +21,10 @@
 	
 	<update id="update">
 		update tbl_emp set regdate=sysdate where empno=#{empno}
+	</update>
+	
+	<update id="updatepass">
+		update tbl_emp set pass=#{pass} where empno=#{empno} 
 	</update>
 	
 	<select id="selectAll" resultType="kr.co.useful.manager.domain.EmpVO">

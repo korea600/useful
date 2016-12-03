@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.useful.board.domain.SearchCriteria;
+import kr.co.useful.note.domain.NoteFindUserVO;
+import kr.co.useful.note.domain.RecipientVO;
 import kr.co.useful.note.domain.SendVO;
 @Repository
 public class SendDAOImpl implements SendDAO {
@@ -34,8 +36,8 @@ private SqlSession session;
 	}
 
 	@Override
-	public void delete_note(int serial) throws Exception {
-		session.delete("send_note.delete_note", serial);
+	public void delete_note(SendVO vo) throws Exception {
+		session.delete("send_note.delete_note", vo);
 
 	}
 
@@ -55,6 +57,18 @@ private SqlSession session;
 	public int search_count_note(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne("send_note.search_Count_note", cri);
+	}
+
+	@Override
+	public List<NoteFindUserVO> find_user_note(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList("send_note.note_find_user", cri);
+	}
+
+	@Override
+	public void recipient_note(RecipientVO recipientVO) throws Exception {
+		session.insert("send_note.create_note_recipient", recipientVO);
+		
 	}
 
 }

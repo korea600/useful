@@ -6,6 +6,8 @@ reciid varchar2(20), -- 보낸사람 아이디
 recontent varchar2(2000), -- 받은 내용
 recipientdate date default sysdate -- 받은날짜
 );
-
+select * from tbl_recipient_note;
 drop sequence tbl_recipient_note_seq;
 create sequence tbl_recipient_note_seq;
+
+select empno,ename,pass from tbl_emp;
