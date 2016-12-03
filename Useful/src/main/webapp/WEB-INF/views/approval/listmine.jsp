@@ -34,10 +34,29 @@ td{text-align: center}
 	<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script type="text/javascript">
+	function search(){
+		var searchBy = 'status'					// 결재 진행상태별 검색
+		var keyword=$('[name=searchBy]').val();
+		if(keyword=='')
+			alert('검색형식을 선택해 주세요.');
+		else	
+			location.href='listmine${pagemaker.makeQuery(1)}&searchBy='+searchBy+'&keyword='+keyword;
+	}
+	</script>
 </head>
 <body>
-<div class="col-lg-12">
+<div class="col-lg-12" style="margin-right: 10%">
 	<h1 class="page-header" style="text-align: right;">내 기안 문서</h1>
+</div>
+<div align="right" style='margin-right: 10%'>
+	<select name='searchBy'>
+		<option value=''>선택</option>
+		<option value='진행'>진행</option>
+		<option value='완료'>완료</option>
+		<option value='반려'>반려</option>
+	</select>
+	<input type='button' id='search' value='검색' onclick='search()'>
 </div>
 <table align="right" style="margin-right: 10%" border="1">
 <tr><th>문서번호</th><th>상태</th><th>작성자</th><th>수신처</th><th>제목</th><th>작성일자</th></tr>

@@ -25,7 +25,6 @@
 		<if test='vo.next_approval!=0'>
 			where next_approval=#{vo.next_approval}
 			<include refid="search"/>
-			order by regdate desc
 		</if>
 		<!-- 내가 작성한 문서 조회할때 -->
 		<if test="vo.writer!=0">
@@ -33,15 +32,14 @@
 				where writer=#{vo.writer}
 				<include refid="search"/>				
 			</if>
-			order by no desc
 		</if>  
 		<!-- 수신부서가 우리부서/전체부서 인 문서 조회 -->
 		<if test="vo.receiver!=0">
 			where status=#{vo.status}					
 			and (receiver=#{vo.receiver} or receiver=0)
 			<include refid="search"/>
-			order by no desc
 		</if>
+		order by regdate desc
 	</select>
 	<!-- 우리부서 내에서 결재 진행중인 문서 조회 -->
 	<select id='liststatus' resultType="Approval" >
@@ -50,7 +48,7 @@
 		where receiver=#{deptno}
 		and status!=#{status}
 		<include refid="search"/>
-		order by no desc
+		order by regdate desc
 	</select>
 	<select id="listCount" resultType="int">
 		select count(*) from tbl_approval
@@ -89,7 +87,10 @@
 				and writer_name like '%'||#{cri.keyword}||'%'
 			</if>
 			<if test='cri.searchBy.equals("receiver_name")'>
-				and receiver_name=#{cri.keyword}
+				and receiver=#{cri.keyword}
+			</if>
+			<if test='cri.searchBy.equals("status")'>
+				and status=#{cri.keyword}
 			</if>
 		</if>
 	</sql>
