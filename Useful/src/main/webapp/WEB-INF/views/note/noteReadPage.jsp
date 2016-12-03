@@ -42,16 +42,21 @@
                                     <form method="post" action="noteCreatePage">
                                         <div class="form-group">
                                             <label>받는사람</label>  <button type="button" class="fa fa-user" id="userfind" style="width: 40px;height: 20px;"></button>
-                                            <input class="form-control" type="text" id="sendman" name="sendman" readonly="readonly"></input>
+                                            <input class="form-control" type="text" id="sendman" name="sendman" readonly="readonly" value="${list.sendman }"></input>
                                             
                                         </div>
                                         <div class="form-group">
                                             <label>보내는사람</label>
-                                            <input type="text" id="mynote" class="form-control" value="${LoginUser.ename }" name="mynote" readonly="readonly">
+                                            <input type="text" id="mynote" class="form-control" value="${list.mynote}" name="mynote" readonly="readonly">
                                         </div>
+                                         <div class="form-group">
+                                        <label>보낸날짜</label>
+                                        <input type="text" id="senddate" class="form-control" value="${list.senddate}" name="senddate" readonly="readonly">
+                                        <fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${sendVO.senddate }"/>
+                                         </div>
 										<div class="form-group">
                                             <label>쪽지내용</label>
-                                            <textarea id="sendcontent" class="form-control" rows="3" placeholder="내용을 입력해주세요" name="sendcontent"></textarea>
+                                            <textarea id="sendcontent" class="form-control" rows="3" name="sendcontent">${list.sendcontent }</textarea>
                                         </div>
 
                                         <div class="form-group">

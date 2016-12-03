@@ -51,7 +51,7 @@
 		<div id="page-wrapper" style="height: 100%;">
 			<div class="row" style="height: 100%;">
 				<div class="col-lg-12">
-					<h1 class="page-header">내쪽지함</h1>
+					<h1 class="page-header">내 보낸쪽지함</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -70,12 +70,12 @@
                             
                               <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 30px;">
                                                     <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
-                                                    <option value="t"<c:out value="${cri.searchType=='sendman'?'selected':'' }"/> >보낸사람</option>
-                                                    <option value="c" <c:out value="${cri.searchType=='sendcontent'?'selected':'' }"/>>내용</option>
+                                                    <option value="sendman"<c:out value="${cri.searchType=='sendman'?'selected':'' }"/> >보낸사람</option>
+                                                    <option value="sendcontent" <c:out value="${cri.searchType=='sendcontent'?'selected':'' }"/>>내용</option>
                                                 </select>
                                 <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="searchBtn"  style="height: 30px;">
+                                    <button type="button" class="btn btn-warning btn-sm" id="searchBtn"  style="height: 30px;">
                                         검색
                                     </button>
                                 </span>
@@ -101,9 +101,9 @@
 											<%-- <td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td> --%>
 
 											<td>${sendVO.sendman }</td>
-											<td>${sendVO.sendcontent }</td>
+											<td><a href="/useful/note/notereadPage?serial=${sendVO.serial }">${sendVO.sendcontent }</a></td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${sendVO.senddate }"/></td>
-											
+											<td style="display: none" value="${sendVO.serial }"></td>
 										</tr>
 									</c:forEach>
 									
@@ -196,7 +196,7 @@ $(document).ready(function(){
 	});
 	$("#searchBtn").on("click",function(event){
 		event.preventDefault();
-		self.location="listPage"+
+		self.location="notePage"+
 		'${pageMaker.query(1)}'+
 		"&searchType="+
 		$("select option:selected").val()+

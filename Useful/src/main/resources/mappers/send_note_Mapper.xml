@@ -3,16 +3,16 @@
 <mapper namespace="send_note">
 	
 	<select id="list_note" resultType="kr.co.useful.note.domain.SendVO"> <!--자신 메일내역조회  -->
-	select serial,sendman,sendcontent,senddate from tbl_send_note where mynote=#{mynote} order by serial desc
+	select serial,sendman,sendcontent,senddate,mynote from tbl_send_note where mynote=#{mynote} order by serial desc
 	</select>
 	
 	<insert id="create_note" parameterType="kr.co.useful.note.domain.SendVO"> <!--쪽지보내기  -->
 	insert into tbl_send_note (serial,mynote,sendman,sendcontent)
-	 values(tbl_send_note_seq,#{mynote},#{sendman},#{sendcontent})
+	 values(tbl_send_note_seq.nextval,#{mynote},#{sendman},#{sendcontent})
 	</insert>
 	
 	<select id="select_note" resultType="kr.co.useful.note.domain.SendVO"> <!--쪽지 선택해서 보기  -->
-	select serial,sendman,sendcontent,senddate from tbl_send_note where mynote=#{mynote} and serial=#{serial} orderby by serial desc
+	select serial,sendman,sendcontent,senddate from tbl_send_note where mynote=#{mynote} and serial=#{serial}
 	</select>
 	
 	<delete id="delete_note" parameterType="int"> <!-- 메일삭제 -->
