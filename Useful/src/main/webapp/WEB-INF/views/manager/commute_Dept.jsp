@@ -100,9 +100,13 @@ th {
 												<%} %> 
 											</select>
 					<select name="search_month" id="search_month" style='width:80px;' onChange='searchDate()'>
- 						<%for(int i=1;i<13;i++){ %>
+ 						<%for(int i=1;i<13;i++){
+ 						if(i<10){%>
+ 						
+						<option value="0<%=i%>"><%=i%>월</option>
+						<%}else{ %>
 						<option value="<%=i%>"><%=i%>월</option>
-						<%} %> 
+						<%} }%> 
 					</select>
 					<a href='#' onclick="changeMonthnext()">
 					<img src='/useful/resources/image/paging_next.gif'  alt='다음월' /></a>
@@ -121,7 +125,7 @@ th {
 	</tr>
 			<tr>
 			<td colspan="8">
-			<b>데이터가 없습니다.</b>
+			<b>데이터를 로딩중입니다...</b>
 			</td>
 		</tr>
 		</table>

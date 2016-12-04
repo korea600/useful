@@ -118,17 +118,10 @@
   	order by a.empno
   </select>
   <select id="commute_monthly_list" resultType="kr.co.useful.manager.domain.CommuteVO">
-    select a.empno,a.ename,b.dname,a.login,a.logout,a.checked,a.serial
-  	from (select emp.empno,emp.ename, emp.deptno,cmt.login,cmt.logout,cmt.checked,cmt.serial
- 		 	from tbl_emp emp,(select * from tbl_commute where 
- 		 			empno in(select empno from tbl_emp 
- 		 			<if test="deptno!=0">
- 		 			where deptno=#{deptno}
- 		 			</if>
- 		 			 )  and 	to_char(login, 'YYYYMMYY')=#{login} ) cmt
- 		 	where emp.empno=cmt.empno) a, tbl_dept b
-  	where a.deptno=b.deptno 
-  	order by a.empno
+   select * from tbl_commute where empno in(select empno from tbl_emp 
+ 		 			<if test="deptno!=0">where deptno=#{deptno} </if>
+ 		 			 )  and 	to_char(login, 'YYYYMMDD')=#{login}
+  	order by empno
   </select>
   
   <select id="search_ename_from_dept" resultType="int">
@@ -138,4 +131,47 @@
   	</if>
   </select>
     
+    <select id="leave_list_search" resultType="map">
+  	select empno,ename,dname,hiredate,basic,used,rest
+  	from tbl_leave lea,
+  		(select b.empno,b.ename,a.dname,b.hiredate
+  		 from tbl_dept a,(select empno,ename,deptno,hiredate
+  			from tbl_emp
+  			<where>
+  			<if test="empno!=null">
+  			empno=#{empno}
+  			</if>
+  			<if test="ename!=null">
+  			and ename=#{ename}
+  			</if>
+  			<if test="deptno!=null">
+  			and deptno=#{deptno}
+  			</if>
+  			</where>) b
+  		where a.deptno=b.deptno) emp
+  	where lea.empno=emp.empno
+  		
+  	<if test="searchType != null">
+  		<if test="searchType =='divGbn'.toString()">
+  		<!-- if문 명시적사용 -->
+  		</if>
+  		<if test="searchType =='name'.toString()">
+  		where ename like '%'||#{keyword}||'%'
+  		</if>
+  		<if test="searchType =='no'.toString()">
+  		where empno like '%'||#{keyword}||'%'
+  		</if>
+  		<if test="searchType =='dept'.toString()">
+  		where deptno like '%'||#{keyword}||'%'
+  		</if>
+  		<if test="searchType =='posi'.toString()">
+  		where position like '%'||#{keyword}||'%'
+  		</if>
+  		<if test="searchType =='phone'.toString()">
+  		where phone like '%'||#{keyword}||'%'
+  		</if>
+  	
+  	</if>
+  	order by empno
+  </select>
 </mapper>

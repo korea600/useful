@@ -63,7 +63,6 @@ function div_load(){
 			
 				  }),
 			  success: function(result){
-				 //document.getElementById("div_print").innerHTML = result;
 					$("#div_print").html(result);
 				  },
 			error:function(request,status,error){

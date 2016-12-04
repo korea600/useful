@@ -20,14 +20,13 @@ th {
  <script type="text/javascript" 
 	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript">
-		
 	$(function(){
 		var now = new Date();
 		var month=now.getMonth()+1;
 		var year=now.getFullYear();
 		$("#search_year").val(year).prop("selected", true);
 		$("#search_month").val(month).prop("selected", true);
-		//searchDate();
+		searchDate();
 	});
 	function searchDate(){
 	 		  $.ajax({
@@ -54,6 +53,20 @@ th {
 		$("#search_month").val(nowmonth-1).prop("selected", true);
 		}
 	}
+	function call_attendance(date){
+	
+	
+		alert(date);
+	}		
+	function call_late(date){
+		alert(date);
+	
+	}		
+	function call_acc(date){
+	
+		alert(date);
+	
+	}		
 </script>
 </head>
 <body>
@@ -90,11 +103,15 @@ th {
 												<%} %> 
 											</select>
 					<select name="search_month" id="search_month" style='width:80px;' onChange='searchDate()'>
- 						<%for(int i=1;i<13;i++){ %>
+ 						<%for(int i=1;i<13;i++){
+ 						if(i<10){%>
+ 						
+						<option value="0<%=i%>"><%=i%>월</option>
+						<%}else{ %>
 						<option value="<%=i%>"><%=i%>월</option>
-						<%} %> 
+						<%} }%> 
 					</select>
-					<a href='#' onclick="Common.getObj('cal_next_prev').value='next';document.search_form.submit();">
+					<a href='#' onclick="changeMonthnext()">
 					<img src='/useful/resources/image/paging_next.gif'  alt='다음월' /></a>
 </div>
 	<div id="div_print">
@@ -110,7 +127,7 @@ th {
 	</tr>
 			<tr>
 			<td colspan="7">
-			<b>데이터 로딩중</b>
+			<b>데이터를 로딩중입니다...</b>
 			</td>
 		</tr>
 		</table>
