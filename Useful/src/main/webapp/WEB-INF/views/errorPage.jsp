@@ -6,9 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ERROR</title>
+<script type="text/javascript">
+	window.onload=function(){
+		setTimeout("go_to_login()", 3000);
+	};
+	function go_to_login(){
+		location.href='${pageContext.request.contextPath}'
+	}
+</script>
 </head>
 <body>
-<h1>오류가 발생하였습니다 ㅠㅠ</h1>
+<h1>오류가 발생하여 로그인 페이지로 이동합니다. ㅠㅠ</h1>
 	<h3>${exception.getMessage()}</h3>
 	<ul type="square">
 		<c:forEach items="${exception.getStackTrace()}" var="i">
