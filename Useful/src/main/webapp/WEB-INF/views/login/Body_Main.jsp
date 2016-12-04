@@ -29,15 +29,68 @@
 	<div class="container"> 
 		<div class="row row-offcanvas row-offcanvas-center">
 			<div class="row">
-			
-	
+		
+		 <div class="col-xs-5 col-lg-6">
+              <h3><span class="glyphicon glyphicon-file" style="color:black">전자결재</span>
+              <c:if test="${LoginUser.position eq '사원' } ">
+              <c:forEach begin="1" end="18">
+              &nbsp;&nbsp;
+              </c:forEach>              
+              <small><a href="/useful/approval/listmine"><font size="2">+ MORE</font></a></small>               
+              </c:if></h3>
+             
+              <c:if test="${!LoginUser.position  eq '사원' }">
+              <h3><span class="glyphicon glyphicon-file" style="color:black">전자결재</span>
+              <c:forEach begin="1" end="18">
+              &nbsp;&nbsp;
+              </c:forEach>
+              <small><a href="/useful/approval/listmyturn"><font size="2">+ MORE</font></a></small> </h3> 
+              </c:if>
+              
+			<table class="table table-bordered">
+                <tr style="background-color: #FF5E00">
+                  
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">상태</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">수신처</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성일자</th>
+                  
+                </tr>
+            <c:if test="${LoginUser.position eq '사원'}">
+            
+            <c:forEach items="${list5 }" var="my">
+                <tr>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${my.status }</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${my.receiver_dname}</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/approval/read/${my.no }">${my.title }</a></td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${my.regdate }" pattern="yyyy-MM-dd"/> </td>
+                  <%-- <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${n1.hits}</span></td> --%>
+                </tr>
+              </c:forEach>
+            </c:if>  
+              
+            <c:if test='${LoginUser.position != "사원" }'>
+            	<c:forEach items="${list4 }" var="my">
+                <tr>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${my.status }</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${my.receiver_dname}</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/approval/read/${my.no }">${my.title }</a></td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${my.regdate }" pattern="yyyy-MM-dd"/> </td>
+                  <%-- <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${n1.hits}</span></td> --%>
+                </tr>
+              </c:forEach>
+            </c:if>
+              </table>	
+            </div><!--/.col-xs-6.col-lg-4-->
+		
+		
 		<div class="col-xs-5 col-lg-6">
-              <h2><span class="glyphicon glyphicon-info-sign" style="color:black">공지사항</span>
-               <c:forEach begin="1" end="14">
+              <h3><span class="glyphicon glyphicon-info-sign" style="color:black">공지사항</span>
+               <c:forEach begin="1" end="19">
               &nbsp;&nbsp;
               </c:forEach> 
               
-              <small><small><a href="/useful/board/notice/listPage" >더보기</a></small></small></h2>
+              <small><small><a href="/useful/board/notice/listPage"><font size="2">+ MORE</font></a></small></small></h3>
               
               
 			<table class="table table-bordered">
@@ -61,11 +114,11 @@
             </div><!--/.col-xs-6.col-lg-4-->
             
 		 <div class="col-xs-5 col-lg-6">
-              <h2><span class="glyphicon glyphicon-ok-sign" style="color:black">익명게시판</span>
-              <c:forEach begin="1" end="13">
+              <h3><span class="glyphicon glyphicon-ok-sign" style="color:black">익명게시판</span>
+              <c:forEach begin="1" end="18">
               &nbsp;&nbsp;
               </c:forEach>
-              <small><small><a href="/useful/board/anonymity/listPage">더보기</a></small></small></h2>
+              <small><a href="/useful/board/anonymity/listPage"><font size="2">+ MORE</font></a></small> </h3>
               
 			<table class="table table-bordered">
                 <tr style="background-color: #FF5E00">
