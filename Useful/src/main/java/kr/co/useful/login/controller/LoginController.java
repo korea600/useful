@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.useful.board.domain.AnonymityVO;
+import kr.co.useful.board.domain.DeptBoardVO;
+import kr.co.useful.board.domain.NoticeVO;
+import kr.co.useful.board.service.AnonymityService;
+import kr.co.useful.board.service.DeptService;
+import kr.co.useful.board.service.NoticeService;
 import kr.co.useful.email.domain.Email;
 import kr.co.useful.email.service.EmailSender;
 import kr.co.useful.login.service.LoginService;
@@ -33,6 +39,15 @@ public class LoginController {
 	
 	 @Autowired
 	    private EmailSender emailSender;
+	 
+	 @Inject
+	 private NoticeService noticeService;
+	 
+	 @Inject
+	 private AnonymityService anoService;
+	 
+	 @Inject
+	 private DeptService deptService;
 	
 	//로그인 폼 보이기
 	@RequestMapping("/Login")
@@ -84,8 +99,16 @@ public class LoginController {
 	
 	//로그인 성공시 보여주는 메인뷰
 	@RequestMapping("/Mainview")
-	public String main_view(){
-
+	public String main_view(HttpSession session)throws Exception{
+		List<NoticeVO> list = noticeService.listAll();
+		List<AnonymityVO> list2 = anoService.readAll();
+		/*List<DeptBoardVO> list3 = deptService.listAll();*/
+		
+		session.setAttribute("notice", list);
+		session.setAttribute("anonymity", list2);
+		/*session.setAttribute("dept", list3);*/
+		
+		
 		return "/login/Main2";
 	}
 	
