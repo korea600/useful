@@ -132,6 +132,8 @@ function openCal(ch){
 function closeCal(y,m,d){
 	//alert(y+"년 "+m+"월 "+d+"일");
 	//alert(txt);
+	if(m<10) m = '0'+m;
+	if(d<10) d = '0'+d;
 	document.getElementById("txtdate"+txt).value=y+"/"+m+"/"+d;
 	document.getElementById("cal").style.display = "none";
 }
@@ -144,8 +146,23 @@ function closeCal(y,m,d){
       alert(event.screenX + " : " + event.screenY); // 브라우져 화면 전체 기준      
       */
 
+      function create(){
+    	  var frm = document.getElementById("insert_Form");
+    	  frm.submit();	
+    	  
+    	  
+    	 opener.parent.window.location.reload(); 
 
-   
+
+      }
+      
+      
+      
+      function clean(){
+    	  window.close();
+      }
+
+        var strr = window.dialogArguments("str");
       
 </script>
 </head>
@@ -153,13 +170,15 @@ function closeCal(y,m,d){
 <body>
 	<center>
 	<h3>스케줄 입력</h3>
-		<form action="#" method="post">
+		<form id="insert_Form" action="/schedule/insert" method="post">
 			<table border="1"
 				style="border-collapse: collapse; line-height: 30px;">
 		
 				<tr>
 					<td bgcolor="#dae6f4"  align="center" width="150px">작성자</td>
-					<td align="center"></td>
+					<td align="center">안선영
+					<input type="hidden" name="empno" value="1003">
+					</td>
 				</tr>
 			<!--     <tr>
 			        <td bgcolor="#dae6f4"  align="center" width="150px">일정구분</td>
@@ -178,39 +197,38 @@ function closeCal(y,m,d){
 				</tr>
 				<tr>
 				<td bgcolor="#dae6f4" align="center">시작날짜</td>
-				<td> <input type="text" id="txtdate1" value=""> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
+				<td> <input type="text" name="begin" id="txtdate1" value=""> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
 				<tr>
-				<td  bgcolor="#dae6f4" align="center">마감날짜</td>
-				<td> <input type="text" id="txtdate2" value=""> <input type="button" value="달력" onclick="openCal(2)"></td></tr>
+				<td  bgcolor="#dae6f4"  align="center">마감날짜</td>
+				<td> <input type="text" name="end" id="txtdate2" value=""> <input type="button" value="달력" onclick="openCal(2)"></td></tr>
 				<tr>
-				<td bgcolor="#dae6f4" align="center">시간</td>
+				<td bgcolor="#dae6f4"  align="center">시간</td>
 				<td>
-				    <select name="serchType">
-				    <option value="시작">시작</option>
-				  <% for(int i=9;i<23; i++){%>
+				    <select name="begintime">
+				    <option value="0">시작</option>
+				  <% for(int i=6;i<23; i++){%>
 				    <option value="<%=i%>"><%=i%></option>
 				  <% } %>
-                    </select> ~
+                    </select> 시 <%-- ~
                     <select name="serchType">
 				    <option value="끝">끝</option>
 				    <% for(int i=9;i<23; i++){%>
 				    <option value="<%=i%>"><%=i%></option>
 				  <% } %>
-                    </select> 시
+                    </select> 시 --%>
 				 </td></tr>
 
 				<tr>
 					<td colspan="2" style="padding:0; width:500px;">
-					<textarea name="contents" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;">상세한 내용
+					<textarea name="content" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;">
 					</textarea></td>
 				</tr>
 			</table>
-			
-			
+			<input type="submit"  value="등록"  onClick="create()"> 
+			<input type="button"  value="닫기" onClick="clean()" >
 		</form>
 		
-		            <input type="submit"  value="등록" /> 
-					<input type="button"  value="취소" onclick="" />
+		            
 	</center>
 	 <div id="cal" style="display: none; position: absolute;"></div>
   

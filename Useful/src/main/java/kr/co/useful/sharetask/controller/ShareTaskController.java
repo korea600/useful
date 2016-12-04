@@ -38,7 +38,7 @@ public class ShareTaskController {
 	@RequestMapping(value = "share_Board", method = RequestMethod.GET)
 	public void shareList(@ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception {
 	
-		cri.setDeptno(20);
+		cri.setDeptno(10);
 	 	model.addAttribute("list", service.listSearchCriteria(cri));
 	 	
 	    System.out.println("¸®½ºÆ®!!!:"+cri );
