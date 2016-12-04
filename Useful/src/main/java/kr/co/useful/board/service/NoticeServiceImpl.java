@@ -80,4 +80,10 @@ private NoticeDAO dao;
 		
 	}
 
+	@Override
+	public List<NoticeVO> list_cut() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.list_cut();
+	}
+
 }

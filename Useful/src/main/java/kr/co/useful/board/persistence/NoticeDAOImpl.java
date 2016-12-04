@@ -81,4 +81,10 @@ private SqlSession sqlsession;
 		
 	}
 
+	@Override
+	public List<NoticeVO> list_cut() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("notice.main_list_cut");
+	}
+
 }

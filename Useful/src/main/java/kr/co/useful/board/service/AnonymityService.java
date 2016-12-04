@@ -17,4 +17,5 @@ public interface AnonymityService {
 	public List<AnonymityVO> listCriteria(Criteria cri) throws Exception;
 	public List<AnonymityVO> listSearch(SearchCriteria cri)throws Exception; 
 	public int listFindCount(SearchCriteria cri)throws Exception; 
+	public List<AnonymityVO> list_cot()throws Exception;
 }

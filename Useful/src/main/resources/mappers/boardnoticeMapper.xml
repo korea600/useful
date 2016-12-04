@@ -29,6 +29,10 @@
      UPDATE TBL_NOTICE SET VIEWCNT=VIEWCNT+1 WHERE SERIAL=#{serial}
      </update>
       
+      
+      <select id="main_list_cut" resultType="kr.co.useful.board.domain.NoticeVO">
+      select * from (select * from TBL_NOTICE order by serial desc) where rownum between 1and 5
+      </select>
     
     <!-- 게시물 삭제 -->
     <delete id="delete">
