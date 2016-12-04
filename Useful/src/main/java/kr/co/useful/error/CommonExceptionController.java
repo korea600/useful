@@ -9,6 +9,7 @@ public class CommonExceptionController {
 	@ExceptionHandler(Exception.class)
 	public String commonError(Exception ex, Model model){
 		model.addAttribute("exception", ex);
+		ex.printStackTrace();
 		return "/errorPage";
 	}
 }

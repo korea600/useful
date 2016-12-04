@@ -48,17 +48,22 @@ public class ApprovalServiceImpl implements ApprovalService{
 			vo.setNext_approval(vo.getWriter());	// 다음 결재자가 없으면 작성자가 다음 결재자가 됨
 			vo.setStatus("완료");
 		}
-		// 업로드 폴더 정보 얻기
-		String path = PathMaker.getUploadPath(request);
+		// 업로드 폴더 정보 + 현재시간 정보 얻기
+		String uploadpath = PathMaker.getUploadPath(request);
+		String realpath = PathMaker.getRealPath(request);
+		String time = PathMaker.getTime();
 		
 		// 지정된 파일업로드 폴더가 없을경우 생성 
-		File uploadLocation = new File(path);
+		File uploadLocation = new File(uploadpath);
 		if(!uploadLocation.exists()) uploadLocation.mkdir();
 		String filename = file.getOriginalFilename();
 		
 		// 업로드된 파일이 있을경우 업로드 처리
 		if(filename!=null && filename.length()>0){
-			File out = new File(path+"/"+filename);
+			File realfile = new File(realpath+"/"+filename);
+			filename=time+"_"+filename;					// 파일명 앞에 업로드 시간정보 붙이기
+			realfile.renameTo(new File(realpath+"/"+filename));
+			File out = new File(uploadpath+"/"+filename);
 			FileCopyUtils.copy(file.getBytes(), out);	// 지정된 경로로 업로드 파일 복사
 		}
 		vo.setFilename(filename);						// 업로드된 파일명을 DB에 저장하기 위해 VO에 값 저장
@@ -74,6 +79,7 @@ public class ApprovalServiceImpl implements ApprovalService{
 								HttpServletRequest request,String oldfilename)	throws Exception {
 		String uploadpath = PathMaker.getUploadPath(request);
 		String uploadrealpath = PathMaker.getRealPath(request);
+		String time = PathMaker.getTime();
 		
 		// 기존에 업로드 되었던 파일 삭제 (GIT폴더내의 upload폴더와 실제 upload폴더(realpath)에 있는 두 파일)
 		File deluploadfile = new File(uploadpath+"/"+oldfilename);
@@ -84,6 +90,9 @@ public class ApprovalServiceImpl implements ApprovalService{
 		// 업로드된 파일이 있을경우 업로드 처리
 		String filename = file.getOriginalFilename();
 		if(filename!=null && filename.length()>0){
+			File realfile = new File(uploadrealpath+"/"+filename);
+			filename=time+"_"+filename;					// 파일명 앞에 업로드 시간정보 붙이기
+			realfile.renameTo(new File(uploadrealpath+"/"+filename));
 			File out = new File(uploadpath+"/"+filename);
 			FileCopyUtils.copy(file.getBytes(), out);	// 지정된 경로로 업로드 파일 복사
 			vo.setFilename(filename);		
@@ -183,15 +192,15 @@ public class ApprovalServiceImpl implements ApprovalService{
 	
 	@Transactional
 	public void delete(ApprovalVO vo,HttpServletRequest request) throws Exception {
+		// DB처리 (결재문서 삭제 + 결재에 달린 코멘트 삭제)
+		dao.delete(vo.getNo());
+		commentdao.delete(vo.getNo());
+		
 		// 업로드된 파일이 있는지 확인후 삭제
 		File uploadfile = new File(PathMaker.getUploadPath(request)+"/"+vo.getFilename());
 		File uploadrealfile = new File(PathMaker.getRealPath(request)+"/"+vo.getFilename());
 		if(uploadfile!=null && uploadfile.exists()) uploadfile.delete();
 		if(uploadrealfile!=null && uploadrealfile.exists()) uploadrealfile.delete();
-		
-		// DB처리 (결재문서 삭제 + 결재에 달린 코멘트 삭제)
-		dao.delete(vo.getNo());
-		commentdao.delelte(vo.getNo());
 	}
 
 	public int listCount(ApprovalVO vo, ApprovalCriteria cri) throws Exception {
@@ -200,5 +209,13 @@ public class ApprovalServiceImpl implements ApprovalService{
 
 	public int listStatusCount(Map<String, Object> map, ApprovalCriteria cri) throws Exception {
 		return dao.listStatusCount(map, cri);
+	}
+
+	public List<ApprovalVO> listMyTurn_forMain(int empno) throws Exception {
+		return dao.listMyTurn_forMain(empno);
+	}
+
+	public List<ApprovalVO> listMine_forMain(int empno) throws Exception {
+		return dao.listMine_forMain(empno);
 	}
 }

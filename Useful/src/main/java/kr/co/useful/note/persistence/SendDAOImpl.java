@@ -1,6 +1,8 @@
 package kr.co.useful.note.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -48,15 +50,20 @@ private SqlSession session;
 	}
 
 	@Override
-	public List<SendVO> search_not(SearchCriteria cri) throws Exception {
+	public List<SendVO> search_not(SearchCriteria cri,String mynote) throws Exception {
 		// 메시지 검색할때 검색어랑 검색타입 보내는 데 아이디로도 조회 해야되는데 값2개 넘어갈때 어떻게해야될지 물어보기
-		return session.selectList("send_note.search_note", cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+		Map<String, Object> map=new HashMap<>();
+		map.put("cri", cri);
+		map.put("mynote", mynote);
+		return session.selectList("send_note.search_note", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
 	@Override
-	public int search_count_note(SearchCriteria cri) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectOne("send_note.search_Count_note", cri);
+	public int search_count_note(SearchCriteria cri,String mynote) throws Exception {
+		Map<String, Object> map=new HashMap<>();
+		map.put("cri", cri);
+		map.put("mynote", mynote);
+		return session.selectOne("send_note.search_Count_note", map);
 	}
 
 	@Override

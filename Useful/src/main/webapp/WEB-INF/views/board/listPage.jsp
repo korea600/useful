@@ -94,7 +94,7 @@
 										<th>글번호</th>
 										<th>글제목</th>
 										<th>글쓴이</th>
-										<th>내용</th>
+										<!-- <th>내용</th> -->
 										<th>작성일자</th>
 										<th>조회수</th>
 									</tr>
@@ -105,7 +105,7 @@
 											<td>${BoardVO.serial }</td>
 											<td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td>
 											<td>${BoardVO.writer }</td>
-											<td>${BoardVO.content }</td>
+											<%-- <td>${BoardVO.content }</td> --%>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${BoardVO.regdate }"/></td>
 											<td>${BoardVO.viewcnt }</td>
 										</tr>

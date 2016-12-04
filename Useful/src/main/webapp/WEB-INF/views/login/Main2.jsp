@@ -291,7 +291,7 @@
       <!-- 메인 바디부분 -->
       
         <div id="page-wrapper">
-        
+        	<%@include file="../login/Body_Main.jsp" %>
           <div id=""></div>
            
 			                              

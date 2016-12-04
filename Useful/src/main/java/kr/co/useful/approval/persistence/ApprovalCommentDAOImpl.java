@@ -27,8 +27,8 @@ public class ApprovalCommentDAOImpl implements ApprovalCommentDAO{
 		return sqlSession.selectOne("approval_comment.listcount", no);
 	}
 
-	public void delelte(int no) throws Exception {
-		sqlSession.delete("approval_comment_delete",no);
+	public void delete(int no) throws Exception {
+		sqlSession.delete("approval_comment.delete",no);
 	}
 
 }

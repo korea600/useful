@@ -74,4 +74,10 @@ private NoticeDAO dao;
 		return dao.mainlist();
 	}
 
+	@Override
+	public void viewcnt(int serial) throws Exception {
+		dao.viewcnt(serial);
+		
+	}
+
 }

@@ -3,6 +3,8 @@ package kr.co.useful.approval.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -78,8 +80,7 @@ public class ApprovalController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(ApprovalVO vo,String oldfilename,HttpServletRequest request) throws Exception{
 		vo.setFilename(oldfilename);
-		System.out.println(vo.toString());
-		/*service.delete(vo,request);*/
+		service.delete(vo,request);
 		return "/approval/complete";
 	}
 	

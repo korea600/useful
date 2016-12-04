@@ -75,4 +75,10 @@ private SqlSession sqlsession;
 		return sqlsession.selectList("notice.mainlist");
 	}
 
+	@Override
+	public void viewcnt(int serial) throws Exception {
+		sqlsession.insert("notice.viewcnt", serial);
+		
+	}
+
 }

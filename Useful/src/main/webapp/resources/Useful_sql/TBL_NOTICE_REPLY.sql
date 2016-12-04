@@ -10,4 +10,4 @@ drop sequence tbl_notice_reply_seq;
 create sequence tbl_notice_reply_seq;
 
 insert into TBL_REPLY (serial,rno,replyid,replytext) values(6,tbl_notice_reply_seq.nextval,'tjddnjs003','´Ù¹øÂ° ´ñ±Û');
-select serial from tbl_reply;
+select * from tbl_notice_reply;

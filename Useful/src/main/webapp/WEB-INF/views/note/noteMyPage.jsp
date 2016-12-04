@@ -101,7 +101,7 @@
 											<%-- <td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td> --%>
 
 											<td>${RecipientVO.reciid }</td>
-											<td><a href="/useful/note/noteMyPage?serial=${RecipientVO.serial }">${RecipientVO.recontent }</a></td>
+											<td><a href="/useful/note/riciReadPage?serial=${RecipientVO.serial }">${RecipientVO.recontent }</a></td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${RecipientVO.recipientdate }"/></td>
 											<td style="display: none" value="${RecipientVO.serial }"></td>
 										</tr>
@@ -119,18 +119,18 @@
 											<p>
 											<div class="list_n_menu">
 											<c:if test="${pageMaker.prev }">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.startPage -1) }">이전</a></span>
+											<span><a href="/useful/note/noteMyPage${pageMaker.serach(pageMaker.startPage -1) }">이전</a></span>
 											
 											</c:if>
 												
 												<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 												<span <c:out value="${pageMaker.cri.page==idx?'class=active':'' }"/>>
-												<a href="/useful/board/listPage${pageMaker.query(idx) }">${idx }</a>
+												<a href="/useful/note/noteMyPage${pageMaker.query(idx) }">${idx }</a>
 												</span>
 												</c:forEach>
 												
 													<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.endPage +1)}">다음</a></span>
+											<span><a href="/useful/note/noteMyPage${pageMaker.serach(pageMaker.endPage +1)}">다음</a></span>
 											</c:if>
 											</div>
 											</p>
@@ -144,6 +144,7 @@
 						
 						</form>
 						<button class="btn btn-default" id="register">쪽지보내기</button>
+						<button class="btn btn-default" id="send_note">보낸 쪽지함으로 가기</button>
 						
 						<!-- /.table-responsive -->
 					</div>
@@ -196,12 +197,19 @@ $(document).ready(function(){
 	});
 	$("#searchBtn").on("click",function(event){
 		event.preventDefault();
-		self.location="notePage"+
+		self.location="noteMyPage"+
 		'${pageMaker.query(1)}'+
 		"&searchType="+
 		$("select option:selected").val()+
 		"&keyword=" + $('#btn-input').val();
 	});
+	$(document).ready(function(){
+		$("#send_note").on("click",function(event){
+			event.preventDefault();
+			self.location="/useful/note/notePage";
+		});
+	});
+	
 	
 });
 </script>

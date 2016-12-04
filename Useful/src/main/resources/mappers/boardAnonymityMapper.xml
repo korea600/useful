@@ -8,11 +8,15 @@ values (tbl_anonymity_seq.nextval,#{title},#{content})
 </insert>
 
 <select id="read" resultType="kr.co.useful.board.domain.AnonymityVO">
-select serial,title,content,regdate from tbl_anonymity where serial=#{serial}
+select serial,title,content,regdate,viewcnt from tbl_anonymity where serial=#{serial}
 </select>
 
 <update id="update">
 update tbl_anonymity set title=#{title},content=#{content} where serial=#{serial}
+</update>
+
+<update id="viewcnt">
+update tbl_anonymity set viewcnt=viewcnt+1 where serial=#{serial}
 </update>
 
 <delete id="delete">
@@ -28,7 +32,7 @@ select count(*) from tbl_anonymity;
 </select>
 
 <select id="listSearch" resultType="kr.co.useful.board.domain.AnonymityVO">
-select serial,title,content,regdate from tbl_anonymity
+select serial,title,content,regdate,viewcnt from tbl_anonymity
 <include refid="Search"/>
 order by serial desc
 </select>
@@ -39,10 +43,6 @@ select count(*) from tbl_anonymity
 order by serial desc
 </select>
 
-<update id="viewcnt" parameterType="int">
-update tbl_anonymity set viewcnt=viewcnt+1
-where serial=#{serial}
-</update>
 
 
 

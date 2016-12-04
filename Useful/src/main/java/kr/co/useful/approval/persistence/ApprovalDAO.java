@@ -24,4 +24,9 @@ public interface ApprovalDAO {
 	public int getManager(int empno)throws Exception;				// 직속상사 사번 정보 조회
 	public int getMyDeptno(int empno) throws Exception;				// 자신의 부서번호 조회
 	public String getDname(int deptno) throws Exception;			// 특정 부서번호의 부서명 조회
+	
+	// 메인페이지용 리스트 조회
+	public List<ApprovalVO> listMyTurn_forMain(int empno) throws Exception;
+	public List<ApprovalVO> listMine_forMain(int empno) throws Exception;
+	
 }

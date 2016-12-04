@@ -3,6 +3,7 @@ serial number primary key, --글번호
 title varchar2(50) not null, --글제목
 writer varchar2(20) not null, --글쓴이
 content varchar2(2000), --내용
+viewcnt number default 0, --조회수
 regdate date default sysdate not null--작성일자
 );
 
@@ -17,7 +18,7 @@ regdate date not null--작성일자
 );
 
 alter table tbl_notice modify(regdate date default sysdate not null);
-
+alter table tbl_notice add(viewcnt number default 0);
 create sequence tbl_notice_seq
    start with 1
    increment by 1

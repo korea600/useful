@@ -79,5 +79,13 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 		return sqlSession.selectOne("approval.liststatusCount", map);
 	}
 
+	public List<ApprovalVO> listMyTurn_forMain(int empno) throws Exception {
+		return sqlSession.selectList("approval.listMyTurn_forMain",empno,new RowBounds(0, 5));
+	}
+
+	public List<ApprovalVO> listMine_forMain(int empno) throws Exception {
+		return sqlSession.selectList("approval.listMine_forMain",empno,new RowBounds(0, 5));
+	}
+
 
 }
