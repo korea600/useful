@@ -27,4 +27,8 @@ public interface ApprovalService {
 	public int getMyDeptno(int empno) throws Exception;								// 자신의 부서번호 조회
 	public int listCount(ApprovalVO vo, ApprovalCriteria cri)	throws Exception;	// 조건에 따른 문서 리스트 조회
 	public int listStatusCount(Map<String, Object> map, ApprovalCriteria cri)	throws Exception;	// 우리부서내에서 결재 진행중인 문서 조회
+	// 메인페이지 출력용
+	public List<ApprovalVO> listMyTurn_forMain(int empno) throws Exception;			// 내가 결재 차례인 문서 조회
+	public List<ApprovalVO> listMine_forMain(int empno) throws Exception;			// 내가 작성한 문서 조회
+	
 }

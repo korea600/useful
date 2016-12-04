@@ -210,4 +210,12 @@ public class ApprovalServiceImpl implements ApprovalService{
 	public int listStatusCount(Map<String, Object> map, ApprovalCriteria cri) throws Exception {
 		return dao.listStatusCount(map, cri);
 	}
+
+	public List<ApprovalVO> listMyTurn_forMain(int empno) throws Exception {
+		return dao.listMyTurn_forMain(empno);
+	}
+
+	public List<ApprovalVO> listMine_forMain(int empno) throws Exception {
+		return dao.listMine_forMain(empno);
+	}
 }

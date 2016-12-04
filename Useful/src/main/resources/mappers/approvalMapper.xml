@@ -153,5 +153,18 @@
 					or tbl_emp.empno=1000
 				</if>
 				order by empno desc
-		</select>	
+		</select>
+	<!-- 메인페이지용 리스트 조회 -->
+	<select id='listMine_forMain' resultType="Approval">
+		select no, status, writer_name,	receiver_dname, title,regdate
+		from tbl_approval
+		where writer=#{empno}
+		order by regdate desc
+	</select>		
+	<select id='listMyTurn_forMain' resultType="Approval">
+		select no, status, writer_name,	receiver_dname, title,regdate
+		from tbl_approval
+		where next_approval=#{empno}
+		order by regdate desc
+	</select>		
 </mapper>
