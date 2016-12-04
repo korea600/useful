@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -128,7 +130,8 @@ function cal(id, newdate) {
 				continue;
 			}
 			calendar += '				<td class="' +dateString[j]+'">'
-			                            +'<span onClick="clickCal('+currentYear+','+currentMonth+','+dateNum+')" style="cursor:pointer;">' + dateNum + '</span></td>';
+			                            +'<span onClick="clickCal('+currentYear+','+currentMonth+','+dateNum+')" style="cursor:pointer;">' + dateNum + '</span>'
+			                            +'</td>';
 		}
 		calendar += '			</tr>';
 	}
@@ -210,15 +213,22 @@ var insertWin;//자식창
   
  }
  
+ //날짜를 눌렀을때
  function clickCal(y,m,d){
 		if(m<10) m = '0'+m;
 		if(d<10) d = '0'+d;
 		
 		var str =y+"/"+m+"/"+d;
-		alert(y+"/"+m+"/"+d+"ㅋㅋ="+str);
+		alert("시작날짜"+str);
+		window.showModalDialog("co_Schedule_Input", str, "dialogWidth:400px; dialogHeight:500px; top=100px; left=800px; scroll:0; help:1; status:1")
 		
-		insertWin=window.open('co_Schedule_Input','insert','toolbar=no,location=no,status=yes'
- 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500,top=100,left=800');
+
+		
+			
+		
+		
+/* 		insertWin=window.open('co_Schedule_Input','insert','toolbar=no,location=no,status=yes'
+ 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500,top=100,left=800'); */
 		/* 
 		insertWin.document.getElementById("txtdate1").value = str;
 		childWin.document.all.objTextBox.value="test"; 
@@ -232,6 +242,7 @@ var insertWin;//자식창
 
 </head>
 <body>
+<center>
    <div id="cal"></div>
    <br><br>
    
@@ -268,6 +279,7 @@ var insertWin;//자식창
    </c:forEach>
    </table>
    </form>
+   </center>
 
 	<script>
 		window.onload = function () {

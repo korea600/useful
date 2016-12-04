@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="schedule">
+
+	                              <!-- 사내 -->
+   <!-- 전체 -->
+	<select id="listCo" resultType="kr.co.useful.schedule.domain.ScheduleVO">
+		select serial, title, content, begin, end, begintime, tbl_schedule.regdate, tbl_emp.ename ename, tbl_schedule.empno
+		from tbl_schedule, tbl_emp
+		where tbl_schedule.empno = tbl_emp.empno
+		order by serial desc
+	</select>
+	
+	
+	<!-- 하나읽기 -->
+	<select id="oneRead" resultType="kr.co.useful.schedule.domain.ScheduleVO">
+		select serial, title, content, begin, end, begintime, tbl_schedule.regdate, tbl_emp.ename ename, tbl_schedule.empno
+		from tbl_schedule, tbl_emp
+		where tbl_schedule.empno = tbl_emp.empno
+		and serial=#{serial}
+	</select>
+	
+	
+	<!-- 입력 -->
+	<insert id="create">
+		insert into tbl_schedule (serial, title, content, begin, end, begintime, regdate, deptno, empno) values
+		(tbl_schedule_seq.nextval, #{title}, #{content}, #{begin}, #{end}, #{begintime}, sysdate, #{deptno}, #{empno})
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="update">
+		update tbl_schedule set title=#{title}, content=#{content}, begin=#{begin}, end=#{end}, 
+		                        begintime=#{begintime}, regdate=sysdate, empno=#{empno}
+		where serial=#{serial}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete from tbl_schedule where serial=#{serial}
+	</delete>
+	
+	<!-- 페이지 리스트 수 -->
+	<select id="scheduleListCount" resultType="int">
+		select count(*) from tbl_schedule
+	</select>
+	
+	<!-- 사원번호 속한 부서번호 -->
+	<select id="myDeptno" resultType="int">
+	     select deptno from tbl_emp
+	     where #{empno} = empno;
+	     
+	</select>
+	
+	
+      <!--  검색어 + 리스트  -->
+	<select id="listSearch" resultType="Schedule">
+	select serial, title, content, begin, end, begintime, tbl_schedule.regdate, tbl_emp.ename ename, tbl_schedule.empno
+		from tbl_schedule, tbl_emp
+		where tbl_schedule.empno = tbl_emp.empno
+		<!-- <if test="searchType != null">
+			<if test="searchType == 's'.toString()">and serial like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 't'.toString()">and title like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'b'.toString() ">and begin like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'e'.toString() ">and end like '%'||#{keyword}||'%'</if>
+		</if> -->
+		order by serial desc
+	</select>
+
+
+	<!-- 검색 리스트 수 -->
+	<select id="listSearchCount" resultType="int">
+		select count(serial) from
+		tbl_schedule
+	</select>
+	
+	
+
+</mapper>
