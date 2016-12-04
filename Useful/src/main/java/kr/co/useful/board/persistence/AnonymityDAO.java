@@ -19,4 +19,5 @@ public interface AnonymityDAO {
 	public List<AnonymityVO> listCriteria(Criteria cri) throws Exception;
 	public List<AnonymityVO> listSearch(SearchCriteria cri)throws Exception; 
 	public int listFindCount(SearchCriteria cri)throws Exception; 
+	public List<AnonymityVO> list_cut()throws Exception;
 }

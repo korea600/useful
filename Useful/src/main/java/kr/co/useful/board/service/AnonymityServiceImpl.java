@@ -73,4 +73,10 @@ private AnonymityDAO dao;
 		return dao.listFindCount(cri);
 	}
 
+	@Override
+	public List<AnonymityVO> list_cot() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.list_cut();
+	}
+
 }

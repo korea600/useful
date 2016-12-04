@@ -44,7 +44,9 @@ update tbl_board set viewcnt=viewcnt+1
 where serial=#{serial}
 </update>
 
-
+<select id="select_cut_list" resultType="kr.co.useful.board.domain.BoardVO">
+select * from (select * from tbl_board order by serial desc) where rownum between 1 and 5
+</select>
 
 
 <sql id="Search">

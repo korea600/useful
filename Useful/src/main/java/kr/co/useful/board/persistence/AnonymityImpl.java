@@ -75,4 +75,10 @@ private SqlSession sqlsesson;
 		return sqlsesson.selectOne("anonymity.listcount",cri);
 	}
 
+	@Override
+	public List<AnonymityVO> list_cut() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsesson.selectList("anonymity.main_list_cout");
+	}
+
 }
