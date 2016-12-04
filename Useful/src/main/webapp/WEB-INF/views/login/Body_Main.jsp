@@ -79,6 +79,33 @@
               </table>	
             </div><!--/.col-xs-6.col-lg-4-->
 		
+		<div class="col-xs-5 col-lg-6">
+           <h3><span class="glyphicon glyphicon-envelope" style="color:black">메일함</span>
+              <c:forEach begin="1" end="20">
+              &nbsp;&nbsp;
+              </c:forEach>
+             <small><a href="/useful/note/noteMyPage"><font size="2">+ MORE</font></a></small> </h3>
+			<table class="table table-bordered">
+                <tr style="background-color: silver;">
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">보낸사람</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">내용</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">보낸날짜</th>
+                </tr>
+           
+            <c:forEach items="${note }" var="note">
+                <tr>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${note.reciid }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/note/riciReadPage?serial=${note.serial }">${note.recontent }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${note.recipientdate }" pattern="yyyy-MM-dd"/> </td>
+                 
+                </tr>
+              </c:forEach>
+         
+              </table>	
+            </div><!--/.col-xs-6.col-lg-4-->
+		
+		
+		
 		
 		<div class="col-xs-5 col-lg-6">
               <h3><span class="glyphicon glyphicon-info-sign" style="color:black">공지사항</span>
@@ -128,7 +155,7 @@
                 <tr>
                   <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${ano.serial }</td>
                   <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/board/anonymity/readPage?page=1&perPageNum=10&keyword&searchType&serial=${ano.serial }">${ano.title}</a></td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${ano.writer }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">--------</td>
                	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${ano.regdate }" pattern="yyyy-MM-dd"/> </td>
                   <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${ano.viewcnt}</span></td>
                 </tr>
@@ -137,7 +164,7 @@
             </div><!--/.col-xs-6.col-lg-4-->
 		
 		<div class="col-xs-5 col-lg-6">
-           <h3><span class="glyphicon glyphicon-time" style="color:black">사내게시판</span>
+           <h3><span class="glyphicon glyphicon-list-alt" style="color:black">사내게시판</span>
               <c:forEach begin="1" end="18">
               &nbsp;&nbsp;
               </c:forEach>
