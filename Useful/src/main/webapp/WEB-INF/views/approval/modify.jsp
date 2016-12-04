@@ -35,19 +35,35 @@ $(function(){
 	$('[name=modify]').click(function(){
 		frm.attr('action','/useful/approval/modify');
 		frm.attr('method','post');
+		var oldfilename=$('[name=oldfilename]').val();
+		var newfilename=$('[name=file]').val();
+		if(oldfilename!=''){
+	 		if(newfilename!='')
+				alert('새로운 첨부파일로 대체됩니다.');
+			else
+				alert('기존 첨부파일을 유지합니다.');
+		}
+		else{
+			if(newfilename!='')
+				alert('새로운 첨부파일이 등록됩니다.');
+			else
+				alert('첨부파일이 등록되지 않은 상태가 유지됩니다.');
+		}
 		frm.submit();
 	});
 	$('[name=delete]').click(function(){
-		frm.attr('action','/useful/approval/delete');
-		frm.attr('method','post');
-		frm.submit();
+		if(confirm('삭제하시겠습니까?')){
+			frm.attr('action','/useful/approval/delete');
+			frm.attr('method','post');
+			frm.submit();
+		}
 	});
 })
 </script>
 </head>
 <body>
 <center>
-<form method="post">
+<form method="post" enctype="multipart/form-data"><!-- enctype 설정은 submit 직전에 지정됨 (in jQuery) -->
 <table border='1' width='35%'>
 <tr>
 	<td width='20%' align='center'>발신자</td>
@@ -67,9 +83,15 @@ $(function(){
 </tr>
 <tr><td width='20%' align='center'>제목</td><td><input type='text' name='title' size='80' value="${vo.title}"></td></tr>
 <tr><td colspan="2" align='center'><textarea name='content' cols="65" rows="20">${vo.content}</textarea></td></tr>
-<tr><td width='20%' align='center'>첨부파일</td><td><input type="file" name='addfile' size='63'></td></tr>
-<tr></tr>
+<tr>
+	<td width='20%' align='center'>기존첨부파일</td>
+	<td>
+		<c:if test="${vo.filename==null}">첨부된 파일이 없습니다.</c:if>
+		<c:if test="${vo.filename!=null}"><a href='${pageContext.request.contextPath}/approval/filedownload?filename=${vo.filename}'>${vo.filename}</a></c:if>
+	</td>		
+<tr><td width='20%' align='center'>신규첨부파일</td><td><input type="file" name='file' size='63'></td></tr>
 </table>
+<input type='hidden' name='oldfilename' value='${vo.filename}'>
 <input type='button' name='modify' value='수정'>
 <input type='button' name='delete' value='삭제'>
 <input type='button' name='cancel' value='뒤로' onclick='history.back()'>

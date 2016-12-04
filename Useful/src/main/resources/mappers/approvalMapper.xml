@@ -11,6 +11,9 @@
 	<update id='update'>
 		update tbl_approval
 		set status=#{status},title=#{title}, content=#{content},curr_approval=#{curr_approval},next_approval=#{next_approval}, regdate=sysdate
+		<if test="filename!=null">
+			,filename=#{filename}
+		</if>
 		where no=#{no} 
 	</update>
 	<!-- 반려문서 삭제하기 -->
