@@ -183,15 +183,15 @@ public class ApprovalServiceImpl implements ApprovalService{
 	
 	@Transactional
 	public void delete(ApprovalVO vo,HttpServletRequest request) throws Exception {
+		// DB처리 (결재문서 삭제 + 결재에 달린 코멘트 삭제)
+		dao.delete(vo.getNo());
+		commentdao.delete(vo.getNo());
+		
 		// 업로드된 파일이 있는지 확인후 삭제
 		File uploadfile = new File(PathMaker.getUploadPath(request)+"/"+vo.getFilename());
 		File uploadrealfile = new File(PathMaker.getRealPath(request)+"/"+vo.getFilename());
 		if(uploadfile!=null && uploadfile.exists()) uploadfile.delete();
 		if(uploadrealfile!=null && uploadrealfile.exists()) uploadrealfile.delete();
-		
-		// DB처리 (결재문서 삭제 + 결재에 달린 코멘트 삭제)
-		dao.delete(vo.getNo());
-		commentdao.delelte(vo.getNo());
 	}
 
 	public int listCount(ApprovalVO vo, ApprovalCriteria cri) throws Exception {

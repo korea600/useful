@@ -78,8 +78,7 @@ public class ApprovalController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(ApprovalVO vo,String oldfilename,HttpServletRequest request) throws Exception{
 		vo.setFilename(oldfilename);
-		System.out.println(vo.toString());
-		/*service.delete(vo,request);*/
+		service.delete(vo,request);
 		return "/approval/complete";
 	}
 	
