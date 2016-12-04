@@ -46,15 +46,15 @@ dao.delete_note(vo);
 	}
 
 	@Override
-	public List<SendVO> search_not(SearchCriteria cri) throws Exception {
+	public List<SendVO> search_not(SearchCriteria cri,String mynote) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.search_not(cri);
+		return dao.search_not(cri,mynote);
 	}
 
 	@Override
-	public int search_count_note(SearchCriteria cri) throws Exception {
+	public int search_count_note(SearchCriteria cri,String mynote) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.search_count_note(cri);
+		return dao.search_count_note(cri,mynote);
 	}
 
 	@Override

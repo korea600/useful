@@ -11,3 +11,4 @@ drop sequence tbl_recipient_note_seq;
 create sequence tbl_recipient_note_seq;
 
 select empno,ename,pass from tbl_emp;
+select * from tbl_recipient_note;

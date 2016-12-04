@@ -70,12 +70,12 @@
                             
                               <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 30px;">
                                                     <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
-                                                    <option value="sendman"<c:out value="${cri.searchType=='sendman'?'selected':'' }"/> >보낸사람</option>
+                                                    <option value="sendman"<c:out value="${cri.searchType=='sendman'?'selected':'' }"/> >받는사람</option>
                                                     <option value="sendcontent" <c:out value="${cri.searchType=='sendcontent'?'selected':'' }"/>>내용</option>
                                                 </select>
                                 <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-warning btn-sm" id="searchBtn"  style="height: 30px;">
+                                    <button class="btn btn-warning btn-sm" id="searchBtn"  style="height: 30px;">
                                         검색
                                     </button>
                                 </span>
@@ -119,18 +119,18 @@
 											<p>
 											<div class="list_n_menu">
 											<c:if test="${pageMaker.prev }">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.startPage -1) }">이전</a></span>
+											<span><a href="/useful/note/notePage${pageMaker.serach(pageMaker.startPage -1) }">이전</a></span>
 											
 											</c:if>
 												
 												<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 												<span <c:out value="${pageMaker.cri.page==idx?'class=active':'' }"/>>
-												<a href="/useful/board/listPage${pageMaker.query(idx) }">${idx }</a>
+												<a href="/useful/note/notePage${pageMaker.query(idx) }">${idx }</a>
 												</span>
 												</c:forEach>
 												
 													<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.endPage +1)}">다음</a></span>
+											<span><a href="/useful/note/notePage${pageMaker.serach(pageMaker.endPage +1)}">다음</a></span>
 											</c:if>
 											</div>
 											</p>
@@ -144,6 +144,7 @@
 						
 						</form>
 						<button class="btn btn-default" id="register">쪽지보내기</button>
+						<button class="btn btn-default" id="reci_note">받은 쪽지함으로 가기</button>
 						
 						<!-- /.table-responsive -->
 					</div>
@@ -194,6 +195,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		self.location="/useful/note/noteCreatePage";
 	});
+	
 	$("#searchBtn").on("click",function(event){
 		event.preventDefault();
 		self.location="notePage"+
@@ -202,6 +204,13 @@ $(document).ready(function(){
 		$("select option:selected").val()+
 		"&keyword=" + $('#btn-input').val();
 	});
+	$(document).ready(function(){
+		$("#reci_note").on("click",function(event){
+			event.preventDefault();
+			self.location="/useful/note/noteMyPage";
+		});
+	});
+	
 	
 });
 </script>

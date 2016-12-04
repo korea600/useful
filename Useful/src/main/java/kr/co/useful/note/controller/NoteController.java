@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,27 +28,30 @@ public class NoteController {
 	private SendService service;
 	@Inject
 	private RecipientService reservice;
-	@RequestMapping(value="/notePage",method=RequestMethod.GET)
+	/*@RequestMapping(value="/notePage",method=RequestMethod.GET)
 	public void list_note(HttpSession session,Model model,SearchCriteria cri)throws Exception{
 		String mynote=((EmpVO) session.getAttribute("LoginUser")).getEname();
-		/*PageMaker pageMaker=new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.search_count_note(cri));
-		pageMaker.calc();
-		model.addAttribute("pageMaker", pageMaker);*/
-		model.addAttribute("list", service.list_note(mynote));
-		//model.addAttribute("list", service.search_not(cri));
-	};
-	
-	@RequestMapping(value="/notePage",method=RequestMethod.POST)
-	public void list_notePOST(HttpSession session,Model model,SearchCriteria cri)throws Exception{
-		//String mynote=((EmpVO) session.getAttribute("LoginUser")).getEname();
 		PageMaker pageMaker=new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.search_count_note(cri));
 		pageMaker.calc();
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("list", service.search_not(cri));
+		model.addAttribute("list", service.list_note(mynote));
+		//model.addAttribute("list", service.search_not(cri));
+	};*/
+	
+	@RequestMapping("/notePage")
+	public void list_notePOST(SearchCriteria cri, HttpSession session,Model model)throws Exception{
+		System.out.println("들어옴");
+		System.out.println(cri.toString());
+		String mynote=((EmpVO) session.getAttribute("LoginUser")).getEname();
+		System.out.println(mynote);
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.search_count_note(cri,mynote));
+		pageMaker.calc();
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("list", service.search_not(cri,mynote));
 		//model.addAttribute("list", service.list_note(mynote));
 	};
 	
@@ -95,20 +99,47 @@ public class NoteController {
 	};
 	
 	/*--------------여기서 부터 나의 받은 쪽지함내용--------------*/
-	@RequestMapping(value="noteMyPage",method=RequestMethod.GET)
+	/*@RequestMapping(value="noteMyPage",method=RequestMethod.GET)
 	public void recipient_note_list(HttpSession httpSession,Model model)throws Exception{
 		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
 		model.addAttribute("list", reservice.recipient_note_list(mynote));
-	};
-	@RequestMapping(value="noteMyPage",method=RequestMethod.POST)
+	};*/
+	@RequestMapping("/noteMyPage")
 	public void recipient_note_list_search(HttpSession httpSession,Model model,SearchCriteria cri)throws Exception{
 		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
 		PageMaker pageMaker=new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.search_count_note(cri));
+		pageMaker.setTotalCount(service.search_count_note(cri,mynote));
 		pageMaker.calc();
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("list", reservice.recipient_note_list(mynote));
+		model.addAttribute("list", reservice.search_Recipient_note(cri, mynote));
+	};
+	
+	
+	
+	@RequestMapping("/riciReadPage")
+	public void select_recipient_note(RecipientVO recipientVO,HttpSession httpSession,int serial,Model mod)throws Exception{
+		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		System.out.println(serial);
+		System.out.println(mynote);
+		recipientVO.setSerial(serial);
+		recipientVO.setMynote(mynote);
+		mod.addAttribute("list",reservice.select_recipient_note(recipientVO));
+		
+		//mod.addAttribute("list", reservice.select_recipient_note(recipientVO));
+		
+	};
+	
+	@RequestMapping("/deletePage2")
+	public String recipient_note_noteDeletePage(int serial,HttpSession httpSession)throws Exception{
+		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		RecipientVO recipientVO=new RecipientVO();
+		recipientVO.setMynote(mynote);
+		recipientVO.setSerial(serial);
+		System.out.println(mynote);
+		System.out.println(serial);
+		reservice.delete_recipient_note(recipientVO);
+		return "redirect:/note/noteMyPage";
 	};
 	
 	public void create_recipient_note(RecipientVO recipientVO)throws Exception{
@@ -119,11 +150,6 @@ public class NoteController {
 		reservice.create_send_note(sendVO);
 		reservice.create_recipient_note(recipientVO);
 	};
-	public String select_recipient_note(RecipientVO recipientVO,HttpSession httpSession)throws Exception{
-		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
-		recipientVO.setMynote(mynote);
-		reservice.select_recipient_note(recipientVO);
-		return "redirect:/note/noteMyPage";
-	};
+	
 	
 }

@@ -29,15 +29,16 @@
 	
 	<select id="search_note" resultType="kr.co.useful.note.domain.SendVO"> <!-- 쪽지검색  -->
 	select serial,sendman,sendcontent,senddate from tbl_send_note
+	where mynote=#{mynote}
 	<include refid="search"/>
-	and mynote=#{mynote}
 	order by serial desc
 	</select>
 	
 	<select id="search_Count_note" resultType="int"> <!-- 검색쪽지 카운트  -->
 	select count(*) from tbl_send_note
+	where mynote=#{mynote}
 	<include refid="search"/>
-	and mynote=#{mynote}
+	
 	</select>
 	
 	<select id="note_find_user" resultType="kr.co.useful.note.domain.NoteFindUserVO">
@@ -45,7 +46,7 @@
 	where tbl_emp.deptno = tbl_dept.deptno
 	<if test="searchType!=null">
 	<if test="searchType=='dname'">
-	and ename like '%'||#{keyword}||'%'
+	and dname like '%'||#{keyword}||'%'
 	</if>
 	<if test="searchType=='ename'">
 	and ename like '%'||#{keyword}||'%'
@@ -55,14 +56,16 @@
 	
 	</select>
 	
+	
+	
 	<sql id="search">
 	
-	<if test="searchType!=null">
-	<if test="searchType=='sendman'">
-	where sendman like '%'||#{keyword}||'%'
+	<if test="cri.searchType!=null">
+	<if test="cri.searchType=='sendman'">
+	and sendman like '%'||#{cri.keyword}||'%'
 	</if>
-	<if test="searchType=='sendcontent'">
-	where sendcontent like '%'||#{keyword}||'%'
+	<if test="cri.searchType=='sendcontent'">
+	and sendcontent like '%'||#{cri.keyword}||'%'
 	</if>
 	</if>
 	

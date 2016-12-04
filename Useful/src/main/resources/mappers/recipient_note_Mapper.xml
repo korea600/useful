@@ -6,7 +6,7 @@
 	select serial,mynote,reciid,recontent,recipientdate from tbl_recipient_note where mynote=#{mynote} order by serial desc
 	</select>
 	
-	 <insert id="create_send_note" parameterType="kr.co.useful.note.domain.SendVO"> 쪽지보내기 
+	 <insert id="create_send_note" parameterType="kr.co.useful.note.domain.SendVO"> <!-- 쪽지보내기  -->
 	insert into tbl_send_note (serial,mynote,sendman,sendcontent)
 	 values(tbl_send_note_seq.nextval,#{mynote},#{sendman},#{sendcontent})
 	</insert>
@@ -15,71 +15,44 @@
 	insert into tbl_recipient_note (serial,mynote,reciid,recontent) values(tbl_recipient_note_seq.nextval,#{mynote},#{reciid},#{recontent})
 	</insert>
 	
-	<select id="select_note" resultType="kr.co.useful.note.domain.RecipientVO"> 쪽지 선택해서 보기 
-	select serial,mynote,reciid,recontent,senddate,recipientdate from tbl_recipient_note where mynote=#{mynote} and serial=#{serial}
+	<select id="select_note" resultType="kr.co.useful.note.domain.RecipientVO"> <!-- 쪽지 선택해서 보기  -->
+	select serial,mynote,reciid,recontent,recipientdate from tbl_recipient_note where mynote=#{mynote} and serial=#{serial}
 	</select>
 	
-	<delete id="delete_note" parameterType="kr.co.useful.note.domain.RecipientVO"> 메일삭제
+	<delete id="delete_note" parameterType="kr.co.useful.note.domain.RecipientVO"><!--  메일삭제 -->
 	delete from tbl_recipient_note where serial=#{serial} and mynote=#{mynote}
 	</delete>
 	
-	<!-- 
-	 <select id="count_note" resultType="int"> 자기 쪽지 전체 카운트 
-	select count(*) from tbl_send_note where mynote=#{mynote}
-	</select>
 	
-	<select id="search_note" resultType="kr.co.useful.note.domain.SendVO"> 쪽지검색 
-	select serial,sendman,sendcontent,senddate from tbl_send_note
+	<select id="search_note" resultType="kr.co.useful.note.domain.RecipientVO"> <!-- 쪽지검색  -->
+	select serial,reciid,recontent,recipientdate from tbl_recipient_note
+	where mynote=#{mynote}
 	<include refid="search"/>
-	and mynote=#{mynote}
+	
 	order by serial desc
 	</select>
 	
-	<select id="search_Count_note" resultType="int"> 검색쪽지 카운트 
-	select count(*) from tbl_send_note
+	<select id="search_Count_note" resultType="int"> <!-- 검색쪽지 카운트  -->
+	select count(*) from tbl_recipient_note
 	<include refid="search"/>
 	and mynote=#{mynote}
 	</select>
 	
-	<select id="note_find_user" resultType="kr.co.useful.note.domain.NoteFindUserVO">
-	select dname,position,ename,phone,email from tbl_emp,tbl_dept 
-	where tbl_emp.deptno = tbl_dept.deptno
-	<if test="searchType!=null">
-	<if test="searchType=='dname'">
-	and ename like '%'||#{keyword}||'%'
-	</if>
-	<if test="searchType=='ename'">
-	and ename like '%'||#{keyword}||'%'
-	</if>
-	</if>
 	
 	
-	</select>
+	
 	
 	<sql id="search">
 	
-	<if test="searchType!=null">
-	<if test="searchType=='sendman'">
-	where sendman like '%'||#{keyword}||'%'
+	<if test="cri.searchType!=null">
+	<if test="cri.searchType=='reciid'">
+	and reciid like '%'||#{cri.keyword}||'%'
 	</if>
-	<if test="searchType=='sendcontent'">
-	where sendcontent like '%'||#{keyword}||'%'
+	<if test="cri.searchType=='recontent'">
+	and recontent like '%'||#{cri.keyword}||'%'
 	</if>
 	</if>
 	
 	</sql>
-	
-	<sql id="finduser">
-	<if test="searchType!=null">
-	<if test="searchType=='dname'">
-	and dname like '%'||#{keyword}||'%'
-	</if>
-	<if test="searchType=='ename'">
-	and ename like '%'||#{keyword}||'%'
-	</if>
-	</if>
-	
-	
-	</sql>  -->
 	
 </mapper>

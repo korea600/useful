@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.useful.board.domain.SearchCriteria;
 import kr.co.useful.note.domain.RecipientVO;
 import kr.co.useful.note.domain.SendVO;
 import kr.co.useful.note.persistence.RecipientDAO;
@@ -31,16 +32,30 @@ private RecipientDAO redao;
 
 	}
 
+
+
 	@Override
-	public void select_recipient_note(RecipientVO recipientVO) throws Exception {
-		redao.select_recipient_note(recipientVO);
+	public void delete_recipient_note(RecipientVO recipientVO) throws Exception {
+		redao.delete_recipient_note(recipientVO);
 
 	}
 
 	@Override
-	public void delete_recipient_note(RecipientVO recipientVO) throws Exception {
-		redao.select_recipient_note(recipientVO);
+	public RecipientVO select_recipient_note(RecipientVO recipientVO) throws Exception {
+		// TODO Auto-generated method stub
+		return redao.select_recipient_note(recipientVO);
+	}
 
+	@Override
+	public List<RecipientVO> search_Recipient_note(SearchCriteria cri, String mynote) throws Exception {
+		// TODO Auto-generated method stub
+		return redao.search_Recipient_note(cri, mynote);
+	}
+
+	@Override
+	public int search_Recipient_count_note(SearchCriteria cri, String mynote) throws Exception {
+		// TODO Auto-generated method stub
+		return redao.search_Recipient_count_note(cri, mynote);
 	}
 
 }
