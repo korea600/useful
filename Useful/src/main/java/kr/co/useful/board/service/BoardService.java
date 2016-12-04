@@ -15,5 +15,5 @@ public interface BoardService {
 	public List<BoardVO> listSearch(SearchCriteria cri)throws Exception;
 	public int listFindCount(SearchCriteria cri)throws Exception;
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
-	public int select_cut_list()throws Exception;
+	public List<BoardVO> select_cut_list()throws Exception;
 }

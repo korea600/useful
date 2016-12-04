@@ -73,9 +73,9 @@ private SqlSession sqlsession;
 	}
 
 	@Override
-	public int select_cut_list() throws Exception {
+	public List<BoardVO> select_cut_list() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne("board.select_cut_list");
+		return sqlsession.selectList("board.select_cut_list");
 	}
 
 
