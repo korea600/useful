@@ -16,5 +16,5 @@ public interface BoardDAO {
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception; //특정페이지조회
 	public List<BoardVO> listSearch(SearchCriteria cri)throws Exception; //검색어조회
 	public int listFindCount(SearchCriteria cri)throws Exception; //검색어조회수
-	
+	public int select_cut_list()throws Exception;//리스트 컷
 }

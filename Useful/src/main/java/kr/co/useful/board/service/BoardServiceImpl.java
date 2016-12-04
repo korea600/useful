@@ -73,4 +73,10 @@ private BoardDAO dao;
 		
 	}
 
+	@Override
+	public int select_cut_list() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.select_cut_list();
+	}
+
 }
