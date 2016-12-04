@@ -24,6 +24,11 @@
 <%@include file="../login/Main.jsp" %>
 
 	<script type="text/javascript">
+		function cancel(){
+			location.href="Mainview";
+		}
+	
+	
 		function passCheck(){
 			
 			 var pass = document.form.password.value;
@@ -86,7 +91,7 @@
                                 <!-- Change this to a button or input when using this as a form -->
                                 <div align="center">
                                 <button type="button" id="btn" onclick="passCheck()" >확인</button>
-                                
+                                <button type="button" id="btn" onclick="cancel()" >취소</button>                                
                                 </div>
 						</form>
                     </div>
