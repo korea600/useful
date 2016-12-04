@@ -3,16 +3,16 @@
 <mapper namespace="notice">
 
 	<select id="mainlist" resultType="kr.co.useful.board.domain.NoticeVO">
-	select title,content,regdate from tbl_notice order by serial  desc
+	select title,content,regdate,viewcnt from tbl_notice order by serial  desc
 	</select>
 	
 	<!-- 게시물 선택보기 -->
     <select id="selectRead" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM TBL_NOTICE WHERE SERIAL=#{serial}
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt FROM TBL_NOTICE WHERE SERIAL=#{serial}
     </select>
     <!-- 게시물 전체보기 -->
     <select id="listAll" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE FROM TBL_NOTICE ORDER BY SERIAL DESC
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt FROM TBL_NOTICE ORDER BY SERIAL DESC
     </select>
     <!-- 게시물 업데이트 -->
     <update id="update">
@@ -24,6 +24,12 @@
     VALUES(tbl_notice_seq.nextval,#{title},#{writer},#{content})
     </insert>
     
+    <!-- 조회수 카운트 -->
+    <update id="viewcnt">
+     UPDATE TBL_NOTICE SET VIEWCNT=VIEWCNT+1 WHERE SERIAL=#{serial}
+     </update>
+      
+    
     <!-- 게시물 삭제 -->
     <delete id="delete">
     DELETE FROM TBL_NOTICE WHERE SERIAL=#{serial}
@@ -34,7 +40,7 @@
     </select>
     
     <select id="listSearch" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE from tbl_notice
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt from tbl_notice
     <include refid="Search"/>
     order by serial desc
     </select>

@@ -72,6 +72,7 @@ public class BoardanonymityController {
 		public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 		AnonymityVO board=service.read(serial);
 		List<ReplyVO> list=reservice.listAll(serial);
+		service.viewcnt(serial);
 		PageMaker pageMaker=new PageMaker();
 
 		pageMaker.setCri(cri);

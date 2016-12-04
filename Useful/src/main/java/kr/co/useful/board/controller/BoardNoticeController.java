@@ -77,6 +77,7 @@ public class BoardNoticeController {
 	@RequestMapping("/readPage")
 	public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
 	NoticeVO board=service.read(serial);
+	service.viewcnt(serial);
 	List<ReplyVO> list=reservice.listAll(serial);
 	PageMaker pageMaker=new PageMaker();
 
