@@ -142,6 +142,9 @@
                               <a href="/useful/board/listPage">사내게시판</a>
                            </li>
                            <li>
+                              <a href="#">부서게시판</a>
+                           </li>
+                           <li>
                               <a href="/useful/board/anonymity/listPage">익명게시판</a>
                            </li>
                            </ul>
@@ -151,7 +154,7 @@
                             <a href="/useful/sharetask/share_Board"><i class="fa fa-list-alt fa-fw"></i> 업무공유</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-calendar fa-fw"></i> 일정관리<span class="fa arrow"></span></a>
+                            <a href="/useful/schedule/co_Schedule"><i class="fa fa-calendar fa-fw"></i> 일정관리<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="panels-wells.html">회사일정관리</a>
