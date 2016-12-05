@@ -95,11 +95,20 @@
     <script src="../resources/dist/js/sb-admin-2.js"></script>
     <!-- 게시물 버튼 설정 -->
     <script>
-    $(document).ready(function(){
-    	
-    	$("#backPage").on("click",function(){
-    		history.back();
-    	});
+    $(document)
+	.ready(
+			function() {
+				var formsubmit = $("from[role='form']");
+				$("#backPage")
+						.on(
+								"click",
+								function() {
+									history
+											.back();
+								});
+			
+				  
+			});
     
     	
      	

@@ -3,25 +3,25 @@
 <mapper namespace="notice">
 
 	<select id="mainlist" resultType="kr.co.useful.board.domain.NoticeVO">
-	select title,content,regdate,viewcnt from tbl_notice order by serial  desc
+	select title,content,regdate,viewcnt,empno from tbl_notice order by serial  desc
 	</select>
 	
 	<!-- 게시물 선택보기 -->
     <select id="selectRead" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt FROM TBL_NOTICE WHERE SERIAL=#{serial}
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt,empno FROM TBL_NOTICE WHERE SERIAL=#{serial}
     </select>
     <!-- 게시물 전체보기 -->
     <select id="listAll" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt FROM TBL_NOTICE ORDER BY SERIAL DESC
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt,empno FROM TBL_NOTICE ORDER BY SERIAL DESC
     </select>
     <!-- 게시물 업데이트 -->
     <update id="update">
-    UPDATE TBL_NOTICE SET TITLE=#{title},CONTENT=#{content} WHERE SERIAL=#{serial}
+    UPDATE TBL_NOTICE SET TITLE=#{title},CONTENT=#{content} WHERE SERIAL=#{serial} and empno=#{empno}
     </update>
     <!-- 게시물등록 -->
-    <insert id="insert">
-    INSERT INTO TBL_NOTICE(SERIAL,TITLE,WRITER,CONTENT) 
-    VALUES(tbl_notice_seq.nextval,#{title},#{writer},#{content})
+    <insert id="insert" parameterType="kr.co.useful.board.domain.NoticeVO">
+    INSERT INTO TBL_NOTICE(SERIAL,empno,TITLE,WRITER,CONTENT) 
+    VALUES(tbl_notice_seq.nextval,#{empno},#{title},#{writer},#{content})
     </insert>
     
     <!-- 조회수 카운트 -->
@@ -35,8 +35,8 @@
       </select>
     
     <!-- 게시물 삭제 -->
-    <delete id="delete">
-    DELETE FROM TBL_NOTICE WHERE SERIAL=#{serial}
+    <delete id="delete" parameterType="kr.co.useful.board.domain.NoticeVO">
+    DELETE FROM TBL_NOTICE WHERE SERIAL=#{serial} and empno=#{empno}
     </delete>
     
     <select id="count" resultType="int">

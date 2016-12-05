@@ -2,6 +2,7 @@ create table tbl_board(
 serial number primary key, --글번호
 title varchar2(50) not null, --글제목
 writer varchar2(30) not null, --글쓴이
+empno number not null, --사번
 content varchar2(2000) not null, --내용
 regdate date default sysdate not null, --작성일자
 viewcnt number default 0 --조회수
@@ -22,7 +23,7 @@ create sequence tbl_board_seq
    increment by 1
    nocycle
    nocache;
-   
+   alter table tbl_board modify (empno number);
    select viewcnt from tbl_board where serial=3;
    update tbl_board set viewcnt=viewcnt+1
 where serial=3;
@@ -40,3 +41,4 @@ where serial=3;
    insert into tbl_board (serial,title,writer,content,regdate) values (tbl_board_seq.nextval,'테스트','테스트','테스트',sysdate);
    
    alter table tbl_board modify (regdate date default sysdate);
+   select * from tbl_board;

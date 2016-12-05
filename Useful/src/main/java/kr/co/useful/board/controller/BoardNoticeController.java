@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import kr.co.useful.board.domain.SearchCriteria;
 import kr.co.useful.board.service.NoticeService;
 import kr.co.useful.board.service.ReplyNoticeService;
 import kr.co.useful.board.service.ReplyService;
+import kr.co.useful.manager.domain.EmpVO;
 
 @Controller
 @RequestMapping("/board/notice")
@@ -46,7 +48,9 @@ public class BoardNoticeController {
 	};
 	
 	@RequestMapping(value="/createPage",method=RequestMethod.POST)
-	public String createPagePOST(NoticeVO vo,RedirectAttributes att)throws Exception{
+	public String createPagePOST(NoticeVO vo,RedirectAttributes att,HttpSession httpSession)throws Exception{
+	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
+	vo.setEmpno(empno);
 	service.create(vo);
 	att.addFlashAttribute("message", "SUCCESS");
 	return "redirect:/board/notice/listPage";
@@ -69,9 +73,12 @@ public class BoardNoticeController {
 		return "redirect:/board/listPage";
 	}
 
-	@RequestMapping("/deletePage") 
-	public String deletePage(int serial) {
-		return "redirect:/board/listPage";
+	@RequestMapping("deletePage") 
+	public String deletePage(NoticeVO vo,HttpSession httpSession)throws Exception{
+		int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
+		vo.setEmpno(empno);
+		service.remove(vo);
+		return "redirect:/board/notice/listPage";
 	}
 
 	@RequestMapping("/readPage")

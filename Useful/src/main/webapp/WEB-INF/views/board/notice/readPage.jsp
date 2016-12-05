@@ -154,7 +154,8 @@ function modifyreply(){
 </script>
 </head>
 <body>
-
+<%@include file="../../login/Main.jsp" %>
+<%@include file="../../login/Sidebar.jsp" %>
 
 		<!-- /.navbar-static-side --> 
 
@@ -173,7 +174,7 @@ function modifyreply(){
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-6">
-									<form role="form" method="post" action="createPage">
+									<form role="form" method="post" action="deletePage">
 										<div class="form-group">
 											<input type="hidden" id="serial" name="serial" value="${board.serial }">
 											<input type="hidden" id="searchType" name="searchType"
@@ -198,9 +199,10 @@ function modifyreply(){
 										<input type="hidden" name="page" id="page"
 											value="${cri.page }"> <input type="hidden"
 											name="perPageNum" value="${cri.perPageNum }" id="perPageNum">
-											<core:if test="${board.writer==LoginUser.ename }">
+											<core:if test="${board.empno==LoginUser.empno }">
 
 										<button type="button" class="btn btn-default" id="modifybt" value="${board.serial }">수정하기</button>
+										<button type="submit" class="btn btn-default" id="modifybt" onclick="deletePage?serial=${board.serial }">삭제하기</button>
 </core:if>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
 										<input type='hidden' name="page" value='${pageMaker.cri.page}'>
@@ -240,12 +242,12 @@ function modifyreply(){
 							<div class="col-lg-4" style="width: 87%; right: 10px;">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                         <h5>${list.replyid } :<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
+                         <h5>${list.replyname } : (${list.replyid }) : <fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
                         </div><input type="hidden" id="rno" value="${list.rno }">
                         <div class="panel-body">
                             <p id="text">${list.replytext }</p>
                         </div>
-                        <core:if test="${board.writer==LoginUser.ename }">
+                        <core:if test="${list.replyid==LoginUser.empno }">
                          <div class="panel-footer">
 <button type="button" class="btn btn-default" id="${list.rno }" name="modify">수정하기</button>
 <button type="button" class="btn btn-default" id="remove">삭제하기</button>

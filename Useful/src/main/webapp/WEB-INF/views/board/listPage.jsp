@@ -105,6 +105,7 @@
 											<td>${BoardVO.serial }</td>
 											<td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td>
 											<td>${BoardVO.writer }</td>
+											<td>${BoardVO.replycnt }</td>
 											<%-- <td>${BoardVO.content }</td> --%>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${BoardVO.regdate }"/></td>
 											<td>${BoardVO.viewcnt }</td>

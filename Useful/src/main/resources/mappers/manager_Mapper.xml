@@ -156,4 +156,22 @@
   <update id="leave_List_Update">
   	update tbl_leave set basic=#{basic},used=#{used},rest=#{rest} where empno=#{empno}
   </update>
+  
+  <select id="commute_Monthly_search_oneday" resultType="kr.co.useful.manager.domain.CommuteVO">
+  	select a.dname,b.ename,b.empno,b.login,b.logout,b.checked
+  	from tbl_dept a,(select emp.deptno,emp.ename,emp.empno,com.serial,com.login,com.logout,com.checked
+  		from tbl_emp emp ,(select * from tbl_commute 
+  		<where>
+  		<if test="checked!=null">
+  			checked=#{checked}
+  		</if>
+  		<if test="checked==null">
+  			checked in("결근","휴가","출장","조퇴")
+  		</if>
+  	 		and to_char(login, 'YYYYMMDD')=#{login}
+  		</where>) com
+  	 	where emp.empno=com.empno) b
+  	 where a.deptno=b.deptno
+  	 order by b.empno
+  </select>
 </mapper>

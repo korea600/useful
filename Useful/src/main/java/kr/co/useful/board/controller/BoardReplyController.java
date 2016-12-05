@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import kr.co.useful.board.domain.*;
 import kr.co.useful.board.service.*;
+import kr.co.useful.manager.domain.EmpVO;
 
 @RestController
 @RequestMapping("/reply")
@@ -15,9 +16,12 @@ public class BoardReplyController {
 @Inject
 private ReplyService service;
 @RequestMapping(value="/create",method=RequestMethod.POST)
-public ResponseEntity<String> register(@RequestBody ReplyVO vo,HttpServletRequest request){
+public ResponseEntity<String> register(@RequestBody ReplyVO vo,HttpServletRequest request,HttpSession httpSession){
 	ResponseEntity<String> entity=null;
+	
 	try {
+		String replyname=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		vo.setReplyname(replyname);
 		service.create(vo);
 entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 	} catch (Exception e) {

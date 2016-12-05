@@ -6,7 +6,7 @@ public class AnonymityVO {
 
 	private int serial;
 	private String title;
-	private String writer;
+	private String pass;
 	private String content;
 	private Date regdate;
 	private int viewcnt;
@@ -15,19 +15,20 @@ public class AnonymityVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AnonymityVO(int serial, String title, String writer, String content, Date regdate, int viewcnt) {
+	@Override
+	public String toString() {
+		return "AnonymityVO [serial=" + serial + ", title=" + title + ", pass=" + pass + ", content=" + content
+				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + "]";
+	}
+
+	public AnonymityVO(int serial, String title, String pass, String content, Date regdate, int viewcnt) {
+		super();
 		this.serial = serial;
 		this.title = title;
-		this.writer = writer;
+		this.pass = pass;
 		this.content = content;
 		this.regdate = regdate;
 		this.viewcnt = viewcnt;
-	}
-
-	@Override
-	public String toString() {
-		return "AnonymityVO [serial=" + serial + ", title=" + title + ", writer=" + writer + ", content=" + content
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + "]";
 	}
 
 	public int getSerial() {
@@ -46,12 +47,12 @@ public class AnonymityVO {
 		this.title = title;
 	}
 
-	public String getWriter() {
-		return writer;
+	public String getPass() {
+		return pass;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	public String getContent() {
@@ -77,6 +78,8 @@ public class AnonymityVO {
 	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	}
+
 	
+
 	
 }

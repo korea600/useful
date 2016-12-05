@@ -5,6 +5,7 @@ import java.util.Date;
 public class ReplyVO {
 	private int serial;
 	private int rno;
+	private String replyname;
 	private String replyid;
 	private String replytext;
 	private Date regdate;
@@ -44,6 +45,14 @@ public class ReplyVO {
 		this.rno = rno;
 	}
 
+	public String getReplyname() {
+		return replyname;
+	}
+
+	public void setReplyname(String replyname) {
+		this.replyname = replyname;
+	}
+
 	public String getReplyid() {
 		return replyid;
 	}
@@ -67,5 +76,6 @@ public class ReplyVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+	
 	
 }

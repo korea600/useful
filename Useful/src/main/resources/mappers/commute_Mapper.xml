@@ -18,10 +18,10 @@
 	</select>
 	
 	<select id="commuteselect" resultType="kr.co.useful.commute.domain.CommuteVO">
-		select dname, ename, login, logout, checked
-		from tbl_emp,tbl_dept
-		where empno=#{empno}
-		order by login
+		 select e.empno,e.deptno,e.ename,c.login,c.logout,c.checked
+		 from tbl_emp e,tbl_commute c
+		 where e.empno = c.empno
+		 order by login
 	</select>
 	
 	

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,8 +28,8 @@
 		href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
 	<link rel="stylesheet" type="text/css" media="screen"
 		href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-<%-- 	<link rel="stylesheet" type="text/css" media="screen"
-		href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.js" />  --%>
+	<link rel="stylesheet" type="text/css" media="screen"
+		href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" />
 	 <script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" 
@@ -71,47 +72,19 @@
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
                         <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
+                            <c:forEach items="${note }" var="note2">
+							<div onclick="location.href='/useful/note/riciReadPage?serial=${note2.serial }'" style="cursor: pointer;">
+								<b>${note2.reciid}</b> 
+								<span class="pull-right text-muted">
+									<em> <fmt:formatDate value="${note2.recipientdate }" pattern="yyyy-MM-dd" /></em>
+								</span>
+								<div>${note2.recontent }</div>
+							</div>
+								<li class="divider"></li>
+							</c:forEach>
+					<li><a class="text-center" href="/useful/note/noteMyPage"> 
+					<strong>Read All Messages</strong> <i class="fa fa-angle-right"></i>
+					</a></li></li>
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>

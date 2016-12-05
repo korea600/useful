@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%-- Login_Commute.jsp --%>
 <title>출퇴근 내역</title>
+<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <style type="text/css">
 th {
 	background-color: #CCC;
@@ -119,7 +121,7 @@ th {
 		<th width="15%">사원명</th>
 		<th width="14%">출근일자</th>
 		<th width="15%">출근시간</th>
-		<th width="14%">퇴근일자</th>
+		<th width="15%">퇴근일자</th>
 		<th width="15%">퇴근시간</th>
 		<th width="25%">구분</th>
 	</tr>

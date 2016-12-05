@@ -7,9 +7,11 @@ public class BoardVO {
 private int serial;
 private String title;
 private String writer;
+private int empno;
 private String content;
 private Date regdate;
 private int viewcnt;
+private int replycnt;
 /*public BoardVO() {
 	// TODO Auto-generated constructor stub
 }
@@ -26,6 +28,21 @@ public BoardVO(int serial, String title, String writer, String content, Date reg
 
 public int getSerial() {
 	return serial;
+}
+
+public int getReplycnt() {
+	return replycnt;
+}
+public int getEmpno() {
+	return empno;
+}
+
+public void setEmpno(int empno) {
+	this.empno = empno;
+}
+
+public void setReplycnt(int replycnt) {
+	this.replycnt = replycnt;
 }
 
 public void setSerial(int serial) {
@@ -74,8 +91,10 @@ public void setViewcnt(int viewcnt) {
 
 @Override
 public String toString() {
-	return "BoardVO [글번호=" + serial + ", 제목=" + title + ", 작성자=" + writer + ", 내용=" + content
-			+ ", 날짜=" + regdate + ", 조회수=" + viewcnt + "]";
+	return "BoardVO [serial=" + serial + ", title=" + title + ", writer=" + writer + ", content=" + content
+			+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
 }
+
+
 
 }

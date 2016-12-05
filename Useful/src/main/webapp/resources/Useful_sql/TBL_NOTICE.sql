@@ -1,5 +1,6 @@
 create table tbl_notice(
 serial number primary key, --글번호
+empno number not null, --사번
 title varchar2(50) not null, --글제목
 writer varchar2(20) not null, --글쓴이
 content varchar2(2000), --내용
@@ -19,6 +20,7 @@ regdate date not null--작성일자
 
 alter table tbl_notice modify(regdate date default sysdate not null);
 alter table tbl_notice add(viewcnt number default 0);
+drop sequence tbl_notice_seq;
 create sequence tbl_notice_seq
    start with 1
    increment by 1

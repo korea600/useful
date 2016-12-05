@@ -7,15 +7,15 @@ select ename from tbl_emp where empno=#{empno}
 </select>
 
 <select id="list" parameterType="int" resultType="kr.co.useful.board.domain.ReplyVO">
-select serial,rno,replyid,replytext,regdate from tbl_reply where serial=#{serial} order by rno desc
+select serial,rno,replyname,replyid,replytext,regdate from tbl_reply where serial=#{serial} order by rno desc
 </select>
 
 <select id="select" resultType="kr.co.useful.board.domain.ReplyVO">
-select serial,rno,replytext from tbl_reply where rno=#{rno} and serial=#{serial}
+select serial,rno,replyname,replyid,replytext from tbl_reply where rno=#{rno} and serial=#{serial}
 </select>
 
 <insert id="create" parameterType="kr.co.useful.board.domain.ReplyVO">
-insert into tbl_reply (serial,rno,replyid,replytext) values(#{serial},tbl_reply_seq.nextval,#{replyid},#{replytext})
+insert into tbl_reply (serial,rno,replyname,replyid,replytext) values(#{serial},tbl_reply_seq.nextval,#{replyname},#{replyid},#{replytext})
 </insert>
 
 <update id="update">
