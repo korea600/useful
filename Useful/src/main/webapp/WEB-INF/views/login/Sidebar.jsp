@@ -141,9 +141,7 @@
                            <li>
                               <a href="/useful/board/listPage">사내게시판</a>
                            </li>
-                           <li>
-                              <a href="#">부서게시판</a>
-                           </li>
+                           
                            <li>
                               <a href="/useful/board/anonymity/listPage">익명게시판</a>
                            </li>
