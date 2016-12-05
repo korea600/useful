@@ -82,8 +82,9 @@ private SqlSession sqlsesson;
 	}
 
 	@Override
-	public boolean pass_check(int serial) throws Exception {
+	public String pass_check(int serial) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("DAO의 시리얼값"+serial);
 		return sqlsesson.selectOne("anonymity.pass_check", serial);
 	}
 

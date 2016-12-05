@@ -193,16 +193,9 @@ $(document).ready(function(){
 });
 
 function getReturnValue(result) {
-	  //alert(result);
-	  $("#sendman").val(result);
 	  
-	  var serial=$("#serial").val();
-		var page=$("#page").val();
-		var perPageNum=$("#perPageNum").val();
-		var keyword=$("#keyword").val();
-		var searchType=$("#searchType").val();
-		self.location="/useful/board/modifyPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
-	}
+	  
+}
 </script>
 </head>
 <body>

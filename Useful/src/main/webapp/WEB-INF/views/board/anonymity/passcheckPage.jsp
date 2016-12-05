@@ -9,15 +9,16 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#checkBtn").on("click",function(){
+		/*  var serial=$('#serial').val();
+		var pass=$('#btn-input').val(); */
 		$.ajax({
-			data:{
-				serial:"${serial}",
-				pass:$('#btn-input').val()
-			},
-			url:'passcheckPage',
-			type:'POST',
+				type:'POST',
+				url:'/useful/board/anonymity/passcheckPage',
+					data: {serial:${serial},pass:$('#btn-input').val()},
 			success:function(result){
-				alert(result);
+				if(result=='SUCCESS'){
+					self.location="modifyPage?serial=serial";
+				}else alert("안도미")
 			}
 		});
 	});

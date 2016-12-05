@@ -7,7 +7,7 @@ import kr.co.useful.board.domain.Criteria;
 import kr.co.useful.board.domain.SearchCriteria;
 
 public interface AnonymityService {
-	public boolean pass_check(int serial)throws Exception;
+	public String pass_check(int serial)throws Exception;
 	public void create(AnonymityVO vo)throws Exception;
 	public AnonymityVO read(int serial)throws Exception;
 	public void update(AnonymityVO vo)throws Exception;
