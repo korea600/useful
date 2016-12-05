@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,59 +50,35 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/useful/login/Mainview">Useful Logo</a>
+                <a class="navbar-brand" href="Mainview">Useful Logo</a>
             </div>
             <!-- /.navbar-header -->
 
    <!-- 메인에 오른쪽 위 상단 (메일링서비스 할 부분) -->
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
+                    
                     <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
+					<li>
+				  <c:forEach items="${note }" var="note2">
+
+								<div
+								onclick="location.href='/useful/note/riciReadPage?serial=${note2.serial }'" style="cursor: pointer;">
+									<b>${note2.reciid}</b> 
+									<span class="pull-right text-muted">
+										<em> <fmt:formatDate value="${note2.recipientdate }" pattern="yyyy-MM-dd" /></em>
+									</span>
+									<div>${note2.recontent }</div>
+								</div>
+
+								<li class="divider"></li>
+							</c:forEach><li><a class="text-center" href="/useful/note/noteMyPage"> 
+					<strong>Read All Messages</strong> <i class="fa fa-angle-right"></i>
+					</a></li></li>
+					
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>
@@ -225,9 +202,7 @@
                            <li>
                               <a href="/useful/board/listPage">사내게시판</a>
                            </li>
-                           <li>
-                              <a href="#">부서게시판</a>
-                           </li>
+                         
                            <li>
                               <a href="/useful/board/anonymity/listPage">익명게시판</a>
                            </li>
@@ -342,7 +317,7 @@
 			});
 			
 			$('#note').on("click",function(){
-				location.href="/useful/note/notePage";
+				location.href="/useful/note/noteMyPage";
 			});
 			
 		});
