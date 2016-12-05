@@ -210,7 +210,47 @@
 
     <!-- jQuery -->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-
+    <script type="text/javascript">
+		$(document).ready(function(){
+			$('#commute_in').on("click",function(){
+				
+				$.ajax({
+					type:'post',
+					async:true,
+					url:'/useful/commute/Commute_In?empno='+${LoginUser.empno},
+					success:function(result){
+						if(result == 'SUCCESS'){
+							alert('정상적으로 출근처리 되었습니다.');
+						}else if(result == 'FAIL'){
+							alert('이미 출근처리 되었습니다.');
+						}
+					}
+				});
+			});
+			
+			$('#commute_out').on("click",function(){
+				$.ajax({
+					type:'post',
+					async:true,
+					url:'/useful/commute/Commute_Out?empno='+${LoginUser.empno},
+					success:function(result){
+						if(result == 'SUCCESS'){
+						alert('정상적으로 퇴근처리 되었습니다.');
+						location.href="/useful/login/Logout";
+						}else if(result == 'FAIL'){
+							alert('먼저 출근체크를 해주세요.');
+						}
+					}
+				});
+			});
+			
+			$('#note').on("click",function(){
+				location.href="/useful/note/noteMyPage";
+			});
+			
+		});
+		
+		</script>
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 

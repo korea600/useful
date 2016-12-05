@@ -39,6 +39,7 @@ sign varchar2(20)           --결제이미지
 
 select * from tbl_emp;
 
-select empno
-from tbl_emp
-where empno='1001';
+select dname, ename, login, logout, checked
+		from (select dname,ename from tbl_emp,tbl_dept where tbl_emp.deptno=tbl_dept.deptno) tbl_emp,tbl_commute
+		where empno='1001'
+		order by login;
