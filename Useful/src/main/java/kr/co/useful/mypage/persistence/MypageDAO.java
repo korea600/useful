@@ -1,6 +1,9 @@
 package kr.co.useful.mypage.persistence;
 
+import java.util.Map;
+
 import kr.co.useful.manager.domain.EmpVO;
+import kr.co.useful.mypage.domain.ProofEmpVO;
 
 public interface MypageDAO {
 	
@@ -12,4 +15,7 @@ public interface MypageDAO {
 	
 	//비밀번호 확인
 	public EmpVO select_pass(int empno)throws Exception;
+	
+	//증명서 내용 출력
+	public ProofEmpVO proof_emp(int empno)throws Exception;
 }

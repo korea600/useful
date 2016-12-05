@@ -160,9 +160,6 @@ public class ManagerController {
 	}
 	@RequestMapping(value="/commute_Monthly_Oneday",method=RequestMethod.POST)
 	public String commute_Monthly_search_oneday(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
-		System.out.println(requestMap.get("checked"));
-		System.out.println(requestMap.get("login"));
-		System.out.println(service.commute_Monthly_search_oneday(requestMap));
 		model.addAttribute("commute",service.commute_Monthly_search_oneday(requestMap));
 		return "/manager/leave_Print_Div";
 	}

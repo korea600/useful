@@ -6,6 +6,7 @@ public class CommuteVO {
 	//serial, empno, login, logout, checked
 	private int serial;
 	private int empno;
+	private int deptno;
 	private String login;
 	private String login_time;	
 	private String logout;
@@ -16,12 +17,12 @@ public class CommuteVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public CommuteVO(int serial, int empno, String login, String login_time, String logout, String logout_time,
-			String checked) {
+	public CommuteVO(int serial, int empno, int deptno, String login, String login_time, String logout,
+			String logout_time, String checked) {
 		super();
 		this.serial = serial;
 		this.empno = empno;
+		this.deptno = deptno;
 		this.login = login;
 		this.login_time = login_time;
 		this.logout = logout;
@@ -29,6 +30,13 @@ public class CommuteVO {
 		this.checked = checked;
 	}
 
+	public int getDeptno() {
+		return deptno;
+	}
+
+	public void setDeptno(int deptno) {
+		this.deptno = deptno;
+	}
 
 	public int getSerial() {
 		return serial;
