@@ -29,14 +29,22 @@ public class CommuteServiceImpl implements CommuteService{
 	}
 
 	@Override
-	public void update(int empno) throws Exception {
-		dao.update(empno);
+	public boolean update(int empno) throws Exception {
+		if(dao.select(empno) != 0){
+			dao.update(empno);
+			return true;
+		}
+		return false;
 	}
+	
 
 	@Override
 	public List<CommuteVO> commuteselect(int empno) throws Exception {
 		return dao.commuteselect(empno);
 	}
+
+
+
 
 
 

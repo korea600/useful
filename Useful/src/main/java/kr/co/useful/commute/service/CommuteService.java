@@ -8,7 +8,7 @@ public interface CommuteService {
 	
 	public boolean insert(int empno)throws Exception;
 	
-	public void update(int empno)throws Exception;
+	public boolean update(int empno)throws Exception;
 	
 	public List<CommuteVO> commuteselect(int empno)throws Exception;
 }

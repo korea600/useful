@@ -1,10 +1,10 @@
 drop table tbl_commute;
 create table tbl_commute(
-serial number primary key,
-empno number not null,
-login date default sysdate,
-logout date,
-checked varchar2(10)
+serial number primary key, -- 번호
+empno number not null, -- 사번
+login date default sysdate, -- 출근시간
+logout date, -- 퇴근시간
+checked varchar2(10) -- 구분
 );
 
 create table tbl_commute(
