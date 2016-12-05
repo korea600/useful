@@ -93,10 +93,7 @@ public class BoardanonymityController {
 		@RequestMapping(value="/passcheckPage",method=RequestMethod.POST)
 		public @ResponseBody String passcheck(int serial, String pass,	Model model)throws Exception{
 			
-			System.out.println("passcheck"+serial);
-			System.out.println("pass값 = "+pass);
 			String correctpass = service.pass_check(serial);
-			System.out.println("DB에서 얻어온 비번 : "+correctpass);
 			if(correctpass.equals(pass)){
 				return "SUCCESS";
 			}

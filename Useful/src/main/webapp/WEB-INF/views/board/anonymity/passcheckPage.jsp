@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../../resources/vendor/jquery/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#checkBtn").on("click",function(){
@@ -14,10 +14,14 @@ $(document).ready(function(){
 		$.ajax({
 				type:'POST',
 				url:'/useful/board/anonymity/passcheckPage',
-					data: {serial:${serial},pass:$('#btn-input').val()},
-			success:function(result){
+				data: {
+					serial:"${serial}",
+					pass:$('#btn-input').val()
+				},
+				success:function(result){
 				if(result=='SUCCESS'){
-					self.location="modifyPage?serial=serial";
+					opener.location="modifyPage?serial=${serial}";
+					self.close();
 				}else alert("안도미")
 			}
 		});
@@ -37,7 +41,7 @@ $(document).ready(function(){
                               
                                 <input name="keyword" id="btn-input" type="text" class="form-control input-sm" placeholder="게시물 비밀번호를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="checkBtn"  style="height: 30px;">
+                                    <button class="btn btn-warning btn-sm" id="checkBtn" type='button' style="height: 30px;">
                                         확인
                                     </button>
                                 </span>

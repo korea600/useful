@@ -82,7 +82,6 @@ private AnonymityDAO dao;
 	@Override
 	public String pass_check(int serial) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("서비스의 "+serial);
 		return dao.pass_check(serial);
 	}
 
