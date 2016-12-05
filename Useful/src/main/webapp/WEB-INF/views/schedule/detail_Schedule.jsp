@@ -1,18 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 <style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+* {font-family: 'Nanum Gothic', serif;}
+
+#cal {width: 250px; height: 250px; opacity: 1;}
+#header {background-color:#aadef7; height: 50px; line-height: 50px; text-align: center; font-size: 18px; font-weight: bold}
+#cal .button {color: #000; text-decoration: none;}
+
+#cal table {width: 250px; height: 200px;}
+
+#cal .sun {text-align: center; color: red;}
+#cal .mon {text-align: center;}
+#cal .tue {text-align: center;}
+#cal .wed {text-align: center;}
+#cal .thu {text-align: center;}
+#cal .fri {text-align: center;}
+#cal .sat {text-align: center; color: blue;}
 
 </style>
 
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script>
+$(document).ready(function(){
+	
 
+	$("#changeOK").hide();
+	$(".openBtn").hide();
+		
+
+	$('#change').click(function(){
+		$(".openBtn").show();
+		$('#changeOK').show();
+		$('#change').hide();
+		
+		$('[name=title]').attr("readonly", false);
+		$('[name=content]').attr("readonly", false);                                                             
+		$('[name=begintime]').attr("disabled", false);
+		$('[name=content]').focus();
+		
+		//$('#category').attr("disabled", false);
+
+	   })
+	   
+	   
+	   
+	});
 
 //작은달력
 function cal(id, date) {
@@ -145,39 +186,37 @@ function clean(){
 
 function remove(sr){
 	//alert(sr);
-	location.href="/useful/schedule/remove?serial="+sr;
+	opener.location.href="/useful/schedule/remove?serial="+sr;
 	  
-	 opener.parent.location.reload(); 
+	 //opener.parent.location.reload(); 
+	 self.close();
 
 
 }
 
-function change(sr){
-	alert(sr);
-	location.href="/useful/schedule/change?serial"=sr;
-
-	 opener.parent.location.reload(); 
+//수정->확인 눌렀을때	
+ function update(){
+	 $.ajax({
+		 url:'/useful/schedule/change',
+		 type:'post',
+		 data:{
+			 serial:$('[name=serial]').val(),
+			 empno:$('[name=empno]').val(),
+			 title:$('[name=title]').val(),
+			 begin:$('[name=begin]').val(),
+			 end:$('[name=end]').val(),
+			 begintime:$('[name=begintime]').val(),
+			 content:$('[name=content]').val()
+		 },
+		 success:function(){
+			 opener.parent.location.reload();
+			 alert("수정되었습니다.")
+			 self.close();
+		 }    		 
+	 });
 } 
 
 
-
-$("#changeOK").hide();
-$(".openBtn").hide();
-	
-
-$('#change').click(function(){
-	$(".openBtn").show();
-	$('#changeOK').show();
-	$('#change').hide();
-	$("[name=begin]").attr("readonly", false);
-	$("[name=end]").attr("readonly", false);
-	$('#title').attr("readonly", false);
-	$('#content').attr("readonly", false);                                                             
-	$('#title').focus();
-	
-	//$('#category').attr("disabled", false);
-
-})
 
 
 </script>
@@ -186,15 +225,17 @@ $('#change').click(function(){
 
 <body>
 	<center>
-	<h3>스케줄 입력</h3>
-	
+	<h3>스케줄 상세</h3>
+	     <input type="hidden" name="empno" value="1003">
+	     <input type="hidden" name="serial" value="${scheduleVO.serial }">
 		<form id="detail_Form" method="post">
 			<table border="1"
 				style="border-collapse: collapse; line-height: 30px;">
 		
 				<tr>
 					<td bgcolor="#dae6f4"  align="center" width="150px">작성자</td>
-					<td align="center">${scheduleVO.ename }</td>
+					<td align="center">${scheduleVO.ename }
+					<input type="hidden" name="empno" value="1003"></td>
 				</tr>
 			   <!--   <tr>
 			        <td bgcolor="#dae6f4"  align="center" width="150px">실행자</td>
@@ -217,7 +258,25 @@ $('#change').click(function(){
 				<tr>
 				<td bgcolor="#dae6f4" align="center">시간</td>
 				<td>
-				${scheduleVO.begintime}
+		
+				    <select name="begintime" disabled="disabled">
+				  <c:forEach begin="6" end="23" var="i">
+				  
+				    			<c:if test="${i == scheduleVO.begintime }">
+				    			 <option value="${i }" selected="selected">${i }</option>
+				    			</c:if>
+				    			<c:if test="${i != scheduleVO.begintime }">
+				    			  <option value="${i }" >${i }</option>
+				    			</c:if>
+				  </c:forEach>
+				   </select>
+				  시
+                  
+				  
+	     
+			
+				
+				<%-- ${scheduleVO.begintime} --%>
 				 </td></tr>
 
 				<tr>
@@ -226,16 +285,21 @@ $('#change').click(function(){
 					${scheduleVO.content }
 					</textarea></td>
 				</tr>
-				
-			</table>
 			
-			
+			    <tr>
+			       <td colspan="2" align="right">
+			        <input type="button" id="change" value="수정" />
+		            <input type="button" id="changeOK" value="확인" onclick="update()"/>
+		            <input type="button"  value="삭제"  onclick="remove(${scheduleVO.serial})"/> 
+					<input type="button"  value="닫기" onclick="clean()" />
+			       
+			       </td>
+			    </tr>	
+			</table>			
 		</form>
 		<br>
-		            <input type="button" id="change" value="수정" />
-		            <input type="button" id="changeOK" value="확인" onClick="change(${scheduleVO.serial})"/>
-		            <input type="button"  value="삭제"  onClick="remove(${scheduleVO.serial})"/> 
-					<input type="button"  value="닫기" onclick="clean()" />
+	 <div id="cal" style="display: none; position: absolute;"></div>
+		           
 	</center>
 </body>
 </html>

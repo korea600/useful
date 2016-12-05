@@ -25,8 +25,14 @@
 #cal .sat {text-align: center; color: blue;}
 
 </style>
-
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+
+
+$(function(){
+	document.getElementById('txtdate1').value=opener.document.getElementById('ymd').value;
+})
 
 function cal(id, date) {
 	var cal = document.getElementById(id);
@@ -147,22 +153,34 @@ function closeCal(y,m,d){
       */
 
       function create(){
-    	  var frm = document.getElementById("insert_Form");
-    	  frm.submit();	
-    	  
-    	  
-    	 opener.parent.window.location.reload(); 
-
-
-      }
+    	 $.ajax({
+    		 url:'/useful/schedule/insert',
+    		 type:'post',
+    		 data:{
+    			 empno:$('[name=empno]').val(),
+    			 title:$('[name=title]').val(),
+    			 begin:$('[name=begin]').val(),
+    			 end:$('[name=end]').val(),
+    			 begintime:$('[name=begintime]').val(),
+    			 content:$('[name=content]').val()
+    		 },
+    		 success:function(){
+    			 alert("등록되었습니다.")
+    			 opener.reloadWin();
+    			
+    		 }    		 
+    	 });
+	   	 
+	  }
       
-      
+     
+
       
       function clean(){
     	  window.close();
       }
 
-        var strr = window.dialogArguments("str");
+     
       
 </script>
 </head>
@@ -170,7 +188,7 @@ function closeCal(y,m,d){
 <body>
 	<center>
 	<h3>스케줄 입력</h3>
-		<form id="insert_Form" action="/schedule/insert" method="post">
+		<form id="insert_Form" action="/useful/schedule/insert" method="post">
 			<table border="1"
 				style="border-collapse: collapse; line-height: 30px;">
 		
@@ -197,10 +215,10 @@ function closeCal(y,m,d){
 				</tr>
 				<tr>
 				<td bgcolor="#dae6f4" align="center">시작날짜</td>
-				<td> <input type="text" name="begin" id="txtdate1" value=""> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
+				<td> <input type="text" name="begin" readonly="readonly" id="txtdate1" value="2019"> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
 				<tr>
 				<td  bgcolor="#dae6f4"  align="center">마감날짜</td>
-				<td> <input type="text" name="end" id="txtdate2" value=""> <input type="button" value="달력" onclick="openCal(2)"></td></tr>
+				<td> <input type="text" name="end" readonly="readonly" id="txtdate2" value=""> <input type="button" value="달력" onclick="openCal(2)"></td></tr>
 				<tr>
 				<td bgcolor="#dae6f4"  align="center">시간</td>
 				<td>
@@ -224,7 +242,7 @@ function closeCal(y,m,d){
 					</textarea></td>
 				</tr>
 			</table>
-			<input type="submit"  value="등록"  onClick="create()"> 
+			<input type="button"  value="등록"  onClick="create()"> 
 			<input type="button"  value="닫기" onClick="clean()" >
 		</form>
 		

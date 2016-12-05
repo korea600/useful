@@ -64,7 +64,7 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		
-		return sqs.selectOne("schedule.listSerchCount", cri);
+		return sqs.selectOne("schedule.listSearchCount", cri);
 	}
 
 }
