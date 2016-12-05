@@ -134,7 +134,28 @@ public class ManagerController {
 	public void leave_List_form(){
 		
 	}
-	
+	@RequestMapping(value="/leave_List",method=RequestMethod.POST)
+	public String leave_List(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+		Map<String,Object> map = new HashMap<>();
+		map.put("deptno",(String)requestMap.get("deptno"));
+		if(requestMap.get("empno").equals("")){
+			map.put("empno",null);
+		}else{
+			map.put("empno",(String)requestMap.get("empno"));
+		}
+		if(requestMap.get("ename").equals("")){
+			map.put("ename",null);
+		}else{
+			map.put("ename",(String)requestMap.get("ename"));
+		}
+		model.addAttribute("commute",service.leave_list_search(map));
+		return "/manager/leave_Print";
+	}
+	@RequestMapping(value="/leave_List_Update",method=RequestMethod.POST)
+	public String leave_List_Update(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+		service.leave_List_Update(requestMap);
+		return "/manager/leave_Print";
+	}
 	
 	@RequestMapping("/commute_Daily")
 	public void commute_Daily(){
@@ -159,6 +180,11 @@ public class ManagerController {
 	
 	@RequestMapping("/commute_PrintMonthly")
 	public void commute_PrintMonthly(){
+		
+	}
+	
+	@RequestMapping("/leave_Print")
+	public void leave_Print(){
 		
 	}
 	

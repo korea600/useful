@@ -123,12 +123,12 @@ th {
 		<th width="10%">출장</th>
 		<th width="10%">조퇴</th>
 	</tr>
-			<tr>
-			<td colspan="8">
-			<b>데이터를 로딩중입니다...</b>
-			</td>
-		</tr>
-		</table>
+	<tr>
+		<td colspan="8">
+		<b>데이터를 로딩중입니다...</b>
+		</td>
+	</tr>
+	</table>
 	</div>
 	
 </div>

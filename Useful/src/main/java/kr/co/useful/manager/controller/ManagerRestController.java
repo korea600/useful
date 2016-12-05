@@ -100,37 +100,7 @@ public class ManagerRestController {
 		return obj;
 		}
 	
-	@RequestMapping("/leave_List_jqgrid")
-	public JsonObj leave_List_jqgrid(
-			@RequestParam(value = "page", required=false) String page,
-			@RequestParam(value = "rows", required=false) String rows,
-			@RequestParam(value = "sidx", required=false) String sidx,
-			@RequestParam(value = "sord", required=false) String sord,
-			String keyword,String searchType
-			){
-		
-		JsonObj obj = new JsonObj(); 
-		
-		List<Map<String, Object>> list =null;
-		
-		int int_page = Integer.parseInt(page);// 1 2 3
-		int perPageNum = (int)Double.parseDouble(rows);
-		
-		try {
-			list=dao.emplistSearch(searchType, keyword);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		obj.setRows(list);
-		obj.setPage(int_page);
-		obj.setRecords(list.size());
-		
-		
-		int totalPage = (int)Math.ceil(list.size()/Double.parseDouble(rows));
-		obj.setTotal( totalPage ); 
-		return obj;
-	}
+
 	
 	@RequestMapping("/commute_Update")
 	public String commute_Update(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
