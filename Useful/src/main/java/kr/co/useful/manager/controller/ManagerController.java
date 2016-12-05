@@ -113,17 +113,31 @@ public class ManagerController {
 		Map<String,Object> map = new HashMap<>();
 		map.put("deptno",requestMap.get("dept"));
 		map.put("login",(String)requestMap.get("year")+(String)requestMap.get("month"));
-		System.out.println("컨트롤러");
-		System.out.println(service.commute_deptlist(map));
-		model.addAttribute("commute",service.commute_deptlist(map));
+		model.addAttribute("commute",service.commute_dept_list(map));
 		return "/manager/commute_Printdept";
 	}
-	@RequestMapping("/commute_Daily")
-	public void commute_Daily(){
+	
+	@RequestMapping(value="/commute_Monthly",method=RequestMethod.GET)
+	public void commute_Monthly_form(){
 		
 	}
-	@RequestMapping("/commute_Monthly")
-	public void commute_Monthly(){
+	
+	@RequestMapping(value="/commute_Monthly",method=RequestMethod.POST)
+	public String commute_Monthly(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+		Map<String,Object> map = new HashMap<>();
+		map.put("deptno",requestMap.get("dept"));
+		map.put("login",(String)requestMap.get("year")+(String)requestMap.get("month"));
+		model.addAttribute("commute",service.commute_monthly_list(map));
+		return "/manager/commute_PrintMonthly";
+	}
+	@RequestMapping(value="/leave_List",method=RequestMethod.GET)
+	public void leave_List_form(){
+		
+	}
+	
+	
+	@RequestMapping("/commute_Daily")
+	public void commute_Daily(){
 		
 	}
 	@RequestMapping("/salary_List")
@@ -140,6 +154,11 @@ public class ManagerController {
 	}
 	@RequestMapping("/commute_Printdept")
 	public void commute_Printdept(){
+		
+	}
+	
+	@RequestMapping("/commute_PrintMonthly")
+	public void commute_PrintMonthly(){
 		
 	}
 	

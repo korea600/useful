@@ -48,6 +48,9 @@ where serial=#{serial}
 select * from (select * from tbl_board order by serial desc) where rownum between 1 and 5
 </select>
 
+<select id="reply_cout" >
+select count(rno) from tbl_reply where serial=#{serial}
+</select>
 
 <sql id="Search">
 

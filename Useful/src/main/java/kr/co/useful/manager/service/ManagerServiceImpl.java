@@ -1,6 +1,9 @@
 package kr.co.useful.manager.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.Commute_DeptVO;
+import kr.co.useful.manager.domain.Commute_MonthlyVO;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.persistence.ManagerDAO;
 
@@ -78,16 +82,16 @@ class ManagerServiceImpl implements ManagerService {
 	
 
 	@Override
-	public List<Commute_DeptVO> commute_deptlist(Map<String, Object> map) throws Exception {
+	public List<Commute_DeptVO> commute_dept_list(Map<String, Object> map) throws Exception {
 		List<Integer> list2 = dao.search_ename_from_dept(Integer.parseInt((String) map.get("deptno")));
 		List<Commute_DeptVO> dept_List = new ArrayList<>();
-		
+
 		for(int i=0;i<list2.size();i++){
 			Map<String,Object> newMap = new HashMap<>();
 			newMap.put("login", map.get("login"));
 			newMap.put("empno",list2.get(i));
 			System.out.println(newMap);
-			List<CommuteVO> list = dao.commute_deptlist(newMap);
+			List<CommuteVO> list = dao.commute_dept_list(newMap);
 			int attendance=0,late=0,absence=0,vacation=0,businessTrip=0,earlyLeave=0;
 			for(int j=0;j<list.size();j++){
 				switch (list.get(j).getChecked()) {
@@ -121,6 +125,76 @@ class ManagerServiceImpl implements ManagerService {
 		}
 		return dept_List;
 	}
+	
+	@Override
+	public List<Commute_MonthlyVO> commute_monthly_list(Map<String, Object> map) throws Exception {
+//		List<Integer> dept_member_list = dao.search_ename_from_dept(Integer.parseInt((String)map.get("deptno")));
+		List<Commute_MonthlyVO> Monthly_List = new ArrayList<>();
+		 Calendar cal= Calendar.getInstance ();
+		 SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+//		System.out.println(dept_member_list);
+		String login_yyyydd= (String) map.get("login");
+		String login_month= login_yyyydd.substring(4,6);
+		int login_day=0;
+		if(login_month.equals("01")||login_month.equals("03")||login_month.equals("05")||login_month.equals("07")||login_month.equals("08")||login_month.equals("10")||login_month.equals("12")){
+			login_day=31;
+		}else{
+			login_day=30;
+		}
+		
+			for(int i=1;i<=login_day;i++){
+				Map<String,Object> newMap = new HashMap<>();
+				String login="";
+				if(i<10){
+					login=login_yyyydd+"0"+i;
+				}else{
+					login=login_yyyydd+i+"";
+				}
+			
+				newMap.put("login", login);
+				newMap.put("deptno",Integer.parseInt((String)map.get("deptno")));
+				List<CommuteVO> list = dao.commute_monthly_list(newMap);
+//				System.out.println(login);
+//				System.out.println(list);
+				int attendance=0,late=0,absence=0,vacation=0,businessTrip=0,earlyLeave=0;
+				for(int j=0;j<list.size();j++){
+					switch (list.get(j).getChecked()) {
+						case "출근":
+							attendance++;
+							break;
+						case "지각":
+							late++;
+							break;
+						case "결근":
+							absence++;
+							break;
+						case "휴가":
+							vacation++;
+							break;
+						case "출장":
+							businessTrip++;
+							break;
+						case "조퇴":
+							earlyLeave++;
+							break;
+						default:
+							break;
+						}
+				}
+				Date to= transFormat.parse(login);
+				cal.setTime(to);
+				int whatday = cal.get(Calendar.DAY_OF_WEEK) ;
+				 
+				int total=attendance+late+absence+vacation+businessTrip+earlyLeave;
+				int acc=absence+vacation+businessTrip+earlyLeave;
+				Commute_MonthlyVO vo = new Commute_MonthlyVO(login, whatday, attendance, late, absence, vacation, businessTrip, earlyLeave, total, acc);
+				System.out.println("vo"+vo);
+				Monthly_List.add(vo);
+		}
+		return Monthly_List;
+	}
+	
+	
 	public List<CommuteVO> time_Division(List<CommuteVO> list){
 		 for(int i=0;i<list.size();i++){
 			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 16));

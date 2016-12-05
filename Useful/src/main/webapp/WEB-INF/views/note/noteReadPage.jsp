@@ -51,8 +51,8 @@
                                         </div>
                                          <div class="form-group">
                                         <label>보낸날짜</label>
-                                        <input type="text" id="senddate" class="form-control" value="${list.senddate}" name="senddate" readonly="readonly"></input>
-                                       <%--  <fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${sendVO.senddate }"/> --%>
+                                        <input type="text" id="senddate" class="form-control" value="<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.senddate}"/>" name="senddate" readonly="readonly"></input>
+                                 
                                          </div>
 										<div class="form-group">
                                             <label>쪽지내용</label>

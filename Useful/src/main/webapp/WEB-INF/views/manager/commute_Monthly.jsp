@@ -20,7 +20,6 @@ th {
  <script type="text/javascript" 
 	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript">
-		
 	$(function(){
 		var now = new Date();
 		var month=now.getMonth()+1;
@@ -32,7 +31,7 @@ th {
 	function searchDate(){
 	 		  $.ajax({
 	 			  type: 'POST',
-	 			  url: '/useful/manager/commute_Dept',
+	 			  url: '/useful/manager/commute_Monthly',
 	 			  headers : {
 	 				  "Content-Type" : "application/json",
 	 				  "X-HTTP-Method-Override":"POST"
@@ -54,6 +53,20 @@ th {
 		$("#search_month").val(nowmonth-1).prop("selected", true);
 		}
 	}
+	function call_attendance(date){
+	
+	
+		alert(date);
+	}		
+	function call_late(date){
+		alert(date);
+	
+	}		
+	function call_acc(date){
+	
+		alert(date);
+	
+	}		
 </script>
 </head>
 <body>
@@ -64,7 +77,7 @@ th {
 <!-- commute_Dept.jsp -->
 <div id="page-wrapper">
 <br>
-<font size="5" style="font-style: inherit;">부서별 근태집계</font><br><hr>
+<font size="5" style="font-style: inherit;">월별 근태집계</font><br><hr>
 <div>
 <table style="width: 80%;border-color: black;">
 		<tr>
@@ -90,28 +103,31 @@ th {
 												<%} %> 
 											</select>
 					<select name="search_month" id="search_month" style='width:80px;' onChange='searchDate()'>
- 						<%for(int i=1;i<13;i++){ %>
+ 						<%for(int i=1;i<13;i++){
+ 						if(i<10){%>
+ 						
+						<option value="0<%=i%>"><%=i%>월</option>
+						<%}else{ %>
 						<option value="<%=i%>"><%=i%>월</option>
-						<%} %> 
+						<%} }%> 
 					</select>
-					<a href='#' onclick="Common.getObj('cal_next_prev').value='next';document.search_form.submit();">
+					<a href='#' onclick="changeMonthnext()">
 					<img src='/useful/resources/image/paging_next.gif'  alt='다음월' /></a>
 </div>
 	<div id="div_print">
 	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px; width: 100%;">
 	<tr>
-		<th width="20%">부서</th>
-		<th width="20%">사원</th>
-		<th width="10%">출근</th>
-		<th width="10%">지각</th>
-		<th width="10%">결근</th>
-		<th width="10%">휴가</th>
-		<th width="10%">출장</th>
-		<th width="10%">조퇴</th>
+		<th width="14%">월</th>
+		<th width="14%">화</th>
+		<th width="14%">수</th>
+		<th width="14%">목</th>
+		<th width="14%">금</th>
+		<th width="14%">토</th>
+		<th width="14%">일</th>
 	</tr>
 			<tr>
-			<td colspan="8">
-			<b>데이터가 없습니다.</b>
+			<td colspan="7">
+			<b>데이터를 로딩중입니다...</b>
 			</td>
 		</tr>
 		</table>

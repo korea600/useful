@@ -80,7 +80,7 @@ public class ManagerDAOImpl implements ManagerDAO {
 	}
 	
 	@Override
-	public List<CommuteVO> commute_deptlist(Map<String, Object> map) throws Exception {
+	public List<CommuteVO> commute_dept_list(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList("manager.commute_dept",map);
 
 	}
@@ -90,5 +90,10 @@ public class ManagerDAOImpl implements ManagerDAO {
 		Map<String,Integer> map =new HashMap<>();
 		map.put("deptno", deptno);
 		return sqlSession.selectList("manager.search_ename_from_dept",map);
+	}
+	
+	@Override
+	public List<CommuteVO> commute_monthly_list(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList("manager.commute_monthly_list",map);
 	}
 }

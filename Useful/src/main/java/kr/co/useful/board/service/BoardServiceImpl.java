@@ -79,4 +79,10 @@ private BoardDAO dao;
 		return dao.select_cut_list();
 	}
 
+	@Override
+	public int reply_cut() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reply_count();
+	}
+
 }

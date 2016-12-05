@@ -19,6 +19,7 @@ public interface ManagerDAO {
 	public List<CommuteVO> commute_emplist_deptno(Map<String,Object> map)throws Exception;
 	public List<CommuteVO> commute_emplist_ename(Map<String,Object> map)throws Exception;
 	public void commute_update(Map<String,Object> map)throws Exception;
-	public List<CommuteVO> commute_deptlist(Map<String,Object> map)throws Exception;
+	public List<CommuteVO> commute_dept_list(Map<String,Object> map)throws Exception;
+	public List<CommuteVO> commute_monthly_list(Map<String,Object> map)throws Exception;
 	public List<Integer> search_ename_from_dept(int deptno)throws Exception;
 }

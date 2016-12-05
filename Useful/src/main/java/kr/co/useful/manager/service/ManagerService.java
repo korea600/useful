@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.Commute_DeptVO;
+import kr.co.useful.manager.domain.Commute_MonthlyVO;
 import kr.co.useful.manager.domain.EmpVO;
 
 public interface ManagerService {
@@ -21,5 +22,6 @@ public interface ManagerService {
 	public List<CommuteVO> commute_list_ename(Map<String,Object> map)throws Exception;
 	public List<CommuteVO> commute_list_dept(Map<String,Object> map) throws Exception;
 	public void commute_update(Map<String,Object> map)throws Exception;
-	public List<Commute_DeptVO> commute_deptlist(Map<String,Object> map)throws Exception;
+	public List<Commute_DeptVO> commute_dept_list(Map<String,Object> map)throws Exception;
+	public List<Commute_MonthlyVO> commute_monthly_list(Map<String,Object> map)throws Exception;
 }
