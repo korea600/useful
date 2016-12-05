@@ -1,5 +1,6 @@
 package kr.co.useful.manager.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.Commute_DeptVO;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.service.ManagerService;
@@ -156,6 +158,14 @@ public class ManagerController {
 		service.leave_List_Update(requestMap);
 		return "/manager/leave_Print";
 	}
+	@RequestMapping(value="/commute_Monthly_Oneday",method=RequestMethod.POST)
+	public String commute_Monthly_search_oneday(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+		System.out.println(requestMap.get("checked"));
+		System.out.println(requestMap.get("login"));
+		System.out.println(service.commute_Monthly_search_oneday(requestMap));
+		model.addAttribute("commute",service.commute_Monthly_search_oneday(requestMap));
+		return "/manager/leave_Print_Div";
+	}
 	
 	@RequestMapping("/commute_Daily")
 	public void commute_Daily(){
@@ -185,6 +195,10 @@ public class ManagerController {
 	
 	@RequestMapping("/leave_Print")
 	public void leave_Print(){
+		
+	}
+	@RequestMapping("/leave_Print_Div")
+	public void leave_Print_Div(){
 		
 	}
 	

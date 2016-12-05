@@ -204,6 +204,12 @@ class ManagerServiceImpl implements ManagerService {
 	public void leave_List_Update(Map<String, Object> map) throws Exception {
 		dao.leave_List_Update(map);
 	}
+	
+	@Override
+	public List<CommuteVO> commute_Monthly_search_oneday(Map<String, Object> map) throws Exception {
+		return time_Division(dao.commute_Monthly_search_oneday(map));
+	}
+	
 	public List<CommuteVO> time_Division(List<CommuteVO> list){
 		 for(int i=0;i<list.size();i++){
 			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 16));
