@@ -1,6 +1,7 @@
 package kr.co.useful.board.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.useful.board.domain.AnonymityVO;
@@ -83,6 +85,16 @@ public class BoardanonymityController {
 		model.addAttribute("list", list);
 		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
+		}
+		@RequestMapping(value="/passcheckPage",method=RequestMethod.GET)
+		public void passcheckPage(int serial,Model model)throws Exception{
+			model.addAttribute("serial", serial);
+		}
+		@RequestMapping(value="/passcheckPage",method=RequestMethod.POST)
+		public @ResponseBody String passcheck(int serial, String pass,	Model model)throws Exception{
+		//	service.
+			return "success";
+		//	return "fail";
 		}
 	}
 
