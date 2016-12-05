@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -35,7 +37,7 @@
 
 var currentYear;
 var currentMonth;
-
+var dateNum;
 function cal(id, newdate) {
 	var cal = document.getElementById(id);
 	
@@ -118,7 +120,7 @@ function cal(id, newdate) {
 	calendar += '				</tr>';
 
 	
-	var dateNum = 1 - currentDay;
+    dateNum = 1 - currentDay;
 	
 	for(var i = 0; i < week; i++) {//7로 나눈 주
 		                            calendar += '			<tr>';
@@ -127,8 +129,10 @@ function cal(id, newdate) {
 				calendar += '				<td class="'+dateString[j] +'"></td>';
 				continue;
 			}
+			
 			calendar += '				<td class="' +dateString[j]+'">'
-			                            +'<span onClick="clickCal('+currentYear+','+currentMonth+','+dateNum+')" style="cursor:pointer;">' + dateNum + '</span></td>';
+			                            +'<span id="a'+currentYear+currentMonth+dateNum+'" onClick="clickCal('+currentYear+','+currentMonth+','+dateNum+')" style="cursor:pointer;">' + dateNum + '</span>'
+			                            +'<div id="b'+currentYear+currentMonth+dateNum+'">aaa</div></td>';
 		}
 		calendar += '			</tr>';
 	}
@@ -164,10 +168,27 @@ function cal(id, newdate) {
         	 fmonth[i].selected = true;
          }//if
      }//for
-        	 
+   
+     dt=new Date();
+    $('#a'+
+     dt.getFullYear()+
+     (dt.getMonth()+1)+
+     dt.getDate()).parent().css('background-color','yellow');
+   
 
 }//cal
 
+/* 
+function test(){
+		   dt = new Date();
+		  dt.getDate();
+		
+		if((currentYear==dt.getFullYear()) && (currentMonth==(dt.getMonth() + 1)) && (dateNum==dt.getDate()) {
+			
+		}
+		 
+		
+	} */
 
 
 
@@ -199,6 +220,7 @@ function changeCal(obj){
  
  function reloadWin(){
 	 location.reload();
+	 insertWin.close();
  }
  
 
@@ -210,35 +232,58 @@ var insertWin;//자식창
   
  }
  
+ //날짜를 눌렀을때
  function clickCal(y,m,d){
 		if(m<10) m = '0'+m;
 		if(d<10) d = '0'+d;
 		
 		var str =y+"/"+m+"/"+d;
-		alert(y+"/"+m+"/"+d+"ㅋㅋ="+str);
-		
-		insertWin=window.open('co_Schedule_Input','insert','toolbar=no,location=no,status=yes'
- 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500,top=100,left=800');
-		/* 
-		insertWin.document.getElementById("txtdate1").value = str;
-		childWin.document.all.objTextBox.value="test"; 
- */
-		//insertWin.document.insert_Form.txtdate1.value = y+"/"+m+"/"+d;
+		document.getElementById('ymd').value=str;
+		alert(str);
+		insert();
 			
-	}//날짜보기
+	}
+ 
+
+ 
+ $(document).ready(
+			function() {
+
+ 
+ $('#searchBtn').on("click", function(e){
+		self.location = "co_Schedule"
+			+ '${pageMaker.makeQuery(1)}'
+			+ "&searchType="+ $("select[name=searchType] option:selected").val()
+			+ "&keyword=" + $('#keywordInput').val();
+
+ });
+			});
+ 
+
       
       
 </script>
 
 </head>
 <body>
+<center>
    <div id="cal"></div>
    <br><br>
-   
-   
-   <form method="get">
+      <input type="hidden" id="ymd">
+   <form method="get" name="co_list">
    <table width="800px" border="1" cellspacing="0">
-   <tr><td colspan="7" align="right"><input type="button" value="등록" onClick="insert()">
+   <tr><td colspan="7" align="right">
+       <select name="searchType">
+   <option value="no">--</option>
+   <option value="s">글번호</option>
+   <option value="t">제목</option>
+   <option value="b">시작날짜</option>
+   <option value="e">마감날짜</option>
+       </select>
+    <input type="text" name="keyword" id="keywordInput" value="${cri.keyword }">
+    <input type="button" id="searchBtn" value="검색">
+   
+   <input type="button" value="등록" onClick="insert()">
       <input type="submit" value="삭제" onClick="">
    </td></tr>
    <tr>
@@ -255,10 +300,11 @@ var insertWin;//자식창
    <tr>
    <td><input type="checkbox"  name="checkBno" value="${ScheduleVO.serial }">  </td>
    <td>${ScheduleVO.serial } </td>
-   <td><span onClick="detail('${ScheduleVO.serial }')" style="cursor:pointer; text-decoration: underline;"> 
- ${ScheduleVO.title }</span></td>
-   <td>${ScheduleVO.begin }</td>
-   <td>${ScheduleVO.end }</td>
+   <td><span onClick="detail('${ScheduleVO.serial }')" style="cursor:pointer; text-decoration: underline;">${ScheduleVO.title }</span>
+   
+      <input type="hidden" id="begin" value="${ScheduleVO.begin }" > </td> 
+   <td>${ScheduleVO.begin }<input type="hidden" id="begin" value="${ScheduleVO.begin }" ></td>
+   <td>${ScheduleVO.end }<input type="hidden" id="end" value="${ScheduleVO.end }" ></td>
    <td>${ScheduleVO.ename }</td>
    <td><fmt:formatDate pattern="yyyy/MM/dd HH:mm"
 										value="${ScheduleVO.regdate}" /></td>
@@ -266,13 +312,44 @@ var insertWin;//자식창
    </tr>
    
    </c:forEach>
+   <tr><td colspan="7" align="center">
+   <ul class="pagination">
+
+							<c:if test="${pageMaker.prev}">
+								<li><a href="co_Schedule?${pageMaker.startPage - 1}">◀</a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+								<li	<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+									<a href="co_Schedule?page=${idx}">${idx}</a>
+								</li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="co_Schedule?${pageMaker.endPage +1}">▶</a></li>
+							</c:if>
+
+						</ul>
+    </td>
+    </tr>
    </table>
+   
+   <input type="button" value="안녕" onclick="test1()">
    </form>
+   </center>
 
 	<script>
 		window.onload = function () {
 			cal('cal');
+
+			
 		};
+		
+		
+		
+		
+	
 	</script>
 
 </body>

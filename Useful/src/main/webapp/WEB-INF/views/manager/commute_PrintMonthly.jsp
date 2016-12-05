@@ -50,9 +50,9 @@
 	</c:if>
 			<td>
 				 <br>${date_string } <br>
-				<img src="/useful/resources/image/icon_work.gif" onclick="call_attendance(${print.login})"> ${print.attendance }<br>
-				<img src="/useful/resources/image/icon_late.gif"  onclick="call_late(${print.login})"> ${print.late }<br>
-				<img src="/useful/resources/image/icon_acc.gif" onclick="call_acc(${print.login})" > ${print.acc } <br><br>
+				<a onclick="search_oneday('${print.login}','출근')"><img src="/useful/resources/image/icon_work.gif" ></a> ${print.attendance }<br>
+				<a onclick="search_oneday('${print.login}','지각')"><img src="/useful/resources/image/icon_late.gif"  ></a> ${print.late }<br>
+				<a onclick="search_oneday('${print.login}',null)" ><img src="/useful/resources/image/icon_acc.gif" ></a> ${print.acc } <br><br>
 				합계=${print.total }			
 				<br>
 			</td>

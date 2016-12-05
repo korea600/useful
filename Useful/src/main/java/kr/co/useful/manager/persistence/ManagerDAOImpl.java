@@ -107,4 +107,9 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public void leave_List_Update(Map<String, Object> map) throws Exception {
 		sqlSession.update("manager.leave_List_Update",map);
 	}
+	
+	@Override
+	public List<CommuteVO> commute_Monthly_search_oneday(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList("manager.commute_Monthly_search_oneday",map);
+	}
 }

@@ -40,8 +40,8 @@ th {
  	 				rest:$("#update_Rest").val()
  	 				  }),
  	 			  success: function(){
- 	 						searchList();
  	 						alert("수정되었습니다");
+ 	 						searchList();
  	 				  }
  			});
  							$("#popup").fadeOut(500);
