@@ -10,9 +10,11 @@ import javax.inject.Inject;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.domain.JsonObj;
 import kr.co.useful.manager.persistence.ManagerDAO;
@@ -107,4 +109,6 @@ public class ManagerRestController {
 		service.commute_update(requestMap);
 		return "SUCCESS";
 		}
+	
+	
 	}

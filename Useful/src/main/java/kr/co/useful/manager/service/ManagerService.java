@@ -27,4 +27,5 @@ public interface ManagerService {
 	public List<Commute_MonthlyVO> commute_monthly_list(Map<String,Object> map)throws Exception;
 	public List<LeaveVO> leave_list_search(Map<String,Object> map)throws Exception;
 	public void leave_List_Update(Map<String,Object> map)throws Exception;
+	public List<CommuteVO> commute_Monthly_search_oneday(Map<String,Object> map)throws Exception;
 }

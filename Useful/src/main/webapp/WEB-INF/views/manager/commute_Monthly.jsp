@@ -27,6 +27,10 @@ th {
 		$("#search_year").val(year).prop("selected", true);
 		$("#search_month").val(month).prop("selected", true);
 		searchDate();
+		
+		$("#btn_close").click(function(){
+ 			$("#popup").fadeOut(500);
+ 		});
 	});
 	function searchDate(){
 	 		  $.ajax({
@@ -53,20 +57,28 @@ th {
 		$("#search_month").val(nowmonth-1).prop("selected", true);
 		}
 	}
-	function call_attendance(date){
-	
-	
-		alert(date);
-	}		
-	function call_late(date){
-		alert(date);
-	
-	}		
-	function call_acc(date){
-	
-		alert(date);
-	
-	}		
+	function search_oneday(date,checked){
+		  $.ajax({
+ 			  type: 'POST',
+ 			  url: '/useful/manager/commute_Monthly_Oneday',
+ 			  headers : {
+ 				  "Content-Type" : "application/json",
+ 				  "X-HTTP-Method-Override":"POST"
+ 			  },
+ 			  dataType: 'text',
+ 			  data: JSON.stringify({
+ 				checked:checked,
+ 				login:date
+ 				  }),
+ 			  success: function(result){
+ 				 $("#popup_inside").html(result);
+				$("#popup").fadeIn(700);
+ 			  }
+ 			});
+		  
+
+ 	}
+
 </script>
 </head>
 <body>
@@ -134,5 +146,18 @@ th {
 	</div>
 	
 </div>
+<div id="popup" class="overlay"
+		style="z-index: 25; display: none; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.6); width: 100%; height: 100%;">
+		<div
+			style="background-color: white; width: 50%; height: 60%; margin-left: 20%; margin-top: 10%;  border: 1px solid black;">
+
+			<br>
+			<div id = "popup_inside"></div>
+			<button type="button" class="btn btn-default" id="btn_close"
+				>닫기</button>
+
+
+		</div>
+	</div>
 </body>
 </html>
