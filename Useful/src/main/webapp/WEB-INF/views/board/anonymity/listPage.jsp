@@ -71,7 +71,6 @@
                               <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 30px;">
                                                     <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
                                                     <option value="t"<c:out value="${cri.searchType=='t'?'selected':'' }"/> >글제목</option>
-                                                    <option value="w" <c:out value="${cri.searchType=='w'?'selected':'' }"/> >글쓴이</option>
                                                     <option value="c" <c:out value="${cri.searchType=='c'?'selected':'' }"/>>내용
                                                 </select>
                                 <input value="${cri.keyword }" name="keyword" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>

@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>게시글 비밀번호</label>
-                                            <input type="password" id="pass" class="form-control" placeholder="비밀번호를 입력해주세요" name="pass">
+                                            <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요" name="pass" id="pass">
                                         </div> 
 										<div class="form-group">
                                             <label>글쓰기</label>

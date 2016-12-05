@@ -209,7 +209,7 @@ function modifyreply(){
 
 										</div>
 										<div class="form-group">
-											<label>글쓴이</label> <input type="text" id="writer"
+											<label>글 수정번호</label> <input type="text" id="writer"
 												class="form-control" name="writer"
 												readonly="readonly" value="${board.writer }">
 										</div>

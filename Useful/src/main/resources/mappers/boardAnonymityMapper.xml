@@ -8,7 +8,7 @@ values (tbl_anonymity_seq.nextval,#{title},#{pass},#{content})
 </insert>
 
 <select id="read" resultType="kr.co.useful.board.domain.AnonymityVO">
-select serial,title,writer,empno,content,regdate,viewcnt from tbl_anonymity where serial=#{serial}
+select serial,title,pass,content,regdate,viewcnt from tbl_anonymity where serial=#{serial}
 </select>
 
 <update id="update">
