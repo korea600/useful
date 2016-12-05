@@ -166,16 +166,43 @@ function modifyreply(){
 			})
 		});
 		
-		$("#modifybt").on("click",function(){
+		/* $("#modifybt").on("click",function(){
 			var serial=$("#serial").val();
 			var page=$("#page").val();
 			var perPageNum=$("#perPageNum").val();
 			var keyword=$("#keyword").val();
 			var searchType=$("#searchType").val();
 			self.location="/useful/board/modifyPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
-		});
+		}); */
 		
 });
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	function openwindow(url){
+		var name='passcheckPage';
+		var specs = 'toolbar=no,location=no,status=no'
+			+'menubar=no,scrollbars=no,resizable=0,width=800,height=300,top=100,left=100';
+		var newWindow=window.open(url,name,specs);
+		newWindow.focus();
+	}
+	
+	$("#modifybt").on("click",function(){
+		openwindow('passcheckPage?serial=${board.serial }');
+	});
+});
+
+function getReturnValue(result) {
+	  //alert(result);
+	  $("#sendman").val(result);
+	  
+	  var serial=$("#serial").val();
+		var page=$("#page").val();
+		var perPageNum=$("#perPageNum").val();
+		var keyword=$("#keyword").val();
+		var searchType=$("#searchType").val();
+		self.location="/useful/board/modifyPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";
+	}
 </script>
 </head>
 <body>
@@ -208,13 +235,9 @@ function modifyreply(){
 												name="title" readonly="readonly" value="${board.title }">
 
 										</div>
+										
 										<div class="form-group">
-											<label>글 수정번호</label> <input type="text" id="writer"
-												class="form-control" name="writer"
-												readonly="readonly" value="${board.writer }">
-										</div>
-										<div class="form-group">
-											<label>글쓰기</label>
+											<label>글내용</label>
 											<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${board.content }</textarea>
 										</div>
 
@@ -223,10 +246,11 @@ function modifyreply(){
 										<input type="hidden" name="page" id="page"
 											value="${cri.page }"> <input type="hidden"
 											name="perPageNum" value="${cri.perPageNum }" id="perPageNum">
-											<core:if test="${board.writer==LoginUser.ename }">
-
-										<button type="button" class="btn btn-default" id="modifybt" value="${board.serial }">수정하기</button>
-</core:if>
+										<%-- 	<core:if test="${board.writer==LoginUser.ename }"> --%>
+										<%-- <input type="hidden" name="pass" id="pass" value="${board.pass }"> --%>
+										<%-- <button type="button" class="btn btn-default" id="modifybt" value="${board.serial }">수정하기</button> --%>
+										<button type="button" class="btn btn-default" id="modifybt">수정하기</button>
+<%-- </core:if> --%>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
 										<input type='hidden' name="page" value='${pageMaker.cri.page}'>
                           <input type='hidden' name="perPageNum" value='${pageMaker.cri.perPageNum}'>
@@ -269,12 +293,12 @@ function modifyreply(){
                         <div class="panel-body">
                             <p id="text">${list.replytext }</p>
                         </div>
-                        <core:if test="${board.writer==LoginUser.ename }">
+                    <%--     <core:if test="${board.writer==LoginUser.ename }"> --%>
                          <div class="panel-footer">
 <button type="button" class="btn btn-default" id="${list.rno }" name="modify">수정하기</button>
 <button type="button" class="btn btn-default" id="remove">삭제하기</button>
                         </div>
-                        </core:if>
+                     <%--    </core:if> --%>
                        
                       	
 										

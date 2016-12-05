@@ -81,4 +81,10 @@ private SqlSession sqlsesson;
 		return sqlsesson.selectList("anonymity.main_list_cout");
 	}
 
+	@Override
+	public boolean pass_check(int serial) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsesson.selectOne("anonymity.pass_check", serial);
+	}
+
 }

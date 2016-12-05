@@ -79,4 +79,10 @@ private AnonymityDAO dao;
 		return dao.list_cut();
 	}
 
+	@Override
+	public boolean pass_check(int serial) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.pass_check(serial);
+	}
+
 }

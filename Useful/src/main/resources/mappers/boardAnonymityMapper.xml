@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="anonymity">
 
+<select id="pass_check" resultType="int">
+select pass from tbl_anonymity where serial=#{serial}
+</select>
+
 <insert id="create">
 insert into tbl_anonymity (serial,title,pass,content)
 values (tbl_anonymity_seq.nextval,#{title},#{pass},#{content})
