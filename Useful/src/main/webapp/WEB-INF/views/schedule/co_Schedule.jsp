@@ -175,20 +175,14 @@ function cal(id, newdate) {
      (dt.getMonth()+1)+
      dt.getDate()).parent().css('background-color','yellow');
    
+     //var tmd = 'a'+currentYear+currentMonth+dateNum;
+    //alert('시작='+tmd);
+   
+
+    
 
 }//cal
 
-/* 
-function test(){
-		   dt = new Date();
-		  dt.getDate();
-		
-		if((currentYear==dt.getFullYear()) && (currentMonth==(dt.getMonth() + 1)) && (dateNum==dt.getDate()) {
-			
-		}
-		 
-		
-	} */
 
 
 
@@ -244,6 +238,17 @@ var insertWin;//자식창
 			
 	}
  
+//test1
+ function test1(){
+	
+	 var testArray = [];
+	 $("input[name='title']").each(function(i) {
+	        testArray.push($(this).val());
+	 });
+	        alert(testArray);
+	        
+	 } 
+ 
 
  
  $(document).ready(
@@ -256,9 +261,44 @@ var insertWin;//자식창
 			+ "&searchType="+ $("select[name=searchType] option:selected").val()
 			+ "&keyword=" + $('#keywordInput').val();
 
- });
-			});
+    });
  
+ $('#allDelete').on("click", function(e) {
+	   var checkboxValues = [];
+	  
+	    $("input[name='checkBno']:checked").each(function(i){
+	       checkboxValues.push($(this).val());//checkBoxValues에 배열로 넣기
+	    });
+       
+	    alert('c2: '+checkboxValues)
+	      if(!confirm('정말 삭제하시겠습니까?')){
+	    	  return; //삭제 취소
+	      }else{
+	    		//$('#co_list').attr("action", "");
+	    		//$('#co_list').submit();
+	    		
+	    		alert('ch')
+	    	  $.ajax({
+	    			 url:'/useful/schedule/removeCheck',
+	    			 type:'post',
+	    			 data: {
+	    				 'checkboxValues':checkboxValues
+	    			 },
+	    			
+	    			 success:function(){
+                         
+	    				 alert("삭제 성공");
+	    				 location.reload();
+	    				 
+	    			 }    		 
+	    		 });//ajax
+	         }//else 
+	 
+	       });//click
+	});//ready
+ 
+
+  
 
       
       
@@ -270,7 +310,7 @@ var insertWin;//자식창
    <div id="cal"></div>
    <br><br>
       <input type="hidden" id="ymd">
-   <form method="get" name="co_list">
+   <form action="" method="get" name="co_list" id="co_list">
    <table width="800px" border="1" cellspacing="0">
    <tr><td colspan="7" align="right">
        <select name="searchType">
@@ -284,7 +324,7 @@ var insertWin;//자식창
     <input type="button" id="searchBtn" value="검색">
    
    <input type="button" value="등록" onClick="insert()">
-      <input type="submit" value="삭제" onClick="">
+      <input type="button" value="삭제" id="allDelete">
    </td></tr>
    <tr>
     <th>선택</th>
@@ -302,9 +342,9 @@ var insertWin;//자식창
    <td>${ScheduleVO.serial } </td>
    <td><span onClick="detail('${ScheduleVO.serial }')" style="cursor:pointer; text-decoration: underline;">${ScheduleVO.title }</span>
    
-      <input type="hidden" id="begin" value="${ScheduleVO.begin }" > </td> 
-   <td>${ScheduleVO.begin }<input type="hidden" id="begin" value="${ScheduleVO.begin }" ></td>
-   <td>${ScheduleVO.end }<input type="hidden" id="end" value="${ScheduleVO.end }" ></td>
+      <input type="hidden" name="title" value="${ScheduleVO.title }" > </td> 
+   <td>${ScheduleVO.begin }<input type="hidden" name="begin" value="${ScheduleVO.begin }" ></td>
+   <td>${ScheduleVO.end }<input type="hidden" name="end" value="${ScheduleVO.end }" ></td>
    <td>${ScheduleVO.ename }</td>
    <td><fmt:formatDate pattern="yyyy/MM/dd HH:mm"
 										value="${ScheduleVO.regdate}" /></td>

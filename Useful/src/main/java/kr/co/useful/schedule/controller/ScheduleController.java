@@ -1,6 +1,8 @@
 package kr.co.useful.schedule.controller;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.useful.schedule.domain.PageMaker;
@@ -65,7 +68,7 @@ public class ScheduleController {
 
 	//삭제
 	@RequestMapping("/remove")
-	public String deletePage(int serial,SearchCriteria cri, RedirectAttributes attr) throws Exception {
+	public String deletePage(int serial, SearchCriteria cri, RedirectAttributes attr) throws Exception {
 		//System.out.println("삭제시작");
 		service.remove(serial);
 		attr.addAttribute("page", cri.getPage());
@@ -88,4 +91,18 @@ public class ScheduleController {
 		return "redirect:/schedule/co_Schedule";
 	}
 
+
+	//체크 삭제
+	@RequestMapping("/removeCheck")
+	public String deleteCheck(@RequestParam(value="checkboxValues[]") List<String> checkList, SearchCriteria cri, RedirectAttributes attr )throws Exception{
+		
+		    System.out.println("배열:"+checkList);
+			
+			for(int i=0; i<checkList.size(); i++){
+				service.remove(Integer.parseInt(checkList.get(i)));							
+			}
+			attr.addAttribute("page", cri.getPage());
+				
+			return "redirect:/schedule/co_Schedule";
+	}
 }
