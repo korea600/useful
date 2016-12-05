@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.EmpVO;
+import kr.co.useful.manager.domain.LeaveVO;
 
 public interface ManagerDAO {
 	public List<Map<String, Object>> emplist()throws Exception;
@@ -22,4 +23,6 @@ public interface ManagerDAO {
 	public List<CommuteVO> commute_dept_list(Map<String,Object> map)throws Exception;
 	public List<CommuteVO> commute_monthly_list(Map<String,Object> map)throws Exception;
 	public List<Integer> search_ename_from_dept(int deptno)throws Exception;
+	public List<LeaveVO> leave_list_search(Map<String,Object> map)throws Exception;
+	public void leave_List_Update(Map<String,Object> map)throws Exception;
 }

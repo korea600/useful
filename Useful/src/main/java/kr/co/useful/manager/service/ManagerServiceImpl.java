@@ -17,6 +17,7 @@ import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.Commute_DeptVO;
 import kr.co.useful.manager.domain.Commute_MonthlyVO;
 import kr.co.useful.manager.domain.EmpVO;
+import kr.co.useful.manager.domain.LeaveVO;
 import kr.co.useful.manager.persistence.ManagerDAO;
 
 @Service
@@ -194,7 +195,15 @@ class ManagerServiceImpl implements ManagerService {
 		return Monthly_List;
 	}
 	
+	@Override
+	public List<LeaveVO> leave_list_search(Map<String, Object> map) throws Exception {
+		return dao.leave_list_search(map);
+	}
 	
+	@Override
+	public void leave_List_Update(Map<String, Object> map) throws Exception {
+		dao.leave_List_Update(map);
+	}
 	public List<CommuteVO> time_Division(List<CommuteVO> list){
 		 for(int i=0;i<list.size();i++){
 			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 16));
