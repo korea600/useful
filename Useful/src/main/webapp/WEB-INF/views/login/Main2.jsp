@@ -64,16 +64,13 @@
                     <ul class="dropdown-menu dropdown-messages">
 					<li>
 				  <c:forEach items="${note }" var="note2">
-
-								<div
-								onclick="location.href='/useful/note/riciReadPage?serial=${note2.serial }'" style="cursor: pointer;">
-									<b>${note2.reciid}</b> 
-									<span class="pull-right text-muted">
-										<em> <fmt:formatDate value="${note2.recipientdate }" pattern="yyyy-MM-dd" /></em>
-									</span>
-									<div>${note2.recontent }</div>
-								</div>
-
+							<div onclick="location.href='/useful/note/riciReadPage?serial=${note2.serial }'" style="cursor: pointer;">
+								<b>${note2.reciid}</b> 
+								<span class="pull-right text-muted">
+									<em> <fmt:formatDate value="${note2.recipientdate }" pattern="yyyy-MM-dd" /></em>
+								</span>
+								<div>${note2.recontent }</div>
+							</div>
 								<li class="divider"></li>
 							</c:forEach><li><a class="text-center" href="/useful/note/noteMyPage"> 
 					<strong>Read All Messages</strong> <i class="fa fa-angle-right"></i>
@@ -309,9 +306,13 @@
 					type:'post',
 					async:true,
 					url:'/useful/commute/Commute_Out?empno='+${LoginUser.empno},
-					success:function(){
+					success:function(result){
+						if(result == 'SUCCESS'){
 						alert('정상적으로 퇴근처리 되었습니다.');
 						location.href="/useful/login/Logout";
+						}else if(result == 'FAIL'){
+							alert('먼저 출근체크를 해주세요.');
+						}
 					}
 				});
 			});

@@ -40,8 +40,20 @@ public class CommuteController {
 	}
 	
 	@RequestMapping("/Commute_Out")
-	public void update(@RequestParam int empno)throws Exception{
-		service.update(empno);
+	public ResponseEntity<String> update(@RequestParam int empno){
+		ResponseEntity<String> entity = null;
+		
+		try {
+			if(service.update(empno)){
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			}else{
+				entity = new ResponseEntity<String>("FAIL", HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		return entity;
 	}
 	
 	@RequestMapping(value="/Login_Commute",method=RequestMethod.GET)
