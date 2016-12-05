@@ -16,7 +16,7 @@ $(document).ready(function(){
 				url:'/useful/board/anonymity/passcheckPage',
 				data: {
 					serial:"${serial}",
-					pass:$('#btn-input').val()
+					pass:$('#btn-input').val() 
 				},
 				success:function(result){
 				if(result=='SUCCESS'){
