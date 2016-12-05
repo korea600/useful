@@ -56,10 +56,10 @@ public class DAOTest {
 
 		map.put("deptno", "10");
 //		map.put("empno", 1010);
-		map.put("login", "201611");
+//		map.put("login", "201611");
 //		System.out.println(dao.search_ename_from_dept(10));
 		System.out.println("daoTest2");
-		System.out.println(service.commute_monthly_list(map));
+		System.out.println(service.leave_list_search(map));
 		
 	}
 	

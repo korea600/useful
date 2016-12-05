@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.EmpVO;
+import kr.co.useful.manager.domain.LeaveVO;
 
 @Repository
 public class ManagerDAOImpl implements ManagerDAO {
@@ -95,5 +96,15 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public List<CommuteVO> commute_monthly_list(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList("manager.commute_monthly_list",map);
+	}
+	
+	@Override
+	public List<LeaveVO> leave_list_search(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList("manager.leave_list_search",map);
+	}
+	
+	@Override
+	public void leave_List_Update(Map<String, Object> map) throws Exception {
+		sqlSession.update("manager.leave_List_Update",map);
 	}
 }
