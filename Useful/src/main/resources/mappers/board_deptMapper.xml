@@ -20,7 +20,7 @@
     </update>
     <!-- 게시물등록 -->
     <insert id="insert">
-    INSERT INTO deptboard(SERIAL,TITLE,WRITER,CONTENT,RAGDATE) 
+    INSERT INTO deptboard(SERIAL,TITLE,WRITER,CONTENT,REGDATE) 
     VALUES(tbl_notice_seq.nextval,#{title},#{writer},#{content},sysdate)
     </insert>
     
