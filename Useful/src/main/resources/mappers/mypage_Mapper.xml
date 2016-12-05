@@ -18,4 +18,14 @@
   		from tbl_emp
   		where empno=#{empno}
   	</select>
+  	
+  	<select id="proof_emp" resultType="kr.co.useful.mypage.domain.ProofEmpVO"> 
+  		
+  		select emp.empno,emp.ename,dept.dname,emp.ssn,emp.address,emp.position,emp.hiredate,emp.sysdate
+  		from tbl_dept dept,(select empno,ename,deptno,ssn,address,position,hiredate,sysdate
+  			from tbl_emp ,(SELECT SYSDATE FROM dual) 
+  			where empno=#{empno}) emp
+  		where emp.deptno=dept.deptno
+  	
+  	</select>
 </mapper>
