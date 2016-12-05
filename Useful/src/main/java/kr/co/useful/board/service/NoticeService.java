@@ -10,7 +10,7 @@ public interface NoticeService {
 public void create(NoticeVO vo)throws Exception; //생성	
 public void modify(NoticeVO vo)throws Exception; // 수정
 public NoticeVO read(int serial)throws Exception; //일기
-public void remove(int serial)throws Exception; //삭제
+public void remove(NoticeVO vo)throws Exception; //삭제
 public List<NoticeVO> listAll()throws Exception; //전체 출력
 public List<NoticeVO> listCriteria(Criteria cri)throws Exception; // 페이지조히
 public int listCount()throws Exception;  //전체 카운트

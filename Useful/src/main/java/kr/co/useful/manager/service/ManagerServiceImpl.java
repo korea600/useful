@@ -17,6 +17,7 @@ import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.Commute_DeptVO;
 import kr.co.useful.manager.domain.Commute_MonthlyVO;
 import kr.co.useful.manager.domain.EmpVO;
+import kr.co.useful.manager.domain.LeaveVO;
 import kr.co.useful.manager.persistence.ManagerDAO;
 
 @Service
@@ -95,22 +96,22 @@ class ManagerServiceImpl implements ManagerService {
 			int attendance=0,late=0,absence=0,vacation=0,businessTrip=0,earlyLeave=0;
 			for(int j=0;j<list.size();j++){
 				switch (list.get(j).getChecked()) {
-					case "Ãâ±Ù":
+					case "ï¿½ï¿½ï¿½":
 						attendance++;
 						break;
-					case "Áö°¢":
+					case "ï¿½ï¿½ï¿½ï¿½":
 						late++;
 						break;
-					case "°á±Ù":
+					case "ï¿½ï¿½ï¿½":
 						absence++;
 						break;
-					case "ÈÞ°¡":
+					case "ï¿½Þ°ï¿½":
 						vacation++;
 						break;
-					case "ÃâÀå":
+					case "ï¿½ï¿½ï¿½ï¿½":
 						businessTrip++;
 						break;
-					case "Á¶Åð":
+					case "ï¿½ï¿½ï¿½ï¿½":
 						earlyLeave++;
 						break;
 					default:
@@ -159,22 +160,22 @@ class ManagerServiceImpl implements ManagerService {
 				int attendance=0,late=0,absence=0,vacation=0,businessTrip=0,earlyLeave=0;
 				for(int j=0;j<list.size();j++){
 					switch (list.get(j).getChecked()) {
-						case "Ãâ±Ù":
+						case "ï¿½ï¿½ï¿½":
 							attendance++;
 							break;
-						case "Áö°¢":
+						case "ï¿½ï¿½ï¿½ï¿½":
 							late++;
 							break;
-						case "°á±Ù":
+						case "ï¿½ï¿½ï¿½":
 							absence++;
 							break;
-						case "ÈÞ°¡":
+						case "ï¿½Þ°ï¿½":
 							vacation++;
 							break;
-						case "ÃâÀå":
+						case "ï¿½ï¿½ï¿½ï¿½":
 							businessTrip++;
 							break;
-						case "Á¶Åð":
+						case "ï¿½ï¿½ï¿½ï¿½":
 							earlyLeave++;
 							break;
 						default:
@@ -194,7 +195,15 @@ class ManagerServiceImpl implements ManagerService {
 		return Monthly_List;
 	}
 	
+	@Override
+	public List<LeaveVO> leave_list_search(Map<String, Object> map) throws Exception {
+		return dao.leave_list_search(map);
+	}
 	
+	@Override
+	public void leave_List_Update(Map<String, Object> map) throws Exception {
+		dao.leave_List_Update(map);
+	}
 	public List<CommuteVO> time_Division(List<CommuteVO> list){
 		 for(int i=0;i<list.size();i++){
 			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 16));

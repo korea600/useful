@@ -3,6 +3,7 @@ package kr.co.useful.board.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import kr.co.useful.board.domain.SearchCriteria;
 import kr.co.useful.board.service.AnonymityService;
 import kr.co.useful.board.service.ReplyAnonymityService;
 import kr.co.useful.board.service.ReplyService;
+import kr.co.useful.manager.domain.EmpVO;
 
 @Controller
 @RequestMapping("/board/anonymity")

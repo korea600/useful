@@ -3,16 +3,26 @@
 <mapper namespace="board">
 
 <insert id="create">
-insert into tbl_board (serial,title,writer,content)
-values (tbl_board_seq.nextval,#{title},#{writer},#{content})
+insert into tbl_board (serial,title,writer,empno,content)
+values (tbl_board_seq.nextval,#{title},#{writer},#{empno},#{content})
 </insert>
 
+
+
 <select id="read" resultType="kr.co.useful.board.domain.BoardVO">
-select serial,title,writer,content,regdate,viewcnt from tbl_board where serial=#{serial}
+select serial,title,writer,empno,content,regdate,viewcnt from tbl_board where serial=#{serial}
 </select>
 
+<!-- <select id="update_select" resultType="kr.co.useful.board.domain.BoardVO">
+select serial,title,writer,empno,content,rgdate,viewcnt from tbl_board,tbl_emp where serial=#{serial} and tbl_board.empno=tbl_emp.empno
+</select> -->
+
+<!-- <update id="update"> 나중에 업데이트 테이블 2개 사용 알아보기
+update tbl_board,tbl_emp set title=#{title},content=#{content} where serial=#{serial} and tbl_board.empno=tbl_emp.empno
+</update> -->
+
 <update id="update">
-update tbl_board set title=#{title},content=#{content} where serial=#{serial}
+update tbl_board set title=#{title},content=#{content} where serial=#{serial} and empno=#{empno}
 </update>
 
 <delete id="delete">
@@ -28,7 +38,7 @@ select count(*) from tbl_baord;
 </select>
 
 <select id="listSearch" resultType="kr.co.useful.board.domain.BoardVO">
-select serial,title,writer,content,regdate,viewcnt from tbl_board
+select serial,title,writer,empno,content,regdate,viewcnt from tbl_board
 <include refid="Search"/>
 order by serial desc
 </select>
@@ -48,8 +58,8 @@ where serial=#{serial}
 select * from (select * from tbl_board order by serial desc) where rownum between 1 and 5
 </select>
 
-<select id="reply_cout" >
-select count(rno) from tbl_reply where serial=#{serial}
+<select id="reply_cout" resultType="int">
+select count(tbl_reply.rno) from tbl_board,tbl_reply where tbl_board.serial=tbl_reply.serial and tbl_board.serial=#{serial}
 </select>
 
 <sql id="Search">

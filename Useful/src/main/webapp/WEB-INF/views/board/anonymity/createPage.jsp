@@ -72,9 +72,9 @@
                                             
                                         </div>
                                         <div class="form-group">
-                                            <label>글쓴이</label>
-                                            <input type="text" id="writer" class="form-control" value="${LoginUser.ename }" name="writer" readonly="readonly">
-                                        </div>
+                                            <label>게시글 비밀번호</label>
+                                            <input type="password" id="pass" class="form-control" placeholder="비밀번호를 입력해주세요" name="pass">
+                                        </div> 
 										<div class="form-group">
                                             <label>글쓰기</label>
                                             <textarea id="content" class="form-control" rows="3" placeholder="내용을 입력해주세요" name="content"></textarea>

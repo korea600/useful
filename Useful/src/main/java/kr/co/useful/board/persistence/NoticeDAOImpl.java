@@ -1,6 +1,8 @@
 package kr.co.useful.board.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -34,8 +36,8 @@ private SqlSession sqlsession;
 	}
 
 	@Override
-	public void delete(int serial) throws Exception {
-		sqlsession.delete("notice.delete", serial);
+	public void delete(NoticeVO vo) throws Exception {
+		sqlsession.delete("notice.delete", vo);
 
 	}
 

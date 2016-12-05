@@ -5,6 +5,7 @@ import java.util.Date;
 //공지게시판
 public class NoticeVO {
 private int serial;
+private int empno;
 private String title;
 private String writer;
 private String content;
@@ -13,19 +14,18 @@ private Date regdate;
 public NoticeVO() {
 	// TODO Auto-generated constructor stub
 }
-public NoticeVO(int serial, String title, String writer, String content, int viewcnt, Date regdate) {
-	this.serial = serial;
-	this.title = title;
-	this.writer = writer;
-	this.content = content;
-	this.viewcnt = viewcnt;
-	this.regdate = regdate;
+
+
+public int getEmpno() {
+	return empno;
 }
-@Override
-public String toString() {
-	return "NoticeVO [serial=" + serial + ", title=" + title + ", writer=" + writer + ", content=" + content
-			+ ", viewcnt=" + viewcnt + ", regdate=" + regdate + "]";
+
+
+public void setEmpno(int empno) {
+	this.empno = empno;
 }
+
+
 public int getSerial() {
 	return serial;
 }

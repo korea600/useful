@@ -41,7 +41,11 @@ public class BoardController {
 		
 	}
 	@RequestMapping(value="/createPage",method=RequestMethod.POST)
-	public String createPagePOST(BoardVO vo,RedirectAttributes att)throws Exception{
+	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession)throws Exception{
+	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
+	vo.setEmpno(empno);
+	vo.setWriter(writer);
 	service.insert(vo);
 	att.addFlashAttribute("message", "SUCCESS");
 	return "redirect:/board/listPage";
@@ -54,6 +58,8 @@ public class BoardController {
 	pageMaker.setCri(cri);
 	pageMaker.setTotalCount(service.listFindCount(cri));
 	pageMaker.calc();
+	//BoardVO boardvo=new BoardVO();
+	//boardvo.setReplycnt(service.reply_cut());
 	model.addAttribute("pageMaker", pageMaker);
 	model.addAttribute("list", service.listSearch(cri));
 	
@@ -87,7 +93,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/modifyPage",method=RequestMethod.POST) 
-	public String modifyPage(BoardVO vo,RedirectAttributes attr,SearchCriteria cri)throws Exception {
+	public String modifyPage(BoardVO vo,RedirectAttributes attr,SearchCriteria cri,HttpSession httpSession)throws Exception {
+		int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
+		vo.setEmpno(empno);
 		service.modify(vo);
 		attr.addFlashAttribute("page", cri.getPage());
 		attr.addFlashAttribute("perpageNum", cri.getPerPageNum());
@@ -96,14 +104,10 @@ public class BoardController {
 		return "redirect:/board/listPage";
 	}
 	@RequestMapping("/deletePage") 
-	public String deletePage(int serial) {
+	public String deletePage(int serial)throws Exception {
+		service.delete(serial);
 		return "redirect:/board/listPage";
 	}
-	
-	@RequestMapping(value="",method=RequestMethod.POST)
-	public void replycreate(ReplyVO vo)throws Exception{
-
-	};
 	
 
 }
