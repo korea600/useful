@@ -81,7 +81,7 @@ private SqlSession sqlsession;
 	@Override
 	public int reply_count() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne("board.reply_cout");
+		return sqlsession.selectOne("board.listSearch2");
 	}
 
 

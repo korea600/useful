@@ -30,7 +30,7 @@ public ResponseEntity<String> create(@RequestBody ReplyVO vo,HttpServletRequest 
 		rnservice.create(vo);
 		entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
+		// TODO Auto-generated Christmas
 		e.printStackTrace();
 	}
 	return entity;
