@@ -39,17 +39,17 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" method="post" action="/useful/board/notice/modifyPage">
+                                    <form role="form" method="post" action="/useful/board/anonymity/modifyPage">
                                     	
                                         <div class="form-group">
                                             <label>글 제목</label>
                                             <input class="form-control" type="text" id="title" name="title" value="${board.title }"></input>
                                             <input type='hidden' name="serial" value=${board.serial }>
                                         </div>
-                                        <div class="form-group">
+                                        <%-- <div class="form-group">
                                             <label>글쓴이</label>
                                             <input type="text" id="writer" class="form-control" name="writer" value="${board.writer }" readonly="readonly"></input>
-                                        </div>
+                                        </div> --%>
 										<div class="form-group">
                                             <label>글내용</label>
                                             <textarea id="content" class="form-control" rows="3" name="content">${board.content }</textarea>
@@ -58,10 +58,10 @@
                                         <div class="form-group">
                                         
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>파일 올리기</label>
                                             <input type="file">
-                                        </div>
+                                        </div> -->
                                         <input type="hidden" name="page" value="${cri.page }">
                                         <input type="hidden" name="perPageNum" value="${cri.perPageNum }">
                                        <input type='hidden' name='searchType' value="${cri.searchType}">
