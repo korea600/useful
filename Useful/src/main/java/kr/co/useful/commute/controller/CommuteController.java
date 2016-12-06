@@ -1,5 +1,9 @@
 package kr.co.useful.commute.controller;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -7,12 +11,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.useful.commute.domain.CommuteVO;
 import kr.co.useful.commute.service.CommuteService;
+import kr.co.useful.manager.domain.EmpVO;
 
 @Controller
 @RequestMapping("/commute")
@@ -22,7 +28,7 @@ public class CommuteController {
 	@Inject
 	private CommuteService service;
 	
-	@RequestMapping("/Commute_In")
+	@RequestMapping("/Commute_In") //출근체크
 	public ResponseEntity<String> insert(@RequestParam int empno){
 		ResponseEntity<String> entity = null;
 		
@@ -39,7 +45,7 @@ public class CommuteController {
 		return entity;
 	}
 	
-	@RequestMapping("/Commute_Out")
+	@RequestMapping("/Commute_Out") //퇴근체크
 	public ResponseEntity<String> update(@RequestParam int empno){
 		ResponseEntity<String> entity = null;
 		
@@ -61,10 +67,24 @@ public class CommuteController {
 		 
 	}
 	
-	@RequestMapping(value="/Login_Commute",method=RequestMethod.POST)
-	public void commute(@RequestParam int empno, Model m)throws Exception{
+	@RequestMapping(value="/commuteIn_check",method=RequestMethod.POST)
+	public String commute(@RequestParam String empno, Model m, @RequestBody Map<String,Object> reqMap)throws Exception{
+		Map<String, Object> map = new HashMap<>();
+
+		String startdate = (String) reqMap.get("startdate");
+		String enddate = (String) reqMap.get("enddate");
 		
-		m.addAttribute("commute",service.commuteselect(empno));
+		startdate = startdate.replaceAll("-","");
+		enddate = enddate.replaceAll("-","");
+		
+		map.put("startdate", startdate);
+		map.put("enddate", enddate);
+			
+		if(empno !=null && empno!=""){
+			map.put("empno", empno);
+			m.addAttribute("commute",service.commuteToday(map));
+		}
+		return "/commute/commuteIn_check";
 	}
 	
 }

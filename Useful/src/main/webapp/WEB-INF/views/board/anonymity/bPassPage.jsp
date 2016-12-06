@@ -22,7 +22,7 @@ $(document).ready(function(){
 				},
 				success:function(result){
 				if(result=='SUCCESS'){
-					opener.location="modifyPage?serial=${serial}";
+					opener.location="deletePage?serial=${serial}";
 					self.close();
 				}else alert("안도미")
 			}

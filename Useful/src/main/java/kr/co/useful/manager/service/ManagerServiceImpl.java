@@ -96,7 +96,7 @@ class ManagerServiceImpl implements ManagerService {
 			int attendance=0,late=0,absence=0,vacation=0,businessTrip=0,earlyLeave=0;
 			for(int j=0;j<list.size();j++){
 				switch (list.get(j).getChecked()) {
-					case "출근":
+					case "출석":
 						attendance++;
 						break;
 					case "지각":
@@ -160,7 +160,7 @@ class ManagerServiceImpl implements ManagerService {
 				int attendance=0,late=0,absence=0,vacation=0,businessTrip=0,earlyLeave=0;
 				for(int j=0;j<list.size();j++){
 					switch (list.get(j).getChecked()) {
-					case "출근":
+					case "출석":
 						attendance++;
 						break;
 					case "지각":

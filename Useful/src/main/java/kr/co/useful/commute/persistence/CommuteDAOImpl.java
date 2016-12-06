@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kr.co.useful.commute.domain.CommuteVO;
+import kr.co.useful.manager.domain.CommuteVO;
 
 @Repository
 public class CommuteDAOImpl implements CommuteDAO{
@@ -52,6 +52,13 @@ public class CommuteDAOImpl implements CommuteDAO{
 	public List<CommuteVO> commuteselect(int empno) throws Exception {
 		return sqlSession.selectList("commute.commuteselect",empno);
 	}
+
+	@Override
+	public List<CommuteVO> commuteToday(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList("commute.commuteToday", map);
+	}
+
+	
 
 	
 

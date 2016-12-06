@@ -8,6 +8,6 @@
 <title>출근내역조회</title>
 </head>
 <body>
-	와우!! 등록되었나...?
+	
 </body>
 </html>

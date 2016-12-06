@@ -1,8 +1,10 @@
 package kr.co.useful.commute.persistence;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
-import kr.co.useful.commute.domain.CommuteVO;
+import kr.co.useful.manager.domain.CommuteVO;
 
 public interface CommuteDAO {
 	
@@ -13,4 +15,6 @@ public interface CommuteDAO {
 	public int select(int empno)throws Exception;
 	
 	public List<CommuteVO> commuteselect(int empno)throws Exception;
+	
+	public List<CommuteVO> commuteToday(Map<String, Object> map)throws Exception;
 }

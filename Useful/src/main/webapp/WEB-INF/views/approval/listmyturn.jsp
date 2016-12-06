@@ -14,27 +14,24 @@ th{text-align: center; width: 150px}
 td{text-align: center}
 </style>
 <!-- jQuery -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- DataTables JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
-
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script type="text/javascript">
+<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- DataTables JavaScript -->
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script type="text/javascript">
+	$(function(){
+		var msg='${msg}';
+		if(msg=='success')
+			alert('처리가 완료되었습니다.')
+	})
 	function search(){
 		var searchBy = 'writer_name';		// 작성자명 검색
 		var keyword=$('[name=keyword]').val();
@@ -48,37 +45,40 @@ td{text-align: center}
 <body>
 <div class="col-lg-12" style="margin-right: 10%">
 	<h1 class="page-header" style="text-align: right;">내가 결재할 문서</h1>
-</div>
-<div align="right" style='margin-right: 10%'>
-	작성자 : <input type='text' name='keyword'>
-	<input type='button' id='search' value='검색' onclick='search()'>
-</div>
-<table align="right" style="margin-right: 10%" border="1">
-<tr><th>문서번호</th><th>상태</th><th>작성자</th><th>수신처</th><th>제목</th><th>작성일자</th></tr>
-<c:if test="${list.size()==0}">
-<tr><td colspan="6">문서가 없습니다.</td></tr>
-</c:if>
-<c:if test="${list.size()>0}">
-<c:forEach items="${list}" var='i'>
-	<tr>
-		<td>${i.no}</td><td>${i.status}</td><td>${i.writer_name}</td><td>${i.receiver_dname}</td><td><a href='/useful/approval/read/${i.no}'>${i.title}</a></td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td>
-	</tr>
-</c:forEach>
-</c:if>
-<tr><td colspan="6" align="center">
-	<c:if test="${pagemaker.prev}">
-		<a href="listmyturn${pagemaker.makeSearch(pagemaker.startPage-1)}">이전</a>
-	</c:if>
-	<c:forEach begin='${pagemaker.startPage}' end="${pagemaker.endPage }" var='i'>
-		<c:if test="${pagemaker.cri.page==i}"> ${i}</c:if>
-		<c:if test="${pagemaker.cri.page!=i}">
-			<a href="listmyturn${pagemaker.makeSearch(i)}"> ${i} </a>
+	
+	<div align="right" style='margin-right: 10%'>
+		작성자 : <input type='text' name='keyword'>
+		<input type='button' id='search' value='검색' onclick='search()'>
+	</div>
+	<div id='page-wrapper'>
+		<table border="1">
+		<tr><th>문서번호</th><th>상태</th><th>작성자</th><th>수신처</th><th>제목</th><th>작성일자</th></tr>
+		<c:if test="${list.size()==0}">
+		<tr><td colspan="6">문서가 없습니다.</td></tr>
 		</c:if>
-	</c:forEach>
-	<c:if test="${pagemaker.next && pagemaker.endPage>0 }">
-		<a href="listmyturn${pagemaker.makeSearch(pagemaker.endPage+1)}">다음</a>
-	</c:if>
-</td></tr>
-</table>
+		<c:if test="${list.size()>0}">
+		<c:forEach items="${list}" var='i'>
+			<tr>
+				<td>${i.no}</td><td>${i.status}</td><td>${i.writer_name}</td><td>${i.receiver_dname}</td><td><a href='/useful/approval/read/${i.no}'>${i.title}</a></td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td>
+			</tr>
+		</c:forEach>
+		</c:if>
+		<tr><td colspan="6" align="center">
+			<c:if test="${pagemaker.prev}">
+				<a href="listmyturn${pagemaker.makeSearch(pagemaker.startPage-1)}">이전</a>
+			</c:if>
+			<c:forEach begin='${pagemaker.startPage}' end="${pagemaker.endPage }" var='i'>
+				<c:if test="${pagemaker.cri.page==i}"> ${i}</c:if>
+				<c:if test="${pagemaker.cri.page!=i}">
+					<a href="listmyturn${pagemaker.makeSearch(i)}"> ${i} </a>
+				</c:if>
+			</c:forEach>
+			<c:if test="${pagemaker.next && pagemaker.endPage>0 }">
+				<a href="listmyturn${pagemaker.makeSearch(pagemaker.endPage+1)}">다음</a>
+			</c:if>
+		</td></tr>
+		</table>
+	</div>
+</div>
 </body>
 </html>

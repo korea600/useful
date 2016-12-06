@@ -60,15 +60,16 @@ public class BoardanonymityController {
 		}
 		
 		@RequestMapping(value="/modifyPage",method=RequestMethod.POST) 
-		public String modifyPage(AnonymityVO vo,RedirectAttributes attr,SearchCriteria cri)throws Exception {
+		public String modifyPage(AnonymityVO vo,RedirectAttributes attr)throws Exception {
 			service.update(vo);
-			attr.addFlashAttribute("page", cri.getPage());
-			attr.addFlashAttribute("perpageNum", cri.getPerPageNum());
+			/*attr.addFlashAttribute("page", cri.getPage());
+			attr.addFlashAttribute("perpageNum", cri.getPerPageNum());*/
 			return "redirect:/board/anonymity/listPage";
 		}
 
 		@RequestMapping("/deletePage") 
-		public String deletePage(int serial) {
+		public String deletePage(int serial)throws Exception{
+			service.delete(serial);
 			return "redirect:/board/anonymity/listPage";
 		}
 
@@ -99,5 +100,21 @@ public class BoardanonymityController {
 			}
 			else return "fail";
 		}
+		@RequestMapping(value="/bPassPage",method=RequestMethod.GET)
+		public void bPassPage(int serial,Model model)throws Exception{
+			model.addAttribute("serial", serial);
+		}
+		
+		@RequestMapping(value="/bPassPage",method=RequestMethod.POST)
+		public @ResponseBody String bPassPage2(int serial,Model model,String pass)throws Exception{
+			String dpass=service.pass_check(serial);
+			if(dpass.equals(pass)){
+				service.delete(serial);
+				return "SUCCESS";
+			}
+			return "fail";
+			
+		}
+		
 	}
 

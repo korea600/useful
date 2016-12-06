@@ -139,7 +139,7 @@ function modifyreply(){
 					  
 				});
 		
-		$("#remove").on("click",function(){
+		/* $("#remove").on("click",function(){
 			var replytext=$("#btn-input").val();
 			var serial=$("#serial").val();
 			var page=$("#page").val();
@@ -164,7 +164,7 @@ function modifyreply(){
 					}
 				}
 			})
-		});
+		}); */
 		
 		/* $("#modifybt").on("click",function(){
 			var serial=$("#serial").val();
@@ -188,7 +188,7 @@ $(document).ready(function(){
 	}
 	
 	$("#modifybt").on("click",function(){
-		openwindow('passcheckPage?serial=${board.serial }');
+		openwindow('passcheckPage?serial=${board.serial }&page=${cri.page }&perPageNum=${cri.perPageNum }');
 	});
 });
 
@@ -197,6 +197,23 @@ function getReturnValue(result) {
 	  
 }
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	function windowopen(url){
+		var name='bPassPage';
+		var specs='toolbar=no,location=no,status=no'
+			+'menubar=no,scrollbars=no,resizable=0,width=800,height=300,top=100,left=100';
+		var newWindow=window.open(url,name,specs);
+		newWindow.focus();
+	}
+	$("#removePage").on("click",function(){
+		windowopen('bPassPage?serial=${board.serial}');
+	});
+});
+</script>
+
+
+
 </head>
 <body>
 <body>
@@ -243,6 +260,7 @@ function getReturnValue(result) {
 										<%-- <input type="hidden" name="pass" id="pass" value="${board.pass }"> --%>
 										<%-- <button type="button" class="btn btn-default" id="modifybt" value="${board.serial }">수정하기</button> --%>
 										<button type="button" class="btn btn-default" id="modifybt">수정하기</button>
+										<button type="button" class="btn btn-default" id="removePage">삭제하기</button>
 <%-- </core:if> --%>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
 										<input type='hidden' name="page" value='${pageMaker.cri.page}'>
@@ -281,15 +299,15 @@ function getReturnValue(result) {
 							<div class="col-lg-4" style="width: 87%; right: 10px;">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                         <h5>${list.replyid } :<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
+                         <h5><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
                         </div><input type="hidden" id="rno" value="${list.rno }">
                         <div class="panel-body">
                             <p id="text">${list.replytext }</p>
                         </div>
                     <%--     <core:if test="${board.writer==LoginUser.ename }"> --%>
                          <div class="panel-footer">
-<button type="button" class="btn btn-default" id="${list.rno }" name="modify">수정하기</button>
-<button type="button" class="btn btn-default" id="remove">삭제하기</button>
+<%-- <button type="button" class="btn btn-default" id="${list.rno }" name="modify">수정하기</button> --%>
+<!-- <button type="button" class="btn btn-default" id="remove">삭제하기</button> -->
                         </div>
                      <%--    </core:if> --%>
                        

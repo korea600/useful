@@ -17,11 +17,20 @@
 		where empno=#{empno} and to_char(login,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
 	</select>
 	
-	<select id="commuteselect" resultType="kr.co.useful.commute.domain.CommuteVO">
-		 select e.empno,e.deptno,e.ename,c.login,c.logout,c.checked
-		 from tbl_emp e,tbl_commute c
-		 where e.empno = c.empno
-		 order by login
+	<select id="commuteselect" resultType="kr.co.useful.manager.domain.CommuteVO">
+		select e.empno,d.dname,e.ename,c.login,c.logout,c.checked
+		 from tbl_emp e,tbl_commute c,tbl_dept d
+		 where e.empno = c.empno and e.deptno = d.deptno 
+		 order by empno
+	</select>
+	
+	<select id="commuteToday" resultType="kr.co.useful.manager.domain.CommuteVO">
+  	select d.dname,a.ename,a.login,a.logout,a.checked 
+  	from (select e.empno,e.ename, e.deptno,c.login,c.logout,c.checked
+ 		 	from tbl_emp e,(select * from tbl_commute where login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) c
+ 		 	where e.empno=c.empno) a,tbl_dept d 
+  	where a.deptno = d.deptno and (a.empno in(select empno from tbl_emp where empno=#{empno}) and a.login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) 
+  	order by a.empno
 	</select>
 	
 	

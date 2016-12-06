@@ -27,6 +27,7 @@
     <![endif]-->
 
 <script type="text/javascript">
+
 	function checkLogin(){
 		var test='aaaa';
 		var regExp =/aaaa/gi;
@@ -85,19 +86,13 @@
                                     Empno : <input class="form-control"  name="empno" type="text" id="empnoinput" autofocus>
                                 </div>
                                 <div class="form-group">
-                                   Password : <input class="form-control"  name="pass" type="password" id="passinput">
+                                   Password : <input class="form-control"  name="pass" type="password" id="passinput"
+                                   onkeypress="if(event.keyCode == 13){ checkLogin(); return; }">
                                 </div>
-                                <div class="radio" align="center">
-                                    <label>
-                                        <input name="member" type="radio" value="사원" checked="checked">사원
-                                    </label>
-                                    <label>
-                                        <input name="member" type="radio" value="관리자">관리자
-                                    </label>
-                                </div>
+                                
                                 <!-- Change this to a button or input when using this as a form -->
                                 <div>
-                                <button type="button" class="btn btn-lg btn-success btn-block" id="btn" onclick="checkLogin()">Login</button>
+                                <button type="button" class="btn btn-lg btn-success btn-block" id="btn" onclick='checkLogin()'>Login</button>
                                 </div>
                                 <p></p>
                                 <div>
@@ -112,7 +107,7 @@
 
  <!-- jQuery -->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-
+	
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 

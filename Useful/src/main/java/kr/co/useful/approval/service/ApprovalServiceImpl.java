@@ -169,7 +169,8 @@ public class ApprovalServiceImpl implements ApprovalService{
 		dao.change_approval(newVO);
 
 		// 코멘트 처리 (결재시에는 코멘트 입력이 없을수 있음)
-		if(progressVO.getComments()!=null){
+		String comments = progressVO.getComments(); 
+		if(comments!=null && comments.length()>0){
 			commentVO.setNo(progressVO.getNo());
 			commentVO.setWriter(progressVO.getEmpno());
 			commentVO.setWriter_name(progressVO.getEname());

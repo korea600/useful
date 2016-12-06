@@ -1,15 +1,11 @@
 package kr.co.useful.approval.controller;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -25,11 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.useful.approval.domain.ApprovalCriteria;
 import kr.co.useful.approval.domain.ApprovalPageMaker;
 import kr.co.useful.approval.domain.ApprovalProgressVO;
 import kr.co.useful.approval.domain.ApprovalVO;
+import kr.co.useful.approval.domain.PathMaker;
 import kr.co.useful.approval.service.ApprovalService;
 import kr.co.useful.manager.domain.EmpVO;
 
@@ -55,10 +53,12 @@ public class ApprovalController {
 	
 	// 작성된 기안 등록
 	@RequestMapping(value="/form", method=RequestMethod.POST)
-	public String insert(ApprovalVO vo, MultipartFile file, HttpServletRequest request) throws Exception{
+	public String insert(ApprovalVO vo, MultipartFile file, HttpServletRequest request,
+												RedirectAttributes rttr) throws Exception{
 		// 파일업로드 경로 지정 (각 pc의 git 폴더내 src/main/webapp/upload )
 		service.create(vo, file, request);
-		return "/approval/complete";
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/approval/listmine";
 	}
 		
 	// 기안 수정폼 열기 (반려된 문서의 작성자가 열었을 때에 한함)
@@ -69,19 +69,22 @@ public class ApprovalController {
 	
 	// 기안 수정하기 (내용수정 + 문서상태를 '반려->진행'으로 변경)
 	@RequestMapping(value="/modify",method=RequestMethod.POST)
-	public String update(ApprovalVO vo,MultipartFile file,
-								String oldfilename, HttpServletRequest request) throws Exception{
+	public String update(ApprovalVO vo,MultipartFile file,	String oldfilename,
+				HttpServletRequest request,RedirectAttributes rttr) throws Exception{
 		EmpVO empVO = (EmpVO) request.getSession().getAttribute("LoginUser");
 		vo.setCurr_approval(empVO.getEmpno());
 		service.update(vo,file,request,oldfilename);
-		return "/approval/complete";
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/approval/listmine";
 	}
 
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public String delete(ApprovalVO vo,String oldfilename,HttpServletRequest request) throws Exception{
+	public String delete(ApprovalVO vo,String oldfilename,HttpServletRequest request,
+													RedirectAttributes rttr) throws Exception{
 		vo.setFilename(oldfilename);
 		service.delete(vo,request);
-		return "/approval/complete";
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/approval/listmine";
 	}
 	
 	/* 문서 리스트 조회
@@ -160,11 +163,17 @@ public class ApprovalController {
 		
 	// 결재하기 (결재/반려)
 	@RequestMapping(value="/do_approval",method=RequestMethod.POST)
-	public String do_approval(ApprovalVO vo, String comments, String status,HttpSession session) throws Exception{
+	public String do_approval(ApprovalVO vo, String comments, String status,HttpSession session,
+													RedirectAttributes rttr) throws Exception{
 		EmpVO emp = (EmpVO) session.getAttribute("LoginUser");
-		ApprovalProgressVO progressVO = new ApprovalProgressVO(vo.getNo(),emp.getEmpno(),emp.getPosition(),emp.getEname(),emp.getDeptno(),status.equals("accept"),comments);
+		if(comments==null || comments.equals("")) comments=null;
+		ApprovalProgressVO progressVO = new ApprovalProgressVO(vo.getNo(),emp.getEmpno(),
+														emp.getPosition(),emp.getEname(),
+														emp.getDeptno(),status.equals("accept"),
+														comments);
 		service.do_approval(vo, progressVO);
-		return "/approval/complete"; 
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/approval/listmyturn";
 	}
 	
 	// 결재/반려시 입력할 코멘트폼 띄우기
@@ -175,12 +184,7 @@ public class ApprovalController {
 	@ResponseBody
 	@RequestMapping(value="/filedownload")
 	public ResponseEntity<byte[]> file_download(String filename,HttpServletRequest request)throws Exception{
-		ServletContext application = request.getServletContext();
-		String realpath=application.getRealPath("").replace('\\', '/');
-		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
-				+application.getContextPath()
-				+"/"+application.getInitParameter("projectName")
-				+"/src/main/webapp/upload";
+		String uploadFolder=PathMaker.getUploadPath(request);
 		ResponseEntity<byte[]> entity = null;
 		InputStream fis = null;
 		try{

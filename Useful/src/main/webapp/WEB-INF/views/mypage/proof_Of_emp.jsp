@@ -30,8 +30,9 @@
 				purpose:$("#purpose_of_use").val(),
 				  }),
 			  success: function(result){
-				  self.location(result);
-					//$("#div_print").html(result);
+				  //self.location(result);
+				$("#div_print").html(result);
+					//location.href=result;
 			  }
 			});
 	});
@@ -42,7 +43,9 @@
 <body>
 <br>
 <font size="5" style="font-style: inherit;">증명서 출력</font><br><hr>
-사용용도 : <input type="text" id="purpose_of_use">
-
+현재 재직증명서를 다운받으실수 있습니다. <br>
+<br>
+사용용도 : <input type="text" id="purpose_of_use" size="30"> <button id="send_data">다운로드</button>
+<div id="div_print"></div>
 </body>
 </html>
