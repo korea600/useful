@@ -105,8 +105,8 @@
 				<tr>
 					<td bgcolor="#dae6f4"  align="center" width="150px">작성자</td>
 					<td align="center" width="750px">
-					전성원
-					<input type="hidden" name="writer" value="1005">
+					${LoginUser.ename}
+					<input type="hidden" name="writer" value="${LoginUser.empno}">
 					</td>
 				</tr>
 				<tr>
@@ -148,7 +148,7 @@
 				</tr>
 				<tr height="100px"></tr>
 			</table>
-			<input type="hidden" name="deptno" value="10">
+			<input type="hidden" name="deptno" value="${LoginUser.deptno}">
 		</form>
 	</center>
 </body>

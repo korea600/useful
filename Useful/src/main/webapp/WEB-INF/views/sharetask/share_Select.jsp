@@ -161,7 +161,7 @@ $(document).ready(function(){
 					     <input type="hidden" name="deptno" value="${shareTaskVO.deptno }">
 					     <input type="hidden" name="writer" value="${shareTaskVO.writer }">
 					     
-
+                             
 					    <input type="button" id="change" value="수정" />
 					    <input type="submit" id="changeOK" value="확인">
 						<input type="button" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 

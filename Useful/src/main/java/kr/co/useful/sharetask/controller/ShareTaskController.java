@@ -3,6 +3,7 @@ package kr.co.useful.sharetask.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-
+import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.sharetask.domain.Criteria;
 import kr.co.useful.sharetask.domain.PageMaker;
 import kr.co.useful.sharetask.domain.SearchCriteria;
@@ -36,9 +36,13 @@ public class ShareTaskController {
 	
 	//리스트
 	@RequestMapping(value = "share_Board", method = RequestMethod.GET)
-	public void shareList(@ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception {
-	
-		cri.setDeptno(10);
+	public void shareList(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest req,HttpSession session)throws Exception {
+		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
+		
+		
+	   // System.out.print("받아졌지?"+evo.getEmpno());
+		
+		cri.setDeptno(evo.getDeptno());
 	 	model.addAttribute("list", service.listSearchCriteria(cri));
 	 	
 	    System.out.println("리스트!!!:"+cri );
@@ -53,7 +57,8 @@ public class ShareTaskController {
 	
 	//입력get
 	@RequestMapping(value = "/share_Input", method = RequestMethod.GET) 
-	public void registerGET() {
+	public void registerGET(HttpServletRequest req,  Model model) {
+		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		logger.info("입력폼");
 		System.out.println("입력폼 요청........");
 	}
@@ -73,14 +78,14 @@ public class ShareTaskController {
 	//상세 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String modifyPageGet(@RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri,
-            Model model) throws Exception {
+            Model model, HttpServletRequest req) throws Exception {
 		 
-		int deptno=10;
-		cri.setDeptno(deptno);
+		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
+		cri.setDeptno(evo.getDeptno());
 		// 데이터 저장
-		ShareTaskVO prevvo=service.prevRead(bno, deptno);
-		ShareTaskVO nextvo=service.nextRead(bno, deptno);
-		System.out.println("bno="+bno+",deptno"+deptno+",prevvo="+prevvo);
+		ShareTaskVO prevvo=service.prevRead(bno, evo.getDeptno());
+		ShareTaskVO nextvo=service.nextRead(bno, evo.getDeptno());
+		System.out.println("bno="+bno+",deptno"+evo.getDeptno()+",prevvo="+prevvo);
 		
 		
 		if(prevvo!=null){
