@@ -53,6 +53,13 @@ public class CommuteDAOImpl implements CommuteDAO{
 		return sqlSession.selectList("commute.commuteselect",empno);
 	}
 
+	@Override
+	public List<CommuteVO> commuteToday(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList("commute.commuteToday", map);
+	}
+
+	
+
 	
 
 

@@ -1,6 +1,9 @@
 package kr.co.useful.commute.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +56,12 @@ public class CommuteServiceImpl implements CommuteService{
 			 }
 		 }
 		return list;
+	}
+
+	@Override
+	public List<CommuteVO> commuteToday(Map<String, Object> map) throws Exception {
+		
+		return time_Division(dao.commuteToday(map));
 	}
 
 

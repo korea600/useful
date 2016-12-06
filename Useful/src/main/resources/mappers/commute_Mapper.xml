@@ -24,6 +24,15 @@
 		 order by empno
 	</select>
 	
+	<select id="commuteToday" resultType="kr.co.useful.manager.domain.CommuteVO">
+  	select d.dname,a.ename,a.login,a.logout,a.checked 
+  	from (select e.empno,e.ename, e.deptno,c.login,c.logout,c.checked
+ 		 	from tbl_emp e,(select * from tbl_commute where login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) c
+ 		 	where e.empno=c.empno) a,tbl_dept d 
+  	where a.deptno = d.deptno and (a.empno in(select empno from tbl_emp where empno=#{empno}) and a.login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) 
+  	order by a.empno
+	</select>
+	
 	
 	
 	
