@@ -215,10 +215,10 @@
                             <a href="#"><i class="fa fa-calendar fa-fw"></i> 일정관리<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">회사일정관리</a>
+                                    <a href="/useful/schedule/co_Schedule">회사일정관리</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">부서별일정관리</a>
+                                    <a href="/useful/schedule/dept_Schedule">부서별일정관리</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -228,7 +228,7 @@
                             <a href="#"><i class="fa fa-calendar-o fa-fw"></i> 회의실예약<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">예약하기</a>
+                                    <a href="/uselful/meetingroom/booking">예약하기</a>
                                 </li>
                                 <li>
                                     <a href="#">예약내역</a>
