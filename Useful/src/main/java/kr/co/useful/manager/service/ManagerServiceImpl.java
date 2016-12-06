@@ -96,22 +96,22 @@ class ManagerServiceImpl implements ManagerService {
 			int attendance=0,late=0,absence=0,vacation=0,businessTrip=0,earlyLeave=0;
 			for(int j=0;j<list.size();j++){
 				switch (list.get(j).getChecked()) {
-					case "Ãâ±Ù":
+					case "ì¶œì„":
 						attendance++;
 						break;
-					case "Áö°¢":
+					case "ì§€ê°":
 						late++;
 						break;
-					case "°á±Ù":
+					case "ê²°ê·¼":
 						absence++;
 						break;
-					case "ÈÞ°¡":
+					case "íœ´ê°€":
 						vacation++;
 						break;
-					case "ÃâÀå":
+					case "ì¶œìž¥":
 						businessTrip++;
 						break;
-					case "Á¶Åð":
+					case "ì¡°í‡´":
 						earlyLeave++;
 						break;
 					default:
@@ -160,22 +160,22 @@ class ManagerServiceImpl implements ManagerService {
 				int attendance=0,late=0,absence=0,vacation=0,businessTrip=0,earlyLeave=0;
 				for(int j=0;j<list.size();j++){
 					switch (list.get(j).getChecked()) {
-					case "Ãâ±Ù":
+					case "ì¶œì„":
 						attendance++;
 						break;
-					case "Áö°¢":
+					case "ì§€ê°":
 						late++;
 						break;
-					case "°á±Ù":
+					case "ê²°ê·¼":
 						absence++;
 						break;
-					case "ÈÞ°¡":
+					case "íœ´ê°€":
 						vacation++;
 						break;
-					case "ÃâÀå":
+					case "ì¶œìž¥":
 						businessTrip++;
 						break;
-					case "Á¶Åð":
+					case "ì¡°í‡´":
 						earlyLeave++;
 						break;
 					default:
