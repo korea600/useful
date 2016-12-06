@@ -27,7 +27,7 @@ delete from tbl_reply where rno=#{rno} and serial=#{serial}
 </delete>
 
 <select id="count" resultType="int">
-select count(rno) from tbl_reply where serial=#{serial}
+select count(*) from tbl_reply where rno=#{rno} and serial=#{serial}
 </select>
 
 <select id="getbno" resultType="int">

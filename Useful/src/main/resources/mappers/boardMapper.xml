@@ -38,7 +38,7 @@ select count(*) from tbl_baord;
 </select>
 
 <select id="listSearch" resultType="kr.co.useful.board.domain.BoardVO">
-select serial,title,writer,empno,content,regdate,viewcnt from tbl_board
+select b.serial,b.title,b.writer,b.empno,b.content,b.regdate,b.viewcnt,c.replycnt from tbl_board b,(select serial,count(rno) replycnt from tbl_reply group by serial) c where b.serial=c.serial
 <include refid="Search"/>
 order by serial desc
 </select>
@@ -58,9 +58,9 @@ where serial=#{serial}
 select * from (select * from tbl_board order by serial desc) where rownum between 1 and 5
 </select>
 
-<select id="reply_cout" resultType="int">
-select count(tbl_reply.rno) from tbl_board,tbl_reply where tbl_board.serial=tbl_reply.serial and tbl_board.serial=#{serial}
-</select>
+<!-- <select id="reply_cout" resultType="int">
+select b.serial,b.title,b.writer,b.empno,b.content,b.regdate,b.viewcnt,c.replycnt from tbl_board b,(select serial,count(rno) replycnt from tbl_reply group by serial) c where b.serial=c.serial
+</select> -->
 
 <sql id="Search">
 

@@ -102,7 +102,7 @@
 									<c:forEach items="${list }" var="BoardVO">
 										<tr>
 											<td>${BoardVO.serial }</td>
-											<td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td>
+											<td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }  [${BoardVO.replycnt }]</a></td>
 											<td>${BoardVO.writer }</td>
 											
 											<%-- <td>${BoardVO.content }</td> --%>
