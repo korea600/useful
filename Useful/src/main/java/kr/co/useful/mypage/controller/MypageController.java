@@ -50,15 +50,21 @@ public class MypageController {
 		return entity;
 	}
 	
+	@RequestMapping(value="/proof_Of_emp_Print",method=RequestMethod.GET)
+	public void leave_Of_emp_Print()throws Exception{
+		
+	}
 	@RequestMapping(value="/proof_Of_emp",method=RequestMethod.GET)
 	public void proof_Of_emp_form()throws Exception{
 
 	}
 	@RequestMapping(value="/proof_Of_emp",method=RequestMethod.POST)
 	public String proof_Of_emp(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
-		int empno=Integer.parseInt((String)requestMap.get("empno"));
+		int empno=(int) requestMap.get("empno");
 		model.addAttribute("proof_emp",service.proof_emp(empno));
 		model.addAttribute("purpose",requestMap.get("purpose"));
-		return "/manager/leave_Print_Div";
+		return "/proof_Of_emp_Print";
 	}
+	
+	
 }

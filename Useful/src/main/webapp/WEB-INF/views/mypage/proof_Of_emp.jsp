@@ -30,37 +30,22 @@
 				purpose:$("#purpose_of_use").val(),
 				  }),
 			  success: function(result){
-				  self.location(result);
-					//$("#div_print").html(result);
+				  //self.location(result);
+				$("#div_print").html(result);
+					//location.href=result;
 			  }
 			});
 	});
 });
-function button_click(){
-	 $.ajax({
-		  type: 'POST',
-		  url: '/useful/mypage/proof_Of_emp',
-		  headers : {
-			  "Content-Type" : "application/json",
-			  "X-HTTP-Method-Override":"POST"
-		  },
-		  dataType: 'text',
-		  data: JSON.stringify({
-			empno:${LoginUser.empno},
-			purpose:$("#purpose_of_use").val(),
-			  }),
-		  success: function(result){
-			  self.location(result);
-				//$("#div_print").html(result);
-		  }
-		});
-}
+
 </script>
 </head>
 <body>
 <br>
 <font size="5" style="font-style: inherit;">증명서 출력</font><br><hr>
-사용용도 : <input type="text" id="purpose_of_use"><br>
-<a href="#"  onclick="button_click()" ><img src="/useful/resources/image/filedownload.GIF" ></a>
+현재 재직증명서를 다운받으실수 있습니다. <br>
+<br>
+사용용도 : <input type="text" id="purpose_of_use" size="30"> <button id="send_data">다운로드</button>
+<div id="div_print"></div>
 </body>
 </html>

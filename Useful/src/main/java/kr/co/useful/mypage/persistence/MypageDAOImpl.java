@@ -33,6 +33,6 @@ public class MypageDAOImpl implements MypageDAO{
 	
 	@Override
 	public ProofEmpVO proof_emp(int empno) throws Exception {
-		return sqlSession.selectOne("mapage.proof_emp",empno);
+		return sqlSession.selectOne("mypage.proof_emp",empno);
 	}
 }
