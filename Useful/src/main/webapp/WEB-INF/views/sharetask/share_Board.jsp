@@ -73,10 +73,10 @@
 				<td height="50px"><input type="button" value="글쓰기" id="newBtn" class="button2"></td>
 				<td align="right" colspan="5">
 				    <select name="searchType">
-				    <option value="no">---</option>
-				    <option value="n">글번호</option>
-				    <option value="t">제목</option>
-				    <option value="w">작성자</option>
+				    <option value="no" <c:out value="${cri.searchType == null?'selected':''}"/>>---</option>
+				    <option value="n" <c:out value="${cri.searchType eq 'n' ?'selected':''}"/>>글번호</option>
+				    <option value="t" <c:out value="${cri.searchType eq 't' ?'selected':''}"/>>제목</option>
+				    <option value="w" <c:out value="${cri.searchType eq 'w' ?'selected':''}"/>>작성자</option>
 				    </select>
 				    <input type="text" name="keyword" id="keywordInput" value="${cri.keyword }">
 				    <button id="searchBtn" type="button">검색</button>
@@ -153,6 +153,7 @@
 	</table>
 	
 	<input type="hidden" name="deptno" value="${ShareTaskVO.deptno}" >
+	<input type="hidden" name="prevbno" value="${prevbno.bno }">
 </form>	
 	
 	

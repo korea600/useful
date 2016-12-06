@@ -7,6 +7,29 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- @Rest 한글처리 -->
+	  <annotation-driven>
+	   <!-- @ResponseBody 한글처리 -->
+		<!-- @ResponseBody의 한글처리 -->
+		<message-converters>
+			<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<beans:property name="supportedMediaTypes" value="text/html; charset=UTF-8"/>
+			</beans:bean>
+		</message-converters>
+	</annotation-driven>
+	
+		<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+		<!-- <beans:property name="order" value="1"/> -->
+	</beans:bean>
+	
+	
+	
 
 	
 	<context:component-scan base-package="kr.co.useful.meeting.controller" />

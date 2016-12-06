@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -9,6 +11,7 @@
 <title>Insert title here</title>
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -18,26 +21,24 @@
 #header {background-color:#aadef7; height: 50px; line-height: 50px; text-align: center; font-size: 18px; font-weight: bold}
 #cal .button {color: #000; text-decoration: none;}
 
-#cal table {width: 1000px; height: 600px;}
+#cal table {width: 1260px;}
+.weektr {width:180px; height:80px; text-align:center;}
 
-#cal .sun {text-align: center; color: red;}
-#cal .mon {text-align: center;}
-#cal .tue {text-align: center;}
-#cal .wed {text-align: center;}
-#cal .thu {text-align: center;}
-#cal .fri {text-align: center;}
-#cal .sat {text-align: center; color: blue;}
+
 
 </style>
 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 
-<script>
+<script type="text/javascript">
 
 var currentYear;
 var currentMonth;
 var dateNum;
+
+
+
 function cal(id, newdate) {
 	var cal = document.getElementById(id);
 	
@@ -101,7 +102,7 @@ function cal(id, newdate) {
 	
 	calendar += '		<form name="dailyForm" action="" method="get">';	
 	calendar += '		<table border="1" cellspacing="0" cellpadding="0">';
-	calendar += '              <tr>';
+	calendar += '              <tr height="80px">';
  	calendar += '                 <td colspan="7" align="center">';
 	calendar += '                     <select name="year" onchange="changeCal(this)">';
 	calendar += '                     </select>년 ';
@@ -110,13 +111,13 @@ function cal(id, newdate) {
 	calendar += '                 </td>'; 
 	calendar += '              </tr>';
 	calendar += '				<tr bgcolor="#8df1ca">';
-	calendar += '				  <th class="sun" scope="row">일</th>';
-	calendar += '				  <th class="mon" scope="row">월</th>';
-	calendar += '				  <th class="tue" scope="row">화</th>';
-	calendar += '				  <th class="wed" scope="row">수</th>';
-	calendar += '				  <th class="thu" scope="row">목</th>';
-	calendar += '				  <th class="fri" scope="row">금</th>';
-	calendar += '				  <th class="sat" scope="row">토</th>';
+	calendar += '				  <th class="weektr" scope="row">일</th>';
+	calendar += '				  <th class="weektr" scope="row">월</th>';
+	calendar += '				  <th class="weektr" scope="row">화</th>';
+	calendar += '				  <th class="weektr" scope="row">수</th>';
+	calendar += '				  <th class="weektr" scope="row">목</th>';
+	calendar += '				  <th class="weektr" scope="row">금</th>';
+	calendar += '				  <th class="weektr" scope="row">토</th>';
 	calendar += '				</tr>';
 
 	
@@ -130,9 +131,16 @@ function cal(id, newdate) {
 				continue;
 			}
 			
-			calendar += '				<td class="' +dateString[j]+'">'
-			                            +'<span id="a'+currentYear+currentMonth+dateNum+'" onClick="clickCal('+currentYear+','+currentMonth+','+dateNum+')" style="cursor:pointer;">' + dateNum + '</span>'
-			                            +'<div id="b'+currentYear+currentMonth+dateNum+'">aaa</div></td>';
+			
+			
+			calendar += '				<td class="' +dateString[j]+'" style="width:180px; height:180px; position:relative;">'
+			                            +'<div id="a'+currentYear+currentMonth+dateNum+'" onClick="clickCal('+currentYear+','+currentMonth+','+dateNum+')" style="cursor:pointer; font-size:20px; width:180px; height:25px; background-color:yellow; position:absolute; top:0;">' + dateNum + '</div>';
+			                            $('#b'+currentYear+currentMonth+dateNum).empty();    
+			                            if( dateNum<10)
+			                				 dateNum = '0'+dateNum
+				                            if( currentMonth<10)
+			                				 currentMonth = '0' + currentMonth;
+			calendar += '            	 <div id="b'+currentYear+currentMonth+dateNum+'" style="width:180px; height:155px; position:relative; top:20px; background-color:orange; "></div></td>';
 		}
 		calendar += '			</tr>';
 	}
@@ -178,7 +186,8 @@ function cal(id, newdate) {
      //var tmd = 'a'+currentYear+currentMonth+dateNum;
     //alert('시작='+tmd);
    
-
+  
+calInsert();
     
 
 }//cal
@@ -230,6 +239,10 @@ var insertWin;//자식창
  function clickCal(y,m,d){
 		if(m<10) m = '0'+m;
 		if(d<10) d = '0'+d;
+		// alert(event.clientX + " : " + event.clientY);
+		var dt=new Date();
+		
+        
 		
 		var str =y+"/"+m+"/"+d;
 		document.getElementById('ymd').value=str;
@@ -239,15 +252,75 @@ var insertWin;//자식창
 	}
  
 //test1
- function test1(){
-	
-	 var testArray = [];
-	 $("input[name='title']").each(function(i) {
+ function calInsert(){
+/*   var testArray = [];
+	 $("input[name='voList']").each(function(i) {
 	        testArray.push($(this).val());
 	 });
-	        alert(testArray);
-	        
+	   */
+	       //var arr=new Array();
+	      var ar;
+	         
+	         $.ajax({    		
+	 	
+	 				 /* ※ JSON배열 요청  */
+	 	     		 url:'/useful/scheduleList/all',
+	 	     		dataType:'JSON',//생략 불가
+	 	     		method:'GET',
+	 	     		//contentType:'application/json; charset=UTF-8',
+	 	     		 success:function(data){//result:배열
+	 	     			 
+	 	     			$().empty();
+	 	     			 
+	 	     		
+	 	     		
+	 	     		$.each(data, function(idx, key){
+	 	     				//key.serial, 
+	                        //key.begin, key.end, 
+	                       var begin =(key.begin).split('/');
+	 	     				    			   
+	                      $('#b'+begin[0]+begin[1]+begin[2]).append(
+	                    		 
+	                    		   '<div onclick="detail('+key.serial+')" style="height:20px; top:0;' 
+	                    		   +'cursor:pointer; color:#fff; background-color:blue;">'
+	                    		   +key.begintime+'시 '
+	                    		   +key.title+'</div><div style="background-color:yellow; width:180px; height:5px;"></div>'); 
+	 	     			   //alert(begin);
+	 	     			 }); 
+	 	     		      
+	 	     		 }, 
+
+	 		         error:function(xhr, status, error){
+	 		        	     alert("당신에러"+error);
+	 		         }
+
+	 		  });//ajax
+
+	 		        
+	       
+	 
 	 } 
+	 
+	 /*
+	 다차원배열
+	 
+
+	  
+	 var maArr = new Array();
+
+	 for ( var i = 0; i < 10; i ++ ){
+	 myArr[ i ] = new Array();
+
+	 myArr[ i ].push( '첫번째' );
+	 myArr[ i ].push( '두번째' );
+	 ...
+	 }
+	  
+	 */
+	 
+
+
+	
  
 
  
@@ -336,22 +409,25 @@ var insertWin;//자식창
     <th>작성일</th>    
    </tr>
    
-   <c:forEach items="${list}" var="ScheduleVO">
-   <tr>
-   <td><input type="checkbox"  name="checkBno" value="${ScheduleVO.serial }">  </td>
-   <td>${ScheduleVO.serial } </td>
-   <td><span onClick="detail('${ScheduleVO.serial }')" style="cursor:pointer; text-decoration: underline;">${ScheduleVO.title }</span>
+   <c:forEach items="${list}" var="ScheduleVO" varStatus="status">
+   <tr class="cals">
    
-      <input type="hidden" name="title" value="${ScheduleVO.title }" > </td> 
-   <td>${ScheduleVO.begin }<input type="hidden" name="begin" value="${ScheduleVO.begin }" ></td>
-   <td>${ScheduleVO.end }<input type="hidden" name="end" value="${ScheduleVO.end }" ></td>
+   
+   <td><input type="checkbox"  name="checkBno" value="${ScheduleVO.serial }"></td>
+   <td>${ScheduleVO.serial } </td>
+   <td><span onClick="detail('${ScheduleVO.serial }')" style="cursor:pointer; text-decoration: underline;">${ScheduleVO.title }</span></td> 
+       
+   <td>${ScheduleVO.begin }</td>
+   <td>${ScheduleVO.end }</td>
    <td>${ScheduleVO.ename }</td>
    <td><fmt:formatDate pattern="yyyy/MM/dd HH:mm"
 										value="${ScheduleVO.regdate}" /></td>
-   
+
    </tr>
-   
+     
    </c:forEach>
+ 
+
    <tr><td colspan="7" align="center">
    <ul class="pagination">
 
@@ -375,9 +451,15 @@ var insertWin;//자식창
     </tr>
    </table>
    
-   <input type="button" value="안녕" onclick="test1()">
+
+   	<!-- The time line -->
+   	
+   	<input type="button" value="클릭" onclick="test1()">
    </form>
    </center>
+
+   
+   
 
 	<script>
 		window.onload = function () {

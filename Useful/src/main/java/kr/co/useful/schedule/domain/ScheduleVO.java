@@ -98,12 +98,15 @@ public class ScheduleVO {
 		this.end = end;
 	}
 
+
 	@Override
 	public String toString() {
 		return "ScheduleVO [고유번호=" + serial + ", 부서번호=" + deptno + ", 사원번호=" + empno + ", 제목=" + title + ", 내용="
 				+ content + ", 시작날짜=" + begin + ", 마감날짜=" + end + "시작시간=" + begintime + "작성일" + regdate + "]";
 	}
 
+	
+	
 	/*
 	 * serial number primary key, --글번호 category varchar2(20) not null, --구분
 	 * -부서,전체 deptno number not null, --부서번호 title varchar2(50) not null, --제목

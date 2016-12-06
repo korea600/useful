@@ -69,15 +69,20 @@ public class ShareTaskController {
 	}
 
 	
+
 	//상세 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String modifyPageGet(@RequestParam("bno")int bno,
-            @ModelAttribute("cri") SearchCriteria cri,
+	public String modifyPageGet(@RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri,
             Model model) throws Exception {
-
+		 
+		int deptno=10;
+		cri.setDeptno(deptno);
 		// 데이터 저장
-		ShareTaskVO prevvo=service.prevRead(bno);
-		ShareTaskVO nextvo=service.nextRead(bno);
+		ShareTaskVO prevvo=service.prevRead(bno, deptno);
+		ShareTaskVO nextvo=service.nextRead(bno, deptno);
+		System.out.println("bno="+bno+",deptno"+deptno+",prevvo="+prevvo);
+		
+		
 		if(prevvo!=null){
 	    model.addAttribute("prevBno", prevvo.getBno());//이전 값 저장		
 		
@@ -92,50 +97,57 @@ public class ShareTaskController {
 		return "/sharetask/share_Select";
 	}
 	
+	
+
 	//이전글
-		@RequestMapping("/prev")
-		public String prevRead(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
-
-			ShareTaskVO pvo = service.prevRead(bno);//이전 클릭 값 --> 25-->24
-		    int prev=pvo.getBno();//24를 담음
-		    ShareTaskVO nextvo = service.nextRead(prev); //24--->25
-
-			ShareTaskVO prevvo=service.prevRead(prev);//24를 한번더 넣어준 값--->23인 vo
-			
-			if(prevvo!=null){
-				model.addAttribute("prevBno", prevvo.getBno());
-			}
-			
-			if(nextvo !=null){
-				model.addAttribute("nextBno", nextvo.getBno());
-			}
-			model.addAttribute(pvo);
-			model.addAttribute("cri",cri);
-			
-			
-			return "/sharetask/share_Select";	
-		}
-
-		//다음글
-		 @RequestMapping("/next")
-		public String nextRead(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest req)throws Exception{
-			 ShareTaskVO nvo = service.nextRead(bno);
-			 int next=nvo.getBno();
-			 ShareTaskVO nextvo=service.nextRead(next);
-			 ShareTaskVO prevvo=service.prevRead(next);
-			 
-			 if(nextvo!=null){
-				 model.addAttribute("nextBno", nextvo.getBno());
-			 }
-			 if(prevvo!=null){
-				 model.addAttribute("prevBno", prevvo.getBno());
-			 }
-			 
-			model.addAttribute(nvo);
-			model.addAttribute("cri", cri);
+	@RequestMapping("/prev")
+	public String prevRead(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
 		
-			return "/sharetask/share_Select";	
+		int deptno=10;
+		 cri.setDeptno(deptno);
+		
+		 ShareTaskVO pvo = service.prevRead(bno, deptno);//이전 클릭 값 --> 25-->24
+	    int prev=pvo.getBno();//24를 담음
+	    ShareTaskVO nextvo = service.nextRead(prev,deptno); //24--->25
+
+		ShareTaskVO prevvo=service.prevRead(prev, deptno);//24를 한번더 넣어준 값--->23인 vo
+		
+		if(prevvo!=null){
+			model.addAttribute("prevBno", prevvo.getBno());
 		}
+		
+		if(nextvo !=null){
+			model.addAttribute("nextBno", nextvo.getBno());
+		}
+		model.addAttribute(pvo);
+		model.addAttribute("cri",cri);
+		
+		
+		return "/sharetask/share_Select";	
+	}
+
+	//다음글
+	 @RequestMapping("/next")
+	public String nextRead(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest req)throws Exception{
+		 int deptno=10;
+		 cri.setDeptno(deptno);
+		 ShareTaskVO nvo = service.nextRead(bno, deptno);
+		 int next=nvo.getBno();
+		 ShareTaskVO nextvo=service.nextRead(next, deptno);
+		 ShareTaskVO prevvo=service.prevRead(next, deptno);
+		 
+		 if(nextvo!=null){
+			 model.addAttribute("nextBno", nextvo.getBno());
+		 }
+		 if(prevvo!=null){
+			 model.addAttribute("prevBno", prevvo.getBno());
+		 }
+		 
+		model.addAttribute(nvo);
+		model.addAttribute("cri", cri);
+	
+		return "/sharetask/share_Select";	
+	}
 	  
 	// 상세에서 수정
 	@RequestMapping(value ="/change", method = RequestMethod.POST)

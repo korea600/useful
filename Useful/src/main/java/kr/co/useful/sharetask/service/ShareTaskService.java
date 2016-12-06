@@ -31,11 +31,9 @@ public interface ShareTaskService {
     
     public int listSearchCount(SearchCriteria cri)throws Exception;
     
-    
     //이전글 다음글
-  		public ShareTaskVO prevRead(int bno) throws Exception;
+  		public ShareTaskVO prevRead(int bno, int deptno) throws Exception;
   		
-  		public ShareTaskVO nextRead(int bno) throws Exception;
+  		public ShareTaskVO nextRead(int bno, int deptno) throws Exception;
     
-	
 }

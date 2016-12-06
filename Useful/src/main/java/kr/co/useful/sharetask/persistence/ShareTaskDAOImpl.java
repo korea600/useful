@@ -1,7 +1,8 @@
 package kr.co.useful.sharetask.persistence;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -76,15 +77,18 @@ public class ShareTaskDAOImpl implements ShareTaskDAO {
 	}
 
 	@Override
-	public ShareTaskVO prevRead(int bno) throws Exception {
-		
-		return sqs.selectOne("sharetask.prevShare", bno);
+	public ShareTaskVO prevRead(int bno, int deptno) throws Exception {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("deptno", deptno);
+		return sqs.selectOne("sharetask.prevShare", map);
 	}
 
 	@Override
-	public ShareTaskVO nextRead(int bno) throws Exception {
-		
-		return sqs.selectOne("sharetask.nextShare", bno);
+	public ShareTaskVO nextRead(int bno, int deptno) throws Exception {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("deptno", deptno);
+		return sqs.selectOne("sharetask.nextShare", map);
 	}
-
 }

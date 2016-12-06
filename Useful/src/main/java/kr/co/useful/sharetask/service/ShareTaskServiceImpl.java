@@ -72,15 +72,15 @@ public class ShareTaskServiceImpl implements ShareTaskService{
 	}
 
 	@Override
-	public ShareTaskVO prevRead(int bno) throws Exception {
+	public ShareTaskVO prevRead(int bno, int deptno) throws Exception {
 		
-		return dao.prevRead(bno);
+		return dao.prevRead(bno, deptno);
 	}
 
 	@Override
-	public ShareTaskVO nextRead(int bno) throws Exception {
+	public ShareTaskVO nextRead(int bno, int deptno) throws Exception {
 	
-		return dao.nextRead(bno);
+		return dao.nextRead(bno, deptno);
 	}
 
 }

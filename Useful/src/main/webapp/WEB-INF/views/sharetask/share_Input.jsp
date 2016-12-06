@@ -148,7 +148,7 @@
 				</tr>
 				<tr height="100px"></tr>
 			</table>
-			<input type="hidden" name="deptno" value="20">
+			<input type="hidden" name="deptno" value="10">
 		</form>
 	</center>
 </body>

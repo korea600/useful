@@ -96,7 +96,7 @@ $(document).ready(function(){
 					   <c:otherwise><a href="/useful/sharetask/next?bno= ${shareTaskVO.bno}" >다음</a></c:otherwise>
 					</c:choose> 
 				   
-					<%-- /sharetask/prev?page=${cri.page }&perPageNum=${cri.perPageNum }&bno=${shareTaskVO.bno} --%>
+					
 	           
 				</tr>
 				<tr>
@@ -145,15 +145,13 @@ $(document).ready(function(){
 					<td colspan="4" style="padding: 0;"><textarea id="content" name="content"
 							readonly="readonly" 
 							style="width: 900px; margin: 0; height: 500px; border: 0;">
-					수정 -->수정,목록 버튼 사라지고 확인버튼과 취소버튼 보여줌
-					삭제 -->확인창 띄워주고 확인하면 리스트로 감
-					*본인글 일때만 수정/삭제 버튼 보여줌
-					*본인이 아닐경우 목록버튼
-					*관리자는 수정/삭제 가능
 					
 					
 					
 					${shareTaskVO.content}
+					::: ${prevBno}
+					::: ${nextBno}
+					
 					
 					</textarea></td>
 				</tr>

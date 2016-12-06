@@ -4,7 +4,14 @@
 <mapper namespace="schedule">
 
 	                              <!-- 사내 -->
-
+   <!-- 전체 -->
+	<select id="listCo" resultType="kr.co.useful.schedule.domain.ScheduleVO">
+		select serial, title, content, begin, end, begintime, tbl_schedule.regdate, tbl_emp.ename ename, tbl_schedule.empno
+		from tbl_schedule, tbl_emp
+		where tbl_schedule.empno = tbl_emp.empno
+		order by serial desc
+	</select>
+	
 	
 	<!-- 하나읽기 -->
 	<select id="oneRead" resultType="kr.co.useful.schedule.domain.ScheduleVO">
