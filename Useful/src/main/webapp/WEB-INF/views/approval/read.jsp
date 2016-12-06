@@ -48,15 +48,17 @@
 <body>
 <div id='page-wrapper'>
 	<form id='frm' method="post" action='${pageContext.request.contextPath}/approval/do_approval'>
+	<input type='hidden' name='writer' size='80' value='${vo.writer}'>
+	<input type='hidden' name='no' value='${vo.no}'>
+	<input type='hidden' name='next_approval' value='${vo.next_approval}'>
 	<table border='1' width='35%'>
 	<tr>
 		<td width='20%' align='center'>발신자</td>
-		<td>
-			<input type='text' name='writer_name' size='80' value='${vo.writer_name}' readonly>
-			<input type='hidden' name='writer' size='80' value='${vo.writer}'>
-			<input type='hidden' name='no' value='${vo.no}'>
-			<input type='hidden' name='next_approval' value='${vo.next_approval}'>
-		</td>
+		<td><input type='text' name='writer_name' size='80' value='${vo.writer_name}' readonly></td>
+	</tr>
+	<tr>
+		<td width='20%' align='center'>발신부서</td>
+		<td><input type='text' name='writer_dname' size='80' value='${vo.writer_dname}' readonly></td>
 	</tr>
 	<tr>
 	<td width='20%' align='center'>수신처</td>

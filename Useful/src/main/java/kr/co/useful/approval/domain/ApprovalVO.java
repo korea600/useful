@@ -9,6 +9,7 @@ public class ApprovalVO {
 	private String content;			// 문서내용
 	private int writer;				// 기안자 (문서 작성자) 사번
 	private String writer_name;		// 기안자 (문서 작성자) 성명
+	private String writer_dname;	// 기안자 (문서 작성자) 부서명
 	private int receiver;			// 수신부서번호
 	private String receiver_dname;	// 수신부서명
 	private Date regdate;			// 작성일자
@@ -17,12 +18,12 @@ public class ApprovalVO {
 	private String filename;		// 첨부파일의 파일명
 	
 	public ApprovalVO() {}
-
+	
 	public String toString() {
 		return "ApprovalVO [no=" + no + ", status=" + status + ", title=" + title + ", content=" + content + ", writer="
-				+ writer + ", writer_name=" + writer_name + ", receiver=" + receiver + ", receiver_dname="
-				+ receiver_dname + ", regdate=" + regdate + ", curr_approval=" + curr_approval + ", next_approval="
-				+ next_approval + ", filename=" + filename + "]";
+				+ writer + ", writer_name=" + writer_name + ", writer_dname=" + writer_dname + ", receiver=" + receiver
+				+ ", receiver_dname=" + receiver_dname + ", regdate=" + regdate + ", curr_approval=" + curr_approval
+				+ ", next_approval=" + next_approval + ", filename=" + filename + "]";
 	}
 
 	public int getNo() {
@@ -73,6 +74,14 @@ public class ApprovalVO {
 		this.writer_name = writer_name;
 	}
 
+	public String getWriter_dname() {
+		return writer_dname;
+	}
+
+	public void setWriter_dname(String writer_dname) {
+		this.writer_dname = writer_dname;
+	}
+
 	public int getReceiver() {
 		return receiver;
 	}
@@ -119,5 +128,5 @@ public class ApprovalVO {
 
 	public void setFilename(String filename) {
 		this.filename = filename;
-	}
+	}	
 }

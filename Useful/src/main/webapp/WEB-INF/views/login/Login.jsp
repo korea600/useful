@@ -92,7 +92,7 @@
                                 
                                 <!-- Change this to a button or input when using this as a form -->
                                 <div>
-                                <button type="button" class="btn btn-lg btn-success btn-block" id="btn" >Login</button>
+                                <button type="button" class="btn btn-lg btn-success btn-block" id="btn" onclick='checkLogin()'>Login</button>
                                 </div>
                                 <p></p>
                                 <div>
