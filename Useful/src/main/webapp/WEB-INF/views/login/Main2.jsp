@@ -96,6 +96,13 @@
                                 </div>
                             </a>
                         </li>
+                        <li>
+                            <a href="/mypage/proof_Of_emp">
+                                <div>
+                                    <i class="fa fa-file-o fa-fw"></i> 재직증명서
+                                </div>
+                            </a>
+                        </li>
                         <li class="divider"></li>
                         <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -184,9 +191,7 @@
                                 <li>
                                    <a href="/useful/manager/employee_List">연차관리</a>
                                 </li>
-                                <li>
-                                   <a href="#">증명서관리</a>
-                                </li>
+                              
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -274,7 +279,7 @@
                             </div>
                         </div>
                         <!-- /.panel-footer -->
-                        
+
                        
                 
 
@@ -338,6 +343,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
+
 
 </body>
 </html>

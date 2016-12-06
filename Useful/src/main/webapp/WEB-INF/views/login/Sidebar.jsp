@@ -126,9 +126,7 @@
                                 <li>
                                    <a href="/useful/manager/employee_List">연차관리</a>
                                 </li>
-                                <li>
-                                   <a href="#">증명서관리</a>
-                                </li>
+                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

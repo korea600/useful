@@ -105,6 +105,13 @@
                                 </div>
                             </a>
                         </li>
+                        <li>
+                            <a href="/mypage/proof_Of_emp">
+                                <div>
+                                    <i class="fa fa-file-o fa-fw"></i> 재직증명서
+                                </div>
+                            </a>
+                        </li>
                         <li class="divider"></li>
                         <li><a href="/useful/login/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
