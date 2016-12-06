@@ -17,11 +17,11 @@
 		where empno=#{empno} and to_char(login,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
 	</select>
 	
-	<select id="commuteselect" resultType="kr.co.useful.commute.domain.CommuteVO">
-		 select e.empno,e.deptno,e.ename,c.login,c.logout,c.checked
-		 from tbl_emp e,tbl_commute c
-		 where e.empno = c.empno
-		 order by login
+	<select id="commuteselect" resultType="kr.co.useful.manager.domain.CommuteVO">
+		select e.empno,d.dname,e.ename,c.login,c.logout,c.checked
+		 from tbl_emp e,tbl_commute c,tbl_dept d
+		 where e.empno = c.empno and e.deptno = d.deptno 
+		 order by empno
 	</select>
 	
 	

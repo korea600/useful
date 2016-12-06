@@ -39,7 +39,9 @@ sign varchar2(20)           --결제이미지
 
 select * from tbl_emp;
 
- select e.empno,e.ename,e.deptno,c.login,c.logout,c.checked
-		 from tbl_emp e,tbl_commute c
-		 where e.empno = c.empno
-		 order by login;
+select e.empno,d.dname,e.ename,c.login,c.logout,c.checked
+		 from tbl_emp e,tbl_commute c,tbl_dept d
+		 where e.empno = c.empno and e.deptno = d.deptno 
+		 order by empno;
+
+select * from tbl_commute order by login;

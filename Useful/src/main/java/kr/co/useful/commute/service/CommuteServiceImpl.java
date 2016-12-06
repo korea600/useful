@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import kr.co.useful.commute.domain.CommuteVO;
+import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.commute.persistence.CommuteDAO;
 
 @Service
@@ -40,10 +40,20 @@ public class CommuteServiceImpl implements CommuteService{
 
 	@Override
 	public List<CommuteVO> commuteselect(int empno) throws Exception {
-		return dao.commuteselect(empno);
+		return time_Division(dao.commuteselect(empno));
 	}
 
-
+	public List<CommuteVO> time_Division(List<CommuteVO> list){
+		 for(int i=0;i<list.size();i++){
+			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 16));
+			 list.get(i).setLogin(list.get(i).getLogin().substring(0, 10));
+			 if(list.get(i).getLogout()!=null&&list.get(i).getLogout()!=""){
+				 list.get(i).setLogout_Time(list.get(i).getLogout().substring(11, 16));
+				 list.get(i).setLogout(list.get(i).getLogout().substring(0, 10));
+			 }
+		 }
+		return list;
+	}
 
 
 

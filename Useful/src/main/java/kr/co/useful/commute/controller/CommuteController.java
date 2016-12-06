@@ -22,7 +22,7 @@ public class CommuteController {
 	@Inject
 	private CommuteService service;
 	
-	@RequestMapping("/Commute_In")
+	@RequestMapping("/Commute_In") //출근체크
 	public ResponseEntity<String> insert(@RequestParam int empno){
 		ResponseEntity<String> entity = null;
 		
@@ -39,7 +39,7 @@ public class CommuteController {
 		return entity;
 	}
 	
-	@RequestMapping("/Commute_Out")
+	@RequestMapping("/Commute_Out") //퇴근체크
 	public ResponseEntity<String> update(@RequestParam int empno){
 		ResponseEntity<String> entity = null;
 		
@@ -61,7 +61,7 @@ public class CommuteController {
 		 
 	}
 	
-	@RequestMapping(value="/Login_Commute",method=RequestMethod.POST)
+	@RequestMapping(value="/commuteIn_check",method=RequestMethod.POST)
 	public void commute(@RequestParam int empno, Model m)throws Exception{
 		
 		m.addAttribute("commute",service.commuteselect(empno));
