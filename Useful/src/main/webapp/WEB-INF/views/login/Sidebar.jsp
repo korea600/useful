@@ -113,9 +113,6 @@
                                   			 <a href="/useful/manager/commute_Dept">부서별근태집계</a>
                               			</li>
                                    	 	<li>
-                                  			 <a href="/useful/manager/commute_Daily">일별근태현황</a>
-                              			</li>
-                                   	 	<li>
                                   			 <a href="/useful/manager/commute_Monthly">월별근태현황</a>
                               			</li>
                                    </ul>

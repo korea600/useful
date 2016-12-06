@@ -106,7 +106,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/mypage/proof_Of_emp">
+                            <a href="/useful/mypage/proof_Of_emp">
                                 <div>
                                     <i class="fa fa-file-o fa-fw"></i> 재직증명서
                                 </div>

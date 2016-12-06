@@ -97,7 +97,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/mypage/proof_Of_emp">
+                            <a href="/useful/mypage/proof_Of_emp">
                                 <div>
                                     <i class="fa fa-file-o fa-fw"></i> 재직증명서
                                 </div>
@@ -176,9 +176,6 @@
                               			</li>
                                    	 	<li>
                                   			 <a href="/useful/manager/commute_Dept">부서별근태집계</a>
-                              			</li>
-                                   	 	<li>
-                                  			 <a href="/useful/manager/commute_Daily">일별근태현황</a>
                               			</li>
                                    	 	<li>
                                   			 <a href="/useful/manager/commute_Monthly">월별근태현황</a>
