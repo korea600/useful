@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="application/vnd.word;charset=UTF-8" pageEncoding="UTF-8"%>
 <%   
-	response.setHeader("Content-Disposition","attachment;filename=재직증명서.doc");
+	response.setHeader("Content-Disposition","attachment;filename=Proof_of_employee.doc");
     response.setHeader("Content-Description", "JSP Generated Data");		%>
+<% 
+	Object obj = request.getAttribute("proof_emp") ;
+	Object obj2 = request.getAttribute("purpose") ;
+
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.mypage.service.MypageService;
@@ -58,13 +59,23 @@ public class MypageController {
 	public void proof_Of_emp_form()throws Exception{
 
 	}
-	@RequestMapping(value="/proof_Of_emp",method=RequestMethod.POST)
-	public String proof_Of_emp(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
-		int empno=(int) requestMap.get("empno");
-		model.addAttribute("proof_emp",service.proof_emp(empno));
-		model.addAttribute("purpose",requestMap.get("purpose"));
-		return "/proof_Of_emp_Print";
+	@RequestMapping(value="/testFile",method=RequestMethod.GET)
+	public void testFile()throws Exception{
+		
 	}
+	@RequestMapping(value="/proof_Of_emp",method=RequestMethod.POST)
+	public ModelAndView proof_Of_emp(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+		int empno=(int) requestMap.get("empno");
+		//model.addAttribute("proof_emp",service.proof_emp(empno));
+		//model.addAttribute("purpose",requestMap.get("purpose"));
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("proof_emp",service.proof_emp(empno));
+		mv.addObject("purpose",requestMap.get("purpose"));
+		mv.setViewName("http://localhost/useful/mypage/proof_Of_emp_Print");
+		System.out.println(mv);
+		return mv;
+	}
+	
 	
 	
 }
