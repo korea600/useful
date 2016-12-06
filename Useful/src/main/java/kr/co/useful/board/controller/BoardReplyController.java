@@ -25,7 +25,7 @@ public ResponseEntity<String> register(@RequestBody ReplyVO vo,HttpServletReques
 		service.create(vo);
 entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
+		// TODO Auto-generated Christmas
 		e.printStackTrace();
 	}
 	return entity;
