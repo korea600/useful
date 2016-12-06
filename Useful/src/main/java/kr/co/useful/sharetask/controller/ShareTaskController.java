@@ -36,7 +36,7 @@ public class ShareTaskController {
 	
 	//리스트
 	@RequestMapping(value = "share_Board", method = RequestMethod.GET)
-	public void shareList(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest req,HttpSession session)throws Exception {
+	public void shareList(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest req, HttpSession session)throws Exception {
 		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		
 		
@@ -79,7 +79,6 @@ public class ShareTaskController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String modifyPageGet(@RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri,
             Model model, HttpServletRequest req) throws Exception {
-		 
 		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		cri.setDeptno(evo.getDeptno());
 		// 데이터 저장
@@ -103,12 +102,12 @@ public class ShareTaskController {
 	}
 	
 	
+	
 
 	//이전글
 	@RequestMapping("/prev")
-	public String prevRead(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
+	public String prevRead(int deptno, int bno, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
 		
-		int deptno=10;
 		 cri.setDeptno(deptno);
 		
 		 ShareTaskVO pvo = service.prevRead(bno, deptno);//이전 클릭 값 --> 25-->24
@@ -133,8 +132,8 @@ public class ShareTaskController {
 
 	//다음글
 	 @RequestMapping("/next")
-	public String nextRead(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest req)throws Exception{
-		 int deptno=10;
+	public String nextRead(int deptno, int bno, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest req)throws Exception{
+		 
 		 cri.setDeptno(deptno);
 		 ShareTaskVO nvo = service.nextRead(bno, deptno);
 		 int next=nvo.getBno();

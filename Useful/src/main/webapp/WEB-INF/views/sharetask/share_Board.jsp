@@ -152,7 +152,7 @@
     </tr>
 	</table>
 	
-	<input type="hidden" name="deptno" value="${ShareTaskVO.deptno}" >
+	<input type="hidden" name="deptno" value="${LoginUser.empno}" >
 	<input type="hidden" name="prevbno" value="${prevbno.bno }">
 </form>	
 	
