@@ -2,6 +2,8 @@
 drop table tbl_salary;
 create table tbl_salary(
 empno number primary key, --사번
+Paymentdate date , --지급일
+Paymentmonth date , --귀속월
 basicpay number , --기본급
 car number , -- 차량유지비
 meal number , --식대보조금
