@@ -11,8 +11,4 @@ public class HomeController {
 	public String goToLogin() {
 		return "redirect:/login/Login";
 	}
-	@RequestMapping("/session_lost")
-	public String sessionLost(){
-		return "session_lost";
-	}
 }
