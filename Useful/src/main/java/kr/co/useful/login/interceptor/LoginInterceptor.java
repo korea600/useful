@@ -38,6 +38,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 				modelAndView.setViewName("redirect:"+dest);
 			}
 			
+			
 			}	
 		
 	}
