@@ -7,17 +7,11 @@
 <title>급여대장조회</title>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
+	 <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
 <script type="text/javascript">
 $(function(){	
  	   $( "#startdate" ).datepicker({
