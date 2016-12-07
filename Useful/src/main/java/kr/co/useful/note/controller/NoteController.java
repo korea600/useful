@@ -44,14 +44,16 @@ public class NoteController {
 	public void list_notePOST(SearchCriteria cri, HttpSession session,Model model)throws Exception{
 		System.out.println("들어옴");
 		System.out.println(cri.toString());
+		/*String mynote=((EmpVO) session.getAttribute("LoginUser")).getEname();*/
+		int myempno=((EmpVO) session.getAttribute("LoginUser")).getEmpno();
 		String mynote=((EmpVO) session.getAttribute("LoginUser")).getEname();
-		System.out.println(mynote);
+		/*System.out.println(mynote);*/
 		PageMaker pageMaker=new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.search_count_note(cri,mynote));
+		pageMaker.setTotalCount(service.search_count_note(cri,myempno));
 		pageMaker.calc();
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("list", service.search_not(cri,mynote));
+		model.addAttribute("list", service.search_not(cri,myempno));
 		//model.addAttribute("list", service.list_note(mynote));
 	};
 	
@@ -61,11 +63,18 @@ public class NoteController {
 	@RequestMapping(value="/noteCreatePage",method=RequestMethod.POST)
 	public String create_note(HttpSession session,SendVO vo)throws Exception{
 		RecipientVO recipientVO=new RecipientVO();
+		String reciname=((EmpVO)session.getAttribute("LoginUser")).getEname();
 		String mynote=((EmpVO)session.getAttribute("LoginUser")).getEname();
-		recipientVO.setReciid(mynote);
-		recipientVO.setMynote(vo.getSendman());
+		int reciid=((EmpVO)session.getAttribute("LoginUser")).getEmpno();
+		int mynoteid=((EmpVO)session.getAttribute("LoginUser")).getEmpno();
+		String ename=vo.getSendman();
+		recipientVO.setReciid(reciid);
+		recipientVO.setReciname(reciname);
+		recipientVO.setMynoteid(service.sendemp(ename));
+		recipientVO.setMynotename(vo.getSendman());
 		recipientVO.setRecontent(vo.getSendcontent());
 		vo.setMynote(mynote);
+		vo.setMyempno(reciid);
 		service.recipient_note(recipientVO);
 		service.create_note(vo);
 		return "redirect:/note/notePage";
@@ -83,16 +92,20 @@ public class NoteController {
 	@RequestMapping("/noteReadPage")
 	public void noteReadPage(HttpSession httpSession,int serial,Model model)throws Exception{
 		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		int myempno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 		SendVO vo=new SendVO();
 		vo.setMynote(mynote);
+		vo.setMyempno(myempno);
 		vo.setSerial(serial);
 		model.addAttribute("list", service.select_note(vo));
 	};
 	@RequestMapping("/deletePage")
 	public String noteDeletePage(int serial,HttpSession httpSession)throws Exception{
 		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		int myempno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 		SendVO vo=new SendVO();
-		vo.setMynote(mynote);
+		vo.setMyempno(myempno);
+		/*vo.setMynote(mynote);*/
 		vo.setSerial(serial);
 		service.delete_note(vo);
 		return "redirect:/note/notePage";
@@ -106,13 +119,16 @@ public class NoteController {
 	};*/
 	@RequestMapping("/noteMyPage")
 	public void recipient_note_list_search(HttpSession httpSession,Model model,SearchCriteria cri)throws Exception{
-		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		String mynotename=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		int myempno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
+		int mynoteid=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 		PageMaker pageMaker=new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.search_count_note(cri,mynote));
+		pageMaker.setTotalCount(service.search_count_note(cri,myempno));
 		pageMaker.calc();
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("list", reservice.search_Recipient_note(cri, mynote));
+		model.addAttribute("list", reservice.search_Recipient_note(cri, mynoteid));
+		
 	};
 	
 	
@@ -120,10 +136,11 @@ public class NoteController {
 	@RequestMapping("/riciReadPage")
 	public void select_recipient_note(RecipientVO recipientVO,HttpSession httpSession,int serial,Model mod)throws Exception{
 		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		int mynoteid=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 		System.out.println(serial);
 		System.out.println(mynote);
 		recipientVO.setSerial(serial);
-		recipientVO.setMynote(mynote);
+		recipientVO.setMynoteid(mynoteid);
 		mod.addAttribute("list",reservice.select_recipient_note(recipientVO));
 		
 		//mod.addAttribute("list", reservice.select_recipient_note(recipientVO));
@@ -132,20 +149,25 @@ public class NoteController {
 	
 	@RequestMapping("/deletePage2")
 	public String recipient_note_noteDeletePage(int serial,HttpSession httpSession)throws Exception{
-		String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		//String mynote=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		int mynoteid=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 		RecipientVO recipientVO=new RecipientVO();
-		recipientVO.setMynote(mynote);
+		recipientVO.setMynoteid(mynoteid);
 		recipientVO.setSerial(serial);
-		System.out.println(mynote);
-		System.out.println(serial);
+		/*System.out.println(mynote);
+		System.out.println(serial);*/
 		reservice.delete_recipient_note(recipientVO);
 		return "redirect:/note/noteMyPage";
 	};
 	
-	public void create_recipient_note(RecipientVO recipientVO)throws Exception{
+	public void create_recipient_note(RecipientVO recipientVO,HttpSession httpSession)throws Exception{
+		String mynotename=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+		int mynoteid=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 		SendVO sendVO=new SendVO();
-		sendVO.setSendman(recipientVO.getReciid());
-		sendVO.setMynote(recipientVO.getMynote());
+		recipientVO.setMynotename(mynotename);
+		recipientVO.setMynoteid(mynoteid);
+		sendVO.setSendman(recipientVO.getReciname());
+		sendVO.setMyempno(recipientVO.getMynoteid());
 		sendVO.setSendcontent(recipientVO.getRecontent());
 		reservice.create_send_note(sendVO);
 		reservice.create_recipient_note(recipientVO);

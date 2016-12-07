@@ -11,12 +11,15 @@
 	 values(tbl_send_note_seq.nextval,#{mynote},#{sendman},#{sendcontent})
 	</insert>
 	
+	<!-- <insert id="create_note_recipient" parameterType="kr.co.useful.note.domain.RecipientVO">
+	insert into tbl_recipient_note (serial,mynotename,mynoteid,reciid,reciname,recontent) values(tbl_recipient_note_seq.nextval,#{mynotename},#{mynoteid},#{reciid},#{reciname},#{recontent})
+	</insert> -->
 	<insert id="create_note_recipient" parameterType="kr.co.useful.note.domain.RecipientVO">
-	insert into tbl_recipient_note (serial,mynote,reciid,recontent) values(tbl_recipient_note_seq.nextval,#{mynote},#{reciid},#{recontent})
+insert into tbl_recipient_note (serial,mynotename,mynoteid,reciid,reciname,recontent,recipientdate) values(tbl_recipient_note_seq.nextval,#{mynotename},#{mynoteid},#{reciid},#{reciname},#{recontent})
 	</insert>
 	
 	<select id="select_note" resultType="kr.co.useful.note.domain.RecipientVO"> <!-- 쪽지 선택해서 보기  -->
-	select serial,mynote,reciid,recontent,recipientdate from tbl_recipient_note where mynote=#{mynote} and serial=#{serial}
+	select serial,mynoteid,reciid,recontent,recipientdate from tbl_recipient_note where mynoteid=#{mynoteid} and serial=#{serial}
 	</select>
 	
 	<delete id="delete_note" parameterType="kr.co.useful.note.domain.RecipientVO"><!--  메일삭제 -->
@@ -25,8 +28,8 @@
 	
 	
 	<select id="search_note" resultType="kr.co.useful.note.domain.RecipientVO"> <!-- 쪽지검색  -->
-	select serial,reciid,recontent,recipientdate from tbl_recipient_note
-	where mynote=#{mynote}
+	select serial,mynotename,mynoteid,reciid,reciname,recontent,recipientdate from tbl_recipient_note
+	where mynoteid=#{mynoteid}
 	<include refid="search"/>
 	
 	order by serial desc
@@ -35,7 +38,7 @@
 	<select id="search_Count_note" resultType="int"> <!-- 검색쪽지 카운트  -->
 	select count(*) from tbl_recipient_note
 	<include refid="search"/>
-	and mynote=#{mynote}
+	where mynoteid=#{mynoteid}
 	</select>
 	
 	

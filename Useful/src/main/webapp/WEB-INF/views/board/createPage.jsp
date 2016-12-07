@@ -57,10 +57,12 @@
                                         <div class="form-group">
                                         
                                         </div>
+                                        <form method="post" enctype="multipart/form-data" id="frm" name="frm">
                                         <div class="form-group">
                                             <label>파일 올리기</label>
                                             <input type="file">
                                         </div>
+                                        </form>
                                         <input type="hidden" name="page" value="${pageMaker.cri.page }">
                                         <input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum }">
                                        

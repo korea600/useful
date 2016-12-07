@@ -12,6 +12,10 @@ private String content;
 private Date regdate;
 private int viewcnt;
 private int replycnt;
+private String original_file_name;
+private String stored_file_name;
+private int file_size;
+
 /*public BoardVO() {
 	// TODO Auto-generated constructor stub
 }

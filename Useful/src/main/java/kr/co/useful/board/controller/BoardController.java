@@ -40,8 +40,18 @@ public class BoardController {
 	public void createPageGET()throws Exception{
 		
 	}
-	@RequestMapping(value="/createPage",method=RequestMethod.POST)
+	/*@RequestMapping(value="/createPage",method=RequestMethod.POST)
 	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession)throws Exception{
+	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
+	vo.setEmpno(empno);
+	vo.setWriter(writer);
+	service.insert(vo);
+	att.addFlashAttribute("message", "SUCCESS");
+	return "redirect:/board/listPage";
+	}*/
+	@RequestMapping(value="/createPage",method=RequestMethod.POST)
+	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,HttpServletRequest httpServletRequest)throws Exception{
 	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
 	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 	vo.setEmpno(empno);

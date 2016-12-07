@@ -46,15 +46,15 @@ dao.delete_note(vo);
 	}
 
 	@Override
-	public List<SendVO> search_not(SearchCriteria cri,String mynote) throws Exception {
+	public List<SendVO> search_not(SearchCriteria cri,int myempno) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.search_not(cri,mynote);
+		return dao.search_not(cri,myempno);
 	}
 
 	@Override
-	public int search_count_note(SearchCriteria cri,String mynote) throws Exception {
+	public int search_count_note(SearchCriteria cri,int myempno) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.search_count_note(cri,mynote);
+		return dao.search_count_note(cri,myempno);
 	}
 
 	@Override
@@ -67,6 +67,12 @@ dao.delete_note(vo);
 	public void recipient_note(RecipientVO recipientVO) throws Exception {
 		dao.recipient_note(recipientVO);
 		
+	}
+
+	@Override
+	public int sendemp(String ename) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.sendemp(ename);
 	}
 
 }
