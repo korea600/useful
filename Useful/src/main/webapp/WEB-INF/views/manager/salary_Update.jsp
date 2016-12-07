@@ -20,12 +20,16 @@
 	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
 <script type="text/javascript">
 $(function(){	
- 	   $( "#paydate" ).datepicker({
+ 	   $( "#startdate" ).datepicker({
  		  changeMonth: true, 
           changeYear: true,
  		  dateFormat: 'yy-mm-dd'
  	   });
-
+ 	   $( "#enddate" ).datepicker({
+ 		  changeMonth: true, 
+          changeYear: true,
+ 		  dateFormat: 'yy-mm-dd'
+ 	   });
 });
 </script> 
 </head>
@@ -37,41 +41,27 @@ $(function(){
 	<div id="page-wrapper">
 	<p>
 		<font size="5" style="font-style: inherit;">급여등록</font>
-		<input type="button" id="btn_insert" value="등록" /> 
-		<input type="button" id="btn_delete" value="취소" />
+		<input type="button" id="btn_search" value="조회" />
+		<input type="button" id="btn_oneReg" value="급여개별등록" /> 
+		<input type="button" id="btn_delete" value="삭제" />
 	</p>
 	<hr>
 	<p>※사원정보</p>
-	<div id="emptable">
 	<table>
 	 <tr>
 	 	<td>사번</td>
-	 	<td><input id="input_empno" type="text"></td>
+	 	<td>사번</td>
 	 	<td>사원명</td> 
-	 	<td><input id="input_ename"type="text"></td>
+	 	<td>사원명</td> 
 	 </tr>
 	</table>
-	</div>
 	<p>※지급정보</p>
 	<table>
 	 <tr>
 	 	<td>지급일</td>
-	 	<td><input id="pay_date" type="text"></td>
+	 	<td>지급일</td>
 	 	<td>귀속월</td> 
-	 	<td><select name="pay_year" id="pay_year" style='width:80px;' >
- 												<%for(int i=2010;i<2019;i++){ %>
-												<option value="<%=i%>" ><%=i%>년</option>
-												<%} %> 
-											</select>
-					<select name="pay_month" id="pay_month" style='width:80px;' >
- 						<%for(int i=1;i<13;i++){
- 						if(i<10){%>
- 						
-						<option value="0<%=i%>"><%=i%>월</option>
-						<%}else{ %>
-						<option value="<%=i%>"><%=i%>월</option>
-						<%} }%> 
-					</select></td> 
+	 	<td>귀속월</td> 
 	 </tr>
 	</table>
 	<p>※금액정보</p>

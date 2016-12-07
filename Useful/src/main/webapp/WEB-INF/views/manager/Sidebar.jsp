@@ -49,7 +49,7 @@
                            <div>
                            <center>
                            <span>
-                              <button type="button" id="#">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
+                              <button type="button" id="note">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
                               <button type="button" id="commute_in"><i class="fa fa-sort-up fa-fw"></i>출근</button>
                               <button type="button" id="commute_out"><i class="fa fa-sort-down fa-fw"></i>퇴근</button>
                            </span>
@@ -110,9 +110,7 @@
                                 <li>
                                    <a href="/useful/manager/employee_List">연차관리</a>
                                 </li>
-                                <li>
-                                   <a href="#">증명서관리</a>
-                                </li>
+                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -125,9 +123,7 @@
                            <li>
                               <a href="/useful/board/listPage">사내게시판</a>
                            </li>
-                           <li>
-                              <a href="#">부서게시판</a>
-                           </li>
+                           
                            <li>
                               <a href="/useful/board/anonymity/listPage">익명게시판</a>
                            </li>
@@ -135,26 +131,18 @@
                         </li>
                         
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 업무공유</a>
+                            <a href="/useful/sharetask/share_Board"><i class="fa fa-list-alt fa-fw"></i> 업무공유</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> 일정관리<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">회사일정관리</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">부서별일정관리</a>
-                                </li>
-                            </ul>
+                            <a href="/useful/schedule/co_Schedule"><i class="fa fa-calendar fa-fw"></i> 일정관리</a>
                             <!-- /.nav-second-level -->
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 회의실예약<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-calendar-o fa-fw"></i> 회의실예약<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">예약하기</a>
+                                    <a href="/uselful/meetingroom/booking">예약하기</a>
                                 </li>
                                 <li>
                                     <a href="#">예약내역</a>
@@ -165,21 +153,9 @@
                                </li>
                         
                          <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 출퇴근내역조회<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">출근내역조회</a>
-                                </li>
-                                <li>
-                                    <a href="#">퇴근내역조회</a>
-                                </li>
-                                <li>
-                                   <a href="#">출퇴근관리</a>
-                                </li>
-                                
-                                    </ul>
+                            <a href="/useful/commute/Login_Commute"><i class="fa fa-sort fa-fw"></i> 출퇴근내역조회</a>
                                     <!-- /.nav-third-level -->
-                               </li>
+                         </li>
                         
                     </ul>
                 </div>
