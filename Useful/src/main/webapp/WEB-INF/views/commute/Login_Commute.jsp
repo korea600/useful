@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%-- Login_Commute.jsp --%>
-<title>출퇴근 내역</title>
+<title>출퇴근내역조회</title>
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <style type="text/css">
@@ -95,7 +95,7 @@ th {
 <!-- commute_Employee.jsp -->
 <div id="page-wrapper">
 <p><br>
-<font size="5" style="font-style: inherit;">출퇴근 내역</font><br><hr>
+<font size="5" style="font-style: inherit;">출퇴근내역조회</font><br><hr>
 <table>
 <tbody>
 	<tr>
