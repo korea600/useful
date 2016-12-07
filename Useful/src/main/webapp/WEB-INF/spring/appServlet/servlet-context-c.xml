@@ -31,12 +31,19 @@
 	
 	<!-- 인터셉터 등록 -->
 	<beans:bean id="loginInterceptor" class="kr.co.useful.login.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="commuteInterceptor" class="kr.co.useful.commute.interceptor.CommuteInterceptor"></beans:bean>
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/login/Login"/>
 			<mapping path="/login/Mainview"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/commute/**/*"/>
+			<beans:ref bean="commuteInterceptor"/>
+		</interceptor>
+		
 	</interceptors>
 	
 	
