@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 
 import kr.co.useful.board.domain.Criteria;
 import kr.co.useful.board.domain.ReplyVO;
+import kr.co.useful.board.persistence.RelyNoticeDAO;
 import kr.co.useful.board.persistence.ReplyDAO;
 @Service
 public class ReplyNoticeServiceImpl implements ReplyNoticeService {
 @Inject
-private ReplyDAO dao;
+private RelyNoticeDAO dao;
 	@Override
 	public List<ReplyVO> listAll(int serial) throws Exception {
 		// TODO Auto-generated method stub

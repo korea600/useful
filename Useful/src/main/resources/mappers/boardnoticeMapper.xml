@@ -44,7 +44,8 @@
     </select>
     
     <select id="listSearch" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt from tbl_notice
+    select serial,empno,title,writer,content,viewcnt, (select count(*) from tbl_notice_reply where tbl_notice_reply.serial=tbl_notice.serial) replycnt
+      from tbl_notice 
     <include refid="Search"/>
     order by serial desc
     </select>
