@@ -231,21 +231,9 @@
                                </li>
                         
                          <li>
-                            <a href="#"><i class="fa fa-sort fa-fw"></i> 출퇴근내역조회<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">출근내역조회</a>
-                                </li>
-                                <li>
-                                    <a href="#">퇴근내역조회</a>
-                                </li>
-                                <li>
-                                   <a href="/useful/commute/Login_Commute">출퇴근관리</a>
-                                </li>
-                                
-                                    </ul>
+                            <a href="/useful/commute/Login_Commute"><i class="fa fa-sort fa-fw"></i> 출퇴근내역조회</a>
                                     <!-- /.nav-third-level -->
-                               </li>
+                         </li>
                         
                     </ul>
                 </div>
