@@ -186,7 +186,7 @@
                                     <a href="/useful/manager/salary_List">급여관리</a>
                                 </li>
                                 <li>
-                                   <a href="/useful/manager/employee_List">연차관리</a>
+                                   <a href="/useful/manager/leave_List">연차관리</a>
                                 </li>
                               
                             </ul>
@@ -302,6 +302,7 @@
 			$('#note').on("click",function(){
 				location.href="/useful/note/noteMyPage";
 			});
+			
 			
 		});
 		
