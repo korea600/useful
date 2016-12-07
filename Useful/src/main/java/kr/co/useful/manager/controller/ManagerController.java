@@ -136,6 +136,7 @@ public class ManagerController {
 	public void leave_List_form(){
 		
 	}
+	
 	@RequestMapping(value="/leave_List",method=RequestMethod.POST)
 	public String leave_List(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		Map<String,Object> map = new HashMap<>();
@@ -153,22 +154,53 @@ public class ManagerController {
 		model.addAttribute("commute",service.leave_list_search(map));
 		return "/manager/leave_Print";
 	}
+	
 	@RequestMapping(value="/leave_List_Update",method=RequestMethod.POST)
 	public String leave_List_Update(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		service.leave_List_Update(requestMap);
 		return "/manager/leave_Print";
 	}
+	
 	@RequestMapping(value="/commute_Monthly_Oneday",method=RequestMethod.POST)
 	public String commute_Monthly_search_oneday(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		model.addAttribute("commute",service.commute_Monthly_search_oneday(requestMap));
 		return "/manager/leave_Print_Div";
 	}
+	
 	@RequestMapping(value="/salary_List",method=RequestMethod.GET)
-	public void salary_List(){
+	public void salary_List_form(){
 		
 	}
 	
+	@RequestMapping(value="/salary_List",method=RequestMethod.POST)
+	public String salary_List(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+		Map<String,Object> map = new HashMap<>();
+		String startdate = (String) requestMap.get("startdate");
+		String enddate = (String) requestMap.get("enddate");
+		startdate = startdate.replaceAll("-","");
+		enddate = enddate.replaceAll("-","");
+		
+		map.put("startdate", startdate);
+		map.put("enddate", enddate);
+		map.put("deptno", requestMap.get("deptno"));
+		map.put("empno", requestMap.get("empno"));
+		map.put("ename", requestMap.get("ename"));
+		model.addAttribute("salary",service.salary_List(map));
+		return "/manager/salary_PrintList";
+	}
+	
+	@RequestMapping(value="/salary_List",method=RequestMethod.DELETE)
+	public String salary_List_Delete(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+		model.addAttribute("salary",service.salary_List(requestMap));
+		return "/manager/salary_PrintList";
+	}
+	
 	@RequestMapping(value="/salary_Insert",method=RequestMethod.GET)
+	public void salary_Insert_form(){
+		
+	}
+	
+	@RequestMapping(value="/salary_Insert",method=RequestMethod.POST)
 	public void salary_Insert(){
 		
 	}

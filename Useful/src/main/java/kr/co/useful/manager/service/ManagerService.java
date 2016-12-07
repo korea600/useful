@@ -10,6 +10,7 @@ import kr.co.useful.manager.domain.Commute_DeptVO;
 import kr.co.useful.manager.domain.Commute_MonthlyVO;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.domain.LeaveVO;
+import kr.co.useful.manager.domain.SalaryVO;
 
 public interface ManagerService {
 	public List<Map<String, Object>> listAll()throws Exception;
@@ -45,4 +46,6 @@ public interface ManagerService {
 	public List<CommuteVO> commute_Monthly_search_oneday(Map<String,Object> map)throws Exception;
 	
 	public List<EmpVO> emp_search(Map<String, Object> map) throws Exception;
+	
+	public List<SalaryVO> salary_List(Map<String,Object> map)throws Exception;
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.domain.LeaveVO;
+import kr.co.useful.manager.domain.SalaryVO;
 
 public interface ManagerDAO {
 	public List<Map<String, Object>> emplist()throws Exception;
@@ -45,4 +46,6 @@ public interface ManagerDAO {
 	public List<CommuteVO> commute_Monthly_search_oneday(Map<String,Object> map)throws Exception;
 	
 	public List<EmpVO> emp_search(Map<String,Object> map)throws Exception;
+
+	public List<SalaryVO> salary_List(Map<String,Object> map)throws Exception;
 }

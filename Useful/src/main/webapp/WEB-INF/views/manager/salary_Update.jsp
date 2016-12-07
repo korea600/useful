@@ -1,36 +1,169 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>±Ş¿©µî·Ï</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ê¸‰ì—¬ë“±ë¡</title>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
+ <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
+
 <script type="text/javascript">
 $(function(){	
- 	   $( "#startdate" ).datepicker({
+ 	   $( "#paymentdate" ).datepicker({
  		  changeMonth: true, 
           changeYear: true,
  		  dateFormat: 'yy-mm-dd'
  	   });
- 	   $( "#enddate" ).datepicker({
- 		  changeMonth: true, 
-          changeYear: true,
- 		  dateFormat: 'yy-mm-dd'
- 	   });
+		$("#input_empno").click(function(){
+			$("#popup").fadeIn(700);
+		});
+		
+		$("#input_ename").click(function(){
+			$("#popup").fadeIn(700);
+		});
+		$("#pop_search").click(function(){
+			search_emp();
+		});
+		$("#btn_Cancel").click(function(){
+	 		  location.href="/useful/manager/salary_List";  
+		});
+		$("#btn_insert").click(function(){
+			 $.ajax({
+				  type: 'POST',
+				  url: '/useful/manager/salary_Insert',
+				  headers : {
+					  "Content-Type" : "application/json",
+					  "X-HTTP-Method-Override":"POST"
+				  },
+				  dataType: 'text',
+				  data: JSON.stringify({
+					 	basicpay: $("#basicpay").val(),
+					  	Paymentdate:$("#Paymentdate").val,
+					 	Paymentmonth: $("#pay_year option:selected").val()+$("#pay_month option:selected").val(),
+						basic: $("#basicpay").val(),
+						car : $("#car").val(),
+						meal: $("#meal").val(),
+						childcare: $("#childcare").val(),
+						otherpay: $("#otherpay").val(),
+					  	national: $("#national").text(),
+					  	health:$("#health").text(),
+					  	employment:$("#employment").text(),
+					  	care:$("#care").text(),
+				  		incometax:$("#incometax").text(),
+				  		localtax:$("#localtax").text(),
+				  		grossincome:$("#grossincome").text(),
+				  		deductions:$("#deductions").text(),
+				  		adjustedIncome:$("#adjustedIncome").text()
+					}),
+				  success: function(result){
+					  location.href="/useful/manager/salary_List";
+					  },
+				error:function(request,status,error){
+				    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+				}); 
+		});
+		$("#btn_close").click(function(){
+ 			$("#popup").fadeOut(500);
+ 		});
+		
+		$("#basicpay").keyup(function(){ 
+			var basic= parseInt($("#basicpay").val());
+			var standard_income=0;
+			if(basic<280000){
+				standard_income=280000;
+			}else if(basic>4340000){
+				standard_income=4340000;
+			}else{
+				standard_income=basic*0.045;
+			}
+			var national = basic *0.0306;
+			var health  =basic *0.03275;
+			var employment =basic *0.0065;
+			var care  =basic*0.0655;
+			var incometax=0;
+			var incometax12=0;
+			var basic12=basic*12;
+			if(basic12<=30000000){
+				incometax12=310000+basic*0.04;
+			}else if(basic12>30000000&&basic12<=45000000){
+				incometax12=3100000+(basic*0.04)-(basic12-3000)*0.05;
+			}else if(basic12>45000000&&basic12<=70000000){
+				incometax12=3100000+(basic*0.015);
+			}else if(basic12>70000000&&basic12<=120000000){
+				incometax12=3100000+(basic*0.005);
+			}
+			incometax=incometax12/12;
+			var localtax=incometax*0.01;
+			
+			var car = parseInt($("#car").val());
+			var meal= parseInt($("#meal").val());
+			var childcare= parseInt($("#childcare").val());
+			var otherpay= parseInt($("#otherpay").val());
+			//var grossincome = parseInt(basic)+parseInt(car)+parseInt(meal)+parseInt(childcare)+parseInt(otherpay);
+			var grossincome= basic+car+meal+childcare+otherpay;
+			var deductions =	national+ health+employment+care+incometax+localtax;
+			var adjustedIncome = grossincome-deductions;
+			$("#national").text(national);
+			$("#health").text(health);
+			$("#employment").text(employment);
+			$("#care").text(care);
+			$("#incometax").text(incometax);
+			$("#localtax").text(localtax);
+			$("#grossincome").text(grossincome);
+			$("#deductions").text(deductions);
+			$("#adjustedIncome").text(adjustedIncome);
+		});
+		$("#car").keyup(function(){ 
+			var basic= parseInt($("#basicpay").val());
+			var car = parseInt($("#car").val());
+			var meal= parseInt($("#meal").val());
+			var childcare= parseInt($("#childcare").val());
+			var otherpay= parseInt($("#otherpay").val());
+			alret("basic:"+basic+"ì°¨ "+car+meal+"ë³´ìœ¡ "+childcare+"ê¸°íƒ€ "+otherpay);
+			var grossincome= basic+car+meal+childcare+otherpay;
+			var deductions=$("#deductions").text();
+			var adjustedIncome= grossincome-deductions;
+			$("#grossincome").empty();
+			$("#deductions").empty();
+			$("#adjustedIncome").empty();
+			$("#grossincome").text(grossincome);
+			$("#deductions").text(deductions);
+			$("#adjustedIncome").text(adjustedIncome);
+		});
+		
 });
+function search_emp(){
+	 $.ajax({
+		  type: 'POST',
+		  url: '/useful/manager/emp_search',
+		  headers : {
+			  "Content-Type" : "application/json",
+			  "X-HTTP-Method-Override":"POST"
+		  },
+		  dataType: 'text',
+		  data: JSON.stringify({
+			searchType:$("#searchType option:selected").val(),
+			keyword:$("#input_search").val()
+			
+			  }),
+		  success: function(result){
+				$("#pop_print").html(result);
+			  },
+		error:function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+		}); 
+}
+function call_select(empno,ename,dname,position){
+	$("#emptable").html("<table><tr><td>ì‚¬ë²ˆ</td><td>"+empno+"</td><td>ì‚¬ì›ëª…</td><td>"+ename+"</td><td>ë¶€ì„œ</td><td>"+
+						dname+"</td><td>ì§ì±…</td><td>"+position+"</td></tr></table>");
+	$("#popup").fadeOut(500);
+}
 </script> 
 </head>
 <body>
@@ -40,84 +173,106 @@ $(function(){
 </div>
 	<div id="page-wrapper">
 	<p>
-		<font size="5" style="font-style: inherit;">±Ş¿©µî·Ï</font>
-		<input type="button" id="btn_search" value="Á¶È¸" />
-		<input type="button" id="btn_oneReg" value="±Ş¿©°³º°µî·Ï" /> 
-		<input type="button" id="btn_delete" value="»èÁ¦" />
+		<font size="5" style="font-style: inherit;">ê¸‰ì—¬ë“±ë¡</font>
+		<input type="button" id="btn_insert" value="ë“±ë¡" /> 
+		<input type="button" id="btn_Cancel" value="ì·¨ì†Œ" />
 	</p>
 	<hr>
-	<p>¡Ø»ç¿øÁ¤º¸</p>
+	<p>â€»ì‚¬ì›ì •ë³´</p>
+	<div id="emptable">
+	<table>
+		<tr>
+			<td>ì‚¬ë²ˆ</td>
+			<td>empno</td>
+			<td>ì‚¬ì›ëª…</td>
+			<td>ename</td>
+			<td>ë¶€ì„œ</td>
+			<td>dname</td>
+			<td>ì§ì±…</td>
+			<td>position</td>
+		</tr>
+	</table>
+	</div>
+	<br>
+	<p>â€»ì§€ê¸‰ì •ë³´</p>
 	<table>
 	 <tr>
-	 	<td>»ç¹ø</td>
-	 	<td>»ç¹ø</td>
-	 	<td>»ç¿ø¸í</td> 
-	 	<td>»ç¿ø¸í</td> 
+	 	<td>ì§€ê¸‰ì¼</td>
+	 	<td><input id="paymentdate" type="text"></td>
+	 	<td>ê·€ì†ì›”</td> 
+	 	<td><select name="pay_year" id="pay_year" style='width:80px;' >
+ 												<%for(int i=2010;i<2019;i++){ %>
+												<option value="<%=i%>" ><%=i%>ë…„</option>
+												<%} %> 
+											</select>
+					<select name="pay_month" id="pay_month" style='width:80px;' >
+ 						<%for(int i=1;i<13;i++){
+ 						if(i<10){%>
+ 						
+						<option value="0<%=i%>"><%=i%>ì›”</option>
+						<%}else{ %>
+						<option value="<%=i%>"><%=i%>ì›”</option>
+						<%} }%> 
+					</select></td> 
 	 </tr>
 	</table>
-	<p>¡ØÁö±ŞÁ¤º¸</p>
-	<table>
-	 <tr>
-	 	<td>Áö±ŞÀÏ</td>
-	 	<td>Áö±ŞÀÏ</td>
-	 	<td>±Í¼Ó¿ù</td> 
-	 	<td>±Í¼Ó¿ù</td> 
-	 </tr>
-	</table>
-	<p>¡Ø±İ¾×Á¤º¸</p>
+	<br>
+	<p>â€»ê¸ˆì•¡ì •ë³´</p>
 	<table>
 	 	<tr>
-			<th colspan="2">¼ö´ç</th>
-			<th colspan="2">°øÁ¦</th>
+			<th colspan="2">ìˆ˜ë‹¹</th>
+			<th colspan="2">ê³µì œ</th>
 	 	</tr>
 	 	<tr>
-	 		<td>±âº»±Ş</td>
-	 		<td>±âº»±Ş</td>
-	 		<td>±¹¹Î¿¬±İ</td>
-	 		<td>±âº»±Ş</td>
+	 		<td>ê¸°ë³¸ê¸‰</td>
+	 		<td><input id="basicpay" type="text"></td>
+	 		<td>êµ­ë¯¼ì—°ê¸ˆ</td>
+	 		<td><div id="national"></div></td>
 	 	</tr>
 	 	<tr>
-	 		<td>Â÷·®À¯Áöºñ</td>
-	 		<td>Â÷·®À¯Áöºñ</td>
-	 		<td>°Ç°­º¸Çè</td>
-	 		<td>°Ç°­º¸Çè</td>
+	 		<td>ì°¨ëŸ‰ìœ ì§€ë¹„</td>
+	 		<td><input id="car" type="text"></td>
+	 		<td>ê±´ê°•ë³´í—˜</td>
+	 		<td><div id="health"></div></td>
 	 	</tr>
 	 	<tr>
-	 		<td>½Ä´ëº¸Á¶±İ</td>
-	 		<td>½Ä´ëº¸Á¶±İ</td>
-	 		<td>°í¿ëº¸Çè</td>
-	 		<td>°í¿ëº¸Çè</td>
+	 		<td>ì‹ëŒ€ë³´ì¡°ê¸ˆ</td>
+	 		<td><input id="meal" type="text"></td>
+	 		<td>ê³ ìš©ë³´í—˜</td>
+	 		<td><div id="employment"></div></td>
 	 	</tr>
 	 	<tr>
-	 		<td>º¸À°¼ö´ç</td>
-	 		<td>º¸À°¼ö´ç</td>
-	 		<td>Àå±â¿ä¾çº¸Çè</td>
-	 		<td>Àå±â¿ä¾çº¸Çè</td>
+	 		<td>ë³´ìœ¡ìˆ˜ë‹¹</td>
+	 		<td><input id="childcare" type="text"></td>
+	 		<td>ì¥ê¸°ìš”ì–‘ë³´í—˜</td>
+	 		<td><div id="care"></div></td>
 	 	</tr>
 	 	<tr>
-	 		<td>±âÅ¸¼ö´ç</td>
-	 		<td>±âÅ¸¼ö´ç</td>
-	 		<td>¼Òµæ¼¼</td>
-	 		<td>¼Òµæ¼¼</td>
+	 		<td>ê¸°íƒ€ìˆ˜ë‹¹</td>
+	 		<td><input id="otherpay" type="text"></td>
+	 		<td>ì†Œë“ì„¸</td>
+	 		<td><div id="incometax"></div></td>
 	 	</tr>
 	 	<tr>
 	 		<td></td>
 	 		<td></td>
-	 		<td>Áö¹æ¼Òµæ¼¼</td>
-	 		<td>Áö¹æ¼Òµæ¼¼</td>
+	 		<td>ì§€ë°©ì†Œë“ì„¸</td>
+	 		<td><div id="localtax"></div></td>
 	 	</tr>
 	</table>
-	<p>¡ØÇÕ°è</p>
+	<br>
+	<p>â€»í•©ê³„</p>
 	<table>
 	<tr>
-		<td>Áö±ŞÇÕ°è</td>
-		<td>Áö±ŞÇÕ°è</td>
-		<td>°øÁ¦ÇÕ°è</td>
-		<td>°øÁ¦ÇÕ°è</td>
-		<td>Â÷ÀÎÁö±Ş¾×</td>
-		<td>Â÷ÀÎÁö±Ş¾×</td>
+		<td>ì§€ê¸‰í•©ê³„</td>
+	 	<td><div id="grossincome"></div></td>
+		<td>ê³µì œí•©ê³„</td>
+	 	<td><div id="deductions"></div></td>
+		<td>ì°¨ì¸ì§€ê¸‰ì•¡</td>
+	 	<td><div id="adjustedIncome"></div></td>
 	</tr>
 	</table>
 </div>
+
 </body>
 </html>

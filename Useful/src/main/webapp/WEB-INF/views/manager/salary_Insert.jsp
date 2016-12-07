@@ -30,6 +30,9 @@ $(function(){
 		$("#pop_search").click(function(){
 			search_emp();
 		});
+		$("#btn_Cancel").click(function(){
+	 		  location.href="/useful/manager/salary_List";  
+		});
 		$("#btn_insert").click(function(){
 			 $.ajax({
 				  type: 'POST',
@@ -70,7 +73,7 @@ $(function(){
  		});
 		
 		$("#basicpay").keyup(function(){ 
-			var basic= $("#basicpay").val();
+			var basic= parseInt($("#basicpay").val());
 			var standard_income=0;
 			if(basic<280000){
 				standard_income=280000;
@@ -98,12 +101,12 @@ $(function(){
 			incometax=incometax12/12;
 			var localtax=incometax*0.01;
 			
-			var car = $("#car").val();
-			var meal= $("#meal").val();
-			var childcare= $("#childcare").val();
-			var otherpay= $("#otherpay").val();
-			
-			var grossincome = basic+car+meal+childcare+otherpay;
+			var car = parseInt($("#car").val());
+			var meal= parseInt($("#meal").val());
+			var childcare= parseInt($("#childcare").val());
+			var otherpay= parseInt($("#otherpay").val());
+			//var grossincome = parseInt(basic)+parseInt(car)+parseInt(meal)+parseInt(childcare)+parseInt(otherpay);
+			var grossincome= basic+car+meal+childcare+otherpay;
 			var deductions =	national+ health+employment+care+incometax+localtax;
 			var adjustedIncome = grossincome-deductions;
 			$("#national").text(national);
@@ -117,12 +120,12 @@ $(function(){
 			$("#adjustedIncome").text(adjustedIncome);
 		});
 		$("#car").keyup(function(){ 
-			var basic= $("#basicpay").val();
-			var car = $("#car").val();
-			var meal= $("#meal").val();
-			var childcare= $("#childcare").val();
-			var otherpay= $("#otherpay").val();
-			
+			var basic= parseInt($("#basicpay").val());
+			var car = parseInt($("#car").val());
+			var meal= parseInt($("#meal").val());
+			var childcare= parseInt($("#childcare").val());
+			var otherpay= parseInt($("#otherpay").val());
+			alret("basic:"+basic+"차 "+car+meal+"보육 "+childcare+"기타 "+otherpay);
 			var grossincome= basic+car+meal+childcare+otherpay;
 			var deductions=$("#deductions").text();
 			var adjustedIncome= grossincome-deductions;
@@ -172,7 +175,7 @@ function call_select(empno,ename,dname,position){
 	<p>
 		<font size="5" style="font-style: inherit;">급여등록</font>
 		<input type="button" id="btn_insert" value="등록" /> 
-		<input type="button" id="btn_delete" value="취소" />
+		<input type="button" id="btn_Cancel" value="취소" />
 	</p>
 	<hr>
 	<p>※사원정보</p>

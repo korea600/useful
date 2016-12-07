@@ -201,4 +201,29 @@
   	</if>
   	order by empno
   </select>
+  
+  <select id="salary_List" resultType="kr.co.useful.manager.domain.SalaryVO">
+  select emp.empno,emp.ename,emp.dname,emp.position,sal.basicpay,sal.grossincome,sal.deductions,sal.adjustedIncome,sal.paymentdate,sal.paymentmonth
+  from tbl_salary sal,(select empno,ename,dname,position
+  	from tbl_dept a,
+  		(select empno,ename,deptno,position
+  		from tbl_emp
+  		<where>
+  			<if test="empno!=null">
+  			 empno like '%'||#{empno}||'%'
+  			</if>
+  			<if test="ename!=null">
+  			 and ename like '%'||#{ename}||'%'
+  			</if>
+  			<if test="deptno!=null">
+  			 and deptno = #{deptno}
+  			</if>
+  			<if test="position!=null">
+  			 and position like '%'||#{position}||'%'
+  			</if>
+  		</where>) b
+  	where a.deptno=b.deptno) emp
+  where emp.empno=sal.empno and sal.paymentdate between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1
+  order by emp.empno desc, sal.paymentdate desc
+  </select>
 </mapper>
