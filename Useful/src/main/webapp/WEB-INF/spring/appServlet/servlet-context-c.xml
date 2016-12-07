@@ -29,6 +29,16 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 인터셉터 등록 -->
+	<beans:bean id="loginInterceptor" class="kr.co.useful.login.interceptor.LoginInterceptor"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/login/Login"/>
+			<mapping path="/login/Mainview"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	
 	<context:component-scan base-package="kr.co.useful.login.controller" />
 	<context:component-scan base-package="kr.co.useful.mypage.controller" />

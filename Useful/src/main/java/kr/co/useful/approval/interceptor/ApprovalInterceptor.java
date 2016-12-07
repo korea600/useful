@@ -21,7 +21,7 @@ public class ApprovalInterceptor extends HandlerInterceptorAdapter{
 		else{
 			saveDest(request);
 			request.getSession().removeAttribute("LoginUser");
-			response.sendRedirect("/useful/session_lost");
+			response.sendRedirect("/useful");
 			return false;
 		}
 	}
@@ -29,6 +29,7 @@ public class ApprovalInterceptor extends HandlerInterceptorAdapter{
 	private void saveDest(HttpServletRequest request){	// 로그인여부 확인 전에 요청한 uri와 query저장
 		String uri = request.getRequestURI();
 		String query = request.getQueryString();	// getQueryString : 요청uri뒤에 붙는 '?'를 return
+		uri = uri.substring(uri.indexOf("/",2));
 		if(query==null)	query="";
 		else query="?"+query;
 		if(request.getMethod().equals("GET"))
