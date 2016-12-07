@@ -67,7 +67,7 @@ public class CommuteController {
 		 
 	}
 	
-	@RequestMapping(value="/commuteIn_check",method=RequestMethod.POST)
+	@RequestMapping(value="/commute_print",method=RequestMethod.POST)
 	public String commute(@RequestParam String empno, Model m, @RequestBody Map<String,Object> reqMap)throws Exception{
 		Map<String, Object> map = new HashMap<>();
 
@@ -84,7 +84,7 @@ public class CommuteController {
 			map.put("empno", empno);
 			m.addAttribute("commute",service.commuteToday(map));
 		}
-		return "/commute/commuteIn_check";
+		return "/commute/commute_print";
 	}
 	
 }

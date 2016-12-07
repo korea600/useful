@@ -64,7 +64,7 @@ th {
 
  		  $.ajax({
  			  type: 'POST',
- 			  url: '/useful/commute/commuteIn_check?empno='+${LoginUser.empno},
+ 			  url: '/useful/commute/commute_print?empno='+${LoginUser.empno},
  			  headers : {
  				  "Content-Type" : "application/json",
  				  "X-HTTP-Method-Override":"POST"
