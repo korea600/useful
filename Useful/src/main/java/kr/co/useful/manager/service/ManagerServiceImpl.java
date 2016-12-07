@@ -210,6 +210,11 @@ class ManagerServiceImpl implements ManagerService {
 		return time_Division(dao.commute_Monthly_search_oneday(map));
 	}
 	
+	@Override
+	public List<EmpVO> emp_search(Map<String, Object> map) throws Exception {
+		return dao.emp_search(map);
+	}
+
 	public List<CommuteVO> time_Division(List<CommuteVO> list){
 		 for(int i=0;i<list.size();i++){
 			 list.get(i).setLogin_Time(list.get(i).getLogin().substring(11, 16));
@@ -221,4 +226,5 @@ class ManagerServiceImpl implements ManagerService {
 		 }
 		return list;
 	}
+	
 }

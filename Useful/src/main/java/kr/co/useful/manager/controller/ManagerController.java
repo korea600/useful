@@ -163,15 +163,27 @@ public class ManagerController {
 		model.addAttribute("commute",service.commute_Monthly_search_oneday(requestMap));
 		return "/manager/leave_Print_Div";
 	}
+	@RequestMapping(value="/salary_List",method=RequestMethod.GET)
+	public void salary_List(){
+		
+	}
+	
+	@RequestMapping(value="/salary_Insert",method=RequestMethod.GET)
+	public void salary_Insert(){
+		
+	}
+	
+	@RequestMapping(value="/emp_search",method=RequestMethod.POST)
+	public String emp_search(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
+		model.addAttribute("commute",service.emp_search(requestMap));
+		return "/manager/salary_emp_search_print";
+	}
 	
 	@RequestMapping("/commute_Daily")
 	public void commute_Daily(){
 		
 	}
-	@RequestMapping("/salary_List")
-	public void salary_List(){
-		
-	}
+
 	@RequestMapping("/jquery_Test")
 	public void jquery_Test(){
 		

@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>±Þ¿©´ëÀåÁ¶È¸</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ê¸‰ì—¬ëŒ€ìž¥ì¡°íšŒ</title>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="screen"
@@ -40,32 +40,32 @@ $(function(){
 </div>
 	<div id="page-wrapper">
 	<p>
-		<font size="5" style="font-style: inherit;">±Þ¿©´ëÀåÁ¶È¸</font>
-		<input type="button" id="btn_search" value="Á¶È¸" />
-		<input type="button" id="btn_oneReg" value="±Þ¿©°³º°µî·Ï" /> 
-		<input type="button" id="btn_delete" value="»èÁ¦" />
+		<font size="5" style="font-style: inherit;">ê¸‰ì—¬ëŒ€ìž¥ì¡°íšŒ</font>
+		<input type="button" id="btn_search" value="ì¡°íšŒ" />
+		<input type="button" id="btn_oneReg" value="ê¸‰ì—¬ê°œë³„ë“±ë¡" /> 
+		<input type="button" id="btn_delete" value="ì‚­ì œ" />
 	</p>
 	<hr>
 	<div id="div_searchArea" class="searchArea cb mgb10"
 		style="vertical-align: middle; min-width: 800px; padding-bottom: 0px; padding-top: 15px;">
-		<div>Á¶È¸±â°£: <input type="text" id="startdate">~<input type="text" id="enddate">  </div>
+		<div>ì¡°íšŒê¸°ê°„: <input type="text" id="startdate">~<input type="text" id="enddate">  </div>
 	</div>
 	
 	<div id="div_print">
 	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px; width: 100%;">
 	<tr>
-		<th width="10%">»ç¹ø</th>
-		<th width="20%">»ç¿ø¸í</th>
-		<th width="20%">ºÎ¼­</th>
-		<th width="10%">Á÷±Þ</th>
-		<th width="10%">±âº»±Þ</th>
-		<th width="10%">Áö±ÞÇÕ°è</th>
-		<th width="10%">°øÁ¦ÇÕ°è</th>
-		<th width="10%">Â÷ÀÎÁö±Þ¾×</th>
+		<th width="10%">ì‚¬ë²ˆ</th>
+		<th width="20%">ì‚¬ì›ëª…</th>
+		<th width="20%">ë¶€ì„œ</th>
+		<th width="10%">ì§ê¸‰</th>
+		<th width="10%">ê¸°ë³¸ê¸‰</th>
+		<th width="10%">ì§€ê¸‰í•©ê³„</th>
+		<th width="10%">ê³µì œí•©ê³„</th>
+		<th width="10%">ì°¨ì¸ì§€ê¸‰ì•¡</th>
 	</tr>
 	<tr>
 		<td colspan="8">
-		<b>µ¥ÀÌÅÍ¸¦ °Ë»öÇØÁÖ¼¼¿ä</b>
+		<b>ë°ì´í„°ë¥¼ ê²€ìƒ‰í•´ì£¼ì„¸ìš”</b>
 		</td>
 	</tr>
 	</table>

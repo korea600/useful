@@ -112,4 +112,9 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public List<CommuteVO> commute_Monthly_search_oneday(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList("manager.commute_Monthly_search_oneday",map);
 	}
+	
+	@Override
+	public List<EmpVO> emp_search(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList("manager.emp_search",map);
+	}
 }
