@@ -14,15 +14,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(function(){	
- 	   $( "#startdate" ).datepicker({
- 		  changeMonth: true, 
-          changeYear: true,
- 		  dateFormat: 'yy-mm-dd'
- 	   });
- 	   $( "#enddate" ).datepicker({
- 		  changeMonth: true, 
-          changeYear: true,
- 		  dateFormat: 'yy-mm-dd'
+ 	   $( "#btn_oneReg" ).click(function(){
+ 		  location.href="/useful/manager/salary_Insert";  
  	   });
 });
 </script> 
@@ -41,8 +34,22 @@ $(function(){
 	<hr>
 	<div id="div_searchArea" class="searchArea cb mgb10"
 		style="vertical-align: middle; min-width: 800px; padding-bottom: 0px; padding-top: 15px;">
-		<div>조회기간: <input type="text" id="startdate">~<input type="text" id="enddate">  </div>
-		<input type="button" id="btn_search" value="조회" />
+		<div>조회년월 : <select name="pay_year" id="pay_year" style='width:80px;' >
+ 												<%for(int i=2010;i<2019;i++){ %>
+												<option value="<%=i%>" ><%=i%>년</option>
+												<%} %> 
+											</select>
+					<select name="pay_month" id="pay_month" style='width:80px;' >
+ 						<%for(int i=1;i<13;i++){
+ 						if(i<10){%>
+ 						
+						<option value="0<%=i%>"><%=i%>월</option>
+						<%}else{ %>
+						<option value="<%=i%>"><%=i%>월</option>
+						<%} }%> 
+					</select>
+
+		</div>
 	</div>
 	
 	<div id="div_print">

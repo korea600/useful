@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 $(function(){	
- 	   $( "#pay_date" ).datepicker({
+ 	   $( "#paymentdate" ).datepicker({
  		  changeMonth: true, 
           changeYear: true,
  		  dateFormat: 'yy-mm-dd'
@@ -40,9 +40,24 @@ $(function(){
 				  },
 				  dataType: 'text',
 				  data: JSON.stringify({
-								
-					
-					  }),
+					 	basicpay: $("#basicpay").val(),
+					  	Paymentdate:$("#Paymentdate").val,
+					 	Paymentmonth: $("#pay_year option:selected").val()+$("#pay_month option:selected").val(),
+						basic: $("#basicpay").val(),
+						car : $("#car").val(),
+						meal: $("#meal").val(),
+						childcare: $("#childcare").val(),
+						otherpay: $("#otherpay").val(),
+					  	national: $("#national").text(),
+					  	health:$("#health").text(),
+					  	employment:$("#employment").text(),
+					  	care:$("#care").text(),
+				  		incometax:$("#incometax").text(),
+				  		localtax:$("#localtax").text(),
+				  		grossincome:$("#grossincome").text(),
+				  		deductions:$("#deductions").text(),
+				  		adjustedIncome:$("#adjustedIncome").text()
+					}),
 				  success: function(result){
 					  location.href="/useful/manager/salary_List";
 					  },
@@ -176,7 +191,7 @@ function call_select(empno,ename,dname,position){
 	<table>
 	 <tr>
 	 	<td>지급일</td>
-	 	<td><input id="pay_date" type="text"></td>
+	 	<td><input id="paymentdate" type="text"></td>
 	 	<td>귀속월</td> 
 	 	<td><select name="pay_year" id="pay_year" style='width:80px;' >
  												<%for(int i=2010;i<2019;i++){ %>
