@@ -25,7 +25,15 @@
 		<beans:property name="suffix" value=".jsp" />
 		<!-- <beans:property name="order" value="1"/> -->
 	</beans:bean>
-		
+	<!-- Interceptors -->
+	<beans:bean id="approvalInterceptor" class="kr.co.useful.approval.interceptor.ApprovalInterceptor"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/approval/**/*"/>
+			<beans:ref bean="approvalInterceptor"/>
+		</interceptor>
+	</interceptors>
+			
 	<!-- File upload -->
 	<beans:bean id='multipartResolver' class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="20971520"/>

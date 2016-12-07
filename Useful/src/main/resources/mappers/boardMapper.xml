@@ -38,7 +38,8 @@ select count(*) from tbl_baord;
 </select>
 
 <select id="listSearch" resultType="kr.co.useful.board.domain.BoardVO">
-select b.serial,b.title,b.writer,b.empno,b.content,b.regdate,b.viewcnt,c.replycnt from tbl_board b,(select serial,count(rno) replycnt from tbl_reply group by serial) c where b.serial=c.serial
+select serial, title, writer, empno, content, regdate, viewcnt, (select count(*) from tbl_reply where tbl_reply.serial=tbl_board.serial) replycnt
+      from tbl_board 
 <include refid="Search"/>
 order by serial desc
 </select>
@@ -48,6 +49,13 @@ SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt from tbl_board
 <include refid="Search"/>
 order by serial desc
 </select> -->
+
+<!-- <select id="listSearch2" resultType="kr.co.useful.board.domain.BoardVO">
+SELECT b.SERIAL,b.TITLE,b.WRITER,b.CONTENT,b.REGDATE,c.viewcnt from tbl_board
+<include refid="Search"/>
+order by serial desc
+</select> -->
+
 
 
 <select id="listcount" resultType="int">
@@ -73,15 +81,15 @@ select b.serial,b.title,b.writer,b.empno,b.content,b.regdate,b.viewcnt,c.replycn
 
 <if test="searchType!=null">
 <if test="searchType=='t'.toString()">
-and title like '%'||#{keyword}||'%'
+where title like '%'||#{keyword}||'%'
 </if>
 
 <if test="searchType=='w'.toString()">
-and writer like '%'||#{keyword}||'%'
+where writer like '%'||#{keyword}||'%'
 </if>
 
 <if test="searchType=='c'.toString()">
-and content like '%'||#{keyword}||'%'
+where content like '%'||#{keyword}||'%'
 </if>
 
 </if>

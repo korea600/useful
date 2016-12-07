@@ -40,7 +40,8 @@ select * from (select * from tbl_anonymity order by serial desc)where rownum bet
 </select>
 
 <select id="listSearch" resultType="kr.co.useful.board.domain.AnonymityVO">
-select serial,title,content,regdate,viewcnt from tbl_anonymity
+select serial,title,content,regdate,viewcnt,(select count(*) from tbl_anonymity_reply where tbl_anonymity_reply.serial=tbl_anonymity.serial) replycnt
+ from tbl_anonymity
 <include refid="Search"/>
 order by serial desc
 </select>

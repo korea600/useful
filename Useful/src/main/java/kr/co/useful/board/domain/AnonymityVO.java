@@ -10,6 +10,7 @@ public class AnonymityVO {
 	private String content;
 	private Date regdate;
 	private int viewcnt;
+	private int replycnt;
 	
 	public AnonymityVO() {
 		// TODO Auto-generated constructor stub
@@ -29,6 +30,14 @@ public class AnonymityVO {
 		this.content = content;
 		this.regdate = regdate;
 		this.viewcnt = viewcnt;
+	}
+
+	public int getReplycnt() {
+		return replycnt;
+	}
+
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
 	}
 
 	public int getSerial() {

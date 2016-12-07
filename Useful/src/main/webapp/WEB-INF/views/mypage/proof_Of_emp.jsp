@@ -5,6 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>증명서관리</title>
+<%@include file="../login/Main.jsp" %>
+
+<!-- Bootstrap Core CSS -->
+    <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
  <script type="text/javascript"
@@ -57,11 +73,11 @@ function pop(result){
 	});
 });
 </script>
-</head>
+</head><%@include file="../login/Sidebar.jsp" %>
 <body>
-<header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header> 
+
 <div>
-	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include>  
+	  
 </div>
 	<div id="page-wrapper">
 		<br>
@@ -77,4 +93,16 @@ function pop(result){
 	<div id="div_print" ></div>
 </div>
 </body>
+
+ <!-- jQuery -->
+    <script src="../resources/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../resources/dist/js/sb-admin-2.js"></script>
 </html>
