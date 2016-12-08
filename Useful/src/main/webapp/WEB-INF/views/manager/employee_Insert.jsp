@@ -97,7 +97,7 @@ th {
 		</colgroup>
 		<tbody style="">
 			<tr>
-				<th>사원코드*</th>
+				<th>사원코드</th>
 				<td><input id="emp_no" name="emp_no" class="text" type="text"
 					maxlength="20" /> 
 
@@ -106,22 +106,22 @@ th {
 				</td>
 			</tr>
 			<tr>
-				<th>성명 *</th>
+				<th>성명 </th>
 				<td><input id="emp_nm" name="emp_nm" class="text" type="text"
 					 maxlength="15" /></td>
 			</tr>
 			<tr>
-				<th>비밀번호*</th>
+				<th>비밀번호</th>
 				<td><input id="emp_pw" name="emp_pw" class="text"
 					type="password" maxlength="20" /></td>
 			</tr>
 			<tr>
-				<th>주민번호 *</th>
+				<th>주민번호 </th>
 				<td><input id="ssn" name="ssn" class="text" type="text"
 					 maxlength="14" /></td>
 			</tr>
 			<tr>
-				<th>부서명*</th>
+				<th>부서명</th>
 				<td><select id="dept" name="dept" class="select"
 					style="width: 200px;">
 						<option value="" selected="selected">-- 선택 --</option>
@@ -133,7 +133,7 @@ th {
 				</select></td>
 			</tr>
 			<tr>
-				<th>직책 *</th>
+				<th>직책 </th>
 				<td><select id="position" name="position" class="select"
 					style="width: 200px;">
 						<option value="" selected="selected">-- 선택 --</option>
@@ -158,7 +158,7 @@ th {
 					maxlength="50" /></td>
 			</tr>
 			<tr>
-				<th>핸드폰 *</th>
+				<th>핸드폰 </th>
 				<td><input id="mobile" name="mobile" class="text"
 					style="width: 200px;" type="text"
 					maxlength="20" />&nbsp;&nbsp;</td>
