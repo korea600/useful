@@ -84,5 +84,15 @@ private SqlSession sqlsession;
 		return sqlsession.selectOne("board.listSearch2");
 	}
 
+	@Override
+	public void fileupload(String originalfileName, String saveFileName, long fileSize) throws Exception {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("originalfileName", originalfileName);
+		map.put("saveFileName", saveFileName);
+		map.put("fileSize", fileSize);
+		sqlsession.insert("board.upload", map);
+		
+	}
+
 
 }

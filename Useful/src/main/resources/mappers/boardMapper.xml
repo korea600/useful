@@ -7,7 +7,9 @@ insert into tbl_board (serial,title,writer,empno,content)
 values (tbl_board_seq.nextval,#{title},#{writer},#{empno},#{content})
 </insert>
 
-
+<insert id="upload">
+insert into tbl_file (filenum,oname,filename,filesize) values(tbl_file_seq.nextval,#{originalfileName},#{saveFileName},#{fileSize})
+</insert>
 
 <select id="read" resultType="kr.co.useful.board.domain.BoardVO">
 select serial,title,writer,empno,content,regdate,viewcnt from tbl_board where serial=#{serial}

@@ -85,4 +85,10 @@ private BoardDAO dao;
 		return dao.reply_count();
 	}
 
+	@Override
+	public void fileupload(String originalfileName, String saveFileName, long fileSize) throws Exception {
+		dao.fileupload(originalfileName, saveFileName, fileSize);
+		
+	}
+
 }

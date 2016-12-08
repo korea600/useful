@@ -2,6 +2,8 @@ package kr.co.useful.board.domain;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 //사내게시판
 public class BoardVO {
 private int serial;
@@ -15,6 +17,8 @@ private int replycnt;
 private String original_file_name;
 private String stored_file_name;
 private int file_size;
+
+MultipartFile file;
 
 /*public BoardVO() {
 	// TODO Auto-generated constructor stub
@@ -32,6 +36,38 @@ public BoardVO(int serial, String title, String writer, String content, Date reg
 
 public int getSerial() {
 	return serial;
+}
+
+public String getOriginal_file_name() {
+	return original_file_name;
+}
+
+public void setOriginal_file_name(String original_file_name) {
+	this.original_file_name = original_file_name;
+}
+
+public String getStored_file_name() {
+	return stored_file_name;
+}
+
+public void setStored_file_name(String stored_file_name) {
+	this.stored_file_name = stored_file_name;
+}
+
+public int getFile_size() {
+	return file_size;
+}
+
+public void setFile_size(int file_size) {
+	this.file_size = file_size;
+}
+
+public MultipartFile getFile() {
+	return file;
+}
+
+public void setFile(MultipartFile file) {
+	this.file = file;
 }
 
 public int getReplycnt() {

@@ -18,4 +18,5 @@ public interface BoardDAO {
 	public int listFindCount(SearchCriteria cri)throws Exception; //검색어조회수
 	public List<BoardVO> select_cut_list()throws Exception;//리스트 컷
 	public int reply_count()throws Exception;
+	public void fileupload(String originalfileName, String saveFileName, long fileSize)throws Exception;
 }

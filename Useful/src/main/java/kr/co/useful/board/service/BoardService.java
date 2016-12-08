@@ -17,4 +17,5 @@ public interface BoardService {
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 	public List<BoardVO> select_cut_list()throws Exception;
 	public int reply_cut()throws Exception;
+	public void fileupload(String originalfileName, String saveFileName, long fileSize)throws Exception;
 }

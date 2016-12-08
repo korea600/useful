@@ -39,7 +39,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" method="post" action="createPage" enctype="multipart/form-data">
+                                    <form role="form" method="post" action="createPage">
                                         <div class="form-group">
                                             <label>글 제목</label>
                                             <input class="form-control" type="text" id="title" placeholder="글 제목을 입력해주세요" name="title">
@@ -57,12 +57,10 @@
                                         <div class="form-group">
                                         
                                         </div>
-                                        <!-- <form method="post" enctype="multipart/form-data" id="frm" name="frm"> -->
                                         <div class="form-group">
                                             <label>파일 올리기</label>
-                                            <input type="file" id="file" name="file">
+                                            <input type="file">
                                         </div>
-                                        <!-- </form> -->
                                         <input type="hidden" name="page" value="${pageMaker.cri.page }">
                                         <input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum }">
                                        

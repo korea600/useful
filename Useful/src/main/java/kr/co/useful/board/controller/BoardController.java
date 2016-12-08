@@ -1,5 +1,6 @@
 package kr.co.useful.board.controller;
 
+import java.io.File;
 import java.util.*;
 
 import javax.inject.*;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.*;
 
 import kr.co.useful.board.domain.*;
@@ -52,7 +54,48 @@ public class BoardController {
 	return "redirect:/board/listPage";
 	}*/
 	@RequestMapping(value="/createPage",method=RequestMethod.POST)
-	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,MultipartFile file,HttpServletRequest servletRequest)throws Exception{
+	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,MultipartHttpServletRequest multipartHttpServletRequest,@RequestParam("file") MultipartFile file)throws Exception{
+	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
+	//vo.setOriginal_file_name(file.getOriginalFilename()); //멀티파일로 오리지널 파일이름받음
+	//String fname=file.getOriginalFilename();
+	//System.out.println("읽어드린 파일명 =="+fname);
+	//File f=new File("../upload"+fname);
+	//file.transferTo(f);
+	String realfolder="../upload/"; //파일저장될위치
+	File dir=new File(realfolder);
+	if(!dir.isDirectory()){
+		dir.mkdirs();
+	}
+	List<MultipartFile> mf=multipartHttpServletRequest.getFiles("file");
+	if(mf.size()==1&&mf.get(0).getOriginalFilename().equals("")){
+		
+	}else{
+		for(int i=0;i<mf.size();i++){
+			String genId=UUID.randomUUID().toString(); //파일중복명 처리해준다고하는데 UUID가 먼 역활인지 아직모름;;
+			String originalfileName=mf.get(i).getOriginalFilename(); //본래 오리지날 파일명가져옴
+			String saveFileName=genId+"."+originalfileName; //저장되는 파일명
+			String savePath=realfolder+saveFileName; //저장될 파일경로
+			long fileSize=mf.get(i).getSize();//파일사이즈구함
+			mf.get(i).transferTo(new File(savePath)); //파일저장
+			System.out.println("genid 값="+genId);
+			System.out.println("originalfilename 값="+originalfileName);
+			System.out.println("saveFileName 값 = "+saveFileName);
+			System.out.println(" savePath = "+savePath);
+			service.fileupload(originalfileName, saveFileName, fileSize);
+		}
+	}
+	
+	
+	vo.setEmpno(empno);
+	vo.setWriter(writer);
+	service.insert(vo);
+	att.addFlashAttribute("message", "SUCCESS");
+	return "redirect:/board/listPage";
+	}
+	/*백업본
+	@RequestMapping(value="/createPage",method=RequestMethod.POST)
+	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,HttpServletRequest servletRequest,@RequestParam("file") MultipartFile file)throws Exception{
 	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
 	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 	vo.setEmpno(empno);
@@ -60,7 +103,7 @@ public class BoardController {
 	service.insert(vo);
 	att.addFlashAttribute("message", "SUCCESS");
 	return "redirect:/board/listPage";
-	}
+	}*/
 	
 	@RequestMapping("/listPage")
 	public void listPage(SearchCriteria cri,Model model)throws Exception {
