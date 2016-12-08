@@ -155,7 +155,7 @@
                             <a href="#"><i class="fa fa-calendar-o fa-fw"></i> 회의실예약<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/useful/meetingroom/booking">예약하기</a>
+                                    <a href="/useful/meetingroom/meetingroom">예약하기</a>
                                 </li>
                                 <li>
                                     <a href="#">예약내역</a>
