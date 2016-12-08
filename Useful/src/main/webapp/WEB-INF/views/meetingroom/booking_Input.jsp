@@ -30,10 +30,6 @@
 <script>
 
 
-$(function(){
-	document.getElementById('txtdate1').value=opener.document.getElementById('ymd').value;
-})
-
 function cal(id, date) {
 	var cal = document.getElementById(id);
 	
@@ -154,7 +150,7 @@ function closeCal(y,m,d){
 
       function create(){
     	 $.ajax({
-    		 url:'/useful/schedule/insert',
+    		 url:'/useful/meetingroom/booking',
     		 type:'post',
     		 data:{
     			 empno:$('[name=empno]').val(),
@@ -179,6 +175,18 @@ function closeCal(y,m,d){
       function clean(){
     	  window.close();
       }
+      
+      var txt;
+
+      function openCal(ch){
+      	 txt=ch;
+      	  document.getElementById("cal").style.display = "block";
+      	  document.getElementById("cal").style.left = event.clientX+"px";
+      	  document.getElementById("cal").style.top = event.clientY+"px";
+      	  
+      	  cal('cal');   	  
+      }  
+
 
      
       
@@ -214,26 +222,21 @@ function closeCal(y,m,d){
 
 				</tr>
 				<tr>
-				<td bgcolor="#dae6f4" align="center">시작날짜</td>
-				<td> <input type="text" name="begin" readonly="readonly" id="txtdate1" value=""> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
+				<td bgcolor="#dae6f4" align="center">날짜</td>
+				<td><input type="text" name="begin" readonly="readonly" id="txtdate1" value=""> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
 				<tr>
-				<td  bgcolor="#dae6f4"  align="center">마감날짜</td>
-				<td> <input type="text" name="end" readonly="readonly" id="txtdate2" value=""> <input type="button" value="달력" onclick="openCal(2)"></td></tr>
-				<tr>
-				<td bgcolor="#dae6f4"  align="center">시간</td>
+				<td bgcolor="#dae6f4"  align="center">예약시간</td>
 				<td>
 				    <select name="begintime">
-				    <option value="0">시작</option>
-				  <% for(int i=6;i<23; i++){%>
+				  <% for(int i=9;i<22; i++){%>
 				    <option value="<%=i%>"><%=i%></option>
 				  <% } %>
-                    </select> 시 <%-- ~
+                    </select> 시  ~
                     <select name="serchType">
-				    <option value="끝">끝</option>
-				    <% for(int i=9;i<23; i++){%>
+				    <% for(int i=10;i<23; i++){%>
 				    <option value="<%=i%>"><%=i%></option>
 				  <% } %>
-                    </select> 시 --%>
+                    </select> 시
 				 </td></tr>
 
 				<tr>
