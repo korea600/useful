@@ -56,37 +56,46 @@
 <body>
 <div id='page-wrapper'>
 	<form method="post" enctype="multipart/form-data"><!-- enctype 설정은 submit 직전에 지정됨 (in jQuery) -->
-	<table border='1' width='35%'>
+	<div class='row' style="width: 80%">
+	<div class='col-lg-6' style="width: 80%">
+	<div class='panel panel-default'>
+	<div class='panel-body'>
+		<div class='table-responsive'>
+		<table class='table table-striped table-bordered table-hover'>
 	<tr>
-		<td width='20%' align='center'>발신자</td>
+		<td style="text-align: center; width:15%">발신자</td>
 		<td>
-			<input type='text' name='writer_name' size='80' value='${vo.writer_name}' readonly>
+			<input type='text' class='form-control' name='writer_name' size='80' value='${vo.writer_name}' readonly>
 			<input type='hidden' name='writer' size='80' value='${vo.writer}'>
 			<input type='hidden' name='no' value='${vo.no}'>
 			<input type='hidden' name='next_approval' value='${vo.next_approval}'>
 		</td>
 	</tr>
 	<tr>
-	<td width='20%' align='center'>수신처</td>
+		<td style="text-align: center;">수신처</td>
 		<td>
-			<input type='text' name='receiver_name' value='${vo.receiver_dname }' readonly>
+			<input type='text' class='form-control' name='receiver_name' value='${vo.receiver_dname }' readonly>
 			<input type='hidden' name='receiver' value='${vo.receiver}'>
 		</td>
 	</tr>
-	<tr><td width='20%' align='center'>제목</td><td><input type='text' name='title' size='80' value="${vo.title}"></td></tr>
-	<tr><td colspan="2" align='center'><textarea name='content' cols="65" rows="20">${vo.content}</textarea></td></tr>
+	<tr><td style="text-align: center;">제목</td><td><input  class='form-control' type='text' name='title' size='80' value="${vo.title}"></td></tr>
+	<tr><td colspan="2"><textarea class='form-control' name='content' cols="65" rows="20">${vo.content}</textarea></td></tr>
 	<tr>
-		<td width='20%' align='center'>기존첨부파일</td>
+		<td style="text-align: center;">기존첨부파일</td>
 		<td>
 			<c:if test="${vo.filename==null}">첨부된 파일이 없습니다.</c:if>
 			<c:if test="${vo.filename!=null}"><a href='${pageContext.request.contextPath}/approval/filedownload?filename=${vo.filename}'>${vo.filename}</a></c:if>
 		</td>		
-	<tr><td width='20%' align='center'>신규첨부파일</td><td><input type="file" name='file' size='63'></td></tr>
+	<tr><td style="text-align: center;">신규첨부파일</td><td><input type="file" name='file' style="width: 100%"></td></tr>
 	</table>
-	<input type='hidden' name='oldfilename' value='${vo.filename}'>
-	<input type='button' name='modify' value='수정'>
-	<input type='button' name='delete' value='삭제'>
-	<input type='button' name='cancel' value='뒤로' onclick='history.back()'>
+	<div align="center">
+		<input type='hidden' name='oldfilename' value='${vo.filename}'>
+		<input type='button' class='btn btn-warning' name='modify' value='수정'>
+		<input type='button' class='btn btn-warning' name='delete' value='삭제'>
+		<input type='button' class='btn btn-warning' name='cancel' value='뒤로' onclick='history.back()'>
+	</div>
+	</div>
+	</div></div></div></div>
 	</form>
 </div>
 </body>

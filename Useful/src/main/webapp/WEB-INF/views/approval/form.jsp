@@ -7,9 +7,6 @@
 <title>새 결재문서 작성</title>
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
-<style type="text/css">
-tr{height: 30px}
-</style>
 <!-- jQuery -->
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -87,38 +84,43 @@ tr{height: 30px}
 </head>
 <body>
 <!-- <form name='frm' method="post" > -->
-<form name='frm' method="post" enctype='multipart/form-data'>
 <div id='page-wrapper'>
-	<table border='1' width='30%'>
-	<tr>
-		<td align='center'>발신자</td>
-		<td>
-			<input type='text' name='writer_name' size='65' value='${LoginUser.ename}' readonly>
-			<input type='hidden' name='writer' size='65' value='${LoginUser.empno}'>
-		</td>
-	</tr>
-	<tr>
-	<td align='center'>수신처</td>
-		<td>
-			<select id='target_select' onchange="show_receiver_select()">
-				<option value='inner'>내부결재</option>
-				<option value='outer'>타부서</option>
-				<option value='all'>전체부서</option>
-			</select>
-			<select name='receiver' style="display: none;">
-				<option value='${LoginUser.deptno}'>
-			</select>
-		</td>
-	</tr>
-	<tr><td align='center'>제목</td><td><input type='text' name='title' size='65'></td></tr>
-	<tr><td colspan="2"  align='center'><textarea name='content' cols="60" rows="20"></textarea></td></tr>
-	<tr><td align='center'>첨부파일</td><td><input type="file" name='file' size='55'></td></tr>
-	<tr><td colspan="2" align='center'>
-		<input type='button' name='insert' value='작성'>
-		<input type='button' name='cancel' value='취소' onclick='history.back()'>
-	</td></tr>
-	</table>
-</div>
+<form name='frm' method="post" enctype='multipart/form-data'>
+	<div class='row' style="width: 80%">
+	<div class='col-lg-6' style="width: 80%">
+	<div class='panel panel-default'>
+	<div class='panel-body'>
+		<div class='table-responsive'>
+		<table class='table table-striped table-bordered table-hover'>
+		<tr>
+			<td align='center'>발신자</td>
+			<td>
+				<input type='text' class='form-control' name='writer_name' size='65' value='${LoginUser.ename}' readonly>
+				<input type='hidden' class='form-control' name='writer' size='65' value='${LoginUser.empno}'>
+			</td>
+		</tr>
+		<tr>
+		<td align='center'>수신처</td>
+			<td>
+				<select id='target_select' class='form-control' style="width: 20%" onchange="show_receiver_select()">
+					<option value='inner'>내부결재</option>
+					<option value='outer'>타부서</option>
+					<option value='all'>전체부서</option>
+				</select>
+				<select name='receiver' class='form-control' style="width:20%;display: none;">
+					<option value='${LoginUser.deptno}'>
+				</select>
+			</td>
+		</tr>
+		<tr><td align='center'>제목</td><td><input type='text' class='form-control' name='title' size='65'></td></tr>
+		<tr><td colspan="2"><textarea name='content' class='form-control' cols="60" rows="20"></textarea></td></tr>
+		<tr><td align='center'>첨부파일</td><td><input type="file" name='file' style="width: 100%"></td></tr>
+		<tr><td colspan="2" align='center'>
+			<input type='button' class='btn btn-warning' name='insert' value='작성'>
+			<input type='button' class='btn btn-warning' name='cancel' value='취소' onclick='history.back()'>
+		</td></tr>
+		</table>
 </form>
+</div>
 </body>
 </html>

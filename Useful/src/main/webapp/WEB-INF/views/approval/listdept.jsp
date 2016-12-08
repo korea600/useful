@@ -10,7 +10,7 @@
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <style type="text/css">
-th{text-align: center; width: 150px}
+th{text-align: center}
 td{text-align: center}
 </style>
 <!-- jQuery -->
@@ -105,52 +105,65 @@ td{text-align: center}
 </script>
 </head>
 <body>
-<div class="col-lg-12" style="margin-right: 10%">
-	<h1 class="page-header" style="text-align: right;">수신 문서</h1>
-	
-	<div align="right" style='margin-right: 10%'>
-		<select name='searchBy' onchange="selectSearchType()">
-			<option value=''>선택</option>
-			<option value='receiver_name'>수신부서 </option>
-			<option value='writer_dname'>발신부서</option>
-			<option value='writer_name'>작성자</option>
-		</select>
-		<select name='selectReceiver_name' style="display: none;">
-		</select>
-		<select name='selectWriter_dname' style="display: none;">
-		</select>
-		<input type='text' name='keyword' style="display: none;">
-		<input type='button' id='search' value='검색' onclick='search()'>
+<div id='page-wrapper'>
+	<div class='row'>
+		<div class="col-lg-12">
+			<h1 class="page-header">수신 문서</h1>
+		</div>
+	</div>	
+	<div class='row'>
+		<div class="col-lg-12">	
+			<div class='panel panel-default'>
+		
+				<div class='panel-heading'>
+					<select name='searchBy' class='form-control-static' style="width: 10%" onchange="selectSearchType()">
+						<option value=''>선택</option>
+						<option value='receiver_name'>수신부서 </option>
+						<option value='writer_dname'>발신부서</option>
+						<option value='writer_name'>작성자</option>
+					</select>
+					<select name='selectReceiver_name' class='form-control-static' style="width: 10%;display: none;"></select>
+					<select name='selectWriter_dname' class='form-control-static' style="width: 10%;display: none;"></select>
+					<input type='text' name='keyword' class='form-control-static' style="width: 15%;display: none;">
+					<input type='button' id='search' class='btn btn-warning' value='검색' onclick='search()'>			
+				</div>
+				<div class='panel-body'>
+					<div class='table-responsive'>
+						<table class='table table-striped table-bordered table-hover'>
+							<tr><th style="width: 13%">문서번호</th><th style="width: 13%">상태</th><th style="width: 13%">작성자</th><th style="width: 13%">발신부서</th><th style="width: 13%">수신처</th><th style="width: 22%">제목</th><th style="width: 13%">작성일자</th></tr>
+							<c:if test="${list.size()==0}">
+								<tr><td colspan="6">문서가 없습니다.</td></tr>
+							</c:if>
+							<c:if test="${list.size()>0}">
+								<c:forEach items="${list}" var='i'>
+									<tr><td>${i.no}</td><td>${i.status}</td><td>${i.writer_name}</td><td>${i.writer_dname }</td><td>${i.receiver_dname}</td><td><a href='/useful/approval/read/${i.no}'>${i.title}</a></td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td></tr>
+								</c:forEach>
+							</c:if>
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div id='page-wrapper'>
-		<table border="1">
-		<tr><th>문서번호</th><th>상태</th><th>작성자</th><th>발신부서</th><th>수신처</th><th>제목</th><th>작성일자</th></tr>
-		<c:if test="${list.size()==0}">
-		<tr><td colspan="6">문서가 없습니다.</td></tr>
-		</c:if>
-		<c:if test="${list.size()>0}">
-		<c:forEach items="${list}" var='i'>
-			<tr>
-				<td>${i.no}</td><td>${i.status}</td><td>${i.writer_name}</td><td>${i.writer_dname }</td><td>${i.receiver_dname}</td><td><a href='/useful/approval/read/${i.no}'>${i.title}</a></td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td>
-			</tr>
-		</c:forEach>
-		</c:if>
-		<tr><td colspan="7" align="center">
-			<c:if test="${pagemaker.prev}">
-				<a href="listdept${pagemaker.makeSearch(pagemaker.startPage-1)}">이전</a>
-			</c:if>
-			<c:forEach begin='${pagemaker.startPage}' end="${pagemaker.endPage }" var='i'>
-				<c:if test="${pagemaker.cri.page==i}"> ${i}</c:if>
-				<c:if test="${pagemaker.cri.page!=i}">
-					<a href="listdept${pagemaker.makeSearch(i)}"> ${i} </a>
+	<div class='row'>
+
+		<div class='dataTables_paginate paging_simple_numbers' id='dataTables-example_paginate' style="text-align: center;">
+			<ul class='pagination'>
+				<c:if test="${pagemaker.prev}">
+					<li class='paginate_button' id='dataTables-example_previous'><a href="listdept${pagemaker.makeSearch(pagemaker.startPage-1)}">이전</a></li>
 				</c:if>
-			</c:forEach>
-			<c:if test="${pagemaker.next && pagemaker.endPage>0 }">
-				<a href="listdept${pagemaker.makeSearch(pagemaker.endPage+1)}">다음</a>
-			</c:if>
-		</td></tr>
-		</table>
+				<c:forEach begin='${pagemaker.startPage}' end="${pagemaker.endPage }" var='i'>
+					<c:if test="${pagemaker.cri.page==i}"><li class='paginate_button active'><a href='#'>${i}</a></li></c:if>
+					<c:if test="${pagemaker.cri.page!=i}"><li class='paginate_button'><a href="listdept${pagemaker.makeSearch(i)}"> ${i} </a></li></c:if>
+				</c:forEach>
+				<c:if test="${pagemaker.next && pagemaker.endPage>0 }">
+					<li class='paginate_button' id='dataTables-example_next'><a href="listdept${pagemaker.makeSearch(pagemaker.endPage+1)}">다음</a></li>
+				</c:if>				
+			</ul>
+		</div>
 	</div>
-</div>	
+</div>
+
 </body>
 </html>
