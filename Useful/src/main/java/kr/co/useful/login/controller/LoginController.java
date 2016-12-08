@@ -114,14 +114,14 @@ public class LoginController {
 	@RequestMapping("/Mainview")
 	public String main_view(HttpSession session)throws Exception{
 		int empno = ((EmpVO)session.getAttribute("LoginUser")).getEmpno();
-		String mynote = ((EmpVO)session.getAttribute("LoginUser")).getEname();
+		int mynoteid = ((EmpVO)session.getAttribute("LoginUser")).getEmpno();
 		
 		List<NoticeVO> list = noticeService.list_cut();
 		List<AnonymityVO> list2 = anoService.list_cot();
 		List<BoardVO> list3 = boardService.select_cut_list();
 		List<ApprovalVO> list4 = appService.listMyTurn_forMain(empno); //내가 결재 차례인 문서
 		List<ApprovalVO> list5 = appService.listMine_forMain(empno); //내가 작성한 문서
-		List<RecipientVO> list6 = reService.recipient_note_list(mynote);
+		List<RecipientVO> list6 = reService.recipient_note_list(mynoteid);
 		
 		
 		

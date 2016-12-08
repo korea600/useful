@@ -102,7 +102,7 @@
               </c:forEach>
          
               </table>	
-            </div><!--/.col-xs-6.col-lg-4-->
+            </div><!--/.col-xs-6.col-lg-4--> 
 		
 		
 		
