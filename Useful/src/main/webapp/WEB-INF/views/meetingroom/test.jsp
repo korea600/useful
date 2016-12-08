@@ -72,37 +72,18 @@ week_calandar(0);
 } 
 
 
-
-
-var insertWin;
-//등록창
- function input(){
- 	
-  insertWin=window.open('booking_Input','input','toolbar=no,location=no,status=no'
- 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500');
-  
- }
- 
- 
- //부모창 리로드
- function reloadWin(){
- 	 location.reload();
- 	 insertWin.close();
- }
- 
-
 </script>
 </head>
 <body>
 <center>
-<p>
 <input type="button" onclick="week_calandar(-1)" value="◀">
 <input type="button" value="today" onclick="set_day()" /> 
 <input type="button" value="▶" onclick="week_calandar(1)" /> 
-</p>
+
 
 
 <p id="calandar"></p> 
+
 
 <p><input type="button" onclick="reservation()" value="예약"></p>
 </center>
