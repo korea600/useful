@@ -35,9 +35,7 @@
 
 <body>
 
-    <div id="wrapper">
-
-        <!-- Navigation -->
+   <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -46,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/useful/login/Mainview">Useful Logo</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/login/Mainview">Useful Logo</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -58,47 +56,19 @@
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
                         <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
+                            <c:forEach items="${note }" var="note2">
+							<div onclick="location.href='/useful/note/riciReadPage?serial=${note2.serial }'" style="cursor: pointer;">
+								<b>${note2.reciid}</b> 
+								<span class="pull-right text-muted">
+									<em> <fmt:formatDate value="${note2.recipientdate }" pattern="yyyy-MM-dd" /></em>
+								</span>
+								<div>${note2.recontent }</div>
+							</div>
+								<li class="divider"></li>
+							</c:forEach>
+					<li><a class="text-center" href="/useful/note/noteMyPage"> 
+					<strong>Read All Messages</strong> <i class="fa fa-angle-right"></i>
+					</a></li></li>
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>
@@ -110,12 +80,19 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../mypage/Pass_Check?empno=${LoginUser.empno }"><i class="fa fa-user fa-fw"></i> Mypage</a>
+                        <li><a href="${pageContext.request.contextPath}/mypage/Pass_Check?empno=${LoginUser.empno }"><i class="fa fa-user fa-fw"></i> Mypage</a>
                         </li>
                          <li>
-                            <a href="../organization/view">
+                            <a href="${pageContext.request.contextPath}/organization/view">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> 조직도
+                                    <i class="fa fa-sitemap fa-fw"></i> 조직도
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/useful/mypage/proof_Of_emp">
+                                <div>
+                                    <i class="fa fa-file-o fa-fw"></i> 재직증명서
                                 </div>
                             </a>
                         </li>
@@ -131,20 +108,20 @@
 
    
     <!-- jQuery -->
-
+ 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script> -->
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- <script src="../resources/vendor/metisMenu/metisMenu.min.js"></script> -->
 
     <!-- Morris Charts JavaScript -->
-    <script src="../resources/vendor/raphael/raphael.min.js"></script>
+   <!--  <script src="../resources/vendor/raphael/raphael.min.js"></script>
     <script src="../resources/vendor/morrisjs/morris.min.js"></script>
-    <script src="../resources/data/morris-data.js"></script>
+    <script src="../resources/data/morris-data.js"></script> -->
 
     <!-- Custom Theme JavaScript -->
-    <script src="../resources/dist/js/sb-admin-2.js"></script>
+    <!-- <script src="../resources/dist/js/sb-admin-2.js"></script> -->
 
 </body>
 </html>

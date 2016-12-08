@@ -10,25 +10,15 @@
 th {
 	background-color: #CCC;
 	text-align: center;
-}
+}	
 
 
 </style>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
-<%-- <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> --%>
- <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>   
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.min.js"></script> 
 <script type="text/javascript">
 function call_Update(dname,ename,login,login_Time,logout,logout_Time,checked,serial){
 	
@@ -142,10 +132,10 @@ function div_load(){
  
 </script>
 </head>
-<header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header>
+<header><%@include file="/WEB-INF/views/login/Main.jsp"%></header>
 <body>
 <div>
-	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include> 
+	<jsp:include page="/WEB-INF/views/login/Sidebar.jsp"></jsp:include> 
 </div>
 <!-- commute_Employee.jsp -->
 <div id="page-wrapper">

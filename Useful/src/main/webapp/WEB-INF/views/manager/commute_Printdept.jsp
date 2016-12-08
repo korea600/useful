@@ -5,17 +5,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
-<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px; width: 100%;">
+<div class="col-lg-12">
+ <div class="panel-heading">
+                     
+</div>
+
+     <div class="panel-body">
+     
+     <div class="table-responsive">
+     <table class="table table-striped table-bordered table-hover">
+     <thead>
 	<tr>
-		<th width="20%">부서2</th>
+		<th width="20%">부서</th>
 		<th width="20%">사원</th>
 		<th width="10%">출근</th>
 		<th width="10%">지각</th>
-		<th width="10%">결근</th>
+		<th width="10%">결근</th> 	
 		<th width="10%">휴가</th>
 		<th width="10%">출장</th>
 		<th width="10%">조퇴</th>
 	</tr>
+</thead>
+ <tbody>
 <c:forEach items="${commute }" var="print" >
 		<tr>
 			<td>${print.dname }</td>
@@ -28,6 +39,10 @@
 			<td>${print.earlyLeave }</td>
 		</tr>
 		</c:forEach>
-		</table>
+ </tbody>
+</table>
+</div>
+</div>
+</div>
 </body>
 </html>

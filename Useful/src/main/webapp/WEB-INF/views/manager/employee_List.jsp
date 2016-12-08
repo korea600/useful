@@ -9,11 +9,11 @@
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
- <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>  
 	
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script> 
+<%-- <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> --%>
  <script type="text/javascript" 
 	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript"
@@ -113,8 +113,8 @@
 	});
 </script>
 </head>
-<body>
  <header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header> 
+<body>
 <div>
 	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include>  
 </div>
