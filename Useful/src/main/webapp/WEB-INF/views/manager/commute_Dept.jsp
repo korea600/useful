@@ -9,8 +9,6 @@
 th {
 	background-color: #CCC;
 }	
-
-
 </style>
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
@@ -77,7 +75,7 @@ th {
                 </div>
             </div>
 		<div>
-			<table style="width: 80%; border-color: black;">
+			<table style="width: 80%; ">
 				<tr>
 					<th align="center">부서</th>
 					<td><select id="dept" class="form-control" onChange='searchDate()'>
@@ -94,7 +92,7 @@ th {
 		</div>
 		<div class="form-group">
 			<select name="search_year" id="search_year" style='width: 80px;'
-				onChange='searchDate()' class="form-control"	>
+				onChange='searchDate()' class="form-control-static"	>
 				<%
 					for (int i = 2010; i < 2019; i++) {
 				%>
@@ -104,7 +102,7 @@ th {
 					}
 				%>
 			</select> <select name="search_month" id="search_month" style='width: 80px;'
-				onChange='searchDate()' class="form-control">
+				onChange='searchDate()' class="form-control-static">
 				<%
 					for (int i = 1; i < 13; i++) {
 						if (i < 10) {
@@ -124,12 +122,14 @@ th {
 			</select>
 		</div>
 		<div id="div_print">
+		<!-- /.panel -->
+         <div class="panel panel-default">
 			<div class="panel-heading"></div>
 
 			<div class="panel-body">
 
 				<div class="table-responsive">
-					<table class="table table-striped table-bordered table-hover">
+					<table class="table table-striped table-bordered table-hover" style="width: 100%;">
 						<thead>
 							<tr>
 								<th width="20%">부서</th>
@@ -150,6 +150,7 @@ th {
 					</table>
 				</div>
 			</div>
+		</div>
 		</div>
 
 	</div>

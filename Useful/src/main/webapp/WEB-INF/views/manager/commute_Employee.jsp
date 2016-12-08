@@ -132,10 +132,10 @@ function div_load(){
  
 </script>
 </head>
-<header><%@include file="/WEB-INF/views/login/Main.jsp"%></header>
+<header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header>
 <body>
 <div>
-	<jsp:include page="/WEB-INF/views/login/Sidebar.jsp"></jsp:include> 
+	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include> 
 </div>
 <!-- commute_Employee.jsp -->
 <div id="page-wrapper">

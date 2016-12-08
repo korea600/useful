@@ -5,12 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>급여대장조회</title>
+<style type="text/css">
+th {
+	background-color: #CCC;
+}	
+</style>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
  <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(function(){	
@@ -85,11 +88,12 @@ $(function(){
 	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include>  
 </div>
 	<div id="page-wrapper">
-	<p>
-		<font size="5" style="font-style: inherit;">급여대장조회</font>
+	            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">급여대장조회</h1>
+                </div>
+            </div>
 		<input type="button" id="btn_oneReg" value="급여등록" /> 
-	</p>
-	<hr>
 	<div id="div_searchArea" class="searchArea cb mgb10"
 		style="vertical-align: middle; min-width: 800px; padding-bottom: 0px; padding-top: 15px;">
 		<table style="border-color: black;">

@@ -5,9 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
-<div class="col-lg-12">
  <div class="panel-heading">
-                     
 </div>
 
      <div class="panel-body">
@@ -41,7 +39,6 @@
 		</c:forEach>
  </tbody>
 </table>
-</div>
 </div>
 </div>
 </body>
