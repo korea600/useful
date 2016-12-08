@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.*;
 
 import kr.co.useful.board.domain.*;
@@ -51,7 +52,7 @@ public class BoardController {
 	return "redirect:/board/listPage";
 	}*/
 	@RequestMapping(value="/createPage",method=RequestMethod.POST)
-	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,HttpServletRequest httpServletRequest)throws Exception{
+	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,MultipartFile file,HttpServletRequest servletRequest)throws Exception{
 	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
 	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 	vo.setEmpno(empno);

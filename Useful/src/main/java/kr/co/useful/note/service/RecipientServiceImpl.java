@@ -48,6 +48,7 @@ private RecipientDAO redao;
 
 	@Override
 	public List<RecipientVO> search_Recipient_note(SearchCriteria cri, int mynoteid) throws Exception {
+		//System.out.println("mypage검색어"+cri.getKeyword());
 		return redao.search_Recipient_note(cri, mynoteid);
 	}
 

@@ -6,7 +6,7 @@
 <html>
 <head>
 
-
+<title>사내게시판</title>
 <!-- Bootstrap Core CSS -->
 <link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -60,23 +60,24 @@
 			<form>
 			<div class="col-lg-6" style="width: 100%;">
 				<div class="panel panel-default">
-					<div class="panel-heading">${LoginUser.ename}님 안녕하세요~!!</div>
+					<div class="panel-heading" style="height: 52px;">${LoginUser.ename}님 안녕하세요~!! <button class="btn btn-default" id="register" style="width: 5%; float: right;">글쓰기</button></div>
+					
 						<div class="list_number">
 						
 									<!-- 검색버튼 -->
-									 <div class="panel-footer">
+									 
                             <div class="input-group" >
                             
                             
-                              <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 30px;">
+                              <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 35px;">
                                                     <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
                                                     <option value="t"<c:out value="${cri.searchType=='t'?'selected':'' }"/> >글제목</option>
                                                     <option value="w" <c:out value="${cri.searchType=='w'?'selected':'' }"/> >글쓴이</option>
                                                     <option value="c" <c:out value="${cri.searchType=='c'?'selected':'' }"/>>내용</option>
                                                 </select>
-                                <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
+                                <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 35px;width: 85%;size: 30;"/>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="searchBtn"  style="height: 30px;">
+                                    <button class="btn btn-warning btn-sm" id="searchBtn"  style="height: 35px;">
                                         검색
                                     </button>
                                 </span>
@@ -87,7 +88,7 @@
 					<div class="panel-body">
 					
 						<div class="table-responsive">
-							<table class="table" width="100%">
+							<table class="table table-striped table-bordered table-hover" width="100%">
 							
 								<thead>
 									<tr>
@@ -145,9 +146,11 @@
 						
 						  <input type='hidden' name="page" value='${pageMaker.cri.page}'>
                           <input type='hidden' name="perPageNum" value='${pageMaker.cri.perPageNum}'>
-						
+						</div>
+						</div>
+						</div>
 						</form>
-						<button class="btn btn-default" id="register">글쓰기</button>
+						
 						
 						<!-- /.table-responsive -->
 					</div>
@@ -155,12 +158,13 @@
 				</div>
 				<!-- /.panel -->
 			</div>
+			
 			<!-- /.col-lg-6 -->
-		</div>
+	
 		<!-- /.row -->
 	</div>
 	<!-- /#page-wrapper -->
-
+</div>
 	</div>
 
 	<div id="page-wrapper" style="height: 100%;">

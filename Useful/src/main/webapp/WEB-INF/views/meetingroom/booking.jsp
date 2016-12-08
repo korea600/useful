@@ -24,14 +24,16 @@ var title = day.getFullYear() + "/" + (day.getMonth()+1);
 
 var data = '';
 var cal ='';
+var flag =false;
 
 cal+='          <table border="1" cellspacing="0" cellpadding="0">';
 cal+='             <tr height="80px">';
-cal+='                <td colspan="8" align="center">'+title+'</td></tr>';
+cal+='                <td colspan="8" align="center" id="calTitle">'+title+'</td></tr>';
 cal+='              <tr>';
 cal+='              <th align="center" width="80px">시간</th>';
       for(var i=0 ; i<7 ; i++) { 
 	        if(day.getDate() == 1){ 
+	        	  if(i!=0)flag=true;
 		          title += " ~ " + day.getFullYear() + "/" + (day.getMonth()+1); 	
 	                }//if--title
 cal+=              '<th align="center" width="80px" id="a'+day.getFullYear()+(day.getMonth()+1)+day.getDate()+'">'+ day.getDate() + '</th>';
@@ -49,6 +51,13 @@ cal+='          </table>';
       
 
 document.getElementById("calandar").innerHTML = cal;
+if(flag){
+	$('#calTitle').html(title);
+	
+
+}
+
+
 
 dt=new Date();//오늘날짜
 
@@ -56,6 +65,9 @@ $('#a'+
 dt.getFullYear()+
 (dt.getMonth()+1)+
 dt.getDate()).css('background-color','yellow');
+
+
+
 
 
 } //calendar
@@ -89,6 +101,14 @@ var insertWin;
  function reloadWin(){
  	 location.reload();
  	 insertWin.close();
+ }
+ 
+ 
+ function test(serial){
+
+	   var tim= $('#a'+serial).val().split(',');
+	   alert(tim[2]-tim[1]);	
+	 
  }
  
 
@@ -132,11 +152,12 @@ var insertWin;
 
 <c:forEach items="${list}" var="MeetingVO">
 <tr>
-<td align="center">${MeetingVO.roomno}</td>
+<td align="center">${MeetingVO.roomno}<input type="hidden"  id="a${MeetingVO.serial}" value="${MeetingVO.beginday},${MeetingVO.begin}, ${MeetingVO.end}"></td>
 <td align="center">${MeetingVO.beginday}</td>
 <td align="center">${MeetingVO.begin}~${MeetingVO.end}</td>
-<td align="center">${MeetingVO.booker }</td>
+<td align="center">${MeetingVO.booker }<input type="button" onclick="test(${MeetingVO.serial})"></td>
 </tr>
+
 </c:forEach>
 
 

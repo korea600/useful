@@ -45,6 +45,7 @@ private SqlSession session;
 	}
 	@Override
 	public List<RecipientVO> search_Recipient_note(SearchCriteria cri, int mynoteid) throws Exception {
+		//System.out.println("dao의 검색어"+cri.getKeyword());
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("cri", cri);
 		map.put("mynoteid", mynoteid);

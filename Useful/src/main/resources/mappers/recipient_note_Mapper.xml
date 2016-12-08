@@ -38,7 +38,7 @@ insert into tbl_recipient_note (serial,mynotename,mynoteid,reciid,reciname,recon
 	<select id="search_Count_note" resultType="int"> <!-- 검색쪽지 카운트  -->
 	select count(*) from tbl_recipient_note
 	<include refid="search"/>
-	where mynoteid=#{mynoteid}
+	where reciname=#{reciname}
 	</select>
 	
 	
@@ -48,8 +48,8 @@ insert into tbl_recipient_note (serial,mynotename,mynoteid,reciid,reciname,recon
 	<sql id="search">
 	
 	<if test="cri.searchType!=null">
-	<if test="cri.searchType=='reciid'">
-	and reciid like '%'||#{cri.keyword}||'%'
+	<if test="cri.searchType=='reciname'">
+	and reciname like '%'||#{cri.keyword}||'%'
 	</if>
 	<if test="cri.searchType=='recontent'">
 	and recontent like '%'||#{cri.keyword}||'%'

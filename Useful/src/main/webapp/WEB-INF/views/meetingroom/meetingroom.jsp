@@ -7,18 +7,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-#rooms {
-   width:100%;
-   height:200px;
-   text-align: center;
 
+html{
+  width:100%;
+  height:100%;
+  
+}
+#rooms {
+   margin:0 auto;
+   text-align: center;
+   background-color: orange;
+    border: 2px solid #000;
+    width: 100%;
+    
+}
+
+form{
+  background-color: yellow;
 }
 
 .room {
+  float:left;
   width:100px;
   height:150px;
   border: 2px solid #333;
-  float: left;
   margin: 20px;
 }
 
@@ -114,4 +126,4 @@ var insertWin;
 </center>
 
 </body>
-</html>
+</html> 
