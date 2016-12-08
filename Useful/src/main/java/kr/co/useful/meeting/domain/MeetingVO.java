@@ -10,7 +10,7 @@ public class MeetingVO {
 	private String content;
 	private String booker;
 	private int empno;
-	private String cheched;
+	private String checked;
 	
 	public MeetingVO() {
 		// TODO Auto-generated constructor stub
@@ -65,11 +65,11 @@ public class MeetingVO {
 	public void setEmpno(int empno) {
 		this.empno = empno;
 	}
-	public String getCheched() {
-		return cheched;
+	public String getChecked() {
+		return checked;
 	}
-	public void setCheched(String cheched) {
-		this.cheched = cheched;
+	public void setChecked(String checked) {
+		this.checked = checked;
 	}
 
 
@@ -77,7 +77,7 @@ public class MeetingVO {
 	public String toString() {
 		return "MeetingVO [serial=" + serial + ", roomno=" + roomno + ", beginday=" + beginday + ", begin=" + begin
 				+ ", end=" + end + ", content=" + content + ", booker=" + booker + ", empno=" + empno + ", cheched="
-				+ cheched + "]";
+				+ checked + "]";
 	}
 	
 	

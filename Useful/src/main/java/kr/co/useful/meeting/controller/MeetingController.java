@@ -1,6 +1,7 @@
 package kr.co.useful.meeting.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.meeting.domain.MeetingRoomVO;
 import kr.co.useful.meeting.service.MeetingService;
 
@@ -24,6 +26,26 @@ public class MeetingController {
 		model.addAttribute("list", service.rooms());
 		// System.out.println(service.rooms());
 	}
+	
+
+	// 관리자 예약관리리스트
+	@RequestMapping(value = "/bookingHistory", method = RequestMethod.GET)
+	public void allList(Model model) throws Exception {
+		model.addAttribute("list", service.allBooking());
+		// System.out.println(service.rooms());
+	}
+
+
+	//내가 예약한 리스트
+	@RequestMapping(value = "/myBooking", method = RequestMethod.GET)
+	public void myList(Model model,  HttpServletRequest req) throws Exception {
+		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
+		//int empno=evo.getEmpno();
+		int empno = 1003;
+		model.addAttribute("list", service.myBooking(empno));
+		// System.out.println(service.rooms());
+	}
+
 
 	// 회의실 등록폼
 	@RequestMapping(value = "/room_Input", method = RequestMethod.GET)
@@ -59,10 +81,10 @@ public class MeetingController {
 	}
 
 	// 각 회의실에 대한 리스트 ---> 호실이 같을때
-	@RequestMapping(value = "/bookingList", method = RequestMethod.GET)
-	public String bookingList(Model model) {
+	@RequestMapping("/bookingList")
+	public String bookingList(int roomno, Model model) throws Exception{
 		System.out.println("안녕");
-
+       model.addAttribute("list",service.bookingEnd(roomno));
 		return "/meetingroom/booking";
 	}
 	

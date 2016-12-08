@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -105,6 +106,45 @@ var insertWin;
 <p id="calandar"></p> 
 
 <p><input type="button" onclick="reservation()" value="예약"></p>
+
+
+<table border="1" cellspacing="0">
+<tr>
+ <td colspan="4">
+    <select id="serchType">
+    <option value="d">날짜</option>
+    <option value="w">예약자</option>
+    </select>
+ 
+ </td>
+</tr>
+<tr>
+<td colspan="4" align="center">예약된 리스트</td>
+</tr>
+<tr>
+<th>회의실</th>
+<th>날짜</th>
+<th>예약시간</th>
+<th>예약자</th>
+</tr>
+
+
+
+<c:forEach items="${list}" var="MeetingVO">
+<tr>
+<td align="center">${MeetingVO.roomno}</td>
+<td align="center">${MeetingVO.beginday}</td>
+<td align="center">${MeetingVO.begin}~${MeetingVO.end}</td>
+<td align="center">${MeetingVO.booker }</td>
+</tr>
+</c:forEach>
+
+
+
+</table>
+
+
+
 </center>
 
 

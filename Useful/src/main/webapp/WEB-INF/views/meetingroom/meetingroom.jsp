@@ -97,7 +97,7 @@ var insertWin;
    <c:forEach items="${list}" var="MeetingRoomVO" >
      <form id="c${MeetingRoomVO.roomno}" action="/useful/meetingroom/roomchange" method="post" >
      <div class="room">
-     <a href="/useful/meetingroom/bookingList?roomname=${MeetingRoomVO.roomname }">
+     <a href="/useful/meetingroom/bookingList?roomno=${MeetingRoomVO.roomno }">
                   <input type="text" class="a${MeetingRoomVO.roomno}" name="roomname" readonly="readonly" value="${MeetingRoomVO.roomname }" style="width:90px;  border:0; cursor:pointer; text-align: center;"></a>
                <p><input type="text" class="a${MeetingRoomVO.roomno}" name="roomno" readonly="readonly"  value="${MeetingRoomVO.roomno}" style="width:90px; border:0; text-align: center;"></p>
                <p><input type="submit" id="a${MeetingRoomVO.roomno}" class="changeOK" value="확인"></p>

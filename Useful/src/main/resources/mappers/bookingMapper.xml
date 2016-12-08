@@ -8,18 +8,21 @@
      select serial, roomno, beginday, begin, end, content, booker, empno, checked from tbl_reservation
      where checked='승인'
      and roomno=#{roomno}
+     order by serial desc
    </select>
    
    <!--내가 한 등록리스트 -->
    <select id="myBooking" resultType="Booking">
       select serial,roomno, beginday, begin, end, content, booker, empno, checked from tbl_reservation
      where empno=#{empno}
+      order by serial desc
    </select>
    
    
    <!-- 관리자가 보는 등록리스트 -->
    <select id="allBooking" resultType="Booking">
      select * from tbl_reservation
+      order by serial desc
    </select>
   
   

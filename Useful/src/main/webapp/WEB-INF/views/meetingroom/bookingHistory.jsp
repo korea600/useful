@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,36 +10,40 @@
 <body>
 
 <center>
-회의실 예약내역
+회의실 예약내역-관리자
   <form>
     <table border="1" cellspacing="0">
     <tr>
    <td> 
        <select name="searchType">
          <option value="n">--</option>
-         <option value="x">승인요청</option>
-         <option value="o">승인완료</option>
-         <option value="d">날짜</option>
+         <option value="o">승인</option>
+         <option value="w">대기</option>
+         <option value="no">거절</option>
        </select>
     </td>
     </tr>
       <tr>
       <th>글번호</th>
-      <th>회의실 이름</th>
+      <th>회의실</th>
       <th>작성자</th>
       <th>날짜</th>
       <th><a href="">대여시간</a></th>
+      <th>상태</th>
       <th>확인</th>
-      <th></th>
       </tr>
+      
+      <c:forEach items="${list }" var="MeetingVO">
       <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><input type="button" value="승인"><input type="button" value="승인취소"></td>    
+      <td>${MeetingVO.serial}<input type="hidden" name="content" value="${MeetingVO.content }"></td>
+      <td>${MeetingVO.roomno}</td>
+      <td><a href="">${MeetingVO.booker}(${MeetingVO.empno })</a></td>
+      <td>${MeetingVO.beginday}</td>
+      <td>${MeetingVO.begin}~${MeetingVO.end }시</td>
+      <td>${MeetingVO.checked }</td>
+      <td><input type="button" id="a${MeetingVO.serial }" value="승인"><input type="button" id="b${MeetingVO.serial }"  value="승인취소"></td>    
       </tr>
+      </c:forEach>
     </table>
   </form>
 

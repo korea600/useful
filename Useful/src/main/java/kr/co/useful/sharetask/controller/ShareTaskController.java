@@ -81,6 +81,7 @@ public class ShareTaskController {
             Model model, HttpServletRequest req) throws Exception {
 		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		cri.setDeptno(evo.getDeptno());
+		
 		// 데이터 저장
 		ShareTaskVO prevvo=service.prevRead(bno, evo.getDeptno());
 		ShareTaskVO nextvo=service.nextRead(bno, evo.getDeptno());
