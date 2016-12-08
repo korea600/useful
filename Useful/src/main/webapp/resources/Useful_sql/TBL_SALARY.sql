@@ -1,7 +1,8 @@
 
 drop table tbl_salary;
 create table tbl_salary(
-empno number primary key, --사번
+serial number primary key, -- 구분
+empno number , --사번
 Paymentdate date , --지급일
 Paymentmonth date , --귀속월
 basicpay number , --기본급
@@ -19,3 +20,8 @@ grossincome  number, --지급합계
 deductions number, --공제합계
 AdjustedIncome number --차인지금액
 );
+create sequence tbl_salary_seq
+ start with 1
+   increment by 1
+   nocycle
+   nocache;

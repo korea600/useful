@@ -43,6 +43,8 @@ $(function(){
 				  },
 				  dataType: 'text',
 				  data: JSON.stringify({
+					  //empno,ename,deptno
+				  
 					 	basicpay: $("#basicpay").val(),
 					  	Paymentdate:$("#Paymentdate").val,
 					 	Paymentmonth: $("#pay_year option:selected").val()+$("#pay_month option:selected").val(),

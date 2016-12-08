@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.useful.encrypt.LocalEncrypter;
 import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.Commute_DeptVO;
 import kr.co.useful.manager.domain.EmpVO;
@@ -46,9 +47,10 @@ public class ManagerController {
 	
 	@RequestMapping(value="/employee_Insert",method=RequestMethod.POST)
 	public void employee_Insert(@RequestBody EmpVO vo) throws Exception{
-		System.out.println(vo);
+		LocalEncrypter enc = new LocalEncrypter();
+		String str = enc.returnEncryptCode(vo.getPass());
+		vo.setPass(str);
 		service.emp_Insert(vo);
-		
 	}
 	
 	@RequestMapping(value="/employee_Update",method=RequestMethod.GET)

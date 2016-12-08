@@ -222,6 +222,20 @@ class ManagerServiceImpl implements ManagerService {
 		return dao.salary_List(map);
 	}
 	
+	@Override
+	public void salary_Insert(Map<String, Object> map) throws Exception {
+		dao.salary_Insert(map);
+	}
+	
+	@Override
+	public void salary_Update(Map<String, Object> map) throws Exception {
+		dao.salary_Update(map);
+	}
+	
+	@Override
+	public void salary_Delete(int serial) throws Exception {
+		dao.salary_Delete(serial);
+	}
 	
 	public List<CommuteVO> time_Division(List<CommuteVO> list){
 		 for(int i=0;i<list.size();i++){

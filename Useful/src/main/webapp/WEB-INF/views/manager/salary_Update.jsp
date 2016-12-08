@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>급여등록</title>
+<title>급여금액수정</title>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
  <script type="text/javascript"
@@ -45,7 +45,7 @@ $(function(){
 				  data: JSON.stringify({
 					 	basicpay: $("#basicpay").val(),
 					  	Paymentdate:$("#Paymentdate").val,
-					 	Paymentmonth: $("#pay_year option:selected").val()+$("#pay_month option:selected").val(),
+					 	Paymentmonth: $("#pay_year option:selected").val()+$("#pay_month option:selected").val()+"00",
 						basic: $("#basicpay").val(),
 						car : $("#car").val(),
 						meal: $("#meal").val(),

@@ -203,7 +203,7 @@
   </select>
   
   <select id="salary_List" resultType="kr.co.useful.manager.domain.SalaryVO">
-  select emp.empno,emp.ename,emp.dname,emp.position,sal.basicpay,sal.grossincome,sal.deductions,sal.adjustedIncome,sal.paymentdate,sal.paymentmonth
+  select sal.serial,emp.empno,emp.ename,emp.dname,emp.position,sal.basicpay,sal.grossincome,sal.deductions,sal.adjustedIncome,sal.paymentdate,sal.paymentmonth
   from tbl_salary sal,(select empno,ename,dname,position
   	from tbl_dept a,
   		(select empno,ename,deptno,position
@@ -226,4 +226,22 @@
   where emp.empno=sal.empno and sal.paymentdate between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1
   order by emp.empno desc, sal.paymentdate desc
   </select>
+  
+    <insert id="salary_Insert">
+  	insert into tbl_salary (serial,empno,paymentdate,paymentmonth,basicpay,car,meal,childcare,
+  			otherpay,national,health,employment,care,Incometax,localtax,grossincome,deductions,AdjustedIncome)
+  		values(tbl_salary_seq.nextval,#{empno},#{paymentdate},#{paymentmonth},#{basicpay},#{car},#{meal},#{childcare},
+  					#{otherpay},#{national},#{health},#{employment},#{care},#{Incometax},#{localtax},#{grossincome},#{deductions},#{AdjustedIncome})
+  	</insert>
+  	
+  	<update id="salary_Update">
+  	update tbl_salary set paymentdate=#{paymentdate},paymentmonth=#{paymentmonth},basicpay=#{basicpay},car=#{car},meal=#{meal},childcare=#{childcare},
+  					otherpay=#{otherpay},national=#{national},health=#{health},employment=#{employment},care=#{care},Incometax=#{Incometax},localtax=#{localtax},
+  					grossincome=#{grossincome},deductions=#{deductions},AdjustedIncome=#{AdjustedIncome}) 
+  				where serial=#{serial}
+  	</update>
+  	
+  	<delete id="salary_Delete">
+  		delete from tbl_salary where serial=#{serial}
+  	</delete>
 </mapper>
