@@ -9,7 +9,7 @@
 </head>
 <body>
  	<%
-        String str = request.getParameter("pass");
+        String str = request.getParameter("emp_pw");
         String encryptcode = enc.returnEncryptCode(str);       
     %>
     <h3> 입력받은 패스워드 Encrypt 처리결과 : <%= encryptcode %></h3>

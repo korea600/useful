@@ -174,13 +174,9 @@ public class LoginController {
 		}else
 			return "FAIL";
 	}
-	
-	
-	
-	
 	//비밀번호 암호화 작업
 	@RequestMapping("/Encrypt")
 	public void encrypt(){
-		
+			
 	}
 }

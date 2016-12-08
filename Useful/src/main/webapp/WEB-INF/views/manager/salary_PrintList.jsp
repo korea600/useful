@@ -29,7 +29,7 @@
 			<td>${print.grossincome }</td>
 			<td>${print.deductions }</td>
 			<td>${print.adjustedIncome }</td>
-			<td><button id="btn_delete" class="btn btn-default" onclick="call_Delete('${print.empno }','${print.paymentmonth }')">삭제</button></td>
+			<td><button id="btn_delete" class="btn btn-default" onclick="call_Delete(''${print.serial}')">삭제</button></td>
 		</tr>
 	</c:forEach>
 	</table>

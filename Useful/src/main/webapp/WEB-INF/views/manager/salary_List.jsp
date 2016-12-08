@@ -57,7 +57,7 @@ $(function(){
 	 			});
 	}
  	
- 	function call_Delete(empno,paymentmonth){
+ 	function call_Delete(serial){
 		  $.ajax({
  			  type: 'DELETE',
  			  url: '/useful/manager/salary_List',

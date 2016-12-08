@@ -123,4 +123,21 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public List<SalaryVO> salary_List(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList("manager.salary_List",map);
 	}
+	
+	@Override
+	public void salary_Insert(Map<String, Object> map) throws Exception {
+		sqlSession.insert("manager.salary_Insert",map);
+		
+	}
+	
+	@Override
+	public void salary_Update(Map<String, Object> map) throws Exception {
+		sqlSession.update("manager.salary_Update",map);
+		
+	}
+	@Override
+	public void salary_Delete(int serial) throws Exception {
+		sqlSession.delete("manager.salary_Delete",serial);
+		
+	}
 }

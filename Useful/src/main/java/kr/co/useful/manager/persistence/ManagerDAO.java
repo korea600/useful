@@ -48,4 +48,10 @@ public interface ManagerDAO {
 	public List<EmpVO> emp_search(Map<String,Object> map)throws Exception;
 
 	public List<SalaryVO> salary_List(Map<String,Object> map)throws Exception;
+	
+	public void salary_Insert(Map<String,Object> map)throws Exception;
+	
+	public void salary_Update(Map<String,Object> map)throws Exception;
+	
+	public void salary_Delete(int serial)throws Exception;
 }
