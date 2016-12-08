@@ -22,8 +22,7 @@
 <script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script type="text/javascript">
-	$(function(){
-		var frm=$('form');
+	function comment_list(){
 		$.ajax({
 			url:'/useful/approval/comment/count/${vo.no}',
 			type:'POST',
@@ -32,8 +31,14 @@
 					window.open('${pageContext.request.contextPath}/approval/comment/list/${vo.no}','list','toolbar=no,location=no,status=no'
 							+'menubar=no,scrollbars=yes,resizable=1,height=300,top=100,left=100');
 				}
+				else{
+					alert('현재 문서에 달린 코멘트가 없습니다.');
+				}
 			}
 		})
+	}
+	$(function(){
+		comment_list();
 	
 		$('[name=approval]').click(function(){
 			window.open('${pageContext.request.contextPath}/approval/comment/form','add_comment','toolbar=no,location=no,status=no'
@@ -85,6 +90,7 @@
 	<c:if test="${vo.next_approval eq LoginUser.empno}">
 		<input type='button' name='approval' value='결재/반려'>
 	</c:if>
+	<input type='button' name='view_comments' value='코멘트 보기' onclick='comment_list()'>
 	<input type='button' name='cancel' value='뒤로' onclick='history.back()'>
 	<input type='hidden' name='comments'>
 	<input type='hidden' name='status'>
