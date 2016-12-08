@@ -92,10 +92,14 @@ th {
 				<input id="chk_auth_level" name="chk_auth_level" type="hidden" value=""/>
 
 			<div>
-				<font size="5" style="font-style: inherit; margin-right: 300px;">직원정보수정
-				</font>
-				<button type="button" id="btn_Save" onclick="InfoSave()">저장</button>
-				<button type="button" id="btn_List" onclick="cancel()">취소</button>
+				<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">직원정보수정</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+				<button type="button" id="btn_Save" onclick="InfoSave()" class="btn btn-default">저장</button>
+				<button type="button" id="btn_List" onclick="cancel()" class="btn btn-default">취소</button>
 				<br>
 			</div>
 			

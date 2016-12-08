@@ -1,5 +1,8 @@
+<%@page import="kr.co.useful.login.service.LoginService"%>
+<%@page import="kr.co.useful.encrypt.LocalEncrypter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,7 +29,7 @@
 	function passCheck(){
 		
 		var pass = document.form.pass.value;
-		var mypass= '${vo.pass}';
+		var mypass= ${vo};
 
 		if(pass.trim()==''){
             alert("비밀번호를 입력해주세요");

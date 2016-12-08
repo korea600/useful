@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%-- Login_Commute.jsp --%>
 <title>출퇴근내역조회</title>
-<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/manager/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <style type="text/css">
 th {
@@ -16,19 +16,8 @@ th {
 </style>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
-<%-- <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> --%>
- <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>   
+ 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.min.js"></script> 
 <script type="text/javascript">
 
 	$(function() {
@@ -92,30 +81,33 @@ th {
 </head>
 <body>
 
-<!-- commute_Employee.jsp -->
 <div id="page-wrapper">
-<p><br>
-<font size="5" style="font-style: inherit;">출퇴근내역조회</font><br><hr>
-<table>
+ 			<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">출퇴근내역조회</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+<table >
 <tbody>
 	<tr>
 	<th style="height: 40px">검색기간</th>
 	<td>
-	<button id="btn_today">당일</button>
-	<button id="btn_week">1주일</button>
-	<button id="btn_month">1개월</button>
-	<button id="btn_3month">3개월</button><p>
-		<input type="text" id="startdate" value="">
-		~ <input type="text" id="enddate" value="">
+	<button id="btn_today" class="btn btn-default">당일</button>
+	<button id="btn_week" class="btn btn-default">1주일</button>
+	<button id="btn_month" class="btn btn-default">1개월</button>
+	<button id="btn_3month" class="btn btn-default">3개월</button><p>
+		<input type="text" id="startdate" size="10" class="form-control-static">
+		~ <input type="text" id="enddate" size="11" class="form-control-static">
 	</td>
 	</tr>
 	
 </tbody>
 </table>
-	<div><button id="btn_search">검색</button></div>
+	<div><button id="btn_search" class="btn btn-default">검색</button></div>
 	
 	<div id="div_print">
-	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;" class="table table-striped table-bordered table-hover">
 	<tr>
 		<th width="15%">부서명</th>
 		<th width="15%">사원명</th>

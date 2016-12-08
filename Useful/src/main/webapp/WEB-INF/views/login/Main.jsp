@@ -24,20 +24,7 @@
     <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
- 	<link rel="stylesheet" type="text/css" media="screen"
-		href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
-	<link rel="stylesheet" type="text/css" media="screen"
-		href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-	<link rel="stylesheet" type="text/css" media="screen"
-		href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" />
-	 <script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" 
-		src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.min.js"></script> 
+ 	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

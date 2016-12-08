@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.useful.encrypt.LocalEncrypter;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.mypage.service.MypageService;
 
@@ -27,7 +28,12 @@ public class MypageController {
 	
 	@RequestMapping("/Pass_Check")
 	public void passForm(@RequestParam String empno, Model m)throws Exception{
-		m.addAttribute("vo", service.select_pass(Integer.parseInt(empno)));
+		String key="cogydnjscogydnjs1";
+		LocalEncrypter enc = new LocalEncrypter(key);
+		String dpass = service.select_pass(Integer.parseInt(empno)).getPass();
+		String dec = enc.aesDecode(dpass);
+		
+		m.addAttribute("vo", dec);
 		
 	}
 	
