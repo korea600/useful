@@ -3,7 +3,7 @@
 <mapper namespace="recipien_note">
 	
 	<select id="list_note" resultType="kr.co.useful.note.domain.RecipientVO"> <!--자신 메일내역조회  -->
-	select serial,mynote,reciid,recontent,recipientdate from tbl_recipient_note where mynote=#{mynote} order by serial desc
+	select serial,mynotename,mynoteid,reciid,reciname,recontent,recipientdate from tbl_recipient_note where mynoteid=#{mynoteid} order by serial desc
 	</select>
 	
 	 <insert id="create_send_note" parameterType="kr.co.useful.note.domain.SendVO"> <!-- 쪽지보내기  -->

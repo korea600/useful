@@ -15,9 +15,9 @@ public class RecipientServiceImpl implements RecipientService {
 @Inject
 private RecipientDAO redao;
 	@Override
-	public List<RecipientVO> recipient_note_list(String mynote) throws Exception {
+	public List<RecipientVO> recipient_note_list(int mynoteid) throws Exception {
 		// TODO Auto-generated method stub
-		return redao.recipient_note_list(mynote);
+		return redao.recipient_note_list(mynoteid);
 	}
 
 	@Override
@@ -52,9 +52,9 @@ private RecipientDAO redao;
 	}
 
 	@Override
-	public int search_Recipient_count_note(SearchCriteria cri, String mynote) throws Exception {
+	public int search_Recipient_count_note(SearchCriteria cri, int mynoteid) throws Exception {
 		// TODO Auto-generated method stub
-		return redao.search_Recipient_count_note(cri, mynote);
+		return redao.search_Recipient_count_note(cri, mynoteid);
 	}
 
 }

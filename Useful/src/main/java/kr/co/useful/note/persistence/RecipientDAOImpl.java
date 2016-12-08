@@ -18,9 +18,9 @@ public class RecipientDAOImpl implements RecipientDAO {
 @Inject
 private SqlSession session;
 	@Override
-	public List<RecipientVO> recipient_note_list(String mynote) throws Exception {
+	public List<RecipientVO> recipient_note_list(int mynoteid) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList("recipien_note.list_note", mynote);
+		return session.selectList("recipien_note.list_note", mynoteid);
 	}
 	@Override
 	public void create_recipient_note(RecipientVO recipientVO) throws Exception {
@@ -51,10 +51,10 @@ private SqlSession session;
 		return session.selectList("recipien_note.search_note", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 	@Override
-	public int search_Recipient_count_note(SearchCriteria cri, String mynote) throws Exception {
+	public int search_Recipient_count_note(SearchCriteria cri, int mynoteid) throws Exception {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("cri", cri);
-		map.put("mynote", mynote);
+		map.put("mynoteid", mynoteid);
 		return session.selectOne("recipien_note.search_Count_note", map);
 	}
 
