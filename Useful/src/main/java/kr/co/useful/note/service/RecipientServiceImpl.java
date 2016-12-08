@@ -47,9 +47,8 @@ private RecipientDAO redao;
 	}
 
 	@Override
-	public List<RecipientVO> search_Recipient_note(SearchCriteria cri, String mynote) throws Exception {
-		// TODO Auto-generated method stub
-		return redao.search_Recipient_note(cri, mynote);
+	public List<RecipientVO> search_Recipient_note(SearchCriteria cri, int mynoteid) throws Exception {
+		return redao.search_Recipient_note(cri, mynoteid);
 	}
 
 	@Override

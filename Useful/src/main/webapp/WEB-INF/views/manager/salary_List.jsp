@@ -1,36 +1,82 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>±Ş¿©´ëÀåÁ¶È¸</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ê¸‰ì—¬ëŒ€ì¥ì¡°íšŒ</title>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
+ <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script> 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
 <script type="text/javascript">
 $(function(){	
- 	   $( "#startdate" ).datepicker({
- 		  changeMonth: true, 
-          changeYear: true,
- 		  dateFormat: 'yy-mm-dd'
+		
+	   $("#startdate").datepicker({
+	 		  changeMonth: true, 
+	          changeYear: true,
+	 		  dateFormat: 'yy-mm-dd',
+	 	   }).datepicker("setDate", new Date());
+	 	  $("#enddate").datepicker({
+	 		  changeMonth: true, 
+	          changeYear: true,
+	 		  dateFormat: 'yy-mm-dd',
+	 	   }).datepicker("setDate", new Date());
+	
+ 	   $( "#btn_oneReg" ).click(function(){
+ 		  location.href="/useful/manager/salary_Insert";  
  	   });
- 	   $( "#enddate" ).datepicker({
- 		  changeMonth: true, 
-          changeYear: true,
- 		  dateFormat: 'yy-mm-dd'
+ 	   $( "#btn_search" ).click(function(){
+ 		  searchList();
  	   });
+ 	   
+		searchList();//ê¸°ë³¸ë‚ ì§œì— ì „ì²´ì¶œë ¥
 });
+ 	function searchList(){
+	 		  $.ajax({
+	 			  type: 'POST',
+	 			  url: '/useful/manager/salary_List',
+	 			  headers : {
+	 				  "Content-Type" : "application/json",
+	 				  "X-HTTP-Method-Override":"POST"
+	 			  },
+	 			  dataType: 'text',
+	 			  data: JSON.stringify({
+	 					startdate:$("#startdate").val(),
+	 					enddate:$("#enddate").val(),
+	 					deptno:$("#deptno option:selected").val(),
+	 					empno:$("#empno").val(),
+	 					ename:$("#ename").val()
+	 				  }),
+	 			  success: function(result){
+	 					$("#div_print").html(result);
+	 			  }
+	 			});
+	}
+ 	
+ 	function call_Delete(empno,paymentmonth){
+		  $.ajax({
+ 			  type: 'DELETE',
+ 			  url: '/useful/manager/salary_List',
+ 			  headers : {
+ 				  "Content-Type" : "application/json",
+ 				  "X-HTTP-Method-Override":"POST"
+ 			  },
+ 			  dataType: 'text',
+ 			  data: JSON.stringify({
+ 					empno:empno,
+ 					paymentmonth:paymentmonth
+ 				  }),
+ 			  success: function(result){
+ 				  alret('ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤');
+ 				 searchList();
+ 			  }
+ 			});
+ 		
+ 	}
 </script> 
 </head>
 <body>
@@ -40,32 +86,68 @@ $(function(){
 </div>
 	<div id="page-wrapper">
 	<p>
-		<font size="5" style="font-style: inherit;">±Ş¿©´ëÀåÁ¶È¸</font>
-		<input type="button" id="btn_search" value="Á¶È¸" />
-		<input type="button" id="btn_oneReg" value="±Ş¿©°³º°µî·Ï" /> 
-		<input type="button" id="btn_delete" value="»èÁ¦" />
+		<font size="5" style="font-style: inherit;">ê¸‰ì—¬ëŒ€ì¥ì¡°íšŒ</font>
+		<input type="button" id="btn_oneReg" value="ê¸‰ì—¬ë“±ë¡" /> 
 	</p>
 	<hr>
 	<div id="div_searchArea" class="searchArea cb mgb10"
 		style="vertical-align: middle; min-width: 800px; padding-bottom: 0px; padding-top: 15px;">
-		<div>Á¶È¸±â°£: <input type="text" id="startdate">~<input type="text" id="enddate">  </div>
+		<table style="border-color: black;">
+		<tbody>
+		<tr>
+		<th style="height: 40px;width: 200px;	text-align: center;">ê²€ìƒ‰ê¸°ê°„</th>
+		<td>
+							 	<button id="btn_today" class="btn btn-default" >ë‹¹ì¼</button>
+								<button id="btn_week" class="btn btn-default" >1ì£¼ì¼</button>
+								<button id="btn_month" class="btn btn-default" >1ê°œì›”</button>
+								<button id="btn_3month" class="btn btn-default" >3ê°œì›”</button><p>
+								<input type="text" id="startdate" value="">
+										~<input type="text" id="enddate" value="">
+		</td>
+		</tr>
+		
+		<tr>
+		<th style="	text-align: center;">ë¶€ì„œëª…</th>
+			<td><select id="deptno" name="deptno" class="select" style="width: 200px;">
+						<option value="" selected="selected">-- ì„ íƒ --</option>
+						<option value="10">ì˜í–ˆì¡°</option>
+						<option value="20">ë³´ì—¬ì¡°</option>
+						<option value="30">ê°•ì¡°</option>
+						<option value="40">ì‚¼ì‚¼ì˜¤ì˜¤ì¡°</option>
+				</select></td>
+			</tr>
+		<tr>
+			<th  style="	text-align: center;">ì‚¬ì›ë²ˆí˜¸</th>
+			<td><input type="text" id="empno"></td>
+		</tr>
+		<tr>
+			<th  style="	text-align: center;">ì‚¬ì›ëª…</th>
+			<td><input type="text" id="ename"></td>
+		</tr>
+		</tbody>
+		</table>
+	<div><button id="btn_search" class="btn btn-default" >ê²€ìƒ‰</button></div>
+	
 	</div>
 	
 	<div id="div_print">
-	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px; width: 100%;">
+	<table style="margin-top: 10px; width: 100%;">
 	<tr>
-		<th width="10%">»ç¹ø</th>
-		<th width="20%">»ç¿ø¸í</th>
-		<th width="20%">ºÎ¼­</th>
-		<th width="10%">Á÷±Ş</th>
-		<th width="10%">±âº»±Ş</th>
-		<th width="10%">Áö±ŞÇÕ°è</th>
-		<th width="10%">°øÁ¦ÇÕ°è</th>
-		<th width="10%">Â÷ÀÎÁö±Ş¾×</th>
+		<th width="8%">ì‚¬ë²ˆ</th>
+		<th width="8%">ì‚¬ì›ëª…</th>
+		<th width="8%">ë¶€ì„œ</th>
+		<th width="8%">ì§ê¸‰</th>
+		<th width="10%">ê·€ì†ì›”</th>
+		<th width="10%">ì§€ê¸‰ì¼</th>
+		<th width="10%">ê¸°ë³¸ê¸‰</th>
+		<th width="10%">ì§€ê¸‰í•©ê³„</th>
+		<th width="10%">ê³µì œí•©ê³„</th>
+		<th width="10%">ì°¨ì¸ì§€ê¸‰ì•¡</th>
+		<th width="8%"></th>
 	</tr>
 	<tr>
 		<td colspan="8">
-		<b>µ¥ÀÌÅÍ¸¦ °Ë»öÇØÁÖ¼¼¿ä</b>
+		<b>ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ëŠ”ì¤‘ì…ë‹ˆë‹¤...</b>
 		</td>
 	</tr>
 	</table>

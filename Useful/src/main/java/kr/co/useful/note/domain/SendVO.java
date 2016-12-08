@@ -4,24 +4,29 @@ import java.util.Date;
 
 public class SendVO {
 private int serial;
-private String mynote;
-private String sendman;
+private String mynote; //내이름
+private int myempno; //내 emp
+private String sendman; //상대 이름
+private int sendempno; //상대 emp
 private String sendcontent;
 private Date senddate;
-public SendVO() {
-	// TODO Auto-generated constructor stub
-}
-public SendVO(int serial, String mynote, String sendman, String sendcontent, Date senddate) {
+public SendVO(int serial, String mynote, int myempno, String sendman, int sendempno, String sendcontent,
+		Date senddate) {
 	this.serial = serial;
 	this.mynote = mynote;
+	this.myempno = myempno;
 	this.sendman = sendman;
+	this.sendempno = sendempno;
 	this.sendcontent = sendcontent;
 	this.senddate = senddate;
 }
 @Override
 public String toString() {
-	return "SendVO [serial=" + serial + ", mynote=" + mynote + ", sendman=" + sendman + ", sendcontent=" + sendcontent
-			+ ", senddate=" + senddate + "]";
+	return "SendVO [serial=" + serial + ", mynote=" + mynote + ", myempno=" + myempno + ", sendman=" + sendman
+			+ ", sendempno=" + sendempno + ", sendcontent=" + sendcontent + ", senddate=" + senddate + "]";
+}
+public SendVO() {
+	// TODO Auto-generated constructor stub
 }
 public int getSerial() {
 	return serial;
@@ -35,11 +40,23 @@ public String getMynote() {
 public void setMynote(String mynote) {
 	this.mynote = mynote;
 }
+public int getMyempno() {
+	return myempno;
+}
+public void setMyempno(int myempno) {
+	this.myempno = myempno;
+}
 public String getSendman() {
 	return sendman;
 }
 public void setSendman(String sendman) {
 	this.sendman = sendman;
+}
+public int getSendempno() {
+	return sendempno;
+}
+public void setSendempno(int sendempno) {
+	this.sendempno = sendempno;
 }
 public String getSendcontent() {
 	return sendcontent;
@@ -53,5 +70,6 @@ public Date getSenddate() {
 public void setSenddate(Date senddate) {
 	this.senddate = senddate;
 }
+
 
 }

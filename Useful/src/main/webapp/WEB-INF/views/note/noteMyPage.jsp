@@ -100,7 +100,7 @@
 										<tr>
 											<%-- <td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td> --%>
 
-											<td>${RecipientVO.reciid }</td>
+											<td>${RecipientVO.mynotename }</td>
 											<td><a href="/useful/note/riciReadPage?serial=${RecipientVO.serial }">${RecipientVO.recontent }</a></td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${RecipientVO.recipientdate }"/></td>
 											<td style="display: none" value="${RecipientVO.serial }"></td>

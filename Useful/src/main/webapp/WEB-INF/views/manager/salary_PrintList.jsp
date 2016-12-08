@@ -1,75 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>±Ş¿©´ëÀåÁ¶È¸</title>
- <link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/plugins/ui.multiselect.css" /> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.7.2.min.js"></script> 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-en.js"></script> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.src.js"></script> 
-<script type="text/javascript">
-$(function(){	
- 	   $( "#startdate" ).datepicker({
- 		  changeMonth: true, 
-          changeYear: true,
- 		  dateFormat: 'yy-mm-dd'
- 	   });
- 	   $( "#enddate" ).datepicker({
- 		  changeMonth: true, 
-          changeYear: true,
- 		  dateFormat: 'yy-mm-dd'
- 	   });
-});
-</script> 
-</head>
 <body>
-<header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header> 
-<div>
-	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include>  
-</div>
-	<div id="page-wrapper">
-	<p>
-		<font size="5" style="font-style: inherit;">±Ş¿©´ëÀåÁ¶È¸</font>
-		<input type="button" id="btn_search" value="Á¶È¸" />
-		<input type="button" id="btn_oneReg" value="±Ş¿©°³º°µî·Ï" /> 
-		<input type="button" id="btn_delete" value="»èÁ¦" />
-	</p>
-	<hr>
-	<div id="div_searchArea" class="searchArea cb mgb10"
-		style="vertical-align: middle; min-width: 800px; padding-bottom: 0px; padding-top: 15px;">
-		<div>Á¶È¸±â°£: <input type="text" id="startdate">~<input type="text" id="enddate">  </div>
-	</div>
-	
-	<div id="div_print">
 	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px; width: 100%;">
 	<tr>
-		<th width="10%">»ç¹ø</th>
-		<th width="20%">»ç¿ø¸í</th>
-		<th width="20%">ºÎ¼­</th>
-		<th width="10%">Á÷±Ş</th>
-		<th width="10%">±âº»±Ş</th>
-		<th width="10%">Áö±ŞÇÕ°è</th>
-		<th width="10%">°øÁ¦ÇÕ°è</th>
-		<th width="10%">Â÷ÀÎÁö±Ş¾×</th>
+		<th width="8%">ì‚¬ë²ˆ</th>
+		<th width="8%">ì‚¬ì›ëª…</th>
+		<th width="8%">ë¶€ì„œ</th>
+		<th width="8%">ì§ê¸‰</th>
+		<th width="10%">ê·€ì†ì›”</th>
+		<th width="10%">ì§€ê¸‰ì¼</th>
+		<th width="10%">ê¸°ë³¸ê¸‰</th>
+		<th width="10%">ì§€ê¸‰í•©ê³„</th>
+		<th width="10%">ê³µì œí•©ê³„</th>
+		<th width="10%">ì°¨ì¸ì§€ê¸‰ì•¡</th>
+		<th width="8%"></th>
 	</tr>
-	<tr>
-		<td colspan="8">
-		<b>µ¥ÀÌÅÍ¸¦ °Ë»öÇØÁÖ¼¼¿ä</b>
-		</td>
-	</tr>
+	<c:forEach items="${salary }" var="print">
+		<tr>
+			<td>${print.empno }</td>
+			<td>${print.ename }</td>
+			<td>${print.dname }</td>
+			<td>${print.position }</td>
+			<td>${print.paymentmonth }</td>
+			<td>${print.paymentdate }</td>
+			<td>${print.basicpay }</td>
+			<td>${print.grossincome }</td>
+			<td>${print.deductions }</td>
+			<td>${print.adjustedIncome }</td>
+			<td><button id="btn_delete" class="btn btn-default" onclick="call_Delete('${print.empno }','${print.paymentmonth }')">ì‚­ì œ</button></td>
+		</tr>
+	</c:forEach>
 	</table>
-	</div>
-</div>
 </body>
 </html>

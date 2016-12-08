@@ -44,10 +44,10 @@ private SqlSession session;
 		return session.selectOne("recipien_note.select_note", recipientVO);
 	}
 	@Override
-	public List<RecipientVO> search_Recipient_note(SearchCriteria cri, String mynote) throws Exception {
+	public List<RecipientVO> search_Recipient_note(SearchCriteria cri, int mynoteid) throws Exception {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("cri", cri);
-		map.put("mynote", mynote);
+		map.put("mynoteid", mynoteid);
 		return session.selectList("recipien_note.search_note", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 	@Override

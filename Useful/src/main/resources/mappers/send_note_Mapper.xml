@@ -2,25 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="send_note">
 	
+	<select id="sendemp" resultType="int">
+	select empno from tbl_emp where ename=#{ename}
+	</select>
+	
 	<select id="list_note" resultType="kr.co.useful.note.domain.SendVO"> <!--자신 메일내역조회  -->
-	select serial,sendman,sendcontent,senddate,mynote from tbl_send_note where mynote=#{mynote} order by serial desc
+	select serial,sendman,sendcontent,senddate,mynote from tbl_send_note where myempno=#{myempno} order by serial desc
 	</select>
 	
 	<insert id="create_note" parameterType="kr.co.useful.note.domain.SendVO"> <!--쪽지보내기  -->
-	insert into tbl_send_note (serial,mynote,sendman,sendcontent)
-	 values(tbl_send_note_seq.nextval,#{mynote},#{sendman},#{sendcontent})
+	insert into tbl_send_note (serial,mynote,myempno,sendman,sendcontent)
+	 values(tbl_send_note_seq.nextval,#{mynote},#{myempno},#{sendman},#{sendcontent})
 	</insert>
 	
 	<insert id="create_note_recipient" parameterType="kr.co.useful.note.domain.RecipientVO">
-	insert into tbl_recipient_note (serial,mynote,reciid,recontent) values(tbl_recipient_note_seq.nextval,#{mynote},#{reciid},#{recontent})
+	insert into tbl_recipient_note (serial,mynotename,mynoteid,reciid,reciname,recontent) values(tbl_recipient_note_seq.nextval,#{mynotename},#{mynoteid},#{reciid},#{reciname},#{recontent})
 	</insert>
 	
 	<select id="select_note" resultType="kr.co.useful.note.domain.SendVO"> <!--쪽지 선택해서 보기  -->
-	select serial,sendman,sendcontent,senddate,mynote from tbl_send_note where mynote=#{mynote} and serial=#{serial}
+	select serial,sendman,sendcontent,senddate,mynote from tbl_send_note where myempno=#{myempno} and serial=#{serial}
 	</select>
 	
 	<delete id="delete_note" parameterType="kr.co.useful.note.domain.SendVO"> <!-- 메일삭제 -->
-	delete from tbl_send_note where serial=#{serial} and mynote=#{mynote}
+	delete from tbl_send_note where serial=#{serial} and myempno=#{myempno}
 	</delete>
 	
 	<select id="count_note" resultType="int"> <!-- 자기 쪽지 전체 카운트  -->
@@ -29,14 +33,14 @@
 	
 	<select id="search_note" resultType="kr.co.useful.note.domain.SendVO"> <!-- 쪽지검색  -->
 	select serial,sendman,sendcontent,senddate from tbl_send_note
-	where mynote=#{mynote}
+	where myempno=#{myempno}
 	<include refid="search"/>
 	order by serial desc
 	</select>
 	
 	<select id="search_Count_note" resultType="int"> <!-- 검색쪽지 카운트  -->
 	select count(*) from tbl_send_note
-	where mynote=#{mynote}
+	where myempno=#{myempno}
 	<include refid="search"/>
 	
 	</select>
