@@ -47,8 +47,10 @@ public class ManagerController {
 	
 	@RequestMapping(value="/employee_Insert",method=RequestMethod.POST)
 	public void employee_Insert(@RequestBody EmpVO vo) throws Exception{
-		LocalEncrypter enc = new LocalEncrypter();
-		String str = enc.returnEncryptCode(vo.getPass());
+		String key="cogydnjscogydnjs1";
+		LocalEncrypter enc = new LocalEncrypter(key);
+		
+		String str = enc.aesEncode(vo.getPass());
 		vo.setPass(str);
 		service.emp_Insert(vo);
 	}

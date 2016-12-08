@@ -30,6 +30,7 @@ import kr.co.useful.board.service.DeptService;
 import kr.co.useful.board.service.NoticeService;
 import kr.co.useful.email.domain.Email;
 import kr.co.useful.email.service.EmailSender;
+import kr.co.useful.encrypt.LocalEncrypter;
 import kr.co.useful.login.service.LoginService;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.note.domain.RecipientVO;
@@ -70,27 +71,28 @@ public class LoginController {
 	
 	//로그인 체크
 	@RequestMapping("/Main")
-	public ResponseEntity<String> main(HttpServletRequest req,HttpSession session){
+	public ResponseEntity<String> main(HttpServletRequest req,HttpSession session)throws Exception{
+		String key="cogydnjscogydnjs1";
 		
 		ResponseEntity<String> entity = null;
+		
+		LocalEncrypter enc = new LocalEncrypter(key);
 		
 		String empno = req.getParameter("empno");
 		String pass = req.getParameter("pass");
 		
-		try {
-			String dpass = service.select(Integer.parseInt(empno)).getPass();
-			if(pass.equals(dpass)){
-				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-			}
-			service.update(Integer.parseInt(empno));
-			EmpVO vo = service.selectLoginUser(Integer.parseInt(empno), dpass);
-			if(vo != null){
-				session.setAttribute("LoginUser", vo);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		String dpass = service.select(Integer.parseInt(empno)).getPass();
+		String dec = enc.aesDecode(dpass);
+
+		if(pass.equals(dec)){
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		}
-			
+		service.update(Integer.parseInt(empno));
+		EmpVO vo = service.selectLoginUser(Integer.parseInt(empno), dpass);
+		if(vo != null){
+			session.setAttribute("LoginUser", vo);
+		}
+		
 		return entity;
 	}
 	

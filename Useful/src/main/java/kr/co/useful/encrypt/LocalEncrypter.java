@@ -1,60 +1,60 @@
 package kr.co.useful.encrypt;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
+import java.security.NoSuchAlgorithmException;
  
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
  
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import org.apache.commons.codec.binary.Base64;
  
-public class LocalEncrypter{
-    //DESede 는 암호화시 사용되는 최대 키 사이즈를 지정하는 키워드임 
-    private static String algorithm = "DESede";
-    private static Key    key       = null;
-    private static Cipher cipher    = null;
+public class LocalEncrypter {
+    private String iv;
+    private Key keySpec;
  
-    public static String returnEncryptCode(String str) throws Exception {
-        byte [] encryptionBytes = null;
-       
-        setUp();
-              
-        // 입력받은 문자열을 암호화 하는 부분
-        encryptionBytes = encrypt( str );
-        BASE64Encoder encoder = new BASE64Encoder();
-         String encodeString = encoder.encode(encryptionBytes);
-         //encoder.encode(encryptionBytes) 으로 encrypt 된 값 출력
-        return encodeString;
-    }
-
-   private static void setUp() throws Exception {
-        key = KeyGenerator.getInstance( algorithm ).generateKey();
-        cipher = Cipher.getInstance( algorithm );
-    }
-
-    public static String returnDecryptCode(String str) throws Exception {
-        BASE64Decoder decoder = new BASE64Decoder();
-        String decode = decrypt( decoder.decodeBuffer(str) );
-        return decode;
+    public LocalEncrypter(String key) throws UnsupportedEncodingException {
+        this.iv = key.substring(0, 16);
+ 
+        byte[] keyBytes = new byte[16];
+        byte[] b = key.getBytes("UTF-8");
+        int len = b.length;
+        if(len > keyBytes.length)
+            len = keyBytes.length;
+        System.arraycopy(b, 0, keyBytes, 0, len);
+        SecretKeySpec keySpec = new SecretKeySpec(keyBytes, "AES");
+ 
+        this.keySpec = keySpec;
     }
  
-    // encryptionBytes = encrypt( input ), input을 변조하여 encryptionBytes에 대입함.
-    private static byte [] encrypt(String input) throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException  {
-        cipher.init( Cipher.ENCRYPT_MODE, key );
-        byte [] inputBytes = input.getBytes();
-        return cipher.doFinal( inputBytes );
+    // 암호화
+    public String aesEncode(String str) throws java.io.UnsupportedEncodingException, NoSuchAlgorithmException, 
+                                                     NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, 
+                                                     IllegalBlockSizeException, BadPaddingException{
+        Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        c.init(Cipher.ENCRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
+ 
+        byte[] encrypted = c.doFinal(str.getBytes("UTF-8"));
+        String enStr = new String(Base64.encodeBase64(encrypted));
+ 
+        return enStr;
     }
  
-    //decrypt( decoder.decodeBuffer(encodeString) ) 처리부분.
-    private static String decrypt(byte [] encryptionBytes) throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        cipher.init( Cipher.DECRYPT_MODE, key );
-        byte [] recoveredBytes = cipher.doFinal( encryptionBytes );
-        String recovered = new String( recoveredBytes );
-        return recovered;
-    }
+    //복호화
+    public String aesDecode(String str) throws java.io.UnsupportedEncodingException, NoSuchAlgorithmException, 
+                                                     NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, 
+                                                     IllegalBlockSizeException, BadPaddingException {
+        Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        c.init(Cipher.DECRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes("UTF-8")));
  
+        byte[] byteStr = Base64.decodeBase64(str.getBytes());
+ 
+        return new String(c.doFinal(byteStr),"UTF-8");
+    }
 }
-
