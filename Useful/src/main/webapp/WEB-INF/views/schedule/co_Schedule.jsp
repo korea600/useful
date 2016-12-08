@@ -78,26 +78,7 @@ function cal(id, newdate) {
 	var currentLastDate = lastDate[currentMonth-1];
 	
 	var week = Math.ceil( ( currentDay + currentLastDate ) / 7 );
-	//총 몇 주인지 구함.
-	
-/* 	if(currentMonth != 1){//1월이 아니라면 그대로 ◀
-		var prevDate = currentYear + '-' + ( currentMonth - 1 ) + '-' + currentDate; 
-	}else{
-		var prevDate = ( currentYear - 1 ) + '-' + 12 + '-' + currentDate;
-	}//만약 이번달이 1월이라면 1년 전 12월로 출력 ◀
-	
-	if(currentMonth != 12){ //12월이 아니라면 ▶
-		var nextDate = currentYear + '-' + ( currentMonth + 1 ) + '-' + currentDate;
-	}else{
-		var nextDate = ( currentYear + 1 ) + '-' + 1 + '-' + currentDate;
-	}//만약 이번달이 12월이라면 1년 후 1월로 출력 ▶
 
-	 */
-	if( currentMonth < 10 ){
-		var currentMonth = '0' + currentMonth;
-	}//두자리수 아래는 0붙이기 
-	
-	
 	var calendar = '';
 	
 	calendar += '		<form name="dailyForm" action="" method="get">';	
@@ -136,11 +117,13 @@ function cal(id, newdate) {
 			calendar += '				<td class="' +dateString[j]+'" style="width:180px; height:180px; position:relative;">'
 			                            +'<div id="a'+currentYear+currentMonth+dateNum+'" onClick="clickCal('+currentYear+','+currentMonth+','+dateNum+')" style="cursor:pointer; font-size:20px; width:180px; height:25px; background-color:yellow; position:absolute; top:0;">' + dateNum + '</div>';
 			                            $('#b'+currentYear+currentMonth+dateNum).empty();    
-			                            if( dateNum<10)
-			                				 dateNum = '0'+dateNum
-				                            if( currentMonth<10)
-			                				 currentMonth = '0' + currentMonth;
-			calendar += '            	 <div id="b'+currentYear+currentMonth+dateNum+'" style="width:180px; height:155px; position:relative; top:20px; background-color:orange; "></div></td>';
+			              var dateno= dateNum;
+			              var monthno = currentMonth;
+			                            if( dateno<10)
+			                				 dateno = '0'+dateNum
+				                            if( monthno<10)
+				                            	monthno = '0' + currentMonth;
+			calendar += '            	 <div id="b'+currentYear+monthno+dateno+'" style="width:180px; height:155px; position:relative; top:20px; background-color:orange; "></div></td>';
 		}
 		calendar += '			</tr>';
 	}
@@ -163,12 +146,14 @@ function cal(id, newdate) {
                startYear++;
 	}//for
         		
-	//alert(currentMonth);
+	alert(currentMonth);
      var fmonth = f.month;//월 select
-     
+     //alert('cu'+currentMonth);--12
+     var nowMonth = currentMonth;
      for(i=0; i<12; i++){
-    	 if(i<9)
-         fmonth[i] = new Option('0'+(i+1), '0'+(i+1));
+    	
+    	 if(i<9)	
+         fmonth[i] = new Option('0'+(i+1), i+1);
     	 else
          fmonth[i] = new Option(i+1, i+1);
     	 

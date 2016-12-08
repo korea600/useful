@@ -90,7 +90,7 @@ public class MeetingController {
 	
 
 	//예약리스트
-	@RequestMapping("")
+	@RequestMapping("/test2")
 	public void myBooking() {
 
 	}
