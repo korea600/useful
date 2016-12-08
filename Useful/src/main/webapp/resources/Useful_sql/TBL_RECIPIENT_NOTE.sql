@@ -14,3 +14,4 @@ create sequence tbl_recipient_note_seq;
 select * from tbl_recipient_note;
 select empno,ename,pass from tbl_emp;
 select * from tbl_recipient_note;
+select * from tbl_send_note;

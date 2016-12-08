@@ -70,7 +70,7 @@
                             
                               <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 30px;">
                                                     <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
-                                                    <option value="reciid"<c:out value="${cri.searchType=='reciid'?'selected':'' }"/> >보낸사람</option>
+                                                    <option value="reciname"<c:out value="${cri.searchType=='reciname'?'selected':'' }"/> >보낸사람</option>
                                                     <option value="recontent" <c:out value="${cri.searchType=='recontent'?'selected':'' }"/>>내용</option>
                                                 </select>
                                 <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 30px;width: 85%;size: 30;"/>
@@ -100,7 +100,7 @@
 										<tr>
 											<%-- <td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }</a></td> --%>
 
-											<td>${RecipientVO.mynotename }</td>
+											<td>${RecipientVO.reciname }</td>
 											<td><a href="/useful/note/riciReadPage?serial=${RecipientVO.serial }">${RecipientVO.recontent }</a></td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${RecipientVO.recipientdate }"/></td>
 											<td style="display: none" value="${RecipientVO.serial }"></td>

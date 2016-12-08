@@ -96,7 +96,7 @@
 											<td>${findEmpVO.ename }</td>
 											<td>${findEmpVO.phone }</td>
 											<td>${findEmpVO.email }</td>
-											<td><button class="btn btn-warning btn-sm" id="find"  style="height: 30px;" value="${findEmpVO.ename }">선택</button></td>
+											<td><button class="btn btn-warning btn-sm" type='button' name="find"  style="height: 30px;" id="${findEmpVO.ename }">선택</button></td>
 											</tr>
 									</c:forEach>
 									
@@ -180,20 +180,18 @@ $(document).ready(function(){
 	$("#searchBtn").on("click",function(event){
 		event.preventDefault();
 		self.location="finduserPage?"+
-		"&searchType="+
-		$("select option:selected").val()+
-		"&keyword=" + $('#btn-input').val();
+		"searchType="+$("select option:selected").val()
+		+"&keyword=" + $('#btn-input').val();
 	});
 	
-	$('#find').click(function(event) {
-		event.preventDefault();
-		var result=$(this).val();
+	$('[name=find]').click(function(event) {
+		var result=$(this).attr('id');
 		//alert(result)
 		 
-		//alert("??")
+		 //alert("??")
 		  opener.getReturnValue(result);
 		  //alert("닫기전")
-		  window.close();
+		  window.close(); 
 		});
 });
 
