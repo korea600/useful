@@ -18,4 +18,5 @@ public interface BoardService {
 	public List<BoardVO> select_cut_list()throws Exception;
 	public int reply_cut()throws Exception;
 	public void fileupload(String originalfileName, String saveFileName, long fileSize)throws Exception;
+	public String sava_File_name(int serial,String originalfileName)throws Exception;
 }
