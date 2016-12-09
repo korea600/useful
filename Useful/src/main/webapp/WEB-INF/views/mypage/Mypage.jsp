@@ -6,8 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>개인정보수정</title>
-<%@include file="../login/Main.jsp" %>
-<script type="text/javascript" src="../resources/js/jquery-3.1.1.js"></script>
+<%@include file="/WEB-INF/views/manager/Main.jsp" %>
 <script type="text/javascript">
 	function InfoSave(){
 		if($.trim($('#pass').val()) == ""){
