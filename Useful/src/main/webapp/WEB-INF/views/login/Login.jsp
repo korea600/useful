@@ -65,7 +65,7 @@
 					
 				}else{
 					alert("사원번호와 비밀번호를 다시 확인해주세요.");
-					self.location = "/useful/login/Login";
+					$('[name=pass]').val('');
 				}
 			}
 		});

@@ -71,29 +71,22 @@ public class LoginController {
 	
 	//로그인 체크
 	@RequestMapping("/Main")
-	public ResponseEntity<String> main(HttpServletRequest req,HttpSession session)throws Exception{
+	public @ResponseBody String main(HttpServletRequest req,HttpSession session, int empno, String pass)throws Exception{
+		String result="FAIL";
+		
 		String key="cogydnjscogydnjs1";
-		
-		ResponseEntity<String> entity = null;
-		
 		LocalEncrypter enc = new LocalEncrypter(key);
 		
-		String empno = req.getParameter("empno");
-		String pass = req.getParameter("pass");
-		
-		String dpass = service.select(Integer.parseInt(empno)).getPass();
+		String dpass = service.select(empno).getPass();
 		String dec = enc.aesDecode(dpass);
 
 		if(pass.equals(dec)){
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			result="SUCCESS";
+			service.update(empno);
+			session.setAttribute("LoginUser", service.selectLoginUser(empno, dpass));
 		}
-		service.update(Integer.parseInt(empno));
-		EmpVO vo = service.selectLoginUser(Integer.parseInt(empno), dpass);
-		if(vo != null){
-			session.setAttribute("LoginUser", vo);
-		}
-		
-		return entity;
+			
+		return result;
 	}
 	
 	//초기 로그인 성공시 비밀번호 변경폼
