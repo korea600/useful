@@ -88,10 +88,10 @@ th {
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-<table >
+<table class="table table-striped table-bordered table-hover">
 <tbody>
 	<tr>
-	<th style="height: 40px">검색기간</th>
+	<th style="height: 100px" align="center"b>검색기간</th>
 	<td>
 	<button id="btn_today" class="btn btn-default">당일</button>
 	<button id="btn_week" class="btn btn-default">1주일</button>
