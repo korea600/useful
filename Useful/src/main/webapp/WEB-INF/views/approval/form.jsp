@@ -116,8 +116,8 @@
 		<tr><td colspan="2"><textarea name='content' class='form-control' cols="60" rows="20"></textarea></td></tr>
 		<tr><td align='center'>첨부파일</td><td><input type="file" name='file' style="width: 100%"></td></tr>
 		<tr><td colspan="2" align='center'>
-			<input type='button' class='btn btn-warning' name='insert' value='작성'>
-			<input type='button' class='btn btn-warning' name='cancel' value='취소' onclick='history.back()'>
+			<input type='button' class='btn btn-default' name='insert' value='작성'>
+			<input type='button' class='btn btn-default' name='cancel' value='취소' onclick='history.back()'>
 		</td></tr>
 		</table>
 </form>

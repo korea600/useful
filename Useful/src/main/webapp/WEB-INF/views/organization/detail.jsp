@@ -34,7 +34,7 @@ th,td{text-align: center}
 					<tr><th>이메일</th><td>${detail.email}</td></tr>
 				</table>
 			</div>
-			<input type='button' class='btn btn-warning' value='닫기' onclick="self.close()">
+			<input type='button' class='btn btn-default' value='닫기' onclick="self.close()">
 		</div>
 	</div>
 </div>

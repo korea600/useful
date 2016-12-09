@@ -91,15 +91,15 @@
 		</table>
 		<c:if test="${vo.status eq '반려'}">
 			<c:if test="${vo.writer eq LoginUser.empno}">
-				<input type='button' class='btn btn-warning' name='modify' value='수정/삭제'>
+				<input type='button' class='btn btn-default' name='modify' value='수정/삭제'>
 			</c:if>
 		</c:if>
 		<c:if test="${vo.next_approval eq LoginUser.empno}">
-			<input type='button'  class='btn btn-warning' name='approval' value='결재/반려'>
+			<input type='button'  class='btn btn-default' name='approval' value='결재/반려'>
 		</c:if>
 			<div align="center">
-			<input type='button'  class='btn btn-warning' name='view_comments' value='코멘트 보기' onclick='comment_list()'>
-			<input type='button'  class='btn btn-warning' name='cancel' value='뒤로' onclick='history.back()'>
+			<input type='button'  class='btn btn-default' name='view_comments' value='코멘트 보기' onclick='comment_list()'>
+			<input type='button'  class='btn btn-default' name='cancel' value='뒤로' onclick='history.back()'>
 			</div>
 		</div>
 	</div></div></div></div>

@@ -52,9 +52,9 @@ th,td{text-align: center}
 	<div class='col-lg-12'>
 		<div class='panel-body' align='center'>
 			<textarea name='comments' rows="4" cols="50" class='form-control'></textarea><br>
-			<input type='button' name='accept' class='btn btn-warning' value='결재'>
-			<input type='button' name='reject' class='btn btn-warning' value='반려'>
-			<input type='button' name='add_comment' class='btn btn-warning'  value='취소' onclick='self.close()'>
+			<input type='button' name='accept' class='btn btn-default' value='결재'>
+			<input type='button' name='reject' class='btn btn-default' value='반려'>
+			<input type='button' name='add_comment' class='btn btn-default'  value='취소' onclick='self.close()'>
 		</div>
 	</div>
 </div>

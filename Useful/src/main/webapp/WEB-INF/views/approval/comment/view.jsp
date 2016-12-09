@@ -34,7 +34,7 @@ th,td{text-align: center}
 					</c:forEach>
 				</table>
 			</div>
-			<input type='button' class='btn btn-warning' name='close' value='닫기' onclick='self.close()'>
+			<input type='button' class='btn btn-default' name='close' value='닫기' onclick='self.close()'>
 		</div>
 	</div>
 </div>

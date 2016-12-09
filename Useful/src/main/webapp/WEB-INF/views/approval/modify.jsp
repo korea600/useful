@@ -90,9 +90,9 @@
 	</table>
 	<div align="center">
 		<input type='hidden' name='oldfilename' value='${vo.filename}'>
-		<input type='button' class='btn btn-warning' name='modify' value='수정'>
-		<input type='button' class='btn btn-warning' name='delete' value='삭제'>
-		<input type='button' class='btn btn-warning' name='cancel' value='뒤로' onclick='history.back()'>
+		<input type='button' class='btn btn-default' name='modify' value='수정'>
+		<input type='button' class='btn btn-default' name='delete' value='삭제'>
+		<input type='button' class='btn btn-default' name='cancel' value='뒤로' onclick='history.back()'>
 	</div>
 	</div>
 	</div></div></div></div>
