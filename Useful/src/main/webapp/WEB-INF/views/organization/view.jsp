@@ -41,7 +41,7 @@ th,td{text-align: center}
 		$('.empno').click(function(){
 			var id = $(this).attr('id');
 			window.open('detail/'+id,'detail','toolbar=no,location=no,status=no,'
-					+'menubar=no,scrollbars=no,resizable=0,width=400,height=300,top=100,left=100');
+					+'menubar=no,scrollbars=no,resizable=0,width=400,height=400,top=100,left=100');
 		})
 	});
 </script>
