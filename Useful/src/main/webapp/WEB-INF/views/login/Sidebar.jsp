@@ -145,7 +145,10 @@
                                     <a href="/useful/meetingroom/meetingroom">예약하기</a>
                                 </li>
                                 <li>
-                                    <a href="#">예약내역</a>
+                                    <a href="/useful/meetingroom/myBooking">예약내역</a>
+                                </li>
+                                <li>
+                                    <a href="/useful/meetingroom/bookingHistory">예약관리</a>
                                 </li>
                                 
                                     </ul>
