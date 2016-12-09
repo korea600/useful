@@ -85,14 +85,14 @@ function search(){
 		<div class='dataTables_paginate paging_simple_numbers' id='dataTables-example_paginate' style="text-align: center;">
 			<ul class='pagination'>
 				<c:if test="${pagemaker.prev}">
-					<li class='paginate_button' id='dataTables-example_previous'><a href="listdept${pagemaker.makeSearch(pagemaker.startPage-1)}">이전</a></li>
+					<li class='paginate_button' id='dataTables-example_previous'><a href="listmine${pagemaker.makeSearch(pagemaker.startPage-1)}">이전</a></li>
 				</c:if>
 				<c:forEach begin='${pagemaker.startPage}' end="${pagemaker.endPage }" var='i'>
 					<c:if test="${pagemaker.cri.page==i}"><li class='paginate_button active'><a href='#'>${i}</a></li></c:if>
-					<c:if test="${pagemaker.cri.page!=i}"><li class='paginate_button'><a href="listdept${pagemaker.makeSearch(i)}"> ${i} </a></li></c:if>
+					<c:if test="${pagemaker.cri.page!=i}"><li class='paginate_button'><a href="listmine${pagemaker.makeSearch(i)}"> ${i} </a></li></c:if>
 				</c:forEach>
 				<c:if test="${pagemaker.next && pagemaker.endPage>0 }">
-					<li class='paginate_button' id='dataTables-example_next'><a href="listdept${pagemaker.makeSearch(pagemaker.endPage+1)}">다음</a></li>
+					<li class='paginate_button' id='dataTables-example_next'><a href="listmine${pagemaker.makeSearch(pagemaker.endPage+1)}">다음</a></li>
 				</c:if>				
 			</ul>
 		</div>
