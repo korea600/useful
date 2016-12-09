@@ -23,6 +23,10 @@ th {
 		var year = now.getFullYear();
 		$("#search_year").val(year).prop("selected", true);
 		$("#search_month").val(month).prop("selected", true);
+		
+		$("#btn_search").click(function(){
+			searchDate();
+		});
 	});
 	function searchDate() {
 		$.ajax({
@@ -44,21 +48,6 @@ th {
 		});
 	}
 
-	function changeMonthprev() {
-		var nowmonth = $("#search_month option:selected").val()
-		if (nowmonth != 1) {
-			$("#search_month").val(nowmonth - 1).prop("selected", true);
-			searchDate();
-		}
-	}
-	function changeMonthnext() {
-		var nowmonth = $("#search_month option:selected").val()
-		if (nowmonth != 12) {
-			nowmonth = nowmonth + 1
-			$("#search_month").val(nowmonth).prop("selected", true);
-			searchDate();
-		}
-	}
 </script>
 </head>
 <body>
@@ -74,10 +63,10 @@ th {
                 </div>
             </div>
 		<div>
-			<table style="width: 80%; ">
+			<table class="table table-striped table-bordered table-hover">
 				<tr>
-					<th align="center">부서</th>
-					<td><select id="dept" class="form-control-static"	 onChange='searchDate()'>
+					<th style="text-align: center;">부서</th>
+					<td><select id="dept" class="form-control-static"	>
 							<option value="0" selected="selected">전체</option>
 							<option value="10">잘했조</option>
 							<option value="20">보여조</option>
@@ -85,14 +74,12 @@ th {
 							<option value="40">삼삼오오조</option>
 					</select></td>
 				</tr>
-				</tbody>
-			</table>
-			<br>
-		</div>
-		<div class="form-group">
-			<select name="search_year" id="search_year" style='width: 80px;'
-				onChange='searchDate()' class="form-control-static"	>
-				<%
+				<tr>
+					<th style="text-align: center;">근무월</th>
+					<td>
+				<select name="search_year" id="search_year" style='width: 80px;'
+						 class="form-control-static"	>
+					<%
 					for (int i = 2010; i < 2019; i++) {
 				%>
 				<option value="<%=i%>"><%=i%>년
@@ -101,7 +88,7 @@ th {
 					}
 				%>
 			</select> <select name="search_month" id="search_month" style='width: 80px;'
-				onChange='searchDate()' class="form-control-static">
+				 class="form-control-static">
 				<%
 					for (int i = 1; i < 13; i++) {
 						if (i < 10) {
@@ -119,23 +106,32 @@ th {
 					}
 				%>
 			</select>
+					
+					</td>
+				</tr>
+				</tbody>
+			</table>
+					<div style="text-align: center;">
+					<button id="btn_search" class="btn btn-warning">검색</button>
+					</div>
+			<br>
 		</div>
 		<div id="div_print">
 		<!-- /.panel -->
 
 
 				<div class="table-responsive">
-					<table class="table table-striped table-bordered table-hover" style="width: 100%;">
+					<table class="table table-striped table-bordered table-hover" style="width: 100%;text-align: center;">
 						<thead>
 							<tr>
-								<th width="20%">부서</th>
-								<th width="20%">사원</th>
-								<th width="10%">출근</th>
-								<th width="10%">지각</th>
-								<th width="10%">결근</th>
-								<th width="10%">휴가</th>
-								<th width="10%">출장</th>
-								<th width="10%">조퇴</th>
+								<th style="text-align: center;" width="20%">부서</th>
+								<th style="text-align: center;" width="20%">사원</th>
+								<th style="text-align: center;" width="10%">출근</th>
+								<th style="text-align: center;" width="10%">지각</th>
+								<th style="text-align: center;" width="10%">결근</th>
+								<th style="text-align: center;" width="10%">휴가</th>
+								<th style="text-align: center;" width="10%">출장</th>
+								<th style="text-align: center;" width="10%">조퇴</th>
 							</tr>
 						</thead>
 						<tbody>

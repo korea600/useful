@@ -41,8 +41,7 @@
 </style>
 </head>
 <body>
-
-    <div id="wrapper">
+  <div id="wrapper">
       <!-- 왼쪽 사이드바 쪽  -->
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -116,7 +115,7 @@
                                     <a href="/useful/manager/salary_List">급여관리</a>
                                 </li>
                                 <li>
-                                   <a href="/useful/manager/employee_List">연차관리</a>
+                                   <a href="/useful/manager/leave_List">연차관리</a>
                                 </li>
                                 
                             </ul>
@@ -150,7 +149,7 @@
                             <a href="#"><i class="fa fa-calendar-o fa-fw"></i> 회의실예약<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/uselful/meetingroom/booking">예약하기</a>
+                                    <a href="/useful/meetingroom/meetingroom">예약하기</a>
                                 </li>
                                 <li>
                                     <a href="#">예약내역</a>
@@ -172,7 +171,6 @@
             <!-- /.navbar-static-side -->
         </nav>
             </div>
-
     
     <!-- /#wrapper -->
 
