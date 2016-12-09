@@ -6,6 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<script>
+
+function checkYes(serial){
+	location.href="/useful/meetingroom/checkYes?serial="+serial;
+}
+
+function checkNo(serial){
+	location.href="/useful/meetingroom/checkNo?serial="+serial;
+}
+</script>
 </head>
 <body>
 
@@ -41,7 +52,7 @@
       <td>${MeetingVO.beginday}</td>
       <td>${MeetingVO.begin}~${MeetingVO.end }시</td>
       <td>${MeetingVO.checked }</td>
-      <td><input type="button" id="a${MeetingVO.serial }" value="승인"><input type="button" id="b${MeetingVO.serial }"  value="승인취소"></td>    
+      <td><input type="button" id="a${MeetingVO.serial }" onclick="checkYes(${MeetingVO.serial})" value="승인"><input type="button" id="b${MeetingVO.serial }" onclick=" checkNo(${MeetingVO.serial})"  value="승인취소"></td>    
       </tr>
       </c:forEach>
     </table>

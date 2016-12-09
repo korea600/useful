@@ -137,8 +137,19 @@ public class MeetingController {
          service.checkYes(serial);
 	}
 
-*/
-
+*/  
+	@RequestMapping(value="/checkYes")
+   public String checkYes(int serial) throws Exception{
+	   service.checkYes(serial);
+	   System.out.println("승인인정");
+	   return "redirect:/meetingroom/bookingHistory";
+   }
 	
+	@RequestMapping(value="/checkNo")
+	public String checkNo(int serial)throws Exception{
+		service.checkNo(serial);
+		System.out.println("거절");
+		 return "redirect:/meetingroom/bookingHistory";
+	}
 
 }
