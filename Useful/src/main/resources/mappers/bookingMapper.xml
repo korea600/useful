@@ -29,7 +29,7 @@
   <!-- 예약등록 -->
     <insert id="insert">
        insert into tbl_reservation (serial, roomno, beginday, begin, end, content, booker, empno, checked)
-         values (tbl_reservation_seq.nextval, #{roomno}, #{beginday}, #{begin}, #{end}, #{content}, #{booker}, #{empno}, '대기'})
+         values (tbl_reservation_seq.nextval, #{roomno}, #{beginday}, #{begin}, #{end}, #{content}, #{booker}, #{empno}, '대기')
     </insert>
   
   <!-- 예약취소 -->

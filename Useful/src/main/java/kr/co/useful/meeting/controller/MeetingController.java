@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.useful.manager.domain.EmpVO;
@@ -60,10 +61,10 @@ public class MeetingController {
 	// 회의실 등록
 	@RequestMapping(value = "/makeroom", method = RequestMethod.POST)
 	public String roomMakePost(MeetingRoomVO vo, RedirectAttributes attr) throws Exception {
+		System.out.println("방 만들기" + vo);
 		service.regist(vo);
 		
 		// System.out.println("방 만들기");
-		System.out.println("방 만들기" + vo);
 		return "redirect:/meetingroom/meetingroom";
 	}
 
@@ -108,12 +109,15 @@ public class MeetingController {
 
 	// 예약누르기
 	@RequestMapping(value = "/askBooking", method = RequestMethod.POST)
-	public String reservation(MeetingVO vo) throws Exception{
+	public @ResponseBody String reservation(MeetingVO vo) throws Exception{
 	
-        //service.updateBooking(vo);
-        System.out.println(vo);
+		System.out.println("예약하기: "+vo);
+		service.updateBooking(vo);
         
-		return "redirect:/meetingroom/bookingList";
+		//return "redirect:/meetingroom/myBooking";
+		
+		//redirect:/meetingroom/bookingList?roomno="+vo.getRoomno();
+        return "ok";
 	}
 
 	// 예약취소

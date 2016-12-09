@@ -14,7 +14,7 @@ public class MeetingVO {
 	
 	public MeetingVO() {
 		// TODO Auto-generated constructor stub
-	}
+	} 
 	
 	
 	public int getSerial() {

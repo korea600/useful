@@ -172,6 +172,25 @@ $(document).ready(function(){
 				 
 			</table>
 		</form>
+		                   <!-- 댓글 입력란 -->
+										
+										<div class="input-group"
+											style="height: 30px; width: 85%; size: 30; left: 10px;">
+
+											<input name="keyword" id="btn-input" type="text"
+												class="form-control input-sm" placeholder="댓글을 입력해주세요"
+												style="height: 65px; " /> <span class="input-group-btn">
+												<button type="button" class="btn btn-warning btn-sm" id="replybtn"
+													style="height: 65px; width: 100px;">
+													<h3>입력</h3>
+												</button>
+											</span>
+										</div>
+									
+									
+									<!-- 댓글 입력란 -->
+		
+		
 	</center>
 </body>
 </html>

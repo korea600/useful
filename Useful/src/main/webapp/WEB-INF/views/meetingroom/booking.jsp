@@ -118,9 +118,12 @@ var insertWin;
  	 insertWin.close();
  }
  
+ 
+  var bookingWin;
  function reloadWin2(){
- 	 location.reload();
+ 
  	bookingWin.close();
+    location.href="/useful/meetingroom/myBooking";
  }
  
  function test(serial){
@@ -130,7 +133,6 @@ var insertWin;
 	 
  }
  
-  var bookingWin;
  function reservation(roomno){
 	 
 	 bookingWin = window.open('booking_Input?roomno='+roomno,'input','toolbar=yes,location=no,status=no'

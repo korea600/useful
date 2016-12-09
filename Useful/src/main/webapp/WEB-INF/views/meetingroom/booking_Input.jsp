@@ -164,7 +164,8 @@ function closeCal(y,m,d){
     			 content:$('[name=content]').val()
     		 },
     		 success:function(){
-    			 alert("등록되었습니다.")
+    			 alert("등록되었습니다.");
+    			 opener.reloadWin2();
     		
     			
     		 }    		 
