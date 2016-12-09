@@ -139,7 +139,7 @@
 		<button id="btn_NewUser" class="btn btn-default">신규</button>
 
 	</div>
-	<table id="employee_tbl"></table>
+	<table id="employee_tbl" ></table>
 	<div id="employee_div"></div>
 	
 </div>

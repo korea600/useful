@@ -5,16 +5,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
-	<table style="margin-top: 10px;">
+	<table class="table table-striped table-bordered table-hover" style="text-align: center;">
 	<tr>
-		<th width="15%">부서명</th>
-		<th width="15%">사원명</th>
-		<th width="14%">출근일자</th>
-		<th width="15%">출근시간</th>
-		<th width="14%">퇴근일자</th>
-		<th width="15%">퇴근시간</th>
-		<th width="13%">구분</th>
-		<th width="12%">변경</th>
+		<th width="20%"  style="text-align: center;">부서명</th>
+		<th width="20%"  style="text-align: center;">사원명</th>
+		<th width="10%"  style="text-align: center;">출근일자</th>
+		<th width="10%"  style="text-align: center;">출근시간</th>
+		<th width="10%"  style="text-align: center;">퇴근일자</th>
+		<th width="10%"  style="text-align: center;">퇴근시간</th>
+		<th width="10%"  style="text-align: center;">구분</th>
+		<th width="10%"  style="text-align: center;">변경</th>
 	</tr>
 
 		<c:forEach items="${commute }" var="print" >

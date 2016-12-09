@@ -141,25 +141,28 @@ function div_load(){
 </div>
 <!-- commute_Employee.jsp -->
 <div id="page-wrapper">
-<p><br>
-<font size="5" style="font-style: inherit;">사원별 근태현황</font><br><hr>
-<table style="border-color: black;">
+  <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">사원별 근태현황</h1>
+                </div>
+            </div>
+<table class="table table-striped table-bordered table-hover">
 <tbody>
 	<tr>
 	<th style="height: 40px;width: 200px;	text-align: center;">검색기간</th>
 	<td>
+		<input type="text" id="startdate" value="">
+		~<input type="text" id="enddate" value="">
 	<button id="btn_today" class="btn btn-default" >당일</button>
 	<button id="btn_week" class="btn btn-default" >1주일</button>
 	<button id="btn_month" class="btn btn-default" >1개월</button>
-	<button id="btn_3month" class="btn btn-default" >3개월</button><p>
-		<input type="text" id="startdate" value="">
-		~<input type="text" id="enddate" value="">
+	<button id="btn_3month" class="btn btn-default" >3개월</button>
 	</td>
 	</tr>
 	<tr>
-		<th style="	text-align: center;">부서명</th>
-			<td><select id="deptno" name="deptno" class="select" style="width: 200px;">
-						<option value="" selected="selected">-- 선택 --</option>
+		<th style="text-align: center;">부서명</th>
+			<td><select id="deptno" name="deptno" class="form-control-static" style="width: 170px;">
+						<option value="" selected="selected">전체</option>
 						<option value="10">잘했조</option>
 						<option value="20">보여조</option>
 						<option value="30">강조</option>
@@ -172,23 +175,26 @@ function div_load(){
 	</tr>
 	<tr>
 		<th  style="	text-align: center;">사원명</th>
-		<td><input type="text" id="ename"></td>
+		<td><input type="text" id="ename">
+		</td>
 	</tr>
 </tbody>
 </table>
-	<div><button id="btn_search" class="btn btn-default" >검색</button></div>
-	
+					<div style="text-align: center;">
+					<button id="btn_search" class="btn btn-warning">검색</button>
+					</div>	
+					<br>
 	<div id="div_print">
-	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+	<table class="table table-striped table-bordered table-hover"  style="text-align: center;">
 	<tr>
-		<th width="15%">부서명</th>
-		<th width="15%">사원명</th>
-		<th width="14%">출근일자</th>
-		<th width="15%">출근시간</th>
-		<th width="14%">퇴근일자</th>
-		<th width="15%">퇴근시간</th>
-		<th width="13%">구분</th>
-		<th width="12%">변경</th>
+		<th width="20%"  style="text-align: center;">부서명</th>
+		<th width="20%"  style="text-align: center;">사원명</th>
+		<th width="10%"  style="text-align: center;">출근일자</th>
+		<th width="10%"  style="text-align: center;">출근시간</th>
+		<th width="10%"  style="text-align: center;">퇴근일자</th>
+		<th width="10%"  style="text-align: center;">퇴근시간</th>
+		<th width="10%"  style="text-align: center;">구분</th>
+		<th width="10%" style="text-align: center;">변경</th>
 	</tr>
 			<tr>
 			<td colspan="8">
@@ -196,35 +202,34 @@ function div_load(){
 			</td>
 		</tr>
 		</table>
-	
 	</div>
-</div>
+
 <div id="popup" class="overlay"
 		style="z-index: 25; display: none; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.6); width: 100%; height: 100%;">
 		<div
-			style="background-color: white; width: 50%; height: 60%; margin-left: 20%; margin-top: 10%;  border: 1px solid black;">
+			style="background-color: white; width: 50%; height: 65%; margin-left: 20%; margin-top: 10%;  border: 1px solid black;" overflow:auto;>
 
 			<br>
-			<table class="table" style="margin-left: 30px;margin-top: 10px;margin-right: 30px;width: 90%;">
+			<table class="table" style="margin-left: 30px;padding-top: 10px;padding-right: 30px;width: 90%;">
 				<tr>
 				<td colspan="2" align="center">근태상태 변경페이지</td>
 				</tr>
 				<tr>
-					<th width="30%" align="center">부서명</th>
+					<th width="30%" style="text-align: center;">부서명</th>
 					<td><div id="update_Dname"></div></td>
 				</tr>
 				<tr>
-					<th>사원명</th>
+					<th style="text-align: center;">사원명</th>
 					<td><div id="update_Ename"></div></td>
 				</tr>
 				<tr>
-					<th>출근일자</th>
+					<th style="text-align: center;">출근일자</th>
 					<td><input type="text" id="update_Login"></td>
 				</tr>
 				<tr>
-					<th>출근시간</th>
+					<th style="text-align: center;">출근시간</th>
 					<td>
-						<select id="update_Login_TimeHH"  class="select" style="width: 50px;">
+						<select id="update_Login_TimeHH"  class="form-control-static"  style="width: 80px;">
 						<option value="" selected="selected">선택</option>
 						<% for(int i=0;i<24;i++){ 
 							if(i<10){%>
@@ -233,7 +238,7 @@ function div_load(){
 						<option value="<%=i%>"><%=i %></option>
 						<%} }%>
 						</select>시
-						<select id="update_Login_TimeMM"  class="select" style="width: 50px;">
+						<select id="update_Login_TimeMM" class="form-control-static" style="width: 80px;">
 						<option value="" selected="selected">선택</option>
 						<%for(int j=0;j<60;j++){ 
 								if(j<10){%>
@@ -247,14 +252,14 @@ function div_load(){
 				</td>
 				</tr>
 				<tr>
-					<th>퇴근일자</th>
+					<th style="text-align: center;">퇴근일자</th>
 					<td><input type="text" id="update_Logout"></td>
 				</tr>
 				<tr>
-					<th>퇴근시간</th>
+					<th style="text-align: center;">퇴근시간</th>
 					<td>
-						<select id="update_Logout_TimeHH"  class="select" style="width: 50px;">
-						<option value="" selected="selected">-- 선택 --</option>
+						<select id="update_Logout_TimeHH"  class="form-control-static"  style="width: 80px;">
+						<option value="" selected="selected">선택</option>
 						<%for(int i=0;i<24;i++){ 
 							if(i<10){%>
 						<option value="0<%=i%>">0<%=i %></option>
@@ -263,8 +268,8 @@ function div_load(){
 							<%} 
 						}%>
 						</select> 시
-						<select id="update_Logout_TimeMM"  class="select" style="width: 50px;">
-						<option value="" selected="selected">-- 선택 --</option>
+						<select id="update_Logout_TimeMM" class="form-control-static"  style="width: 80px;">
+						<option value="" selected="selected" >선택</option>
 						<%for(int j=0;j<60;j++){ 
 								if(j<10){%>
 						<option value="0<%=j%>">0<%=j%></option>
@@ -276,8 +281,8 @@ function div_load(){
 					</td>
 				</tr>
 				<tr>
-					<th>구분</th>
-					<td><select id="update_Checked">
+					<th style="text-align: center;">구분</th>
+					<td><select id="update_Checked" class="form-control-static" >
 					<option value="출근">출근</option>
 					<option value="지각">지각</option>
 					<option value="결근">결근</option>
@@ -294,9 +299,8 @@ function div_load(){
 				style="margin-left: 45%">수정</button>
 			<button type="button" class="btn btn-default" id="btn_close"
 				>닫기</button>
-
-
-		</div>
 	</div>
+</div>
+</div>
 </body>
 </html>
