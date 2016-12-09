@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,7 @@
 					//$("#employee_tbl").jqGrid("GridUnload");
 					$("#employee_tbl").setGridParam({
 						url:'/useful/manager/listSearch?'
-						+"searchType=" + $("select option:selected").val()
+						+"searchType=" + $("#searchType option:selected").val()
 						+ "&keyword=" + $('#keyword').val(),	
 						datatype:'json', 
 						mtype:'POST',
@@ -119,26 +120,29 @@
 	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include>  
 </div>
 <div id="page-wrapper">
-
-		<br><font size="5" style="font-style: inherit;">직원관리</font><br>
+	        <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">직원관리</h1>
+                </div>
+            </div>
 	<div>
 		- 검색어 
-		<select id="searchType" name="searchType" class="select">
-			<option value="divGbn" selected="selected">전체</option>
+		<select id="searchType" name="searchType" class="form-control-static" >
+			<option value="divGbn" selected="selected" >전체</option>
 			<option value="name">성명</option>
 			<option value="no">사번 </option>
 			<option value="dept">부서</option>
 			<option value="posi">직책</option>
 		</select>	
-		<input type="text" id="keyword" name="keyword">
-		<button id="btn_Search">조회</button>
-		<button id="btn_NewUser">신규</button>
+		<input type="text" id="keyword" name="keyword" >
+		<button id="btn_Search" class="btn btn-default">조회</button>
+		<button id="btn_NewUser" class="btn btn-default">신규</button>
 
 	</div>
-<hr>
 	<table id="employee_tbl"></table>
 	<div id="employee_div"></div>
 	
 </div>
+<div id="page-wrapper"></div>
 </body>
 </html>

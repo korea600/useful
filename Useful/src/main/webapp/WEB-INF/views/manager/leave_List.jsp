@@ -11,8 +11,8 @@ th {
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>연차관리</title>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
+<%-- <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script>  --%>
  <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>  
 <script type="text/javascript">

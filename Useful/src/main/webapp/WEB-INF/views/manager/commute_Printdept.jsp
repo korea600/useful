@@ -11,7 +11,7 @@
      <div class="panel-body">
      
      <div class="table-responsive">
-     <table class="table table-striped table-bordered table-hover">
+     <table class="table table-striped table-bordered table-hover"  style="width: 100%;">
      <thead>
 	<tr>
 		<th width="20%">부서</th>

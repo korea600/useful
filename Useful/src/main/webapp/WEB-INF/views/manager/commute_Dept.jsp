@@ -23,7 +23,6 @@ th {
 		var year = now.getFullYear();
 		$("#search_year").val(year).prop("selected", true);
 		$("#search_month").val(month).prop("selected", true);
-		searchDate();
 	});
 	function searchDate() {
 		$.ajax({
@@ -78,8 +77,8 @@ th {
 			<table style="width: 80%; ">
 				<tr>
 					<th align="center">부서</th>
-					<td><select id="dept" class="form-control" onChange='searchDate()'>
-							<option value="0" selected="selected">-- 선택 --</option>
+					<td><select id="dept" class="form-control-static"	 onChange='searchDate()'>
+							<option value="0" selected="selected">전체</option>
 							<option value="10">잘했조</option>
 							<option value="20">보여조</option>
 							<option value="30">강조</option>
@@ -123,10 +122,7 @@ th {
 		</div>
 		<div id="div_print">
 		<!-- /.panel -->
-         <div class="panel panel-default">
-			<div class="panel-heading"></div>
 
-			<div class="panel-body">
 
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-hover" style="width: 100%;">
@@ -144,14 +140,12 @@ th {
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="8"><b>데이터를 로딩중입니다...</b></td>
+								<td colspan="8"><b>데이터를 검색하세요</b></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-		</div>
-		</div>
 
 	</div>
 </body>

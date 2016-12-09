@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
-	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+	<table style="margin-top: 10px;">
 	<tr>
 		<th width="15%">부서명</th>
 		<th width="15%">사원명</th>

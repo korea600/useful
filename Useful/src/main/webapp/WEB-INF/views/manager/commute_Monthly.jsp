@@ -91,7 +91,7 @@ th {
 
 		<!-- /.panel -->
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			
 					
 
 						<font style="font-weight:bold;">부서</font> 
