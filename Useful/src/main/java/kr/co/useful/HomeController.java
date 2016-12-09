@@ -1,5 +1,7 @@
 package kr.co.useful;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.Properties;
 
@@ -24,17 +26,15 @@ public class HomeController {
 		ServletContext application = request.getServletContext();
 		String realpath=PathMaker.getRealPath(request).replace('\\', '/');
 		System.out.println("realpath : "+realpath);
-		String propertypath=realpath.substring(0, realpath.indexOf("org.eclipse"))+"org.eclipse.core.resources/.projects"+application.getContextPath()+"/org.eclipse.egit.core";
+		String propertypath=realpath.substring(0, realpath.indexOf("org.eclipse"))+"org.eclipse.core.resources/.projects"+application.getContextPath();//+"/org.eclipse.egit.core";
+//		String filename="GitProjectData.properties";
+		String filename=".location";
+		System.out.println("설정파일 위치 : "+propertypath+"/"+filename);
 		String workspacepath=propertypath.substring(0, propertypath.indexOf(".metadata"));
 		System.out.println("workspace : "+workspacepath);
-		String filename="GitProjectData.properties";
-		System.out.println("설정파일 위치 : "+propertypath+"/"+filename);
-		Properties pro = new Properties();
-		pro.load(new FileReader(propertypath+"/"+filename));
-		String gitdir = pro.getProperty(".gitdir");
-		gitdir = gitdir.substring(0, gitdir.indexOf(".git"))+"git";
-		/*System.out.println("git : "+workspacepath+gitdir);*/
-		/*String gitdir = workspacepath+.substring(beginIndex, endIndex);*/
+		BufferedReader br = new BufferedReader(new FileReader(propertypath+"/"+filename));
+		String gitdir=br.readLine();
+		gitdir=gitdir.substring(gitdir.indexOf("file:/")+6);
 		System.out.println(gitdir);
 	}
 }
