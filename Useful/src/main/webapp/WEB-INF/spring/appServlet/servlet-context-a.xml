@@ -7,31 +7,26 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- @Rest 한글처리 -->
-	  <annotation-driven>
-	   <!-- @ResponseBody 한글처리 -->
-		<!-- @ResponseBody의 한글처리 -->
-		<message-converters>
-			<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
-				<beans:property name="supportedMediaTypes" value="text/html; charset=UTF-8"/>
-			</beans:bean>
-		</message-converters>
-	</annotation-driven>
-	
-		<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<!-- Interceptors -->
+	<beans:bean id='meetingInterceptor' class="kr.co.useful.meeting.interceptor.MeetingInterceptor"/>
+	<beans:bean id='scheduleInterceptor' class="kr.co.useful.schedule.interceptor.ScheduleInterceptor"/>
+	<beans:bean id='sharetaskInterceptor' class="kr.co.useful.sharetask.interceptor.SharetaskInterceptor"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/meetingroom/**/*"/>
+			<beans:ref bean="meetingInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/schedule/**/*"/>
+			<beans:ref bean="scheduleInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/sharetask/**/*"/>
+			<beans:ref bean="sharetaskInterceptor"/>
+		</interceptor>
+	</interceptors>
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-		<!-- <beans:property name="order" value="1"/> -->
-	</beans:bean>
-	
-	
-	
-
-	
+	<!-- Controllers -->	
 	<context:component-scan base-package="kr.co.useful.meeting.controller" />
 	<context:component-scan base-package="kr.co.useful.schedule.controller" />
 	<context:component-scan base-package="kr.co.useful.sharetask.controller" />

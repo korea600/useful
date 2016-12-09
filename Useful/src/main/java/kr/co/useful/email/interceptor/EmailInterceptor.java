@@ -1,4 +1,4 @@
-package kr.co.useful.note.interceptor;
+package kr.co.useful.email.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,8 +7,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import kr.co.useful.manager.domain.EmpVO;
 
-public class NoteInterceptor extends HandlerInterceptorAdapter{
-	
+public class EmailInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		EmpVO vo = (EmpVO) request.getSession().getAttribute("LoginUser");
