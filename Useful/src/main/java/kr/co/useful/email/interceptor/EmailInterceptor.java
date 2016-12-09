@@ -29,4 +29,6 @@ public class EmailInterceptor extends HandlerInterceptorAdapter{
 		if(request.getMethod().equals("GET"))
 			request.getSession().setAttribute("dest", uri+query);	
 	}
+	
+	
 }

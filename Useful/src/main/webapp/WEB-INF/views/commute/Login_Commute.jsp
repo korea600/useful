@@ -91,20 +91,21 @@ th {
 <table class="table table-striped table-bordered table-hover">
 <tbody>
 	<tr>
-	<th style="height: 100px" align="center"b>검색기간</th>
+	<th style="height: 30px;width: 200px;	text-align: center;" align="center">검색기간 </th>
 	<td>
-	<button id="btn_today" class="btn btn-default">당일</button>
-	<button id="btn_week" class="btn btn-default">1주일</button>
-	<button id="btn_month" class="btn btn-default">1개월</button>
-	<button id="btn_3month" class="btn btn-default">3개월</button><p>
-		<input type="text" id="startdate" size="10" class="form-control-static">
-		~ <input type="text" id="enddate" size="11" class="form-control-static">
+		<input type="text" id="startdate" value="">
+		~ <input type="text" id="enddate" value="">
+	<button id="btn_today" class="btn btn-default" >당일</button>
+	<button id="btn_week" class="btn btn-default" >1주일</button>
+	<button id="btn_month" class="btn btn-default" >1개월</button>
+	<button id="btn_3month" class="btn btn-default" >3개월</button>
 	</td>
 	</tr>
+
 	
 </tbody>
 </table>
-	<div><button id="btn_search" class="btn btn-default">검색</button></div>
+	<div style="text-align: center;"><button id="btn_search" class="btn btn-warning">검색</button></div>
 	
 	<div id="div_print">
 	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;" class="table table-striped table-bordered table-hover">
