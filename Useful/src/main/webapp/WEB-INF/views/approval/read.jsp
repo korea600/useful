@@ -30,7 +30,7 @@
 			success:function(result){
 				if(result>0){
 					window.open('${pageContext.request.contextPath}/approval/comment/list/${vo.no}','list','toolbar=no,location=no,status=no'
-							+'menubar=no,scrollbars=yes,resizable=1,height=300,top=100,left=100');
+							+'menubar=no,scrollbars=no,resizable=0,width=400,height=300,top=100,left=100');
 				}
 				else{
 					if(flag) alert('현재 문서에 달린 코멘트가 없습니다.');
@@ -44,7 +44,7 @@
 	
 		$('[name=approval]').click(function(){
 			window.open('${pageContext.request.contextPath}/approval/comment/form','add_comment','toolbar=no,location=no,status=no'
-					+'menubar=no,scrollbars=no,resizable=0,width=500,height=200,top=100,left=100');
+					+'menubar=no,scrollbars=no,resizable=0,width=400,height=300,top=100,left=100');
 		})
 		$('[name=modify]').click(function(){
 			location.href='${pageContext.request.contextPath}/approval/modify?no='+${vo.no}
