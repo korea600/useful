@@ -154,8 +154,8 @@ public class LoginController {
 		        
 		        int num = EmailSender.generateNumber(6);
 		                
-		        String subject = "임시 비밀번호를 발송해드립니다.";
-		        String content = "임시 비밀번호는" + num + "입니다.";
+		        String subject = "UsefulWare에서 임시 비밀번호를 발송해드립니다.";
+		        String content = "발송된 임시 비밀번호는 [" + num + "] 입니다.";
 		        String pass = ""+num;
 		        
 		        email.setReciver(empVO.getEmail());
