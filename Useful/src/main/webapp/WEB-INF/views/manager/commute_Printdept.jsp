@@ -11,17 +11,17 @@
      <div class="panel-body">
      
      <div class="table-responsive">
-     <table class="table table-striped table-bordered table-hover"  style="width: 100%;">
+     <table class="table table-striped table-bordered table-hover"  style="width: 100%;text-align: center;">
      <thead>
 	<tr>
-		<th width="20%">부서</th>
-		<th width="20%">사원</th>
-		<th width="10%">출근</th>
-		<th width="10%">지각</th>
-		<th width="10%">결근</th> 	
-		<th width="10%">휴가</th>
-		<th width="10%">출장</th>
-		<th width="10%">조퇴</th>
+		<th width="20%" style="text-align: center;">부서</th>
+		<th width="20%" style="text-align: center;">사원</th>
+		<th width="10%" style="text-align: center;">출근</th>
+		<th width="10%" style="text-align: center;">지각</th>
+		<th width="10%" style="text-align: center;">결근</th> 	
+		<th width="10%" style="text-align: center;">휴가</th>
+		<th width="10%" style="text-align: center;">출장</th>
+		<th width="10%" style="text-align: center;">조퇴</th>
 	</tr>
 </thead>
  <tbody>

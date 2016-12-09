@@ -1,5 +1,7 @@
 package kr.co.useful.approval.domain;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Calendar;
 
 import javax.servlet.ServletContext;
@@ -9,13 +11,15 @@ public class PathMaker {
 	public static String getRealPath(HttpServletRequest request){	// Eclipse에 업로드되는 실제경로 리턴
 		return request.getServletContext().getRealPath("");
 	}
-	public static String getUploadPath(HttpServletRequest request){	// GIT폴더 내부의 업로드 경로 리턴
+	public static String getUploadPath(HttpServletRequest request) throws Exception{	// GIT폴더 내부의 업로드 경로 리턴
 		ServletContext application = request.getServletContext();
 		String realpath=application.getRealPath("").replace('\\', '/');
-		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
-							+application.getContextPath()
-							+"/"+application.getInitParameter("projectName")
-							+"/src/main/webapp/upload";
+		String propertypath=realpath.substring(0, realpath.indexOf("org.eclipse"))+"org.eclipse.core.resources/.projects"+application.getContextPath();
+		String filename=".location";
+		BufferedReader br = new BufferedReader(new FileReader(propertypath+"/"+filename));
+		String gitdir=br.readLine();
+		gitdir=gitdir.substring(gitdir.indexOf("file:/")+6,gitdir.indexOf("Useful")+6);
+		String uploadFolder=gitdir+"/src/main/webapp/upload";
 		return uploadFolder;
 	}
 	public static String getTime(){

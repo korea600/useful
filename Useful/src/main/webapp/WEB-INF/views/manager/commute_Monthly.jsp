@@ -28,6 +28,9 @@ th {
 		$("#btn_close").click(function() {
 			$("#popup").fadeOut(500);
 		});
+		$("#btn_search").click(function() {
+			searchDate();
+		});
 	});
 	function searchDate() {
 		$.ajax({
@@ -89,64 +92,68 @@ th {
                 </div>
             </div>
 
-		<!-- /.panel -->
-		<div class="panel panel-default">
-			
-					
-
-						<font style="font-weight:bold;">부서</font> 
-						<select id="dept" onChange='searchDate()' class="form-control-static" >
-								<option value="0" selected="selected">-- 선택 --</option>
-								<option value="10">잘했조</option>
-								<option value="20">보여조</option>
-								<option value="30">강조</option>
-								<option value="40">삼삼오오조</option>
-						</select>
+		<table class="table table-striped table-bordered table-hover">
+				<tr>
+					<th style="text-align: center;">부서</th>
+					<td><select id="dept" class="form-control-static"	>
+							<option value="0" selected="selected">전체</option>
+							<option value="10">잘했조</option>
+							<option value="20">보여조</option>
+							<option value="30">강조</option>
+							<option value="40">삼삼오오조</option>
+					</select></td>
+				</tr>
+				<tr>
+					<th style="text-align: center;">근무월</th>
+					<td>
 				<select name="search_year" id="search_year" style='width: 80px;'
-					onChange='searchDate()' class="form-control-static">
+						class="form-control-static"	>
 					<%
-						for (int i = 2010; i < 2019; i++) {
-					%>
-					<option value="<%=i%>"><%=i%>년
-					</option>
-					<%
-						}
-					%>
-				</select> <select name="search_month" id="search_month" style='width: 80px;'
-					onChange='searchDate()' class="form-control-static">
-					<%
-						for (int i = 1; i < 13; i++) {
-							if (i < 10) {
-					%>
+					for (int i = 2010; i < 2019; i++) {
+				%>
+				<option value="<%=i%>"><%=i%>년
+				</option>
+				<%
+					}
+				%>
+			</select> <select name="search_month" id="search_month" style='width: 80px;'
+				 class="form-control-static">
+				<%
+					for (int i = 1; i < 13; i++) {
+						if (i < 10) {
+				%>
 
-					<option value="0<%=i%>"><%=i%>월
-					</option>
-					<%
-						} else {
-					%>
-					<option value="<%=i%>"><%=i%>월
-					</option>
-					<%
-						}
-						}
-					%>
-				</select>
-			</div>
-
-			<div class="panel-body">
-
-				<div class="table-responsive">
+				<option value="0<%=i%>"><%=i%>월
+				</option>
+				<%
+					} else {
+				%>
+				<option value="<%=i%>"><%=i%>월
+				</option>
+				<%
+					}
+					}
+				%>
+			</select>
+					
+					</td>
+				</tr>
+				</tbody>
+			</table>
+					<div style="text-align: center;">
+					<button id="btn_search" class="btn btn-warning">검색</button>
+					</div>
+			<br>
 					<div id="div_print">
-						<table class="table table-striped table-bordered table-hover"
-							style="width: 100%;">
+						<table class="table table-striped table-bordered table-hover" style="width: 100%;">
 							<tr>
-								<th width="14%">월</th>
-								<th width="14%">화</th>
-								<th width="14%">수</th>
-								<th width="14%">목</th>
-								<th width="14%">금</th>
-								<th width="14%">토</th>
-								<th width="14%">일</th>
+								<th style="text-align: center;" width="14%">월</th>
+								<th style="text-align: center;" width="14%">화</th>
+								<th style="text-align: center;" width="14%">수</th>
+								<th style="text-align: center;" width="14%">목</th>
+								<th style="text-align: center;" width="14%">금</th>
+								<th style="text-align: center;" width="14%">토</th>
+								<th style="text-align: center;" width="14%">일</th>
 							</tr>
 							<tr>
 								<td colspan="7"><b>데이터를 로딩중입니다...</b></td>
@@ -154,9 +161,6 @@ th {
 						</table>
 					</div>
 				</div>
-			</div>
-		</div>
-		</div>
 		
 		<div id="popup" class="overlay"
 			style="z-index: 25; display: none; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.6); width: 100%; height: 100%;">

@@ -80,14 +80,24 @@ function pop(result){
 	  
 </div>
 	<div id="page-wrapper">
-		<br>
-	<font size="5" style="font-style: inherit;">증명서 출력</font><br><hr>
-	현재 재직증명서를 다운받으실수 있습니다. <br>
-	사용 용도를 꼭 적어주세요. <br>
-	<br>
-	사용 용도 : <input type="text" id="purpose_of_use" size="30"> 
-	<button id="send_data">다운로드</button>
-	<button id="send_test">다운로드</button>
+		<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">증명서 출력</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+	<div class="panel-heading">
+             <h3 class="panel-title" align="left">현재 재직증명서를 다운받으실수 있습니다. <br>
+                      	사용 용도를 꼭 적어주세요. <br></h3>
+	
+    </div>
+    <div class="panel-body">
+    <h3 class="panel-title" align="left">
+		사용 용도 : <input type="text" id="purpose_of_use" size="30" class="form-control-static"> 
+	</h3>
+	</div>
+	<button id="send_data" class="btn btn-default">다운로드</button>
+	<button id="send_test" class="btn btn-default">다운로드</button>
 	
 	<form id="frm" action="/useful/mypage/proof_Of_emp" method="post"></form>
 	<div id="div_print" ></div>

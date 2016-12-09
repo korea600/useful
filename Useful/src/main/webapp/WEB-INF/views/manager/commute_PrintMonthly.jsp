@@ -7,15 +7,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
-<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px; width: 100%;">
+<table class="table table-striped table-bordered table-hover" style=" width: 100%;">
 	<tr>
-		<th width="14%">월</th>
-		<th width="14%">화</th>
-		<th width="14%">수</th>
-		<th width="14%">목</th>
-		<th width="14%">금</th>
-		<th width="14%">토</th>
-		<th width="14%">일</th>
+			<th style="text-align: center;" width="14%">월</th>
+			<th style="text-align: center;" width="14%">화</th>
+			<th style="text-align: center;" width="14%">수</th>
+			<th style="text-align: center;" width="14%">목</th>
+			<th style="text-align: center;" width="14%">금</th>
+			<th style="text-align: center;" width="14%">토</th>
+			<th style="text-align: center;" width="14%">일</th>
 	</tr>
 <c:forEach items="${commute }" var="print" varStatus="status">
 	<c:set var="login" value="${print.login }"/>
@@ -49,10 +49,10 @@
 		<tr>
 	</c:if>
 			<td>
-				 <br>${date_string } <br>
-				<a onclick="search_oneday('${print.login}','출근')"><img src="/useful/resources/image/icon_work.gif" ></a> ${print.attendance }<br>
-				<a onclick="search_oneday('${print.login}','지각')"><img src="/useful/resources/image/icon_late.gif"  ></a> ${print.late }<br>
-				<a onclick="search_oneday('${print.login}',null)" ><img src="/useful/resources/image/icon_acc.gif" ></a> ${print.acc } <br><br>
+				 ${date_string }일 <br><br>
+				<a href='#' onclick="search_oneday('${print.login}','출근')"><img src="/useful/resources/image/icon_work.gif" ></a> ${print.attendance }<br>
+				<a href='#' onclick="search_oneday('${print.login}','지각')"><img src="/useful/resources/image/icon_late.gif"  ></a> ${print.late }<br>
+				<a href='#' onclick="search_oneday('${print.login}',null)" ><img src="/useful/resources/image/icon_acc.gif" ></a> ${print.acc } <br><br>
 				합계=${print.total }			
 				<br>
 			</td>
