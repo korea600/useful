@@ -7,9 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <center>
-    
-
-  </center>
+  <h1>colgroup</h1>
+ <table border="1">
+  <colgroup span="3">
+   <col></col>
+   <col></col>
+   <col></col
+   
+   </colgroup>
+ <tr>
+   <td>1</td>
+   <td>2</td>
+   <td>3</td>
+ </tr>
+   
+ </table>
 </body>
 </html>

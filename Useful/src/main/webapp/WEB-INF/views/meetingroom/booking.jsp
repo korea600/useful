@@ -11,10 +11,18 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+
+
+
+
 var day = new Date(); 
 day.setDate(day.getDate()-day.getDay()); 
 var currentDay = date.getDay();	// 0=일요일 1=월 .... 6=토
 var dateString = new Array('일', '월', '화', '수', '목', '금', '토');
+
+
+
+
 
 function week_calandar(week) { 
 	
@@ -30,19 +38,26 @@ cal+='          <table border="1" cellspacing="0" cellpadding="0">';
 cal+='             <tr height="80px">';
 cal+='                <td colspan="8" align="center" id="calTitle">'+title+'</td></tr>';
 cal+='              <tr>';
-cal+='              <th align="center" width="80px">시간</th>';
+cal+='              <th align="center" width="80px" scope="col">시간</th>';
       for(var i=0 ; i<7 ; i++) { 
 	        if(day.getDate() == 1){ 
 	        	  if(i!=0)flag=true;
 		          title += " ~ " + day.getFullYear() + "/" + (day.getMonth()+1); 	
 	                }//if--title
-cal+=              '<th align="center" width="80px" id="a'+day.getFullYear()+(day.getMonth()+1)+day.getDate()+'">'+ day.getDate() + '</th>';
+	                
+	              /*   var monthno = day.getMonth()+1;
+	                var dateno = day.getDate(); 
+	                if(dateno<10)
+       				 dateno = '0'+dateno; 
+                       if( monthno<10)
+                       	monthno = '0' + monthno; */
+cal+=              '<th align="center" scope="col" width="80px" id="a'+day.getFullYear()+(day.getMonth()+1)+day.getDate()+'">'+ day.getDate() + '</th>';
                day.setDate(day.getDate()+1); 
 }//for
 
 day.setDate(day.getDate()-7); 
       for(var i=9; i<22; i++){
-cal+='             <tr>';
+cal+='              <tr>';
 cal+='              <td>'+i+' - '+(i+1)+'</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
 cal+='             </tr>';
 }
@@ -103,6 +118,10 @@ var insertWin;
  	 insertWin.close();
  }
  
+ function reloadWin2(){
+ 	 location.reload();
+ 	bookingWin.close();
+ }
  
  function test(serial){
 
@@ -110,6 +129,13 @@ var insertWin;
 	   alert(tim[2]-tim[1]);	
 	 
  }
+ 
+  var bookingWin;
+ function reservation(roomno){
+	 
+	 bookingWin = window.open('booking_Input?roomno='+roomno,'input','toolbar=yes,location=no,status=no'
+	 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500');
+ } 
  
 
 </script>
@@ -125,7 +151,7 @@ var insertWin;
 
 <p id="calandar"></p> 
 
-<p><input type="button" onclick="reservation()" value="예약"></p>
+<p><input type="button" onclick="reservation(${integer})" value="예약"></p>
 
 
 <table border="1" cellspacing="0">
@@ -152,10 +178,10 @@ var insertWin;
 
 <c:forEach items="${list}" var="MeetingVO">
 <tr>
-<td align="center">${MeetingVO.roomno}<input type="hidden"  id="a${MeetingVO.serial}" value="${MeetingVO.beginday},${MeetingVO.begin}, ${MeetingVO.end}"></td>
+<td align="center" >${MeetingVO.roomno}</td>
 <td align="center">${MeetingVO.beginday}</td>
 <td align="center">${MeetingVO.begin}~${MeetingVO.end}</td>
-<td align="center">${MeetingVO.booker }<input type="button" onclick="test(${MeetingVO.serial})"></td>
+<td align="center">${MeetingVO.booker }</td>
 </tr>
 
 </c:forEach>

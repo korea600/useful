@@ -19,26 +19,12 @@
 
 </style>
 
-<!-- jQuery -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- DataTables JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
-
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 
 <script type="text/javascript"
    src="http://code.jquery.com/jquery-latest.js"></script>
@@ -63,15 +49,26 @@
 
 </head>
 <body>
-<center>
-<form action="#" method="get">
-	<table border="1"
-				style="border-collapse: collapse; line-height: 30px;"
-				width="900px">
-				<tr><td align="center" class="border2" colspan="6" height="110px" align="center">업무 공유</td></tr>
-				<tr>
-				<td height="50px"><input type="button" value="글쓰기" id="newBtn" class="button2"></td>
-				<td align="right" colspan="5">
+	<header><%@include file="/WEB-INF/views/manager/Main.jsp"%></header>
+	<div>
+		<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include>
+	</div>
+<div id="page-wrapper" style="height: 100%;">
+            <div class="row" style="height: 100%; width:100%;">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           업무 공유 게시판
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                            <form method="get">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+				<td><input type="button" value="글쓰기" id="newBtn" class="button2"></td>
+				<td colspan="5">
 				    <select name="searchType">
 				    <option value="no" <c:out value="${cri.searchType == null?'selected':''}"/>>---</option>
 				    <option value="n" <c:out value="${cri.searchType eq 'n' ?'selected':''}"/>>글번호</option>
@@ -83,54 +80,34 @@
 					
 				</td>
 				</tr>
-		<tr height="35px"  bgcolor="#dae6f4">
-			<th width="50px" >번호</th>
-			<th width="150px">분류</th>
-			<th width="350px">제목</th>
-			<th width="50px"></th>
-			<th width="150px">작성자</th>
-			<th width="150px">작성일</th>
-		</tr>
-		
-		<c:forEach items="${list}" var="ShareTaskVO">
-		<tr>
-			<td align="center">${ShareTaskVO.bno}</td>
-			<td align="center">
-			<select name="category" style=" width:110px; height:25px" disabled="disabled">
-			<c:if test="${ShareTaskVO.category=='업무관련'}">
-			<option value="업무관련" selected="selected">업무관련</option>
-			</c:if>
-			<c:if test="${ShareTaskVO.category!='업무관련'}">
-			<option value="업무관련">업무관련</option>
-			</c:if>
-			<c:if test="${ShareTaskVO.category=='회의관련'}">
-			<option value="회의관련" selected="selected">회의관련</option>
-			</c:if>
-			<c:if test="${ShareTaskVO.category!='회의관련'}">
-			<option value="회의관련">회의관련</option>
-			</c:if>
-			<c:if test="${ShareTaskVO.category=='기타'}">
-			<option value="기타" selected="selected">기타</option>
-			</c:if>
-			<c:if test="${ShareTaskVO.category!='기타'}">
-			<option value="기타">기타</option>
-			</c:if>
-			</select>
-			</td>
-			<td><a href='/useful/sharetask/detail${pageMaker.makeQuery(pageMaker.cri.page) }&bno=${ShareTaskVO.bno}&deptno=${ShareTaskVO.deptno}'>${ShareTaskVO.title}</a></td>
-			<td align="right">
-		첨부가 되어있는지 표시-이미지사용/글
-			</td>
-			<td align="center">${ShareTaskVO.ename}</td>
-			<td align="center"><fmt:formatDate pattern="yyyy.MM.dd HH:mm"
+                                        <tr>
+                                            <th width="50px" >번호</th>
+			                                <th width="150px">분류</th>
+			                                <th width="350px">제목</th>
+			                                    <th width="50px"></th>
+			                                <th width="150px">작성자</th>
+			                                <th width="150px">작성일</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${list}" var="ShareTaskVO">
+                                        <tr>
+                                            <td>${ShareTaskVO.bno}</td>
+                                            <td>${ShareTaskVO.category}</td>
+                                            <td><a href='/useful/sharetask/detail${pageMaker.makeQuery(pageMaker.cri.page) }&bno=${ShareTaskVO.bno}&deptno=${ShareTaskVO.deptno}'>${ShareTaskVO.title}</a></td>
+                                            <td>첨부 ok</td>
+                                            <td>${ShareTaskVO.ename}</td>
+                                            <td><fmt:formatDate pattern="yyyy.MM.dd HH:mm"
 										value="${ShareTaskVO.regdate}" /></td>
-		</tr>
-		
-		</c:forEach>
-    
-    
-    <tr><td colspan="6" align="center">
-    <ul class="pagination">
+                                        </tr>
+                                        </c:forEach>
+                                       
+                                    </tbody>
+                                </table>
+                                <input type="hidden" name="deptno" value="${LoginUser.empno}" >
+	                            <input type="hidden" name="prevbno" value="${prevbno.bno }">
+                               
+                               <ul class="pagination">
 
 							<c:if test="${pageMaker.prev}">
 								<li><a href="share_Board?${pageMaker.startPage - 1}">◀</a></li>
@@ -148,15 +125,17 @@
 							</c:if>
 
 						</ul>
-    </td>
-    </tr>
-	</table>
-	
-	<input type="hidden" name="deptno" value="${LoginUser.empno}" >
-	<input type="hidden" name="prevbno" value="${prevbno.bno }">
-</form>	
-	
-	
-</center>
+                               </form>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                </div>
+          </div>
+
+
 </body>
 </html>

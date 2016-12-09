@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -148,27 +149,29 @@ function closeCal(y,m,d){
       alert(event.screenX + " : " + event.screenY); // 브라우져 화면 전체 기준      
       */
 
-      function create(){
+   function reservationOK(){
+    	   alert('클릭'); 
     	 $.ajax({
-    		 url:'/useful/meetingroom/booking',
+    		 url:'/useful/meetingroom/askBooking',
     		 type:'post',
     		 data:{
+    			 roomno: $('[name=roomno]').val(),
+    		     booker:$('[name=booker]').val(),
     			 empno:$('[name=empno]').val(),
-    			 title:$('[name=title]').val(),
     			 begin:$('[name=begin]').val(),
     			 end:$('[name=end]').val(),
-    			 begintime:$('[name=begintime]').val(),
+    			 beginday:$('[name=beginday]').val(),
     			 content:$('[name=content]').val()
     		 },
     		 success:function(){
     			 alert("등록되었습니다.")
-    			 opener.reloadWin();
+    		
     			
     		 }    		 
     	 });
 	   	 
-	  }
-      
+	  }//reservationOK
+    
      
 
       
@@ -195,8 +198,8 @@ function closeCal(y,m,d){
 
 <body>
 	<center>
-	<h3>스케줄 입력</h3>
-		<form id="insert_Form" action="/useful/schedule/insert" method="post">
+	<h3>예약하기</h3>
+		<form id="insert_Form" action="" method="post">
 			<table border="1"
 				style="border-collapse: collapse; line-height: 30px;">
 		
@@ -204,49 +207,50 @@ function closeCal(y,m,d){
 					<td bgcolor="#dae6f4"  align="center" width="150px">작성자</td>
 					<td align="center">안선영
 					<input type="hidden" name="empno" value="1003">
+					<input type="hidden" name="booker" value="안선영">
+				
 					</td>
 				</tr>
-			<!--     <tr>
-			        <td bgcolor="#dae6f4"  align="center" width="150px">일정구분</td>
-			        <td align="center">
-			         <select>
-			         <option>회사</option>
-			         <option>부서</option>
-			         </select>
-			        </td>
-			    </tr> -->
 				<tr>
-					<td bgcolor="#dae6f4" align="center" width="150px">제목</td>
-					<td width="350px" style="padding: 0;">
-					<input type="text" name="title" style="width:350px; height: 30px; margin: 0; border: 0;"></td>
-
+				<td>회의실 번호</td>
+				<td>
+				  <select name="roomno">
+				  <c:forEach items="${rooms}" var="MeetingRoomVO">
+				    <option value="${MeetingRoomVO.roomno }">${MeetingRoomVO.roomno }</option>
+				    </c:forEach>
+				  </select>
+				</td>
 				</tr>
+				
 				<tr>
 				<td bgcolor="#dae6f4" align="center">날짜</td>
-				<td><input type="text" name="begin" readonly="readonly" id="txtdate1" value=""> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
+				<td><input type="text" name="beginday" readonly="readonly" id="txtdate1" value=""> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
 				<tr>
 				<td bgcolor="#dae6f4"  align="center">예약시간</td>
 				<td>
-				    <select name="begintime">
+				    <select name="begin">
 				  <% for(int i=9;i<22; i++){%>
 				    <option value="<%=i%>"><%=i%></option>
 				  <% } %>
                     </select> 시  ~
-                    <select name="serchType">
+                    <select name="end">
 				    <% for(int i=10;i<23; i++){%>
 				    <option value="<%=i%>"><%=i%></option>
 				  <% } %>
                     </select> 시
 				 </td></tr>
-
-				<tr>
+				 <tr>
+				 <td colspan="2">내용</td>
+				 </tr>
+			<tr>
+				
 					<td colspan="2" style="padding:0; width:500px;">
 					<textarea name="content" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;">
 					</textarea></td>
 				</tr>
 			</table>
-			<input type="button"  value="등록"  onClick="create()"> 
-			<input type="button"  value="닫기" onClick="clean()" >
+			<input type="button"  value="등록"  onClick="reservationOK()"> 
+			<input type="button"  value="닫기"  onClick="clean()" >
 		</form>
 		
 		            

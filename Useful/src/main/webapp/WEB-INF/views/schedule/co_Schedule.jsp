@@ -115,7 +115,7 @@ function cal(id, newdate) {
 			
 			
 			calendar += '				<td class="' +dateString[j]+'" style="width:180px; height:180px; position:relative;">'
-			                            +'<div id="a'+currentYear+currentMonth+dateNum+'" onClick="clickCal('+currentYear+','+currentMonth+','+dateNum+')" style="cursor:pointer; font-size:20px; width:180px; height:25px; background-color:yellow; position:absolute; top:0;">' + dateNum + '</div>';
+			                            +'<div id="a'+currentYear+currentMonth+dateNum+'" onClick="clickCal('+currentYear+','+currentMonth+','+dateNum+')" style="cursor:pointer; font-size:20px; width:180px; height:25px; position:absolute; top:0;">' + dateNum + '</div>';
 			                            $('#b'+currentYear+currentMonth+dateNum).empty();    
 			              var dateno= dateNum;
 			              var monthno = currentMonth;
@@ -123,7 +123,7 @@ function cal(id, newdate) {
 			                				 dateno = '0'+dateNum
 				                            if( monthno<10)
 				                            	monthno = '0' + currentMonth;
-			calendar += '            	 <div id="b'+currentYear+monthno+dateno+'" style="width:180px; height:155px; position:relative; top:20px; background-color:orange; "></div></td>';
+			calendar += '            	 <div id="b'+currentYear+monthno+dateno+'" style="width:180px; height:155px; position:relative; top:20px; "></div></td>';
 		}
 		calendar += '			</tr>';
 	}
@@ -146,7 +146,7 @@ function cal(id, newdate) {
                startYear++;
 	}//for
         		
-	alert(currentMonth);
+
      var fmonth = f.month;//월 select
      //alert('cu'+currentMonth);--12
      var nowMonth = currentMonth;
@@ -269,7 +269,7 @@ var insertWin;//자식창
 	                    		   '<div onclick="detail('+key.serial+')" style="height:20px; top:0;' 
 	                    		   +'cursor:pointer; color:#fff; background-color:blue;">'
 	                    		   +key.begintime+'시 '
-	                    		   +key.title+'</div><div style="background-color:yellow; width:180px; height:5px;"></div>'); 
+	                    		   +key.title+'</div><div style=" width:180px; height:5px;"></div>'); 
 	 	     			   //alert(begin);
 	 	     			 }); 
 	 	     		      

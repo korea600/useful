@@ -76,7 +76,7 @@ public class MeetingVO {
 	@Override
 	public String toString() {
 		return "MeetingVO [serial=" + serial + ", roomno=" + roomno + ", beginday=" + beginday + ", begin=" + begin
-				+ ", end=" + end + ", content=" + content + ", booker=" + booker + ", empno=" + empno + ", cheched="
+				+ ", end=" + end + ", content=" + content + ", booker=" + booker + ", empno=" + empno + ", chechked="
 				+ checked + "]";
 	}
 	
