@@ -19,5 +19,5 @@ public interface BoardDAO {
 	public List<BoardVO> select_cut_list()throws Exception;//리스트 컷
 	public int reply_count()throws Exception;
 	public void fileupload(String originalfileName, String saveFileName, long fileSize)throws Exception;
-	public String Sava_File_name(int serial,String originalfileName)throws Exception;
+	public String Sava_File_name(int serial)throws Exception;
 }

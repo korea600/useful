@@ -70,18 +70,18 @@ public class BoardController {
 	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,HttpServletRequest request,MultipartHttpServletRequest multipartHttpServletRequest,@RequestParam("file") MultipartFile file)throws Exception{
 	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
 	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
-	//vo.setOriginal_file_name(file.getOriginalFilename()); //¸ÖÆ¼ÆÄÀÏ·Î ¿À¸®Áö³Î ÆÄÀÏÀÌ¸§¹ÞÀ½
+	//vo.setOriginal_file_name(file.getOriginalFilename()); //ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	//String fname=file.getOriginalFilename();
-	//System.out.println("ÀÐ¾îµå¸° ÆÄÀÏ¸í =="+fname);
+	//System.out.println("ï¿½Ð¾ï¿½å¸° ï¿½ï¿½ï¿½Ï¸ï¿½ =="+fname);
 	//File f=new File("../upload"+fname);
 	//file.transferTo(f);
-	/*½ÃÇö½Ã ½ÇÁ¦°æ·ÎÀÔ·ÂÇÒ‹š
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½Ò‹ï¿½
 	ServletContext application = request.getServletContext();
 	String realpath=application.getRealPath("")
-			½ÃÇö½Ã ½ÇÁ¦°æ·ÎÀÔ·ÂÇÒ‹š*/
-	System.out.println("request°ª"+request);
-	String realfolder=PathMaker.getUploadPath(request); //ÆÄÀÏÀúÀåµÉÀ§Ä¡
-	System.out.println("ÆÄÀÏÀúÀå À§Ä¡ =="+realfolder);
+			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½Ò‹ï¿½*/
+	System.out.println("requestï¿½ï¿½"+request);
+	String realfolder=PathMaker.getUploadPath(request); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡
+	System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ =="+realfolder);
 	File dir=new File(realfolder);
 	if(!dir.isDirectory()){
 		dir.mkdirs();
@@ -91,15 +91,15 @@ public class BoardController {
 		
 	}else{
 		for(int i=0;i<mf.size();i++){
-			String genId=UUID.randomUUID().toString(); //ÆÄÀÏÁßº¹¸í Ã³¸®ÇØÁØ´Ù°íÇÏ´Âµ¥ UUID°¡ ¸Õ ¿ªÈ°ÀÎÁö ¾ÆÁ÷¸ð¸§;;
-			String originalfileName=mf.get(i).getOriginalFilename(); //º»·¡ ¿À¸®Áö³¯ ÆÄÀÏ¸í°¡Á®¿È
-			String saveFileName=genId+"."+originalfileName; //ÀúÀåµÇ´Â ÆÄÀÏ¸í
-			String savePath=realfolder+"/"+saveFileName; //ÀúÀåµÉ ÆÄÀÏ°æ·Î
-			long fileSize=mf.get(i).getSize();//ÆÄÀÏ»çÀÌÁî±¸ÇÔ
-			mf.get(i).transferTo(new File(savePath)); //ÆÄÀÏÀúÀå
-			System.out.println("genid °ª="+genId);
-			System.out.println("originalfilename °ª="+originalfileName);
-			System.out.println("saveFileName °ª = "+saveFileName);
+			String genId=UUID.randomUUID().toString(); //ï¿½ï¿½ï¿½ï¿½ï¿½ßºï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½Ø´Ù°ï¿½ï¿½Ï´Âµï¿½ UUIDï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½;;
+			String originalfileName=mf.get(i).getOriginalFilename(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½
+			String saveFileName=genId+"."+originalfileName; //ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½
+			String savePath=realfolder+"/"+saveFileName; //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ï¿½
+			long fileSize=mf.get(i).getSize();//ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½ï¿½î±¸ï¿½ï¿½
+			mf.get(i).transferTo(new File(savePath)); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("genid ï¿½ï¿½="+genId);
+			System.out.println("originalfilename ï¿½ï¿½="+originalfileName);
+			System.out.println("saveFileName ï¿½ï¿½ = "+saveFileName);
 			System.out.println(" savePath = "+savePath);
 			//service.fileupload(originalfileName, saveFileName, fileSize);
 			vo.setOriginalfileName(originalfileName);
@@ -118,7 +118,7 @@ public class BoardController {
 	att.addFlashAttribute("message", "SUCCESS");
 	return "redirect:/board/listPage";
 	}
-	/*¹é¾÷º»
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/createPage",method=RequestMethod.POST)
 	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,HttpServletRequest servletRequest,@RequestParam("file") MultipartFile file)throws Exception{
 	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
@@ -194,16 +194,15 @@ public class BoardController {
 	public void file_download(@RequestParam("originalfileName") String originalfileName,@RequestParam("serial") int serial, HttpServletRequest request, HttpServletResponse res)throws Exception{
 		String realfolder=PathMaker.getUploadPath(request);
 		String fileName = null;
-		System.out.println("´Ù¿î·Îµå ½Ã¸®¾ó°ª= "+serial);
-		System.out.println("´Ù¿î·Îµå ÆÄÀÏÀÌ¸§="+originalfileName);
-		System.out.println("´Ù¿î·Îµå °æ·Î =="+realfolder);
-		String oname=service.sava_File_name(serial, originalfileName);
-        File file = new File(realfolder+oname);
+		String oname=service.sava_File_name(serial);
+		System.out.println("ì €ìž¥ëœ íŒŒì¼ëª…"+oname);
+		System.out.println("ë‹¤ìš´ë¡œë“œ ê²½ë¡œ="+realfolder);
+        File file = new File(realfolder+"/"+oname);
         res.setContentType("application/download;");
         int length = (int) file.length();
         res.setContentLength(length);
  
-        // ÀÍ½ºÇÃ·Î·¯ ÀÎÁö È®ÀÎ
+        // ï¿½Í½ï¿½ï¿½Ã·Î·ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         String userAgent = request.getHeader("User-Agent");
         boolean ie = userAgent.indexOf("MSIE") > -1;
  
@@ -212,7 +211,7 @@ public class BoardController {
         } else {
             fileName = new String(file.getName().getBytes("utf-8"), "iso-8859-1").replace("+", "%20");
         }
-        System.out.println("´Ù¿î·ÎµåÀÓÇÃ ÆÄÀÏ¸í="+fileName);
+        System.out.println("ï¿½Ù¿ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½="+fileName);
  
         res.setHeader("Content-Disposition", "attachment;" + " filename=\"" + fileName + "\";"); 
         OutputStream out = res.getOutputStream();
@@ -241,7 +240,7 @@ public class BoardController {
 	/*@ResponseBody
 	@RequestMapping(value="/download")
 	public ResponseEntity<byte[]> file_download(@RequestParam("originalfileName") String originalfileName,HttpServletRequest request)throws Exception{
-		String realfolder=PathMaker.getUploadPath(request); //°æ·Î¹Þ±â
+		String realfolder=PathMaker.getUploadPath(request); //ï¿½ï¿½Î¹Þ±ï¿½
 		ResponseEntity<byte[]> entity = null;
 		InputStream fis = null;
 		try {

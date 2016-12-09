@@ -95,11 +95,11 @@ private SqlSession sqlsession;
 	}
 
 	@Override
-	public String Sava_File_name(int serial, String originalfileName) throws Exception {
-		Map<String, Object> map=new HashMap<String, Object>();
+	public String Sava_File_name(int serial) throws Exception {
+		/*Map<String, Object> map=new HashMap<String, Object>();
 		map.put("serial", serial);
-		map.put("originalfileName", originalfileName);
-		return sqlsession.selectOne("board.savaFile_download", map);
+		map.put("originalfileName", originalfileName);*/
+		return sqlsession.selectOne("board.savaFile_download", serial);
 	}
 
 
