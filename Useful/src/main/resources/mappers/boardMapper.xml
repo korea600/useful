@@ -2,17 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="board">
 
+<select id="savaFile_download" resultType="String">
+select savefilename from tbl_board where serial=#{serial}
+</select>
+
 <insert id="create">
+insert into tbl_board (serial,title,writer,empno,content,originalfileName,saveFileName,fileSize)
+values (tbl_board_seq.nextval,#{title},#{writer},#{empno},#{content},#{originalfileName},#{saveFileName},#{fileSize})
+</insert>
+
+<!-- <insert id="create"> 백본
 insert into tbl_board (serial,title,writer,empno,content)
 values (tbl_board_seq.nextval,#{title},#{writer},#{empno},#{content})
-</insert>
+</insert> -->
 
 <insert id="upload">
 insert into tbl_file (filenum,oname,filename,filesize) values(tbl_file_seq.nextval,#{originalfileName},#{saveFileName},#{fileSize})
 </insert>
 
 <select id="read" resultType="kr.co.useful.board.domain.BoardVO">
-select serial,title,writer,empno,content,regdate,viewcnt from tbl_board where serial=#{serial}
+select serial,title,writer,empno,content,regdate,viewcnt,originalfileName,saveFileName,fileSize from tbl_board where serial=#{serial}
 </select>
 
 <!-- <select id="update_select" resultType="kr.co.useful.board.domain.BoardVO">
@@ -40,7 +49,8 @@ select count(*) from tbl_baord;
 </select>
 
 <select id="listSearch" resultType="kr.co.useful.board.domain.BoardVO">
-select serial, title, writer, empno, content, regdate, viewcnt, (select count(*) from tbl_reply where tbl_reply.serial=tbl_board.serial) replycnt
+select serial, title, writer, empno, content, regdate, viewcnt, (select count(*) from tbl_reply where tbl_reply.serial=tbl_board.serial) replycnt,
+originalfileName,saveFileName,fileSize
       from tbl_board 
 <include refid="Search"/>
 order by serial desc

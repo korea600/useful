@@ -30,6 +30,9 @@
 		<div class="row row-offcanvas row-offcanvas-center">
 			<div class="row">
 		
+		
+		
+		
 		 <div class="col-xs-5 col-lg-6">
               <h3><span class="glyphicon glyphicon-file" style="color:black">전자결재</span>
               <c:forEach begin="1" end="29">

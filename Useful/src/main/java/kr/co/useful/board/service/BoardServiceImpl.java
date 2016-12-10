@@ -91,4 +91,10 @@ private BoardDAO dao;
 		
 	}
 
+	@Override
+	public String sava_File_name(int serial) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.Sava_File_name(serial);
+	}
+
 }

@@ -7,34 +7,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- beans 또는 component-scan 등록 부분 -->
-	<annotation-driven>
-	   <!-- @ResponseBody 한글처리 -->
-	   <message-converters>
-	      <beans:bean 
-	          class="org.springframework.http.converter.StringHttpMessageConverter">
-	         <beans:property name="supportedMediaTypes">
-	            <beans:value>text/html;charset=UTF-8</beans:value>
-	         </beans:property>    
-	      </beans:bean>
-	  </message-converters>   
-  </annotation-driven>
-
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
-	
 	<!-- 인터셉터 등록 -->
 	<beans:bean id="loginInterceptor" class="kr.co.useful.login.interceptor.LoginInterceptor"></beans:bean>
 	<beans:bean id="commuteInterceptor" class="kr.co.useful.commute.interceptor.CommuteInterceptor"></beans:bean>
 	<beans:bean id="mypageInterceptor" class="kr.co.useful.mypage.interceptor.MypageInterceptor"></beans:bean>
-	
-	
+	<beans:bean id='emailInterceptor' class="kr.co.useful.email.interceptor.EmailInterceptor"/>
 	<interceptors>
 		<interceptor>
 			<mapping path="/login/Login"/>
@@ -50,11 +27,13 @@
 			<mapping path="/mypage/**/*"/>
 			<beans:ref bean="mypageInterceptor"/>
 		</interceptor>
-		
-		
+		<interceptor>
+			<mapping path="/email/**/*"/>
+			<beans:ref bean="emailInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
-	
+	<!-- Controllers -->	
 	<context:component-scan base-package="kr.co.useful.login.controller" />
 	<context:component-scan base-package="kr.co.useful.mypage.controller" />
 	<context:component-scan base-package="kr.co.useful.commute.controller" />

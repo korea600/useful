@@ -41,4 +41,7 @@ where serial=3;
    insert into tbl_board (serial,title,writer,content,regdate) values (tbl_board_seq.nextval,'테스트','테스트','테스트',sysdate);
    
    alter table tbl_board modify (regdate date default sysdate);
+   alter table tbl_board add(originalfileName varchar2(1000));
+   alter table tbl_board add(saveFileName varchar2(1000));
+   alter table tbl_board add(fileSize number);
    select * from tbl_board;

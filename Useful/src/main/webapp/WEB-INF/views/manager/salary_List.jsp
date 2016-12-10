@@ -96,43 +96,44 @@ $(function(){
 		<input type="button" id="btn_oneReg" value="급여등록" /> 
 	<div id="div_searchArea" class="searchArea cb mgb10"
 		style="vertical-align: middle; min-width: 800px; padding-bottom: 0px; padding-top: 15px;">
-		<table style="border-color: black;">
-		<tbody>
-		<tr>
-		<th style="height: 40px;width: 200px;	text-align: center;">검색기간</th>
-		<td>
-							 	<button id="btn_today" class="btn btn-default" >당일</button>
-								<button id="btn_week" class="btn btn-default" >1주일</button>
-								<button id="btn_month" class="btn btn-default" >1개월</button>
-								<button id="btn_3month" class="btn btn-default" >3개월</button><p>
-								<input type="text" id="startdate" value="">
-										~<input type="text" id="enddate" value="">
-		</td>
-		</tr>
-		
-		<tr>
-		<th style="	text-align: center;">부서명</th>
-			<td><select id="deptno" name="deptno" class="select" style="width: 200px;">
-						<option value="" selected="selected">-- 선택 --</option>
+		<table class="table table-striped table-bordered table-hover">
+<tbody>
+	<tr>
+	<th style="height: 40px;width: 200px;	text-align: center;">검색기간</th>
+	<td>
+		<input type="text" id="startdate" value="">
+		~<input type="text" id="enddate" value="">
+	<button id="btn_today" class="btn btn-default" >당일</button>
+	<button id="btn_week" class="btn btn-default" >1주일</button>
+	<button id="btn_month" class="btn btn-default" >1개월</button>
+	<button id="btn_3month" class="btn btn-default" >3개월</button>
+	</td>
+	</tr>
+	<tr>
+		<th style="text-align: center;">부서명</th>
+			<td><select id="deptno" name="deptno" class="form-control-static" style="width: 170px;">
+						<option value="" selected="selected">전체</option>
 						<option value="10">잘했조</option>
 						<option value="20">보여조</option>
 						<option value="30">강조</option>
 						<option value="40">삼삼오오조</option>
 				</select></td>
 			</tr>
-		<tr>
-			<th  style="	text-align: center;">사원번호</th>
-			<td><input type="text" id="empno"></td>
-		</tr>
-		<tr>
-			<th  style="	text-align: center;">사원명</th>
-			<td><input type="text" id="ename"></td>
-		</tr>
-		</tbody>
-		</table>
-	<div><button id="btn_search" class="btn btn-default" >검색</button></div>
-	
-	</div>
+	<tr>
+		<th  style="	text-align: center;">사원번호</th>
+		<td><input type="text" id="empno"></td>
+	</tr>
+	<tr>
+		<th  style="	text-align: center;">사원명</th>
+		<td><input type="text" id="ename">
+		</td>
+	</tr>
+</tbody>
+</table>
+					<div style="text-align: center;">
+					<button id="btn_search" class="btn btn-warning">검색</button>
+					</div>	
+					<br>
 	
 	<div id="div_print">
 	<table style="margin-top: 10px; width: 100%;">
@@ -157,5 +158,7 @@ $(function(){
 	</table>
 	</div>
 </div>
+</div>
+
 </body>
 </html>

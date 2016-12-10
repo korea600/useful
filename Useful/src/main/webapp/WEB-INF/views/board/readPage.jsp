@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>사내게시판 읽기</title>
 <script type="text/javascript" src="/useful/resources/vendor/jquery/jquery.js"></script>
 <link href="/useful/resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -218,9 +218,15 @@ function modifyreply(){
 												readonly="readonly" value="${board.writer }">
 										</div>
 										<div class="form-group">
-											<label>글쓰기</label>
+											<label>글내용</label>
 											<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${board.content }</textarea>
 										</div>
+										<core:if test="${board.originalfileName!=null }">
+										<div class="form-group">
+										<label>첨부파일</label>
+										<a href="/useful/board/download?originalfileName=${board.originalfileName }&serial=${board.serial}">${board.originalfileName }</a>
+										</div>
+										</core:if>
 
 										<div class="form-group"></div>
 
@@ -229,7 +235,7 @@ function modifyreply(){
 											name="perPageNum" value="${cri.perPageNum }" id="perPageNum">
 											<core:if test="${board.empno==LoginUser.empno }">
 <core:if test="${board.writer==LoginUser.ename }">
-										<button type="button" class="btn btn-default" id="modifybt" value="${board.serial }">수정하기</button>
+									<button type="button" class="btn btn-default" id="modifybt" value="${board.serial }">수정하기</button>
 										<button type="submit" class="btn btn-default" id="delete" onclick="deletePage?serial=${board.serial}">삭제하기</button>
 										</core:if>
 </core:if>
@@ -252,7 +258,7 @@ function modifyreply(){
 
 					</div>
 
-					<div id="page-wrapper" style="right: 17.6%; width: 100%;">
+					<div id="page-wrapper" style="right: 280px;; width: 100%;">
 						<div class="row">
 							<div class="col-lg-12">
 								<h1 class="page-header">댓글 목록</h1>

@@ -1,3 +1,4 @@
+drop table tbl_file;
 create table tbl_file(
 filenum number,
 oname varchar2(1000),
@@ -7,3 +8,5 @@ article number
 );
 drop sequence tbl_file_seq;
 create sequence tbl_file_seq;
+
+select * from tbl_file;

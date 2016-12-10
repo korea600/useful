@@ -83,7 +83,7 @@
                                 
                                 <!-- Change this to a button or input when using this as a form -->
                                 <div align="center">
-                                <button type="button" id="btn" onclick="passCheck()" class="btn btn-outline btn-success">확인</button>
+                                <button type="button" id="btn" onclick="passCheck()" class="btn btn-default">확인</button>
                                 <button type="reset" id="btn_cancel" onclick="cancel()" class="btn btn-default">취소</button>
                                 
                                 </div>
