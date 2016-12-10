@@ -121,7 +121,6 @@ class ManagerServiceImpl implements ManagerService {
 			}
 			EmpVO empvo = dao.emp_select_include_dname(list2.get(i));
 			Commute_DeptVO vo = new Commute_DeptVO(empvo.getDname(),empvo.getEname(), attendance, late, absence, vacation, businessTrip, earlyLeave); 
-			System.out.println("vo"+vo);
 			dept_List.add(vo);
 
 		}
@@ -190,7 +189,6 @@ class ManagerServiceImpl implements ManagerService {
 				int total=attendance+late+absence+vacation+businessTrip+earlyLeave;
 				int acc=absence+vacation+businessTrip+earlyLeave;
 				Commute_MonthlyVO vo = new Commute_MonthlyVO(login, whatday, attendance, late, absence, vacation, businessTrip, earlyLeave, total, acc);
-				System.out.println("vo"+vo);
 				Monthly_List.add(vo);
 		}
 		return Monthly_List;
@@ -236,6 +234,10 @@ class ManagerServiceImpl implements ManagerService {
 	public void salary_Delete(int serial) throws Exception {
 		dao.salary_Delete(serial);
 	}
+	@Override
+	public void add_Sal_NextMonth() throws Exception {
+		dao.add_Sal_NextMonth();
+	} 
 	
 	public List<CommuteVO> time_Division(List<CommuteVO> list){
 		 for(int i=0;i<list.size();i++){

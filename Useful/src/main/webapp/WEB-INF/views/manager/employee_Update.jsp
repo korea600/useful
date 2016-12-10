@@ -2,9 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
+<!-- 
+	employee_Update.jsp
+	작성자 : 박지혜
+	작성일자 : 2016-12-10
+ -->	
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>직원정보수정</title>
 <style type="text/css">
 th {
@@ -14,20 +19,10 @@ th {
 </style>
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${pageContext.request.contextPath}/resources/jqGrid/css/ui.jqgrid.css" /> 
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery-1.11.0.min.js"></script> 
  <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>  
-	
  <script type="text/javascript" 
 	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/i18n/grid.locale-kr.js"></script> 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jqGrid/js/jquery.jqGrid.min.js"></script> 
 <script type="text/javascript">
 
 	$(function() {
@@ -64,7 +59,8 @@ th {
  				hiredate:$("#hiredate").val(),
  				  }),
  			  success: function(){
- 				  alert("수정되었습니다")
+ 				  alert("수정되었습니다");
+ 				 location.href="/useful/manager/employee_List";
  			  }
  			});
  	   });
@@ -104,42 +100,39 @@ th {
 <div>
 	<jsp:include page="/WEB-INF/views/manager/Sidebar.jsp"></jsp:include>  
 </div>
-<!-- employee_Update.jsp -->
+
 <div id="page-wrapper">
-	<div>
+		<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">직원정보수정</h1>
+                </div>
+            </div>
 	<br>
-		<font size="5" style="font-style: inherit;margin-right: 300px;">직원정보수정 </font>
-		<button id="btn_Save">수정완료</button>
-		<button id="btn_Delete">삭제</button>
-		<button id="btn_List">목록</button>
-		<br>
-	</div>
-<hr>
-	<table class="bbs_row">
+	<table class="table table-striped table-bordered table-hover">
 		<colgroup>
 			<col width="150" />
 			<col />
 		</colgroup>
 		<tbody style="">
 			<tr>
-				<th>사원코드*</th>
+				<th style="text-align: center;">사원코드</th>
 				<input type="hidden" value="${vo.empno}" id="emp_no">
 				<td>${vo.empno}</td>
 			</tr>
 			<tr>
-				<th>성명 *</th>
+				<th style="text-align: center;">성명 </th>
 				<td><input id="emp_nm" name="emp_nm" class="text" type="text"
 					value="${vo.ename }" maxlength="15" /></td>
-			</tr>
+			</tr>	
 
 			<tr>
-				<th>주민번호 *</th>
+				<th style="text-align: center;">주민번호 </th>
 				<td><input id="ssn" name="ssn" class="text" type="text"
 					value="${vo.ssn }" maxlength="14" /></td>
 			</tr>
 			<tr>
-				<th>부서명*</th>
-				<td><select id="dept" name="dept" class="select"
+				<th style="text-align: center;">부서명</th>
+				<td><select id="dept" name="dept" class="form-control-static"
 					style="width: 200px;" >
 						<option value="" >-- 선택 --</option>
 						<option value="10">잘했조</option>
@@ -150,8 +143,8 @@ th {
 				</select></td>
 			</tr>
 			<tr>
-				<th>직책 *</th>
-				<td><select id="position" name="position" class="select"
+				<th style="text-align: center;">직책 </th>
+				<td><select id="position" name="position" class="form-control-static"
 					style="width: 200px;">
 						<option value="">-- 선택 --</option>
 
@@ -169,27 +162,27 @@ th {
 			</tr>
 			
 			<tr>
-				<th>이메일</th>
+				<th style="text-align: center;">이메일</th>
 				<td><input id="email" name="email" class="text"
 					style="width: 200px;" type="text" value="${vo.email }"
 					maxlength="50" /></td>
 			</tr>
 			<tr>
-				<th>핸드폰 *</th>
+				<th style="text-align: center;">핸드폰 </th>
 				<td><input id="mobile" name="mobile" class="text"
 					style="width: 200px;" type="text" value="${vo.phone }"
 					maxlength="20" /></td>
 			</tr>
 			<tr>
-				<th>주소</th>
+				<th style="text-align: center;">주소</th>
 				<td><input id="addr" name="addr" class="text"
 					style="width: 100%;" type="text" value="${vo.address }"
 					maxlength="100" /></td>
 			</tr>
 			<tr>
-				<th>은행</th>
+				<th style="text-align: center;">은행</th>
 					<td>
-					<select id="bank" name="bank" class="select" style="width:200px;">
+					<select id="bank" name="bank" class="form-control-static" style="width:200px;">
                         <option value="">--선택--</option>
                         <option value="신한은행">신한</option>
                         <option value="우리은행">우리</option>
@@ -202,21 +195,21 @@ th {
 				</td>
 			</tr>
 			<tr>
-				<th>계좌번호</th>
+				<th style="text-align: center;">계좌번호</th>
 				<td><input id="account_no" name="account_no" class="text"
 					style="width: 200px;" type="text" value="${vo.account }" maxlength="100" /></td>
 			</tr>
 
 			<tr>
-				<th>입사일</th>
+				<th style="text-align: center;">입사일</th>
 				<td>
-					<input type="text" id="hiredate" value="<fmt:formatDate value="${vo.hiredate }" type="date" pattern="yyyy-mm-dd "/>">  
+					<input type="text" id="hiredate" value="<fmt:formatDate value="${vo.hiredate }" type="date" pattern="yyyy-MM-dd "/>">  
 				</td>
 			</tr>
 
 
 			<tr>
-				<th>최근접속일</th>
+				<th style="text-align: center;">최근접속일</th>
 				<td>
 				<fmt:formatDate value="${vo.regdate}" type="date" pattern="yyyy-MM-dd "/>
 				</td>
@@ -224,7 +217,13 @@ th {
 			</tr>
 		</tbody>
 	</table>
-	
+	<div style="text-align: center;">  
+		<button id="btn_Save"  class="btn btn-warning">수정완료</button>
+		<button id="btn_List" class="btn btn-default" >목록으로</button>
+		<button id="btn_Delete" class="btn btn-default" >삭제</button>
+		<br>
 	</div>
-</body>
-</html>
+	</div>
+		<div id="page-wrapper"></div>
+	</body>
+	</html>

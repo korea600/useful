@@ -87,9 +87,13 @@ th {
 </div>
 <!-- leave_List.jsp -->
 <div id="page-wrapper">
-<p><br>
-<font size="5" style="font-style: inherit;">연차관리</font><br><hr>
-<table style="border-color: black;">
+  <div class="row">
+        <div class="col-lg-12">
+           <h1 class="page-header">연차관리</h1>
+         </div>
+   </div>
+
+<table class="table table-striped table-bordered table-hover"  >
 <tbody>
 
 	<tr>
@@ -112,10 +116,11 @@ th {
 	</tr>
 </tbody>
 </table>
-	<div><button id="btn_search" class="btn btn-default" >검색</button></div>
-	
+	<div style="text-align: center;">
+			<button id="btn_search" class="btn btn-warning">검색</button>
+	</div>
 	<div id="div_print">
-	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px; width: 100%;">
+	<table class="table table-striped table-bordered table-hover"  style="text-align: center;">
 	<tr>
 		<th width="10%">부서</th>
 		<th width="10%">사번</th>
@@ -137,7 +142,7 @@ th {
 <div id="popup" class="overlay"
 		style="z-index: 25; display: none; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.6); width: 100%; height: 100%;">
 		<div
-			style="background-color: white; width: 50%; height: 60%; margin-left: 20%; margin-top: 10%;  border: 1px solid black;">
+			style="background-color: white; width: 50%; height: 65%; margin-left: 20%; margin-top: 10%;  border: 1px solid black;overflow-x:hidden; ">
 
 			<br>
 			<table class="table" style="margin-left: 30px;margin-top: 10px;margin-right: 30px;width: 90%;">
@@ -145,36 +150,36 @@ th {
 				<td colspan="2" align="center">연차 변경페이지</td>
 				</tr>
 				<tr>
-					<th width="30%" align="center">부서명</th>
+					<th width="30%" style="text-align: center;">부서명</th>
 					<td><div id="update_Dname"></div></td>
 				</tr>
 				<tr>
-					<th>사번</th>
+					<th style="text-align: center;">사번</th>
 					<td><div id="update_Empno"></div></td>
 				</tr>
 				<tr>
-					<th>사원명</th>
+					<th style="text-align: center;">사원명</th>
 					<td><div id="update_Ename"></div></td>
 				</tr>
 				<tr>
-					<th>입사년월</th>
+					<th style="text-align: center;">입사년월</th>
 					<td><div id="update_Hiredate"></div></td>
 				</tr>
 				<tr>
-					<th>기본연차</th>
+					<th style="text-align: center;">기본연차</th>
 					<td><input type="text" id="update_Basic"></td>
 				</tr>
 				<tr>
-					<th>사용연차</th>
+					<th style="text-align: center;">사용연차</th>
 					<td><input type="text" id="update_Used"></td>
 				</tr>
 				<tr>
-					<th>남은연차</th>
+					<th style="text-align: center;">남은연차</th>
 					<td><input type="text" id="update_Rest"></td>
 				</tr>
 			</table>
 			<input type="hidden" id="update_Serial">
-			<button type="button" class="btn btn-default" id="btn_update"
+			<button type="button" class="btn btn-warning" id="btn_update"
 				style="margin-left: 45%">수정</button>
 			<button type="button" class="btn btn-default" id="btn_close"
 				>닫기</button>

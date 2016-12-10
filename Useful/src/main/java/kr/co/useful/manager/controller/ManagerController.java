@@ -65,7 +65,7 @@ public class ManagerController {
 	}
 	@RequestMapping(value="/employee_Update",method=RequestMethod.POST)
 	public void employee_Update(@RequestBody EmpVO vo)throws Exception{
-		System.out.println(vo);
+		service.emp_update(vo);
 	}
 	@RequestMapping(value="/employee_Delete",method=RequestMethod.POST)
 	public ResponseEntity<String> employee_Delete(String empno)throws Exception{
@@ -168,7 +168,7 @@ public class ManagerController {
 	@RequestMapping(value="/commute_Monthly_Oneday",method=RequestMethod.POST)
 	public String commute_Monthly_search_oneday(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		model.addAttribute("commute",service.commute_Monthly_search_oneday(requestMap));
-		return "/manager/leave_Print_Div";
+		return "/manager/commute_Monthly_Oneday";
 	}
 	
 	@RequestMapping(value="/salary_List",method=RequestMethod.GET)
@@ -215,6 +215,13 @@ public class ManagerController {
 		return "/manager/salary_emp_search_print";
 	}
 	
+	@RequestMapping(value="/add_Sal_NextMonth",method=RequestMethod.POST)
+	public @ResponseBody String add_Sal_NextMonth(Model model)throws Exception{
+		service.add_Sal_NextMonth();
+		return "success";
+	}
+	
+
 	@RequestMapping("/commute_Daily")
 	public void commute_Daily(){
 		

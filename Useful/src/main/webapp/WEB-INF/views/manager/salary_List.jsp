@@ -35,6 +35,9 @@ $(function(){
  	   $( "#btn_search" ).click(function(){
  		  searchList();
  	   });
+ 	   $( "#btn_allReg" ).click(function(){
+ 		  add_Sal_NextMonth();
+ 	   });
  	   
 		searchList();//기본날짜에 전체출력
 });
@@ -80,6 +83,28 @@ $(function(){
  			});
  		
  	}
+ 	function  add_Sal_NextMonth(){
+ 		$.ajax({
+			  type: 'POST',
+ 			  url: '/useful/manager/add_Sal_NextMonth',
+ 			  headers : {
+ 				  "Content-Type" : "application/json",
+ 				  "X-HTTP-Method-Override":"POST"
+ 			  },
+ 			  dataType: 'text',
+ 			  data: JSON.stringify({
+ 					paymentmonth:paymentmonth
+ 				  }),
+ 			  success: function(result){
+ 				  if(result==success){	
+	 				  alret('삭제되었습니다.');
+ 				  }else{
+	 				  alret('이미 다음달 급여내역이 존재합니다.');
+ 				  }
+ 				 searchList();
+ 			  }
+ 		});
+ 	}
 </script> 
 </head>
 <body>
@@ -93,7 +118,10 @@ $(function(){
                     <h1 class="page-header">급여대장조회</h1>
                 </div>
             </div>
-		<input type="button" id="btn_oneReg" value="급여등록" /> 
+         <div style="text-align: right;">
+		<input type="button" id="btn_oneReg"  class="btn btn-default"  value="급여개별등록" /> 
+		<input type="button" id="btn_allReg"  class="btn btn-default"  value="익월급여 일괄추가" /> 
+         </div>
 	<div id="div_searchArea" class="searchArea cb mgb10"
 		style="vertical-align: middle; min-width: 800px; padding-bottom: 0px; padding-top: 15px;">
 		<table class="table table-striped table-bordered table-hover">

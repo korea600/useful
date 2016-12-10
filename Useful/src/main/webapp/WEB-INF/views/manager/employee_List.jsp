@@ -31,11 +31,11 @@
         height: 250,
         colNames:['사번','성명','부서','직책','핸드폰번호'],
         colModel:[
-            {name:'EMPNO',index:'EMPNO'},
-            {name:'ENAME',index:'ENAME'},
-            {name:'DEPTNO',index:'DEPTNO'},
-            {name:'POSITION',index:'POSITION'},     
-            {name:'PHONE',index:'PHONE'}  
+            {name:'EMPNO',index:'EMPNO',align : 'center' },
+            {name:'ENAME',index:'ENAME',align : 'center' },
+            {name:'DNAME',index:'DNAME',align : 'center' },
+            {name:'POSITION',index:'POSITION',align : 'center' },     
+            {name:'PHONE',index:'PHONE',align : 'center' }  
      
         ],
         onSelectRow: function(ids) {   
@@ -51,6 +51,7 @@
         viewrecords: true,
         sortorder:"ASC",
         caption: "사원목록",
+        autowidth:true,
         jsonReader: {
             page: "page",
             total: "total",
@@ -73,11 +74,11 @@
 			            height: 250,
 			            colNames:['사번','성명','부서','직책','핸드폰번호'],
 			            colModel:[
-			                {name:'EMPNO',index:'EMPNO'},
-			                {name:'ENAME',index:'ENAME'},
-			                {name:'DEPTNO',index:'DEPTNO'},
-			                {name:'POSITION',index:'POSITION'},     
-			                {name:'PHONE',index:'PHONE'}  
+			                {name:'EMPNO',index:'EMPNO',align : 'center' },
+			                {name:'ENAME',index:'ENAME',align : 'center' },
+			                {name:'DNAME',index:'DNAME',align : 'center' },
+			                {name:'POSITION',index:'POSITION',align : 'center' },     
+			                {name:'PHONE',index:'PHONE',align : 'center' }  
 			         
 			            ],
 			             onSelectRow: function(ids) {   
@@ -93,6 +94,7 @@
 			            viewrecords: true,
 			            sortorder:"asc",
 			            caption: "사원목록",
+			            autowidth:true,
 			            jsonReader: {
                             page: "page",
                             total: "total",
@@ -135,10 +137,11 @@
 			<option value="posi">직책</option>
 		</select>	
 		<input type="text" id="keyword" name="keyword" >
-		<button id="btn_Search" class="btn btn-default">조회</button>
-		<button id="btn_NewUser" class="btn btn-default">신규</button>
+		<button id="btn_Search" class="btn btn-warning">검색</button>
+		<button id="btn_NewUser" class="btn btn-default" >신규</button>
 
 	</div>
+	<br>
 	<table id="employee_tbl" ></table>
 	<div id="employee_div"></div>
 	

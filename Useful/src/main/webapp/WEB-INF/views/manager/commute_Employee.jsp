@@ -207,7 +207,7 @@ function div_load(){
 <div id="popup" class="overlay"
 		style="z-index: 25; display: none; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.6); width: 100%; height: 100%;">
 		<div
-			style="background-color: white; width: 50%; height: 65%; margin-left: 20%; margin-top: 10%;  border: 1px solid black;" overflow:auto;>
+			style="background-color: white; width: 50%; height: 65%; margin-left: 20%; margin-top: 10%;  border: 1px solid black; overflow-x:hidden;">
 
 			<br>
 			<table class="table" style="margin-left: 30px;padding-top: 10px;padding-right: 30px;width: 90%;">

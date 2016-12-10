@@ -5,14 +5,21 @@
 	manager_Mapper.xml 
 	작성자 : 박지혜
 	작성일자 : 2016-12-01
- -->	
+ -->
+ <!-- 직원목록출력 -->
   <select id="emplist" resultType="map">
-  	select empno,ename,deptno,position,phone from tbl_emp order by empno
+    select emp.empno, emp.ename, dept.dname, emp.phone, emp.position
+  	from (select * from tbl_emp ) emp, tbl_dept dept
+  	where emp.deptno=dept.deptno
+  	order by emp.empno
   </select>
   
+ <!-- 직원목록 검색후 출력 -->
   <select id="emplistSearch" resultType="map">
-  	select empno,ename,deptno,position,phone from tbl_emp
-  	
+  	select empno,ename,dname,phone,position
+  	from (select emp.empno, emp.ename, dept.dname, emp.phone, emp.position
+  			from (select * from tbl_emp ) emp, tbl_dept dept
+  			where emp.deptno=dept.deptno)
   	<if test="searchType != null">
   		<if test="searchType =='divGbn'.toString()">
   		<!-- if문 명시적사용 -->
@@ -24,7 +31,7 @@
   		where empno like '%'||#{keyword}||'%'
   		</if>
   		<if test="searchType =='dept'.toString()">
-  		where deptno like '%'||#{keyword}||'%'
+  		where dname like '%'||#{keyword}||'%'
   		</if>
   		<if test="searchType =='posi'.toString()">
   		where position like '%'||#{keyword}||'%'
@@ -32,28 +39,32 @@
   		<if test="searchType =='phone'.toString()">
   		where phone like '%'||#{keyword}||'%'
   		</if>
-  	
   	</if>
   	order by empno
   </select>
   
+  <!-- 신규사원등록 -->
   <insert id="emp_insert">
   	insert into tbl_emp (empno,ename,pass,phone,address,hiredate,deptno,position,account,bank,email,leave,ssn)
   		values(#{empno},#{ename},#{pass},#{phone},#{address},#{hiredate},#{deptno},#{position},#{account},#{bank},#{email},15,#{ssn})
   </insert>
   
+  <!-- 사원조회 -->
   <select id="emp_select" resultType="kr.co.useful.manager.domain.EmpVO">
   	select * from tbl_emp where empno=#{empno} 
   </select>
+  
   
   <select id="emp_select_include_dname" resultType="kr.co.useful.manager.domain.EmpVO">
   	select * from tbl_emp a,tbl_dept b where a.deptno=b.deptno and empno=#{empno} 
   </select>
   
+  <!-- 사원세부사항수정 -->
   <update id="emp_update">
   	update tbl_emp set ename=#{ename},phone=#{phone},address=#{address},hiredate=#{hiredate},deptno=#{deptno},position=#{position},account=#{account},bank=#{bank},email=#{email} where empno=#{empno} 
   </update>
   
+  <!-- 사원삭제 -->
   <delete id="emp_delete">
   	delete from tbl_emp where empno=#{empno}
   </delete>
@@ -65,7 +76,7 @@
  		 	from tbl_emp emp,(select * from tbl_commute where login between to_date(#{startdate}, 'YYYYMMDD') and to_date(#{enddate}, 'YYYYMMDD')+1) cmt
  		 	where emp.empno=cmt.empno) a, tbl_dept b
   	where a.deptno=b.deptno
-  	order by a.empno
+  	order by a.empno, a.login
   </select>
   
   <select id="commute_emplist_empno" resultType="kr.co.useful.manager.domain.CommuteVO">
@@ -201,7 +212,7 @@
   	</if>
   	order by empno
   </select>
-  
+  <!-- 리스트 -->
   <select id="salary_List" resultType="kr.co.useful.manager.domain.SalaryVO">
   select sal.serial,emp.empno,emp.ename,emp.dname,emp.position,sal.basicpay,sal.grossincome,sal.deductions,sal.adjustedIncome,sal.paymentdate,sal.paymentmonth
   from tbl_salary sal,(select empno,ename,dname,position
@@ -244,4 +255,6 @@
   	<delete id="salary_Delete">
   		delete from tbl_salary where serial=#{serial}
   	</delete>
+  	
+
 </mapper>

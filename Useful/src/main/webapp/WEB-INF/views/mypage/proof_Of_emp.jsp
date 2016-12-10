@@ -54,14 +54,14 @@ function pop(result){
 				empno:${LoginUser.empno},
 				purpose:$("#purpose_of_use").val(),
 				  }),
-			  success:function(result){
+			  success:function(){
 				  //self.location(result);
-					//location.href='http://localhost/useful/mypage/proof_Of_emp_Print';
+						location.href='http://localhost/useful/mypage/proof_Of_emp_Print';
 					//pop(result);
 					//var re=result
 					//$("#div_print").html(result);
-					var w = window.open();
-					w.document.write(result);
+					//var w = window.open();
+					//w.document.write(result);
 					//var downLoadUrl = "http://localhost/useful/mypage/proof_Of_emp_Print"
 					//$("#frm").attr("action",downLoadUrl).submit();
 						

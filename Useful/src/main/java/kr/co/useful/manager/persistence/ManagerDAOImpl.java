@@ -140,4 +140,9 @@ public class ManagerDAOImpl implements ManagerDAO {
 		sqlSession.delete("manager.salary_Delete",serial);
 		
 	}
+	
+	@Override
+	public void add_Sal_NextMonth() throws Exception {
+		sqlSession.insert("manager.add_Sal_NextMonth");
+	}
 }

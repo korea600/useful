@@ -12,7 +12,7 @@
                     <h1 class="page-header">일일 현황</h1>
                 </div>
             </div>
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover" style="text-align: center;padding-top: 10px;padding-right: 30px;">
 	<tr>
 		<th width="20%" style="text-align: center;">부서</th>
 		<th width="15%" style="text-align: center;">사번</th>
