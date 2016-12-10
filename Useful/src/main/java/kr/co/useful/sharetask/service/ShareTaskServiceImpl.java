@@ -90,4 +90,10 @@ public class ShareTaskServiceImpl implements ShareTaskService{
 		
 	}
 
+	@Override
+	public List<ShareTaskVO> cutList(int deptno) throws Exception {
+	
+		return dao.cutList(deptno);
+	}
+
 }

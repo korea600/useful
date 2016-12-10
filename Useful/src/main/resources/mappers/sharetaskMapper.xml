@@ -120,8 +120,15 @@
 	</update>
 	
 
-	<select id="select_cut_list" resultType="ShareTask">
-		select * from (select * from tbl_sharetask order by serial desc) where rownum
+	<select id="cutList" resultType="ShareTask">
+		select * from (select bno, category, title,
+		content, writer, tbl_emp.ename ename, tbl_sharetask.regdate, viewcnt,
+		tbl_sharetask.deptno
+		from tbl_sharetask, tbl_emp
+		where
+		tbl_sharetask.writer = tbl_emp.empno and
+		tbl_sharetask.deptno=#{deptno}
+		order by bno desc) where rownum
 		between 1 and 5
 	</select>
 

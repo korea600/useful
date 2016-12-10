@@ -47,4 +47,6 @@ public interface ShareTaskDAO {
 		//¥Ÿ¿Ω±€
 		public ShareTaskVO nextRead(int bno,  int deptno) throws Exception;
 		
+		public List<ShareTaskVO> cutList(int deptno)throws Exception;
+		
 }

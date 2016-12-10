@@ -37,5 +37,7 @@ public interface ShareTaskService {
   		public ShareTaskVO nextRead(int bno, int deptno) throws Exception;
   		//Á¶È¸¼ö
   		public void viewcnt(int bno)throws Exception;
+  		
+  		public List<ShareTaskVO> cutList(int deptno)throws Exception;
     
 }

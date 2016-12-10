@@ -97,4 +97,10 @@ public class ShareTaskDAOImpl implements ShareTaskDAO {
 		
 		sqs.update("sharetask.viewcnt", bno);
 	}
+
+	@Override
+	public List<ShareTaskVO> cutList(int deptno) throws Exception {
+	
+		return sqs.selectList("sharetask.cutList", deptno);
+	}
 }

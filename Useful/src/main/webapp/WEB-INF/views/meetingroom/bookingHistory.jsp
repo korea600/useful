@@ -6,7 +6,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<%@include file="../login/Main.jsp" %>
+<%@include file="../login/Sidebar.jsp" %>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 
+<script type="text/javascript"
+   src="http://code.jquery.com/jquery-latest.js"></script>
+
+<style>
+th{text-align: center}
+td{text-align: center}
+
+
+
+</style>
 <script>
 
 function checkYes(serial){
@@ -17,11 +35,18 @@ function checkNo(serial){
 	location.href="/useful/meetingroom/checkNo?serial="+serial;
 }
 </script>
+
+
+
 </head>
 <body>
-
-<center>
-회의실 예약내역-관리자
+<div id='page-wrapper'>
+	<div class='row'>
+		<div class="col-lg-12">
+			<h1 class="page-header">회의실 예약관리</h1>
+		</div>
+	</div>
+	
   <form>
     <table border="1" cellspacing="0">
     <tr>
@@ -59,7 +84,7 @@ function checkNo(serial){
   </form>
 
 
-</center>
+</div>
 
 </body>
 </html>
