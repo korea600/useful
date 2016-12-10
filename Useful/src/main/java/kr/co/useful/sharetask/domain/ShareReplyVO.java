@@ -2,18 +2,27 @@ package kr.co.useful.sharetask.domain;
 
 import java.util.Date;
 
-public class ReplyVO {
+public class ShareReplyVO {
 	private int rno;
 	private int bno;
+	private int empno;
 	private String replytext;
 	private String replyer;
 	private Date regdate;
 	private Date updatedate;
 	
-	public ReplyVO() {
+	public ShareReplyVO() {
 	
 	}
 	
+	public int getEmpno() {
+		return empno;
+	}
+
+	public void setEmpno(int empno) {
+		this.empno = empno;
+	}
+
 	@Override
 	public String toString() {
 		return "ReplyVO [댓글번호=" + rno + ", 게시물번호=" + bno + ", 내용=" + replytext + ", 작성자=" + replyer

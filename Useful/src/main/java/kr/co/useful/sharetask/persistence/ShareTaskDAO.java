@@ -37,6 +37,9 @@ public interface ShareTaskDAO {
 		//검색리스트 수
 		public int listSearchCount(SearchCriteria cri)throws Exception;
 		
+		//조회수
+		public void viewcnt(int bno)throws Exception;
+		
 		
 		//이전글
 		public ShareTaskVO prevRead(int bno,  int deptno) throws Exception;

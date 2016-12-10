@@ -1,6 +1,8 @@
 package kr.co.useful.sharetask.controller;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +22,9 @@ import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.sharetask.domain.Criteria;
 import kr.co.useful.sharetask.domain.PageMaker;
 import kr.co.useful.sharetask.domain.SearchCriteria;
+import kr.co.useful.sharetask.domain.ShareReplyVO;
 import kr.co.useful.sharetask.domain.ShareTaskVO;
+import kr.co.useful.sharetask.service.ShareReplyService;
 import kr.co.useful.sharetask.service.ShareTaskService;
 
 
@@ -32,6 +36,9 @@ public class ShareTaskController {
 	
 	@Inject
 	private ShareTaskService service;
+	
+	@Inject
+	private ShareReplyService reservice;
 	
 	
 	//리스트
@@ -82,6 +89,8 @@ public class ShareTaskController {
 		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		cri.setDeptno(evo.getDeptno());
 		
+		 List<ShareReplyVO> rvo = reservice.listReply(bno);
+		 service.viewcnt(bno);
 		// 데이터 저장
 		ShareTaskVO prevvo=service.prevRead(bno, evo.getDeptno());
 		ShareTaskVO nextvo=service.nextRead(bno, evo.getDeptno());
@@ -97,6 +106,7 @@ public class ShareTaskController {
 			model.addAttribute("nextBno", nextvo.getBno());
 			
 		}
+		model.addAttribute("list", rvo);
 		model.addAttribute(service.read(bno));//현재값
 		model.addAttribute("cri", cri);
 		return "/sharetask/share_Select";

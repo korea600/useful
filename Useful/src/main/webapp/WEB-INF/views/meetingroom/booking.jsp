@@ -156,7 +156,7 @@ var insertWin;
 <p><input type="button" onclick="reservation(${integer})" value="예약"></p>
 
 
-<table border="1" cellspacing="0">
+<table border="1" cellspacing="0"  style="width:100%;">
 <tr>
  <td colspan="4">
     <select id="serchType">

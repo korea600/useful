@@ -84,7 +84,7 @@ $(document).ready(function(){
 					<td align="center" colspan="4" height="110px" align="center">업무	상세</td>
 				</tr>
 				<tr>
-					<td colspan="4" align="right"><input type="hidden" name="bno" value="${shareTaskVO.bno}"> 글번호: ${shareTaskVO.bno} 조회수: 3 
+					<td colspan="4" align="right"><input type="hidden" name="bno" value="${shareTaskVO.bno}"> 글번호: ${shareTaskVO.bno} 조회수: ${shareTaskVO.bno }
 					
 				   <c:choose>
 					   <c:when test="${prevBno==null }">이전</c:when>
@@ -150,8 +150,7 @@ $(document).ready(function(){
 					
 					${shareTaskVO.content}
 					${LoginUser.deptno}
-					::: ${prevBno}
-					::: ${nextBno}
+					
 					
 					
 					</textarea></td>
@@ -172,6 +171,17 @@ $(document).ready(function(){
 				 
 			</table>
 		</form>
+
+               <table>
+               <c:forEach items="${list}" var="ShareReplyVO"></c:forEach>
+               <tr>
+               <td>${ShareReplyVO.Rno }</td>
+               <td>${ShareReplyVO.replyer }<input type="hidden" name="empno" value="${ShareReplyVO.empno }"></td>
+               <td>${ShareReplyVO.replytext }</td>
+               <td>${regdate }</td>
+               </tr>
+               </table>
+
 		                   <!-- 댓글 입력란 -->
 										
 										<div class="input-group"

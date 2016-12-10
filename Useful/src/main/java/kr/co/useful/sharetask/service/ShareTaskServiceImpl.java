@@ -83,4 +83,11 @@ public class ShareTaskServiceImpl implements ShareTaskService{
 		return dao.nextRead(bno, deptno);
 	}
 
+	@Override
+	public void viewcnt(int bno) throws Exception {
+		
+		dao.viewcnt(bno);
+		
+	}
+
 }

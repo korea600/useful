@@ -91,4 +91,10 @@ public class ShareTaskDAOImpl implements ShareTaskDAO {
 		map.put("deptno", deptno);
 		return sqs.selectOne("sharetask.nextShare", map);
 	}
+
+	@Override
+	public void viewcnt(int bno) throws Exception {
+		
+		sqs.update("sharetask.viewcnt", bno);
+	}
 }
