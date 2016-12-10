@@ -89,6 +89,11 @@
 <body>
 <div id='page-wrapper'>
 <form name='frm' method="post" enctype='multipart/form-data'>
+	<div class='row'>
+		<div class="col-lg-12">
+			<h1 class="page-header">기안 작성</h1>
+		</div>
+	</div>
 	<div class='row' style="width: 80%">
 	<div class='col-lg-6' style="width: 80%">
 	<div class='panel panel-default'>
