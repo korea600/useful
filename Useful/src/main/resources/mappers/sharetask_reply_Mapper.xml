@@ -2,35 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ShareTaskReply">
 	<select id="replyList" resultType="ShareTaskReply">
-         select rno, bno, replytext, replyer, empno, regdate, updatedate from tbl_shartask_reply
+         select rno, bno, replytext, replyer, empno, regdate from tbl_sharetask_reply
 		where bno=#{bno}
 		order by rno desc
 	</select>
 	
 	<insert id="plusReply">
-		insert into  tbl_shartask_reply (rno, bno, replytext, replyer, empno)
+		insert into  tbl_sharetask_reply (rno, bno, replytext, replyer, empno)
 		values (tbl_reply_seq.nextval, #{bno}, #{replytext}, #{replyer}, #{empno})
 	</insert>
 
 	<update id="changeReply">
-		update  tbl_shartask_reply set replytext=#{replytext}, updatedate=sysdate
+		update  tbl_sharetask_reply set replytext=#{replytext}, regdate=sysdate
 		where rno=#{rno}
 	</update>
 
 	<delete id="deleteReply">
-		delete from  tbl_shartask_reply
+		delete from  tbl_sharetask_reply
 		where rno=#{rno}
 	</delete>
 
 	<select id="countReply" resultType="int">
 
-		select count(bno) from  tbl_shartask_reply
+		select count(bno) from  tbl_sharetask_reply
 		where bno=#{bno}
 
 	</select>
 
 	<select id="eqBno" resultType="int">
-	    select bno from  tbl_shartask_reply
+	    select bno from  tbl_sharetask_reply
 	    whrere rno={#rno}
 
 	</select>

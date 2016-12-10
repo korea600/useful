@@ -84,7 +84,7 @@ $(document).ready(function(){
 					<td align="center" colspan="4" height="110px" align="center">업무	상세</td>
 				</tr>
 				<tr>
-					<td colspan="4" align="right"><input type="hidden" name="bno" value="${shareTaskVO.bno}"> 글번호: ${shareTaskVO.bno} 조회수: ${shareTaskVO.bno }
+					<td colspan="4" align="right"><input type="hidden" name="bno" value="${shareTaskVO.bno}"> 글번호: ${shareTaskVO.bno} 조회수: ${shareTaskVO.viewcnt }
 					
 				   <c:choose>
 					   <c:when test="${prevBno==null }">이전</c:when>

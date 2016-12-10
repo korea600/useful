@@ -8,10 +8,12 @@ create table tbl_sharetask_reply(
    replyer         varchar2(50) not null,
    empno           number not null,
    regdate         date default sysdate,
-   updatedate      date default sysdate
   
 );
 
+insert into 
+
+select * from TBL_SHARETASK_REPLY;
 
 drop sequence tbl_sharetask_reply_seq;
 create sequence tbl_sharetask_reply_seq

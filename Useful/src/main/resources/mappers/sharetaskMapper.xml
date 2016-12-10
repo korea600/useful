@@ -115,12 +115,13 @@
 
 
 	<update id="viewcnt" parameterType="int">
-		update tbl_board set viewcnt=viewcnt+1
-		where serial=#{serial}
+		update tbl_sharetask set viewcnt=viewcnt+1
+		where bno=#{bno}
 	</update>
+	
 
 	<select id="select_cut_list" resultType="ShareTask">
-		select * from (select * from tbl_board order by serial desc) where rownum
+		select * from (select * from tbl_sharetask order by serial desc) where rownum
 		between 1 and 5
 	</select>
 
