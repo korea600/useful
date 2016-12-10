@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>공지게시판 읽기</title>
 <script type="text/javascript" src="../../resources/vendor/jquery/jquery.js"></script>
 <link href="../../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -190,9 +190,15 @@ function modifyreply(){
 												readonly="readonly" value="${board.writer }">
 										</div>
 										<div class="form-group">
-											<label>글쓰기</label>
+											<label>글내용</label>
 											<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${board.content }</textarea>
 										</div>
+										<core:if test="${board.originalfileName!=null }">
+										<div class="form-group">
+										<label>첨부파일</label>
+										<a href="/useful/board/notice/download?originalfileName=${board.originalfileName }&serial=${board.serial}">${board.originalfileName }</a>
+										</div>
+										</core:if>
 
 										<div class="form-group"></div>
 

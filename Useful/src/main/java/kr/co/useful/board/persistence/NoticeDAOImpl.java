@@ -89,4 +89,10 @@ private SqlSession sqlsession;
 		return sqlsession.selectList("notice.main_list_cut");
 	}
 
+	@Override
+	public String save_file_name(int serial) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne("notice.savaFile_download", serial);
+	}
+
 }

@@ -5,6 +5,9 @@ title varchar2(50) not null, --글제목
 writer varchar2(20) not null, --글쓴이
 content varchar2(2000), --내용
 viewcnt number default 0, --조회수
+originalfileName varchar2(1000),
+saveFileName varchar2(1000),
+filesize number,
 regdate date default sysdate not null--작성일자
 );
 
@@ -17,6 +20,10 @@ ename varchar2(20) not null references tbl_emp(ename), --글쓴이
 content varchar2(2000), --내용
 regdate date not null--작성일자
 );
+
+alter table tbl_notice add(originalfileName varchar2(1000));
+alter table tbl_notice add(saveFileName varchar2(1000));
+alter table tbl_notice add(filesize number);
 
 alter table tbl_notice modify(regdate date default sysdate not null);
 alter table tbl_notice add(viewcnt number default 0);

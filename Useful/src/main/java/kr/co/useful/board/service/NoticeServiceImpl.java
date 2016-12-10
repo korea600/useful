@@ -86,4 +86,10 @@ private NoticeDAO dao;
 		return dao.list_cut();
 	}
 
+	@Override
+	public String save_file_name(int serial) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.save_file_name(serial);
+	}
+
 }

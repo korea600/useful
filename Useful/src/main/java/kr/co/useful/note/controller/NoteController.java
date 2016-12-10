@@ -141,6 +141,12 @@ public class NoteController {
 		System.out.println(mynote);
 		recipientVO.setSerial(serial);
 		recipientVO.setMynoteid(mynoteid);
+		/*RecipientVO ss=reservice.select_recipient_note(recipientVO);
+		System.out.println(ss.getRecipientdate());
+		System.out.println(ss.getReciid());
+		System.out.println(ss.getReciname());
+		System.out.println(ss.getRecontent());
+		System.out.println(ss.getMynotename());*/
 		mod.addAttribute("list",reservice.select_recipient_note(recipientVO));
 		
 		//mod.addAttribute("list", reservice.select_recipient_note(recipientVO));

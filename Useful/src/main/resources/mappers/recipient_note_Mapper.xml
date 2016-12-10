@@ -19,11 +19,11 @@ insert into tbl_recipient_note (serial,mynotename,mynoteid,reciid,reciname,recon
 	</insert>
 	
 	<select id="select_note" resultType="kr.co.useful.note.domain.RecipientVO"> <!-- 쪽지 선택해서 보기  -->
-	select serial,mynoteid,reciid,recontent,recipientdate from tbl_recipient_note where mynoteid=#{mynoteid} and serial=#{serial}
+	select serial,mynoteid,reciid,reciname,recontent,mynotename,recipientdate from tbl_recipient_note where mynoteid=#{mynoteid} and serial=#{serial}
 	</select>
 	
 	<delete id="delete_note" parameterType="kr.co.useful.note.domain.RecipientVO"><!--  메일삭제 -->
-	delete from tbl_recipient_note where serial=#{serial} and mynote=#{mynote}
+	delete from tbl_recipient_note where serial=#{serial} and mynoteid=#{mynoteid}
 	</delete>
 	
 	

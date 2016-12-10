@@ -42,12 +42,12 @@
                                     <form method="post" action="deletePage2">
                                         <div class="form-group">
                                             <label>받는사람</label>
-                                            <input class="form-control" type="text" id="sendman" name="sendman" readonly="readonly" value="${list.mynote }"></input>
+                                            <input class="form-control" type="text" id="sendman" name="sendman" readonly="readonly" value="${list.mynotename }"></input>
                                             
                                         </div>
                                         <div class="form-group">
                                             <label>보내는사람</label>
-                                            <input type="text" id="mynote" class="form-control" value="${list.reciid}" name="mynote" readonly="readonly">
+                                            <input type="text" id="mynote" class="form-control" value="${list.reciname}" name="mynote" readonly="readonly">
                                         </div>
                                          <div class="form-group">
                                         <label>보낸날짜</label>

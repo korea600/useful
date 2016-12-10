@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="notice">
-
 	<select id="mainlist" resultType="kr.co.useful.board.domain.NoticeVO">
 	select title,content,regdate,viewcnt,empno from tbl_notice order by serial  desc
 	</select>
 	
+	<select id="savaFile_download" resultType="String">
+select savefilename from tbl_notice where serial=#{serial}
+</select>
+	
 	<!-- 게시물 선택보기 -->
     <select id="selectRead" resultType="kr.co.useful.board.domain.NoticeVO">
-    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt,empno FROM TBL_NOTICE WHERE SERIAL=#{serial}
+    SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt,empno,originalfileName,saveFileName,fileSize FROM TBL_NOTICE WHERE SERIAL=#{serial}
     </select>
     <!-- 게시물 전체보기 -->
     <select id="listAll" resultType="kr.co.useful.board.domain.NoticeVO">
@@ -20,8 +23,8 @@
     </update>
     <!-- 게시물등록 -->
     <insert id="insert" parameterType="kr.co.useful.board.domain.NoticeVO">
-    INSERT INTO TBL_NOTICE(SERIAL,empno,TITLE,WRITER,CONTENT) 
-    VALUES(tbl_notice_seq.nextval,#{empno},#{title},#{writer},#{content})
+    INSERT INTO TBL_NOTICE(SERIAL,empno,TITLE,WRITER,CONTENT,originalfileName,saveFileName,fileSize) 
+    VALUES(tbl_notice_seq.nextval,#{empno},#{title},#{writer},#{content},#{originalfileName},#{saveFileName},#{fileSize})
     </insert>
     
     <!-- 조회수 카운트 -->
@@ -44,7 +47,7 @@
     </select>
     
     <select id="listSearch" resultType="kr.co.useful.board.domain.NoticeVO">
-    select serial,empno,title,writer,content,viewcnt,regdate, (select count(*) from tbl_notice_reply where tbl_notice_reply.serial=tbl_notice.serial) replycnt
+    select serial,empno,title,writer,content,viewcnt,regdate, (select count(*) from tbl_notice_reply where tbl_notice_reply.serial=tbl_notice.serial) replycnt ,originalfileName,saveFileName,fileSize
       from tbl_notice 
     <include refid="Search"/>
     order by serial desc
