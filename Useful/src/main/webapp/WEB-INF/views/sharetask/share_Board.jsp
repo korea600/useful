@@ -67,6 +67,7 @@ td{text-align: center}
 					
 					<input type='text' name='keyword' class='form-control-static' id="keywordInput" value="${cri.keyword }" style="width:15%;" >
 					<input type='button' id='searchBtn' value='검색' class='btn btn-warning'>
+					<input type="button" class="btn btn-default" id="newBtn" value="글쓰기" style="width: 5%; float: right;">
 				</div>
 				<div class='panel-body'>
 					<div class='table-responsive'>
@@ -116,5 +117,6 @@ td{text-align: center}
 		</div>
 	</div>
 </div>
+<div id="page-wrapper"></div>
 </body>
 </html>

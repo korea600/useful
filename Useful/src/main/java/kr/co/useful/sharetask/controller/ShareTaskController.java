@@ -88,6 +88,7 @@ public class ShareTaskController {
             Model model, HttpServletRequest req) throws Exception {
 		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		cri.setDeptno(evo.getDeptno());
+		int empno=evo.getEmpno();
         service.viewcnt(bno);		
 		 List<ShareReplyVO> rvo = reservice.listReply(bno);
 	
@@ -108,6 +109,7 @@ public class ShareTaskController {
 		model.addAttribute("list", rvo);
 		model.addAttribute(service.read(bno));//ÇöÀç°ª
 		model.addAttribute("cri", cri);
+		model.addAttribute("empno", empno );
 		return "/sharetask/share_Select";
 	}
 	
@@ -138,6 +140,7 @@ public class ShareTaskController {
 		model.addAttribute(pvo);
 		model.addAttribute("cri",cri);
 		
+		System.out.println(pvo);
 		
 		return "/sharetask/share_Select";	
 	}

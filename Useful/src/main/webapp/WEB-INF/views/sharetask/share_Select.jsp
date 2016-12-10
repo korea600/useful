@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,8 +62,38 @@ $(document).ready(function(){
 		$('#title').focus();
 		
 		$('#category').attr("disabled", false);
+		$('#category').css("background-color", "#fff");
+		
 
 	})
+	
+	
+	
+	$("#replyBtn").on("click",function(){
+		var replytext=$("#replyInput").val();
+		var bno=$("#serial").val();
+		var page=$("#page").val();
+		var perPageNum=$("#perPageNum").val();
+		var keyword=$("#keyword").val();
+		var searchType=$("#searchType").val();
+		$.ajax({
+			type:'post',
+			url:'/useful/reply/create',
+			dataType:'text',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST"
+			},
+			data: JSON.stringify({serial:serial, replyid:"${LoginUser.empno}",replytext:replytext }),
+			success:function(result){
+				console.log("result:"+result);
+				if(result=='SUCCESS'){
+					self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";//Christmas
+					replytext.val("");
+				}
+			}
+		}) 
+	});
 	
 	
 
@@ -74,19 +105,20 @@ $(document).ready(function(){
 </script>
 
 </head>
-
 <body>
-	<center>
-		<form action="/useful/sharetask/change" method="post">
-			<table border="1"
-				style="border-collapse: collapse; line-height: 30px;" width="900px">
-				<tr>
-					<td align="center" colspan="4" height="110px" align="center">업무	상세</td>
-				</tr>
-				<tr>
-					<td colspan="4" align="right"><input type="hidden" name="bno" value="${shareTaskVO.bno}"> 글번호: ${shareTaskVO.bno} 조회수: ${shareTaskVO.viewcnt }
-					
-				   <c:choose>
+<div id='page-wrapper'>
+	<div class='row'>
+		<div class="col-lg-12">
+			<h1 class="page-header">업무공유 보기</h1>
+		</div>
+	</div>
+    <div class="row">
+        <div class="col-lg-12">
+           <div class="panel panel-default">
+              <div class="panel-heading">작성하기
+              
+              <span style="float: right;">글번호: ${shareTaskVO.bno}&nbsp;조회수: ${shareTaskVO.viewcnt }&nbsp;&nbsp;
+                <c:choose>
 					   <c:when test="${prevBno==null }">이전</c:when>
 					   <c:otherwise><a href="/useful/sharetask/prev?bno= ${shareTaskVO.bno}&deptno=${LoginUser.deptno}" >이전</a></c:otherwise>
 					</c:choose> 
@@ -95,19 +127,23 @@ $(document).ready(function(){
 					   <c:when test="${nextBno==null }">다음</c:when>
 					   <c:otherwise><a href="/useful/sharetask/next?bno= ${shareTaskVO.bno}&deptno=${LoginUser.deptno}" >다음</a></c:otherwise>
 					</c:choose> 
-				   
-					
-	           
-				</tr>
-				<tr>
-					<td bgcolor="#dae6f4" align="center" width="150px">작성자</td>
-					<td align="center" width="300px">
-					${shareTaskVO.ename}</td>
-
-					<td bgcolor="#dae6f4" align="center" width="150px">분류</td>
-					<td align="center" colspan="3">
-					<select name="category" id="category"
-						style="width: 110px; height: 25px" disabled="disabled">
+					</span> 
+              </div>            
+                <div class="panel-body">
+                   <div class="row">
+                     <div class="col-lg-6">
+                        <form  method="post" action="/useful/sharetask/change">
+                          <div class="form-group">
+                             <input type="hidden" name="bno" value="${shareTaskVO.bno}"> 
+                             <input type="hidden" name="deptno" value="${shareTaskVO.deptno }">
+					         <input type="hidden" name="writer" value="${shareTaskVO.writer }">
+                             <label>글제목</label>
+                             <input class="form-control" type="text" id="title"	name="title" readonly="readonly" value="${shareTaskVO.title}">
+                          </div>
+                          <div class="form-group">
+                            <label>분류</label><br>
+                            <select class="form-control" name="category" id="category"
+						         style="background-color:#e7e7e7;" disabled="disabled">
 							<c:if test="${shareTaskVO.category=='업무관련'}">
 								<option value="업무관련" selected="selected">업무관련</option>
 							</c:if>
@@ -126,81 +162,106 @@ $(document).ready(function(){
 							<c:if test="${shareTaskVO.category!='기타'}">
 								<option value="기타">기타</option>
 							</c:if>
-					</select></td>
-				</tr>
-				<tr>
-					<td align="center" bgcolor="#dae6f4" width="150px">첨부파일</td>
-					<td colspan="3">첨부파일 목록</td>
-				</tr>
+					        </select>
+                          </div>
+                          <div class="form-group">
+                             <label>글쓴이</label>
+                             <input class="form-control" type="text" id="ename"	name="ename" readonly="readonly" value="${shareTaskVO.ename}">
+                          </div>
+                          <div class="form-group">
+							<label>글내용</label>
+							<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${shareTaskVO.content}</textarea>
+						  </div>
+                          
+						<div class="form-group">
+                         
+										<label>첨부파일</label>
+									
+										
+						</div>
+                                        
+                          	    <div class="form-group">
+                          	   
+                                  <c:if test="${empno==shareTaskVO.writer }">
+                                    <input type="button" class="btn btn-default" id="change" value="수정" >
+                                    </c:if>
+					                <input type="submit" class="btn btn-default" id="changeOK" value="확인">
+					    		    <input type="button" class="btn btn-default" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 
+						            <input type="button" class="btn btn-default" value="목록" onClick="location.href='share_Board?page=${cri.page}'" />
 
-				<tr>
-					<td bgcolor="#dae6f4" align="center" width="150px"
-						>제목</td>
-					<td colspan="3" style="padding: 0;">
-					<input type="text" id="title" name="title" readonly="readonly" value="${shareTaskVO.title}"></td>
+                                    </div>
+									</form>
 
-				</tr>
+						 </div>
+                      </div>
+                   </div>
+                </div>
+           </div>
+        </div>
+    
+    
+						<div class="row">
+							<div class="col-lg-12">
+								<h1 class="page-header">댓글 목록</h1>
+							</div>
+							<!-- /.col-lg-12 -->
+						</div>
+						<!-- /.row -->
+						<div class="row">	
+										<!-- 댓글목록 -->
+										<table>
+					<c:forEach items="${list }" var="ShareReplyVO">
+					<div class="col-lg-4" style="width: 87%; right: 10px;">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                        <h5>${ShareReplyVO.replyer }<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
+                        </div><input type="hidden" id="rno" value="${ShareReplyVO.rno }">
+                        <div class="panel-body">
+                            <p id="text">${ShareReplyVO.replytext }</p>
+                        </div>
+                 
+                         <div class="panel-footer">
+                         <button type="button" class="btn btn-default" id="replyChange" name="modify">수정</button>
+                         <button type="button" class="btn btn-default" id="replyRemove">삭제</button>
+                        </div>
+                       
+                       
+                    </div>
+                </div>
+                   	</c:forEach>
+										
+										</table>
+										 <input type="hidden" id="hi-input" >
+										<!-- 댓글목록 -->
 
-				<tr>
-					<td colspan="4" style="padding: 0;"><textarea id="content" name="content"
-							readonly="readonly" 
-							style="width: 900px; margin: 0; height: 500px; border: 0;">
-					
-					
-					
-					${shareTaskVO.content}
-					${LoginUser.deptno}
-					
-					
-					
-					</textarea></td>
-				</tr>
-				<tr>
-					<td colspan="4" align="right">
-					<%-- <% if(session.getAttribute("id")==""){} %> --%>
-					     <input type="hidden" name="deptno" value="${shareTaskVO.deptno }">
-					     <input type="hidden" name="writer" value="${shareTaskVO.writer }">
-					     
-                             
-					    <input type="button" id="change" value="수정" />
-					    <input type="submit" id="changeOK" value="확인">
-						<input type="button" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 
-						<input type="button"	value="목록" onClick="location.href='share_Board?page=${cri.page}'" /></td>
-					<!-- '" -->
-				</tr>
-				 
-			</table>
-		</form>
 
-               <table>
-               <c:forEach items="${list}" var="ShareReplyVO"></c:forEach>
-               <tr>
-               <td>${ShareReplyVO.Rno }</td>
-               <td>${ShareReplyVO.replyer }<input type="hidden" name="empno" value="${ShareReplyVO.empno }"></td>
-               <td>${ShareReplyVO.replytext }</td>
-               <td>${regdate }</td>
-               </tr>
-               </table>
-
-		                   <!-- 댓글 입력란 -->
+										<!-- 댓글 입력란 -->
 										
 										<div class="input-group"
 											style="height: 30px; width: 85%; size: 30; left: 10px;">
-
-											<input name="keyword" id="btn-input" type="text"
-												class="form-control input-sm" placeholder="댓글을 입력해주세요"
-												style="height: 65px; " /> <span class="input-group-btn">
-												<button type="button" class="btn btn-warning btn-sm" id="replybtn"
+											 
+                                           
+											<input name="keyword" id="replyInput" type="text" class="form-control input-sm" placeholder="댓글을 입력해주세요" 
+											style="height: 65px; " />
+											 <span class="input-group-btn">
+												<button type="button" class="btn btn-warning btn-sm" id="replyBtn"
 													style="height: 65px; width: 100px;">
 													<h3>입력</h3>
 												</button>
 											</span>
 										</div>
 									
-									
-									<!-- 댓글 입력란 -->
+								</div>
+    
+    </div>
+    <div id="page-wrapper"></div>
+    
+
+
+
+
 		
-		
-	</center>
+
+
 </body>
 </html>

@@ -95,7 +95,7 @@
 		where tbl_sharetask.writer=tbl_emp.empno
 		and tbl_sharetask.deptno=#{deptno}
 		and bno=(select max(bno) from
-		tbl_sharetask where #{bno} > bno)
+		tbl_sharetask where #{bno} > bno and tbl_sharetask.deptno=#{deptno})
 	</select>
 
 
@@ -108,7 +108,7 @@
 		where tbl_sharetask.writer=tbl_emp.empno
 		and tbl_sharetask.deptno=#{deptno}
 		and bno=(select min(bno) from
-		tbl_sharetask where bno > #{bno})
+		tbl_sharetask where bno > #{bno} and tbl_sharetask.deptno=#{deptno})
 
 	</select>
 
