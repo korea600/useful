@@ -11,25 +11,35 @@
 <title>Insert title here</title>
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- DataTables JavaScript -->
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 
 <style>
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-* {font-family: 'Nanum Gothic', serif;}
+
+
 
 /* #cal {width: 250px; height: 250px;} */
 #header {background-color:#aadef7; height: 50px; line-height: 50px; text-align: center; font-size: 18px; font-weight: bold}
 #cal .button {color: #000; text-decoration: none;}
 
-#cal table {width: 1260px;}
-.weektr {width:180px; height:80px; text-align:center;}
-
+#cal table {width: 1260px; margin:0 auto; border:1px solid #cccdd4;}
+.weektr {width:180px; height:80px; text-align:center; font-size:20px; }
+.일 {color:red;}
 
 
 </style>
 
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
+
 
 <script type="text/javascript">
 
@@ -85,13 +95,13 @@ function cal(id, newdate) {
 	calendar += '		<table border="1" cellspacing="0" cellpadding="0">';
 	calendar += '              <tr height="80px">';
  	calendar += '                 <td colspan="7" align="center">';
-	calendar += '                     <select name="year" onchange="changeCal(this)">';
+	calendar += '                     <select class="form-control-static" name="year" onchange="changeCal(this)">';
 	calendar += '                     </select>년 ';
-	calendar += '                     <select name="month" onchange="changeCal(this)">';
+	calendar += '                     <select class="form-control-static" name="month" onchange="changeCal(this)">';
 	calendar += '                     </select>월';
 	calendar += '                 </td>'; 
 	calendar += '              </tr>';
-	calendar += '				<tr bgcolor="#8df1ca">';
+	calendar += '				<tr bgcolor="#e7e7e7">';
 	calendar += '				  <th class="weektr" scope="row">일</th>';
 	calendar += '				  <th class="weektr" scope="row">월</th>';
 	calendar += '				  <th class="weektr" scope="row">화</th>';
@@ -166,7 +176,7 @@ function cal(id, newdate) {
     $('#a'+
      dt.getFullYear()+
      (dt.getMonth()+1)+
-     dt.getDate()).parent().css('background-color','yellow');
+     dt.getDate()).parent().css('background-color','#f8f986');
    
      //var tmd = 'a'+currentYear+currentMonth+dateNum;
     //alert('시작='+tmd);
@@ -231,7 +241,7 @@ var insertWin;//자식창
 		
 		var str =y+"/"+m+"/"+d;
 		document.getElementById('ymd').value=str;
-		alert(str);
+		//alert(str);
 		insert();
 			
 	}
@@ -295,7 +305,7 @@ var insertWin;//자식창
 	                      $('#b'+lasty+lastm+lastd).append(
 	                    		 
 	                    		   '<div onclick="detail('+key.serial+')" style="height:20px; top:0;' 
-	                    		   +'cursor:pointer; color:#fff; background-color:blue;">'
+	                    		   +'cursor:pointer; color:#fff; background-color:#4f6bd4;">'
 	                    		   +key.begintime+'시 '
 	                    		   +key.title+'</div><div style=" width:180px; height:5px;"></div>'); 
 	 	     			   //alert(begin);
@@ -394,12 +404,21 @@ var insertWin;//자식창
 
 </head>
 <body>
-<center>
+
+<div id='page-wrapper'>
+	<div class='row'>
+		<div class="col-lg-12">
+			<h1 class="page-header">사내 일정	</h1>
+		</div>
+	</div>
    <div id="cal"></div>
    <br><br>
       <input type="hidden" id="ymd">
+      
+<div class='panel-body'>
+  <div class='table-responsive'>
    <form action="" method="get" name="co_list" id="co_list">
-   <table width="800px" border="1" cellspacing="0">
+   <table class='table table-striped table-bordered table-hover'>   
    <tr><td colspan="7" align="right">
        <select name="searchType">
    <option value="no">--</option>
@@ -465,15 +484,11 @@ var insertWin;//자식창
     </td>
     </tr>
    </table>
-   
-
-   	<!-- The time line -->
-   	
-   	<input type="button" value="클릭" onclick="test1()">
    </form>
-   </center>
-
-   
+  
+  </div>
+  </div> 
+</div>
    
 
 	<script>

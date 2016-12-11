@@ -89,12 +89,13 @@ public class ShareTaskController {
 		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		cri.setDeptno(evo.getDeptno());
 		int empno=evo.getEmpno();
+		String replyer = evo.getEname();
         service.viewcnt(bno);		
 		 List<ShareReplyVO> rvo = reservice.listReply(bno);
 	
 		ShareTaskVO prevvo=service.prevRead(bno, evo.getDeptno());
 		ShareTaskVO nextvo=service.nextRead(bno, evo.getDeptno());
-		System.out.println("bno="+bno+",deptno"+evo.getDeptno()+",prevvo="+prevvo);
+		//System.out.println("bno="+bno+",deptno"+evo.getDeptno()+",prevvo="+prevvo);
 		
 		
 		if(prevvo!=null){
@@ -110,6 +111,7 @@ public class ShareTaskController {
 		model.addAttribute(service.read(bno));//ÇöÀç°ª
 		model.addAttribute("cri", cri);
 		model.addAttribute("empno", empno );
+		model.addAttribute("replyer", replyer );
 		return "/sharetask/share_Select";
 	}
 	

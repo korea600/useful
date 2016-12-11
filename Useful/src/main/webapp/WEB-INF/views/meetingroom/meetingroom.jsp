@@ -6,6 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<%@include file="/WEB-INF/views/login/Main.jsp" %>
+<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
+<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- DataTables JavaScript -->
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
+
 <style>
 
 html{
@@ -37,8 +51,6 @@ form{
 </style>
 
 
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 
 
@@ -100,10 +112,14 @@ var insertWin;
 </head>
 
 <body>
-<center>
-
+<div id='page-wrapper'>
+	<div class='row'>
+		<div class="col-lg-12">
+			<h1 class="page-header">사내 일정	</h1>
+		</div>
+	</div>
+<div class="form-group">
 <input type="button" onclick="input()" value="등록" >
-<hr>
 <br>
   <div id="rooms">
    <c:forEach items="${list}" var="MeetingRoomVO" >
@@ -120,10 +136,10 @@ var insertWin;
      </form>
    </c:forEach>
   </div>
+</div>
+</div>
 
 
-
-</center>
 
 </body>
 </html> 

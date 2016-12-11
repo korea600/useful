@@ -43,10 +43,18 @@
 }
 </style>
 
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
-
-<script>
+<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- DataTables JavaScript -->
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
+	 <script>
 
 
 $(document).ready(function(){
@@ -70,32 +78,31 @@ $(document).ready(function(){
 	
 	
 	$("#replyBtn").on("click",function(){
-		var replytext=$("#replyInput").val();
-		var bno=$("#serial").val();
-		var page=$("#page").val();
-		var perPageNum=$("#perPageNum").val();
-		var keyword=$("#keyword").val();
-		var searchType=$("#searchType").val();
+		     empno:$('[name=empno]').val();
+	           bno:$('[name=bno]').val();
+			 replyer:$('[name=replyer]').val();
+			 replytext:$('[name=replytext]').val();
 		$.ajax({
 			type:'post',
-			url:'/useful/reply/create',
+			url:'/useful/ShareReply',
 			dataType:'text',
 			headers:{
 				"Content-Type":"application/json",
 				"X-HTTP-Method-Override":"POST"
 			},
-			data: JSON.stringify({serial:serial, replyid:"${LoginUser.empno}",replytext:replytext }),
+			data: JSON.stringify({bno:bno, empno:empno, replyer:replyer, replytext:replytext}),
 			success:function(result){
-				console.log("result:"+result);
+				alert("등록되었습니다");
+				
 				if(result=='SUCCESS'){
 					
-					self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";//Christmas
+					self.location="detail?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&bno="+bno+"";
 					replytext.val("");
 				}
 			}
 		}) 
 	});
-	
+
 	
 
 });
@@ -104,6 +111,7 @@ $(document).ready(function(){
 
 
 </script>
+
 
 </head>
 <body>
@@ -215,7 +223,7 @@ $(document).ready(function(){
 					<div class="col-lg-4" style="width: 87%; right: 10px;">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                        <h5>${ShareReplyVO.replyer }<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
+                        <h5>${ShareReplyVO.replyer }<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${ShareReply.regdate}"/> </h5>
                         </div><input type="hidden" id="rno" value="${ShareReplyVO.rno }">
                         <div class="panel-body">
                             <p id="text">${ShareReplyVO.replytext }</p>
@@ -232,17 +240,14 @@ $(document).ready(function(){
                    	</c:forEach>
 										
 										</table>
-										 <input type="hidden" id="hi-input" >
-										<!-- 댓글목록 -->
-
-
+									
 										<!-- 댓글 입력란 -->
 										
 										<div class="input-group"
 											style="height: 30px; width: 85%; size: 30; left: 10px;">
-											 
-                                           
-											<input name="keyword" id="replyInput" type="text" class="form-control input-sm" placeholder="댓글을 입력해주세요" 
+											<input type="hidden" value="${replyer}" name="replyer"> 
+                                            <input type="hidden" value="${empno}" name="empno">
+											<input name="replytext" id="replyInput" type="text" class="form-control input-sm" placeholder="댓글을 입력해주세요" 
 											style="height: 65px; " />
 											 <span class="input-group-btn">
 												<button type="button" class="btn btn-warning btn-sm" id="replyBtn"
@@ -255,6 +260,9 @@ $(document).ready(function(){
 								</div>
     
     </div>
+    
+   
+    
     <div id="page-wrapper"></div>
     
 

@@ -25,8 +25,9 @@ import kr.co.useful.sharetask.service.ShareReplyService;
 public class ShareReplyController {
        ShareReplyService service;
        
+       //´ñ±Û µî·Ï
        @RequestMapping(value="", method=RequestMethod.POST)
-   	public ResponseEntity<String> register(@RequestBody ShareReplyVO vo, HttpServletRequest req){
+     	public ResponseEntity<String> register(@RequestBody ShareReplyVO vo, HttpServletRequest req){
    		
    		System.out.println(vo);
    		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
@@ -35,6 +36,7 @@ public class ShareReplyController {
    		
    		try {
    			service.addReply(vo);
+   			System.out.println("reply="+vo);
    			entity=new ResponseEntity<>("SUCCESS", HttpStatus.OK);
    			
    			

@@ -9,7 +9,7 @@ public class ShareReplyVO {
 	private String replytext;
 	private String replyer;
 	private Date regdate;
-	private Date updatedate;
+
 	
 	public ShareReplyVO() {
 	
@@ -26,7 +26,7 @@ public class ShareReplyVO {
 	@Override
 	public String toString() {
 		return "ReplyVO [댓글번호=" + rno + ", 게시물번호=" + bno + ", 내용=" + replytext + ", 작성자=" + replyer
-				+ ", 작성일자=" + regdate + ", 수정일자=" + updatedate + "]";
+				+ ", 작성일자=" + regdate+  "]";
 	}
 
 	
@@ -68,14 +68,6 @@ public class ShareReplyVO {
 
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
-	}
-
-	public Date getUpdatedate() {
-		return updatedate;
-	}
-
-	public void setUpdatedate(Date updatedate) {
-		this.updatedate = updatedate;
 	}
 
 }
