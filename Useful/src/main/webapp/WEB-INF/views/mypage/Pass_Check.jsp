@@ -78,7 +78,8 @@
                       			  		입력해주세요.</h3>
                    				 </div>
                                 <div class="form-group" >
-                                   <b>Password : </b><input class="form-control"  name="pass" type="password" id="passinput">
+                                   <b>Password : </b><input class="form-control"  name="pass" type="password" id="passinput"
+                                   onkeypress="if(event.keyCode == 13){ passCheck(); return; }">
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->

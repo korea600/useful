@@ -78,8 +78,8 @@ th {
 
 </head><%@include file="../login/Sidebar.jsp" %>
 <body>
-	<center>
 	
+	<div id="page-wrapper">
 	<!-- //contents -->
 			<div id="contents">
 				<form id="frm" name="frm">
@@ -97,20 +97,17 @@ th {
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-				<button type="button" id="btn_Save" onclick="InfoSave()" class="btn btn-default">저장</button>
-				<button type="button" id="btn_List" onclick="cancel()" class="btn btn-default">취소</button>
-				<br>
 			</div>
 			
 			<!-- form -->
-				<table class="bbs_row">
+				<table class="table table-striped table-bordered table-hover">
 					<colgroup>
 						<col width="150"/>
 						<col/>
 					</colgroup>
 					<tbody> 
 						<tr>  
-							<th>사원번호</th>
+							<th style="text-align: center;">사원번호</th>
 							<td>
 								<input type="hidden" id="emp_no_dup_check" value="N"/>
 								<input id="empno" name="empno" class="text" type="text" maxlength="20" value="${LoginUser.empno }"/>
@@ -120,7 +117,7 @@ th {
 							</td>
 						</tr>  
 						<tr>  
-							<th>사원명        </th>
+							<th style="text-align: center;">사원명        </th>
 							<td>
 								<input type="hidden" id="emp_id_dup_check" value="N"/>
 								<input id="ename" name="ename" class="text" type="text" maxlength="20" value="${LoginUser.ename }"/>
@@ -131,21 +128,21 @@ th {
 						</tr>  
 					
 						<tr>  
-							<th>비밀번호 </th>
+							<th style="text-align: center;">비밀번호 </th>
 							<td>
 								<input id="pass" name="pass" class="text" type="password" maxlength="20" value="${vo.pass }"/>
 							</td>
 						</tr>  
 					
 						<tr>  
-							<th>주민번호        </th>
+							<th style="text-align: center;">주민번호        </th>
 
 							<td>
 								<input id="ssn" name="ssn" class="text" type="text" maxlength="14" value="${vo.ssn }"/>
 							</td>
 						</tr>  
 						<tr>  
-							<th>부서번호</th>
+							<th style="text-align: center;">부서번호</th>
 							<td>
 								<select id="deptno" name="deptno" class="select" style="width:200px;">
 									<option value="">-- 선택 --</option>
@@ -159,7 +156,7 @@ th {
 							</td>
 						</tr> 
 						<tr>  
-							<th>직위(직급)        </th>
+							<th style="text-align: center;">직위(직급)        </th>
 							<td>
 								<select id="position" name="position" class="select" style="width:200px;">
 									<option value="">-- 선택 --</option>
@@ -177,25 +174,25 @@ th {
 						</tr> 
 						
 						<tr>
-							<th>이메일      </th>
+							<th style="text-align: center;">이메일      </th>
 							<td>
 								<input id="email" name="email" class="text" style="width:200px;" type="text" maxlength="50" value="${vo.email }"/>
 							</td>
 						</tr>  
 						<tr>  
-							<th>핸드폰      </th>
+							<th style="text-align: center;">핸드폰      </th>
 							<td>
 								<input id="phone" name="phone" class="text" style="width:200px;" type="text" maxlength="20" value="${vo.phone }"/>&nbsp;&nbsp;(ex: 010-1234-1234)
 							</td>
 						</tr> 
 						<tr>  
-							<th>주소      </th>
+							<th style="text-align: center;">주소      </th>
 							<td>
 								<input id="address" name="address" class="text" style="width:100%;" type="text" maxlength="100" value="${vo.address }"/>
 							</td>
 						</tr>
 					<tr>
-						<th>은행 </th>
+						<th style="text-align: center;">은행 </th>
 						<td><select id="bank" name="bank" class="select" style="width:200px;">
 								<option value="">--선택--</option>
 								<option value="신한은행">신한</option>
@@ -209,13 +206,13 @@ th {
 						</td>
 					</tr>
 					<tr>  
-							<th>계좌번호 </th>
+							<th style="text-align: center;">계좌번호 </th>
 							<td>
 								<input id="account" name="account" class="text" style="width:200px;" type="text" maxlength="15" value="${vo.account }"/>
 							</td>
 						</tr> 
 						<tr>  
-							<th>입사일   </th>
+							<th style="text-align: center;">입사일   </th>
 							<td>
 								<div id="div_inDt">
 								<fmt:formatDate value="${vo.hiredate }" pattern="yyyy-MM-dd"/>
@@ -223,7 +220,7 @@ th {
 							</td>
 						</tr>  
 					<tr>
-						<th>최근접속일</th>
+						<th style="text-align: center;">최근접속일</th>
 						<td>
 							<fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd HH:mm"/>
 						</td>
@@ -231,10 +228,15 @@ th {
 					
 					</tbody>  
 				</table>  
+				<div style="text-align: center;">
+				<button type="button" id="btn_Save" onclick="InfoSave()" class="btn btn-warning">저장</button>
+				<button type="button" id="btn_List" onclick="cancel()" class="btn btn-default">취소</button>
+				<br>
+				</div>
 				</form>
 			</div>
 			<!-- contents// -->
-		</center>
-		
+		</div>
+		<div id="page-wrapper"></div>
 </body>
 </html>

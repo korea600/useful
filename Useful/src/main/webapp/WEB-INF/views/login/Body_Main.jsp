@@ -199,7 +199,7 @@
               <c:forEach begin="1" end="16">
               &nbsp;&nbsp;
               </c:forEach>
-             <small><a href="/useful/board/listPage"><font size="2">+ MORE</font></a></small> </h3>
+             <small><a href="/useful/sharetask/share_Board"><font size="2">+ MORE</font></a></small> </h3>
 			<table class="table table-bordered">
                 <tr style="background-color: silver;">
                   <th style="width: 50px">번호</th>
