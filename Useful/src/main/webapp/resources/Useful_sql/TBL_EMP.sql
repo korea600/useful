@@ -52,3 +52,5 @@ select * from tbl_commute where empno in(select empno from tbl_emp where empno='
 select empno, ename, deptno, position, regdate, dname
 		from tbl_emp natural join tbl_dept
 		where empno='1001';
+		
+update tbl_emp set pass='ZhHIHIc2GT1YRNu8cnZRXQ==' where ename='Ã¤È¿¿ø';

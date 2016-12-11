@@ -39,7 +39,7 @@
 			 //?:부분식의 선행문자를 0개 또는 1개 찾거나 제한적인 한정기호를 나타냄
 			 
 			 if(!reg_pwd.test(pass)){
-				 alert('비밀번호를 확인하세요.\n(영문,숫자를 혼합하여 8~15자 이내)');    
+				 alert('비밀번호를 확인하세요.\n(영문,숫자,특수문자를 혼합하여 8~15자 이내)');    
 				document.form.password.value="";
 				document.form.password.focus();
 			 }
@@ -82,7 +82,7 @@
 								<div class="panel-heading">
                       			  	<h3 class="panel-title" align="center">초기 로그인을 환영합니다.  <br>
                       			  		앞으로 사용할 비밀번호를 설정해주세요. <br> 
-                      			  		(8~15자리, 영문+숫자조합)</h3>
+                      			  		(8~15자리, 영문+숫자+특수문자조합)</h3>
                    				 </div>
                                 <div class="form-group" >
                                    <b>Password : </b><input class="form-control"  name="password" type="password" id="passinput">

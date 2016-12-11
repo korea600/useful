@@ -29,8 +29,8 @@
 <script type="text/javascript">
 
 	function checkLogin(){
-		var test='aaaa';
-		var regExp =/aaaa/gi;
+		var test='123123';
+		var regExp =/123123/gi;
 		
 		var test2 = test.match(regExp);
 

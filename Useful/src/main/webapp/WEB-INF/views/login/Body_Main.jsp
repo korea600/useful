@@ -97,7 +97,7 @@
            
             <c:forEach items="${note }" var="note">
                 <tr>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${note.reciid }</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${note.reciname }</td>
                	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/note/riciReadPage?serial=${note.serial }">${note.recontent }</td>
                	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${note.recipientdate }" pattern="yyyy-MM-dd"/> </td>
                  

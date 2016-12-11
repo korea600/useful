@@ -101,12 +101,19 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/checkpass",method=RequestMethod.POST)
-	public @ResponseBody String checkPass(HttpServletRequest req)throws Exception{
+	public @ResponseBody String checkPass(HttpServletRequest req,EmpVO vo)throws Exception{
 		int empno = ((EmpVO)(req.getSession().getAttribute("LoginUser"))).getEmpno();
 		String password = req.getParameter("password");
 		
-		service.updatepass(empno, password);
-		
+		 	String key="cogydnjscogydnjs1";
+			LocalEncrypter enc = new LocalEncrypter(key);
+			
+			String str = enc.aesEncode(password);
+			
+			vo.setPass(str);
+			
+		service.updatepass(empno, str);
+			
 		return "SUCCESS";
 	}
 	
@@ -172,7 +179,7 @@ public class LoginController {
 		        emailSender.SendEmail(email);
 		        
 		        service.updatepass(empVO.getEmpno(),pass);
-		        
+				
 		        return "SUCCESS";
 		}else
 			return "FAIL";
