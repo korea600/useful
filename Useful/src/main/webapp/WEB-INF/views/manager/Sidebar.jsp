@@ -51,6 +51,7 @@
                                 <div>
                            <div>
                               <center><span><i class="fa fa-user fa-fw"></i>[${LoginUser.position }] ${LoginUser.ename}님 안녕하세요~!!</span></center> 
+                              <p align="center">[${LoginUser.dname } ${LoginUser.position }]</p>	
                            </div>
                            <p></p>
                            <div>
