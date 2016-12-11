@@ -11,4 +11,7 @@ public class HomeController {
 	public String goToLogin() {
 		return "redirect:/login/Login";
 	}
+	
+	@RequestMapping("/access-control")
+	public void access_control(){}
 }

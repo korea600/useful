@@ -12,7 +12,15 @@ public class ManagerInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		EmpVO vo = (EmpVO) request.getSession().getAttribute("LoginUser");
-		if(vo!=null) return true;
+		if(vo!=null){
+			if(vo.getDeptno()==10)
+				return true;
+			else{
+				response.sendRedirect("/useful/access-control");
+				return false;
+			}
+		}	
+			
 		else{
 			saveDest(request);
 			request.getSession().removeAttribute("LoginUser");

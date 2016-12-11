@@ -88,6 +88,7 @@ $(document).ready(function(){
 			success:function(result){
 				console.log("result:"+result);
 				if(result=='SUCCESS'){
+					
 					self.location="readPage?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&serial="+serial+"";//Christmas
 					replytext.val("");
 				}
