@@ -120,7 +120,7 @@
               
               
 			<table class="table table-bordered">
-                <tr style="background-color: lime;">
+                <tr style="background-color:silver;">
                   <th style="width: 50px">번호</th>
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성자</th>
@@ -147,7 +147,7 @@
               <small><a href="/useful/board/anonymity/listPage"><font size="2">+ MORE</font></a></small> </h3>
               
 			<table class="table table-bordered">
-                <tr style="background-color: #FF5E00">
+                <tr style="background-color: silver;">
                   <th style="width: 50px">번호</th>
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성자</th>
@@ -173,8 +173,8 @@
               </c:forEach>
              <small><a href="/useful/board/listPage"><font size="2">+ MORE</font></a></small> </h3>
 			<table class="table table-bordered">
-                <tr style="background-color: #FF4848;">
-                  <th style="width: 10px">no</th>
+                <tr style="background-color: silver;">
+                  <th style="width: 50px">번호</th>
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성자</th>
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid;">등록일</th>
@@ -194,7 +194,34 @@
               </table>	
             </div><!--/.col-xs-6.col-lg-4-->
 		
-		
+		<div class="col-xs-5 col-lg-6">
+           <h3><span class="glyphicon glyphicon-share" style="color:black">업무공유게시판</span>
+              <c:forEach begin="1" end="16">
+              &nbsp;&nbsp;
+              </c:forEach>
+             <small><a href="/useful/board/listPage"><font size="2">+ MORE</font></a></small> </h3>
+			<table class="table table-bordered">
+                <tr style="background-color: silver;">
+                  <th style="width: 50px">번호</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성자</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">등록일</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">조회수</th>
+                </tr>
+           
+            <c:forEach items="${list7 }" var="s">
+                <tr>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${s.bno}</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/sharetask/detail?page=1&perPageNum=10&bno=${s.bno }&deptno=${s.deptno}">${s.title }</a></td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${s.ename }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${s.regdate }" pattern="yyyy-MM-dd"/> </td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${s.viewcnt}</span></td>
+                </tr>
+              </c:forEach>
+              </table>	
+            </div><!--/.col-xs-6.col-lg-4-->
+            
+            
           </div><!--/row-->
 		</div>
 	</div>

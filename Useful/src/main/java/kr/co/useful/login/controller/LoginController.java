@@ -35,6 +35,8 @@ import kr.co.useful.login.service.LoginService;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.note.domain.RecipientVO;
 import kr.co.useful.note.service.RecipientService;
+import kr.co.useful.sharetask.domain.ShareTaskVO;
+import kr.co.useful.sharetask.service.ShareTaskService;
 
 
 @Controller
@@ -61,6 +63,9 @@ public class LoginController {
 	 
 	 @Inject
 	 private RecipientService reService;
+	 
+	 @Inject
+	 private ShareTaskService shService;
 	 
 	
 	//로그인 폼 보이기
@@ -110,6 +115,7 @@ public class LoginController {
 	public String main_view(HttpSession session)throws Exception{
 		int empno = ((EmpVO)session.getAttribute("LoginUser")).getEmpno();
 		int mynoteid = ((EmpVO)session.getAttribute("LoginUser")).getEmpno();
+		int deptno = ((EmpVO)session.getAttribute("LoginUser")).getDeptno();
 		
 		List<NoticeVO> list = noticeService.list_cut();
 		List<AnonymityVO> list2 = anoService.list_cot();
@@ -117,6 +123,7 @@ public class LoginController {
 		List<ApprovalVO> list4 = appService.listMyTurn_forMain(empno); //내가 결재 차례인 문서
 		List<ApprovalVO> list5 = appService.listMine_forMain(empno); //내가 작성한 문서
 		List<RecipientVO> list6 = reService.recipient_note_list(mynoteid);
+		List<ShareTaskVO> list7 = shService.cutList(deptno);
 		
 		
 		
@@ -126,6 +133,7 @@ public class LoginController {
 		session.setAttribute("list4", list4);
 		session.setAttribute("list5", list5);
 		session.setAttribute("note", list6);
+		session.setAttribute("list7", list7);
 		
 		
 		return "/login/Main2";
