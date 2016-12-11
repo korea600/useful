@@ -49,4 +49,6 @@ select * from tbl_commute order by login;
 select * from tbl_commute where empno in(select empno from tbl_emp where empno='1001')  and to_char(login, 'YYYYMMDD')= '20161206'
   	order by empno;
 
-  select empno from tbl_emp;
+select empno, ename, deptno, position, regdate, dname
+		from tbl_emp natural join tbl_dept
+		where empno='1001';
