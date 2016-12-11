@@ -50,20 +50,20 @@
 			<table class="table table-bordered">
                 <tr style="background-color: silver;">
                   
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">상태</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">수신처</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성일자</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">상태</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">수신처</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">제목</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">작성일자</th>
                   
                 </tr>
             <c:if test="${LoginUser.position == '사원'}">
             
             <c:forEach items="${list5 }" var="my">
                 <tr>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${my.status }</td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${my.receiver_dname}</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/approval/read/${my.no }">${my.title }</a></td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${my.regdate }" pattern="yyyy-MM-dd"/> </td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${my.status }</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${my.receiver_dname}</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/approval/read/${my.no }">${my.title }</a></td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${my.regdate }" pattern="yyyy-MM-dd"/> </td>
                 </tr>
               </c:forEach>
             </c:if>  
@@ -71,10 +71,10 @@
             <c:if test='${LoginUser.position != "사원" }'>
             	<c:forEach items="${list4 }" var="my">
                 <tr>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${my.status }</td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${my.receiver_dname}</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/approval/read/${my.no }">${my.title }</a></td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${my.regdate }" pattern="yyyy-MM-dd"/> </td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${my.status }</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${my.receiver_dname}</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/approval/read/${my.no }">${my.title }</a></td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${my.regdate }" pattern="yyyy-MM-dd"/> </td>
                   <%-- <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${n1.hits}</span></td> --%>
                 </tr>
               </c:forEach>
@@ -90,16 +90,16 @@
              <small><a href="/useful/note/noteMyPage"><font size="2">+ MORE</font></a></small> </h3>
 			<table class="table table-bordered">
                 <tr style="background-color: silver;">
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">보낸사람</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">내용</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">보낸날짜</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">보낸사람</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">내용</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">보낸날짜</th>
                 </tr>
            
             <c:forEach items="${note }" var="note">
                 <tr>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${note.reciname }</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/note/riciReadPage?serial=${note.serial }">${note.recontent }</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${note.recipientdate }" pattern="yyyy-MM-dd"/> </td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${note.reciname }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/note/riciReadPage?serial=${note.serial }">${note.recontent }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${note.recipientdate }" pattern="yyyy-MM-dd"/> </td>
                  
                 </tr>
               </c:forEach>
@@ -122,18 +122,18 @@
 			<table class="table table-bordered">
                 <tr style="background-color:silver;">
                   <th style="width: 50px">번호</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성자</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">등록일</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">조회수</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">제목</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">작성자</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">등록일</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">조회수</th>
                 </tr>
             <c:forEach items="${notice}" var="n">
                 <tr>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${n.serial }</td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/board/notice/readPage?page=1&perPageNum=10&serial=${n.serial }">${n.title }</a></td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${n.writer }</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${n.regdate }" pattern="yyyy-MM-dd"/> </td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${n.viewcnt}</span></td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${n.serial }</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/board/notice/readPage?page=1&perPageNum=10&serial=${n.serial }">${n.title }</a></td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${n.writer }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${n.regdate }" pattern="yyyy-MM-dd"/> </td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><span class="badge bg-red">${n.viewcnt}</span></td>
                 </tr>
               </c:forEach>
               </table>	
@@ -149,18 +149,18 @@
 			<table class="table table-bordered">
                 <tr style="background-color: silver;">
                   <th style="width: 50px">번호</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성자</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">등록일</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">조회수</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">제목</th>
+                 <!--  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">작성자</th> -->
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">등록일</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">조회수</th>
                 </tr>
             <c:forEach items="${anonymity }" var="ano">
                 <tr>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${ano.serial }</td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/board/anonymity/readPage?page=1&perPageNum=10&keyword&searchType&serial=${ano.serial }">${ano.title}</a></td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">--------</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${ano.regdate }" pattern="yyyy-MM-dd"/> </td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${ano.viewcnt}</span></td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${ano.serial }</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/board/anonymity/readPage?page=1&perPageNum=10&keyword&searchType&serial=${ano.serial }">${ano.title}</a></td>
+               	  <!-- <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">--------</td> -->
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${ano.regdate }" pattern="yyyy-MM-dd"/> </td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><span class="badge bg-red">${ano.viewcnt}</span></td>
                 </tr>
               </c:forEach>
               </table>	
@@ -175,19 +175,19 @@
 			<table class="table table-bordered">
                 <tr style="background-color: silver;">
                   <th style="width: 50px">번호</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성자</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">등록일</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">조회수</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">제목</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">작성자</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">등록일</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">조회수</th>
                 </tr>
            
             <c:forEach items="${board }" var="b">
                 <tr>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${b.serial}</td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/board/readPage?page=1&perPageNum=10&keyword&searchType&serial=${b.serial }">${b.title }</a></td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${b.writer }</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${b.regdate }" pattern="yyyy-MM-dd"/> </td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${b.viewcnt}</span></td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${b.serial}</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/board/readPage?page=1&perPageNum=10&keyword&searchType&serial=${b.serial }">${b.title }</a></td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${b.writer }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${b.regdate }" pattern="yyyy-MM-dd"/> </td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><span class="badge bg-red">${b.viewcnt}</span></td>
                 </tr>
               </c:forEach>
          
@@ -203,19 +203,19 @@
 			<table class="table table-bordered">
                 <tr style="background-color: silver;">
                   <th style="width: 50px">번호</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">제목</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">작성자</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">등록일</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid;">조회수</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">제목</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">작성자</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">등록일</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">조회수</th>
                 </tr>
            
             <c:forEach items="${list7 }" var="s">
                 <tr>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${s.bno}</td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><a href="/useful/sharetask/detail?page=1&perPageNum=10&bno=${s.bno }&deptno=${s.deptno}">${s.title }</a></td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;">${s.ename }</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><fmt:formatDate value="${s.regdate }" pattern="yyyy-MM-dd"/> </td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${s.viewcnt}</span></td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${s.bno}</td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/sharetask/detail?page=1&perPageNum=10&bno=${s.bno }&deptno=${s.deptno}">${s.title }</a></td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${s.ename }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${s.regdate }" pattern="yyyy-MM-dd"/> </td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><span class="badge bg-red">${s.viewcnt}</span></td>
                 </tr>
               </c:forEach>
               </table>	
