@@ -18,9 +18,9 @@ $(function(){
 	var now = new Date();
 	var month = now.getMonth() + 1;
 	var year = now.getFullYear();
+	
 	$("#pay_year").val(year).prop("selected", true);
 	$("#pay_month").val(month).prop("selected", true);
-	var empno_ex;
 	
 		$("#basicpay").val(parseInt(0));
 		$("#car").val(parseInt(0));
@@ -33,6 +33,7 @@ $(function(){
           changeYear: true,
  		  dateFormat: 'yy-mm-dd'
  	   });
+
 		$("#input_empno").click(function(){
 			$("#popup").fadeIn(700);
 		});
@@ -47,6 +48,9 @@ $(function(){
 	 		  location.href="/useful/manager/salary_List";  
 		});
 		$("#btn_insert").click(function(){
+			
+			var paymentmonth = new Date();
+			paymentmonth.setFullYear($("#pay_year option:selected").val(),$("#pay_month option:selected").val()-1,01)
 			 $.ajax({
 				  type: 'POST',
 				  url: '/useful/manager/salary_Insert',
@@ -56,10 +60,10 @@ $(function(){
 				  },
 				  dataType: 'text',
 				  data: JSON.stringify({
-				  		empno:empno_ex,
+				  		empno:$("#inp_empno").val(),
 					 	basicpay: $("#basicpay").val(),
-					  	Paymentdate:$("#Paymentdate").val,
-					 	Paymentmonth: $("#pay_year option:selected").val()+$("#pay_month option:selected").val(),
+					  	paymentdate:$("#paymentdate").val(),
+					 	paymentmonth:paymentmonth,
 						basic: $("#basicpay").val(),
 						car : $("#car").val(),
 						meal: $("#meal").val(),
@@ -191,7 +195,7 @@ function calc(){
 }
 
 function call_select(empno,ename,dname,position){
-	empno_ex=empno;
+	$("#inp_empno").val(empno);
 	$("#emptable").html("<table class='table table-striped table-bordered table-hover' style='text-align: center;' ><tr><td>사번</td><td>"+empno+"</td><td>사원명</td><td>"+ename+"</td><td>부서</td><td>"+
 						dname+"</td><td>직책</td><td>"+position+"</td></tr></table>");
 	$("#popup").fadeOut(500);
@@ -221,6 +225,7 @@ function call_select(empno,ename,dname,position){
 	</table>
 	</div>
 	<br>
+	<input type="hidden" id="inp_empno">
 	<p>※지급정보</p>
 	<table class="table table-striped table-bordered table-hover">
 	 <tr>
@@ -316,7 +321,7 @@ function call_select(empno,ename,dname,position){
 			<br>
 		<table class="table" style="margin-left: 30px;margin-top: 10px;margin-right: 30px;width: 90%;">
 				<tr>
-					<td colspan="2" align="center">연차 변경페이지</td>
+					<td colspan="2" align="center">사원 선택 페이지</td>
 				</tr>
 		<tr> <td colspan="2" align="center"> <select id="searchType" name="searchType" class="form-control-static"	>
 						<option value="divGbn" selected="selected">전체</option>

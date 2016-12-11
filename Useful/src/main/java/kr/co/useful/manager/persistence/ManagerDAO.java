@@ -49,11 +49,14 @@ public interface ManagerDAO {
 
 	public List<SalaryVO> salary_List(Map<String,Object> map)throws Exception;
 	
-	public void salary_Insert(Map<String,Object> map)throws Exception;
+	public void salary_Insert(SalaryVO vo)throws Exception;
 	
-	public void salary_Update(Map<String,Object> map)throws Exception;
+	public SalaryVO salary_update_form(int serial)throws Exception;
+
+	public void salary_Update(SalaryVO vo)throws Exception;
 	
 	public void salary_Delete(int serial)throws Exception;
 	
 	public void add_Sal_NextMonth()throws Exception;
+
 }

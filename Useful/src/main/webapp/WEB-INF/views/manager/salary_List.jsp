@@ -28,8 +28,25 @@ $(function(){
 	          changeYear: true,
 	 		  dateFormat: 'yy-mm-dd',
 	 	   }).datepicker("setDate", new Date());
-	
- 	   $( "#btn_oneReg" ).click(function(){
+	 	   
+	 	  $("#btn_today").click(function(){
+	   		  $("#startdate").datepicker("setDate", new Date());
+	   		  $("#enddate").datepicker("setDate", new Date());
+	   	   });
+	   	   $("#btn_week").click(function(){
+	   		  $("#startdate").datepicker("setDate", -7);
+	   		  $("#enddate").datepicker("setDate", new Date());
+	   	   });
+	   	   $("#btn_month").click(function(){
+	   		  $("#startdate").datepicker("setDate", -30);
+	   		  $("#enddate").datepicker("setDate", new Date());
+	   	   }); 	
+	   	   $("#btn_3month").click(function(){
+	   		  $("#startdate").datepicker("setDate", -90);
+	   		  $("#enddate").datepicker("setDate", new Date());
+	   	   });
+ 	   
+	   	   $( "#btn_oneReg" ).click(function(){
  		  location.href="/useful/manager/salary_Insert";  
  	   });
  	   $( "#btn_search" ).click(function(){
@@ -38,7 +55,6 @@ $(function(){
  	   $( "#btn_allReg" ).click(function(){
  		  add_Sal_NextMonth();
  	   });
- 	   
 		searchList();//기본날짜에 전체출력
 });
  	function searchList(){
@@ -63,7 +79,12 @@ $(function(){
 	 			});
 	}
  	
+ 	function call_Update(serial){
+ 		location.href="/useful/manager/salary_Update"+"?serial="+serial;
+ 	}
+ 	
  	function call_Delete(serial){
+ 		if(confirm("정말 삭제하시겠습니까?")==true){
 		  $.ajax({
  			  type: 'DELETE',
  			  url: '/useful/manager/salary_List',
@@ -73,14 +94,16 @@ $(function(){
  			  },
  			  dataType: 'text',
  			  data: JSON.stringify({
- 					empno:empno,
- 					paymentmonth:paymentmonth
+	 				  serial:serial
  				  }),
  			  success: function(result){
  				  alret('삭제되었습니다');
  				 searchList();
  			  }
  			});
+ 		}else{
+ 			return;
+ 		}
  		
  	}
  	function  add_Sal_NextMonth(){
@@ -97,7 +120,7 @@ $(function(){
  				  }),
  			  success: function(result){
  				  if(result==success){	
-	 				  alret('삭제되었습니다.');
+	 				  alret('추가되었습니다.');
  				  }else{
 	 				  alret('이미 다음달 급여내역이 존재합니다.');
  				  }
@@ -140,7 +163,7 @@ $(function(){
 	<tr>
 		<th style="text-align: center;">부서명</th>
 			<td><select id="deptno" name="deptno" class="form-control-static" style="width: 170px;">
-						<option value="" selected="selected">전체</option>
+						<option value="0" selected="selected">전체</option>
 						<option value="10">잘했조</option>
 						<option value="20">보여조</option>
 						<option value="30">강조</option>
@@ -164,22 +187,23 @@ $(function(){
 					<br>
 	
 	<div id="div_print">
-	<table style="margin-top: 10px; width: 100%;">
+	<table  class="table table-striped table-bordered table-hover"  style="margin-top: 10px; width: 100%;">
 	<tr>
-		<th width="8%">사번</th>
+		<th width="7%">사번</th>
 		<th width="8%">사원명</th>
 		<th width="8%">부서</th>
-		<th width="8%">직급</th>
+		<th width="7%">직급</th>
 		<th width="10%">귀속월</th>
 		<th width="10%">지급일</th>
-		<th width="10%">기본급</th>
-		<th width="10%">지급합계</th>
-		<th width="10%">공제합계</th>
-		<th width="10%">차인지급액</th>
-		<th width="8%"></th>
+		<th width="9%">기본급</th>
+		<th width="9%">지급합계</th>
+		<th width="9%">공제합계</th>
+		<th width="9%">차인지급액</th>
+		<th width="7%"></th>
+		<th width="7%"></th>
 	</tr>
 	<tr>
-		<td colspan="8">
+		<td colspan="12">
 		<b>데이터를 가져오는중입니다...</b>
 		</td>
 	</tr>

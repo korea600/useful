@@ -215,7 +215,8 @@
   <!-- 리스트 -->
   <select id="salary_List" resultType="kr.co.useful.manager.domain.SalaryVO">
   select sal.serial,emp.empno,emp.ename,emp.dname,emp.position,sal.basicpay,sal.grossincome,sal.deductions,sal.adjustedIncome,sal.paymentdate,sal.paymentmonth
-  from tbl_salary sal,(select empno,ename,dname,position
+  from tbl_salary sal,
+   (select empno,ename,dname,position
   	from tbl_dept a,
   		(select empno,ename,deptno,position
   		from tbl_emp
@@ -226,7 +227,7 @@
   			<if test="ename!=null">
   			 and ename like '%'||#{ename}||'%'
   			</if>
-  			<if test="deptno!=null">
+  			<if test="deptno!=0">
   			 and deptno = #{deptno}
   			</if>
   			<if test="position!=null">
@@ -240,11 +241,24 @@
   
     <insert id="salary_Insert">
   	insert into tbl_salary (serial,empno,paymentdate,paymentmonth,basicpay,car,meal,childcare,
-  			otherpay,national,health,employment,care,Incometax,localtax,grossincome,deductions,AdjustedIncome)
+  			otherpay,national,health,employment,care,incometax,localtax,grossincome,deductions,adjustedIncome)
   		values(tbl_salary_seq.nextval,#{empno},#{paymentdate},#{paymentmonth},#{basicpay},#{car},#{meal},#{childcare},
-  					#{otherpay},#{national},#{health},#{employment},#{care},#{Incometax},#{localtax},#{grossincome},#{deductions},#{AdjustedIncome})
+  					#{otherpay},#{national},#{health},#{employment},#{care},#{incometax},#{localtax},#{grossincome},#{deductions},#{adjustedIncome})
   	</insert>
   	
+  	<select id="salary_update_form" resultType="kr.co.useful.manager.domain.SalaryVO">
+  	select a.serial, empno, paymentdate, paymentmonth,basicpay, car, meal, childcare,
+  				otherpay, national, health, employment, care, incometax, localtax, grossincome, deductions, adjustedIncome, ename, dname, position
+  	from tbl_dept dept, 
+  		(select sal.serial, sal.empno, sal.paymentdate, sal.paymentmonth,sal.basicpay, sal.car, sal.meal, sal.childcare,
+  				sal.otherpay, sal.national, sal.health, sal.employment, sal.care, sal.incometax, sal.localtax, sal.grossincome, sal.deductions, sal.adjustedIncome, sal.ename, sal.deptno, sal.position
+  		from tbl_emp emp,(select * from tbl_salary where serial=#{serial}) sal
+  		where emp.empno=sal.empno) selc
+  	where dept.detpno=selc.deptno	
+  
+  		
+  	
+  	</select>
   	<update id="salary_Update">
   	update tbl_salary set paymentdate=#{paymentdate},paymentmonth=#{paymentmonth},basicpay=#{basicpay},car=#{car},meal=#{meal},childcare=#{childcare},
   					otherpay=#{otherpay},national=#{national},health=#{health},employment=#{employment},care=#{care},Incometax=#{Incometax},localtax=#{localtax},
@@ -252,9 +266,10 @@
   				where serial=#{serial}
   	</update>
   	
+  	
   	<delete id="salary_Delete">
   		delete from tbl_salary where serial=#{serial}
   	</delete>
   	
-
+	
 </mapper>

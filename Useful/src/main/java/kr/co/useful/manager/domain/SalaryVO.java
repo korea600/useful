@@ -3,6 +3,7 @@ package kr.co.useful.manager.domain;
 import java.util.Date;
 
 public class SalaryVO {
+	private int serial;
 	private int empno;
 	private String ename;
 	private String dname;
@@ -27,31 +28,13 @@ public class SalaryVO {
 	public SalaryVO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public SalaryVO(int empno, String ename, String dname, String position, Date paymentdate, Date paymentmonth,
-			int basicpay, int car, int meal, int childcare, int otherpay, int national, int health, int employment,
-			int care, int incometax, int localtax, int grossincome, int deductions, int adjustedIncome) {
-		super();
-		this.empno = empno;
-		this.ename = ename;
-		this.dname = dname;
-		this.position = position;
-		this.paymentdate = paymentdate;
-		this.paymentmonth = paymentmonth;
-		this.basicpay = basicpay;
-		this.car = car;
-		this.meal = meal;
-		this.childcare = childcare;
-		this.otherpay = otherpay;
-		this.national = national;
-		this.health = health;
-		this.employment = employment;
-		this.care = care;
-		Incometax = incometax;
-		this.localtax = localtax;
-		this.grossincome = grossincome;
-		this.deductions = deductions;
-		this.adjustedIncome = adjustedIncome;
+
+	public int getSerial() {
+		return serial;
+	}
+
+	public void setSerial(int serial) {
+		this.serial = serial;
 	}
 
 	public int getEmpno() {
@@ -216,13 +199,41 @@ public class SalaryVO {
 
 	@Override
 	public String toString() {
-		return "SalaryVO [empno=" + empno + ", ename=" + ename + ", dname=" + dname + ", position=" + position
-				+ ", paymentdate=" + paymentdate + ", paymentmonth=" + paymentmonth + ", basicpay=" + basicpay
-				+ ", car=" + car + ", meal=" + meal + ", childcare=" + childcare + ", otherpay=" + otherpay
-				+ ", national=" + national + ", health=" + health + ", employment=" + employment + ", care=" + care
-				+ ", Incometax=" + Incometax + ", localtax=" + localtax + ", grossincome=" + grossincome
-				+ ", deductions=" + deductions + ", adjustedIncome=" + adjustedIncome + "]";
+		return "SalaryVO [serial=" + serial + ", empno=" + empno + ", ename=" + ename + ", dname=" + dname
+				+ ", position=" + position + ", paymentdate=" + paymentdate + ", paymentmonth=" + paymentmonth
+				+ ", basicpay=" + basicpay + ", car=" + car + ", meal=" + meal + ", childcare=" + childcare
+				+ ", otherpay=" + otherpay + ", national=" + national + ", health=" + health + ", employment="
+				+ employment + ", care=" + care + ", Incometax=" + Incometax + ", localtax=" + localtax
+				+ ", grossincome=" + grossincome + ", deductions=" + deductions + ", adjustedIncome=" + adjustedIncome
+				+ "]";
 	}
-	
+
+	public SalaryVO(int serial, int empno, String ename, String dname, String position, Date paymentdate,
+			Date paymentmonth, int basicpay, int car, int meal, int childcare, int otherpay, int national, int health,
+			int employment, int care, int incometax, int localtax, int grossincome, int deductions,
+			int adjustedIncome) {
+		super();
+		this.serial = serial;
+		this.empno = empno;
+		this.ename = ename;
+		this.dname = dname;
+		this.position = position;
+		this.paymentdate = paymentdate;
+		this.paymentmonth = paymentmonth;
+		this.basicpay = basicpay;
+		this.car = car;
+		this.meal = meal;
+		this.childcare = childcare;
+		this.otherpay = otherpay;
+		this.national = national;
+		this.health = health;
+		this.employment = employment;
+		this.care = care;
+		Incometax = incometax;
+		this.localtax = localtax;
+		this.grossincome = grossincome;
+		this.deductions = deductions;
+		this.adjustedIncome = adjustedIncome;
+	}
 	
 }

@@ -125,14 +125,18 @@ public class ManagerDAOImpl implements ManagerDAO {
 	}
 	
 	@Override
-	public void salary_Insert(Map<String, Object> map) throws Exception {
-		sqlSession.insert("manager.salary_Insert",map);
+	public void salary_Insert(SalaryVO vo) throws Exception {
+		sqlSession.insert("manager.salary_Insert",vo);
 		
+	}
+	@Override
+	public SalaryVO salary_update_form(int serial) throws Exception {
+		return sqlSession.selectOne("manager.salary_update_form",serial);
 	}
 	
 	@Override
-	public void salary_Update(Map<String, Object> map) throws Exception {
-		sqlSession.update("manager.salary_Update",map);
+	public void salary_Update(SalaryVO vo) throws Exception {
+		sqlSession.update("manager.salary_Update",vo);
 		
 	}
 	@Override

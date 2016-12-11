@@ -221,13 +221,16 @@ class ManagerServiceImpl implements ManagerService {
 	}
 	
 	@Override
-	public void salary_Insert(Map<String, Object> map) throws Exception {
-		dao.salary_Insert(map);
+	public void salary_Insert(SalaryVO vo) throws Exception {
+		dao.salary_Insert(vo);
 	}
-	
 	@Override
-	public void salary_Update(Map<String, Object> map) throws Exception {
-		dao.salary_Update(map);
+	public SalaryVO salary_update_form(int serial) throws Exception {
+		return dao.salary_update_form(serial);
+	}
+	@Override
+	public void salary_Update(SalaryVO vo) throws Exception {
+		dao.salary_Update(vo);
 	}
 	
 	@Override

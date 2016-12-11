@@ -25,6 +25,7 @@ import kr.co.useful.encrypt.LocalEncrypter;
 import kr.co.useful.manager.domain.CommuteVO;
 import kr.co.useful.manager.domain.Commute_DeptVO;
 import kr.co.useful.manager.domain.EmpVO;
+import kr.co.useful.manager.domain.SalaryVO;
 import kr.co.useful.manager.service.ManagerService;
 
 
@@ -186,17 +187,27 @@ public class ManagerController {
 		
 		map.put("startdate", startdate);
 		map.put("enddate", enddate);
+		if(requestMap.get("empno")!=""){
+			map.put("empno", requestMap.get("empno"));
+		}
+		if(requestMap.get("ename")!=""){
+			map.put("ename", requestMap.get("ename"));
+		}
 		map.put("deptno", requestMap.get("deptno"));
-		map.put("empno", requestMap.get("empno"));
-		map.put("ename", requestMap.get("ename"));
 		model.addAttribute("salary",service.salary_List(map));
 		return "/manager/salary_PrintList";
+	}
+	
+	@RequestMapping(value="/salary_Update",method=RequestMethod.GET)
+	public void salary_update_form(@RequestParam int serial,Model model)throws Exception{
+	model.addAttribute("salary",service.salary_update_form(serial));
+		
 	}
 	
 	@RequestMapping(value="/salary_List",method=RequestMethod.DELETE)
 	public String salary_List_Delete(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		model.addAttribute("salary",service.salary_List(requestMap));
-		return "/manager/salary_PrintList";
+		return "/manager/salary_List";
 	}
 	
 	@RequestMapping(value="/salary_Insert",method=RequestMethod.GET)
@@ -205,8 +216,8 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value="/salary_Insert",method=RequestMethod.POST)
-	public void salary_Insert(){
-		
+	public void salary_Insert(@RequestBody SalaryVO vo)throws Exception{
+		service.salary_Insert(vo);
 	}
 	
 	@RequestMapping(value="/emp_search",method=RequestMethod.POST)
