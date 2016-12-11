@@ -47,7 +47,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/login/Mainview">Useful Logo</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/login/Mainview">
+                <img src="${pageContext.request.contextPath}/resources/image/usefulware2.png" style="height: 32px;"/>
+                </a>
             </div>
             <!-- /.navbar-header -->
 

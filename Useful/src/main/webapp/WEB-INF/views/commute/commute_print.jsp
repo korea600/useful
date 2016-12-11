@@ -7,24 +7,24 @@
 <body>
 	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;" class="table table-striped table-bordered table-hover">
 	<tr>
-		<th width="15%">부서명</th>
-		<th width="12%">사원명</th>
-		<th width="20%">출근일자</th>
-		<th width="15%">출근시간</th>
-		<th width="20%">퇴근일자</th>
-		<th width="15%">퇴근시간</th>
-		<th width="10%">구분</th>
+		<th width="15%" style="text-align: center;">부서명</th>
+		<th width="12%" style="text-align: center;">사원명</th>
+		<th width="20%" style="text-align: center;">출근일자</th>
+		<th width="15%" style="text-align: center;">출근시간</th>
+		<th width="20%" style="text-align: center;">퇴근일자</th>
+		<th width="15%" style="text-align: center;">퇴근시간</th>
+		<th width="10%" style="text-align: center;">구분</th>
 	</tr>
 
 		<c:forEach items="${commute }" var="print" >
 		<tr>
-			<td>${print.dname }</td>
-			<td>${print.ename }</td>
-			<td>${print.login }</td>
-			<td>${print.login_Time }</td>
-			<td>${print.logout }</td>
-			<td>${print.logout_Time }</td>
-			<td>${print.checked }</td>
+			<td style="text-align: center;">${print.dname }</td>
+			<td style="text-align: center;">${print.ename }</td>
+			<td style="text-align: center;">${print.login }</td>
+			<td style="text-align: center;">${print.login_Time }</td>
+			<td style="text-align: center;">${print.logout }</td>
+			<td style="text-align: center;">${print.logout_Time }</td>
+			<td style="text-align: center;">${print.checked }</td>
 		</tr>
 		</c:forEach>
 

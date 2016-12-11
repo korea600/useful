@@ -110,16 +110,16 @@ th {
 	<div id="div_print">
 	<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;" class="table table-striped table-bordered table-hover">
 	<tr>
-		<th width="15%">부서명</th>
-		<th width="15%">사원명</th>
-		<th width="14%">출근일자</th>
-		<th width="15%">출근시간</th>
-		<th width="15%">퇴근일자</th>
-		<th width="15%">퇴근시간</th>
-		<th width="25%">구분</th>
+		<th width="15%" style="text-align: center;">부서명</th>
+		<th width="15%" style="text-align: center;">사원명</th>
+		<th width="14%" style="text-align: center;">출근일자</th>
+		<th width="15%" style="text-align: center;">출근시간</th>
+		<th width="15%" style="text-align: center;">퇴근일자</th>
+		<th width="15%" style="text-align: center;">퇴근시간</th>
+		<th width="25%" style="text-align: center;">구분</th>
 	</tr>
 			<tr>
-			<td colspan="8">
+			<td colspan="8" style="text-align: center;">
 			<b>데이터가 없습니다.</b>
 			</td>
 		</tr>
