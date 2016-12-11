@@ -118,18 +118,20 @@ th {
 </table>
 	<div style="text-align: center;">
 			<button id="btn_search" class="btn btn-warning">검색</button>
+			<br>
 	</div>
+	<br>
 	<div id="div_print">
 	<table class="table table-striped table-bordered table-hover"  style="text-align: center;">
 	<tr>
-		<th width="10%">부서</th>
-		<th width="10%">사번</th>
-		<th width="20%">사원명</th>
-		<th width="20%">입사일자</th>
-		<th width="10%">기본연차</th>
-		<th width="10%">사용연차</th>
-		<th width="10%">남은연차</th>
-		<th width="10%">변경</th>
+		<th width="10%"  style="text-align: center;" >부서</th>
+		<th width="10%" style="text-align: center;">사번</th>
+		<th width="20%" style="text-align: center;">사원명</th>
+		<th width="20%" style="text-align: center;">입사일자</th>
+		<th width="10%" style="text-align: center;">기본연차</th>
+		<th width="10%" style="text-align: center;">사용연차</th>
+		<th width="10%" style="text-align: center;">남은연차</th>
+		<th width="10%"  style="text-align: center;">변경</th>
 	</tr>
 	<tr>
 		<td colspan="8">
@@ -147,7 +149,7 @@ th {
 			<br>
 			<table class="table" style="margin-left: 30px;margin-top: 10px;margin-right: 30px;width: 90%;">
 				<tr>
-				<td colspan="2" align="center">연차 변경페이지</td>
+				<td colspan="2" align="center">사원 선택페이지</td>
 				</tr>
 				<tr>
 					<th width="30%" style="text-align: center;">부서명</th>

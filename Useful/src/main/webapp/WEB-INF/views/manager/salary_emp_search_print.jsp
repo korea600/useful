@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 <!-- salary_emp_search_print -->
-<table>
+<table class="table table-striped table-bordered table-hover" style="width: 100%;text-align: center;">
 	<tr>
-		<th>사번</th>
-		<th>이름</th>
-		<th>부서</th>
-		<th>직책</th>
+		<th style="text-align: center;">사번</th>
+		<th style="text-align: center;">이름</th>
+		<th style="text-align: center;">부서</th>
+		<th style="text-align: center;">직책</th>
+		<th style="text-align: center;">선택</th>
 	</tr>
 	<c:forEach items="${commute }" var="print" >
 		<tr>

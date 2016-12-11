@@ -1,37 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
-<table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px; width: 100%;">
+<table class="table table-striped table-bordered table-hover"  style="text-align: center; width: 100%;">
 	<tr>
-		<th width="10%">ºÎ¼­</th>
-		<th width="10%">»ç¹ø</th>
-		<th width="20%">»ç¿ø¸í</th>
-		<th width="20%">ÀÔ»çÀÏÀÚ</th>
-		<th width="10%">±âº»¿¬Â÷</th>
-		<th width="10%">»ç¿ë¿¬Â÷</th>
-		<th width="10%">³²Àº¿¬Â÷</th>
-		<th width="10%">º¯°æ</th>
+		<th width="10%" style="text-align: center;">ë¶€ì„œ</th>
+		<th width="10%" style="text-align: center;">ì‚¬ë²ˆ</th>
+		<th width="20%" style="text-align: center;">ì‚¬ì›ëª…</th>
+		<th width="20%" style="text-align: center;">ì…ì‚¬ì¼ì</th>
+		<th width="10%" style="text-align: center;">ê¸°ë³¸ì—°ì°¨</th>
+		<th width="10%" style="text-align: center;">ì‚¬ìš©ì—°ì°¨</th>
+		<th width="10%" style="text-align: center;">ë‚¨ì€ì—°ì°¨</th>
+		<th width="10%" style="text-align: center;">ë³€ê²½</th>
 	</tr>
 	<c:forEach items="${commute }" var="print" varStatus="status">
 	<tr>
 		<td>${print.dname }</td>
 		<td>${print.empno }</td>
 		<td>${print.ename }</td>
-		<td>${print.hiredate }</td>
+		<td><fmt:formatDate value="${print.hiredate }" pattern="yyyy-MM-dd"/> </td>
 		<td>${print.basic }</td>
 		<td>${print.used }</td>
 		<td>${print.rest }</td>
-		<td><button onclick="update('${print.dname }','${print.empno }','${print.ename }','${print.hiredate }','${print.basic }','${print.used }','${print.rest }')">º¯°æ</button></td>
+		<td><button onclick="update('${print.dname }','${print.empno }','${print.ename }','${print.hiredate }','${print.basic }','${print.used }','${print.rest }')">ë³€ê²½</button></td>
 	</tr>
 	</c:forEach>
 	</table>
