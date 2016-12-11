@@ -272,6 +272,8 @@
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			var deptno=${LoginUser.deptno};
+			var position='${LoginUser.position}';
 			$('#commute_in').on("click",function(){
 				
 				$.ajax({
