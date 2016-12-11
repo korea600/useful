@@ -124,6 +124,7 @@
                                 <div>
                            <div>
                               <center><span><i class="fa fa-user fa-fw"></i>[${LoginUser.position }] ${LoginUser.ename}님 안녕하세요~!!</span></center> 
+                          		<p>[${LoginUser.dname } ${LoginUser.position }]</p>
                            </div>
                            <p></p>
                            <div>
@@ -272,6 +273,8 @@
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			var deptno=${LoginUser.deptno};
+			var position='${LoginUser.position}';
 			$('#commute_in').on("click",function(){
 				
 				$.ajax({
