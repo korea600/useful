@@ -42,7 +42,10 @@
     <![endif]-->
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<style type="text/css">
+th{text-align: center}
+td{text-align: center}
+</style>
 </head>
 <body>
 <%@include file="../login/Main.jsp" %>
@@ -60,84 +63,69 @@
 			<form>
 			<div class="col-lg-6" style="width: 100%;">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="height: 52px;">${LoginUser.ename}님 안녕하세요~!! <button class="btn btn-default" id="register" style="width: 5%; float: right;">글쓰기</button></div>
-					
-						<div class="list_number">
-						
-									<!-- 검색버튼 -->
-									 
-                            <div class="input-group" >
-                            
-                            
-                              <select id="searchType" name="searchType" class="form-control" style="width: 15%;height: 35px;">
-                                                    <option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
-                                                    <option value="t"<c:out value="${cri.searchType=='t'?'selected':'' }"/> >글제목</option>
-                                                    <option value="w" <c:out value="${cri.searchType=='w'?'selected':'' }"/> >글쓴이</option>
-                                                    <option value="c" <c:out value="${cri.searchType=='c'?'selected':'' }"/>>내용</option>
-                                                </select>
-                                <input name="keyword" value="${cri.keyword }" id="btn-input" type="text" class="form-control input-sm" placeholder="검색어를 입력해주세요.." style="height: 35px;width: 85%;size: 30;"/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="searchBtn"  style="height: 35px;">
-                                        검색
-                                    </button>
-                                </span>
-                            </div>
-									<!-- 검색버튼 -->
-					<!-- /.panel-heading -->
+					<div class="panel-heading" style="height: 100px;">${LoginUser.ename}님 안녕하세요~!!<br><br>
+						<select id="searchType" name="searchType" class="form-control-static" style="width: 15%;">
+                        	<option selected="selected" value="n" <c:out value="${cri.searchType=='n'?'selected':'' }"/> >검색어 선택</option>
+                        	<option value="t"<c:out value="${cri.searchType=='t'?'selected':'' }"/> >글제목</option>
+                            <option value="w" <c:out value="${cri.searchType=='w'?'selected':'' }"/> >글쓴이</option>
+                            <option value="c" <c:out value="${cri.searchType=='c'?'selected':'' }"/>>내용</option>
+                       	</select>
+                        <input name="keyword" value="${cri.keyword}" id="btn-input" type="text" class="form-control-static" placeholder="검색어를 입력해주세요.."><!--  style="height: 35px;width: 85%;size: 30;"/> -->
+                        <button class="btn btn-warning" id="searchBtn">검색</button>
+					</div>	
 					
 					<div class="panel-body">
 					
 						<div class="table-responsive">
 							<table class="table table-striped table-bordered table-hover" width="100%">
-							
-								<thead>
+								<tr>
+									<th style="text-align: center">글번호</th>
+									<th style="text-align: center">글제목</th>
+									<th style="text-align: center">작성자</th>
+									<th style="text-align: center">작성일자</th>
+									<th style="text-align: center">조회수</th>
+								</tr>
+								<c:forEach items="${list }" var="BoardVO">
 									<tr>
-										<th>글번호</th>
-										<th>글제목</th>
-										<th>작성자</th>
-										<th>작성일자</th>
-										<th>조회수</th>
+										<td>${BoardVO.serial }</td>
+										<td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }  [${BoardVO.replycnt }]</a></td>
+										<td>${BoardVO.writer }</td>
+										<%-- <td>${BoardVO.content }</td> --%>
+										<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${BoardVO.regdate }"/></td>
+										<td>${BoardVO.viewcnt }</td>
 									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${list }" var="BoardVO">
-										<tr>
-											<td>${BoardVO.serial }</td>
-											<td><a href="/useful/board/readPage${pageMaker.serach(pageMaker.cri.page) }&serial=${BoardVO.serial}">${BoardVO.title }  [${BoardVO.replycnt }]</a></td>
-											<td>${BoardVO.writer }</td>
-											
-											<%-- <td>${BoardVO.content }</td> --%>
-											<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${BoardVO.regdate }"/></td>
-											<td>${BoardVO.viewcnt }</td>
-										</tr>
-									</c:forEach>
+								</c:forEach>
 									
 									
 								</tbody>
 
 							</table>
-						
+							
 									
 									
 									<!-- 페이지번호 -->
-										<div>
+										<div class='dataTables_paginate paging_simple_numbers' id='dataTables-example_paginate' style="text-align: center;">
+											 <button class="btn btn-default" id="register" style="width: 8%; float:left;">글쓰기</button>
 											<p>
-											<div class="list_n_menu">
+											<ul class='pagination'>
 											<c:if test="${pageMaker.prev }">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.startPage -1) }">이전</a></span>
+											<li class='paginate_button'><a href="/useful/board/listPage${pageMaker.serach(pageMaker.startPage -1) }">이전</a></li>
 											
 											</c:if>
 												
 												<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-												<span <c:out value="${pageMaker.cri.page==idx?'class=active':'' }"/>>
-												<a href="/useful/board/listPage${pageMaker.query(idx) }">${idx }</a>
-												</span>
+												<c:if test="${pageMaker.cri.page==idx}">
+													<li class='pagenate_button active'><a href="#">${idx }</a></li>
+												</c:if>
+												<c:if test="${pageMaker.cri.page!=idx}">
+													<li class='pagenate_button'><a href="/useful/board/listPage${pageMaker.query(idx) }">${idx }</a></li>
+												</c:if>
 												</c:forEach>
 												
 													<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-											<span><a href="/useful/board/listPage${pageMaker.serach(pageMaker.endPage +1)}">다음</a></span>
+											<li class='paginate_button'><a href="/useful/board/listPage${pageMaker.serach(pageMaker.endPage +1)}">다음</a></li>
 											</c:if>
-											</div>
+											</ul>
 											</p>
 										</div>
 									</div>
