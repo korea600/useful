@@ -263,14 +263,45 @@ var insertWin;//자식창
 	 	     				//key.serial, 
 	                        //key.begin, key.end, 
 	                       var begin =(key.begin).split('/');
-	 	     				    			   
-	                      $('#b'+begin[0]+begin[1]+begin[2]).append(
+	 	     			   var end = (key.end).split('/');
+	 	     			   var oneday = 1*24*60*60*1000;
+	 	     			   
+	 	     			   var start = new Date(Number(begin[0]), Number(begin[1])-1, Number(begin[2]));
+	 	     			   var stop= new Date(Number(end[0]), Number(end[1])-1, Number(end[2]));
+	 	     			   
+	 	     			   var sumDate = Math.ceil((stop.getTime() - start.getTime()) / (24*60*60*1000)) ;
+	 	     				     var newd = new Date();
+	 		 	     	         var plusone = start.getTime();
+	 	     	      
+	 	     			   for(var i=0; i<sumDate+1; i++){
+	 	     				     
+	 		 	     			 newd.setTime(plusone);
+	 	                      
+	 		 	     			 var lasty =   newd.getFullYear();
+	 	                         var lastm =   newd.getMonth()+1;
+	 	                         var lastd =   newd.getDate();
+	 		 	     			   
+	 	                         if(lastm<10)
+	 		 	     				   lastm='0'+lastm;  				   
+	 		 	     			   if(lastd<10)
+	 		 	     				   lastd='0'+lastd;
+	 		 	     			 
+	 		 	     				
+	 	     				   
+	 	     			   
+	 	     			   
+	 	     			   
+	 	     			   //for(i=0; i<sumDate; oneday++){} 	 
+	                      $('#b'+lasty+lastm+lastd).append(
 	                    		 
 	                    		   '<div onclick="detail('+key.serial+')" style="height:20px; top:0;' 
 	                    		   +'cursor:pointer; color:#fff; background-color:blue;">'
 	                    		   +key.begintime+'시 '
 	                    		   +key.title+'</div><div style=" width:180px; height:5px;"></div>'); 
 	 	     			   //alert(begin);
+	 	     			
+	 	     				     plusone= plusone+oneday;
+	 	     		   }//for
 	 	     			 }); 
 	 	     		      
 	 	     		 }, 
@@ -332,8 +363,7 @@ var insertWin;//자식창
 	      if(!confirm('정말 삭제하시겠습니까?')){
 	    	  return; //삭제 취소
 	      }else{
-	    		//$('#co_list').attr("action", "");
-	    		//$('#co_list').submit();
+	    		
 	    		
 	    		alert('ch')
 	    	  $.ajax({

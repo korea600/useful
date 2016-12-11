@@ -36,46 +36,42 @@ var flag =false;
 
 cal+='          <table border="1" cellspacing="0" cellpadding="0">';
 cal+='             <tr height="80px">';
-cal+='                <td colspan="14" align="center" id="calTitle">'+title+'</td></tr>';
+cal+='                <td colspan="8" align="center" id="calTitle">'+title+'</td></tr>';
 cal+='              <tr>';
-cal+='              <th align="center" width="80px" scope="col">날짜▼/시간▶</th>';
-        for(var i=9; i<22; i++){
-cal+='              <th>'+i+' - '+(i+1)+'</th>';
-        }
-cal+='              </tr>';
+cal+='              <th align="center" width="80px" scope="col">시간</th>';
       for(var i=0 ; i<7 ; i++) { 
 	        if(day.getDate() == 1){ 
 	        	  if(i!=0)flag=true;
 		          title += " ~ " + day.getFullYear() + "/" + (day.getMonth()+1); 	
-	                }
-	        
-             var monthno = day.getMonth()+1;
-              var dateno = day.getDate(); 
-              if(dateno<10)
- 				 dateno = '0'+dateno; 
-                 if( monthno<10)
-                 	monthno = '0' + monthno;        
-cal+=              '<tr align="center" scope="col" width="80px" id="a'+day.getFullYear()+(day.getMonth()+1)+day.getDate()+'" class="a'+day.getFullYear()+monthno+dateno+'">'
-                   +'<td>'+ day.getDate()+'</td>';
-                   for(var j=9; j<22; j++){
-cal+='              <td class='+j+'></td>';                	   
-                   }//for
-cal+=              '</tr>';
-
+	                }//if--title
+	                
+	              /*   var monthno = day.getMonth()+1;
+	                var dateno = day.getDate(); 
+	                if(dateno<10)
+       				 dateno = '0'+dateno; 
+                       if( monthno<10)
+                       	monthno = '0' + monthno; */
+cal+=              '<th align="center" scope="col" width="80px" id="a'+day.getFullYear()+(day.getMonth()+1)+day.getDate()+'">'+ day.getDate() + '</th>';
                day.setDate(day.getDate()+1); 
-         }//for
+}//for
 
 day.setDate(day.getDate()-7); 
-
+      for(var i=9; i<22; i++){
+cal+='              <tr>';
+cal+='              <td>'+i+' - '+(i+1)+'</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+cal+='             </tr>';
+}
 cal+='          </table>';
+      
+      
 
 document.getElementById("calandar").innerHTML = cal;
-
 if(flag){
 	$('#calTitle').html(title);
 	
-}//if
-      
+
+}
+
 
 
 dt=new Date();//오늘날짜
@@ -84,9 +80,6 @@ $('#a'+
 dt.getFullYear()+
 (dt.getMonth()+1)+
 dt.getDate()).css('background-color','yellow');
-
-
-calInsert();
 
 
 
@@ -146,48 +139,6 @@ var insertWin;
 	 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500');
  } 
  
- function calInsert(){
-	 	      var ar;
-	 	      var roomno = $("[name=integer]").val();
-	 	      
-	 	     
-	 	         
-	 	         $.ajax({    		
-	 	 	
-	 	 				 /* ※ JSON배열 요청  */
-	 	 	     		 url:'/useful/meeting/all/'+roomno,
-	 	 	     		dataType:'JSON',//생략 불가
-	 	 	     		method:'GET',
-	 	 	     		//contentType:'application/json; charset=UTF-8',
-	 	 	     		 success:function(data){//result:배열
-	 	 	     			 
-	 	 	     			$().empty();
-	 	 	     			 
-	 	 	     		
-	 	 	     		
-	 	 	     		$.each(data, function(idx, key){
-	 	                        //key.begin, key.end, 
-	 	                          var beginday =(key.beginday).split('/');
-	 	                     for(var i=0; i<(key.end-key.begin); key.begin++){
-	 	                     $('.a'+beginday[0]+beginday[1]+beginday[2]+'>.'+key.begin).css("background-color","red");
-	 	                          
-	 	                    }  
-			               // alert('a'+beginday[0]+beginday[1]+beginday[2]+'='+(key.end-key.begin));
-	 	                  
-	 	 	     			  
-	 	 	     			 }); 
-	 	 	     		      
-	 	 	     		 }, 
-
-	 	 		         error:function(xhr, status, error){
-	 	 		        	     alert("당신에러"+error);
-	 	 		         }
-
-	 	 		  });//ajax
-	 	 		  
- }
-
- 
 
 </script>
 </head>
@@ -203,9 +154,9 @@ var insertWin;
 <p id="calandar"></p> 
 
 <p><input type="button" onclick="reservation(${integer})" value="예약"></p>
-<input type="hidden" name="integer" value="${integer }">
 
-<table border="1" cellspacing="0"  style="width:800px;">
+
+<table border="1" cellspacing="0"  style="width:100%;">
 <tr>
  <td colspan="4">
     <select id="serchType">
@@ -231,7 +182,7 @@ var insertWin;
 <tr>
 <td align="center" >${MeetingVO.roomno}</td>
 <td align="center">${MeetingVO.beginday}</td>
-<td align="center">${MeetingVO.begin}-${MeetingVO.end}</td>
+<td align="center">${MeetingVO.begin}~${MeetingVO.end}</td>
 <td align="center">${MeetingVO.booker }</td>
 </tr>
 
