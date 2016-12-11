@@ -148,7 +148,7 @@
                             <a href="index.html"><i class="fa fa-file-text fa-fw"></i> 전자결재 <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/useful/approval/form">기안하기</a>
+                                    <a href="/useful/approval/form" class='link-control-cannotwrite'>기안하기</a>
                                 </li>
                                 <li>
                                     <a href="/useful/approval/liststatus">결재진행</a>
@@ -157,10 +157,10 @@
                                    <a href="/useful/approval/listdept">결재완료(수신)</a>
                                 </li>
                                 <li>
-                                   <a href="/useful/approval/listmine">내 기안문서</a>
+                                   <a href="/useful/approval/listmine" class='link-control-cannotread'>내 기안문서</a>
                                 </li>
                                 <li>
-                                   <a href="/useful/approval/listmyturn">내 결재문서</a>
+                                   <a href="/useful/approval/listmyturn" class='link-control-cannotsign'>내 결재문서</a>
                                 </li>
                             </ul>
                         </li>
@@ -168,27 +168,27 @@
                             <a href="#"><i class="fa fa-users fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                   <a href="/useful/manager/employee_List">사원정보관리</a>
+                                   <a href="/useful/manager/employee_List" class='link-control-manageronly'>사원정보관리</a>
                                 </li>
                                 <li>
                                    <a href="#">근태관리<span class="fa arrow"></span></a>
                                    <ul class="nav nav-third-level">
                                    	 	<li>
-                                  			 <a href="/useful/manager/commute_Employee">사원별근태현황</a>
+                                  			 <a href="/useful/manager/commute_Employee" class='link-control-manageronly'>사원별근태현황</a>
                               			</li>
                                    	 	<li>
-                                  			 <a href="/useful/manager/commute_Dept">부서별근태집계</a>
+                                  			 <a href="/useful/manager/commute_Dept" class='link-control-manageronly'>부서별근태집계</a>
                               			</li>
                                    	 	<li>
-                                  			 <a href="/useful/manager/commute_Monthly">월별근태현황</a>
+                                  			 <a href="/useful/manager/commute_Monthly" class='link-control-manageronly'>월별근태현황</a>
                               			</li>
                                    </ul>
                                 </li>
                                 <li>
-                                    <a href="/useful/manager/salary_List">급여관리</a>
+                                    <a href="/useful/manager/salary_List" class='link-control-manageronly'>급여관리</a>
                                 </li>
                                 <li>
-                                   <a href="/useful/manager/leave_List">연차관리</a>
+                                   <a href="/useful/manager/leave_List" class='link-control-manageronly'>연차관리</a>
                                 </li>
                               
                             </ul>
@@ -308,7 +308,30 @@
 				location.href="/useful/note/noteMyPage";
 			});
 			
-			
+			$('.link-control-cannotwrite').click(function(){
+				if(position=='사장'){
+					event.preventDefault();
+					alert('사장님은 결재문서를 작성 하실수 없습니다.');
+				}
+			});
+			$('.link-control-cannotread').click(function(){
+				if(position=='사장'){
+					event.preventDefault();
+					alert('사장님은 내 기안문서 보기 기능을 사용하실수 없습니다.');
+				}
+			});
+			$('.link-control-cannotsign').click(function(){
+				if(position=='사원'){
+					event.preventDefault();
+					alert('사원은 결재기능 이용이 불가능 합니다.');
+				}
+			});
+			$('.link-control-manageronly').click(function(){
+				if(deptno!=10){
+					event.preventDefault();
+					alert('인사부 직원만 접근이 가능합니다.');
+				}
+			});
 		});
 		
 	
