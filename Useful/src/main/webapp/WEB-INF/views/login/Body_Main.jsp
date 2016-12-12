@@ -43,7 +43,14 @@
 	            		<tr>
 			                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${my.status }</td>
 			                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${my.receiver_dname}</td>
-			               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/approval/read/${my.no }">${my.title }</a></td>
+			               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">
+			               	  	<c:if test="${my.title.length()<=15 }">
+				               	  	<a href="/useful/approval/read/${my.no }">${my.title }</a>
+       		               	  	</c:if>
+			               	  	<c:if test="${my.title.length()>15 }">
+			               	  		<a href="/useful/approval/read/${my.no }">${my.title.substring(0,15) }</a>
+			               	  	</c:if>
+			               	  </td>
 			               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${my.regdate }" pattern="yyyy-MM-dd"/> </td>
 		                </tr>     
 	              </c:forEach>
@@ -66,7 +73,14 @@
 	            		<tr>
 		                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${my.status }</td>
 		                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${my.receiver_dname}</td>
-		               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/approval/read/${my.no }">${my.title }</a></td>
+		               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">
+		               	  <c:if test="${my.title.length()<=15 }">
+			               	  <a href="/useful/approval/read/${my.no }">${my.title }</a>
+		               	  </c:if>
+		               	  <c:if test="${my.title.length()>15 }">
+			               	  <a href="/useful/approval/read/${my.no }">${my.title.substring(0,15) }</a>		               	  
+		               	  </c:if>
+		               	  </td>
 		               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${my.regdate }" pattern="yyyy-MM-dd"/> </td>
 		                  <%-- <td style="border-collapse: collapse; border:1px #EAEAEA solid;"><span class="badge bg-red">${n1.hits}</span></td> --%>
 		                </tr>	   	
@@ -92,9 +106,9 @@
               </div>
 			<table class="table table-bordered" style="width: 500px;">
                 <tr style="background-color: silver;">
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">보낸사람</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">내용</th>
-                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">보낸날짜</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;width:20%">보낸사람</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center; width:60%">내용</th>
+                  <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;width:20%">보낸날짜</th>
                 </tr>
            <c:if test="${note.size()==0 }">
            	<tr><td colspan="3" style="text-align: center;height: 184px;vertical-align: middle;">받은 메일이 없습니다.</td></tr>
@@ -102,9 +116,16 @@
            <c:if test="${note.size()!=0 }">
             <c:forEach items="${note }" var="idx" varStatus="stat">
 				<tr>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${idx.reciname }</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/note/riciReadPage?serial=${idx.serial }">${idx.recontent }</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${idx.recipientdate }" pattern="yyyy-MM-dd"/> </td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center; ">${idx.reciname }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">
+               	  <c:if test="${idx.recontent.length<=15 }">
+	               	  <a href="/useful/note/riciReadPage?serial=${idx.serial }">${idx.recontent }</a>
+               	  </c:if>	
+               	  <c:if test="${idx.recontent.length>15 }">
+	               	  <a href="/useful/note/riciReadPage?serial=${idx.serial }">${idx.recontent.substring(0,15)}</a>
+               	  </c:if>	
+               	  </td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center; "><fmt:formatDate value="${idx.recipientdate }" pattern="yyyy-MM-dd"/> </td>
                 </tr>
               </c:forEach>
               <c:if test="${note.size()<5 }">
@@ -188,7 +209,14 @@
 					<c:forEach items="${anonymity }" var="ano" varStatus="stat">
 						<tr>
 		                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${ano.serial }</td>
-		                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/board/anonymity/readPage?page=1&perPageNum=10&keyword&searchType&serial=${ano.serial }">${ano.title}</a></td>
+		                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">
+		                  <c:if test="${ano.title.length()<=15}">
+		                  	<a href="/useful/board/anonymity/readPage?page=1&perPageNum=10&keyword&searchType&serial=${ano.serial }">${ano.title}</a>
+		                  </c:if>
+		                  <c:if test="${ano.title.length()>15}">
+		                  	<a href="/useful/board/anonymity/readPage?page=1&perPageNum=10&keyword&searchType&serial=${ano.serial }">${ano.title.substring(0,15)}</a>
+		                  </c:if>
+		                  </td>
 		               	  <!-- <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">--------</td> -->
 		               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${ano.regdate }" pattern="yyyy-MM-dd"/> </td>
 		                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><span class="badge bg-red">${ano.viewcnt}</span></td>
@@ -228,7 +256,14 @@
 				<c:forEach items="${board }" var="b">
 	                <tr>
 	                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${b.serial}</td>
-	                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/board/readPage?page=1&perPageNum=10&keyword&searchType&serial=${b.serial }">${b.title }</a></td>
+	                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">
+	                  <c:if test="${b.title.length()<=15}">
+	                  	<a href="/useful/board/readPage?page=1&perPageNum=10&keyword&searchType&serial=${b.serial }">${b.title }</a>
+	                  </c:if>
+	                  <c:if test="${b.title.length()>15}">
+	                  	<a href="/useful/board/readPage?page=1&perPageNum=10&keyword&searchType&serial=${b.serial }">${b.title.substring(0,15) }</a>	                  
+	                  </c:if>
+	                  </td>
 	               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${b.writer }</td>
 	               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${b.regdate }" pattern="yyyy-MM-dd"/> </td>
 	                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><span class="badge bg-red">${b.viewcnt}</span></td>
@@ -269,7 +304,14 @@
            		<c:forEach items="${list7 }" var="s">
                 <tr>
                   <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${s.bno}</td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/sharetask/detail?page=1&perPageNum=10&bno=${s.bno }&deptno=${s.deptno}">${s.title }</a></td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">
+                  <c:if test="${s.title.length()<=15 }">
+                  	<a href="/useful/sharetask/detail?page=1&perPageNum=10&bno=${s.bno }&deptno=${s.deptno}">${s.title }</a>
+                  </c:if>
+                  <c:if test="${s.title.length()>15 }">
+                  	<a href="/useful/sharetask/detail?page=1&perPageNum=10&bno=${s.bno }&deptno=${s.deptno}">${s.title.substring(0,15) }</a>
+                  </c:if>
+                  </td>
                	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${s.ename }</td>
                	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${s.regdate }" pattern="yyyy-MM-dd"/> </td>
                   <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><span class="badge bg-red">${s.viewcnt}</span></td>
