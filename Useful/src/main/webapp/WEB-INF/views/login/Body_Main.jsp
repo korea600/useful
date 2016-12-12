@@ -118,10 +118,10 @@
 				<tr>
                   <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center; ">${idx.reciname }</td>
                	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">
-               	  <c:if test="${idx.recontent.length<=15 }">
+               	  <c:if test="${idx.recontent.length()<=15 }">
 	               	  <a href="/useful/note/riciReadPage?serial=${idx.serial }">${idx.recontent }</a>
                	  </c:if>	
-               	  <c:if test="${idx.recontent.length>15 }">
+               	  <c:if test="${idx.recontent.length()>15 }">
 	               	  <a href="/useful/note/riciReadPage?serial=${idx.serial }">${idx.recontent.substring(0,15)}</a>
                	  </c:if>	
                	  </td>
