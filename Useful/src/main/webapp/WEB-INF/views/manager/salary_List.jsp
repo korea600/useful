@@ -97,8 +97,13 @@ $(function(){
 	 				  serial:serial
  				  }),
  			  success: function(result){
- 				  alret('삭제되었습니다');
- 				 searchList();
+ 				  if(result="success"){
+	 				  alret('삭제되었습니다');
+	 				 searchList();
+ 				  }
+ 				  else{
+	 				  alret('삭제가 안되었습니다');
+ 				  }
  			  }
  			});
  		}else{
