@@ -132,7 +132,7 @@ var insertWin;
  function input(){
  	
   insertWin=window.open('booking_Input','input','toolbar=no,location=no,status=no'
- 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500');
+ 			+'menubar=no,scrollbars=no,resizable=0,width=800,height=500');
   
  }
  
@@ -161,7 +161,7 @@ var insertWin;
  function reservation(roomno){
 	 
 	 bookingWin = window.open('booking_Input?roomno='+roomno,'input','toolbar=yes,location=no,status=no'
-	 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500');
+	 			+'menubar=no,scrollbars=no,resizable=0,width=800,height=500');
  } 
  
  function calInsert(){
