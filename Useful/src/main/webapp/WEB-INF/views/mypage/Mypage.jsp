@@ -118,7 +118,7 @@ th {
 			<div>
 				<div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">직원정보수정</h1>
+                    <h1 class="page-header">개인정보수정</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
