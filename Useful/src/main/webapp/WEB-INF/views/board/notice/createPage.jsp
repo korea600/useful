@@ -79,7 +79,7 @@
                                         </div>
 										<div class="form-group">
                                             <label>글쓰기</label>
-                                            <textarea id="content" class="form-control" rows="3" placeholder="내용을 입력해주세요" name="content"></textarea>
+                                            <textarea id="content" class="form-control" rows="20" placeholder="내용을 입력해주세요" name="content"></textarea>
                                         </div>
 
                                         <div class="form-group">
