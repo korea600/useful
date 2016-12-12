@@ -65,7 +65,7 @@ public class DAOTest {
 //		System.out.println(dao.search_ename_from_dept(10));
 		System.out.println("daoTest2");
 		
-		System.out.println(service.salary_List(map));
+		System.out.println(service.salary_update_form(3));
 		
 	}
 	

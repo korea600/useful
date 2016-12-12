@@ -18,9 +18,11 @@
 $(function(){	
 	var serial=${salary.serial}
 	var empno=${salary.empno}
-	var paymentmonth=${salary.paymentmonth}
-	var pay_year =paymentmonth.substring(0,3);
-	var pay_month =paymentmonth.substring(4,6);
+	var paymentmonth=${salary.paymentmonth};
+	
+	var pay_year =paymentmonth.substring(0,4);
+	var pay_month =paymentmonth.substring(5,7);
+	var paymentdate =${salary.paymentdate}
 	var basicpay=${salary.basicpay}
 	var car=${salary.car}
 	var meal=${salary.meal}
@@ -36,8 +38,9 @@ $(function(){
 	var grossincome=${salary.grossincome}
 	var deductions=${salary.deductions}
 	var adjustedIncome=${salary.adjustedIncome}
+	alert(pay_month);
 	
-		$("#paymentdate").val(paymentdate);
+		//$("#paymentdate").val(paymentdate);
 		$("#pay_year").val(pay_year).prop("selected", true);
 		$("#pay_month").val(pay_month).prop("selected", true);
 	
@@ -47,20 +50,21 @@ $(function(){
 		$("#childcare").val(childcare);
 		$("#otherpay").val(otherpay);
 
-		$("#national").val(national);
-		$("#health").val(health);
-		$("#employment").val(employment);
-		$("#care").val(care);
-		$("#incometax").val(incometax);
-		$("#grossincome").val(grossincome);
-		$("#deductions").val(deductions);
-		$("#adjustedIncome").val(adjustedIncome);
+		$("#national").text(national);
+		$("#health").text(health);
+		$("#employment").text(employment);
+		$("#care").text(care);
+		$("#incometax").text(incometax);
+		$("#localtax").text(localtax);
+		$("#grossincome").text(grossincome);
+		$("#deductions").text(deductions);
+		$("#adjustedIncome").text(adjustedIncome);
 		
  	   $( "#paymentdate" ).datepicker({
  		  changeMonth: true, 
           changeYear: true,
  		  dateFormat: 'yy-mm-dd'
- 	   });
+ 	   }).datepicker("setDate", new Date(paymentdate));
 
 
 		$("#btn_Cancel").click(function(){
