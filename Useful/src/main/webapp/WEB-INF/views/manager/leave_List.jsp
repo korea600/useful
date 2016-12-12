@@ -71,7 +71,7 @@ th {
 		$("#update_Dname").text(dname);
 		$("#update_Empno").text(empno);
 		$("#update_Ename").text(ename);
-		$("#update_Hiredate").text(ename);
+		$("#update_Hiredate").text(hiredate);
 		$("#update_Basic").val(basic);
 		$("#update_Used").val(used);
 		$("#update_Rest").val(rest);

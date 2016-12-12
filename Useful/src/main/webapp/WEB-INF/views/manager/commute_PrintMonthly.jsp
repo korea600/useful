@@ -49,7 +49,7 @@
 		<tr>
 	</c:if>
 			<td>
-				 ${date_string }일 <br><br>
+				 <font style="text-align: left;">${date_string }</font> <br><br>
 				<a href='#' onclick="search_oneday('${print.login}','출근')"><img src="/useful/resources/image/icon_work.gif" ></a> ${print.attendance }<br>
 				<a href='#' onclick="search_oneday('${print.login}','지각')"><img src="/useful/resources/image/icon_late.gif"  ></a> ${print.late }<br>
 				<a href='#' onclick="search_oneday('${print.login}',null)" ><img src="/useful/resources/image/icon_acc.gif" ></a> ${print.acc } <br><br>
