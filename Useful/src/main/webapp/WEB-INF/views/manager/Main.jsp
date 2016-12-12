@@ -36,7 +36,7 @@
 <body>
 
 
-   <!-- Navigation -->
+        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -45,7 +45,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/login/Mainview">Useful Logo</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/login/Mainview">
+                <img src="${pageContext.request.contextPath}/resources/image/usefulware2.png" style="height: 32px;"/>
+                </a>
             </div>
             <!-- /.navbar-header -->
 
@@ -59,7 +61,7 @@
                         <li>
                             <c:forEach items="${note }" var="note2">
 							<div onclick="location.href='/useful/note/riciReadPage?serial=${note2.serial }'" style="cursor: pointer;">
-								<b>${note2.reciid}</b> 
+								<b>${note2.reciname}</b> 
 								<span class="pull-right text-muted">
 									<em> <fmt:formatDate value="${note2.recipientdate }" pattern="yyyy-MM-dd" /></em>
 								</span>
@@ -106,7 +108,6 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-
    
     <!-- jQuery -->
  
