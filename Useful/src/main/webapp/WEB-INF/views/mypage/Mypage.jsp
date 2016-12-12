@@ -21,20 +21,33 @@
 	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	function InfoSave(){
+		var email = document.frm.email.value;
+		var phone = document.frm.phone.value;
+		
+		var regularExpression = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var regExp =  /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+		
+	   	
 		if($.trim($('#pass').val()) == ""){
 			alert("비밀번호를 입력해주세요.");
 			$('#pass').focus();
-			return;
-		}else if($.trim($('#ssn').val()) == ""){
-			alert("주민번호를 입력해주세요.");
-			$('#ssn').focus();
 			return;
 		}else if($.trim($('#email').val()) == ""){
 			alert("이메일을 입력해주세요.");
 			$('#email').focus();
 			return;
+		}else if( !regularExpression.test(email)){
+			alert("이메일주소가 유효하지 않습니다.");
+			$('#email').val("");
+			$('#email').focus();
+			return;
 		}else if($.trim($('#phone').val()) == ""){
 			alert("핸드폰번호를 입력해주세요.");
+			$('#phone').focus();
+			return;
+		}else if(!regExp.test(phone)){
+			alert("핸드폰번호가 유효하지 않습니다.");
+			$('#phone').val("");
 			$('#phone').focus();
 			return;
 		}else if($.trim($('#address').val()) == ""){
@@ -122,7 +135,8 @@ th {
 							<th style="text-align: center;">사원번호</th>
 							<td>
 								<input type="hidden" id="emp_no_dup_check" value="N"/>
-								<input id="empno" name="empno" class="text" type="text" maxlength="20" value="${LoginUser.empno }"/>
+								<input id="empno" name="empno" class="text" type="text" maxlength="20" value="${LoginUser.empno }"
+								readonly/>
 								
 										<span id="sp_empNoDupMsg" class="blackColor b"></span>
 
@@ -132,7 +146,7 @@ th {
 							<th style="text-align: center;">사원명        </th>
 							<td>
 								<input type="hidden" id="emp_id_dup_check" value="N"/>
-								<input id="ename" name="ename" class="text" type="text" maxlength="20" value="${LoginUser.ename }"/>
+								<input id="ename" name="ename" class="text" type="text" maxlength="20" value="${LoginUser.ename }" readonly/>
 	
 										<span id="sp_empIdDupMsg" class="blackColor b"></span>
 	
@@ -142,7 +156,7 @@ th {
 						<tr>  
 							<th style="text-align: center;">비밀번호 </th>
 							<td>
-								<input id="pass" name="pass" class="text" type="password" maxlength="20" value="${vo.pass }"/>
+								<input id="pass" name="pass" class="text" type="password" maxlength="20" value=""/>
 							</td>
 						</tr>  
 					
@@ -150,7 +164,7 @@ th {
 							<th style="text-align: center;">주민번호        </th>
 
 							<td>
-								<input id="ssn" name="ssn" class="text" type="text" maxlength="14" value="${vo.ssn }"/>
+								<input id="ssn" name="ssn" class="text" type="text" maxlength="14" value="${vo.ssn }" readonly/>
 							</td>
 						</tr>  
 						<tr>  
