@@ -130,7 +130,7 @@
                            <div>
                            <center>
                            <span>
-                              <button type="button" id="note" >  <i class="fa fa-envelope fa-fw"></i>메일함</button>
+                              <button type="button" id="note" >  <i class="fa fa-envelope fa-fw"></i>쪽지함</button>
                               <button type="button" id="commute_in" ><i class="fa fa-sort-up fa-fw" ></i>출근</button>
                               <button type="button" id="commute_out"><i class="fa fa-sort-down fa-fw"></i>퇴근</button>
                            </span>
