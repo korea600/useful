@@ -4,27 +4,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-
-
-
- 
-
-<style type="text/css">
-
- </style>
- 
-<style type="text/css">
-
-</style>
-
-
-
- <script type="text/javascript">
-
-
-
- </script>
-
 	<div class="container"> 
 		<div class="row row-offcanvas row-offcanvas-center">
 			<div class="row">
@@ -33,12 +12,10 @@
 		<tr>
 
 			<td >
-			 <div class="col-xs-5 col-lg-6">
-              <h3><span class="glyphicon glyphicon-file" style="color:black">전자결재</span>
-              <c:forEach begin="1" end="1">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;
-              </c:forEach>
+			 <div class="col-xs-5 col-lg-6" style="width: 100%">
+			 	<div class='table-title' style="height: 35px">
+              <h3><span class="glyphicon glyphicon-file" style="color:black;float: left;">전자결재</span>
+     
               <c:if test='${LoginUser.position == "사원" }'>
              <span style="float: right;"> <small><a href="/useful/approval/listmine"><font size="2">+ MORE</font></a></small></span>               
               </c:if>           
@@ -47,7 +24,7 @@
               
               <small><a href="/useful/approval/listmyturn"><font size="2">+ MORE</font></a></small> 
               </c:if></h3>
-              
+              </div>
 			<table class="table table-bordered" style="width: 500px;">
                 <tr style="background-color: silver;">
                   
@@ -86,12 +63,11 @@
            </td>
 
 			<td >
-		<div class="col-xs-5 col-lg-6">
-           <h3><span class="glyphicon glyphicon-envelope" style="color:black">메일함</span>
-              <c:forEach begin="1" end="5">
-              &nbsp;&nbsp;
-              </c:forEach>
-             <small><a href="/useful/note/noteMyPage"><font size="2">+ MORE</font></a></small> </h3>
+		<div class="col-xs-5 col-lg-6" style="width: 100%">
+			<div class='table-title' style="height: 35px">
+           <h3><span class="glyphicon glyphicon-envelope" style="color:black;float: left;">메일함</span></h3>
+              <span style="float: right;"><small><a href="/useful/note/noteMyPage"><font size="2">+ MORE</font></a></small></span>
+              </div>
 			<table class="table table-bordered" style="width: 500px;">
                 <tr style="background-color: silver;">
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">보낸사람</th>
@@ -116,14 +92,13 @@
 		
 		<tr>
 			<td>
-		<div class="col-xs-5 col-lg-6">
-              <h3><span class="glyphicon glyphicon-info-sign" style="color:black">공지사항</span>
-               <c:forEach begin="1" end="4">
-              &nbsp;&nbsp;
-              </c:forEach> 
+		<div class="col-xs-5 col-lg-6" style="width: 100%">
+			<div class='table-title' style="height: 35px">
+              <h3><span class="glyphicon glyphicon-info-sign" style="color:black;float: left;">공지사항</span>
+             
               
-              <small><small><a href="/useful/board/notice/listPage"><font size="2">+ MORE</font></a></small></small></h3>
-              
+              <span style="float: right;"><small><a href="/useful/board/notice/listPage"><font size="2">+ MORE</font></a></small></h3></span>
+            </div>  
               
 			<table class="table table-bordered" style="width: 500px;">
                 <tr style="background-color:silver;">
@@ -147,13 +122,11 @@
          	   </td>
 
             	<td>
-		 <div class="col-xs-5 col-lg-6">
-              <h3><span class="glyphicon glyphicon-ok-sign" style="color:black">익명게시판</span>
-              <c:forEach begin="1" end="3">
-              &nbsp;&nbsp;
-              </c:forEach>
-              <small><a href="/useful/board/anonymity/listPage"><font size="2">+ MORE</font></a></small> </h3>
-              
+		 <div class="col-xs-5 col-lg-6" style="width: 100%">
+		 	<div class='table-title' style="height: 35px">
+              <h3><span class="glyphicon glyphicon-ok-sign" style="color:black;float: left;">익명게시판</span>
+              <span style="float: right;"><small><a href="/useful/board/anonymity/listPage"><font size="2">+ MORE</font></a></small> </h3></span>
+            </div>  
 			<table class="table table-bordered" style="width: 500px;">
                 <tr style="background-color: silver;">
                   <th style="width: 50px">번호</th>
@@ -178,12 +151,11 @@
             
             <tr>
             	<td>
-		<div class="col-xs-5 col-lg-6">
-           <h3><span class="glyphicon glyphicon-list-alt" style="color:black">사내게시판</span>
-              <c:forEach begin="1" end="1">
-              &nbsp;&nbsp;
-              </c:forEach>
-             <small><a href="/useful/board/listPage"><font size="2">+ MORE</font></a></small> </h3>
+		<div class="col-xs-5 col-lg-6"  style="width: 100%">
+		<div class='table-title' style="height: 35px">
+           <h3><span class="glyphicon glyphicon-list-alt" style="color:black;float: left;">사내게시판</span>
+              <span style="float: right;"><small><a href="/useful/board/listPage"><font size="2">+ MORE</font></a></small> </h3></span>
+           </div>
 			<table class="table table-bordered" style="width: 500px;">
                 <tr style="background-color: silver;">
                   <th style="width: 50px">번호</th>
@@ -208,12 +180,13 @@
             </td>
 
             	<td>
-		<div class="col-xs-5 col-lg-6">
-           <h3><span class="glyphicon glyphicon-share" style="color:black">업무공유게시판</span>
-              <c:forEach begin="1" end="16">
-              &nbsp;&nbsp;
-              </c:forEach>
+		<div class="col-xs-5 col-lg-6"  style="width: 100%">
+		<div class='table-title' style="height: 35px">
+           <h3><span class="glyphicon glyphicon-share" style="color:black;float: left;">업무공유게시판</span>
+              <span style="float: right;">
              <small><a href="/useful/sharetask/share_Board"><font size="2">+ MORE</font></a></small> </h3>
+             </span>
+             </div>
 			<table class="table table-bordered" style="width: 500px;">
                 <tr style="background-color: silver;">
                   <th style="width: 50px">번호</th>
