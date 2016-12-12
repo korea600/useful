@@ -47,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Mainview"> UsefulWare </a>
+                <a class="navbar-brand" href="/useful/login/Mainview"> UsefulWare </a>
             </div>
             <!-- /.navbar-header -->
 
