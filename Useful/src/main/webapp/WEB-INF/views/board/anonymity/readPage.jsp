@@ -248,7 +248,7 @@ $(document).ready(function(){
 										
 										<div class="form-group">
 											<label>글내용</label>
-											<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${board.content }</textarea>
+											<textarea id="content" class="form-control" rows="20" readonly="readonly" name="content">${board.content }</textarea>
 										</div>
 									
 
