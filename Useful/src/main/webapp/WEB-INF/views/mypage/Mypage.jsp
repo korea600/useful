@@ -58,7 +58,7 @@
 			success:function(result){
 				if(result=="SUCCESS"){
 					
-					alert("정보 수정완료!!");
+					alert("개인 정보 수정이 완료되었습니다.");
 					location.href="/useful/login/Mainview";
 				}
 			}
