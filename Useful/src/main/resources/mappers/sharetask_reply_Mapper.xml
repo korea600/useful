@@ -8,8 +8,8 @@
 	</select>
 	
 	<insert id="plusReply">
-		insert into  tbl_sharetask_reply (rno, bno, replytext, replyer, empno)
-		values (tbl_reply_seq.nextval, #{bno}, #{replytext}, #{replyer}, #{empno})
+		insert into  tbl_sharetask_reply (rno, bno, replytext, replyer, empno, regdate)
+		values (tbl_reply_seq.nextval, #{bno}, #{replytext}, #{replyer}, #{empno}, sysdate)
 	</insert>
 
 	<update id="changeReply">

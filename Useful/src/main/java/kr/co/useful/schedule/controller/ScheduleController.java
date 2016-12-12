@@ -4,6 +4,7 @@ package kr.co.useful.schedule.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.schedule.domain.PageMaker;
 import kr.co.useful.schedule.domain.ScheduleVO;
 import kr.co.useful.schedule.domain.SearchCriteria;
@@ -30,13 +32,15 @@ public class ScheduleController {
 	private ScheduleService service;
 	
 	@RequestMapping(value ="/co_Schedule", method=RequestMethod.GET)
-	public void coScheduleList(@ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
+	public void coScheduleList(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest req)throws Exception{
 		model.addAttribute("list", service.listSearchCriteria(cri));
 		PageMaker maker = new PageMaker();
-		
+		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		
 	 	maker.setCri(cri);
 	 	maker.setTotalCount(service.listSearchCount(cri));
+	 	model.addAttribute("evo", evo);
+	 	
 	 	model.addAttribute("pageMaker", maker);
 	 	 
 	}
