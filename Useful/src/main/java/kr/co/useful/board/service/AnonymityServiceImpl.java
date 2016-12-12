@@ -85,4 +85,10 @@ private AnonymityDAO dao;
 		return dao.pass_check(serial);
 	}
 
+	@Override
+	public String save_download(int serial) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.save_file_name(serial);
+	}
+
 }

@@ -250,6 +250,12 @@ $(document).ready(function(){
 											<label>글내용</label>
 											<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${board.content }</textarea>
 										</div>
+										<core:if test="${board.originalfileName!=null }">
+										<div class="form-group">
+										<label>첨부파일</label>
+										<a href="/useful/board/anonymity/download?originalfileName=${board.originalfileName }&serial=${board.serial}">${board.originalfileName }</a>
+										</div>
+										</core:if>
 
 										<div class="form-group"></div>
 

@@ -58,14 +58,26 @@
                                         <div class="form-group">
                                         
                                         </div>
-                                        <div class="form-group">
-                                            <label>파일 올리기</label>
-                                            <input type="file">
-                                        </div>
+                                        <label>파일명</label>
+										<c:if test="${board.originalfileName==null }">
+										<c:if test="${board.originalfileName=='' }">
+										첨부된 파일이 없습니다.
+										</c:if>
+										첨부된 파일이 없습니다.
+										</c:if>
+										<c:if test="${board.originalfileName!=null }">
+                                            <a href="/useful/board/download?originalfileName=${board.originalfileName }&serial=${board.serial}">${board.originalfileName }</a>
+										</c:if>
+										<!-- <div class="form-group">
+                                            <label>파일 재업로드</label>
+                                            <input type="file" id="file" name="file">
+                                        </div> -->
+										</div>
                                         <input type="hidden" name="page" value="${cri.page }">
                                         <input type="hidden" name="perPageNum" value="${cri.perPageNum }">
                                        <input type='hidden' name='searchType' value="${cri.searchType}">
 	                                   <input type='hidden' name='keyword' value="${cri.keyword}">
+	                                      <input type="hidden" name="originalfileName" value="${board.originalfileName }"> 
                                          <button type="submit" class="btn btn-default" id="submit">작성완료</button>
                                         <button type="reset" class="btn btn-default" id="reset">다시작성하기</button>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>

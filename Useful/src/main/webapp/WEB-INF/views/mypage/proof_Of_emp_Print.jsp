@@ -82,7 +82,7 @@
                 </p>
             </td>
             <td  valign="top">
-            	홍길동
+            	이 길재
             </td>
             <td  valign="top"  style="background-color: gray;">
                 <p align="center">
@@ -153,7 +153,7 @@
 </p>
 <br>
 <p align="center">
-    ㈜가디 대표이사 홍길동 (인)
+    ㈜가디 대표이사 이길재 (인)
 </p>
 
 </body>

@@ -56,31 +56,12 @@ public class BoardController {
 	public void createPageGET()throws Exception{
 		
 	}
-	/*@RequestMapping(value="/createPage",method=RequestMethod.POST)
-	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession)throws Exception{
-	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
-	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
-	vo.setEmpno(empno);
-	vo.setWriter(writer);
-	service.insert(vo);
-	att.addFlashAttribute("message", "SUCCESS");
-	return "redirect:/board/listPage";
-	}*/
 	@RequestMapping(value="/createPage",method=RequestMethod.POST)
 	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,HttpServletRequest request,MultipartHttpServletRequest multipartHttpServletRequest,@RequestParam("file") MultipartFile file)throws Exception{
 	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
 	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
-	//vo.setOriginal_file_name(file.getOriginalFilename()); //��Ƽ���Ϸ� �������� �����̸�����
-	//String fname=file.getOriginalFilename();
-	//System.out.println("�о�帰 ���ϸ� =="+fname);
-	//File f=new File("../upload"+fname);
-	//file.transferTo(f);
-	/*������ ��������Է��ҋ�
-	ServletContext application = request.getServletContext();
-	String realpath=application.getRealPath("")
-			������ ��������Է��ҋ�*/
 	System.out.println("request��"+request);
-	String realfolder=PathMaker.getUploadPath(request); //�����������ġ
+	String realfolder=PathMaker.getUploadPath(request); 
 	System.out.println("�������� ��ġ =="+realfolder);
 	File dir=new File(realfolder);
 	if(!dir.isDirectory()){
@@ -118,17 +99,7 @@ public class BoardController {
 	att.addFlashAttribute("message", "SUCCESS");
 	return "redirect:/board/listPage";
 	}
-	/*�����
-	@RequestMapping(value="/createPage",method=RequestMethod.POST)
-	public String createPagePOST(BoardVO vo,RedirectAttributes att,HttpSession httpSession,HttpServletRequest servletRequest,@RequestParam("file") MultipartFile file)throws Exception{
-	String writer=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
-	int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
-	vo.setEmpno(empno);
-	vo.setWriter(writer);
-	service.insert(vo);
-	att.addFlashAttribute("message", "SUCCESS");
-	return "redirect:/board/listPage";
-	}*/
+	
 	
 	@RequestMapping("/listPage")
 	public void listPage(SearchCriteria cri,Model model)throws Exception {
@@ -171,8 +142,10 @@ public class BoardController {
 		
 	}
 	
-	@RequestMapping(value="/modifyPage",method=RequestMethod.POST) 
-	public String modifyPage(BoardVO vo,RedirectAttributes attr,SearchCriteria cri,HttpSession httpSession)throws Exception {
+
+	
+   @RequestMapping(value="/modifyPage",method=RequestMethod.POST) 
+	public String modifyPage(BoardVO vo,RedirectAttributes attr,SearchCriteria cri,HttpSession httpSession) throws Exception {
 		int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
 		vo.setEmpno(empno);
 		service.modify(vo);
@@ -182,12 +155,24 @@ public class BoardController {
 		   attr.addAttribute("keyword", cri.getKeyword() );
 		return "redirect:/board/listPage";
 	}
+	
 	@RequestMapping("/deletePage") 
-	public String deletePage(int serial)throws Exception {
+	public String deletePage(int serial,String originalfileName,HttpServletRequest request)throws Exception {
+		BoardVO vo=service.read(serial);
+		String savafilename=vo.getSaveFileName();
+		File savafile=new File(PathMaker.getUploadPath(request)+"/"+savafilename);
+		File savafile2=new File(PathMaker.getRealPath(request)+"/"+savafilename);
+		if(savafile!=null && savafile.exists()) savafile.delete();
+		if(savafile2!=null && savafile2.exists()) savafile2.delete();
 		service.delete(serial);
 		return "redirect:/board/listPage";
 	}
 	
+	/*@RequestMapping("/deletePage") 
+	public String deletePage(int serial,String originalfileName,HttpServletRequest request)throws Exception {
+		service.delete(serial);
+		return "redirect:/board/listPage";
+	}*/
 	
 	
 	@RequestMapping("/download")

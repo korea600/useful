@@ -7,7 +7,7 @@
 	</select>
 	
 	<select id="list_note_cout" resultType="kr.co.useful.note.domain.RecipientVO"> <!--메인 페이지 쪽지 내용 출력  -->
-	select serial,mynotename,mynoteid,reciid,reciname,recontent,recipientdate from tbl_recipient_note where mynoteid=#{mynoteid} where rownum between 1 and 5 order by serial desc
+	select serial,mynotename,mynoteid,reciid,reciname,recontent,recipientdate from tbl_recipient_note where mynoteid=#{mynoteid} and rownum between 1 and 5 order by serial desc
 	</select>
 	
 	 <insert id="create_send_note" parameterType="kr.co.useful.note.domain.SendVO"> <!-- 쪽지보내기  -->

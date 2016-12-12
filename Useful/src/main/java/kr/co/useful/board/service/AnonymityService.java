@@ -19,4 +19,5 @@ public interface AnonymityService {
 	public List<AnonymityVO> listSearch(SearchCriteria cri)throws Exception; 
 	public int listFindCount(SearchCriteria cri)throws Exception; 
 	public List<AnonymityVO> list_cot()throws Exception;
+	public String save_download(int serial)throws Exception;
 }

@@ -14,4 +14,5 @@ public RecipientVO select_recipient_note(RecipientVO recipientVO)throws Exceptio
 public void delete_recipient_note(RecipientVO recipientVO)throws Exception;
 public List<RecipientVO> search_Recipient_note(SearchCriteria cri,int mynoteid)throws Exception;
 public int search_Recipient_count_note(SearchCriteria cri,int mynoteid)throws Exception;
+public List<RecipientVO> main_list_cout(int mynoteid)throws Exception;
 }

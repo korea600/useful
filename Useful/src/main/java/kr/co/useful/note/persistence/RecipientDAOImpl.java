@@ -58,6 +58,11 @@ private SqlSession session;
 		map.put("mynoteid", mynoteid);
 		return session.selectOne("recipien_note.search_Count_note", map);
 	}
+	@Override
+	public List<RecipientVO> main_list_cout(int mynoteid) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList("recipien_note.list_note_cout", mynoteid);
+	}
 
 
 
