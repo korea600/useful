@@ -39,7 +39,7 @@
 			 //?:부분식의 선행문자를 0개 또는 1개 찾거나 제한적인 한정기호를 나타냄
 			 
 			 if(!reg_pwd.test(pass)){
-				 alert('비밀번호를 확인하세요.\n(영문,숫자,특수문자를 혼합하여 8~15자 이내)');    
+				 alert('비밀번호는 8~15자리 이내로 설정해주세요. \n (숫자+영문, 숫자+영문+특수문자)');    
 				document.form.password.value="";
 				document.form.password.focus();
 			 }else{
@@ -86,7 +86,7 @@
                    				 </div>
                                 <div class="form-group" >
                                    <b>Password : </b><input class="form-control"  name="password" type="password" id="passinput"
-                                    onkeypress="if(event.keyCode == 13){ passCheck(); return; }">
+                                   onkeypress="if(event.keyCode == 13){event.preventDefault(); return;}">
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
@@ -101,8 +101,7 @@
         </div>
     </div>
     <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-
+    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"> </script>
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
