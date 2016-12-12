@@ -42,11 +42,10 @@
 				 alert('비밀번호를 확인하세요.\n(영문,숫자,특수문자를 혼합하여 8~15자 이내)');    
 				document.form.password.value="";
 				document.form.password.focus();
-			 }
+			 }else{
 					 
 			 $.ajax({
 				type:"post",
-				async:true,
 				url:"/useful/login/checkpass",
 				data:{
 					password : $("#passinput").val()
@@ -59,6 +58,7 @@
 					}
 				}
 			 });
+			}
 		}
 			 
 		
@@ -85,7 +85,8 @@
                       			  		(8~15자리)</h3>
                    				 </div>
                                 <div class="form-group" >
-                                   <b>Password : </b><input class="form-control"  name="password" type="password" id="passinput">
+                                   <b>Password : </b><input class="form-control"  name="password" type="password" id="passinput"
+                                    onkeypress="if(event.keyCode == 13){ passCheck(); return; }">
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
