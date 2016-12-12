@@ -42,7 +42,13 @@ function pop(result){
 	$("#search_year").val(year).prop("selected", true);
 	$("#search_month").val(month).prop("selected", true);
 	$("#send_data").click(function(){
-		 $.ajax({
+		if($("#purpose_of_use").val()==""){
+			alert('사용목적을 입력해주세요');
+		}else{
+		   $('[name=purpose]').val($("#purpose_of_use").val());
+		   $('form[name=send]').submit();
+		}
+		/*  $.ajax({
 			  type: 'POST',
 			  url: '/useful/mypage/proof_Of_emp',
 			  headers : {
@@ -54,9 +60,10 @@ function pop(result){
 				empno:${LoginUser.empno},
 				purpose:$("#purpose_of_use").val(),
 				  }),
-			  success:function(){
+			  success:function(result){
+				  alert(result);
 				  //self.location(result);
-						location.href='http://localhost/useful/mypage/proof_Of_emp_Print';
+					//location.href=result;
 					//pop(result);
 					//var re=result
 					//$("#div_print").html(result);
@@ -64,9 +71,10 @@ function pop(result){
 					//w.document.write(result);
 					//var downLoadUrl = "http://localhost/useful/mypage/proof_Of_emp_Print"
 					//$("#frm").attr("action",downLoadUrl).submit();
-						
+					
 			  } 
-			});
+			}); */
+			
 	});
 	$("#send_test").click(function(){
 		location.href='/useful/mypage/proof_Of_emp2';
@@ -75,7 +83,10 @@ function pop(result){
 </script>
 </head><%@include file="../login/Sidebar.jsp" %>
 <body>
-
+  <form method="post" action="/useful/mypage/proof_Of_emp" name="send" enctype="application/json">
+     <input type="hidden" name="empno"  value="${LoginUser.empno}">
+     <input type="hidden" name="purpose" >
+  </form>
 <div>
 	  
 </div>
@@ -92,12 +103,9 @@ function pop(result){
 	
     </div>
     <div class="panel-body">
-    <h3 class="panel-title" align="left">
-		사용 용도 : <input type="text" id="purpose_of_use" size="30" class="form-control-static"> 
-	</h3>
-	</div>
+		<font size="7">사용 용도 : </font> <input type="text" id="purpose_of_use" size="30" class="form-control-static"> 
 	<button id="send_data" class="btn btn-default">다운로드</button>
-	<button id="send_test" class="btn btn-default">다운로드</button>
+	</div>
 	
 	<form id="frm" action="/useful/mypage/proof_Of_emp" method="post"></form>
 	<div id="div_print" ></div>

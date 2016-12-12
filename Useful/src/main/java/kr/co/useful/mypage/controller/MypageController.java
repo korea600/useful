@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.useful.encrypt.LocalEncrypter;
 import kr.co.useful.manager.domain.EmpVO;
@@ -70,16 +71,16 @@ public class MypageController {
 		
 	}
 	@RequestMapping(value="/proof_Of_emp",method=RequestMethod.POST)
-	public ModelAndView proof_Of_emp(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
-		int empno=(int) requestMap.get("empno");
+	public String proof_Of_emp(int empno, String purpose,
+			                   //@RequestBody Map<String,Object> requestMap,
+			                  RedirectAttributes rttr)throws Exception{
+		//int empno=(int) requestMap.get("empno");
 		//model.addAttribute("proof_emp",service.proof_emp(empno));
 		//model.addAttribute("purpose",requestMap.get("purpose"));
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("proof_emp",service.proof_emp(empno));
-		mv.addObject("purpose",requestMap.get("purpose"));
-		mv.setViewName("http://localhost/useful/mypage/proof_Of_emp_Print");
-		System.out.println(mv);
-		return mv;
+//		ModelAndView mv = new ModelAndView();
+		rttr.addFlashAttribute("proof_emp",service.proof_emp(empno));
+		rttr.addFlashAttribute("purpose", purpose);//requestMap.get("purpose"));
+		return "redirect:/mypage/proof_Of_emp_Print";
 	}
 	
 	

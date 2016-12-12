@@ -21,7 +21,7 @@
   	
   	<select id="proof_emp" resultType="kr.co.useful.mypage.domain.ProofEmpVO"> 
   		
-  		select emp.empno, emp.ename, dept.dname, emp.ssn, emp.address, emp.position, emp.hiredate, emp.sd
+  		select emp.empno, emp.ename, dept.dname, emp.ssn, emp.address, emp.position, to_char(emp.hiredate,'YYYY-MM-DD') hiredate, to_char(emp.sd,'YYYY-MM-DD') sd
   		from tbl_dept dept,(select empno, ename, deptno, ssn, address, position, hiredate, sysdate as sd
   			from tbl_emp ,(SELECT SYSDATE FROM dual) 
   			where empno=#{empno}) emp

@@ -80,7 +80,7 @@ $(function(){
 	}
  	
  	function call_Update(serial){
- 		location.href="/useful/manager/salary_Update"+"?serial="+serial;
+ 		location.href="/useful/manager/salary_Update?serial="+serial;
  	}
  	
  	function call_Delete(serial){

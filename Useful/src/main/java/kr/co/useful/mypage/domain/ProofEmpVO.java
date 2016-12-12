@@ -10,14 +10,14 @@ public class ProofEmpVO {
 	private String dname;
 	private String position;
 	private String hiredate;
-	private Date sysdate;
+	private String sd;
 	
 	public ProofEmpVO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public ProofEmpVO(int empno, String ename, String ssn, String address, String dname, String position,
-			String hiredate, Date sysdate) {
+			String hiredate, String sd) {
 		super();
 		this.empno = empno;
 		this.ename = ename;
@@ -26,7 +26,7 @@ public class ProofEmpVO {
 		this.dname = dname;
 		this.position = position;
 		this.hiredate = hiredate;
-		this.sysdate = sysdate;
+		this.sd = sd;
 	}
 
 	public int getEmpno() {
@@ -85,17 +85,20 @@ public class ProofEmpVO {
 		this.hiredate = hiredate;
 	}
 
-	public Date getSysdate() {
-		return sysdate;
+	public String getSd() {
+		return sd;
 	}
 
-	public void setSysdate(Date sysdate) {
-		this.sysdate = sysdate;
+	public void setSd(String sd) {
+		this.sd = sd;
 	}
 
 	@Override
 	public String toString() {
 		return "ProofEmpVO [empno=" + empno + ", ename=" + ename + ", ssn=" + ssn + ", address=" + address + ", dname="
-				+ dname + ", position=" + position + ", hiredate=" + hiredate + ", sysdate=" + sysdate + "]";
+				+ dname + ", position=" + position + ", hiredate=" + hiredate + ", sd=" + sd + "]";
 	}
+
+
+
 }
