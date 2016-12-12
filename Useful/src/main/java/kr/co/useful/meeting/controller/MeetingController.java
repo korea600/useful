@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.meeting.domain.MeetingRoomVO;
 import kr.co.useful.meeting.domain.MeetingVO;
 import kr.co.useful.meeting.service.MeetingService;
@@ -27,8 +27,10 @@ public class MeetingController {
 
 	// 첫화면---회의실 선택
 	@RequestMapping(value = "/meetingroom", method = RequestMethod.GET)
-	public void RoomList(Model model) throws Exception {
+	public void RoomList(Model model,  HttpServletRequest req) throws Exception {
+		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		model.addAttribute("list", service.rooms());
+		model.addAttribute("evo", evo);
 		// System.out.println(service.rooms());
 	}
 
@@ -85,8 +87,10 @@ public class MeetingController {
 
 	// 각 회의실에 대한 리스트 ---> 호실이 같을때
 	@RequestMapping("/bookingList")
-	public String bookingList(int roomno, Model model) throws Exception {
+	public String bookingList(int roomno, Model model ) throws Exception {
+		
 		System.out.println("안녕");
+	
 		model.addAttribute(roomno);
 		model.addAttribute("list", service.bookingEnd(roomno));
 		System.out.println(model);
@@ -95,9 +99,10 @@ public class MeetingController {
 
 	// 예약하기
 	@RequestMapping(value = "/booking_Input", method = RequestMethod.GET)
-	public void reservationRoom(Model model, MeetingRoomVO vo) throws Exception {
-
+	public void reservationRoom(Model model, MeetingRoomVO vo, HttpServletRequest req) throws Exception {
+		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		model.addAttribute("rooms", service.rooms());
+		model.addAttribute("evo", evo);
 		System.out.println(service.rooms());
 
 	}

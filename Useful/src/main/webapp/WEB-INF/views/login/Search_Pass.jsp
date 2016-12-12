@@ -105,7 +105,8 @@
                                    <b>이름 : </b><input class="form-control"  name="name" type="text" id="nameinput">
                                 </div>
                                 <div class="form-group" >
-                                   <b>이메일 : </b><input class="form-control"  name="email" type="text" id="emailinput">
+                                   <b>이메일 : </b><input class="form-control"  name="email" type="text" id="emailinput"
+                                   onkeypress="if(event.keyCode == 13){ Infocheck(); return; }">
                                 </div>
                               
                                 

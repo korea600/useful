@@ -49,6 +49,10 @@ public class MypageController {
 	public ResponseEntity<String> updateInfo(EmpVO vo){
 		ResponseEntity<String> entity = null;
 		try {
+			String key="cogydnjscogydnjs1";
+			LocalEncrypter enc = new LocalEncrypter(key);
+			String str = enc.aesEncode(vo.getPass());
+			vo.setPass(str);
 			service.update(vo);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {

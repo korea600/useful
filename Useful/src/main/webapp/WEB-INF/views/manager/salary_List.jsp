@@ -112,6 +112,10 @@ $(function(){
  		
  	}
  	function  add_Sal_NextMonth(){
+ 		var now = new Date();
+ 		var month = now.getMonth() + 1;
+ 		var year = now.getFullYear();
+ 		
  		$.ajax({
 			  type: 'POST',
  			  url: '/useful/manager/add_Sal_NextMonth',
@@ -121,13 +125,12 @@ $(function(){
  			  },
  			  dataType: 'text',
  			  data: JSON.stringify({
- 					paymentmonth:paymentmonth
  				  }),
  			  success: function(result){
- 				  if(result==success){	
-	 				  alret('추가되었습니다.');
+ 				  if(result=='success'){	
+	 				  alert('추가되었습니다.');
  				  }else{
-	 				  alret('이미 다음달 급여내역이 존재합니다.');
+	 				  alert('이미 다음달 급여내역이 존재합니다.');
  				  }
  				 searchList();
  			  }
@@ -155,7 +158,7 @@ $(function(){
 		<table class="table table-striped table-bordered table-hover">
 <tbody>
 	<tr>
-	<th style="height: 40px;width: 200px;	text-align: center;">검색기간</th>
+	<th style="height: 40px;width: 200px;	text-align: center;">검색기간 (지급일)</th>
 	<td>
 		<input type="text" id="startdate" value="">
 		~<input type="text" id="enddate" value="">

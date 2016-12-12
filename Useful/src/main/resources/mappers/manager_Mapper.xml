@@ -245,16 +245,16 @@
   		values(tbl_salary_seq.nextval,#{empno},#{paymentdate},#{paymentmonth},#{basicpay},#{car},#{meal},#{childcare},
   					#{otherpay},#{national},#{health},#{employment},#{care},#{incometax},#{localtax},#{grossincome},#{deductions},#{adjustedIncome})
   	</insert>
-  	
-  	<select id="salary_update_form" resultType="kr.co.useful.manager.domain.SalaryVO">
-  	select a.serial, empno, paymentdate, paymentmonth,basicpay, car, meal, childcare,
+  	<!-- 급여 수정폼의 내용 select -->
+  	<select id="salary_update_form" resultType="kr.co.useful.manager.domain.SalaryVO" >
+  	select serial, empno, paymentdate, paymentmonth,basicpay, car, meal, childcare,
   				otherpay, national, health, employment, care, incometax, localtax, grossincome, deductions, adjustedIncome, ename, dname, position
   	from tbl_dept dept, 
   		(select sal.serial, sal.empno, sal.paymentdate, sal.paymentmonth,sal.basicpay, sal.car, sal.meal, sal.childcare,
-  				sal.otherpay, sal.national, sal.health, sal.employment, sal.care, sal.incometax, sal.localtax, sal.grossincome, sal.deductions, sal.adjustedIncome, sal.ename, sal.deptno, sal.position
+  				sal.otherpay, sal.national, sal.health, sal.employment, sal.care, sal.incometax, sal.localtax, sal.grossincome, sal.deductions, sal.adjustedIncome, emp.ename, emp.deptno, emp.position
   		from tbl_emp emp,(select * from tbl_salary where serial=#{serial}) sal
   		where emp.empno=sal.empno) selc
-  	where dept.detpno=selc.deptno	
+  	where dept.deptno=selc.deptno	
   
   		
   	
@@ -271,5 +271,15 @@
   		delete from tbl_salary where serial=#{serial}
   	</delete>
   	
+	<insert id="add_Sal_NextMonth">
+        insert into tbl_salary (serial,empno,paymentdate,paymentmonth,basicpay,car,meal,childcare,
+           otherpay,national,health,employment,care,Incometax,localtax,grossincome,deductions,AdjustedIncome)
+           
+         select tbl_salary_seq.nextval,empno,to_char(sysdate, 'YYYYMMDD'),to_char(add_months(paymentmonth,1) , 'YYYYMMDD'),basicpay,car,meal,childcare,
+           otherpay,national,health,employment,care,Incometax,localtax,grossincome,deductions,AdjustedIncome
+           
+           from(select * from tbl_salary where to_char(paymentmonth, 'YYYYMM')=to_char(sysdate,'YYYYMM'))
+     </insert>
+
 	
 </mapper>

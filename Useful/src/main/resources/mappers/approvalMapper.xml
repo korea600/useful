@@ -44,14 +44,23 @@
 			and (receiver=#{vo.receiver} or receiver=0)
 			<include refid="search"/>
 		</if>
+		<!-- 수신부서가 전체부서인것 조회 (사장용) -->
+		<if test="vo.status!=null">
+			<if test="vo.receiver==0">
+				and status=#{vo.status}					
+				and receiver=0
+				<include refid="search"/>
+			</if>
+		</if>
 		order by regdate desc
 	</select>
 	<!-- 우리부서 내에서 결재 진행중인 문서 조회 -->
 	<select id='liststatus' resultType="Approval" >
-		select no, status, writer_name,	receiver_dname, title,regdate
-		from tbl_approval
-		where receiver=#{deptno}
-		and status!=#{status}
+		select no, status, writer_name,	receiver_dname, title,regdate, writer_dname
+		from tbl_approval,
+			(select empno, dname writer_dname, tbl_emp.deptno from tbl_emp, tbl_dept where tbl_emp.deptno=tbl_dept.deptno) tbl
+		where tbl_approval.writer=tbl.empno
+		and status!=#{status} and tbl.deptno=#{deptno}
 		<include refid="search"/>
 		order by regdate desc
 	</select>
@@ -81,8 +90,10 @@
 	</select>
 	<select id='liststatusCount' resultType="int">
 		select count(*)
-		from tbl_approval
-		where receiver=#{deptno}
+		from tbl_approval,
+			(select empno, dname writer_dname from tbl_emp, tbl_dept where tbl_emp.deptno=tbl_dept.deptno) tbl
+		where tbl_approval.writer=tbl.empno
+		and receiver=#{deptno}
 		and status!=#{status}
 		<include refid="search"/>
 	</select>
@@ -95,8 +106,8 @@
 			<if test='cri.searchBy.equals("writer_name")'>
 				and writer_name like '%'||#{cri.keyword}||'%'
 			</if>
-			<if test='cri.searchBy.equals("receiver_name")'>
-				and receiver=#{cri.keyword}
+			<if test='cri.searchBy.equals("receiver_dname")'>
+				and receiver_dname=#{cri.keyword}
 			</if>
 			<if test='cri.searchBy.equals("status")'>
 				and status=#{cri.keyword}
