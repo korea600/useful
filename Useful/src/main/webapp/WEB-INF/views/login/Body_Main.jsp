@@ -36,7 +36,7 @@
                 </tr>
             <c:if test="${LoginUser.position == '사원'}">
 	            <c:if test="${list5.size()==0 }">
-	            	<tr><td rowspan='5' colspan="4" style="text-align: center;">작성한 결재문서가 없습니다.</td></tr>
+	            	<tr><td colspan="4" style="text-align: center;height: 184px;vertical-align: middle;">작성한 결재문서가 없습니다.</td></tr>
 	            </c:if>
 	            <c:if test="${list5.size()!=0 }">
 	            	<c:forEach items="${list5 }" var="my" varStatus="stat">
@@ -57,7 +57,7 @@
               
             <c:if test='${LoginUser.position != "사원" }'>
             	<c:if test="${list4.size()==0 }">
-	            	<tr><td rowspan="5" colspan="4">
+	            	<tr><td colspan="4"  style="text-align: center;height: 184px;vertical-align: middle;">
 	            		결재 대기중인 문서가 없습니다.
 	            	</td></tr>
             	</c:if>
@@ -256,7 +256,7 @@
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">조회수</th>
                 </tr>
            <c:if test="${list7.size()==0 }">
-           		<tr><td colspan="4" style="text-align: center;height: 184px;vertical-align: middle;">게시글이 없습니다.</td></tr>
+           		<tr><td colspan="5" style="text-align: center;height: 184px;vertical-align: middle;">게시글이 없습니다.</td></tr>
            </c:if>
            <c:if test="${list7.size()!=0 }">
            		<c:forEach items="${list7 }" var="s">
@@ -270,7 +270,7 @@
               </c:forEach>
               <c:if test="${list7.size()<5 }">
 	              	<c:forEach begin="${list7.size()}" end="4">
-	              		<tr></tr>
+	              		<tr><td></td><td></td><td></td><td></td><td></td></tr>
 	              	</c:forEach>
 	           </c:if>
            </c:if>
