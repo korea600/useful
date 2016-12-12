@@ -26,7 +26,7 @@
 
 var day = new Date(); 
 day.setDate(day.getDate()-day.getDay()); 
-var currentDay = date.getDay();	// 0=일요일 1=월 .... 6=토
+var currentDay = day.getDay();	// 0=일요일 1=월 .... 6=토
 var dateString = new Array('일', '월', '화', '수', '목', '금', '토');
 
 

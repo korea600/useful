@@ -6,8 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/views/login/Main.jsp" %>
-<%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
+
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 * {font-family: 'Nanum Gothic', serif;}
@@ -216,9 +215,9 @@ function closeCal(y,m,d){
 		
 				<tr>
 					<td bgcolor="#dae6f4"  align="center" width="150px">작성자</td>
-					<td align="center">안선영
-					<input type="hidden" name="empno" value="1003">
-					<input type="hidden" name="booker" value="안선영">
+					<td align="center">${evo.ename }
+					<input type="hidden" name="empno" value="${evo.empno }">
+					<input type="hidden" name="booker" value="${evo.ename }">
 				
 					</td>
 				</tr>

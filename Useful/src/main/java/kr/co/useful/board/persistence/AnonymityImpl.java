@@ -87,4 +87,10 @@ private SqlSession sqlsesson;
 		return sqlsesson.selectOne("anonymity.pass_check", serial);
 	}
 
+	@Override
+	public String save_file_name(int serial) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsesson.selectOne("anonymity.savaFile_download", serial);
+	}
+
 }

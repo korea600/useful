@@ -110,12 +110,12 @@
 				<tr>
 				<td align='center'>수신처</td>
 					<td>
-						<select id='target_select' class='form-control' style="width: 20%" onchange="show_receiver_select()">
+						<select id='target_select' class='form-control-static' style="width: 20%" onchange="show_receiver_select()">
 							<option value='inner'>내부결재</option>
 							<option value='outer'>타부서</option>
 							<option value='all'>전체부서</option>
 						</select>
-						<select name='receiver' class='form-control' style="width:20%;display: none;">
+						<select name='receiver' class='form-control-static' style="width:20%;display: none;">
 							<option value='${LoginUser.deptno}'>
 						</select>
 					</td>

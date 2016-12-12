@@ -27,7 +27,7 @@ public class ShareReplyDAOImpl implements ShareReplyDAO {
 	@Override
 	public void create(ShareReplyVO vo) throws Exception {
 		
-		int t =sqs.insert("ShareTaskReply.plusReply", vo);
+		sqs.insert("ShareTaskReply.plusReply", vo);
 		//if(t==1)return true;
 				//else return false;
 

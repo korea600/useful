@@ -58,4 +58,10 @@ private RecipientDAO redao;
 		return redao.search_Recipient_count_note(cri, mynoteid);
 	}
 
+	@Override
+	public List<RecipientVO> main_list_cout(int mynoteid) throws Exception {
+		// TODO Auto-generated method stub
+		return redao.main_list_cout(mynoteid);
+	}
+
 }

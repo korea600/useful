@@ -178,7 +178,14 @@ public class LoginController {
 		        email.setContent(content);
 		        emailSender.SendEmail(email);
 		        
-		        service.updatepass(empVO.getEmpno(),pass);
+		        String key="cogydnjscogydnjs1";
+				LocalEncrypter enc = new LocalEncrypter(key);
+				
+				String str = enc.aesEncode(pass);
+				
+				vo.setPass(str);
+		        
+		        service.updatepass(empVO.getEmpno(),str);
 				
 		        return "SUCCESS";
 		}else

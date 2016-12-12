@@ -89,6 +89,7 @@
 			</td>
 		</tr>
 		</table>
+		<div align="center">
 		<c:if test="${vo.status eq '반려'}">
 			<c:if test="${vo.writer eq LoginUser.empno}">
 				<input type='button' class='btn btn-default' name='modify' value='수정/삭제'>
@@ -97,7 +98,7 @@
 		<c:if test="${vo.next_approval eq LoginUser.empno}">
 			<input type='button'  class='btn btn-default' name='approval' value='결재/반려'>
 		</c:if>
-			<div align="center">
+			
 			<input type='button'  class='btn btn-default' name='view_comments' value='코멘트 보기' onclick='comment_list()'>
 			<input type='button'  class='btn btn-default' name='cancel' value='뒤로' onclick='history.back()'>
 			</div>

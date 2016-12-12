@@ -33,8 +33,8 @@ private NoticeDAO dao;
 	}
 
 	@Override
-	public void remove(NoticeVO vo) throws Exception { //삭제
-		dao.delete(vo);
+	public void remove(int serial,int empno) throws Exception { //삭제
+		dao.delete(serial,empno);
 		
 	}
 

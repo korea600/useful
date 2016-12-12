@@ -4,7 +4,10 @@ title varchar2(50) not null,
 pass varchar2(30) not null,
 content varchar2(2000) not null,
 regdate date default sysdate,
-viewcnt number default 0
+viewcnt number default 0,
+originalfilename varchar2(2000),
+saveFileName varchar2(2000),
+filesize number
 );
 drop table tbl_anonymity;
 drop sequence tbl_anonymity_seq;
