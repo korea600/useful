@@ -78,10 +78,10 @@ $(document).ready(function(){
 	
 	
 	$("#replyBtn").on("click",function(){
-		     empno:$('[name=empno]').val();
-	           bno:$('[name=bno]').val();
-			 replyer:$('[name=replyer]').val();
-			 replytext:$('[name=replytext]').val();
+		     empno=$('[name=empno]').val();
+	           bno=$('[name=bno]').val();
+			 replyer=$('[name=replyer]').val();
+			 replytext=$('[name=replytext]').val();
 		$.ajax({
 			type:'post',
 			url:'/useful/ShareReply',
@@ -92,10 +92,10 @@ $(document).ready(function(){
 			},
 			data: JSON.stringify({bno:bno, empno:empno, replyer:replyer, replytext:replytext}),
 			success:function(result){
-				alert("등록되었습니다");
 				
-				if(result=='SUCCESS'){
+				if(result=='success'){
 					
+				alert("등록되었습니다");
 					self.location="detail?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&bno="+bno+"";
 					replytext.val("");
 				}

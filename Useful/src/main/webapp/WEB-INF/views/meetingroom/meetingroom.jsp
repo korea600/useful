@@ -119,7 +119,9 @@ var insertWin;
 		</div>
 	</div>
 <div class="form-group">
+  <c:if test="${evo.position!='사원'}">
 <input type="button" onclick="input()" value="등록" >
+</c:if>
 <br>
   <div id="rooms">
    <c:forEach items="${list}" var="MeetingRoomVO" >
@@ -128,9 +130,14 @@ var insertWin;
      <a href="/useful/meetingroom/bookingList?roomno=${MeetingRoomVO.roomno }">
                   <input type="text" class="a${MeetingRoomVO.roomno}" name="roomname" readonly="readonly" value="${MeetingRoomVO.roomname }" style="width:90px;  border:0; cursor:pointer; text-align: center;"></a>
                <p><input type="text" class="a${MeetingRoomVO.roomno}" name="roomno" readonly="readonly"  value="${MeetingRoomVO.roomno}" style="width:90px; border:0; text-align: center;"></p>
+               
+                 <c:if test="${evo.position!='사원'}">
                <p><input type="submit" id="a${MeetingRoomVO.roomno}" class="changeOK" value="확인"></p>
                <p><input type="button" id="b${MeetingRoomVO.roomno}" onclick="change(${MeetingRoomVO.roomno})" value="수정" ></p>
                <p><input type="button" value="삭제" onclick="remove(${MeetingRoomVO.roomno})"></p>
+                 
+                 </c:if>
+
                 <input type="hidden" name="serial" value="${MeetingRoomVO.serial }"> 
      </div>
      </form>

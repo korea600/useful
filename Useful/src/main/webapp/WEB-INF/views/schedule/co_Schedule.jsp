@@ -210,7 +210,7 @@ function changeCal(obj){
 
  function detail(sr){
 	
-	alert(sr);
+	//alert(sr);
 	window.open('detail?serial='+sr,'detail','toolbar=no,location=no,status=no'
 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500,top=100,left=800')
 	
@@ -230,6 +230,8 @@ var insertWin;//자식창
   
  }
  
+ 
+ 
  //날짜를 눌렀을때
  function clickCal(y,m,d){
 		if(m<10) m = '0'+m;
@@ -242,6 +244,7 @@ var insertWin;//자식창
 		var str =y+"/"+m+"/"+d;
 		document.getElementById('ymd').value=str;
 		//alert(str);
+		if('${evo.position}'!='사원')
 		insert();
 			
 	}
@@ -405,6 +408,9 @@ var insertWin;//자식창
 </head>
 <body>
 
+
+
+
 <div id='page-wrapper'>
 	<div class='row'>
 		<div class="col-lg-12">
@@ -415,7 +421,9 @@ var insertWin;//자식창
    <br><br>
       <input type="hidden" id="ymd">
       
-<div class='panel-body'>
+ 
+  <c:if test="${evo.position!='사원'}">
+    <div class='panel-body'>
   <div class='table-responsive'>
    <form action="" method="get" name="co_list" id="co_list">
    <table class='table table-striped table-bordered table-hover'>   
@@ -488,6 +496,8 @@ var insertWin;//자식창
   
   </div>
   </div> 
+ </c:if>     
+
 </div>
    
 
