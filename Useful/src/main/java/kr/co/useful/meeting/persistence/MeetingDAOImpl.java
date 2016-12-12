@@ -1,15 +1,19 @@
 package kr.co.useful.meeting.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.useful.meeting.domain.MeetingRoomVO;
 import kr.co.useful.meeting.domain.MeetingVO;
+import kr.co.useful.meeting.domain.SearchCriteria;
 
 
 @Repository
@@ -83,6 +87,57 @@ public class MeetingDAOImpl implements MeetingDAO {
 	
 		return sqs.selectList("booking.listOfNum", roomno);
 	}
+
+
+	@Override
+	public int totalBookngOK() throws Exception {
+		// TODO Auto-generated method stub
+		return sqs.selectOne("booking.countOKlist");
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return sqs.selectOne("booking.listSearchCount", cri);
+	}
+
+	@Override
+	public List<MeetingVO> bookingOK(SearchCriteria cri, int roomno) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+		map.put("roomno", roomno);
+		map.put("keyword", cri.getKeyword());
+		map.put("searchType",cri.getSearchType());
+		return sqs.selectList("booking.listOfNum2", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	}
+
+	@Override
+	public MeetingVO oneBooking(int serial) throws Exception {
+		
+		return sqs.selectOne("booking.oneBooking", serial);
+	}
+
+	@Override
+	public void deleteBooking(int serial) throws Exception {
+		sqs.delete("booking.delete", serial);
+		
+	}
+
+	@Override
+	public List<MeetingVO> myBooking2(SearchCriteria cri, int empno, String checked) throws Exception {
+		   Map<String, Object> map = new HashMap<>();
+			map.put("empno", empno);
+			map.put("checked", checked);
+			return sqs.selectList("booking.myBooking2", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	}
+
+	@Override
+	public List<MeetingVO> allBooking2(String checked, SearchCriteria cri) throws Exception {
+		   Map<String, Object> map = new HashMap<>();
+			
+			map.put("checked", checked);
+			map.put("searchType",cri.getSearchType());
+			return sqs.selectList("booking.allBooking2", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	}
+
 
 	
 }

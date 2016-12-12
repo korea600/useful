@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>예약 리스트</title>
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -19,15 +19,20 @@
 <script	src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
-<script>
+<style>
+.backslash {
+	background:url(http://cdn.zetawiki.com/png/backslash.png);
+	background-size:100% 100%;
+}
 
+</style>
+
+<script>
 
 
 
 var day = new Date(); 
 day.setDate(day.getDate()-day.getDay()); 
-var currentDay = day.getDay();	// 0=일요일 1=월 .... 6=토
-var dateString = new Array('일', '월', '화', '수', '목', '금', '토');
 
 
 
@@ -43,13 +48,13 @@ var data = '';
 var cal ='';
 var flag =false;
 
-cal+='          <table border="1" cellspacing="0" cellpadding="0">';
+cal+='          <table border="1" cellspacing="0" style="border:1px solid #cccdd4;" align="center" cellpadding="0" width="1000px" height="400px">';
 cal+='             <tr height="80px">';
 cal+='                <td colspan="14" align="center" id="calTitle">'+title+'</td></tr>';
-cal+='              <tr>';
-cal+='              <th align="center" width="80px" scope="col">날짜▼/시간▶</th>';
+cal+='              <tr bgcolor="#e7e7e7">';
+cal+='              <th width="110px" class="backslash" scope="col"><font style="margin-left:50px;">시간(시)</font><br><br><font> 날짜(일)</font>';
         for(var i=9; i<22; i++){
-cal+='              <th>'+i+' - '+(i+1)+'</th>';
+cal+='              <th style="text-align:center">'+i+' - '+(i+1)+'</th>';
         }
 cal+='              </tr>';
       for(var i=0 ; i<7 ; i++) { 
@@ -71,11 +76,11 @@ cal+='              <td class='+j+'></td>';
                    }//for
 cal+=              '</tr>';
 
-               day.setDate(day.getDate()+1); 
+               day.setDate(day.getDate()+1);
          }//for
 
 day.setDate(day.getDate()-7); 
-
+cal+='          <tr><td colspan="14" align="right"><span style="color:red;">■</span>예약완료&nbsp;<span style="color:#f8f986;">■</span>오늘</td></tr>'
 cal+='          </table>';
 
 document.getElementById("calandar").innerHTML = cal;
@@ -92,10 +97,14 @@ dt=new Date();//오늘날짜
 $('#a'+
 dt.getFullYear()+
 (dt.getMonth()+1)+
-dt.getDate()).css('background-color','yellow');
+dt.getDate()).css('background-color','#f8f986');
 
 
 calInsert();
+
+
+
+
 
 
 
@@ -139,7 +148,7 @@ var insertWin;
  function reloadWin2(){
  
  	bookingWin.close();
-    location.href="/useful/meetingroom/myBooking";
+   location.href="/useful/meetingroom/myBooking";
  }
  
  function test(serial){
@@ -197,41 +206,71 @@ var insertWin;
  }
 
  
+ function searchBooking(){
+	 
+	 self.location = 'bookingList?roomno='
+			+ '${integer }'
+			+ '&${pageMaker.makeQuery(1)}'
+			+ '&searchType='
+			+ $("select option:selected").val()
+			+ '&keyword=' + $('#keywordInput').val();
+ }
+
 
 </script>
 </head>
 <body>
-<center>
+
+
+<div id='page-wrapper'>
+	<div class='row'>
+		<div class="col-lg-12">
+			<h1 class="page-header">
+			예약목록
+			</h1>
+		</div>
+	</div>
+
+<div class="form-group" style="text-align:center;">
 <p>
-<input type="button" onclick="week_calandar(-1)" value="◀">
-<input type="button" value="today" onclick="set_day()" /> 
-<input type="button" value="▶" onclick="week_calandar(1)" /> 
+<input type="button"  class="btn btn-default"  onclick="week_calandar(-1)" value="◀">
+<input type="button"  class="btn btn-default" value="today" onclick="set_day()" /> 
+<input type="button" class="btn btn-default"  value="▶" onclick="week_calandar(1)" /> 
 </p>
 
 
-<p id="calandar"></p> 
+<div id="calandar"></div>
+ 
+<p style="margin-top: 20px;"><input type="button"   class="btn btn-default" onclick="reservation(${integer})" value="예약"></p>
 
-<p><input type="button" onclick="reservation(${integer})" value="예약"></p>
+</div>
+
+
 <input type="hidden" name="integer" value="${integer }">
 
-<table border="1" cellspacing="0"  style="width:800px;">
+  <div class='panel-body'>
+  <div class='table-responsive'>
+<table class='table table-striped table-bordered table-hover' >
+
 <tr>
- <td colspan="4">
-    <select id="serchType">
-    <option value="d">날짜</option>
-    <option value="w">예약자</option>
-    </select>
- 
- </td>
+ <td colspan="7" align="right">
+  <select name="searchType"  class='form-control-static'>
+   <option value="no" <c:out value='${cri.searchType == null?"selected":""}'/>>선택</option>
+   <option value="w" <c:out value='${cri.searchType eq "w" ? "selected":""}'/>>작성자</option>
+   <option value="day" <c:out value='${cri.searchType eq "day" ? "selected":""}'/>>날짜</option>
+     </select>
+     
+     
+    <input type="text"  class='form-control-static'  name="keyword" id="keywordInput" value="${cri.keyword }">
+    <input type="button"  class='btn btn-warning' id="searchBtn" value="검색" onclick="searchBooking()">
+  
+   </td>
 </tr>
 <tr>
-<td colspan="4" align="center">예약된 리스트</td>
-</tr>
-<tr>
-<th>회의실</th>
-<th>날짜</th>
-<th>예약시간</th>
-<th>예약자</th>
+<th align="center" style="text-align: center;">회의실</th>
+<th align="center" style="text-align: center;">날짜</th>
+<th align="center" style="text-align: center;">예약시간</th>
+<th align="center" style="text-align: center;">예약자</th>
 </tr>
 
 
@@ -246,13 +285,32 @@ var insertWin;
 
 </c:forEach>
 
+   <tr><td colspan="7" align="center">
+   <ul class="pagination">
 
+							<c:if test="${pageMaker.prev}">
+								<li><a href="bookingList?${pageMaker.startPage - 1}">◀</a></li>
+							</c:if>
 
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+								<li	<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+									<a href="bookingList?page=${idx}&roomno=${integer}">${idx}</a>
+								</li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="bookingList?${pageMaker.endPage +1}">▶</a></li>
+							</c:if>
+
+						</ul>
+    </td>
+    </tr>
 </table>
+</div>
+</div>
 
-
-
-</center>
+</div>
 
 
 	<script>

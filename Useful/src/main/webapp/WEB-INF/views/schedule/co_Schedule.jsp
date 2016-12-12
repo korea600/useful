@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>사내 일정</title>
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 
@@ -133,7 +133,7 @@ function cal(id, newdate) {
 			                				 dateno = '0'+dateNum
 				                            if( monthno<10)
 				                            	monthno = '0' + currentMonth;
-			calendar += '            	 <div id="b'+currentYear+monthno+dateno+'" style="width:180px; height:155px; position:relative; top:20px; "></div></td>';
+			calendar += '            	 <div id="b'+currentYear+monthno+dateno+'" style="overflow-y:auto; width:180px; height:155px; position:relative; top:20px; "></div></td>';
 		}
 		calendar += '			</tr>';
 	}
@@ -309,7 +309,6 @@ var insertWin;//자식창
 	                    		 
 	                    		   '<div onclick="detail('+key.serial+')" style="height:20px; top:0;' 
 	                    		   +'cursor:pointer; color:#fff; background-color:#4f6bd4;">'
-	                    		   +key.begintime+'시 '
 	                    		   +key.title+'</div><div style=" width:180px; height:5px;"></div>'); 
 	 	     			   //alert(begin);
 	 	     			
@@ -429,7 +428,7 @@ var insertWin;//자식창
    <table class='table table-striped table-bordered table-hover'>   
    <tr><td colspan="7" align="right">
        <select name="searchType">
-   <option value="no">--</option>
+   <option value="no">선택</option>
    <option value="s">글번호</option>
    <option value="t">제목</option>
    <option value="b">시작날짜</option>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.useful.meeting.domain.MeetingRoomVO;
 import kr.co.useful.meeting.domain.MeetingVO;
+import kr.co.useful.meeting.domain.SearchCriteria;
 import kr.co.useful.meeting.persistence.MeetingDAO;
 
 @Service
@@ -72,14 +73,56 @@ public class MeetingServiceImpl implements MeetingService {
 
 	@Override
 	public List<MeetingVO> myBooking(int empno) throws Exception {
-		// TODO Auto-generated method stub
+	
 		return dao.myBooking(empno);
 	}
 
 	@Override
 	public List<MeetingVO> bookingEnd(int roomno) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return dao.bookingEnd(roomno);
+	}
+
+	@Override
+	public List<MeetingVO> bookingOK(SearchCriteria cri, int roomno) throws Exception {
+		
+		return dao.bookingOK(cri, roomno);
+	}
+
+	@Override
+	public int totalBookngOK() throws Exception {
+		
+		return dao.totalBookngOK();
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listSearchCount(cri);
+	}
+
+	@Override
+	public MeetingVO oneBooking(int serial) throws Exception {
+		
+		return dao.oneBooking(serial);
+	}
+
+	@Override
+	public void deletBooking(int serial) throws Exception {
+		dao.deleteBooking(serial);
+		
+	}
+
+	@Override
+	public List<MeetingVO> myBooking2(SearchCriteria cri, int empno, String checked) throws Exception {
+		
+		return dao.myBooking2(cri, empno, checked);
+	}
+
+	@Override
+	public List<MeetingVO> allBooking2(String checked, SearchCriteria cri) throws Exception {
+		
+		return dao.allBooking2(checked, cri);
 	}
 
 }

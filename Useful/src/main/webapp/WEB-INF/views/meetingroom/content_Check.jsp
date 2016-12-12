@@ -5,32 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회의실 등록</title>
+<title>회의 내용</title>
 
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 	
 <script>
-
-
-function create(){
-	alert('클릭');
-	 $.ajax({
-		 url:'/useful/meetingroom/makeroom',
-		 type:'post',
-		 data:{
-			 roomname:$('[name=roomname]').val(),
-			 roomno:$('[name=roomno]').val(),
-
-		 },
-		 success:function(){
-			 alert("등록되었습니다.");
-			 opener.reloadWin();
-			
-		 }    		 
-	 });
- 	 
-}
 
 
  function clean(){
@@ -44,16 +24,14 @@ function create(){
 <body>
 
 <center>
-회의실 등록
-  <form id="booking" action="">
+내용
     <table border="1" cellspacing="0">
-      <tr><td>이름</td><td><input type="text" name="roomname"></td></tr>
-      <tr><td>장소</td><td><input type="text" name="roomno" >호</td></tr>    
+      <tr><td>${content }</td></tr>
+         
     </table>    
 
-  <input type="button" value="등록" onclick="create()">
   <input type="button" value="닫기" onclick="clean()"> 
-    </form>
+    
 </center>
 
 </body>

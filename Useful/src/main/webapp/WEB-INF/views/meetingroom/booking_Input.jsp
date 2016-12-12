@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>예약하기</title>
 
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -27,16 +27,6 @@
 
 </style>
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!-- Metis Menu Plugin JavaScript -->
-<script src="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.js"></script>
-<!-- DataTables JavaScript -->
-<script	src="${pageContext.request.contextPath}/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script	src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
-<!-- Custom Theme JavaScript -->
-<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 <script>
 
 
@@ -159,6 +149,7 @@ function closeCal(y,m,d){
       */
 
    function reservationOK(){
+    	  
     	   alert('클릭'); 
     	 $.ajax({
     		 url:'/useful/meetingroom/askBooking',
@@ -173,10 +164,10 @@ function closeCal(y,m,d){
     			 content:$('[name=content]').val()
     		 },
     		 success:function(){
+    			 
     			 alert("등록되었습니다.");
     			 opener.reloadWin2();
-    		
-    			
+   
     		 }    		 
     	 });
 	   	 
@@ -255,8 +246,7 @@ function closeCal(y,m,d){
 			<tr>
 				
 					<td colspan="2" style="padding:0; width:500px;">
-					<textarea name="content" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;">
-					</textarea></td>
+					<textarea name="content" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;"></textarea></td>
 				</tr>
 			</table>
 			<input type="button"  value="등록"  onClick="reservationOK()"> 

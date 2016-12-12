@@ -26,6 +26,9 @@
      where roomno=#{roomno}
     
     </delete>
+    
+    
+    
    
 
 </mapper>

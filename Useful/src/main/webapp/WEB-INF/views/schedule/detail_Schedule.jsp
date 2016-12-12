@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>일정상세내용</title>
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 * {font-family: 'Nanum Gothic', serif;}

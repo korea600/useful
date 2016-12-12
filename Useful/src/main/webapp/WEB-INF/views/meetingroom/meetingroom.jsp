@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회의실 예약</title>
 <%@include file="/WEB-INF/views/login/Main.jsp" %>
 <%@include file="/WEB-INF/views/login/Sidebar.jsp" %>
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -30,15 +30,11 @@ html{
 #rooms {
    margin:0 auto;
    text-align: center;
-   background-color: orange;
-    border: 2px solid #000;
+ 
     width: 100%;
     
 }
 
-form{
-  background-color: yellow;
-}
 
 .room {
   float:left;
@@ -75,8 +71,9 @@ var insertWin;
  
  //삭제를 눌렀을 경우 --->각 폼만 삭제
  function remove(roomno){
-      alert(roomno);
+      //alert(roomno);
       self.location="/useful/meetingroom/removeroom?roomno="+roomno;
+      alert('삭제되었습니다.');
 	}
 
 
@@ -89,7 +86,7 @@ var insertWin;
 
  //수정버튼 눌렀을 경우 
 		function change(num){
-		alert('change');
+		//alert('change');
 		  $('#a'+num).show();
 		  $('#b'+num).hide();
 		  
@@ -115,26 +112,24 @@ var insertWin;
 <div id='page-wrapper'>
 	<div class='row'>
 		<div class="col-lg-12">
-			<h1 class="page-header">사내 일정	</h1>
+			<h1 class="page-header">회의실 목록</h1>
 		</div>
 	</div>
+
 <div class="form-group">
-  <c:if test="${evo.position!='사원'}">
-<input type="button" onclick="input()" value="등록" >
-</c:if>
-<br>
-  <div id="rooms">
    <c:forEach items="${list}" var="MeetingRoomVO" >
      <form id="c${MeetingRoomVO.roomno}" action="/useful/meetingroom/roomchange" method="post" >
-     <div class="room">
+     <div class="panel panel-info" style="width: 200px; text-align:center; float: left; margin-top:20px; margin-right: 20px;">
+     <div class="panel-heading" style="text-align:center;">
      <a href="/useful/meetingroom/bookingList?roomno=${MeetingRoomVO.roomno }">
                   <input type="text" class="a${MeetingRoomVO.roomno}" name="roomname" readonly="readonly" value="${MeetingRoomVO.roomname }" style="width:90px;  border:0; cursor:pointer; text-align: center;"></a>
+                  </div>
                <p><input type="text" class="a${MeetingRoomVO.roomno}" name="roomno" readonly="readonly"  value="${MeetingRoomVO.roomno}" style="width:90px; border:0; text-align: center;"></p>
                
                  <c:if test="${evo.position!='사원'}">
-               <p><input type="submit" id="a${MeetingRoomVO.roomno}" class="changeOK" value="확인"></p>
-               <p><input type="button" id="b${MeetingRoomVO.roomno}" onclick="change(${MeetingRoomVO.roomno})" value="수정" ></p>
-               <p><input type="button" value="삭제" onclick="remove(${MeetingRoomVO.roomno})"></p>
+               <p><input type="submit" id="a${MeetingRoomVO.roomno}" class="btn btn-info" class="changeOK" value="확인"></p>
+               <p><input type="button" id="b${MeetingRoomVO.roomno}" class="btn btn-info" onclick="change(${MeetingRoomVO.roomno})" value="수정" ></p>
+               <p><input type="button" value="삭제" class="btn btn-danger" onclick="remove(${MeetingRoomVO.roomno})"></p>
                  
                  </c:if>
 
@@ -142,8 +137,10 @@ var insertWin;
      </div>
      </form>
    </c:forEach>
+   <c:if test="${evo.position!='사원'}">
+     <input type="button" onclick="input()" class="btn btn-default" value="more+" >
+   </c:if>
   </div>
-</div>
 </div>
 
 

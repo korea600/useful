@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>예약관리목록</title>
 <%@include file="../login/Main.jsp" %>
 <%@include file="../login/Sidebar.jsp" %>
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -20,9 +20,7 @@
 <!-- Custom Theme JavaScript -->
 <script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 <style>
-th{text-align: center}
-td{text-align: center}
-
+th{text-align: center;}
 
 
 </style>
@@ -35,6 +33,24 @@ function checkYes(serial){
 function checkNo(serial){
 	location.href="/useful/meetingroom/checkNo?serial="+serial;
 }
+
+function contentCk(serial){
+	contentWin=window.open('content_Check?serial='+serial,'input','toolbar=no,location=no,status=no'
+ 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500');
+	
+	
+}
+
+function changeType(){
+	  var checked=$("[name=searchType]").val();
+	  if(checked=='')alert('검색항목을 선택하세요');
+	  else{
+		  
+		  location.href="/useful/meetingroom/bookingHistory?checked="+checked;
+	  
+	  }
+}
+
 </script>
 
 
@@ -47,17 +63,20 @@ function checkNo(serial){
 			<h1 class="page-header">회의실 예약관리</h1>
 		</div>
 	</div>
-	
-  <form>
-    <table border="1" cellspacing="0">
+  <div class='panel-body'>
+  <div class='table-responsive'>	
+  <div class="form-group" style="text-align:center;">
+      <form>
+      <table class='table table-striped table-bordered table-hover'  border="1" cellspacing="0">
     <tr>
-   <td> 
-       <select name="searchType">
-         <option value="n">--</option>
-         <option value="o">승인</option>
-         <option value="w">대기</option>
-         <option value="no">거절</option>
+   <td colspan="7" align="right"> 
+       <select name="searchType" class='form-control-static' style="width:80px;">
+         <option value="">선택</option>
+         <option value="승인">승인</option>
+         <option value="대기">대기</option>
+         <option value="거절">거절</option>
        </select>
+        <input type="button" value="검색" id="searchBtn"  class='btn btn-warning'  onclick="changeType()">
     </td>
     </tr>
       <tr>
@@ -65,7 +84,7 @@ function checkNo(serial){
       <th>회의실</th>
       <th>작성자</th>
       <th>날짜</th>
-      <th><a href="">대여시간</a></th>
+      <th>대여시간</th>
       <th>상태</th>
       <th>확인</th>
       </tr>
@@ -74,17 +93,35 @@ function checkNo(serial){
       <tr>
       <td>${MeetingVO.serial}<input type="hidden" name="content" value="${MeetingVO.content }"></td>
       <td>${MeetingVO.roomno}</td>
-      <td><a href="">${MeetingVO.booker}(${MeetingVO.empno })</a></td>
+      <td onclick="contentCk(${MeetingVO.serial})"><font style="text-decoration: underline; color:blue; cursor:pointer;">${MeetingVO.booker}</font>(${MeetingVO.empno })</td>
       <td>${MeetingVO.beginday}</td>
       <td>${MeetingVO.begin}~${MeetingVO.end }시</td>
       <td>${MeetingVO.checked }</td>
-      <td><input type="button" id="a${MeetingVO.serial }" onclick="checkYes(${MeetingVO.serial})" value="승인"><input type="button" id="b${MeetingVO.serial }" onclick=" checkNo(${MeetingVO.serial})"  value="승인취소"></td>    
+      <td>
+      
+      <c:if test="${MeetingVO.checked =='대기' }">
+      <input type="button" id="a${MeetingVO.serial }" onclick="checkYes(${MeetingVO.serial})" class='btn btn-info' value="승인">
+      <input type="button" value="거절" onclick="checkNo(${MeetingVO.serial})" class='btn btn-danger' >
+      
+      </c:if>
+       <c:if test="${MeetingVO.checked=='거절' }">
+       <input type="button" id="a${MeetingVO.serial }" onclick="checkYes(${MeetingVO.serial})" class='btn btn-info' value="승인">
+       </c:if>
+       
+       <c:if test="${MeetingVO.checked =='승인' }">
+      <input type="button" id="b${MeetingVO.serial }" onclick=" checkNo(${MeetingVO.serial})" class='btn btn-danger' value="승인취소">
+      </c:if>
+      </td>    
+     
       </tr>
       </c:forEach>
+      
+      
     </table>
   </form>
-
-
+</div>
+</div>
+</div>
 </div>
 
 </body>

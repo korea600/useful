@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>업무공유게시판</title>
 <%@include file="../login/Main.jsp" %>
 <%@include file="../login/Sidebar.jsp" %>
 
@@ -98,6 +98,7 @@ td{text-align: center}
 						</table>
                                                               <input type="hidden" name="deptno" value="${LoginUser.empno}" >
 	                                                      <input type="hidden" name="prevbno" value="${prevbno.bno }">
+					
 					</div>
 				</div>
 			</div>

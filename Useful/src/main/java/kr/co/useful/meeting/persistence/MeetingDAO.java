@@ -4,6 +4,8 @@ import java.util.List;
 
 import kr.co.useful.meeting.domain.MeetingRoomVO;
 import kr.co.useful.meeting.domain.MeetingVO;
+import kr.co.useful.meeting.domain.SearchCriteria;
+
 
 
 public interface MeetingDAO {
@@ -35,4 +37,23 @@ public interface MeetingDAO {
 		public List<MeetingVO> myBooking(int empno)throws Exception;
 	//다 볼 수 있는 리스트 : 예약이 다 된 것
 		public List<MeetingVO> bookingEnd(int roomno)throws Exception;
+	//하나보기
+		public MeetingVO oneBooking(int serial)throws Exception;
+	//삭제
+		public void deleteBooking(int serial)throws Exception;
+		
+	// 다 볼 수 있는 리스트
+		public List<MeetingVO> bookingOK(SearchCriteria cri, int roomno) throws Exception;
+		
+	    //-전체리스트 수
+	    public int totalBookngOK() throws Exception;	
+		
+	    //검색리스트 수
+	    public int listSearchCount(SearchCriteria cri)throws Exception;
+
+		
+		public List<MeetingVO> myBooking2(SearchCriteria cri, int empno, String checked) throws Exception;
+		
+		// 관리자 볼 수 있는 리스트
+		public List<MeetingVO> allBooking2(String checked, SearchCriteria cri) throws Exception;
 }
