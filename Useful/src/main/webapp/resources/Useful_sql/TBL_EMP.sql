@@ -44,7 +44,7 @@ select e.empno,d.dname,e.ename,c.login,c.logout,c.checked
 		 where e.empno = c.empno and e.deptno = d.deptno 
 		 order by empno;
 
-select * from tbl_commute order by login;
+delete from tbl_notice where empno='0';
 
 select * from tbl_commute where empno in(select empno from tbl_emp where empno='1001')  and to_char(login, 'YYYYMMDD')= '20161206'
   	order by empno;
