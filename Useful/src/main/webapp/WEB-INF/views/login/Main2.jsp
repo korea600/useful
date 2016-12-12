@@ -227,7 +227,7 @@
                                     <a href="/useful/meetingroom/myBooking">예약내역</a>
                                 </li>
                                 <li>
-                                    <a href="/useful/meetingroom/bookingHistory" class='link-control-manageronly'>예약관리</a>
+                                    <a href="/useful/meetingroom/bookingHistory" class='link-control-managerbest'>예약관리</a>
                                 </li>
                                 
                                     </ul>
@@ -273,6 +273,8 @@
 		$(document).ready(function(){
 			var deptno=${LoginUser.deptno};
 			var position='${LoginUser.position}';
+			var empno=${LoginUser.empno};
+			
 			$('#commute_in').on("click",function(){
 				
 				$.ajax({
@@ -331,6 +333,12 @@
 				if(deptno!=10){
 					event.preventDefault();
 					alert('인사부 직원만 접근이 가능합니다.');
+				}
+			});
+			$('.link-control-managerbest').click(function(){
+				if(empno!=1001){
+					event.preventDefault();
+					alert('인사부 부장만 접근이 가능합니다.');
 				}
 			});
 		});
