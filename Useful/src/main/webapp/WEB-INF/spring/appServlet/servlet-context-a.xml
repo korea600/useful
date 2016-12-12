@@ -9,11 +9,27 @@
 
 	<!-- Interceptors -->
 	<beans:bean id='meetingInterceptor' class="kr.co.useful.meeting.interceptor.MeetingInterceptor"/>
+	<beans:bean id='meetingManagerInterceptor' class="kr.co.useful.meeting.interceptor.MeetingManagerInterceptor"/>
 	<beans:bean id='scheduleInterceptor' class="kr.co.useful.schedule.interceptor.ScheduleInterceptor"/>
 	<beans:bean id='sharetaskInterceptor' class="kr.co.useful.sharetask.interceptor.SharetaskInterceptor"/>
 	<interceptors>
 		<interceptor>
-			<mapping path="/meetingroom/**/*"/>
+			<mapping path="/meetingroom/bookingHistory"/>
+			<beans:ref bean="meetingManagerInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/meetingroom/meetingroom"/>
+			<mapping path="/meetingroom/myBooking"/>
+			<mapping path="/meetingroom/askBooking"/>
+			<mapping path="/meetingroom/room_Input"/>
+			<mapping path="/meetingroom/booking_Input"/>
+			<mapping path="/meetingroom/roomchange"/>
+			<mapping path="/meetingroom/removeroom"/>
+			<mapping path="/meetingroom/makeroom"/>
+			<mapping path="/meetingroom/bookingList"/>
+			<mapping path="/meetingroom/checkYes"/>
+			<mapping path="/meetingroom/checkNo"/>
+			<mapping path="/meeting/**/*"/>
 			<beans:ref bean="meetingInterceptor"/>
 		</interceptor>
 		<interceptor>
