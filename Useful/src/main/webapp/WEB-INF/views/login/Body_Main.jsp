@@ -138,7 +138,7 @@
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">조회수</th>
                 </tr>
            <c:if test="${notice.size()==0 }">
-           	<tr><td colspan="4" style="text-align: center;height: 184px;vertical-align: middle;">공지글이 없습니다.</td></tr>
+           	<tr><td colspan="5" style="text-align: center;height: 184px;vertical-align: middle;">공지글이 없습니다.</td></tr>
            </c:if>
            <c:if test="${notice.size()!=0 }">
             <c:forEach items="${notice}" var="n" varStatus="stat">
@@ -215,7 +215,7 @@
                   <th style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">조회수</th>
                 </tr>
 			<c:if test="${board.size()==0 }">
-				<tr><td colspan="4" style="text-align: center;height: 184px;vertical-align: middle;">게시글이 없습니다.</td></tr>
+				<tr><td colspan="5" style="text-align: center;height: 184px;vertical-align: middle;">게시글이 없습니다.</td></tr>
 			</c:if>           
 			<c:if test="${board.size()!=0 }">
 				<c:forEach items="${board }" var="b">
