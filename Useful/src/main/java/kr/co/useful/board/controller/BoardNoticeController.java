@@ -119,10 +119,16 @@ public class BoardNoticeController {
 	}
 
 	@RequestMapping("deletePage") 
-	public String deletePage(NoticeVO vo,HttpSession httpSession)throws Exception{
+	public String deletePage(int serial,HttpSession httpSession,String originalfileName,HttpServletRequest request)throws Exception{
 		int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
+		NoticeVO vo=service.read(serial);
+		String savafilename=vo.getSaveFileName();
+		File savafile=new File(PathMaker.getUploadPath(request)+"/"+savafilename);
+		File savafile2=new File(PathMaker.getRealPath(request)+"/"+savafilename);
+		if(savafile!=null && savafile.exists()) savafile.delete();
+		if(savafile2!=null && savafile2.exists()) savafile2.delete();
 		vo.setEmpno(empno);
-		service.remove(vo);
+		service.remove(serial,empno);
 		return "redirect:/board/notice/listPage";
 	}
 

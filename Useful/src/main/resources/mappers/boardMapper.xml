@@ -33,7 +33,11 @@ update tbl_board,tbl_emp set title=#{title},content=#{content} where serial=#{se
 </update> -->
 
 <update id="update">
-update tbl_board set title=#{title},content=#{content} where serial=#{serial} and empno=#{empno}
+update tbl_board set title=#{title},content=#{content}
+<if test="originalfileName!=null">
+,originalfileName=${originalfileName}
+</if>
+ where serial=#{serial} and empno=#{empno}
 </update>
 
 <delete id="delete">

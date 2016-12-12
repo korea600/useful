@@ -10,7 +10,7 @@ public interface NoticeDAO {
 public void create(NoticeVO vo)throws Exception;
 public NoticeVO read(int serial)throws Exception;
 public void update(NoticeVO vo)throws Exception;
-public void delete(NoticeVO vo)throws Exception;
+public void delete(int serial,int empno)throws Exception;
 public List<NoticeVO> listAll()throws Exception;
 public int listcount()throws Exception;
 public List<NoticeVO> listSearch(SearchCriteria cri)throws Exception;

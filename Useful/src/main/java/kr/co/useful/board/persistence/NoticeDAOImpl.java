@@ -36,8 +36,11 @@ private SqlSession sqlsession;
 	}
 
 	@Override
-	public void delete(NoticeVO vo) throws Exception {
-		sqlsession.delete("notice.delete", vo);
+	public void delete(int serial,int empno) throws Exception {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("serial", serial);
+		map.put("empno", empno);
+		sqlsession.delete("notice.delete", map);
 
 	}
 
