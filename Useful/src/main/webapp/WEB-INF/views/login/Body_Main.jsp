@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <!-- 
+	Body_Main.jsp 
+	작성자 : 채효원
+	작성일자 : 2016-12-10
+ -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -22,7 +27,7 @@
 
               <c:if test='${LoginUser.position != "사원" }'>
               
-              <small><a href="/useful/approval/listmyturn"><font size="2">+ MORE</font></a></small> 
+              <span style="float: right;"><small><a href="/useful/approval/listmyturn"><font size="2">+ MORE</font></a></small></span> 
               </c:if></h3>
               </div>
 			<table class="table table-bordered" style="width: 500px;">

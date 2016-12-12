@@ -2,11 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <!-- 
+	Mypage.jsp 
+	작성자 : 채효원
+	작성일자 : 2016-12-10
+ -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>개인정보수정</title>
 <%@include file="/WEB-INF/views/manager/Main.jsp" %>
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
+ <script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>  
+ <script type="text/javascript" 
+	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	function InfoSave(){
 		if($.trim($('#pass').val()) == ""){
@@ -188,7 +200,7 @@ th {
 						<tr>  
 							<th style="text-align: center;">주소      </th>
 							<td>
-								<input id="address" name="address" class="text" style="width:100%;" type="text" maxlength="100" value="${vo.address }"/>
+								<input id="address" name="address" class="text" style="width:50%;" type="text" maxlength="100" value="${vo.address }" />
 							</td>
 						</tr>
 					<tr>
