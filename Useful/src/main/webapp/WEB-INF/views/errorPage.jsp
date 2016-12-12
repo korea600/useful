@@ -16,12 +16,9 @@
 </script>
 </head>
 <body>
-<h1>오류가 발생하여 로그인 페이지로 이동합니다. ㅠㅠ</h1>
-	<h3>${exception.getMessage()}</h3>
-	<ul type="square">
-		<c:forEach items="${exception.getStackTrace()}" var="i">
-			<li>${i}</li>
-		</c:forEach>
-	</ul>
+<div style="margin-top:10%; width:100%;height:100%;text-align: center;vertical-align: middle;">
+<img src="${pageContext.request.contextPath}/resources/error.gif"><br>
+<h2>오류가 발생하여 로그인 페이지로 이동합니다. ㅠㅠ</h2>
+</div>
 </body>
 </html>
