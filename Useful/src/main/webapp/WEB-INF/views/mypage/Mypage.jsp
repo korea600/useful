@@ -168,16 +168,14 @@ th {
 							</td>
 						</tr>  
 						<tr>  
-							<th style="text-align: center;">부서번호</th>
+							<th style="text-align: center;">부서명</th>
 							<td>
 								<select id="deptno" name="deptno" class="select" style="width:200px;">
-									<option value="">-- 선택 --</option>
-										<option value="0">0</option>									
-										<option value="10">10</option>
-										<option value="20">20</option>
-										<option value="30">30</option>
-										<option value="40">40</option>
-										
+										<option value="0"></option>	
+										<option value="10">잘했조</option>									
+										<option value="20">보여조</option>
+										<option value="30">강조</option>
+										<option value="40">삼삼오오조</option>		
 								</select>
 							</td>
 						</tr> 
@@ -185,8 +183,6 @@ th {
 							<th style="text-align: center;">직위(직급)        </th>
 							<td>
 								<select id="position" name="position" class="select" style="width:200px;">
-									<option value="">-- 선택 --</option>
-									
 										<option value="사장">사장</option>
 									
 										<option value="부장">부장</option>
@@ -220,7 +216,6 @@ th {
 					<tr>
 						<th style="text-align: center;">은행 </th>
 						<td><select id="bank" name="bank" class="select" style="width:200px;">
-								<option value="">--선택--</option>
 								<option value="신한은행">신한</option>
 								<option value="우리은행">우리</option>
 								<option value="국민은행">국민</option>
