@@ -32,7 +32,7 @@
 			<td>${print.grossincome }원</td>
 			<td>${print.deductions }원</td>
 			<td>${print.adjustedIncome }원</td>
-			<td><button id="btn_delete" class="btn btn-default" onclick="call_Update('${print.serial}')">수정</button></td>
+			<td><button id="btn_Update" class="btn btn-default" onclick="call_Update('${print.serial}')">수정</button></td>
 			<td><button id="btn_delete" class="btn btn-default" onclick="call_Delete('${print.serial}')">삭제</button></td>
 		</tr>
 	</c:forEach>

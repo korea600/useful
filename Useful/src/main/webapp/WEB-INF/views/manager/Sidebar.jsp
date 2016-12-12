@@ -41,7 +41,9 @@
 </style>
 </head>
 <body>
-  <div id="wrapper">
+
+           
+    <div id="wrapper">
       <!-- 왼쪽 사이드바 쪽  -->
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -50,14 +52,14 @@
                             <div class="input-group custom-search-form">
                                 <div>
                            <div>
-                              <center><span><i class="fa fa-user fa-fw"></i>[${LoginUser.position }] ${LoginUser.ename}님 안녕하세요~!!</span></center> 
-                              <p align="center">[${LoginUser.dname } ${LoginUser.position }]</p>	
+                              <center><span><i class="fa fa-user fa-fw"></i>[${LoginUser.dname } ${LoginUser.position }] ${LoginUser.ename}님  <br>로그인을 환영합니다.</span></center> 
+                          	 			
                            </div>
                            <p></p>
                            <div>
                            <center>
                            <span>
-                              <button type="button" id="note">  <i class="fa fa-envelope fa-fw"></i>메일함</button>
+                              <button type="button" id="note" >  <i class="fa fa-envelope fa-fw"></i>메일함</button>
                               <button type="button" id="commute_in"><i class="fa fa-sort-up fa-fw"></i>출근</button>
                               <button type="button" id="commute_out"><i class="fa fa-sort-down fa-fw"></i>퇴근</button>
                            </span>
@@ -76,7 +78,7 @@
                             <a href="index.html"><i class="fa fa-file-text fa-fw"></i> 전자결재 <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/useful/approval/form">기안하기</a>
+                                    <a href="/useful/approval/form" class='link-control-cannotwrite'>기안하기</a>
                                 </li>
                                 <li>
                                     <a href="/useful/approval/liststatus">결재진행</a>
@@ -85,10 +87,10 @@
                                    <a href="/useful/approval/listdept">결재완료(수신)</a>
                                 </li>
                                 <li>
-                                   <a href="/useful/approval/listmine">내 기안문서</a>
+                                   <a href="/useful/approval/listmine" class='link-control-cannotread'>내 기안문서</a>
                                 </li>
                                 <li>
-                                   <a href="/useful/approval/listmyturn">내 결재문서</a>
+                                   <a href="/useful/approval/listmyturn" class='link-control-cannotsign'>내 결재문서</a>
                                 </li>
                             </ul>
                         </li>
@@ -96,27 +98,27 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                   <a href="/useful/manager/employee_List">사원정보관리</a>
+                                   <a href="/useful/manager/employee_List" class='link-control-manageronly'>사원정보관리</a>
                                 </li>
                                 <li>
                                    <a href="#">근태관리<span class="fa arrow"></span></a>
                                    <ul class="nav nav-third-level">
                                    	 	<li>
-                                  			 <a href="/useful/manager/commute_Employee">사원별근태현황</a>
+                                  			 <a href="/useful/manager/commute_Employee" class='link-control-manageronly'>사원별근태현황</a>
                               			</li>
                                    	 	<li>
-                                  			 <a href="/useful/manager/commute_Dept">부서별근태집계</a>
+                                  			 <a href="/useful/manager/commute_Dept" class='link-control-manageronly'>부서별근태집계</a>
                               			</li>
                                    	 	<li>
-                                  			 <a href="/useful/manager/commute_Monthly">월별근태현황</a>
+                                  			 <a href="/useful/manager/commute_Monthly" class='link-control-manageronly'>월별근태현황</a>
                               			</li>
                                    </ul>
                                 </li>
                                 <li>
-                                    <a href="/useful/manager/salary_List">급여관리</a>
+                                    <a href="/useful/manager/salary_List" class='link-control-manageronly'>급여관리</a>
                                 </li>
                                 <li>
-                                   <a href="/useful/manager/leave_List">연차관리</a>
+                                   <a href="/useful/manager/leave_List" class='link-control-manageronly'>연차관리</a>
                                 </li>
                                 
                             </ul>
@@ -153,7 +155,10 @@
                                     <a href="/useful/meetingroom/meetingroom">예약하기</a>
                                 </li>
                                 <li>
-                                    <a href="#">예약내역</a>
+                                    <a href="/useful/meetingroom/myBooking">예약내역</a>
+                                </li>
+                                <li>
+                                    <a href="/useful/meetingroom/bookingHistory">예약관리</a>
                                 </li>
                                 
                                     </ul>
@@ -172,9 +177,9 @@
             <!-- /.navbar-static-side -->
         </nav>
             </div>
+
     
     <!-- /#wrapper -->
-
     <!-- jQuery -->
 
     <!-- Bootstrap Core JavaScript -->

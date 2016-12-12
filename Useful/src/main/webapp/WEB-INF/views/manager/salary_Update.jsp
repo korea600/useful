@@ -1,11 +1,26 @@
+<%@page import="kr.co.useful.manager.domain.SalaryVO"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%SimpleDateFormat df = new SimpleDateFormat("yyyy, MM-1, dd, hh, mm, ss");
+	SalaryVO vo = (SalaryVO)request.getAttribute("salary");
+		String paydate = "0";
+		String paymonth = "0";
+	if(vo!=null){
+		if(vo.getPaymentdate()!=null){
+			paydate = df.format(vo.getPaymentdate());
+		}
+		if(vo.getPaymentmonth()!=null){
+			paymonth = df.format(vo.getPaymentmonth());
+		}
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>급여등록</title>
+<title>급여수정</title>
  <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" />
  <script type="text/javascript"
@@ -18,11 +33,14 @@
 $(function(){	
 	var serial=${salary.serial}
 	var empno=${salary.empno}
-	var paymentmonth=${salary.paymentmonth};
+	var paymentdate=new Date(<%=paydate %>)
+	var paymentmonth=new Date(<%=paymonth %>)
 	
-	var pay_year =paymentmonth.substring(0,4);
-	var pay_month =paymentmonth.substring(5,7);
-	var paymentdate =${salary.paymentdate}
+//	var pay_year =paymentmonth.substring(0,4);
+//	var pay_month =paymentmonth.substring(5,7);
+	var pay_year =paymentmonth.getFullYear();
+	var pay_month =paymentmonth.getMonth()+1;
+//	var paymentdate =${salary.paymentdate}
 	var basicpay=${salary.basicpay}
 	var car=${salary.car}
 	var meal=${salary.meal}
@@ -38,11 +56,14 @@ $(function(){
 	var grossincome=${salary.grossincome}
 	var deductions=${salary.deductions}
 	var adjustedIncome=${salary.adjustedIncome}
-	alert(pay_month);
 	
 		//$("#paymentdate").val(paymentdate);
 		$("#pay_year").val(pay_year).prop("selected", true);
-		$("#pay_month").val(pay_month).prop("selected", true);
+		if(pay_month<10){
+			$("#pay_month").val("0"+pay_month).prop("selected", true);
+		}else{
+			$("#pay_month").val(pay_month).prop("selected", true);
+		}
 	
 		$("#basicpay").val(basicpay);
 		$("#car").val(car);
@@ -72,8 +93,8 @@ $(function(){
 		});
 		$("#btn_insert").click(function(){
 			
-			var paymentmonth = new Date();
-			paymentmonth.setFullYear($("#pay_year option:selected").val(),$("#pay_month option:selected").val()-1,01)
+			var paymentmonth_in = new Date();
+			paymentmonth_in.setFullYear($("#pay_year option:selected").val(),$("#pay_month option:selected").val()-1,01)
 			 $.ajax({
 				  type: 'POST',
 				  url: '/useful/manager/salary_Update',
@@ -87,7 +108,7 @@ $(function(){
 				  		empno:empno,
 					 	basicpay: $("#basicpay").val(),
 					  	paymentdate:$("#paymentdate").val(),
-					 	paymentmonth:paymentmonth,
+					 	paymentmonth:paymentmonth_in,
 						basic: $("#basicpay").val(),
 						car : $("#car").val(),
 						meal: $("#meal").val(),
@@ -103,14 +124,11 @@ $(function(){
 				  		deductions:$("#deductions").text(),
 				  		adjustedIncome:$("#adjustedIncome").text()
 					}),
-				  success: function(result){
-					  location.href="/useful/manager/salary_List";
+				  success: function(){
 					  alert('수정되었습니다');
-					  },
-				error:function(request,status,error){
-				    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				    alert('이미 등록된 정보가 존재 합니다.')
-				}
+					  location.href="/useful/manager/salary_List";
+					  }
+			
 				}); 
 		});
 
@@ -208,7 +226,7 @@ function calc(){
 	<div id="page-wrapper">
 	        <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">급여등록</h1>
+                    <h1 class="page-header">급여수정</h1>
                 </div>
             </div>
 	<p>※사원정보</p>

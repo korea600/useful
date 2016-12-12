@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,23 +87,22 @@ $(function(){
  	function call_Delete(serial){
  		if(confirm("정말 삭제하시겠습니까?")==true){
 		  $.ajax({
- 			  type: 'DELETE',
- 			  url: '/useful/manager/salary_List',
+ 			  type: 'POST',
+ 			  url: '/useful/manager/salary_delete?serial='+serial,
  			  headers : {
  				  "Content-Type" : "application/json",
  				  "X-HTTP-Method-Override":"POST"
  			  },
  			  dataType: 'text',
  			  data: JSON.stringify({
-	 				  serial:serial
  				  }),
  			  success: function(result){
  				  if(result="success"){
-	 				  alret('삭제되었습니다');
+	 				  alert('삭제되었습니다');
 	 				 searchList();
  				  }
  				  else{
-	 				  alret('삭제가 안되었습니다');
+	 				  alert('삭제가 안되었습니다');
  				  }
  			  }
  			});
