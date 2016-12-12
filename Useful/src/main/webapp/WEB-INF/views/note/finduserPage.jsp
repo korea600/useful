@@ -6,7 +6,7 @@
 <html>
 <head>
 
-
+<title>받는사람 검색</title>
 <!-- Bootstrap Core CSS -->
 <link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">

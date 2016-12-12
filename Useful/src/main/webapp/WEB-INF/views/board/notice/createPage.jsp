@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>공지 게시판 작성</title>
     <link href="../..resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
@@ -41,7 +41,27 @@
 <link href="../../resources/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
     
-    
+        <script>
+    $(document).ready(function(){
+$(function(){
+	var formsubmit=$("from[role='form']");
+	$('[name=submit]').click(function(){
+		var name=$('[name=title]').val();
+		var writer=$('[name=writer]').val();
+		var content=$('[name=content]').val();
+		if(name==''){
+			alert('제목을 입력해주세요')
+			return false;
+		}
+		if(content==''){
+			alert('내용을 입력해주세요')
+			return false;
+		}
+		return true;
+	});
+});
+    });
+    </script>
 </head>
 <body>
 <body>
@@ -92,7 +112,7 @@
                                         <input type="hidden" name="page" value="${pageMaker.cri.page }">
                                         <input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum }">
                                        
-                                         <button type="submit" class="btn btn-default" id="submit">작성완료</button>
+                                         <button type="submit" class="btn btn-default" id="submit" name="submit">작성완료</button>
                                         <button type="reset" class="btn btn-default" id="reset">다시작성하기</button>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
                                         </form>

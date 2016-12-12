@@ -30,8 +30,16 @@ update TBL_NOTICE set title=#{title},content=#{content}
 </update>
     <!-- 게시물등록 -->
     <insert id="insert" parameterType="kr.co.useful.board.domain.NoticeVO">
-    INSERT INTO TBL_NOTICE(SERIAL,empno,TITLE,WRITER,CONTENT,originalfileName,saveFileName,fileSize) 
-    VALUES(tbl_notice_seq.nextval,#{empno},#{title},#{writer},#{content},#{originalfileName},#{saveFileName},#{fileSize})
+    
+    <if test="fileSize==0">
+     INSERT INTO TBL_NOTICE(SERIAL,empno,TITLE,WRITER,CONTENT) 
+    VALUES(tbl_notice_seq.nextval,#{empno},#{title},#{writer},#{content})
+    </if>
+    <if test="fileSize!=0">
+    insert into TBL_NOTICE (serial,title,writer,empno,content,originalfileName,saveFileName,fileSize)
+values (tbl_board_seq.nextval,#{title},#{writer},#{empno},#{content},#{originalfileName},#{saveFileName},#{fileSize})
+    </if>
+    
     </insert>
     
     <!-- 조회수 카운트 -->
