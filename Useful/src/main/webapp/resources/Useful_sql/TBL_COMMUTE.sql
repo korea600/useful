@@ -21,7 +21,7 @@ create sequence tbl_commute_seq
    nocycle
    nocache;
   
-  select * from tbl_commute order by login;
+  select * from tbl_commute; order by login;
   select login
 		from tbl_commute
 		where empno='1002' and to_char(login,'yyyymmdd') = to_char(sysdate,'yyyymmdd');
