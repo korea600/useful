@@ -1,11 +1,14 @@
 create table tbl_board(
 serial number primary key, --글번호
-title varchar2(50) not null, --글제목
+title varchar2(200) not null, --글제목
 writer varchar2(30) not null, --글쓴이
 empno number not null, --사번
 content varchar2(2000) not null, --내용
 regdate date default sysdate not null, --작성일자
-viewcnt number default 0 --조회수
+viewcnt number default 0, --조회수
+originalfileName varchar2(1000),
+saveFileName varchar2(1000),
+filesize number
 );
 
 drop table tbl_board;

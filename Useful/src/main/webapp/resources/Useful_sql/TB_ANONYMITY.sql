@@ -12,4 +12,5 @@ alter table tbl_anonymity modify(pass varchar2(30));
 alter table tbl_anonymity add (viewcnt number default 0);
 alter table tbl_anonymity add(pass number );
 create sequence tbl_anonymity_seq;
+drop sequence tbl_anonymity_seq;
 select * from tbl_anonymity;

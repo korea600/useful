@@ -1,8 +1,8 @@
 create table tbl_notice(
 serial number primary key, --글번호
 empno number not null, --사번
-title varchar2(50) not null, --글제목
-writer varchar2(20) not null, --글쓴이
+title varchar2(200) not null, --글제목
+writer varchar2(50) not null, --글쓴이
 content varchar2(2000), --내용
 viewcnt number default 0, --조회수
 originalfileName varchar2(1000),
