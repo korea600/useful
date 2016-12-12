@@ -205,14 +205,14 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value="/salary_Update",method=RequestMethod.POST)
-	public void salary_Update(@RequestParam SalaryVO vo,Model model)throws Exception{
+	public void salary_Update(@RequestBody SalaryVO vo,Model model)throws Exception{
 		service.salary_Update(vo);
 		
 	}
 	
-	@RequestMapping(value="/salary_List",method=RequestMethod.DELETE)
-	public @ResponseBody String salary_List_Delete(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
-		model.addAttribute("salary",service.salary_List(requestMap));
+	@RequestMapping(value="/salary_delete",method=RequestMethod.POST)
+	public @ResponseBody String salary_List_Delete(@RequestParam int serial,Model model)throws Exception{
+		service.salary_Delete(serial);
 		return "success";
 	}
 	

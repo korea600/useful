@@ -262,7 +262,7 @@
   	<update id="salary_Update">
   	update tbl_salary set paymentdate=#{paymentdate},paymentmonth=#{paymentmonth},basicpay=#{basicpay},car=#{car},meal=#{meal},childcare=#{childcare},
   					otherpay=#{otherpay},national=#{national},health=#{health},employment=#{employment},care=#{care},Incometax=#{Incometax},localtax=#{localtax},
-  					grossincome=#{grossincome},deductions=#{deductions},AdjustedIncome=#{AdjustedIncome}) 
+  					grossincome=#{grossincome},deductions=#{deductions},adjustedIncome=#{adjustedIncome} 
   				where serial=#{serial}
   	</update>
   	

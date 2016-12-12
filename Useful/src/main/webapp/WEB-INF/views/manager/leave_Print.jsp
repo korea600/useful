@@ -31,7 +31,7 @@
 		<td>${print.basic }</td>
 		<td>${print.used }</td>
 		<td>${print.rest }</td>
-		<td><button onclick="update('${print.dname }','${print.empno }','${print.ename }','${print.hiredate }','${print.basic }','${print.used }','${print.rest }')">변경</button></td>
+		<td><button class="btn btn-default"  onclick="update('${print.dname }','${print.empno }','${print.ename }','${print.hiredate }','${print.basic }','${print.used }','${print.rest }')">변경</button></td>
 	</tr>
 	</c:forEach>
 	</table>
