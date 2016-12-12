@@ -6,6 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>예약하기</title>
+<!-- Bootstrap Core CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${pageContext.request.contextPath}/resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -213,7 +227,7 @@ function closeCal(y,m,d){
 					</td>
 				</tr>
 				<tr>
-				<td>회의실 번호</td>
+				<td align="center"  bgcolor="#dae6f4">회의실 번호</td>
 				<td>
 				  <select name="roomno">
 				  <c:forEach items="${rooms}" var="MeetingRoomVO">
@@ -225,7 +239,7 @@ function closeCal(y,m,d){
 				
 				<tr>
 				<td bgcolor="#dae6f4" align="center">날짜</td>
-				<td><input type="text" name="beginday" readonly="readonly" id="txtdate1" value=""> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
+				<td><input type="text" name="beginday" readonly="readonly" id="txtdate1" value=""> <i class="fa fa-calendar-o" style="cursor:pointer;" onclick="openCal(1)"></i></td></tr>
 				<tr>
 				<td bgcolor="#dae6f4"  align="center">예약시간</td>
 				<td>
@@ -241,7 +255,7 @@ function closeCal(y,m,d){
                     </select> 시
 				 </td></tr>
 				 <tr>
-				 <td colspan="2">내용</td>
+				 <td colspan="2" align="center" bgcolor="#dae6f4">내용</td>
 				 </tr>
 			<tr>
 				
@@ -249,8 +263,9 @@ function closeCal(y,m,d){
 					<textarea name="content" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;"></textarea></td>
 				</tr>
 			</table>
-			<input type="button"  value="등록"  onClick="reservationOK()"> 
-			<input type="button"  value="닫기"  onClick="clean()" >
+			<br>
+			<input type="button"  value="등록" class="btn btn-info"  onClick="reservationOK()"> 
+			<input type="button"  value="닫기" class="btn btn-danger" onClick="clean()" >
 		</form>
 		
 		            

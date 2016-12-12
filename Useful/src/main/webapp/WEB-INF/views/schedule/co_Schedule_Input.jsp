@@ -5,6 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>일정 등록</title>
+ <!-- Bootstrap Core CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${pageContext.request.contextPath}/resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -153,16 +167,30 @@ function closeCal(y,m,d){
       */
 
       function create(){
-    	 $.ajax({
+    	  
+          
+    			var empno=$('[name=empno]').val();
+    			var title=$('[name=title]').val();
+    			var begin=$('[name=begin]').val();
+    			var end=$('[name=end]').val();
+    			var begintime=$('[name=begintime]').val();
+    			var content=$('[name=content]').val();
+    			if(title=='')alert("제목을 입력하세요");
+    			else if(begin=='')alert("시작날짜를 입력하세요");
+    			else if(end=='')alert("마감날짜를 입력하세요");
+    			else if(begintime=='')alert("시간을 선택해 주세요");
+    			else{
+    	
+    		$.ajax({
     		 url:'/useful/schedule/insert',
     		 type:'post',
-    		 data:{
-    			 empno:$('[name=empno]').val(),
-    			 title:$('[name=title]').val(),
-    			 begin:$('[name=begin]').val(),
-    			 end:$('[name=end]').val(),
-    			 begintime:$('[name=begintime]').val(),
-    			 content:$('[name=content]').val()
+    		 data:{empno:empno,
+    			   title:title,
+    			   begin:begin,
+    			   end:end,
+    			   begintime:begintime,
+    			   content:content
+    			
     		 },
     		 success:function(){
     			 alert("등록되었습니다.")
@@ -170,7 +198,7 @@ function closeCal(y,m,d){
     			
     		 }    		 
     	 });
-	   	 
+    	}//else
 	  }
       
      
@@ -190,12 +218,12 @@ function closeCal(y,m,d){
 	<h3>스케줄 입력</h3>
 		<form id="insert_Form" action="/useful/schedule/insert" method="post">
 			<table border="1"
-				style="border-collapse: collapse; line-height: 30px;">
+				style="border-collapse: collapse; line-height: 30px;" width="400px">
 		
 				<tr>
 					<td bgcolor="#dae6f4"  align="center" width="150px">작성자</td>
-					<td align="center">안선영
-					<input type="hidden" name="empno" value="1003">
+					<td align="center">${LoginUser.ename }
+					<input type="hidden" name="empno" value="${LoginUser.empno }">
 					</td>
 				</tr>
 			<!--     <tr>
@@ -215,14 +243,14 @@ function closeCal(y,m,d){
 				</tr>
 				<tr>
 				<td bgcolor="#dae6f4" align="center">시작날짜</td>
-				<td> <input type="text" name="begin" readonly="readonly" id="txtdate1" value=""> <input type="button" value="달력" onclick="openCal(1)"></td></tr>
+				<td align="center"> <input type="text" name="begin" readonly="readonly" id="txtdate1" value=""> <i class="fa fa-calendar-o" style="cursor:pointer;" onclick="openCal(1)"></i></td></tr>
 				<tr>
 				<td  bgcolor="#dae6f4"  align="center">마감날짜</td>
-				<td> <input type="text" name="end" readonly="readonly" id="txtdate2" value=""> <input type="button" value="달력" onclick="openCal(2)"></td></tr>
+				<td align="center"> <input type="text" name="end" readonly="readonly" id="txtdate2" value=""> <i class="fa fa-calendar-o" style="cursor:pointer;" onclick="openCal(2)"></i></td></tr>
 				<tr>
 				<td bgcolor="#dae6f4"  align="center">시간</td>
-				<td>
-				    <select name="begintime">
+				<td align="center">
+				    <select name="begintime" >
 				    <option value="0">시작</option>
 				  <% for(int i=6;i<23; i++){%>
 				    <option value="<%=i%>"><%=i%></option>
@@ -238,12 +266,12 @@ function closeCal(y,m,d){
 
 				<tr>
 					<td colspan="2" style="padding:0; width:500px;">
-					<textarea name="content" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;">
-					</textarea></td>
+					<textarea name="content" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;"></textarea></td>
 				</tr>
 			</table>
-			<input type="button"  value="등록"  onClick="create()"> 
-			<input type="button"  value="닫기" onClick="clean()" >
+			<br>
+			<input type="button"  class="btn btn-info"  value="등록"  onClick="create()"> 
+			<input type="button"  class="btn btn-danger" value="닫기" onClick="clean()" >
 		</form>
 		
 		            

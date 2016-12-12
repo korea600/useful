@@ -57,7 +57,7 @@ var insertWin;
  function input(){
  	
   insertWin=window.open('room_Input','input','toolbar=no,location=no,status=no'
- 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500');
+ 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=200');
   
  }
  

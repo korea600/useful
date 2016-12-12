@@ -6,7 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회의 내용</title>
+<!-- Bootstrap Core CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- MetisMenu CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${pageContext.request.contextPath}/resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 	
@@ -22,17 +35,23 @@
 
 </head>
 <body>
-
 <center>
-내용
-    <table border="1" cellspacing="0">
-      <tr><td>${content }</td></tr>
-         
-    </table>    
 
-  <input type="button" value="닫기" onclick="clean()"> 
-    
-</center>
-
+  <div class="row" style="width:50%; margin-top: 50px; ">
+                <div class="col-lg-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading" >
+                            내용
+                        </div>
+                        <div class="panel-body" 	style="height:300px; overflow: auto;">
+                            ${content }
+                        </div>
+                        <div class="panel-footer">
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </center>
 </body>
 </html>

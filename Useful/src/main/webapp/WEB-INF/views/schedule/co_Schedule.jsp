@@ -212,7 +212,7 @@ function changeCal(obj){
 	
 	//alert(sr);
 	window.open('detail?serial='+sr,'detail','toolbar=no,location=no,status=no'
-			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500,top=100,left=800')
+			+'menubar=no,scrollbars=no,resizable=0,width=900,height=500,top=100,left=800')
 	
 }//자세한 내용
  
@@ -226,7 +226,7 @@ var insertWin;//자식창
  function insert(){
  	
   insertWin=window.open('co_Schedule_Input','insert','toolbar=no,location=no,status=no'
- 			+'menubar=no,scrollbars=no,resizable=0,width=400,height=500,top=100,left=800');
+ 			+'menubar=no,scrollbars=no,resizable=0,width=800,height=500,top=100,left=800');
   
  }
  
@@ -425,29 +425,29 @@ var insertWin;//자식창
     <div class='panel-body'>
   <div class='table-responsive'>
    <form action="" method="get" name="co_list" id="co_list">
-   <table class='table table-striped table-bordered table-hover'>   
+   <table class='table table-striped table-bordered table-hover' style="text-align: center;">   
    <tr><td colspan="7" align="right">
-       <select name="searchType">
+       <select name="searchType" class='form-control-static' >
    <option value="no">선택</option>
    <option value="s">글번호</option>
    <option value="t">제목</option>
    <option value="b">시작날짜</option>
    <option value="e">마감날짜</option>
        </select>
-    <input type="text" name="keyword" id="keywordInput" value="${cri.keyword }">
-    <input type="button" id="searchBtn" value="검색">
+    <input type="text" class='form-control-static'  name="keyword" id="keywordInput" value="${cri.keyword }">
+    <input type="button" id="searchBtn" class="btn btn-warning" value="검색">
    
-   <input type="button" value="등록" onClick="insert()">
-      <input type="button" value="삭제" id="allDelete">
+   <input type="button" class="btn btn-info" value="등록" onClick="insert()">
+      <input type="button" class="btn btn-danger" value="삭제" id="allDelete">
    </td></tr>
    <tr>
-    <th>선택</th>
-    <th>글번호</th>
-    <th>제목</th>
-    <th>시작날짜</th>
-    <th>종료날짜</th>
-    <th>작성자</th>
-    <th>작성일</th>    
+    <th style="text-align: center;">선택</th>
+    <th style="text-align: center;">글번호</th>
+    <th style="text-align: center;">제목</th>
+    <th style="text-align: center;">시작날짜</th>
+    <th style="text-align: center;">종료날짜</th>
+    <th style="text-align: center;">작성자</th>
+    <th style="text-align: center;">작성일</th>    
    </tr>
    
    <c:forEach items="${list}" var="ScheduleVO" varStatus="status">

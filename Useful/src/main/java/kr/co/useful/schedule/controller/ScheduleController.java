@@ -50,6 +50,8 @@ public class ScheduleController {
 	//µî·ÏÆû
 	@RequestMapping(value ="/co_Schedule_Input", method=RequestMethod.GET)
 	public void resisterGet() {
+		
+		
 		System.out.println("½ºÄÉÁì ÀÔ·Â");
 	}
 	

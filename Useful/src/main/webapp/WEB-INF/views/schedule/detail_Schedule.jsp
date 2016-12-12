@@ -6,6 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>일정상세내용</title>
+<!-- Bootstrap Core CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${pageContext.request.contextPath}/resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="${pageContext.request.contextPath}/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 * {font-family: 'Nanum Gothic', serif;}
@@ -34,17 +48,31 @@ $(document).ready(function(){
 	
 
 	$("#changeOK").hide();
-	$(".openBtn").hide();
+	$("#i1").hide();
+	$("#i2").hide();
+	
+	$('[name=title]').css("background-color", "#f8f8f8");
+	$('[name=content]').css("background-color", "#f8f8f8");                                                             
+	$('[name=begintime]').css("background-color", "#f8f8f8");
+	
+	
 		
 
 	$('#change').click(function(){
-		$(".openBtn").show();
+		$("#i1").show();
+		$("#i2").show();
 		$('#changeOK').show();
 		$('#change').hide();
+		
 		
 		$('[name=title]').attr("readonly", false);
 		$('[name=content]').attr("readonly", false);                                                             
 		$('[name=begintime]').attr("disabled", false);
+		$('[name=title]').css("background-color", "#fff");
+		$('[name=content]').css("background-color", "#fff");                                                             
+		$('[name=begintime]').css("background-color", "#fff");
+		$('[name=begin]').css("background-color", "#fff");                                                             
+		$('[name=end]').css("background-color", "#fff");
 		$('[name=content]').focus();
 		
 		//$('#category').attr("disabled", false);
@@ -226,7 +254,7 @@ function remove(sr){
 <body>
 	<center>
 	<h3>스케줄 상세</h3>
-	     <input type="hidden" name="empno" value="1003">
+	    
 	     <input type="hidden" name="serial" value="${scheduleVO.serial }">
 		<form id="detail_Form" method="post">
 			<table border="1"
@@ -235,7 +263,7 @@ function remove(sr){
 				<tr>
 					<td bgcolor="#dae6f4"  align="center" width="150px">작성자</td>
 					<td align="center">${scheduleVO.ename }
-					<input type="hidden" name="empno" value="1003"></td>
+					<input type="hidden" name="empno" value="${LoginUser.empno }"></td>
 				</tr>
 			   <!--   <tr>
 			        <td bgcolor="#dae6f4"  align="center" width="150px">실행자</td>
@@ -251,10 +279,10 @@ function remove(sr){
 				</tr>
 				<tr>
 				<td bgcolor="#dae6f4" align="center">시작날짜</td>
-				<td> <input type="text" readonly="readonly" name="begin" id="txtdate1" value="${scheduleVO.begin }"><input type="button" class="openBtn" value="달력" onclick="openCal(1)"></td></tr>
+				<td> <input type="text" style="background-color: #f8f8f8;" readonly="readonly" name="begin" id="txtdate1" value="${scheduleVO.begin }"><i id="i1" class="fa fa-calendar-o" style="cursor:pointer;" onclick="openCal(1)"></i></td></tr>
 				<tr>
 				<td  bgcolor="#dae6f4" align="center">마감날짜</td>
-				<td><input type="text" readonly="readonly"   name="end" id="txtdate2" value="${scheduleVO.end }"><input type="button" class="openBtn" value="달력" onclick="openCal(2)"></td></tr>
+				<td><input type="text"  style="background-color: #f8f8f8;" readonly="readonly"   name="end" id="txtdate2" value="${scheduleVO.end }"><i id="i2" class="fa fa-calendar-o" style="cursor:pointer;" onclick="openCal(2)"></i></td></tr>
 				<tr>
 				<td bgcolor="#dae6f4" align="center">시간</td>
 				<td>
@@ -281,23 +309,15 @@ function remove(sr){
 
 				<tr>
 					<td colspan="2" style="padding:0; width:500px;">
-					<textarea name="content" readonly="readonly" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;">
-					${scheduleVO.content }
-					</textarea></td>
+					<textarea name="content" readonly="readonly" style="font-size:15px; width:500px; margin: 0; height:200px; border:0;">${scheduleVO.content }	</textarea></td>
 				</tr>
-			
-			    <tr>
-			       <td colspan="2" align="right">
-			        <input type="button" id="change" value="수정" />
-		            <input type="button" id="changeOK" value="확인" onclick="update()"/>
-		            <input type="button"  value="삭제"  onclick="remove(${scheduleVO.serial})"/> 
-					<input type="button"  value="닫기" onclick="clean()" />
-			       
-			       </td>
-			    </tr>	
 			</table>			
 		</form>
 		<br>
+		  <input type="button" id="change" class="btn btn-info" value="수정" />
+		            <input type="button" class="btn btn-info" id="changeOK" value="확인" onclick="update()"/>
+		            <input type="button"  value="삭제"  class="btn btn-danger" onclick="remove(${scheduleVO.serial})"/> 
+					<input type="button"  value="닫기"  class="btn btn-danger" onclick="clean()" />
 	 <div id="cal" style="display: none; position: absolute;"></div>
 		           
 	</center>
