@@ -62,7 +62,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" method="post" action="modifyPage">
+                                    <form role="form" method="post" action="modifyPage" enctype="multipart/form-data">
                                     	
                                         <div class="form-group">
                                             <label>글 제목</label>
@@ -91,6 +91,10 @@
 										</c:if>
 										<c:if test="${board.originalfileName!=null }">
                                             <a href="/useful/board/download?originalfileName=${board.originalfileName }&serial=${board.serial}">${board.originalfileName }</a>
+										<div class="form-group">
+                                            <label>파일 재업로드</label>
+                                            <input type="file" id="file" name="file">
+                                        </div>
 										</c:if>
 										<!-- <div class="form-group">
                                             <label>파일 재업로드</label>

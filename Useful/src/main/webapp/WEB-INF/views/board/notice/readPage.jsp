@@ -191,7 +191,7 @@ function modifyreply(){
 										</div>
 										<div class="form-group">
 											<label>글내용</label>
-											<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${board.content }</textarea>
+											<textarea id="content" class="form-control" rows="20" readonly="readonly" name="content">${board.content }</textarea>
 										</div>
 										<core:if test="${board.originalfileName!=null }">
 										<div class="form-group">
@@ -245,7 +245,7 @@ function modifyreply(){
 										<!-- 댓글목록 -->
 										<table>
 										<core:forEach items="${list }" var="list">
-							<div class="col-lg-4" style="width: 87%; right: 10px;">
+							<div class="col-lg-4" style="width: 80%; right: 10px;">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                          <h5>${list.replyname } : (${list.replyid }) : <fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${list.regdate }"/> </h5>
@@ -279,7 +279,7 @@ function modifyreply(){
 										<!-- 댓글 입력란 -->
 										
 										<div class="input-group"
-											style="height: 30px; width: 85%; size: 30; left: 10px;">
+											style="height: 30px; width: 50%; size: 30; left: 10px;">
 
 											<input name="keyword" id="btn-input" type="text"
 												class="form-control input-sm" placeholder="댓글을 입력해주세요"

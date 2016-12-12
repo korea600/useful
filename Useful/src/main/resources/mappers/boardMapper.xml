@@ -35,7 +35,7 @@ update tbl_board,tbl_emp set title=#{title},content=#{content} where serial=#{se
 <update id="update">
 update tbl_board set title=#{title},content=#{content}
 <if test="originalfileName!=null">
-,originalfileName=${originalfileName}
+,originalfileName=#{originalfileName},saveFileName=#{saveFileName},fileSize=#{fileSize}
 </if>
  where serial=#{serial} and empno=#{empno}
 </update>

@@ -17,7 +17,7 @@ private AnonymityDAO dao;
 	@Override
 	public void create(AnonymityVO vo) throws Exception {
 		dao.create(vo);
-		
+		   //wwddd
 	}
 
 	@Override
@@ -77,18 +77,12 @@ private AnonymityDAO dao;
 	public List<AnonymityVO> list_cot() throws Exception {
 		// TODO Auto-generated method stub
 		return dao.list_cut();
-	}
+	} 
 
 	@Override
 	public String pass_check(int serial) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.pass_check(serial);
-	}
-
-	@Override
-	public String save_download(int serial) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.save_file_name(serial);
 	}
 
 }

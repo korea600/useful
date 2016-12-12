@@ -109,14 +109,50 @@ public class BoardNoticeController {
 	}
 	
 	@RequestMapping(value="/modifyPage",method=RequestMethod.POST) 
-	public String modifyPage(NoticeVO vo,RedirectAttributes attr,SearchCriteria cri)throws Exception {
-		service.modify(vo);
+	public String modifyPage(NoticeVO vo,RedirectAttributes attr,SearchCriteria cri,HttpSession httpSession,@RequestParam("file") MultipartFile file,HttpServletRequest request,MultipartHttpServletRequest multipartHttpServletRequest)throws Exception {
+		int empno=((EmpVO)httpSession.getAttribute("LoginUser")).getEmpno();
+		String uploadpath = PathMaker.getUploadPath(request);
+		String uploadrealpath = PathMaker.getRealPath(request);
+		String time = PathMaker.getTime();
+		NoticeVO v20=service.read(vo.getSerial());
+		String savename=v20.getSaveFileName();
+		//System.out.println("notice에 저장된 파일명 "+savename);
+		File deluploadfile = new File(uploadpath+"/"+savename);
+		File deluploadrealfile = new File(uploadrealpath+"/"+savename);
+		if(deluploadfile!=null && deluploadfile.exists()) deluploadfile.delete();
+		if(deluploadrealfile!=null && deluploadrealfile.exists()) deluploadrealfile.delete();
+		
+		File dir=new File(uploadpath);
+		if(!dir.isDirectory()){
+			dir.mkdirs();
+		}
+		List<MultipartFile> mf=multipartHttpServletRequest.getFiles("file");
+		if(mf.size()==0&&mf.get(0).getOriginalFilename().equals("")){
+			
+		}else{
+			for(int i=0;i<mf.size();i++){
+				String genId=UUID.randomUUID().toString();
+				String originalfileName=mf.get(i).getOriginalFilename();
+				String saveFileName=genId+"."+originalfileName;
+				String savePath=uploadpath+"/"+saveFileName;
+				long fileSize=mf.get(i).getSize();
+				mf.get(i).transferTo(new File(savePath));vo.setOriginalfileName(originalfileName);
+				vo.setSaveFileName(saveFileName);
+				vo.setFileSize(fileSize);
+				vo.setEmpno(empno);
+				service.modify(vo);
+			}
+			
+			
+			
+		}
 		attr.addFlashAttribute("page", cri.getPage());
 		attr.addFlashAttribute("perpageNum", cri.getPerPageNum());
-		attr.addAttribute("searchType", cri.getSearchType() );
-		attr.addAttribute("keyword", cri.getKeyword() );
-		return "redirect:/board/listPage";
-	}
+		 attr.addAttribute("searchType", cri.getSearchType() );
+		   attr.addAttribute("keyword", cri.getKeyword() );
+		return "redirect:/board/notice/listPage";
+   }
+		
 
 	@RequestMapping("deletePage") 
 	public String deletePage(int serial,HttpSession httpSession,String originalfileName,HttpServletRequest request)throws Exception{
