@@ -6,7 +6,7 @@
 <html>
 <head>
 
-
+<title>공지게시판</title>
 <!-- Bootstrap Core CSS -->
 <link href="../../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -111,6 +111,9 @@
 									
 									<!-- 페이지번호 -->
 										<div class='dataTables_paginate paging_simple_numbers' id='dataTables-example_paginate' style="text-align: center;">
+											<%-- <c:if test="${LoginUser.position=='부장'||LoginUser.position=='대리' }">
+											 <button class="btn btn-default" id="register" style="width: 8%; float:left;">글쓰기</button>
+											 </c:if> --%>
 											 <button class="btn btn-default" id="register" style="width: 8%; float:left;">글쓰기</button>
 											<p>
 											<div class="list_n_menu">

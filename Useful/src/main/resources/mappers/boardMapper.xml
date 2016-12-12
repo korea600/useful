@@ -7,8 +7,15 @@ select savefilename from tbl_board where serial=#{serial}
 </select>
 
 <insert id="create">
+<if test="fileSize==0">
+insert into tbl_board (serial,title,writer,empno,content)
+values (tbl_board_seq.nextval,#{title},#{writer},#{empno},#{content})
+</if>
+<if test="fileSize!=0">
 insert into tbl_board (serial,title,writer,empno,content,originalfileName,saveFileName,fileSize)
 values (tbl_board_seq.nextval,#{title},#{writer},#{empno},#{content},#{originalfileName},#{saveFileName},#{fileSize})
+</if>
+
 </insert>
 
 <!-- <insert id="create"> 백본

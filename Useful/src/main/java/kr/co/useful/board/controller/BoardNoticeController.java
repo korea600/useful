@@ -69,8 +69,10 @@ public class BoardNoticeController {
 		dir.mkdirs();
 	}
 	List<MultipartFile> mf=multipartHttpServletRequest.getFiles("file");
-	if(mf.size()==0&&mf.get(0).getOriginalFilename().equals("")){
-		
+	/*System.out.println("mf의 사이즈 값= "+mf.size());
+	System.out.println("mf의 오리지널 이름 = "+mf.get(0).getOriginalFilename());*/
+	if(mf.get(0).getOriginalFilename().equals("")){
+		service.create(vo);
 	}else{
 		for(int i=0;i<mf.size();i++){
 			String genId=UUID.randomUUID().toString();
@@ -79,9 +81,10 @@ public class BoardNoticeController {
 			String savePath=realfolder+"/"+saveFileName;
 			long fileSize=mf.get(i).getSize();
 			mf.get(i).transferTo(new File(savePath));
-			System.out.println("공지게시판 저장파일명 = "+originalfileName);
+			/*System.out.println("공지게시판 저장파일명 = "+originalfileName);
 			System.out.println("공지게시판  저장되는 파일명 = "+saveFileName);
 			System.out.println("공지게시판 저장되는 위치 = "+savePath);
+			System.out.println("파일크기"+fileSize);*/
 			vo.setOriginalfileName(originalfileName);
 			vo.setSaveFileName(saveFileName);
 			vo.setSaveFileName(saveFileName);
@@ -96,7 +99,7 @@ public class BoardNoticeController {
 	
 	
 	vo.setEmpno(empno);
-	service.create(vo);
+	
 	att.addFlashAttribute("message", "SUCCESS");
 	return "redirect:/board/notice/listPage";
 	}

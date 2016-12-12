@@ -105,7 +105,10 @@ td{text-align: center}
 									
 									<!-- 페이지번호 -->
 										<div class='dataTables_paginate paging_simple_numbers' id='dataTables-example_paginate' style="text-align: center;">
-											 <button class="btn btn-default" id="register" style="width: 8%; float:left;">글쓰기</button>
+										
+										<button class="btn btn-default" id="register" style="width: 8%; float:left;">글쓰기</button>
+										
+											 
 											<p>
 											<ul class='pagination'>
 											<c:if test="${pageMaker.prev }">

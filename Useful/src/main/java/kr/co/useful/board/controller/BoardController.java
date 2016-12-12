@@ -68,8 +68,8 @@ public class BoardController {
 		dir.mkdirs();
 	}
 	List<MultipartFile> mf=multipartHttpServletRequest.getFiles("file");
-	if(mf.size()==0&&mf.get(0).getOriginalFilename().equals("")){
-		
+	if(mf.get(0).getOriginalFilename().equals("")){
+		service.insert(vo);
 	}else{
 		for(int i=0;i<mf.size();i++){
 			String genId=UUID.randomUUID().toString(); //�����ߺ��� ó�����شٰ��ϴµ� UUID�� �� ��Ȱ���� ������;;
@@ -78,10 +78,10 @@ public class BoardController {
 			String savePath=realfolder+"/"+saveFileName; //����� ���ϰ��
 			long fileSize=mf.get(i).getSize();//���ϻ������
 			mf.get(i).transferTo(new File(savePath)); //��������
-			System.out.println("genid ��="+genId);
+			/*System.out.println("genid ��="+genId);
 			System.out.println("originalfilename ��="+originalfileName);
 			System.out.println("saveFileName �� = "+saveFileName);
-			System.out.println(" savePath = "+savePath);
+			System.out.println(" savePath = "+savePath);*/
 			//service.fileupload(originalfileName, saveFileName, fileSize);
 			vo.setOriginalfileName(originalfileName);
 			vo.setSaveFileName(saveFileName);
