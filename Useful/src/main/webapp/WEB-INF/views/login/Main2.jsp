@@ -229,7 +229,7 @@
                                     <a href="/useful/meetingroom/myBooking">예약내역</a>
                                 </li>
                                 <li>
-                                    <a href="/useful/meetingroom/bookingHistory">예약관리</a>
+                                    <a href="/useful/meetingroom/bookingHistory" class='link-control-manageronly'>예약관리</a>
                                 </li>
                                 
                                     </ul>

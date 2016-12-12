@@ -17,7 +17,7 @@
               <h3><span class="glyphicon glyphicon-file" style="color:black;float: left;">전자결재</span>
      
               <c:if test='${LoginUser.position == "사원" }'>
-              <small><a href="/useful/approval/listmine"><font size="2">+ MORE</font></a></small></span>               
+              <span style="float: right;"><small><a href="/useful/approval/listmine"><font size="2">+ MORE</font></a></small></span>               
               </c:if>           
 
               <c:if test='${LoginUser.position != "사원" }'>
@@ -103,7 +103,7 @@
             <c:forEach items="${note }" var="idx" varStatus="stat">
 				<tr>
                   <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${idx.reciname }</td>
-               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/note/riciReadPage?serial=${note.serial }">${idx.recontent }</td>
+               	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/note/riciReadPage?serial=${idx.serial }">${idx.recontent }</td>
                	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${idx.recipientdate }" pattern="yyyy-MM-dd"/> </td>
                 </tr>
               </c:forEach>
