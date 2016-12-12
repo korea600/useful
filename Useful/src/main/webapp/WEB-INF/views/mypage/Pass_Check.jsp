@@ -79,7 +79,7 @@
                    				 </div>
                                 <div class="form-group" >
                                    <b>Password : </b><input class="form-control"  name="pass" type="password" id="passinput"
-                                   onkeypress="if(event.keyCode == 13){ passCheck(); return; }">
+                                   onkeypress="if(event.keyCode == 13){event.preventDefault(); return;}">
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
