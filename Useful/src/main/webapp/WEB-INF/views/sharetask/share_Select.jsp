@@ -93,20 +93,87 @@ $(document).ready(function(){
 			data: JSON.stringify({bno:bno, empno:empno, replyer:replyer, replytext:replytext}),
 			success:function(result){
 				
-				if(result=='success'){
+				if(result=='SUCCESS'){
 					
-				alert("등록되었습니다");
-					self.location="detail?page="+page+"&perPageNum="+perPageNum+"&keyword="+keyword+"&searchType="+searchType+"&bno="+bno+"";
+				   alert("등록되었습니다");
+					location.reload();
 					replytext.val("");
 				}
 			}
-		}) 
-	});
-
+		}); //ajax
+	});//click
 	
+});//ready
+	
+	var flag=true;
+	//댓글 수정
+	
+function replyDiv(rno){
+		alert(rno);
+		
+			var str="<div class='input-group' id='input-group'"
+					+" style='height: 30px; width: 85%; size: 30; left: 10px; '>"
+					+"<input name='changeReply' id='btn-input2' type='text' value=''"
+					+" class='form-control input-sm' placeholder='내용을 작성해주세요'"
+					+" style='height: 65px; ' /> <span class='input-group-btn'>"
+					+"<button type='button' class='btn btn-warning btn-sm'  onclick='modifyreply("+rno+")'"
+					+" style='height: 65px; width: 100px;'><h3>입력</h3></button></span></div>";
+		  
+	      $('#a'+rno).parent().append(str);
+	      $('#a'+rno).hide();
+	      $('#b'+rno).hide();
+          $("#input-group").show();
+		
+}
 
-});
 
+function modifyreply(rno){
+	var replytext=$('[name=changeReply]').val();
+	$.ajax({
+		type:'PATCH',
+		url:'/useful/ShareReply/'+rno,
+		dataType:'text',
+		headers:{
+			"Content-Type":"application/json",
+			"X-HTTP-Method-Override":"POST"
+		},
+		data: JSON.stringify({rno:rno, replytext:replytext}),
+		success:function(result){
+			
+			if(result=='SUCCESS'){
+				
+			   alert("수정되었습니다");
+				location.reload();
+				replytext.val("");
+			}
+		}
+	}); 
+	
+} 
+
+
+function deleteReply(rno){
+	alert(rno);
+	$.ajax({
+		type:'DELETE',
+		url:'/useful/ShareReply/'+rno,
+		dataType:'text',
+		headers:{
+			"Content-Type":"application/json",
+			"X-HTTP-Method-Override":"DELETE"
+		},
+		success:function(result){
+			
+			if(result=='SUCCESS'){
+				
+			   alert("삭제되었습니다");
+				location.reload();
+				replytext.val("");
+			}
+		}
+	}); 
+	
+}
 
 
 
@@ -191,11 +258,16 @@ $(document).ready(function(){
                                         
                           	    <div class="form-group">
                           	   
-                                  <c:if test="${empno==shareTaskVO.writer }">
+                                  <c:if test="${empno==shareTaskVO.writer}">
                                     <input type="button" class="btn btn-default" id="change" value="수정" >
-                                    </c:if>
-					                <input type="submit" class="btn btn-default" id="changeOK" value="확인">
+                                    <input type="submit" class="btn btn-default" id="changeOK" value="확인">
 					    		    <input type="button" class="btn btn-default" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 
+						             </c:if>
+						             <c:if test="${position!='사원'}">
+						            <input type="button" class="btn btn-default" id="change" value="수정" >
+                                    <input type="submit" class="btn btn-default" id="changeOK" value="확인">
+					    		    <input type="button" class="btn btn-default" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 
+						           </c:if>
 						            <input type="button" class="btn btn-default" value="목록" onClick="location.href='share_Board?page=${cri.page}'" />
 
                                     </div>
@@ -229,9 +301,13 @@ $(document).ready(function(){
                             <p id="text">${ShareReplyVO.replytext }</p>
                         </div>
                  
-                         <div class="panel-footer">
-                         <button type="button" class="btn btn-default" id="replyChange" name="modify">수정</button>
-                         <button type="button" class="btn btn-default" id="replyRemove">삭제</button>
+                         <div class="panel-footer">   
+                         
+                         
+                         <c:if test="${empno==ShareReplyVO.empno}">
+                         <button type="button" class="btn btn-default" id="a${ShareReplyVO.rno }" name="modify" onclick="replyDiv(${ShareReplyVO.rno })">수정</button>
+                         <button type="button" class="btn btn-default" id="b${ShareReplyVO.rno }" onclick="deleteReply(${ShareReplyVO.rno })">삭제</button>
+                        </c:if>  
                         </div>
                        
                        
@@ -240,7 +316,7 @@ $(document).ready(function(){
                    	</c:forEach>
 										
 										</table>
-									
+									    <input type="hidden" id="hi-input" >
 										<!-- 댓글 입력란 -->
 										
 										<div class="input-group"
