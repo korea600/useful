@@ -55,8 +55,13 @@ public class BoardanonymityController {
 		@RequestMapping(value="/createPage",method=RequestMethod.GET)
 		public void createPageGET() throws Exception {
 		};
-		
 		@RequestMapping(value="/createPage",method=RequestMethod.POST)
+		public String createPagePOST(AnonymityVO vo,RedirectAttributes att)throws Exception{
+		service.create(vo);
+		att.addFlashAttribute("message", "SUCCESS");
+		return "redirect:/board/anonymity/listPage";
+		}
+	/*	@RequestMapping(value="/createPage",method=RequestMethod.POST)
 		public String createPagePOST(AnonymityVO vo,RedirectAttributes att,HttpSession httpSession,HttpServletRequest request,MultipartHttpServletRequest multipartHttpServletRequest,@RequestParam("file") MultipartFile file)throws Exception{
 			String realfolder=PathMaker.getUploadPath(request); 
 			System.out.println("업로드되는 폴더 경로 = "+realfolder);
@@ -88,7 +93,7 @@ public class BoardanonymityController {
 		}
 			att.addFlashAttribute("message", "SUCCESS");
 			return "redirect:/board/anonymity/listPage";
-		}
+		}*/
 
 		@RequestMapping(value="/modifyPage",method=RequestMethod.GET) 
 		public void modifyPage(int serial,Model model)throws Exception{
@@ -105,7 +110,7 @@ public class BoardanonymityController {
 			return "redirect:/board/anonymity/listPage";
 		}
 
-		@RequestMapping("/deletePage") 
+/*		@RequestMapping("/deletePage") 
 		public String deletePage(int serial,String originalfileName,HttpServletRequest request)throws Exception{
 			AnonymityVO board=service.read(serial);
 			String savafilename=board.getSaveFileName();
@@ -113,6 +118,11 @@ public class BoardanonymityController {
 			File savafile2=new File(PathMaker.getRealPath(request)+"/"+savafilename);
 			if(savafile!=null && savafile.exists()) savafile.delete();
 			if(savafile2!=null && savafile2.exists()) savafile2.delete();
+			service.delete(serial);
+			return "redirect:/board/anonymity/listPage";
+		}*/
+		@RequestMapping("/deletePage") 
+		public String deletePage(int serial)throws Exception{
 			service.delete(serial);
 			return "redirect:/board/anonymity/listPage";
 		}
@@ -160,7 +170,7 @@ public class BoardanonymityController {
 			
 		}
 		
-		@RequestMapping("/download")
+		/*@RequestMapping("/download")
 		public void file_download(@RequestParam("originalfileName") String originalfileName,@RequestParam("serial") int serial, HttpServletRequest request, HttpServletResponse res)throws Exception{
 			String realfolder=PathMaker.getUploadPath(request);
 			String fileName = null;
@@ -205,7 +215,7 @@ public class BoardanonymityController {
 	            }
 	        }
 			
-		};
+		};*/
 		
 	}
 

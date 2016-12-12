@@ -250,12 +250,7 @@ $(document).ready(function(){
 											<label>글내용</label>
 											<textarea id="content" class="form-control" rows="3" readonly="readonly" name="content">${board.content }</textarea>
 										</div>
-										<core:if test="${board.originalfileName!=null }">
-										<div class="form-group">
-										<label>첨부파일</label>
-										<a href="/useful/board/anonymity/download?originalfileName=${board.originalfileName }&serial=${board.serial}">${board.originalfileName }</a>
-										</div>
-										</core:if>
+									
 
 										<div class="form-group"></div>
 
@@ -335,7 +330,7 @@ $(document).ready(function(){
 										<!-- 댓글 입력란 -->
 										
 										<div class="input-group"
-											style="height: 30px; width: 85%; size: 30; left: 10px;">
+											style="height: 30px; width: 50%; size: 30; left: 10px;">
 
 											<input name="keyword" id="btn-input" type="text"
 												class="form-control input-sm" placeholder="댓글을 입력해주세요"

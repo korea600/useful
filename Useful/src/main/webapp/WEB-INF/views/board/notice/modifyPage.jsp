@@ -39,7 +39,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" method="post" action="/useful/board/notice/modifyPage">
+                                    <form role="form" method="post" action="/useful/board/notice/modifyPage" enctype="multipart/form-data">
                                     	
                                         <div class="form-group">
                                             <label>글 제목</label>
@@ -66,7 +66,11 @@
 										첨부된 파일이 없습니다.
 										</c:if>
 										<c:if test="${board.originalfileName!=null }">
-                                            <a href="/useful/board/download?originalfileName=${board.originalfileName }&serial=${board.serial}">${board.originalfileName }</a>
+                                            <a href="/useful/board/notice/download?originalfileName=${board.originalfileName }&serial=${board.serial}">${board.originalfileName }</a>
+										<div class="form-group">
+                                            <label>파일 재업로드</label>
+                                            <input type="file" id="file" name="file">
+                                        </div>
 										</c:if>
 										<!-- <div class="form-group">
                                             <label>파일 재업로드</label>
@@ -82,6 +86,7 @@
                                         <button type="reset" class="btn btn-default" id="reset">다시작성하기</button>
 										<button type="button" class="btn btn-default" id="backPage">되돌아가기</button>
                                         </form>
+                                        </div>
 										
 
 </div>

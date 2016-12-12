@@ -20,7 +20,7 @@ ename varchar2(20) not null references tbl_emp(ename), --글쓴이
 content varchar2(2000), --내용
 regdate date not null--작성일자
 );
-
+select * from tbl_notice where serial=22;
 alter table tbl_notice add(originalfileName varchar2(1000));
 alter table tbl_notice add(saveFileName varchar2(1000));
 alter table tbl_notice add(filesize number);

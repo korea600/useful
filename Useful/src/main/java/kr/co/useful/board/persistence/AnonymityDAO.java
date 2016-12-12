@@ -21,5 +21,4 @@ public interface AnonymityDAO {
 	public List<AnonymityVO> listSearch(SearchCriteria cri)throws Exception; 
 	public int listFindCount(SearchCriteria cri)throws Exception; 
 	public List<AnonymityVO> list_cut()throws Exception;
-	public String save_file_name(int serial)throws Exception;
 }

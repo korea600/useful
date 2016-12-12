@@ -18,9 +18,16 @@ select savefilename from tbl_notice where serial=#{serial}
     SELECT SERIAL,TITLE,WRITER,CONTENT,REGDATE,viewcnt,empno FROM TBL_NOTICE ORDER BY SERIAL DESC
     </select>
     <!-- 게시물 업데이트 -->
-    <update id="update">
+    <!-- <update id="update">
     UPDATE TBL_NOTICE SET TITLE=#{title},CONTENT=#{content} WHERE SERIAL=#{serial} and empno=#{empno}
-    </update>
+    </update> -->
+    <update id="update">
+update TBL_NOTICE set title=#{title},content=#{content}
+<if test="originalfileName!=null">
+,originalfileName=#{originalfileName},saveFileName=#{saveFileName},fileSize=#{fileSize}
+</if>
+ where serial=#{serial} and empno=#{empno}
+</update>
     <!-- 게시물등록 -->
     <insert id="insert" parameterType="kr.co.useful.board.domain.NoticeVO">
     INSERT INTO TBL_NOTICE(SERIAL,empno,TITLE,WRITER,CONTENT,originalfileName,saveFileName,fileSize) 

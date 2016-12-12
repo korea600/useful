@@ -44,4 +44,4 @@ where serial=3;
    alter table tbl_board add(originalfileName varchar2(1000));
    alter table tbl_board add(saveFileName varchar2(1000));
    alter table tbl_board add(fileSize number);
-   select * from tbl_board;
+   select * from tbl_board where serial=55;
