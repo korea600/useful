@@ -15,10 +15,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("여기는 들어오나");
+		
 		EmpVO vo = (EmpVO) request.getSession().getAttribute("LoginUser");
 		if(vo != null){
-			System.out.println("로그인성공!!");
+			
 			String dest = (String) request.getSession().getAttribute("dest");
 			if(dest != null){
 				request.getSession().removeAttribute("dest");
