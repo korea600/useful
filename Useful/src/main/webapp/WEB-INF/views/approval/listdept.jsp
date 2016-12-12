@@ -30,18 +30,18 @@ td{text-align: center}
 	function selectSearchType(){
 		var searchBy = $('[name=searchBy]').val();
 		if(searchBy==''){
-			$('[name=selectReceiver_name]').hide();
-			$('[name=selectReceiver_name]').empty();
+			$('[name=selectReceiver_dname]').hide();
+			$('[name=selectReceiver_dname]').empty();
 			$('[name=selectWriter_dname]').hide();
 			$('[name=selectWriter_dname]').empty();
 			$('[name=keyword]').hide();
 			$('[name=keyword]').val('');
 		}
-		else if(searchBy=='receiver_name'){			// 수신부서 조회 (우리부서/전체부서)
-			$('[name=selectReceiver_name]').empty();
-			$('[name=selectReceiver_name]').append("<option value='${LoginUser.deptno}'>우리부서</option>"
+		else if(searchBy=='receiver_dname'){			// 수신부서 조회 (우리부서/전체부서)
+			$('[name=selectReceiver_dname]').empty();
+			$('[name=selectReceiver_dname]').append("<option value='${LoginUser.deptno}'>우리부서</option>"
 											+"<option value='0'>전체부서</option>");
-			$('[name=selectReceiver_name]').show();
+			$('[name=selectReceiver_dname]').show();
 			$('[name=selectWriter_dname]').hide();
 			$('[name=selectWriter_dname]').empty();
 			$('[name=keyword]').hide();
@@ -59,8 +59,8 @@ td{text-align: center}
 					for(var i=0;i<result.length;i++){
 						str+="<option value="+result[i].dname+">"+result[i].dname+"</option>";
 					}
-					$('[name=selectReceiver_name]').hide();
-					$('[name=selectReceiver_name]').empty();
+					$('[name=selectReceiver_dname]').hide();
+					$('[name=selectReceiver_dname]').empty();
 					$('[name=selectWriter_dname]').empty();
 					$('[name=selectWriter_dname]').append(str);
 					$('[name=selectWriter_dname]').show();
@@ -72,8 +72,8 @@ td{text-align: center}
 		}
 		
 		else{										// 작성자별 조회
-			$('[name=selectReceiver_name]').hide();
-			$('[name=selectReceiver_name]').empty();
+			$('[name=selectReceiver_dname]').hide();
+			$('[name=selectReceiver_dname]').empty();
 			$('[name=selectWriter_dname]').hide();
 			$('[name=selectWriter_dname]').empty();
 			$('[name=keyword]').val('');
@@ -98,7 +98,7 @@ td{text-align: center}
 			var keyword=$('[name=selectWriter_dname]').val();
 		
 		else									// 수신부서 검색
-			var keyword=$('[name=selectReceiver_name]').val();
+			var keyword=$('[name=selectReceiver_dname]').val();
 		
 		location.href='listdept${pagemaker.makeQuery(1)}&searchBy='+searchBy+'&keyword='+keyword;
 	}
@@ -122,7 +122,7 @@ td{text-align: center}
 						<option value='writer_dname'>발신부서</option>
 						<option value='writer_name'>작성자</option>
 					</select>
-					<select name='selectReceiver_name' class='form-control-static' style="width: 10%;display: none;"></select>
+					<select name='selectReceiver_dname' class='form-control-static' style="width: 10%;display: none;"></select>
 					<select name='selectWriter_dname' class='form-control-static' style="width: 10%;display: none;"></select>
 					<input type='text' name='keyword' class='form-control-static' style="width: 15%;display: none;">
 					<input type='button' id='search' class='btn btn-warning' value='검색' onclick='search()'>			

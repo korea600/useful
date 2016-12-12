@@ -1,0 +1,52 @@
+<XML문법>
+1. XML은 Text, 표준 데이터
+	- text : 어떤 OS, application에서도 독립적인 데이터를 기술
+	- 표준(W3C) : 문법이 표준화 되어있음 (DB와 application들이 문법을 알고있음)
+2. XML은 Tag(Element)와 Attribute(속성)으로 구성되어 있음
+	- 데이터를 표현할 때
+		-> <시작태그>데이터</끝태그>
+		-> 속성명="데이터"
+3. XML은 서술 Tag -> Tag이름과 Attribute이름이 데이터에 대한 서술을 하고 있음
+ex.	<person age="13">
+		<name>홍길동</name>
+	</person>
+4. 시작태그가 있다면 반드시 끝태그가 존재하여야 함 (아니면 에러)
+5. 시작/끝태그 사이에 내용이 비어있다면 빈태그 형식을 사용
+	ex. <br></br> <-> <br/>
+6. 대소문자 구분함
+	ex. <root></Root>	-> 에러
+7. 태그가 꼬이면 (포함관계가 꼬이면) 에러
+ex.	<person>
+	<name>
+		<age>
+	</name>
+		</age>
+	</person>		-> 에러
+
+	<person>
+	<name>
+		<age>
+		</age>
+	</name>
+	</person>		-> OK
+8. XML문서 내에 최소 1개 이상의 Element가 존재하여야 하며,
+ 전체를 감싸는 (root 역할을 하는) Element가 반드시 1개 존재해야함.
+9. XML선언은 생략 가능하지만, 제일 첫 줄에 기술하는 것을 원칙으로 함
+	<?xml version="1.0" encoding="UTF-8" ?>
+	- 전체 생략은 가능, 전체 생략을 안할때 version은 생략 불가
+	- '<?xml' 앞에 공백 삽입 불가
+10. Attribute 값을 정의할 때 인용부호('',"") 생략 불가
+	ex. 	<table border=3>		(XML에서는 에러)
+	 	<table border='3'>		(OK)
+	 	<table border="3">		(OK)
+11. 서로 다른 Attribute는 반드시 공백을 통해 구분
+	ex. 	<table border="3"bgcolor='blue' >	(에러)
+12. 데이터에 제한된 문자('<','&',']]>')가 존재함 (Tag,CDATA에 예약된 문자)
+	- 해결방법 1 : replace처리
+		('<' : '&lt'	'&' : '&amp')
+	- 해결방법 2 : CDATA처리
+		<data><![CDATA[
+			(Character데이터만 기술되는 영역)
+			]]></data>
+13. 주석은 HTML과 같이 '<!--','-->'사이에 기술하면 되지만, 
+  주석에는 '--'가 들어갈 수 없음 
