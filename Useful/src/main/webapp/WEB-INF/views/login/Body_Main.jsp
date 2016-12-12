@@ -144,7 +144,14 @@
             <c:forEach items="${notice}" var="n" varStatus="stat">
                 <tr>
                   <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${n.serial }</td>
-                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><a href="/useful/board/notice/readPage?page=1&perPageNum=10&serial=${n.serial }">${n.title }</a></td>
+                  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">
+                  	<c:if test="${n.title.length()<=15 }">
+                  		<a href="/useful/board/notice/readPage?page=1&perPageNum=10&serial=${n.serial }">${n.title }</a>
+                  	</c:if>
+                  	<c:if test="${n.title.length()>15 }">
+                  		<a href="/useful/board/notice/readPage?page=1&perPageNum=10&serial=${n.serial }">${n.title.substring(0,15) }</a>
+                  	</c:if>
+                  </td>
                	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;">${n.writer }</td>
                	  <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><fmt:formatDate value="${n.regdate }" pattern="yyyy-MM-dd"/> </td>
                   <td style="border-collapse: collapse; border:1px #EAEAEA solid; text-align: center;"><span class="badge bg-red">${n.viewcnt}</span></td>
