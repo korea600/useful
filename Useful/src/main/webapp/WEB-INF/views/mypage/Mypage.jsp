@@ -32,10 +32,6 @@
 			alert("비밀번호를 입력해주세요.");
 			$('#pass').focus();
 			return;
-		}else if($.trim($('#ssn').val()) == ""){
-			alert("주민번호를 입력해주세요.");
-			$('#ssn').focus();
-			return;
 		}else if($.trim($('#email').val()) == ""){
 			alert("이메일을 입력해주세요.");
 			$('#email').focus();
