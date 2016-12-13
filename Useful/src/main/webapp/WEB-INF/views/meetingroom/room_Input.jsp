@@ -28,13 +28,18 @@
 
 
 function create(){
-	alert('클릭');
+	//alert('클릭');
+			var roomname=$('[name=roomname]').val();
+			var roomno=$('[name=roomno]').val();
+			if(roomname=='')alert('이름을 입력해 주세요');
+			else if(roomno=='')alert('호실을 입력해 주세요');
+			else{
 	 $.ajax({
 		 url:'/useful/meetingroom/makeroom',
 		 type:'post',
 		 data:{
-			 roomname:$('[name=roomname]').val(),
-			 roomno:$('[name=roomno]').val(),
+			 roomname:roomname,
+			 roomno:roomno
 
 		 },
 		 success:function(){
@@ -43,6 +48,7 @@ function create(){
 			
 		 }    		 
 	 });
+			}
  	 
 }
 
@@ -58,15 +64,17 @@ function create(){
 <body>
 
 <center>
-회의실 등록
+<p style="margin-top: 30px;">회의실 등록</p>
+
+
   <form id="booking" action="">
     <table border="1" cellspacing="0">
-      <tr><td>이름</td><td><input type="text" name="roomname"></td></tr>
-      <tr><td>장소</td><td><input type="text" name="roomno" >호</td></tr>    
+      <tr><td bgcolor="#dae6f4" width="80px;" align="center">이름</td><td><input type="text" name="roomname"></td></tr>
+      <tr><td bgcolor="#dae6f4" width="80px;" align="center">장소</td><td><input type="text" name="roomno" >호</td></tr>    
     </table>    
-
-  <input type="button" value="등록" onclick="create()">
-  <input type="button" value="닫기" onclick="clean()"> 
+<br>
+  <input type="button" class="btn btn-info" value="등록" onclick="create()">
+  <input type="button" class="btn btn-danger" value="닫기" onclick="clean()"> 
     </form>
 </center>
 

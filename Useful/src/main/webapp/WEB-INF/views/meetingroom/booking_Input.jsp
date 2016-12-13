@@ -163,19 +163,29 @@ function closeCal(y,m,d){
       */
 
    function reservationOK(){
-    	  
-    	   alert('클릭'); 
-    	 $.ajax({
+    			 var roomno=$('[name=roomno]').val();
+    		     var booker=$('[name=booker]').val();
+    			 var empno=$('[name=empno]').val();
+    			 var begin=$('[name=begin]').val();
+    			 var end=$('[name=end]').val();
+    			 var beginday=$('[name=beginday]').val();
+    			 var content=$('[name=content]').val();
+    			
+    			   
+    	 		    if(beginday=='')alert("날짜를 선택하세요");
+    	 			else if(begin >=end)alert('날짜를 다시 지정해 주세요');
+    	 			else{
+    	   $.ajax({
     		 url:'/useful/meetingroom/askBooking',
     		 type:'post',
     		 data:{
-    			 roomno: $('[name=roomno]').val(),
-    		     booker:$('[name=booker]').val(),
-    			 empno:$('[name=empno]').val(),
-    			 begin:$('[name=begin]').val(),
-    			 end:$('[name=end]').val(),
-    			 beginday:$('[name=beginday]').val(),
-    			 content:$('[name=content]').val()
+    			 roomno:roomno,
+    			 booker:booker,
+    			 empno:empno,
+    			 begin:begin,
+    			 end:end,
+    			 beginday:beginday,
+    			 content:content
     		 },
     		 success:function(){
     			 
@@ -184,6 +194,7 @@ function closeCal(y,m,d){
    
     		 }    		 
     	 });
+    	 			}
 	   	 
 	  }//reservationOK
     

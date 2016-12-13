@@ -208,13 +208,17 @@ var insertWin;
  
  function searchBooking(){
 	 
+	 if($('#keywordInput').val()=='')alert('검색어를 입력해 주세요');
+	 else if($("select option:selected").val()=='')alert('카테고리를 선택해 주세요');
+	 else{
 	 self.location = 'bookingList?roomno='
 			+ '${integer }'
 			+ '&${pageMaker.makeQuery(1)}'
 			+ '&searchType='
 			+ $("select option:selected").val()
 			+ '&keyword=' + $('#keywordInput').val();
- }
+	 }
+	 }
 
 
 </script>
@@ -255,7 +259,7 @@ var insertWin;
 <tr>
  <td colspan="7" align="right">
   <select name="searchType"  class='form-control-static'>
-   <option value="no" <c:out value='${cri.searchType == null?"selected":""}'/>>선택</option>
+   <option value="" <c:out value='${cri.searchType == null?"selected":""}'/>>선택</option>
    <option value="w" <c:out value='${cri.searchType eq "w" ? "selected":""}'/>>작성자</option>
    <option value="day" <c:out value='${cri.searchType eq "day" ? "selected":""}'/>>날짜</option>
      </select>

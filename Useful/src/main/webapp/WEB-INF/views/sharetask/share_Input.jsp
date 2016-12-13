@@ -53,6 +53,38 @@
 	<script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 
 
+<script>
+function formSubmit(){
+	
+	var title = $("[name=title]").val();
+	var category = $("[name=category]").val();
+	var deptno = $("[name=deptno]").val();
+	var writer = $("[name=writer]").val();
+	var content = $("[name=content]").val();
+	
+	
+		
+
+	if(title  == ""){
+		alert("제목을 입력해 주세요");
+		
+	}else if(category  == ""){
+		alert("분류를 선택해 주세요");
+		
+	}else if(content  == ""){
+		alert("내용을 입력해 주세요");
+		
+	}else{
+	
+	alert('입력하신 정보를 전송합니다.');
+	document.inputForm.submit();
+	}
+	
+}
+
+</script>
+
+
 </head>
 
 <body>
@@ -70,7 +102,8 @@
                 <div class="panel-body">
                    <div class="row">
                      <div class="col-lg-6">
-                        <form  method="post" action="/useful/sharetask/insert">
+                     
+                        <form  method="post" name="inputForm" action="/useful/sharetask/insert">
                           <div class="form-group">
                              <label>글제목</label>
                              <input class="form-control" type="text" placeholder="글 제목을 입력해주세요" id="title"	name="title" value="${shareTaskVO.title}">
@@ -78,7 +111,7 @@
                           <div class="form-group">
                             <label>분류</label><br>
                         <select class="form-control" name="category">
-				            <option value="선택">선택</option>
+				            <option value="">선택</option>
 				            <option value="업무관련">업무관련</option>
 				            <option value="회의관련">회의관련</option>
 				            <option value="기타">기타</option>
@@ -105,7 +138,7 @@
                           	    <div class="form-group">
                           	   
                                 
-					                <input type="submit" class="btn btn-default" value="등록">
+					                <input type="button" class="btn btn-default" onclick="formSubmit()"  value="등록">
 					    		    <input type="button" class="btn btn-default" value="취소" onClick="location.href='share_Board'" />
 
                                     </div>

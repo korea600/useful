@@ -78,10 +78,13 @@ $(document).ready(function(){
 	
 	
 	$("#replyBtn").on("click",function(){
+		
 		     empno=$('[name=empno]').val();
 	           bno=$('[name=bno]').val();
 			 replyer=$('[name=replyer]').val();
 			 replytext=$('[name=replytext]').val();
+			 if(replytext=='')alert("내용을 입력해 주세요");
+				else{
 		$.ajax({
 			type:'post',
 			url:'/useful/ShareReply',
@@ -101,7 +104,9 @@ $(document).ready(function(){
 				}
 			}
 		}); //ajax
+				}//else
 	});//click
+	
 	
 });//ready
 	
@@ -109,7 +114,7 @@ $(document).ready(function(){
 	//댓글 수정
 	
 function replyDiv(rno){
-		alert(rno);
+		//alert(rno);
 		
 			var str="<div class='input-group' id='input-group'"
 					+" style='height: 30px; width: 85%; size: 30; left: 10px; '>"
@@ -129,6 +134,8 @@ function replyDiv(rno){
 
 function modifyreply(rno){
 	var replytext=$('[name=changeReply]').val();
+	if(replytext=='')alert('내용을 입력해 주세요');
+	else{
 	$.ajax({
 		type:'PATCH',
 		url:'/useful/ShareReply/'+rno,
@@ -148,7 +155,7 @@ function modifyreply(rno){
 			}
 		}
 	}); 
-	
+	}
 } 
 
 
@@ -173,6 +180,33 @@ function deleteReply(rno){
 		}
 	}); 
 	
+}
+
+
+function changeSubmit(){
+	
+	var title = $("[name=title]").val();
+	var category = $("[name=category]").val();
+	var deptno = $("[name=deptno]").val();
+	var writer = $("[name=writer]").val();
+	var content = $("[name=content]").val();
+
+
+	if(title  == ""){
+		alert("제목을 입력해 주세요");
+		
+	}else if(category  == ""){
+		alert("분류를 선택해 주세요");
+		
+	}else if(content  == ""){
+		alert("내용을 입력해 주세요");
+		
+	}else{
+	
+	alert('입력하신 정보를 전송합니다.');
+	document.changeForm.submit();
+	}
+
 }
 
 
@@ -208,7 +242,8 @@ function deleteReply(rno){
                 <div class="panel-body">
                    <div class="row">
                      <div class="col-lg-6">
-                        <form  method="post" action="/useful/sharetask/change">
+                     
+                        <form name="changeForm" method="post" action="/useful/sharetask/change">
                           <div class="form-group">
                              <input type="hidden" name="bno" value="${shareTaskVO.bno}"> 
                              <input type="hidden" name="deptno" value="${shareTaskVO.deptno }">
@@ -260,7 +295,7 @@ function deleteReply(rno){
                           	   
                                   <c:if test="${empno==shareTaskVO.writer}">
                                     <input type="button" class="btn btn-default" id="change" value="수정" >
-                                    <input type="submit" class="btn btn-default" id="changeOK" value="확인">
+                                    <input type="button" class="btn btn-default" onclick="changeSubmit()" id="changeOK" value="확인">
 					    		    <input type="button" class="btn btn-default" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 
 						             </c:if>
 						             <c:if test="${position!='사원'}">

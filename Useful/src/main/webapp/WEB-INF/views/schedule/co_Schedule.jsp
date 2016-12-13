@@ -357,11 +357,14 @@ var insertWin;//자식창
 
  
  $('#searchBtn').on("click", function(e){
+	 if($('#keywordInput').val()=='')alert('검색어를 입력해 주세요');
+	 else if($('[name=searchType]').val()=='')alert('카테고리를 선택해 주세요');
+	 else{
 		self.location = "co_Schedule"
 			+ '${pageMaker.makeQuery(1)}'
 			+ "&searchType="+ $("select[name=searchType] option:selected").val()
 			+ "&keyword=" + $('#keywordInput').val();
-
+	 }
     });
  
  $('#allDelete').on("click", function(e) {
@@ -370,14 +373,15 @@ var insertWin;//자식창
 	    $("input[name='checkBno']:checked").each(function(i){
 	       checkboxValues.push($(this).val());//checkBoxValues에 배열로 넣기
 	    });
-       
-	    alert('c2: '+checkboxValues)
+       if(checkboxValues=='')alert("선택해 주세요");
+       else{
+	   
 	      if(!confirm('정말 삭제하시겠습니까?')){
 	    	  return; //삭제 취소
 	      }else{
 	    		
 	    		
-	    		alert('ch')
+	    		//alert('ch')
 	    	  $.ajax({
 	    			 url:'/useful/schedule/removeCheck',
 	    			 type:'post',
@@ -393,7 +397,7 @@ var insertWin;//자식창
 	    			 }    		 
 	    		 });//ajax
 	         }//else 
-	 
+            }
 	       });//click
 	});//ready
  
@@ -428,7 +432,7 @@ var insertWin;//자식창
    <table class='table table-striped table-bordered table-hover' style="text-align: center;">   
    <tr><td colspan="7" align="right">
        <select name="searchType" class='form-control-static' >
-   <option value="no">선택</option>
+   <option value="">선택</option>
    <option value="s">글번호</option>
    <option value="t">제목</option>
    <option value="b">시작날짜</option>

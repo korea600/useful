@@ -224,17 +224,38 @@ function remove(sr){
 
 //수정->확인 눌렀을때	
  function update(){
-	 $.ajax({
+	
+			 var serial=$('[name=serial]').val();
+			 var empno=$('[name=empno]').val();
+			 var title=$('[name=title]').val();
+			 var begin=$('[name=begin]').val();
+			 var end=$('[name=end]').val();
+			    var begin2 =begin.split('/');
+			    var end2 = end.split('/');
+			    var start = new Date(Number(begin2[0]), Number(begin2[1])-1, Number(begin2[2]));
+			    var stop= new Date(Number(end2[0]), Number(end2[1])-1, Number(end2[2]));
+			 
+			 var begintime=$('[name=begintime]').val();
+			 var content=$('[name=content]').val();
+
+ 			if(title=='')alert("제목을 입력하세요");
+ 			else if(begin=='')alert("시작날짜를 입력하세요");
+ 			else if(end=='')alert("마감날짜를 입력하세요");
+ 			else if(begintime=='')alert("시간을 선택해 주세요");
+ 			else if(start.getTime() > stop.getTime())alert('날짜를 다시 지정해 주세요');
+ 			else{
+			 
+			 $.ajax({
 		 url:'/useful/schedule/change',
 		 type:'post',
 		 data:{
-			 serial:$('[name=serial]').val(),
-			 empno:$('[name=empno]').val(),
-			 title:$('[name=title]').val(),
-			 begin:$('[name=begin]').val(),
-			 end:$('[name=end]').val(),
-			 begintime:$('[name=begintime]').val(),
-			 content:$('[name=content]').val()
+			   serial:serial,
+			   empno:empno,
+			   title:title,
+			   begin:begin,
+			   end:end,
+			   begintime:begintime,
+			   content:content
 		 },
 		 success:function(){
 			 opener.parent.location.reload();
@@ -242,6 +263,7 @@ function remove(sr){
 			 self.close();
 		 }    		 
 	 });
+ 			}
 } 
 
 
