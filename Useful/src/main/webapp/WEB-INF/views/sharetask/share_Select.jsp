@@ -293,16 +293,11 @@ function changeSubmit(){
                                         
                           	    <div class="form-group">
                           	   
-                                  <c:if test="${empno==shareTaskVO.writer}">
+                                  <c:if test='${empno==shareTaskVO.writer || position !="사원"}'>
                                     <input type="button" class="btn btn-default" id="change" value="수정" >
                                     <input type="button" class="btn btn-default" onclick="changeSubmit()" id="changeOK" value="확인">
 					    		    <input type="button" class="btn btn-default" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 
 						             </c:if>
-						             <c:if test="${position!='사원'}">
-						            <input type="button" class="btn btn-default" id="change" value="수정" >
-                                    <input type="submit" class="btn btn-default" id="changeOK" value="확인">
-					    		    <input type="button" class="btn btn-default" value="삭제" onClick="location.href='remove?page=${cri.page }&bno=${shareTaskVO.bno }'"/> 
-						           </c:if>
 						            <input type="button" class="btn btn-default" value="목록" onClick="location.href='share_Board?page=${cri.page}'" />
 
                                     </div>

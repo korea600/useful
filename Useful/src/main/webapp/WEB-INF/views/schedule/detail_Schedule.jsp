@@ -336,9 +336,11 @@ function remove(sr){
 			</table>			
 		</form>
 		<br>
+		<c:if test='${LoginUser.position != "사원" }'>
 		  <input type="button" id="change" class="btn btn-info" value="수정" />
 		            <input type="button" class="btn btn-info" id="changeOK" value="확인" onclick="update()"/>
 		            <input type="button"  value="삭제"  class="btn btn-danger" onclick="remove(${scheduleVO.serial})"/> 
+		            </c:if>
 					<input type="button"  value="닫기"  class="btn btn-danger" onclick="clean()" />
 	 <div id="cal" style="display: none; position: absolute;"></div>
 		           
