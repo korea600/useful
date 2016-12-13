@@ -325,7 +325,7 @@ function changeSubmit(){
 					<div class="col-lg-4" style="width: 87%; right: 10px;">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                        <h5>${ShareReplyVO.replyer }<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${ShareReply.regdate}"/> </h5>
+                        <h5>${ShareReplyVO.replyer }(${ShareReplyVO.empno }) <fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${ShareReplyVO.regdate}"/> </h5>
                         </div><input type="hidden" id="rno" value="${ShareReplyVO.rno }">
                         <div class="panel-body">
                             <p id="text">${ShareReplyVO.replytext }</p>
