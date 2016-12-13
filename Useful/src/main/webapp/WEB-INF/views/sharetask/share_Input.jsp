@@ -130,7 +130,7 @@ function formSubmit(){
                           
 						<div class="form-group">
                          
-										<label>첨부파일</label>
+										<!-- <label>첨부파일</label> -->
 									
 										
 						</div>
