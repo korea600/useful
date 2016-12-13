@@ -173,7 +173,7 @@ function closeCal(y,m,d){
     			
     			   
     	 		    if(beginday=='')alert("날짜를 선택하세요");
-    	 			else if(begin >=end)alert('날짜를 다시 지정해 주세요');
+    	 			else if(Number(begin)>=Number(end))alert('시간을 다시 설정해 주세요');
     	 			else{
     	   $.ajax({
     		 url:'/useful/meetingroom/askBooking',
