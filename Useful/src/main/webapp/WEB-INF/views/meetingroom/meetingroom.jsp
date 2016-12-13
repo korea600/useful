@@ -127,7 +127,7 @@ var insertWin;
                <p><input type="text" class="a${MeetingRoomVO.roomno}" name="roomno" readonly="readonly"  value="${MeetingRoomVO.roomno}" style="width:90px; border:0; text-align: center;"></p>
                
                  <c:if test="${evo.position!='사원'}">
-               <p><input type="submit" id="a${MeetingRoomVO.roomno}" class="btn btn-info" class="changeOK" value="확인"></p>
+               <p><input type="submit" id="a${MeetingRoomVO.roomno}" class="btn btn-info" class="changeOK" value="확인" style="display:none;"></p>
                <p><input type="button" id="b${MeetingRoomVO.roomno}" class="btn btn-info" onclick="change(${MeetingRoomVO.roomno})" value="수정" ></p>
                <p><input type="button" value="삭제" class="btn btn-danger" onclick="remove(${MeetingRoomVO.roomno})"></p>
                  
