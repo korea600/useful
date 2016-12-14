@@ -9,12 +9,19 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	<!-- 프로젝트 세팅 관련 부분  start-->
-	<!-- JDBC 설정 (Connection pool)-->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- JDBC 설정 (Connection pool - Useful 공식 DB)-->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value='oracle.jdbc.driver.OracleDriver'/>
 		<property name="url" value='jdbc:oracle:thin:@180.70.132.106:1521:CENTORA'/>
 		<property name="username" value='scott'/>
 		<property name="password" value='scott'/>
+	</bean> -->
+	<!-- JDBC 설정 (Connection pool - Local DB)-->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value='oracle.jdbc.driver.OracleDriver'/>
+		<property name="url" value='jdbc:oracle:thin:@127.0.0.1:1521:xe'/>
+		<property name="username" value='useful'/>
+		<property name="password" value='useful'/>
 	</bean>
 	
 	<!-- MyBatis 설정 (DataSource, sqlmapper 등록) -->	
