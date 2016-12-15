@@ -14,7 +14,8 @@ public class PathMaker {
 	public static String getUploadPath(HttpServletRequest request) throws Exception{	// GIT폴더 내부의 업로드 경로 리턴
 		ServletContext application = request.getServletContext();
 		String realpath=application.getRealPath("").replace('\\', '/');
-		String propertypath=realpath.substring(0, realpath.indexOf("org.eclipse"))+"org.eclipse.core.resources/.projects"+application.getContextPath();
+		String propertypath=realpath.substring(0, realpath.indexOf("org.eclipse"))
+					+"org.eclipse.core.resources/.projects"+application.getContextPath();
 		String filename=".location";
 		BufferedReader br = new BufferedReader(new FileReader(propertypath+"/"+filename));
 		String gitdir=br.readLine();
