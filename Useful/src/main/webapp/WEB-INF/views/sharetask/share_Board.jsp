@@ -79,7 +79,7 @@ td{text-align: center}
 							<tr><th>문서번호</th>
                                                             <th>분류</th>
                                                             <th>제목</th>
-                                                            <th></th>
+                                                            
                                                             <th>작성자</th>
                                                             <th>작성일자</th></tr>
 						
@@ -88,7 +88,7 @@ td{text-align: center}
                                                          <tr><td>${ShareTaskVO.bno}</td>
                                                              <td>${ShareTaskVO.category}</td>
                                                              <td><a href='/useful/sharetask/detail${pageMaker.makeQuery(pageMaker.cri.page) }&bno=${ShareTaskVO.bno}&deptno=${ShareTaskVO.deptno}'>${ShareTaskVO.title}</a></td>
-                                                             <td>첨부 ok</td>
+                                                           
                                                              <td>${ShareTaskVO.ename}</td>
                                                              <td><fmt:formatDate pattern="yyyy.MM.dd HH:mm"
 										value="${ShareTaskVO.regdate}" /></td>
@@ -108,15 +108,15 @@ td{text-align: center}
 		<div class='dataTables_paginate paging_simple_numbers' id='dataTables-example_paginate' style="text-align: center;">
 			<ul class='pagination'>
 
-				<c:if test="${pagemaker.prev}">
-					<li class='paginate_button' id='dataTables-example_previous'><a href="share_Board?${pageMaker.startPage - 1}">이전</a></li>
+				<c:if test="${pageMaker.prev}">
+					<li class='paginate_button' id='dataTables-example_previous'><a href="share_Board${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 				</c:if>
 				<c:forEach begin='${pageMaker.startPage}' end="${pageMaker.endPage }" var='idx'>
                                         <c:if test="${pageMaker.cri.page==idx}"><li class='paginate_button active'><a href='#'>${idx}</a></li></c:if>
-                                        <c:if test="${pageMaker.cri.page!=idx}"><li class='paginate_button'><a href="share_Board?page=${idx}">${idx}</a></li></c:if>
+                                        <c:if test="${pageMaker.cri.page!=idx}"><li class='paginate_button'><a href="share_Board${pageMaker.makeSearch(idx)}">${idx}</a></li></c:if>
                              	</c:forEach>
 				<c:if test="${pageMaker.next && pageMaker.endPage>0 }">
-					<li class='paginate_button' id='dataTables-example_next'><a href="share_Board?${pageMaker.endPage +1}">다음</a></li>
+					<li class='paginate_button' id='dataTables-example_next'><a href="share_Board${pageMaker.makeSearch(pageMaker.endPage +1)}">다음</a></li>
 				</c:if>				
 			</ul>
 		</div>

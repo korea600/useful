@@ -43,12 +43,11 @@ function contentCk(serial){
 
 function changeType(){
 	  var checked=$("[name=searchType]").val();
-	  if(checked=='')alert('검색항목을 선택하세요');
-	  else{
-		  
+	  
+	 
 		  location.href="/useful/meetingroom/bookingHistory?checked="+checked;
 	  
-	  }
+	  
 }
 
 </script>
@@ -71,7 +70,7 @@ function changeType(){
     <tr>
    <td colspan="7" align="right"> 
        <select name="searchType" class='form-control-static' style="width:80px;">
-         <option value="">선택</option>
+         <option value="선택">선택</option>
          <option value="승인">승인</option>
          <option value="대기">대기</option>
          <option value="거절">거절</option>
@@ -115,6 +114,27 @@ function changeType(){
      
       </tr>
       </c:forEach>
+      
+              <tr><td colspan="7" align="center">
+                      <ul class="pagination">
+
+							<c:if test="${pageMaker.prev}">
+								<li><a href="bookingHistory${pageMaker.makeSearch(pageMaker.startPage - 1)}">◀</a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+								<li	<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+									<a href="bookingHistory${pageMaker.makeSearch(idx)}&roomno=${integer}">${idx}</a>
+								</li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a href="bookingHistory${pageMaker.makeSearch(pageMaker.endPage +1)}">▶</a></li>
+							</c:if>
+
+						</ul>
+    </td>
+    </tr>
       
       
     </table>

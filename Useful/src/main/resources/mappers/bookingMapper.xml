@@ -16,19 +16,27 @@
      select serial, roomno, beginday, begin, end, content, booker, empno, checked from tbl_reservation
      where checked='승인'
      and roomno=#{roomno}
-     	<if test="searchType != null">
-			<if test="searchType == 'w'.toString()">and booker like '%'||#{keyword}||'%'</if>
-			<if test="searchType == 'day'.toString() ">and beginday like '%'||#{keyword}||'%'</if>
-		</if>
+    <include refid="search"/>
      order by serial desc
    </select>
    
+   
+   
+   	<!-- 검색 -->
+	<sql id="search">
+		<if test="searchType != null">
+	        <if test="searchType == 'w'.toString()">and booker like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'day'.toString() ">and beginday like '%'||#{keyword}||'%'</if>
+		</if>
+	</sql>
+	
    
    	<!-- 각 회의실에 따른 페이지 리스트 수 -->
 	<select id="countOKlist" resultType="int">
 		select count(*) from
 		tbl_reservation 
         where checked='승인'
+        <include refid="search"/>
         and roomno=#{roomno}
 	</select>
    
@@ -48,9 +56,7 @@
      <if test="checked!=null">
      and checked=#{checked}
      </if>
-   
       order by serial desc
-      
    </select>
    
    
@@ -58,7 +64,11 @@
 	<select id="countMylist" resultType="int">
 		select count(*) from
 		tbl_reservation 
-        where empno=#{empno}
+        where
+         <if test="checked!=null">
+           checked=#{checked}  and 
+          </if>
+        empno=#{empno}
 	</select>
    
    
@@ -68,19 +78,23 @@
       order by serial desc
    </select>
   
-     <!-- 관리자가 보는 등록리스트 -->
+   <!-- 관리자가 보는 등록리스트 -->
    <select id="allBooking2" resultType="Booking">
      select * from tbl_reservation
-      <if test="checked!=null">
+       <if test="checked!=null">
      where checked=#{checked}
      </if>
       order by serial desc
    </select>
      
-      	<!--관리자가 보는 페이지 리스트 수 -->
+     <!--관리자가 보는 페이지 리스트 수 -->
 	<select id="prelist" resultType="int">
 		select count(*) from
 		tbl_reservation 
+		<if test="checked!=null">
+           where checked=#{checked}
+        </if>
+		
 	</select>
 	
    <!--  예약삭제-->

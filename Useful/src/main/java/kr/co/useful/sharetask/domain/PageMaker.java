@@ -12,7 +12,7 @@ public class PageMaker {
    private boolean prev; 
    private boolean next;   
    
-   private Criteria cri;
+   private SearchCriteria cri;
    
    //페이지 번호 출력에 관련된 계산
    public void calcData(){
@@ -117,7 +117,7 @@ public Criteria getCri() {
 	return cri;
 }
 
-public void setCri(Criteria cri) {
+public void setCri(SearchCriteria cri) {
 	this.cri = cri;
 }
    

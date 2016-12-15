@@ -95,19 +95,8 @@ public class MeetingDAOImpl implements MeetingDAO {
 		return sqs.selectOne("booking.countOKlist");
 	}
 
-	@Override
-	public int listSearchCount(SearchCriteria cri) throws Exception {
-		return sqs.selectOne("booking.listSearchCount", cri);
-	}
+	
 
-	@Override
-	public List<MeetingVO> bookingOK(SearchCriteria cri, int roomno) throws Exception {
-        Map<String, Object> map = new HashMap<>();
-		map.put("roomno", roomno);
-		map.put("keyword", cri.getKeyword());
-		map.put("searchType",cri.getSearchType());
-		return sqs.selectList("booking.listOfNum2", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
-	}
 
 	@Override
 	public MeetingVO oneBooking(int serial) throws Exception {
@@ -121,6 +110,34 @@ public class MeetingDAOImpl implements MeetingDAO {
 		
 	}
 
+
+	@Override
+	public List<MeetingVO> allBooking2(String checked, SearchCriteria cri) throws Exception {
+		   Map<String, Object> map = new HashMap<>();
+			
+			map.put("checked", checked);
+			map.put("searchType",cri.getSearchType());
+			return sqs.selectList("booking.allBooking2", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	}
+	
+	
+	@Override
+	public List<MeetingVO> bookingOK(SearchCriteria cri, int roomno) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+		map.put("roomno", roomno);
+		map.put("keyword", cri.getKeyword());
+		map.put("searchType",cri.getSearchType());
+		return sqs.selectList("booking.listOfNum2", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	}
+
+	@Override
+	public int okListSearchCount(SearchCriteria cri, int roomno) throws Exception {
+		 Map<String, Object> map = new HashMap<>();
+		 map.put("roomno", roomno);
+		 map.put("serchType", cri.getSearchType());
+		return sqs.selectOne("booking.countOKlist", map);
+	}
+
 	@Override
 	public List<MeetingVO> myBooking2(SearchCriteria cri, int empno, String checked) throws Exception {
 		   Map<String, Object> map = new HashMap<>();
@@ -130,12 +147,20 @@ public class MeetingDAOImpl implements MeetingDAO {
 	}
 
 	@Override
-	public List<MeetingVO> allBooking2(String checked, SearchCriteria cri) throws Exception {
-		   Map<String, Object> map = new HashMap<>();
-			
-			map.put("checked", checked);
-			map.put("searchType",cri.getSearchType());
-			return sqs.selectList("booking.allBooking2", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	public int myListSearchCount(String checked, int empno) throws Exception {
+		 Map<String, Object> map = new HashMap<>();
+		 map.put("checked", checked);
+		 map.put("empno", empno);
+		 
+		return sqs.selectOne("booking.countMylist", map);
+	}
+
+	@Override
+	public int allListSearchCount(String checked) throws Exception {
+		Map<String,String> map = new HashMap<>();
+		map.put("checked", checked);
+		return sqs.selectOne("booking.prelist", map);
+	
 	}
 
 

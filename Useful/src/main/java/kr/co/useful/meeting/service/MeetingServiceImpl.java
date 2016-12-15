@@ -95,11 +95,6 @@ public class MeetingServiceImpl implements MeetingService {
 		return dao.totalBookngOK();
 	}
 
-	@Override
-	public int listSearchCount(SearchCriteria cri) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.listSearchCount(cri);
-	}
 
 	@Override
 	public MeetingVO oneBooking(int serial) throws Exception {
@@ -124,5 +119,25 @@ public class MeetingServiceImpl implements MeetingService {
 		
 		return dao.allBooking2(checked, cri);
 	}
+
+	@Override
+	public int okListSearchCount(SearchCriteria cri, int roomno) throws Exception {
+		
+		return dao.okListSearchCount(cri, roomno);
+	}
+
+	@Override
+	public int myListSearchCount(String checked, int empno) throws Exception {
+	
+		return dao.myListSearchCount(checked, empno);
+	}
+
+	@Override
+	public int allListSearchCount(String checked) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.allListSearchCount(checked);
+	}
+
+
 
 }

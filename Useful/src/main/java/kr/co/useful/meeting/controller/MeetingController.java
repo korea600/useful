@@ -43,15 +43,14 @@ public class MeetingController {
 	public void allList(@ModelAttribute("cri") SearchCriteria cri, String checked, Model model) throws Exception {
 		//model.addAttribute("list", service.allBooking());
 		// System.out.println(service.rooms());
+		 if(checked!=null && checked.equals("선택")) checked=null;
 		model.addAttribute("list", service.allBooking2(checked, cri));
-
+        
 		PageMaker maker = new PageMaker();
 	 	maker.setCri(cri);
-	 	maker.setTotalCount(service.listSearchCount(cri));
+	 	maker.setTotalCount(service.allListSearchCount(checked));
 	 	model.addAttribute("pageMaker", maker);
-	 	
-		System.out.println(model);
-		
+
 	}
 
 	// 내가 예약한 리스트
@@ -61,12 +60,12 @@ public class MeetingController {
 		  int empno=evo.getEmpno();
 		//model.addAttribute("list", service.myBooking(empno));
 		// System.out.println(service.rooms());
-		  
+		  if(checked!=null && checked.equals("선택")) checked=null;
            model.addAttribute("list", service.myBooking2(cri, empno, checked));
            
            PageMaker maker = new PageMaker();
    	 	maker.setCri(cri);
-   	 	maker.setTotalCount(service.listSearchCount(cri));
+   	 	maker.setTotalCount(service.myListSearchCount(checked, empno));
    	 	model.addAttribute("pageMaker", maker);
    	 	
 	}
@@ -116,7 +115,7 @@ public class MeetingController {
 
 		PageMaker maker = new PageMaker();
 	 	maker.setCri(cri);
-	 	maker.setTotalCount(service.listSearchCount(cri));
+	 	maker.setTotalCount(service.okListSearchCount(cri, roomno));
 	 	model.addAttribute("pageMaker", maker);
 	 	
 		System.out.println(model);

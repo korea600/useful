@@ -208,16 +208,15 @@ var insertWin;
  
  function searchBooking(){
 	 
-	 if($('#keywordInput').val()=='')alert('검색어를 입력해 주세요');
-	 else if($("select option:selected").val()=='')alert('카테고리를 선택해 주세요');
-	 else{
+	 
+	
 	 self.location = 'bookingList?roomno='
 			+ '${integer }'
 			+ '&${pageMaker.makeQuery(1)}'
 			+ '&searchType='
 			+ $("select option:selected").val()
 			+ '&keyword=' + $('#keywordInput').val();
-	 }
+	 
 	 }
 
 
@@ -293,18 +292,18 @@ var insertWin;
    <ul class="pagination">
 
 							<c:if test="${pageMaker.prev}">
-								<li><a href="bookingList?${pageMaker.startPage - 1}">◀</a></li>
+								<li><a href="bookingList${pageMaker.makeSearch(pageMaker.startPage - 1)}">◀</a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 								<li	<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-									<a href="bookingList?page=${idx}&roomno=${integer}">${idx}</a>
+									<a href="bookingList${pageMaker.makeSearch(idx)}&roomno=${integer}">${idx}</a>
 								</li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="bookingList?${pageMaker.endPage +1}">▶</a></li>
+									href="bookingList${pageMaker.makeSearch(pageMaker.endPage +1)}">▶</a></li>
 							</c:if>
 
 						</ul>

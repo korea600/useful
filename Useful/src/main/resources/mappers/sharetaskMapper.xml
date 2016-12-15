@@ -70,19 +70,22 @@
 		tbl_sharetask, tbl_emp
 		where tbl_sharetask.writer = tbl_emp.empno and
 		tbl_sharetask.deptno=#{deptno}
+		<include refid="search"/>
+		order by bno desc
+	</select>
+	<!-- 검색 -->
+	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 'n'.toString()">and bno like '%'||#{keyword}||'%'</if>
 			<if test="searchType == 't'.toString()">and title like '%'||#{keyword}||'%'</if>
 			<if test="searchType == 'w'.toString() ">and writer like '%'||#{keyword}||'%'</if>
 		</if>
-		order by bno desc
-	</select>
-
-
+	</sql>
 	<!-- 검색 리스트 수 -->
 	<select id="listSearchCount" resultType="int">
 		select count(bno) from
-		tbl_sharetask
+		tbl_sharetask where deptno=#{deptno}
+		<include refid="search"/>
 	</select>
 
 
