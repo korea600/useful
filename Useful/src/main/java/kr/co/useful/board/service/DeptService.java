@@ -4,17 +4,16 @@ import java.util.List;
 
 import kr.co.useful.board.domain.Criteria;
 import kr.co.useful.board.domain.DeptBoardVO;
-import kr.co.useful.board.domain.NoticeVO;
 import kr.co.useful.board.domain.SearchCriteria;
 
 public interface DeptService {
-	public void create(DeptBoardVO vo)throws Exception; //ìƒì„±	
-	public void modify(DeptBoardVO vo)throws Exception; // ìˆ˜ì •
-	public DeptBoardVO read(int serial)throws Exception; //ì¼ê¸°
-	public void remove(int serial)throws Exception; //ì‚­ì œ
-	public List<DeptBoardVO> listAll()throws Exception; //ì „ì²´ ì¶œë ¥
-	public List<DeptBoardVO> listCriteria(Criteria cri)throws Exception; // í˜ì´ì§€ì¡°íˆ
-	public int listCount()throws Exception;  //ì „ì²´ ì¹´ìš´íŠ¸
-	public List<DeptBoardVO> listSearch(SearchCriteria cri)throws Exception; //ë¦¬ìŠ¤íŠ¸ê²€ìƒ‰
-	public int SearchCount(SearchCriteria cri)throws Exception; //ê²€ìƒ‰ì–´ ì¹´ìš´íŠ¸
+	public void create(DeptBoardVO vo)throws Exception; //»ı¼º
+	public void modify(DeptBoardVO vo)throws Exception; //¼öÁ¤
+	public DeptBoardVO read(int serial)throws Exception; //ÀĞ±â
+	public void remove(int serial)throws Exception; //»èÁ¦
+	public List<DeptBoardVO> listAll()throws Exception; //ÀüÃ¼Ãâ·Â
+	public List<DeptBoardVO> listCriteria(Criteria cri)throws Exception; //ÆäÀÌÁöÁ¶È¸
+	public int listCount()throws Exception;  //ÀüÃ¼Ä«¿îÆ®
+	public List<DeptBoardVO> listSearch(SearchCriteria cri)throws Exception; //¸®½ºÆ®°Ë»ö
+	public int SearchCount(SearchCriteria cri)throws Exception; //°Ë»öÈÄ Ä«¿îÆ®
 }

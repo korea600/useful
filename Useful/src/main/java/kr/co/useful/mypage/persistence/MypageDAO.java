@@ -1,7 +1,5 @@
 package kr.co.useful.mypage.persistence;
 
-import java.util.Map;
-
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.mypage.domain.ProofEmpVO;
 

@@ -14,15 +14,14 @@ public class AnonymityVO {
 	private String originalfileName;
 	private String saveFileName;
 	private long fileSize;
-	public AnonymityVO() {
-		// TODO Auto-generated constructor stub
-	}
-	@Override
+	public AnonymityVO() {}
+	
 	public String toString() {
 		return "AnonymityVO [serial=" + serial + ", title=" + title + ", pass=" + pass + ", content=" + content
 				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + ", originalfileName="
 				+ originalfileName + ", saveFileName=" + saveFileName + ", fileSize=" + fileSize + "]";
 	}
+	
 	public AnonymityVO(int serial, String title, String pass, String content, Date regdate, int viewcnt, int replycnt,
 			String originalfileName, String saveFileName, long fileSize) {
 		this.serial = serial;

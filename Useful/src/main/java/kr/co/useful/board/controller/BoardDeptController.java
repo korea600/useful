@@ -1,7 +1,5 @@
 package kr.co.useful.board.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -12,17 +10,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.useful.board.domain.DeptBoardVO;
 import kr.co.useful.board.domain.PageMaker;
-import kr.co.useful.board.domain.ReplyVO;
 import kr.co.useful.board.domain.SearchCriteria;
 import kr.co.useful.board.service.DeptService;
-import kr.co.useful.board.service.ReplyService;
 
 @Controller
 @RequestMapping("/board/dept")
 public class BoardDeptController {
+
 	@Inject
 	private DeptService service;
-
 	
 	@RequestMapping("/listPage")
 	public void listPage(SearchCriteria cri,Model model) throws Exception {
@@ -32,23 +28,22 @@ public class BoardDeptController {
 		pageMaker.calc();
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("list", service.listCriteria(cri));
-	};
+	}
+	
 	@RequestMapping(value="/createPage",method=RequestMethod.GET)
-	public void createPageGET() throws Exception {
-	};
+	public void createPageGET() throws Exception {}
 	
 	@RequestMapping(value="/createPage",method=RequestMethod.POST)
 	public String createPagePOST(DeptBoardVO vo,RedirectAttributes att)throws Exception{
-	service.create(vo);
-	att.addFlashAttribute("message", "SUCCESS");
-	return "redirect:/board/notice/listPage";
+		service.create(vo);
+		att.addFlashAttribute("message", "SUCCESS");
+		return "redirect:/board/notice/listPage";
 	}
 
 	@RequestMapping(value="/modifyPage",method=RequestMethod.GET) 
 	public void modifyPage(int serial,Model model)throws Exception{
 		DeptBoardVO board=service.read(serial);
 		model.addAttribute("board", board);
-		
 	}
 	
 	@RequestMapping(value="/modifyPage",method=RequestMethod.POST) 
@@ -66,14 +61,14 @@ public class BoardDeptController {
 
 	@RequestMapping("/readPage")
 	public void readPage(int serial,Model model,SearchCriteria cri)throws Exception {
-	DeptBoardVO board=service.read(serial);
-	PageMaker pageMaker=new PageMaker();
-
-	pageMaker.setCri(cri);
-	pageMaker.calc();
-	model.addAttribute("maker", pageMaker);
-
-	model.addAttribute("board", board);
-	model.addAttribute("cri", cri);
+		DeptBoardVO board=service.read(serial);
+		PageMaker pageMaker=new PageMaker();
+	
+		pageMaker.setCri(cri);
+		pageMaker.calc();
+		model.addAttribute("maker", pageMaker);
+	
+		model.addAttribute("board", board);
+		model.addAttribute("cri", cri);
 	}
 }

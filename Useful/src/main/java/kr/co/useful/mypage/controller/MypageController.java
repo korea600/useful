@@ -1,19 +1,14 @@
 package kr.co.useful.mypage.controller;
 
-import java.util.Map;
-
 import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.useful.encrypt.LocalEncrypter;
@@ -41,7 +36,6 @@ public class MypageController {
 	@RequestMapping(value="/Mypage",method=RequestMethod.POST)
 	public void updateForm( String empno, Model m)throws Exception{
 			m.addAttribute("vo", service.select(Integer.parseInt(empno)));
-		
 	}
 	
 	
@@ -55,7 +49,8 @@ public class MypageController {
 			vo.setPass(str);
 			service.update(vo);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -63,30 +58,19 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/proof_Of_emp_Print",method=RequestMethod.GET)
-	public void leave_Of_emp_Print()throws Exception{
-		
-	}
+	public void leave_Of_emp_Print()throws Exception{}
+	
 	@RequestMapping(value="/proof_Of_emp",method=RequestMethod.GET)
-	public void proof_Of_emp_form()throws Exception{
-
-	}
+	public void proof_Of_emp_form()throws Exception{}
+	
 	@RequestMapping(value="/testFile",method=RequestMethod.GET)
-	public void testFile()throws Exception{
-		
-	}
+	public void testFile()throws Exception{}
+	
 	@RequestMapping(value="/proof_Of_emp",method=RequestMethod.POST)
-	public String proof_Of_emp(int empno, String purpose,
-			                   //@RequestBody Map<String,Object> requestMap,
-			                  RedirectAttributes rttr)throws Exception{
-		//int empno=(int) requestMap.get("empno");
-		//model.addAttribute("proof_emp",service.proof_emp(empno));
-		//model.addAttribute("purpose",requestMap.get("purpose"));
-//		ModelAndView mv = new ModelAndView();
+	public String proof_Of_emp(int empno, String purpose,RedirectAttributes rttr)throws Exception{
 		rttr.addFlashAttribute("proof_emp",service.proof_emp(empno));
-		rttr.addFlashAttribute("purpose", purpose);//requestMap.get("purpose"));
+		rttr.addFlashAttribute("purpose", purpose);
 		return "redirect:/mypage/proof_Of_emp_Print";
 	}
-	
-	
-	
+
 }

@@ -6,8 +6,6 @@ import kr.co.useful.sharetask.domain.Criteria;
 import kr.co.useful.sharetask.domain.SearchCriteria;
 import kr.co.useful.sharetask.domain.ShareTaskVO;
 
-
-
 public interface ShareTaskService {
 
 	public void regist(ShareTaskVO vo) throws Exception;
@@ -23,21 +21,20 @@ public interface ShareTaskService {
 	public List<ShareTaskVO> listCriteria(Criteria cri) throws Exception;
 
 	public int totalListCount() throws Exception;
-	
-	
-	
+
     //검색어를 통한 리스트 조회
     public List<ShareTaskVO> listSearchCriteria(SearchCriteria cri)throws Exception;
     
     public int listSearchCount(SearchCriteria cri)throws Exception;
     
     //이전글 다음글
-  		public ShareTaskVO prevRead(int bno, int deptno) throws Exception;
+  	public ShareTaskVO prevRead(int bno, int deptno) throws Exception;
   		
-  		public ShareTaskVO nextRead(int bno, int deptno) throws Exception;
-  		//조회수
-  		public void viewcnt(int bno)throws Exception;
+  	public ShareTaskVO nextRead(int bno, int deptno) throws Exception;
+
+  	//조회수
+  	public void viewcnt(int bno)throws Exception;
   		
-  		public List<ShareTaskVO> cutList(int deptno)throws Exception;
+  	public List<ShareTaskVO> cutList(int deptno)throws Exception;
     
 }

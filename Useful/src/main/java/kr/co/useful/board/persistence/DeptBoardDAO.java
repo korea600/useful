@@ -2,10 +2,8 @@ package kr.co.useful.board.persistence;
 
 import java.util.List;
 
-import kr.co.useful.board.domain.BoardVO;
 import kr.co.useful.board.domain.Criteria;
 import kr.co.useful.board.domain.DeptBoardVO;
-import kr.co.useful.board.domain.NoticeVO;
 import kr.co.useful.board.domain.SearchCriteria;
 
 public interface DeptBoardDAO {

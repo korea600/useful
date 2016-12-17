@@ -5,8 +5,6 @@ import java.util.List;
 import kr.co.useful.schedule.domain.ScheduleVO;
 import kr.co.useful.schedule.domain.SearchCriteria;
 
-
-
 public interface ScheduleService {
 	
 	public void regist(ScheduleVO vo)throws Exception;

@@ -24,66 +24,53 @@ import kr.co.useful.sharetask.service.ShareReplyService;
 @RequestMapping("/ShareReply")
 public class ShareReplyController {
 	
-	   @Inject
-       ShareReplyService service;
+	@Inject
+    ShareReplyService service;
        
-       //댓글 등록
-       @RequestMapping(value="", method=RequestMethod.POST)
-     	public ResponseEntity<String> register(@RequestBody ShareReplyVO vo, HttpServletRequest req){
-   		
-   		//System.out.println(vo);
+    //댓글 등록
+    @RequestMapping(value="", method=RequestMethod.POST)
+    public ResponseEntity<String> register(@RequestBody ShareReplyVO vo, HttpServletRequest req){
    		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
    		
    		ResponseEntity<String> entity = null;
    		
    		try {
    			service.addReply(vo);
-   			System.out.println("reply="+vo);
    			entity=new ResponseEntity<>("SUCCESS", HttpStatus.OK);
-   			
-   			
-   		} catch (Exception e) {
-   			
+   		}
+   		catch (Exception e) {
    			e.printStackTrace();
-   			
    			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
    		}
    		
    		return entity;
    	}
-   	
 
-   	
-   	
-   	//특정게시물에 대한 모든 댓글 목록요청
-   		@RequestMapping(value="/all/{bno}", method=RequestMethod.GET)
-   		public List<ShareReplyVO> list(@PathVariable("bno") int bno){
-   			
-   		   System.out.println("bno: "+ bno);
-   		   List<ShareReplyVO> list=null;
-   		   try {
-   			  list = service.listReply(bno);
-   		   } catch (Exception e) {
-   			e.printStackTrace();
-   		   }
-   		   return list;
+    //특정게시물에 대한 모든 댓글 목록요청
+   	@RequestMapping(value="/all/{bno}", method=RequestMethod.GET)
+   	public List<ShareReplyVO> list(@PathVariable("bno") int bno){
+  		List<ShareReplyVO> list=null;
+   		try {
+   			list = service.listReply(bno);
    		}
+   		catch (Exception e) {
+   			e.printStackTrace();
+   		}
+   		return list;
+   	}
    		
-   		
-      //특정댓글에 대한 수정
-   		
+    //특정댓글에 대한 수정
    	@RequestMapping(value="/{rno}",method=RequestMethod.PATCH)
    	//rno에 번호와 일치하는 댓글 수정
    	public ResponseEntity<String> update(@PathVariable("rno") int rno, @RequestBody ShareReplyVO vo){
    		vo.setRno(rno);
-   		
-   		
+
    		ResponseEntity<String> entity = null;
    		try {
    			service.modifyReply(vo);
    			entity=new ResponseEntity<>("SUCCESS",HttpStatus.OK);
-   		} catch (Exception e) {
-   		
+   		}
+   		catch (Exception e) {
    			e.printStackTrace();
    			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
    		}
@@ -101,8 +88,8 @@ public class ShareReplyController {
    		try {
    			service.removeReply(rno);
    			entity=new ResponseEntity<>("SUCCESS",HttpStatus.OK);
-   		} catch (Exception e) {
-   			// TODO Auto-generated catch block
+   		}
+   		catch (Exception e) {
    			e.printStackTrace();
    			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
    		}
@@ -110,6 +97,5 @@ public class ShareReplyController {
    		return entity;
    		
    	}
-   	
-   
+
 }

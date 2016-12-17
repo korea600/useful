@@ -11,6 +11,7 @@ import kr.co.useful.organization.persistence.OrganizationDAO;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService{
+	
 	@Inject
 	private OrganizationDAO dao;
 

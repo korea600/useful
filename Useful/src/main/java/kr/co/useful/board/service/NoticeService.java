@@ -7,17 +7,17 @@ import kr.co.useful.board.domain.NoticeVO;
 import kr.co.useful.board.domain.SearchCriteria;
 
 public interface NoticeService {
-public void create(NoticeVO vo)throws Exception; //ìƒì„±	
-public void modify(NoticeVO vo)throws Exception; // ìˆ˜ì •
-public NoticeVO read(int serial)throws Exception; //ì¼ê¸°
-public void remove(int serial,int empno)throws Exception; //ì‚­ì œ
-public List<NoticeVO> listAll()throws Exception; //ì „ì²´ ì¶œë ¥
-public List<NoticeVO> listCriteria(Criteria cri)throws Exception; // í˜ì´ì§€ì¡°íˆ
-public int listCount()throws Exception;  //ì „ì²´ ì¹´ìš´íŠ¸
-public List<NoticeVO> listSearch(SearchCriteria cri)throws Exception; //ë¦¬ìŠ¤íŠ¸ê²€ìƒ‰
-public int SearchCount(SearchCriteria cri)throws Exception; //ê²€ìƒ‰ì–´ ì¹´ìš´íŠ¸
-public List<NoticeVO> mainlist()throws Exception;
-public void viewcnt(int serial)throws Exception; //ì¡°íšŒìˆ˜ ì¹´ìš´íŠ¸
-public List<NoticeVO> list_cut()throws Exception;
-public String save_file_name(int serial)throws Exception;
+	public void create(NoticeVO vo)throws Exception; //»ı¼º
+	public void modify(NoticeVO vo)throws Exception; //¼öÁ¤
+	public NoticeVO read(int serial)throws Exception; //ÀĞ±â
+	public void remove(int serial,int empno)throws Exception; //»èÁ¦
+	public List<NoticeVO> listAll()throws Exception; //ÀüÃ¼Ãâ·Â
+	public List<NoticeVO> listCriteria(Criteria cri)throws Exception; //ÆäÀÌÁöÁ¶È¸
+	public int listCount()throws Exception;  //ÀüÃ¼ Ä«¿îÆ®
+	public List<NoticeVO> listSearch(SearchCriteria cri)throws Exception; //¸®½ºÆ®°Ë»ö
+	public int SearchCount(SearchCriteria cri)throws Exception; //°Ë»ö¾îÄ«¿îÆ®
+	public List<NoticeVO> mainlist()throws Exception;
+	public void viewcnt(int serial)throws Exception; //Á¶È¸¼ö Ä«¿îÆ®
+	public List<NoticeVO> list_cut()throws Exception;
+	public String save_file_name(int serial)throws Exception;
 }

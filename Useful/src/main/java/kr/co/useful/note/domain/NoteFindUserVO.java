@@ -1,19 +1,16 @@
 package kr.co.useful.note.domain;
 
 public class NoteFindUserVO {
-	private String empno; //ì‚¬ë²„
-	private String dname; //ë¶€ì„œëª…
-	private String ename; //ì‚¬ì›ëª…
-	private String position;//ì§ì±…
-	private String phone; //í•¸ë“œí°ë²ˆí˜¸
-	private String email; //ì´ë©”ì¼
+	private String empno; //»ç¹ø
+	private String dname; //ºÎ¼­¸í
+	private String ename; //»ç¿ø¸í
+	private String position;//Á÷Ã¥
+	private String phone; //ÀüÈ­¹øÈ£
+	private String email; //ÀÌ¸ŞÀÏ
 	
-	public NoteFindUserVO() {
-		// TODO Auto-generated constructor stub
-	}
+	public NoteFindUserVO() {}
 
 	public NoteFindUserVO(String empno, String dname, String ename, String position, String phone, String email) {
-		super();
 		this.empno = empno;
 		this.dname = dname;
 		this.ename = ename;
@@ -22,7 +19,6 @@ public class NoteFindUserVO {
 		this.email = email;
 	}
 
-	@Override
 	public String toString() {
 		return "NoteFindUserVO [empno=" + empno + ", dname=" + dname + ", ename=" + ename + ", position=" + position
 				+ ", phone=" + phone + ", email=" + email + "]";
@@ -75,6 +71,5 @@ public class NoteFindUserVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 	
 }

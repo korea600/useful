@@ -2,8 +2,6 @@ package kr.co.useful.board.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import kr.co.useful.board.domain.Criteria;
 import kr.co.useful.board.domain.ReplyVO;
 

@@ -12,20 +12,12 @@ public class ShareTaskVO {
 	private Date regdate;
 	private int viewcnt;
 	private int deptno;
-	
 
+	public ShareTaskVO() {}
 
-	public ShareTaskVO() {
-
-	}
-	
-	
-	
 	public int getWriter() {
 		return writer;
 	}
-
-
 
 	public String getEname() {
 		return ename;
@@ -86,9 +78,6 @@ public class ShareTaskVO {
 		this.viewcnt = viewcnt;
 	}
 
-
-
-	@Override
 	public String toString() {
 		return "ShareTaskVO [bno=" + bno + ", category=" + category + ", title=" + title + ", content=" + content
 				+ ", writer=" + writer + ", ename=" + ename + ", regdate=" + regdate + ", viewcnt=" + viewcnt

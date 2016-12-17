@@ -21,21 +21,19 @@ public class MeetingListController {
 	@Inject
 	private MeetingService service;
 	
-
-			@RequestMapping(value="/all/{roomno}", method=RequestMethod.GET)
-			public List<MeetingVO> list(@PathVariable("roomno") int roomno, Model model){
-				//@PathVariable ==> 요청URL경로에 전달된 파라미터 데이터 얻기
-			  
-			   List<MeetingVO> list=null;
-			   try {
-				 list = service.bookingEnd(roomno);
-				 System.out.println("회의실예약 달력="+roomno);
-				  
-			   } catch (Exception e) {
-				e.printStackTrace();
-			   }
-			   return list;
-			}
-			
+	@RequestMapping(value="/all/{roomno}", method=RequestMethod.GET)
+	public List<MeetingVO> list(@PathVariable("roomno") int roomno, Model model){
+		//@PathVariable ==> 요청URL경로에 전달된 파라미터 데이터 얻기
+	  
+	   List<MeetingVO> list=null;
+	   try {
+		 list = service.bookingEnd(roomno);
+		 System.out.println("회의실예약 달력="+roomno);
+		  
+	   } catch (Exception e) {
+		e.printStackTrace();
+	   }
+	   return list;
+	}
 
 }

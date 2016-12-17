@@ -4,12 +4,9 @@ public class LoginVO {
 	private int empno;
 	private String pass;
 	
-	public LoginVO() {
-		// TODO Auto-generated constructor stub
-	}
+	public LoginVO() {}
 
 	public LoginVO(int empno, String pass) {
-		super();
 		this.empno = empno;
 		this.pass = pass;
 	}
@@ -29,6 +26,5 @@ public class LoginVO {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	
 	
 }

@@ -3,73 +3,73 @@ package kr.co.useful.note.domain;
 import java.util.Date;
 
 public class SendVO {
-private int serial;
-private String mynote; //ë‚´ì´ë¦„
-private int myempno; //ë‚´ emp
-private String sendman; //ìƒëŒ€ ì´ë¦„
-private int sendempno; //ìƒëŒ€ emp
-private String sendcontent;
-private Date senddate;
-public SendVO(int serial, String mynote, int myempno, String sendman, int sendempno, String sendcontent,
-		Date senddate) {
-	this.serial = serial;
-	this.mynote = mynote;
-	this.myempno = myempno;
-	this.sendman = sendman;
-	this.sendempno = sendempno;
-	this.sendcontent = sendcontent;
-	this.senddate = senddate;
-}
-@Override
-public String toString() {
-	return "SendVO [serial=" + serial + ", mynote=" + mynote + ", myempno=" + myempno + ", sendman=" + sendman
-			+ ", sendempno=" + sendempno + ", sendcontent=" + sendcontent + ", senddate=" + senddate + "]";
-}
-public SendVO() {
-	// TODO Auto-generated constructor stub
-}
-public int getSerial() {
-	return serial;
-}
-public void setSerial(int serial) {
-	this.serial = serial;
-}
-public String getMynote() {
-	return mynote;
-}
-public void setMynote(String mynote) {
-	this.mynote = mynote;
-}
-public int getMyempno() {
-	return myempno;
-}
-public void setMyempno(int myempno) {
-	this.myempno = myempno;
-}
-public String getSendman() {
-	return sendman;
-}
-public void setSendman(String sendman) {
-	this.sendman = sendman;
-}
-public int getSendempno() {
-	return sendempno;
-}
-public void setSendempno(int sendempno) {
-	this.sendempno = sendempno;
-}
-public String getSendcontent() {
-	return sendcontent;
-}
-public void setSendcontent(String sendcontent) {
-	this.sendcontent = sendcontent;
-}
-public Date getSenddate() {
-	return senddate;
-}
-public void setSenddate(Date senddate) {
-	this.senddate = senddate;
-}
+	private int serial;
+	private String mynote; //³»ÀÌ¸§
+	private int myempno; //³»»ç¹ø
+	private String sendman; //»ó´ë¹æ ÀÌ¸§
+	private int sendempno; //»ó´ë¹æ »ç¹ø
+	private String sendcontent;
+	private Date senddate;
+	
+	public SendVO(int serial, String mynote, int myempno, String sendman, int sendempno, String sendcontent,
+			Date senddate) {
+		this.serial = serial;
+		this.mynote = mynote;
+		this.myempno = myempno;
+		this.sendman = sendman;
+		this.sendempno = sendempno;
+		this.sendcontent = sendcontent;
+		this.senddate = senddate;
+	}
 
+	public String toString() {
+		return "SendVO [serial=" + serial + ", mynote=" + mynote + ", myempno=" + myempno + ", sendman=" + sendman
+				+ ", sendempno=" + sendempno + ", sendcontent=" + sendcontent + ", senddate=" + senddate + "]";
+	}
+
+	public SendVO() {}
+
+	public int getSerial() {
+		return serial;
+	}
+	public void setSerial(int serial) {
+		this.serial = serial;
+	}
+	public String getMynote() {
+		return mynote;
+	}
+	public void setMynote(String mynote) {
+		this.mynote = mynote;
+	}
+	public int getMyempno() {
+		return myempno;
+	}
+	public void setMyempno(int myempno) {
+		this.myempno = myempno;
+	}
+	public String getSendman() {
+		return sendman;
+	}
+	public void setSendman(String sendman) {
+		this.sendman = sendman;
+	}
+	public int getSendempno() {
+		return sendempno;
+	}
+	public void setSendempno(int sendempno) {
+		this.sendempno = sendempno;
+	}
+	public String getSendcontent() {
+		return sendcontent;
+	}
+	public void setSendcontent(String sendcontent) {
+		this.sendcontent = sendcontent;
+	}
+	public Date getSenddate() {
+		return senddate;
+	}
+	public void setSenddate(Date senddate) {
+		this.senddate = senddate;
+	}
 
 }

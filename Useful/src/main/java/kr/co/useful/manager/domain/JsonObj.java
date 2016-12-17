@@ -9,6 +9,7 @@ public class JsonObj {
     private int records;
     private int total;
     private List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+    
     public int getPage() {
         return page;
     }
@@ -33,7 +34,7 @@ public class JsonObj {
     public void setRows(List<Map<String, Object>> rows) {
         this.rows = rows;
     }
-    @Override
+
     public String toString() {
         return "JsonObj [page=" + page + ", records=" + records + ", total=" + total + ", rows=" + rows + "]";
     }

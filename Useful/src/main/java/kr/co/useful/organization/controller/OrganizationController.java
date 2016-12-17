@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.useful.organization.domain.OrganizationVO;
 import kr.co.useful.organization.service.OrganizationService;
+
 @Controller
 @RequestMapping("/organization")
 public class OrganizationController {

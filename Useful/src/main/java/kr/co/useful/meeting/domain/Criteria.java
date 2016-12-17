@@ -26,14 +26,11 @@ public class Criteria {
 	}
 	
 	public int getPageStart(){
-		
 		return (page-1) * perPageNum;
-		
 	}
 	
 	public String toString(){
-		return "Critera [현 페이지="+page+", 페이지당 출력행 = "+perPageNum+"]";                           
-		
+		return "Critera [현 페이지="+page+", 페이지당 출력행 = "+perPageNum+"]";                           	
 	}
 
 }

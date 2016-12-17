@@ -20,10 +20,8 @@ public class EmpVO {
 	private Date regdate;
 	private String email;
 	private String dname;
-	public EmpVO() {
-	}
-
-
+	
+	public EmpVO() {}
 
 	public Date getRegdate() {
 		return regdate;
@@ -145,26 +143,17 @@ public class EmpVO {
 		this.sign = sign;
 	}
 
-
-
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
 	public EmpVO(int empno, String ename, String pass, String ssn, String phone, String address, Date hiredate,
 			int deptno, String position, String manager, double leave, String account, String bank, String sign,
 			Date regdate, String email) {
-		super();
 		this.empno = empno;
 		this.ename = ename;
 		this.pass = pass;
@@ -183,12 +172,9 @@ public class EmpVO {
 		this.email = email;
 	}
 
-
-
 	public EmpVO(int empno, String ename, String pass, String ssn, String phone, String address, Date hiredate,
 			int deptno, String position, String manager, double leave, String account, String bank, String sign,
 			Date regdate, String email, String dname) {
-		super();
 		this.empno = empno;
 		this.ename = ename;
 		this.pass = pass;
@@ -207,22 +193,15 @@ public class EmpVO {
 		this.email = email;
 		this.dname = dname;
 	}
-
-
 
 	public String getDname() {
 		return dname;
 	}
 
-
-
 	public void setDname(String dname) {
 		this.dname = dname;
 	}
 
-
-
-	@Override
 	public String toString() {
 		return "EmpVO [empno=" + empno + ", ename=" + ename + ", pass=" + pass + ", ssn=" + ssn + ", phone=" + phone
 				+ ", address=" + address + ", hiredate=" + hiredate + ", deptno=" + deptno + ", position=" + position

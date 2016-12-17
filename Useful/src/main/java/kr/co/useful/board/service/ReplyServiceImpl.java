@@ -9,58 +9,43 @@ import org.springframework.stereotype.Service;
 import kr.co.useful.board.domain.Criteria;
 import kr.co.useful.board.domain.ReplyVO;
 import kr.co.useful.board.persistence.ReplyDAO;
+
 @Service
 public class ReplyServiceImpl implements ReplyService {
-@Inject
-private ReplyDAO dao;
-
-@Override
-public List<ReplyVO> listAll(int serial) throws Exception {
-	// TODO Auto-generated method stub
-	return dao.listAll(serial);
-}
-
-@Override
-public List<ReplyVO> listPage(int serial, Criteria cri) throws Exception {
-	// TODO Auto-generated method stub
-	return dao.listPage(serial, cri);
-}
-
-@Override
-public int count(int serial) throws Exception {
-	// TODO Auto-generated method stub
-	return dao.count(serial);
-}
-
-@Override
-public void create(ReplyVO vo) throws Exception {
-	dao.create(vo);
 	
-}
+	@Inject
+	private ReplyDAO dao;
 
-@Override
-public void update(ReplyVO vo) throws Exception {
-	dao.update(vo);
-	
-}
+	public List<ReplyVO> listAll(int serial) throws Exception {
+		return dao.listAll(serial);
+	}
 
-@Override
-public void delete(ReplyVO vo) throws Exception {
-	dao.delete(vo);
-	
-}
+	public List<ReplyVO> listPage(int serial, Criteria cri) throws Exception {
+		return dao.listPage(serial, cri);
+	}
 
-@Override
-public int getno(int rno) throws Exception {
-	// TODO Auto-generated method stub
-	return dao.getno(rno);
-}
+	public int count(int serial) throws Exception {
+		return dao.count(serial);
+	}
 
-@Override
-public String idcheck(int empno) throws Exception {
-	// TODO Auto-generated method stub
-	return dao.idcheck(empno);
-}
-	
+	public void create(ReplyVO vo) throws Exception {
+		dao.create(vo);		
+	}
+
+	public void update(ReplyVO vo) throws Exception {
+		dao.update(vo);		
+	}
+
+	public void delete(ReplyVO vo) throws Exception {
+		dao.delete(vo);
+	}
+
+	public int getno(int rno) throws Exception {
+		return dao.getno(rno);
+	}
+
+	public String idcheck(int empno) throws Exception {
+		return dao.idcheck(empno);
+	}
 
 }

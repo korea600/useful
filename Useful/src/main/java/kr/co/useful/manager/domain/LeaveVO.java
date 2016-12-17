@@ -11,12 +11,9 @@ public class LeaveVO {
 	private int used;
 	private int rest;
 	
-	public LeaveVO() {
-		// TODO Auto-generated constructor stub
-	}
+	public LeaveVO() {}
 
 	public LeaveVO(int empno, String ename, String dname, Date hiredate, int basic, int used, int rest) {
-		super();
 		this.empno = empno;
 		this.ename = ename;
 		this.dname = dname;
@@ -82,7 +79,6 @@ public class LeaveVO {
 		this.rest = rest;
 	}
 
-	@Override
 	public String toString() {
 		return "LeaveVO [empno=" + empno + ", ename=" + ename + ", dname=" + dname + ", hiredate=" + hiredate
 				+ ", basic=" + basic + ", used=" + used + ", rest=" + rest + "]";

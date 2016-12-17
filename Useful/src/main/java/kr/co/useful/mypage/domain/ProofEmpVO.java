@@ -1,7 +1,5 @@
 package kr.co.useful.mypage.domain;
 
-import java.util.Date;
-
 public class ProofEmpVO {
 	private int empno;
 	private String ename;
@@ -12,13 +10,10 @@ public class ProofEmpVO {
 	private String hiredate;
 	private String sd;
 	
-	public ProofEmpVO() {
-		// TODO Auto-generated constructor stub
-	}
+	public ProofEmpVO() {}
 
 	public ProofEmpVO(int empno, String ename, String ssn, String address, String dname, String position,
 			String hiredate, String sd) {
-		super();
 		this.empno = empno;
 		this.ename = ename;
 		this.ssn = ssn;
@@ -93,7 +88,6 @@ public class ProofEmpVO {
 		this.sd = sd;
 	}
 
-	@Override
 	public String toString() {
 		return "ProofEmpVO [empno=" + empno + ", ename=" + ename + ", ssn=" + ssn + ", address=" + address + ", dname="
 				+ dname + ", position=" + position + ", hiredate=" + hiredate + ", sd=" + sd + "]";

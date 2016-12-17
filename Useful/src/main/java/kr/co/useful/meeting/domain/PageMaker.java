@@ -63,66 +63,60 @@ public class PageMaker {
 	   .build();
      
 	   return uriComponents.toUriString();
-   }
-   
-   
-public int getTotalCount() {
-	return totalCount;
+	}
+ 
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public int getStartPage() {
+		return startPage;
+	}
 	
-}
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+	
+	public int getEndPage() {
+		return endPage;
+	}
+	
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	
+	public int getDisplayPageNum() {
+		return displayPageNum;
+	}
+	
+	public void setDisplayPageNum(int displayPageNum) {
+		this.displayPageNum = displayPageNum;
+	}
+	
+	public boolean isPrev() {
+		return prev;
+	}
+	
+	public void setPrev(boolean prev) {
+		this.prev = prev;
+	}
+	
+	public boolean isNext() {
+		return next;
+	}
+	
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+	
+	public Criteria getCri() {
+		return cri;
+	}
+	
+	public void setCri(Criteria cri) {
+		this.cri = cri;
+	}
 
-
-
-public int getStartPage() {
-	return startPage;
-}
-
-public void setStartPage(int startPage) {
-	this.startPage = startPage;
-}
-
-public int getEndPage() {
-	return endPage;
-}
-
-public void setEndPage(int endPage) {
-	this.endPage = endPage;
-}
-
-public int getDisplayPageNum() {
-	return displayPageNum;
-}
-
-public void setDisplayPageNum(int displayPageNum) {
-	this.displayPageNum = displayPageNum;
-}
-
-public boolean isPrev() {
-	return prev;
-}
-
-public void setPrev(boolean prev) {
-	this.prev = prev;
-}
-
-public boolean isNext() {
-	return next;
-}
-
-public void setNext(boolean next) {
-	this.next = next;
-}
-
-public Criteria getCri() {
-	return cri;
-}
-
-public void setCri(Criteria cri) {
-	this.cri = cri;
-}
-   
-   
-   
 }
 
 

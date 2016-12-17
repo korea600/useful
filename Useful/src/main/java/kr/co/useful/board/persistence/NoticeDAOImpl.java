@@ -15,86 +15,63 @@ import kr.co.useful.board.domain.NoticeVO;
 import kr.co.useful.board.domain.SearchCriteria;
 @Repository
 public class NoticeDAOImpl implements NoticeDAO {
-@Inject
-private SqlSession sqlsession;
-	@Override //ê²Œì‹œë¬¼ ì¶”ê°€
+	@Inject
+	private SqlSession sqlsession;
+	
+	//°Ô½Ã¹° Ãß°¡
 	public void create(NoticeVO vo) throws Exception {
 		sqlsession.insert("notice.insert", vo);
-
 	}
 
-	@Override //ê²Œì‹œë¬¼ ì„ íƒœë³´ê¸°
+	//°Ô½Ã¹° ¼±ÅÃº¸±â
 	public NoticeVO read(int serial) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.selectOne("notice.selectRead", serial);
 	}
 
-	@Override
 	public void update(NoticeVO vo) throws Exception {
 		sqlsession.update("notice.update", vo);
-
 	}
 
-	@Override
 	public void delete(int serial,int empno) throws Exception {
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("serial", serial);
 		map.put("empno", empno);
 		sqlsession.delete("notice.delete", map);
-
 	}
 
-	@Override
 	public List<NoticeVO> listAll() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.selectList("notice.listAll");
 	}
 
-	@Override
 	public List<NoticeVO> listSearch(SearchCriteria cri) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.selectList("notice.listSearch", cri,new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
-	@Override
 	public int SearchCount(SearchCriteria cri) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.selectOne("notice.listcount", cri);
 	}
 
-	@Override
 	public List<NoticeVO> listCriteria(Criteria cri) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.selectList("notice.listAll", null, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
-	@Override
 	public int listcount() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.selectOne("notice.count");
 	}
 
-	@Override
 	public List<NoticeVO> mainlist() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.selectList("notice.mainlist");
 	}
 
-	@Override
 	public void viewcnt(int serial) throws Exception {
 		sqlsession.insert("notice.viewcnt", serial);
-		
-	}
+	}	
 
-	@Override
 	public List<NoticeVO> list_cut() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.selectList("notice.main_list_cut");
 	}
 
-	@Override
 	public String save_file_name(int serial) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.selectOne("notice.savaFile_download", serial);
 	}
 

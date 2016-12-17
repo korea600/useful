@@ -16,13 +16,10 @@ public class MypageVO {
 	private String account;
 	private Date hiredate;
 	
-	public MypageVO() {
-		// TODO Auto-generated constructor stub
-	}
+	public MypageVO() {}
 
 	public MypageVO(int empno, String ename, String pass, String ssn, int deptno, String position, String email,
 			String phone, String address, String bank, String account, Date hiredate) {
-		super();
 		this.empno = empno;
 		this.ename = ename;
 		this.pass = pass;
@@ -132,6 +129,5 @@ public class MypageVO {
 	public void setHiredate(Date hiredate) {
 		this.hiredate = hiredate;
 	}
-	
-	
+
 }

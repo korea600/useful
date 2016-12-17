@@ -6,17 +6,17 @@
 <html>
 <body>
 	<table class="table table-striped table-bordered table-hover" style="text-align: center;">
-	<tr>
-		<th width="20%"  style="text-align: center;">부서명</th>
-		<th width="20%"  style="text-align: center;">사원명</th>
-		<th width="10%"  style="text-align: center;">출근일자</th>
-		<th width="10%"  style="text-align: center;">출근시간</th>
-		<th width="10%"  style="text-align: center;">퇴근일자</th>
-		<th width="10%"  style="text-align: center;">퇴근시간</th>
-		<th width="10%"  style="text-align: center;">구분</th>
-		<th width="10%"  style="text-align: center;">변경</th>
-	</tr>
-
+		<tr>
+			<th width="20%"  style="text-align: center;">부서명</th> 
+			<th width="20%"  style="text-align: center;">사원명</th>
+			<th width="10%"  style="text-align: center;">출근일자</th>
+			<th width="10%"  style="text-align: center;">출근시간</th>
+			<th width="10%"  style="text-align: center;">퇴근일자</th>
+			<th width="10%"  style="text-align: center;">퇴근시간</th>
+			<th width="10%"  style="text-align: center;">구분</th>
+			<th width="10%"  style="text-align: center;">변경</th>
+		</tr>
+	
 		<c:forEach items="${commute }" var="print" >
 		<tr>
 			<td>${print.dname }</td>
@@ -30,8 +30,6 @@
 				'${print.ename }','${print.login }','${print.login_Time }','${print.logout }','${print.logout_Time }','${print.checked }','${print.serial }')">변경</button></td>
 		</tr>
 		</c:forEach>
-
-
-		</table>
+	</table>
 </body>
 </html>

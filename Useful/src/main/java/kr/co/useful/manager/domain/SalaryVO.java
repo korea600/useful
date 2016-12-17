@@ -25,9 +25,7 @@ public class SalaryVO {
 	private int deductions;
 	private int adjustedIncome;
 	
-	public SalaryVO() {
-		// TODO Auto-generated constructor stub
-	}
+	public SalaryVO() {}
 
 	public int getSerial() {
 		return serial;
@@ -197,7 +195,6 @@ public class SalaryVO {
 		this.adjustedIncome = adjustedIncome;
 	}
 
-	@Override
 	public String toString() {
 		return "SalaryVO [serial=" + serial + ", empno=" + empno + ", ename=" + ename + ", dname=" + dname
 				+ ", position=" + position + ", paymentdate=" + paymentdate + ", paymentmonth=" + paymentmonth
@@ -212,7 +209,6 @@ public class SalaryVO {
 			Date paymentmonth, int basicpay, int car, int meal, int childcare, int otherpay, int national, int health,
 			int employment, int care, int incometax, int localtax, int grossincome, int deductions,
 			int adjustedIncome) {
-		super();
 		this.serial = serial;
 		this.empno = empno;
 		this.ename = ename;
@@ -229,7 +225,7 @@ public class SalaryVO {
 		this.health = health;
 		this.employment = employment;
 		this.care = care;
-		Incometax = incometax;
+		this.Incometax = incometax;
 		this.localtax = localtax;
 		this.grossincome = grossincome;
 		this.deductions = deductions;

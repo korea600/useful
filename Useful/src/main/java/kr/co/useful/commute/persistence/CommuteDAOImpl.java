@@ -1,7 +1,6 @@
 package kr.co.useful.commute.persistence;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,6 @@ public class CommuteDAOImpl implements CommuteDAO{
 	@Inject
 	private SqlSession sqlSession;
 	
-	@Override
 	public void insert(int empno) throws Exception {
 		String checked;
 		
@@ -29,7 +27,8 @@ public class CommuteDAOImpl implements CommuteDAO{
 		Map<String, Object> map = new HashMap<>();
 			if(now.get(Calendar.HOUR_OF_DAY) < 9){
 				checked = "출근";
-			}else{
+			}
+			else{
 				checked = "지각";
 			}
 		map.put("empno", empno);
@@ -38,34 +37,20 @@ public class CommuteDAOImpl implements CommuteDAO{
 		sqlSession.insert("commute.insert", map);
 	}
 
-	@Override
 	public void update(int empno) throws Exception {
 		sqlSession.update("commute.update", empno);
 	}
 
-	@Override
 	public int select(int empno) throws Exception {
 		return sqlSession.selectOne("commute.select", empno);
 	}
 
-	@Override
 	public List<CommuteVO> commuteselect(int empno) throws Exception {
 		return sqlSession.selectList("commute.commuteselect",empno);
 	}
 
-	@Override
 	public List<CommuteVO> commuteToday(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList("commute.commuteToday", map);
 	}
-
-	
-
-	
-
-
-
-	
-
-	
 
 }

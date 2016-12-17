@@ -4,11 +4,8 @@ public class SearchCriteria extends Criteria{
 	
 	private String searchType;//검색타입
 	private String keyword;//검색어
-
 	
-	public SearchCriteria() {
-		// TODO Auto-generated constructor stub
-	}
+	public SearchCriteria() {}
 	
 	public String getSearchType() {
 		return searchType;
@@ -26,7 +23,6 @@ public class SearchCriteria extends Criteria{
 	public String toString(){
 		return "SearchCritera 검색조건 = "+searchType+", 검색어 = "+keyword+", 현페이지 ="+getPage()
 		    +", 페이지당 출력행 = "+getPerPageNum()+"]";                           
-		
 	}
 	
 }

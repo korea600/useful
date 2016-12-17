@@ -6,8 +6,6 @@ import kr.co.useful.board.domain.AnonymityVO;
 import kr.co.useful.board.domain.Criteria;
 import kr.co.useful.board.domain.SearchCriteria;
 
-
-
 public interface AnonymityDAO {
 	public String pass_check(int serial)throws Exception;
 	public void create(AnonymityVO vo)throws Exception;

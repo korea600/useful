@@ -20,15 +20,14 @@ public class EmailInterceptor extends HandlerInterceptorAdapter{
 		}
 	}
 	
-	private void saveDest(HttpServletRequest request){	// ·Î±×ÀÎ¿©ºÎ È®ÀÎ Àü¿¡ ¿äÃ»ÇÑ uri¿Í queryÀúÀå
+	private void saveDest(HttpServletRequest request){	// ë¡œê·¸ì¸ì—¬ë¶€ í™•ì¸ ì „ì— ìš”ì²­í•œ uriì™€ queryì €ì¥
 		String uri = request.getRequestURI();
-		String query = request.getQueryString();	// getQueryString : ¿äÃ»uriµÚ¿¡ ºÙ´Â '?'¸¦ return
+		String query = request.getQueryString();	// getQueryString : ìš”ì²­urië’¤ì— ë¶™ëŠ” '?'ë¥¼ return
 		uri = uri.substring(uri.indexOf("/",2));
 		if(query==null)	query="";
 		else query="?"+query;
 		if(request.getMethod().equals("GET"))
 			request.getSession().setAttribute("dest", uri+query);	
 	}
-	
 	
 }

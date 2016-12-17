@@ -11,6 +11,7 @@ import kr.co.useful.organization.domain.OrganizationVO;
 
 @Repository
 public class OrganizationDAOImpl implements OrganizationDAO{
+	
 	@Inject
 	private SqlSession sqlSession;
 

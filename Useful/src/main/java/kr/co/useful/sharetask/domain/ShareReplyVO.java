@@ -9,11 +9,8 @@ public class ShareReplyVO {
 	private String replytext;
 	private String replyer;
 	private Date regdate;
-
 	
-	public ShareReplyVO() {
-	
-	}
+	public ShareReplyVO() {}
 	
 	public int getEmpno() {
 		return empno;
@@ -23,13 +20,11 @@ public class ShareReplyVO {
 		this.empno = empno;
 	}
 
-	@Override
 	public String toString() {
 		return "ReplyVO [댓글번호=" + rno + ", 게시물번호=" + bno + ", 내용=" + replytext + ", 작성자=" + replyer
 				+ ", 작성일자=" + regdate+  "]";
 	}
 
-	
 	public int getRno() {
 		return rno;
 	}

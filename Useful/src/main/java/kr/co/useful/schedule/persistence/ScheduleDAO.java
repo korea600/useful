@@ -5,8 +5,6 @@ import java.util.List;
 import kr.co.useful.schedule.domain.ScheduleVO;
 import kr.co.useful.schedule.domain.SearchCriteria;
 
-
-
 public interface ScheduleDAO {
 	
 	// 전체리스트
@@ -29,7 +27,6 @@ public interface ScheduleDAO {
 	
 	//검색리스트
 	public List<ScheduleVO> listSearch(SearchCriteria cri) throws Exception;
-	
 	
 	//검색리스트 수
 	public int listSearchCount(SearchCriteria cri)throws Exception;

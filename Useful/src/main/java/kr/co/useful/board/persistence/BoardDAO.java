@@ -12,11 +12,11 @@ public interface BoardDAO {
 	public void delete(int serial)throws Exception;
 	public void viewcnt(int serial)throws Exception;
 	public List<BoardVO> readAll()throws Exception;
-	public int boardTotalCount()throws Exception; //ê²Œì‹œíŒ ì „ì²´ìˆ˜
-	public List<BoardVO> listCriteria(Criteria cri) throws Exception; //íŠ¹ì •í˜ì´ì§€ì¡°íšŒ
-	public List<BoardVO> listSearch(SearchCriteria cri)throws Exception; //ê²€ìƒ‰ì–´ì¡°íšŒ
-	public int listFindCount(SearchCriteria cri)throws Exception; //ê²€ìƒ‰ì–´ì¡°íšŒìˆ˜
-	public List<BoardVO> select_cut_list()throws Exception;//ë¦¬ìŠ¤íŠ¸ ì»·
+	public int boardTotalCount()throws Exception; //°Ô½ÃÆÇ ÀüÃ¼¼ö
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception; //Æ¯Á¤ÆäÀÌÁöÁ¶È¸
+	public List<BoardVO> listSearch(SearchCriteria cri)throws Exception; //°Ë»ö¾îÁ¶È¸
+	public int listFindCount(SearchCriteria cri)throws Exception; //°Ë»ö¾îÁ¶È¸¼ö
+	public List<BoardVO> select_cut_list()throws Exception;//¸®½ºÆ® ÄÆ
 	public int reply_count()throws Exception;
 	public void fileupload(String originalfileName, String saveFileName, long fileSize)throws Exception;
 	public String Sava_File_name(int serial)throws Exception;

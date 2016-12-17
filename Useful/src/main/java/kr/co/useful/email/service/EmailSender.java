@@ -11,7 +11,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 import kr.co.useful.email.domain.Email;
- 
 
 @Component
 public class EmailSender  {
@@ -30,7 +29,6 @@ public class EmailSender  {
     }
     
     public static int generateNumber(int length) {
-    	 
         String numStr = "1";
         String plusNumStr = "1";
      

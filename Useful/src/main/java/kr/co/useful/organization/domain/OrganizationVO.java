@@ -1,6 +1,7 @@
 package kr.co.useful.organization.domain;
 
 public class OrganizationVO {
+	
 	private int empno;			// 사번 (tbl_emp)
 	private String ename;		// 사원명 (tbl_emp)
 	private String phone;		// 전화번호 (tbl_emp)
@@ -10,6 +11,7 @@ public class OrganizationVO {
 	private String position;	// 직책 (tbl_emp, tbl_position)
 	private int posno;			// 직책번호 (tbl_position)
 	private String email;		// 이메일 (tbl_emp)
+	
 	public OrganizationVO() {}
 	
 	public String getEmail() {

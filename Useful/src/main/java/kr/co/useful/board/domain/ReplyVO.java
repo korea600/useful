@@ -10,12 +10,9 @@ public class ReplyVO {
 	private String replytext;
 	private Date regdate;
 
-	public ReplyVO() {
-		// TODO Auto-generated constructor stub
-	}
+	public ReplyVO() {}
 
 	public ReplyVO(int serial, int rno, String replyid, String replytext, Date regdate) {
-	
 		this.serial = serial;
 		this.rno = rno;
 		this.replyid = replyid;
@@ -23,7 +20,6 @@ public class ReplyVO {
 		this.regdate = regdate;
 	}
 
-	@Override
 	public String toString() {
 		return "ReplyVO [serial=" + serial + ", rno=" + rno + ", replyid=" + replyid + ", replytext=" + replytext
 				+ ", regdate=" + regdate + "]";
@@ -76,6 +72,5 @@ public class ReplyVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
 	
 }

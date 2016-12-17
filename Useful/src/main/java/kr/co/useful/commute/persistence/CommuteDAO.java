@@ -1,6 +1,5 @@
 package kr.co.useful.commute.persistence;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

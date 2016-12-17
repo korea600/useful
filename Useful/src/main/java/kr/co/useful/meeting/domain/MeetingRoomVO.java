@@ -4,6 +4,7 @@ public class MeetingRoomVO {
 	private int serial;
 	private int roomno;
 	private String roomname;
+	
 	public int getSerial() {
 		return serial;
 	}
@@ -22,13 +23,8 @@ public class MeetingRoomVO {
 	public void setRoomname(String roomname) {
 		this.roomname = roomname;
 	}
-	@Override
 	public String toString() {
 		return "MeetingRoomVO [serial=" + serial + ", roomno=" + roomno + ", roomname=" + roomname + "]";
 	}
-
-	
-
-	
 
 }

@@ -12,10 +12,7 @@ public class MeetingVO {
 	private int empno;
 	private String checked;
 	
-	public MeetingVO() {
-		// TODO Auto-generated constructor stub
-	} 
-	
+	public MeetingVO() {} 
 	
 	public int getSerial() {
 		return serial;
@@ -72,8 +69,6 @@ public class MeetingVO {
 		this.checked = checked;
 	}
 
-
-	@Override
 	public String toString() {
 		return "MeetingVO [serial=" + serial + ", roomno=" + roomno + ", beginday=" + beginday + ", begin=" + begin
 				+ ", end=" + end + ", content=" + content + ", booker=" + booker + ", empno=" + empno + ", chechked="

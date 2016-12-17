@@ -14,79 +14,58 @@ import kr.co.useful.board.domain.SearchCriteria;
 import kr.co.useful.note.domain.NoteFindUserVO;
 import kr.co.useful.note.domain.RecipientVO;
 import kr.co.useful.note.domain.SendVO;
+
 @Repository
 public class SendDAOImpl implements SendDAO {
-@Inject
-private SqlSession session;
+	
+	@Inject
+	private SqlSession session;
 
-	@Override
 	public List<SendVO> list_note(String mynote) throws Exception {
-		// TODO Auto-generated method stub
 		return session.selectList("send_note.list_note", mynote);
 	}
 
-	@Override
 	public void create_note(SendVO vo) throws Exception {
 		session.insert("send_note.create_note", vo);
-
 	}
 
-	@Override
 	public SendVO select_note(SendVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		return session.selectOne("send_note.select_note", vo);
 	}
 
-	@Override
 	public void delete_note(SendVO vo) throws Exception {
 		session.delete("send_note.delete_note", vo);
-
 	}
 
-	@Override
-	public int count_note(String mynote) throws Exception {
-		// TODO Auto-generated method stub ìê¸°ìª½ì§€ ì „ì²´ì¹´ìš´íŠ¸
+	public int count_note(String mynote) throws Exception {		// ÀÚ±âÂÊÁö ÀüÃ¼Ä«¿îÆ®
 		return session.selectOne("send_note.count_note", mynote);
 	}
 
-	@Override
 	public List<SendVO> search_not(SearchCriteria cri,int myempno) throws Exception {
-		// ë©”ì‹œì§€ ê²€ìƒ‰í• ë•Œ ê²€ìƒ‰ì–´ë‘ ê²€ìƒ‰íƒ€ì… ë³´ë‚´ëŠ” ë° ì•„ì´ë””ë¡œë„ ì¡°íšŒ í•´ì•¼ë˜ëŠ”ë° ê°’2ê°œ ë„˜ì–´ê°ˆë•Œ ì–´ë–»ê²Œí•´ì•¼ë ì§€ ë¬¼ì–´ë³´ê¸°
+		// ¸Ş½ÃÁö °Ë»öÇÒ¶§ °Ë»ö¾î¶û °Ë»öÅ¸ÀÔ º¸³»´Â µ¥ ¾ÆÀÌµğ·Îµµ Á¶È¸ ÇØ¾ßµÇ´Âµ¥ °ª2°³ ³Ñ¾î°¥¶§ ¾î¶»°ÔÇØ¾ßµÉÁö ¹°¾îº¸±â
 		Map<String, Object> map=new HashMap<>();
 		map.put("cri", cri);
 		map.put("myempno", myempno);
 		return session.selectList("send_note.search_note", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
-	@Override
 	public int search_count_note(SearchCriteria cri,int myempno) throws Exception {
-		System.out.println("sendì˜ myempnoê°’ = "+myempno);
 		Map<String, Object> map=new HashMap<>();
 		map.put("cri", cri);
 		map.put("myempno", myempno);
 		return session.selectOne("send_note.search_Count_note", map);
 	}
 
-	@Override
 	public List<NoteFindUserVO> find_user_note(SearchCriteria cri) throws Exception {
-		// TODO Auto-generated method stub
 		return session.selectList("send_note.note_find_user", cri);
 	}
 
-	@Override
 	public void recipient_note(RecipientVO recipientVO) throws Exception {
-		System.out.println("recivo idê°’="+recipientVO.getMynoteid());
-		System.out.println("recivo nameê°’="+recipientVO.getMynotename());
-		System.out.println("recivoê°’ reciid="+recipientVO.getReciid());
-		System.out.println("recivoê°’ reciname="+recipientVO.getReciname());
-		System.out.println("recivoê°’ recicontent="+recipientVO.getRecontent());
 		session.insert("send_note.create_note_recipient", recipientVO);
 		
 	}
 
-	@Override
 	public int sendemp(String ename) throws Exception {
-		// TODO Auto-generated method stub
 		return session.selectOne("sendemp", ename);
 	}
 

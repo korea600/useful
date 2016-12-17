@@ -11,9 +11,7 @@ public class CommuteVO {
 	private String logout_Time;
 	private String checked;
 	
-	public CommuteVO() {
-
-	}
+	public CommuteVO() {}
 
 	public int getSerial() {
 		return serial;
@@ -71,7 +69,6 @@ public class CommuteVO {
 	}
 	public CommuteVO(int serial, int empno, String ename, String dname, String login, String login_Time, String logout,
 			String logout_Time, String checked) {
-		super();
 		this.serial = serial;
 		this.empno = empno;
 		this.ename = ename;
@@ -83,12 +80,10 @@ public class CommuteVO {
 		this.checked = checked;
 	}
 
-	@Override
 	public String toString() {
 		return "CommuteVO [serial=" + serial + ", empno=" + empno + ", ename=" + ename + ", dname=" + dname + ", login="
 				+ login + ", login_Time=" + login_Time + ", logout=" + logout + ", logout_Time=" + logout_Time
 				+ ", checked=" + checked + "]";
 	}
-	
 	
 }

@@ -10,85 +10,62 @@ import kr.co.useful.board.domain.Criteria;
 import kr.co.useful.board.domain.NoticeVO;
 import kr.co.useful.board.domain.SearchCriteria;
 import kr.co.useful.board.persistence.NoticeDAO;
+
 @Service
 public class NoticeServiceImpl implements NoticeService{
-@Inject
-private NoticeDAO dao;
-	@Override
-	public void create(NoticeVO vo) throws Exception { //ë“±ë¡
+	
+	@Inject
+	private NoticeDAO dao;
+
+	public void create(NoticeVO vo) throws Exception { //µî·Ï
 		dao.create(vo);
-		
 	}
 
-	@Override
-	public void modify(NoticeVO vo) throws Exception { //ìˆ˜ì •
+	public void modify(NoticeVO vo) throws Exception { //¼öÁ¤
 		dao.update(vo);
-		
 	}
 
-	@Override
-	public NoticeVO read(int serial) throws Exception { //ì½ê¸°
-		
+	public NoticeVO read(int serial) throws Exception { //ÀĞ±â
 		return dao.read(serial);
 	}
 
-	@Override
-	public void remove(int serial,int empno) throws Exception { //ì‚­ì œ
+	public void remove(int serial,int empno) throws Exception { //»èÁ¦
 		dao.delete(serial,empno);
-		
 	}
 
-	@Override
-	public List<NoticeVO> listAll() throws Exception { //ì „ì²´ì¶œë ¥
-		
+	public List<NoticeVO> listAll() throws Exception { //ÀüÃ¼¸®½ºÆ® Á¶È¸
 		return dao.listAll();
 	}
 
-	@Override
-	public List<NoticeVO> listCriteria(Criteria cri) throws Exception { //íŠ¹ì •í˜ì´ì§€ì¡°íˆ
-	
+	public List<NoticeVO> listCriteria(Criteria cri) throws Exception { //Æ¯Á¤ÆäÀÌÁö Á¶È¸
 		return dao.listCriteria(cri);
 	}
 
-	@Override
-	public int listCount() throws Exception { //ì „ì²´ ì¹´ìš´íŠ¸
-		// TODO Auto-generated method stub
+	public int listCount() throws Exception { //ÀüÃ¼ Ä«¿îÆ®
 		return dao.listcount();
 	}
 
-	@Override
-	public List<NoticeVO> listSearch(SearchCriteria cri) throws Exception { //ê²€ìƒ‰ì–´ ì¶œë ¤
-	
+	public List<NoticeVO> listSearch(SearchCriteria cri) throws Exception { //°Ë»öÈÄ ¸®½ºÆ®
 		return dao.listSearch(cri);
 	}
 
-	@Override
-	public int SearchCount(SearchCriteria cri) throws Exception { //ê²€ìƒ‰ì–´ ì¹´ìš´íŠ¸
-		
+	public int SearchCount(SearchCriteria cri) throws Exception { //°Ë»öÈÄ Ä«¿îÆ®
 		return dao.SearchCount(cri);
 	}
 
-	@Override
 	public List<NoticeVO> mainlist() throws Exception {
-		// TODO Auto-generated method stub
 		return dao.mainlist();
 	}
 
-	@Override
 	public void viewcnt(int serial) throws Exception {
-		dao.viewcnt(serial);
-		
+		dao.viewcnt(serial);	
 	}
 
-	@Override
 	public List<NoticeVO> list_cut() throws Exception {
-		// TODO Auto-generated method stub
 		return dao.list_cut();
 	}
 
-	@Override
 	public String save_file_name(int serial) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.save_file_name(serial);
 	}
 

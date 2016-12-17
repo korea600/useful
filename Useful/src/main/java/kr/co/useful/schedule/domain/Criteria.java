@@ -26,9 +26,7 @@ public class Criteria {
 	}
 	
 	public int getPageStart(){
-		
 		return (page-1) * perPageNum;
-		
 	}
 	
 	public String toString(){

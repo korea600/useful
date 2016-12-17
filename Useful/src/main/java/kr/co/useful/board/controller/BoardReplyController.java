@@ -13,47 +13,49 @@ import kr.co.useful.manager.domain.EmpVO;
 @RestController
 @RequestMapping("/reply")
 public class BoardReplyController {
-@Inject
-private ReplyService service;
-@RequestMapping(value="/create",method=RequestMethod.POST)
-public ResponseEntity<String> register(@RequestBody ReplyVO vo,HttpServletRequest request,HttpSession httpSession){
-	ResponseEntity<String> entity=null;
 	
-	try {
-		String replyname=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
-		vo.setReplyname(replyname);
-		service.create(vo);
-entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-	} catch (Exception e) {
-		// TODO Auto-generated Christmas
-		e.printStackTrace();
+	@Inject
+	private ReplyService service;
+	
+	@RequestMapping(value="/create",method=RequestMethod.POST)
+	public ResponseEntity<String> register(@RequestBody ReplyVO vo,HttpServletRequest request,HttpSession httpSession){
+		ResponseEntity<String> entity=null;
+		try {
+			String replyname=((EmpVO)httpSession.getAttribute("LoginUser")).getEname();
+			vo.setReplyname(replyname);
+			service.create(vo);
+			entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return entity;
 	}
-	return entity;
-}
-
-@RequestMapping(value="/delete",method=RequestMethod.DELETE)
-public ResponseEntity<String> delete(@RequestBody ReplyVO vo){
-	ResponseEntity<String> entity=null;
-	try {
-		service.delete(vo);
-		entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	
+	@RequestMapping(value="/delete",method=RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@RequestBody ReplyVO vo){
+		ResponseEntity<String> entity=null;
+		try {
+			service.delete(vo);
+			entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return entity;
 	}
-	return entity;
-}
-@RequestMapping(value="/update",method=RequestMethod.POST)
-public ResponseEntity<String> update(@RequestBody ReplyVO vo){
-	ResponseEntity<String> entity=null;
-	try {
-		service.update(vo);
-		entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	public ResponseEntity<String> update(@RequestBody ReplyVO vo){
+		ResponseEntity<String> entity=null;
+		try {
+			service.update(vo);
+			entity=new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return entity;
 	}
-	return entity;
-}
 
 }

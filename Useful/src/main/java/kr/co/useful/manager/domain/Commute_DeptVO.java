@@ -11,12 +11,10 @@ public class Commute_DeptVO {
 	private int businessTrip;
 	private int earlyLeave;
 	
-	public Commute_DeptVO() {
-	}
+	public Commute_DeptVO() {}
 
 	public Commute_DeptVO(String dname, String ename, int attendance, int late, int absence,
 			int vacation, int businessTrip, int earlyLeave) {
-		super();
 		this.dname = dname;
 		this.ename = ename;
 		this.attendance = attendance;
@@ -27,7 +25,6 @@ public class Commute_DeptVO {
 		this.earlyLeave = earlyLeave;
 	}
 
-	@Override
 	public String toString() {
 		return "Commute_DeptVO [dname=" + dname + ", ename=" + ename + ", attendance="
 				+ attendance + ", late=" + late + ", absence=" + absence + ", vacation=" + vacation + ", businessTrip="

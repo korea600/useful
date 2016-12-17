@@ -24,7 +24,6 @@ public class EmailController {
         String reciver = "boxer1992@naver.com"; //받을사람의 이메일입니다.
         String subject = "임시 비밀번호를 발송해드립니다.";
         String content = "임시 비밀번호는" + num + "입니다.";
-      
          
         email.setReciver(reciver);
         email.setSubject(subject);

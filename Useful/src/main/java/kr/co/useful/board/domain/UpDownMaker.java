@@ -6,10 +6,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 public class UpDownMaker {
-	public static String getRealPath(HttpServletRequest request){	// Eclipseì— ì—…ë¡œë“œë˜ëŠ” ì‹¤ì œê²½ë¡œ ë¦¬í„´
+	public static String getRealPath(HttpServletRequest request){	// Eclipse¿¡ ¾÷·ÎµåµÇ´Â ½ÇÁ¦°æ·Î ¸®ÅÏ
 		return request.getServletContext().getRealPath("");
 	}
-	public static String getUploadPath(HttpServletRequest request){	// GITí´ë” ë‚´ë¶€ì˜ ì—…ë¡œë“œ ê²½ë¡œ ë¦¬í„´
+	
+	public static String getUploadPath(HttpServletRequest request){	// GITÆú´õ ³»ºÎÀÇ ¾÷·Îµå °æ·Î ¸®ÅÏ
 		ServletContext application = request.getServletContext();
 		String realpath=application.getRealPath("").replace('\\', '/');
 		String uploadFolder = realpath.substring(0, realpath.indexOf("/workspace"))+"/git"
@@ -18,6 +19,7 @@ public class UpDownMaker {
 							+"/src/main/webapp/upload";
 		return uploadFolder;
 	}
+	
 	public static String getTime(){
 		Calendar cal = Calendar.getInstance();
 		String year = ""+cal.get(Calendar.YEAR);

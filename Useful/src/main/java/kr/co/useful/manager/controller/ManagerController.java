@@ -1,9 +1,6 @@
 package kr.co.useful.manager.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -13,17 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import kr.co.useful.encrypt.LocalEncrypter;
-import kr.co.useful.manager.domain.CommuteVO;
-import kr.co.useful.manager.domain.Commute_DeptVO;
 import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.domain.SalaryVO;
 import kr.co.useful.manager.service.ManagerService;
@@ -37,14 +29,10 @@ public class ManagerController {
 	ManagerService service;
 	
 	@RequestMapping("/employee_List")
-	public void employee_List(){
-		
-	}
+	public void employee_List(){}
 	
 	@RequestMapping(value="/employee_Insert",method=RequestMethod.GET)
-	public void employee_Insert_Form(){
-		
-	}
+	public void employee_Insert_Form(){}
 	
 	@RequestMapping(value="/employee_Insert",method=RequestMethod.POST)
 	public void employee_Insert(@RequestBody EmpVO vo) throws Exception{
@@ -58,19 +46,19 @@ public class ManagerController {
 	
 	@RequestMapping(value="/employee_Update",method=RequestMethod.GET)
 	public Model employee_Update_Form(@RequestParam String empno)throws Exception{
-		
 		Model model = new ExtendedModelMap();
 		model.addAttribute("vo",service.emp_select(Integer.parseInt(empno)));
 		
 		return model;
 	}
+	
 	@RequestMapping(value="/employee_Update",method=RequestMethod.POST)
 	public void employee_Update(@RequestBody EmpVO vo)throws Exception{
 		service.emp_update(vo);
 	}
+	
 	@RequestMapping(value="/employee_Delete",method=RequestMethod.POST)
 	public ResponseEntity<String> employee_Delete(String empno)throws Exception{
-		
 		ResponseEntity<String> entity =null;
 		service.emp_delete(Integer.parseInt(empno));
 		entity = new ResponseEntity<>("SUCCESS",HttpStatus.OK);
@@ -78,9 +66,8 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value="/commute_Employee",method=RequestMethod.GET)
-	public void commute_Employee_Form(){
-		
-	}
+	public void commute_Employee_Form(){}
+	
 	@RequestMapping(value="/commute_Employee",method=RequestMethod.POST)
 	public String commute_Employee(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		Map<String,Object> map = new HashMap<>();
@@ -105,16 +92,16 @@ public class ManagerController {
 			map.put("deptno", requestMap.get("deptno"));
 			model.addAttribute("commute",service.commute_list_dept(map));
 			return "/manager/commute_Print";
-		}else {
+		}
+		else {
 			model.addAttribute("commute",service.commute_list_all(map));
 			return "/manager/commute_Print";
 		}
 	}
 
 	@RequestMapping(value="/commute_Dept",method=RequestMethod.GET)
-	public void commute_Dept_Form(){
-		
-	}
+	public void commute_Dept_Form(){}
+	
 	@RequestMapping(value="/commute_Dept",method=RequestMethod.POST)
 	public String commute_Dept(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		Map<String,Object> map = new HashMap<>();
@@ -125,9 +112,7 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value="/commute_Monthly",method=RequestMethod.GET)
-	public void commute_Monthly_form(){
-		
-	}
+	public void commute_Monthly_form(){}
 	
 	@RequestMapping(value="/commute_Monthly",method=RequestMethod.POST)
 	public String commute_Monthly(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
@@ -137,10 +122,9 @@ public class ManagerController {
 		model.addAttribute("commute",service.commute_monthly_list(map));
 		return "/manager/commute_PrintMonthly";
 	}
+	
 	@RequestMapping(value="/leave_List",method=RequestMethod.GET)
-	public void leave_List_form(){
-		
-	}
+	public void leave_List_form(){}
 	
 	@RequestMapping(value="/leave_List",method=RequestMethod.POST)
 	public String leave_List(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
@@ -148,12 +132,16 @@ public class ManagerController {
 		map.put("deptno",(String)requestMap.get("deptno"));
 		if(requestMap.get("empno").equals("")){
 			map.put("empno",null);
-		}else{
+		}
+		else{
 			map.put("empno",(String)requestMap.get("empno"));
 		}
+		
+		
 		if(requestMap.get("ename").equals("")){
 			map.put("ename",null);
-		}else{
+		}
+		else{
 			map.put("ename",(String)requestMap.get("ename"));
 		}
 		model.addAttribute("commute",service.leave_list_search(map));
@@ -173,9 +161,7 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value="/salary_List",method=RequestMethod.GET)
-	public void salary_List_form(){
-		
-	}
+	public void salary_List_form(){}
 	
 	@RequestMapping(value="/salary_List",method=RequestMethod.POST)
 	public String salary_List(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
@@ -200,14 +186,12 @@ public class ManagerController {
 	
 	@RequestMapping(value="/salary_Update",method=RequestMethod.GET)
 	public void salary_update_form(@RequestParam int serial,Model model)throws Exception{
-	model.addAttribute("salary",service.salary_update_form(serial));
-		
+		model.addAttribute("salary",service.salary_update_form(serial));
 	}
 	
 	@RequestMapping(value="/salary_Update",method=RequestMethod.POST)
 	public void salary_Update(@RequestBody SalaryVO vo,Model model)throws Exception{
-		service.salary_Update(vo);
-		
+		service.salary_Update(vo);		
 	}
 	
 	@RequestMapping(value="/salary_delete",method=RequestMethod.POST)
@@ -217,9 +201,7 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value="/salary_Insert",method=RequestMethod.GET)
-	public void salary_Insert_form(){
-		
-	}
+	public void salary_Insert_form(){}
 	
 	@RequestMapping(value="/salary_Insert",method=RequestMethod.POST)
 	public void salary_Insert(@RequestBody SalaryVO vo)throws Exception{
@@ -237,41 +219,26 @@ public class ManagerController {
 		service.add_Sal_NextMonth();
 		return "success";
 	}
-	
 
 	@RequestMapping("/commute_Daily")
-	public void commute_Daily(){
-		
-	}
+	public void commute_Daily(){}
 
 	@RequestMapping("/jquery_Test")
-	public void jquery_Test(){
-		
-	}
+	public void jquery_Test(){}
+	
 	@RequestMapping("/commute_Print")
-	public void commute_Print(){
-		
-	}
+	public void commute_Print(){}
+	
 	@RequestMapping("/commute_Printdept")
-	public void commute_Printdept(){
-		
-	}
+	public void commute_Printdept(){}
 	
 	@RequestMapping("/commute_PrintMonthly")
-	public void commute_PrintMonthly(){
-		
-	}
+	public void commute_PrintMonthly(){}
 	
 	@RequestMapping("/leave_Print")
-	public void leave_Print(){
-		
-	}
+	public void leave_Print(){}
+	
 	@RequestMapping("/leave_Print_Div")
-	public void leave_Print_Div(){
-		
-	}
-	
-	
-	
-	
+	public void leave_Print_Div(){}
+
 }
