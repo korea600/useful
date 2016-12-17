@@ -25,7 +25,7 @@
 	var flag=false;
 	function comment_list(){
 		$.ajax({
-			url:'/useful/approval/comment/count/${vo.no}',
+			url:'${pageContext.request.contextPath}/approval/comment/count/${vo.no}',
 			type:'POST',
 			success:function(result){
 				if(result>0){

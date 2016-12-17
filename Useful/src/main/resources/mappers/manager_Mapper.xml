@@ -281,5 +281,7 @@
            from(select * from tbl_salary where to_char(paymentmonth, 'YYYYMM')=to_char(sysdate,'YYYYMM'))
      </insert>
 
-	
+	<select id='empno_check' resultType="int">
+		select count(*) from tbl_emp where empno=#{empno}
+	</select>
 </mapper>

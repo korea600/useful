@@ -170,7 +170,7 @@ th {
 						<tr>  
 							<th style="text-align: center;">부서명</th>
 							<td>
-								<select id="deptno" name="deptno" class="select" style="width:200px;">
+								<select id="deptno" name="deptno" class="select" style="width:200px;" disabled="disabled">
 										<option value="0"></option>	
 										<option value="10">잘했조</option>									
 										<option value="20">보여조</option>
@@ -180,9 +180,9 @@ th {
 							</td>
 						</tr> 
 						<tr>  
-							<th style="text-align: center;">직위(직급)        </th>
+							<th style="text-align: center;">직위(직급)</th>
 							<td>
-								<select id="position" name="position" class="select" style="width:200px;">
+								<select id="position" name="position" class="select" style="width:200px;" disabled="disabled">
 										<option value="사장">사장</option>
 									
 										<option value="부장">부장</option>

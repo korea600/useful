@@ -126,4 +126,8 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public void add_Sal_NextMonth() throws Exception {
 		sqlSession.insert("manager.add_Sal_NextMonth");
 	}
+
+	public int empno_check(int empno) throws Exception {
+		return sqlSession.selectOne("manager.empno_check",empno);
+	}
 }

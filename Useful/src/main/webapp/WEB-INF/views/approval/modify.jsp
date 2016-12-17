@@ -25,7 +25,7 @@
 	$(function(){
 		var frm=$('form');
 		$('[name=modify]').click(function(){
-			frm.attr('action','/useful/approval/modify');
+			frm.attr('action','${pageContext.request.contextPath}/approval/modify');
 			frm.attr('method','post');
 			var oldfilename=$('[name=oldfilename]').val();
 			var newfilename=$('[name=file]').val();
@@ -45,7 +45,7 @@
 		});
 		$('[name=delete]').click(function(){
 			if(confirm('삭제하시겠습니까?')){
-				frm.attr('action','/useful/approval/delete');
+				frm.attr('action','${pageContext.request.contextPath}/approval/delete');
 				frm.attr('method','post');
 				frm.submit();
 			}

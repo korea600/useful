@@ -52,7 +52,7 @@ td{text-align: center}
 				data:{
 					deptno:"${LoginUser.deptno}"
 				},
-				url:'/useful/approval/getDept',
+				url:'${pageContext.request.contextPath}/approval/getDept',
 				type:'POST',
 				success:function(result){
 					var str='';
@@ -100,7 +100,7 @@ td{text-align: center}
 		else									// 수신부서 검색
 			var keyword=$('[name=selectReceiver_dname]').val();
 		
-		location.href='listdept${pagemaker.makeQuery(1)}&searchBy='+searchBy+'&keyword='+keyword;
+		location.href='${pageContext.request.contextPath}/approval/listdept${pagemaker.makeQuery(1)}&searchBy='+searchBy+'&keyword='+keyword;
 	}
 </script>
 </head>
@@ -136,7 +136,7 @@ td{text-align: center}
 							</c:if>
 							<c:if test="${list.size()>0}">
 								<c:forEach items="${list}" var='i'>
-									<tr><td>${i.no}</td><td>${i.status}</td><td>${i.writer_name}</td><td>${i.writer_dname }</td><td>${i.receiver_dname}</td><td><a href='/useful/approval/read/${i.no}'>${i.title}</a></td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td></tr>
+									<tr><td>${i.no}</td><td>${i.status}</td><td>${i.writer_name}</td><td>${i.writer_dname }</td><td>${i.receiver_dname}</td><td><a href='${pageContext.request.contextPath}/approval/read/${i.no}'>${i.title}</a></td><td><fmt:formatDate value="${i.regdate}" pattern="yyyy-MM-dd HH:mm"/></td></tr>
 								</c:forEach>
 							</c:if>
 
@@ -151,14 +151,14 @@ td{text-align: center}
 		<div class='dataTables_paginate paging_simple_numbers' id='dataTables-example_paginate' style="text-align: center;">
 			<ul class='pagination'>
 				<c:if test="${pagemaker.prev}">
-					<li class='paginate_button' id='dataTables-example_previous'><a href="listdept${pagemaker.makeSearch(pagemaker.startPage-1)}">이전</a></li>
+					<li class='paginate_button' id='dataTables-example_previous'><a href="${pageContext.request.contextPath}/approval/listdept${pagemaker.makeSearch(pagemaker.startPage-1)}">이전</a></li>
 				</c:if>
 				<c:forEach begin='${pagemaker.startPage}' end="${pagemaker.endPage }" var='i'>
 					<c:if test="${pagemaker.cri.page==i}"><li class='paginate_button active'><a href='#'>${i}</a></li></c:if>
-					<c:if test="${pagemaker.cri.page!=i}"><li class='paginate_button'><a href="listdept${pagemaker.makeSearch(i)}"> ${i} </a></li></c:if>
+					<c:if test="${pagemaker.cri.page!=i}"><li class='paginate_button'><a href="${pageContext.request.contextPath}/approval/listdept${pagemaker.makeSearch(i)}"> ${i} </a></li></c:if>
 				</c:forEach>
 				<c:if test="${pagemaker.next && pagemaker.endPage>0 }">
-					<li class='paginate_button' id='dataTables-example_next'><a href="listdept${pagemaker.makeSearch(pagemaker.endPage+1)}">다음</a></li>
+					<li class='paginate_button' id='dataTables-example_next'><a href="${pageContext.request.contextPath}/approval/listdept${pagemaker.makeSearch(pagemaker.endPage+1)}">다음</a></li>
 				</c:if>				
 			</ul>
 		</div>

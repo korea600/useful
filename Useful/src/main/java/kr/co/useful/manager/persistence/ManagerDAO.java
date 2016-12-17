@@ -58,5 +58,7 @@ public interface ManagerDAO {
 	public void salary_Delete(int serial)throws Exception;
 	
 	public void add_Sal_NextMonth()throws Exception;
+	
+	public int empno_check(int empno) throws Exception;
 
 }

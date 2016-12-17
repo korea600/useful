@@ -85,7 +85,14 @@ public class ManagerRestController {
         obj.setTotal( totalPage ); 
 		return obj;
 	}
-
+	
+	@RequestMapping("/empno_check")
+	public String empno_check(int empno) throws Exception{
+		int cnt = service.empno_check(empno);
+		if(cnt>0) return "fail";
+		else return "success";
+	}
+	
 	@RequestMapping("/commute_Update")
 	public String commute_Update(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		service.commute_update(requestMap);

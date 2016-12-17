@@ -24,7 +24,24 @@ th {
 	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-
+	function empno_check(){
+		var input_empno=$('#emp_no').val();
+		if(input_empno.length>3){
+			$.ajax({
+	 			type: 'POST',
+	 			url: '${pageContext.request.contextPath}/manager/empno_check',
+	 			data: {empno:input_empno},
+	 			success: function(result){
+	 				if(result=='success')
+	 					$('#check_result').html("<font color='green'>사용가능한 사번입니다.</font>");
+	 				else
+	 					$('#check_result').html("<font color='red'>사용할 수 없는 사번입니다.</font>");
+	 			}
+	 		});
+		}
+		else
+			$('#check_result').html("<font color='red'>사번을 4자리 이상의 숫자로 입력해 주세요.</font>");
+	}
 	$(function() {
  	   $( "#hiredate" ).datepicker({
  		  changeMonth: true, 
@@ -33,38 +50,41 @@ th {
  	   });
  	   
  	   $("#btn_Save").click(function(){
- 		  $.ajax({
- 			  type: 'POST',
- 			  url: '/useful/manager/employee_Insert',
- 			  headers : {
- 				  "Content-Type" : "application/json",
- 				  "X-HTTP-Method-Override":"POST"
- 			  },
- 			  dataType: 'text',
- 			  data: JSON.stringify({
- 				 empno:$("#emp_no").val(),
- 				ename:$("#emp_nm").val(),
- 				pass:$("#emp_pw").val(),
- 				ssn:$("#ssn").val(),
- 				deptno:$("#dept option:selected").val(),
- 				position:$("#position option:selected").val(),
- 				email:$("#email").val(),
- 				phone:$("#mobile").val(),
- 				address:$("#addr").val(),
- 				bank:$("#bank option:selected").val(),
- 				account:$("#account_no").val(),
- 				hiredate:$("#hiredate").val(),
- 				  }),
- 			  success: function(){
- 				  alert("사원이 추가되었습니다.")
- 				location.href="/useful/manager/employee_List";
- 			  }
- 			});
+ 			var checked=$('#check_result font').attr('color');
+ 			if(checked=='green'){
+ 				$.ajax({
+	 				type: 'POST',
+	 				url: '${pageContext.request.contextPath}/manager/employee_Insert',
+	 				headers : {
+	 					"Content-Type" : "application/json",
+	 					"X-HTTP-Method-Override":"POST"
+	 				},
+	 				dataType: 'text',
+	 			  	data: JSON.stringify({
+		 				empno:$("#emp_no").val(),
+		 				ename:$("#emp_nm").val(),
+		 				pass:$("#emp_pw").val(),
+		 				ssn:$("#ssn").val(),
+		 				deptno:$("#dept option:selected").val(),
+		 				position:$("#position option:selected").val(),
+		 				email:$("#email").val(),
+		 				phone:$("#mobile").val(),
+		 				address:$("#addr").val(),
+		 				bank:$("#bank option:selected").val(),
+		 				account:$("#account_no").val(),
+		 				hiredate:$("#hiredate").val()
+	 				}),
+	 			  	success: function(){
+	 					alert("사원이 추가되었습니다.");
+	 					location.href="/useful/manager/employee_List";
+	 				}
+	 			});
+ 			}
+ 			else
+ 				alert('사원번호를 확인하세요.')
  	   });
  	   $("#btn_List").click(function(){
- 		   
  			location.href="/useful/manager/employee_List";
- 		   
  	   });
 	});
 
@@ -91,10 +111,8 @@ th {
 			<tr>
 				<th style="text-align: center;">사원코드</th>
 				<td><input id="emp_no" name="emp_no" class="text" type="text"
-					maxlength="20" /> 
-
-
-
+					maxlength="20" onchange="empno_check()" onkeydown="empno_check();">
+					<span id='check_result'></span> 
 				</td>
 			</tr>
 			<tr>

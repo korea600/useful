@@ -229,5 +229,9 @@ class ManagerServiceImpl implements ManagerService {
 		}
 		return list;
 	}
+
+	public int empno_check(int empno) throws Exception {
+		return dao.empno_check(empno);
+	}
 	
 }

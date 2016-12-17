@@ -38,7 +38,7 @@
 				empno:writer,
 				deptno:receiver
 			},
-			url:'/useful/approval/getLine',
+			url:'${pageContext.request.contextPath}/approval/getLine',
 			type:'POST',
 			success:function(result){
 				var str='--- 결재선 정보입니다. ---\n';
@@ -60,7 +60,7 @@
 				data:{
 					deptno:"${LoginUser.deptno}"
 				},
-				url:'/useful/approval/getDept',
+				url:'${pageContext.request.contextPath}/approval/getDept',
 				type:'POST',
 				success:function(result){
 					var str='';

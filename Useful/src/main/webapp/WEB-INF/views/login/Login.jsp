@@ -27,48 +27,60 @@
     <![endif]-->
 
 <script type="text/javascript">
-
+	var flag=true;		// 로그인 시도중일때 중복 시도 여부 제어
 	function checkLogin(){
-		var test='123123';
-		var regExp =/123123/gi;
-		
-		var test2 = test.match(regExp);
-
-		if($.trim($("#empnoinput").val()) == ""){
-			alert("사원번호를 입력해 주세요.");
-			$("#empnoinput").focus();
-			return;
-		}
-		if($.trim($("#passinput").val()) == ""){
-			alert("비밀번호를 입력해 주세요.");
-			$("#passinput").focus();
-			return;
-		}
-		
-		
-		$.ajax({
-			type:'post',
-			async:true,
-			url:'/useful/login/Main',
-			data:$("#form").serialize(),
-			success:function(result){
-
-				if(result=="SUCCESS"){
-					if($.trim($("#passinput").val()) == test2){
-						alert("첫 로그인을 환영합니다. \n" 
-								+"먼저 비밀번호를 변경하여주세요.");		
-						location.href="/useful/login/Modify_Pass";
-					}else{
-						alert("로그인에 성공하였습니다.");
-						location.href="Mainview";
-					}
-					
-				}else{
-					alert("사원번호와 비밀번호를 다시 확인해주세요.");
-					$('[name=pass]').val('');
-				}
+		if(flag){
+			flag=false;
+			var test='123123';
+			var regExp =/123123/gi;
+			
+			var test2 = test.match(regExp);
+	
+			if($.trim($("#empnoinput").val()) == ""){
+				alert("사원번호를 입력해 주세요.");
+				$("#empnoinput").focus();
+				flag=true;
+				return;
 			}
-		});
+			if($.trim($("#passinput").val()) == ""){
+				alert("비밀번호를 입력해 주세요.");
+				$("#passinput").focus();
+				flag=true;
+				return;
+			}
+			$.ajax({
+				type:'post',
+				async:true,
+				url:'${pageContext.request.contextPath}/login/Main',
+				data:{
+					empno:$('#empnoinput').val(),
+					pass:$('#passinput').val()
+				},
+				success:function(result){
+	
+					if(result=="SUCCESS"){
+						if($.trim($("#passinput").val()) == test2){
+							alert("첫 로그인을 환영합니다. \n" 
+									+"먼저 비밀번호를 변경하여주세요.");		
+							location.href="${pageContext.request.contextPath}/login/Modify_Pass";
+						}
+						else{
+							alert("로그인에 성공하였습니다.");
+							location.href="${pageContext.request.contextPath}/login/Mainview";
+						}
+						
+					}
+					else{
+						alert("사원번호와 비밀번호를 다시 확인해주세요.");
+						$('[name=pass]').val('');
+						flag=true;
+					}
+				}
+			});
+		}
+		else{
+			alert('로그인 시도 중입니다.\n잠시만 기다려주세요.');
+		}
 	}
 </script>
 </head>
@@ -81,7 +93,7 @@
                         <h3 class="panel-title">Please Sign In...</h3>
                     </div>
                     <div class="panel-body">
-                        <form name="form" id="form" action="/useful/login/Main" method="post">
+                        <form name="form" id="form" action="${pageContext.request.contextPath}/login/Main" method="post">
 							<div class="form-group">
                                     Empno : <input class="form-control"  name="empno" type="text" id="empnoinput" autofocus>
                                 </div>
@@ -96,7 +108,7 @@
                                 </div>
                                 <p></p>
                                 <div>
-                                	<center><a href="Search_Pass" >비밀번호 찾기</a></center>
+                                	<center><a href="${pageContext.request.contextPath}/login/Search_Pass" >비밀번호 찾기</a></center>
                                 </div>
 						</form>
                     </div>
