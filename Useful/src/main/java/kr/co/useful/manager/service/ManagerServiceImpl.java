@@ -233,5 +233,9 @@ class ManagerServiceImpl implements ManagerService {
 	public int empno_check(int empno) throws Exception {
 		return dao.empno_check(empno);
 	}
+
+	public List<EmpVO> set_manager(int deptno, String position) throws Exception {
+		return dao.set_manager(deptno, position);
+	}
 	
 }

@@ -45,8 +45,8 @@
   
   <!-- 신규사원등록 -->
   <insert id="emp_insert">
-  	insert into tbl_emp (empno,ename,pass,phone,address,hiredate,deptno,position,account,bank,email,leave,ssn)
-  		values(#{empno},#{ename},#{pass},#{phone},#{address},#{hiredate},#{deptno},#{position},#{account},#{bank},#{email},15,#{ssn})
+  	insert into tbl_emp (empno,ename,pass,phone,address,hiredate,deptno,position,account,bank,email,leave,ssn,manager)
+  		values(#{empno},#{ename},#{pass},#{phone},#{address},#{hiredate},#{deptno},#{position},#{account},#{bank},#{email},15,#{ssn},#{manager})
   </insert>
   
   <!-- 사원조회 -->
@@ -63,6 +63,21 @@
   <update id="emp_update">
   	update tbl_emp set ename=#{ename},phone=#{phone},address=#{address},hiredate=#{hiredate},deptno=#{deptno},position=#{position},account=#{account},bank=#{bank},email=#{email} where empno=#{empno} 
   </update>
+  
+  <!-- 직속상사설정 -->
+  <select id='set_manager' resultType="kr.co.useful.manager.domain.EmpVO">
+  	<![CDATA[
+		select tbl_emp.empno, tbl_emp.ename, tbl_emp.position from tbl_emp, tbl_position
+		where tbl_emp.position=tbl_position.position
+		and tbl_position.posno<]]>(select posno from tbl_position where position=#{position})
+	<if test='position.equals("대리")'>
+		and tbl_emp.deptno=#{deptno}
+	</if>
+	<if test='position.equals("사원")'>
+		and tbl_emp.deptno=#{deptno}
+	</if>
+	order by tbl_position.posno desc
+  </select>
   
   <!-- 사원삭제 -->
   <delete id="emp_delete">

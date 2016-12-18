@@ -130,4 +130,13 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public int empno_check(int empno) throws Exception {
 		return sqlSession.selectOne("manager.empno_check",empno);
 	}
+
+	
+	public List<EmpVO> set_manager(int deptno,String position) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("deptno", deptno);
+		map.put("position", position);
+		return sqlSession.selectList("manager.set_manager",map);
+		
+	}
 }

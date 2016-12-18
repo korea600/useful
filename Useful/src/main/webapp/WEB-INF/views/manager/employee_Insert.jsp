@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <!-- 
 	employee_Insert.jsp 
-	작성자 : 박지혜
+	작성자 : 박지혜+이대원
 	작성일자 : 2016-12-10
  -->	
 <html>
@@ -26,7 +26,7 @@ th {
 <script type="text/javascript">
 	function empno_check(){
 		var input_empno=$('#emp_no').val();
-		if(input_empno.length>3){
+		if(input_empno.length>3 && input_empno.match("[\\d]+")){
 			$.ajax({
 	 			type: 'POST',
 	 			url: '${pageContext.request.contextPath}/manager/empno_check',
@@ -42,6 +42,29 @@ th {
 		else
 			$('#check_result').html("<font color='red'>사번을 4자리 이상의 숫자로 입력해 주세요.</font>");
 	}
+	
+	function set_manager(){
+		var dept=$('#dept').val();
+		var pos=$('#position').val();
+		if(dept>0 && pos!=''){
+			$.ajax({
+	 			type: 'POST',
+	 			url: '${pageContext.request.contextPath}/manager/set_manager',
+	 			data: {position:pos, deptno:dept},
+	 			success: function(result){
+	 				$('#manager').empty();
+	 				var str='';
+	 				for(var i=0;i<result.length;i++){
+	 					str+="<option value="+result[i].empno+">"+result[i].ename+" "+result[i].position+"</option>"
+	 				}
+	 				$('#manager').append(str);
+	 			}
+	 		});
+		}
+		
+		
+	}
+	
 	$(function() {
  	   $( "#hiredate" ).datepicker({
  		  changeMonth: true, 
@@ -67,6 +90,7 @@ th {
 		 				ssn:$("#ssn").val(),
 		 				deptno:$("#dept option:selected").val(),
 		 				position:$("#position option:selected").val(),
+		 				manager:$("#manager option:selected").val(),
 		 				email:$("#email").val(),
 		 				phone:$("#mobile").val(),
 		 				address:$("#addr").val(),
@@ -133,8 +157,8 @@ th {
 			<tr>
 				<th style="text-align: center;">부서명</th>
 				<td><select id="dept" name="dept" class="form-control-static"
-					style="width: 200px;">
-						<option value="" selected="selected">-- 선택 --</option>
+					style="width: 200px;" onchange='set_manager()'>
+						<option value="0" selected="selected">-- 선택 --</option>
 						<option value="10">잘했조</option>
 						<option value="20">보여조</option>
 						<option value="30">강조</option>
@@ -145,14 +169,10 @@ th {
 			<tr>
 				<th style="text-align: center;">직책 </th>
 				<td><select id="position" name="position" class="form-control-static"
-					style="width: 200px;">
+					style="width: 200px;" onchange='set_manager()'>
 						<option value="" selected="selected">-- 선택 --</option>
 
-						<option value="사장">사장</option>
-
 						<option value="부장">부장</option>
-
-						<option value="팀장">팀장</option>
 
 						<option value="대리">대리</option>
 
@@ -160,7 +180,11 @@ th {
 
 				</select></td>
 			</tr>
-			
+			<tr>
+				<th style="text-align: center;">직속상사 </th>
+				<td><select id='manager' name='manager' class='form-control-static' style="width: 200px;">
+					</select></td>
+			</tr>
 			<tr>
 				<th style="text-align: center;">이메일</th>
 				<td><input id="email" name="email" class="text"

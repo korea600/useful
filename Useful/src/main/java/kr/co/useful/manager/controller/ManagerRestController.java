@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.domain.JsonObj;
 import kr.co.useful.manager.persistence.ManagerDAO;
 import kr.co.useful.manager.service.ManagerService;
@@ -97,5 +98,10 @@ public class ManagerRestController {
 	public String commute_Update(@RequestBody Map<String,Object> requestMap,Model model)throws Exception{
 		service.commute_update(requestMap);
 		return "SUCCESS";
+	}
+	
+	@RequestMapping("/set_manager")
+	public List<EmpVO> set_manager(int deptno, String position) throws Exception{
+		return service.set_manager(deptno, position);
 	}
 }

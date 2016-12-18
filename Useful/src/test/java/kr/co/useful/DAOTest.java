@@ -17,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.co.useful.manager.domain.CommuteVO;
+import kr.co.useful.manager.domain.EmpVO;
 import kr.co.useful.manager.domain.SalaryVO;
 import kr.co.useful.manager.persistence.ManagerDAO;
 import kr.co.useful.manager.service.ManagerService;
@@ -32,17 +33,17 @@ public class DAOTest {
 	@Inject
 	private ManagerService service;
 	
-	//@Test
+/*	//@Test
 	public void list()throws Exception{
 		System.out.println(dao.emplist());
 	}
 	
 	@Test
 	public void listSearch()throws Exception{
-		//System.out.println(dao.emplistSearch("dept", "10"));
-//		System.out.println(dao.emp_select(1000));
-//		dao.emp_delete(2000);
-//		
+		System.out.println(dao.emplistSearch("dept", "10"));
+		System.out.println(dao.emp_select(1000));
+		dao.emp_delete(2000);
+		
 		Map<String, Object> map = new HashMap<>();
 
 		map.put("startdate", "20161211");
@@ -51,23 +52,31 @@ public class DAOTest {
 		map.put("empno", "");
 		map.put("deptno","0");
 		
-//		List<CommuteVO> vo = dao.commute_emplist(map);
-//		System.out.println(vo.get(0).toString());
-//		
-//		System.out.println(dao.search_empno_fromEname("이길재"));
-//		System.out.println(dao.search_empnolist(10));
-//		map.put("checked", "지각");
-
-//		map.put("login","20161204");
-//		map.put("deptno", "10");
-//		map.put("empno", 1010);
-//		map.put("login", "201611");
-//		System.out.println(dao.search_ename_from_dept(10));
+		List<CommuteVO> vo = dao.commute_emplist(map);
+		System.out.println(vo.get(0).toString());
+		
+		System.out.println(dao.search_empno_fromEname("이길재"));
+		System.out.println(dao.search_empnolist(10));
+		map.put("checked", "지각");
+		map.put("login","20161204");
+		map.put("deptno", "10");
+		map.put("empno", 1010);
+		map.put("login", "201611");
+		System.out.println(dao.search_ename_from_dept(10));
 		System.out.println("daoTest2");
 		
 		System.out.println(service.salary_update_form(3));
 		
-	}
+	}*/
 	
+	@Test
+	public void set_manager_test() throws Exception{
+		int deptno=10;
+		String position="부장";
+		List<EmpVO> list = service.set_manager(deptno, position);
+		for(int i=0;i<list.size();i++){
+			System.out.println(i+" : "+list.get(i).toString());
+		}
+	}
 	
 }

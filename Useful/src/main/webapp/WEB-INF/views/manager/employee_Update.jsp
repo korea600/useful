@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <!-- 
 	employee_Update.jsp
@@ -39,7 +40,7 @@ th {
  	   $("#btn_Save").click(function(){
  		  $.ajax({
  			  type: 'POST',
- 			  url: '/useful/manager/employee_Update',
+ 			  url: '${pageContext.request.contextPath}/manager/employee_Update',
  			  headers : {
  				  "Content-Type" : "application/json",
  				  "X-HTTP-Method-Override":"POST"
@@ -60,20 +61,20 @@ th {
  				  }),
  			  success: function(){
  				  alert("수정되었습니다");
- 				 location.href="/useful/manager/employee_List";
+ 				 location.href="${pageContext.request.contextPath}/manager/employee_List";
  			  }
  			});
  	   });
  	   $("#btn_List").click(function(){
  		   
- 			location.href="/useful/manager/employee_List";
+ 			location.href="${pageContext.request.contextPath}/manager/employee_List";
  		   
  	   });
  	   $("#btn_Delete").click(function(){
  		  if (confirm("정말 삭제하시겠습니까?") == true){    //확인
  			  	$.ajax({
  		 			  type: 'POST',
- 		 			  url: '/useful/manager/employee_Delete?empno='+$("#emp_no").val(),
+ 		 			  url: '${pageContext.request.contextPath}/manager/employee_Delete?empno='+$("#emp_no").val(),
  		 			  headers : {
  		 				  "Content-Type" : "application/json",
  		 				  "X-HTTP-Method-Override":"POST"
@@ -81,7 +82,7 @@ th {
  		 			  success: function(result){
  		 				if(result=='SUCCESS'){
  		 					alert("삭제되었습니다");
-			 			location.href="/useful/manager/employee_List";
+			 			location.href="${pageContext.request.contextPath}/manager/employee_List";
  		 			 	 }
  		 			  }
  			  	});
@@ -132,9 +133,15 @@ th {
 			</tr>
 			<tr>
 				<th style="text-align: center;">부서명</th>
-				<td><select id="dept" name="dept" class="form-control-static"
-					style="width: 200px;" >
-						<option value="" >-- 선택 --</option>
+				<td>
+					<c:if test="${vo.position=='사장' }">
+						<select id="dept" name="dept" class="form-control-static" style="width: 200px;" disabled="disabled" >
+							<option value="0" >-- 선택 --</option>
+					</c:if>
+					<c:if test="${vo.position!='사장' }">
+						<select id="dept" name="dept" class="form-control-static" style="width: 200px;">
+							<option value="" >-- 선택 --</option>
+					</c:if>
 						<option value="10">잘했조</option>
 						<option value="20">보여조</option>
 						<option value="30">강조</option>
@@ -144,23 +151,26 @@ th {
 			</tr>
 			<tr>
 				<th style="text-align: center;">직책 </th>
-				<td><select id="position" name="position" class="form-control-static"
-					style="width: 200px;">
-						<option value="">-- 선택 --</option>
-
-						<option value="사장">사장</option>
-
-						<option value="부장">부장</option>
-
-						<option value="팀장">팀장</option>
-
-						<option value="대리">대리</option>
-
-						<option value="사원">사원</option>
-
-				</select></td>
+				<td>
+					<c:if test="${vo.position=='사장' }">
+						<select id="position" name="position" class="form-control-static" style="width: 200px;" disabled="disabled">
+							<option value="">-- 선택 --</option>
+							<option value="사장">사장</option>
+					</c:if>
+					<c:if test="${vo.position!='사장' }">
+						<select id="position" name="position" class="form-control-static" style="width: 200px;">
+							<option value="">-- 선택 --</option>
+					</c:if>
+					
+					<option value="부장">부장</option>
+					<option value="대리">대리</option>
+					<option value="사원">사원</option>
+					</select>
+				</td>
 			</tr>
+				
 			
+						
 			<tr>
 				<th style="text-align: center;">이메일</th>
 				<td><input id="email" name="email" class="text"

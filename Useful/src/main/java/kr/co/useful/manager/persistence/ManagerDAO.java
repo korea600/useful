@@ -60,5 +60,7 @@ public interface ManagerDAO {
 	public void add_Sal_NextMonth()throws Exception;
 	
 	public int empno_check(int empno) throws Exception;
+	
+	public List<EmpVO> set_manager(int deptno,String position) throws Exception;
 
 }
