@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <!-- 
 	employee_Update.jsp
-	작성자 : 박지혜
+	작성자 : 박지혜+이대원
 	작성일자 : 2016-12-10
  -->	
 <html>
@@ -25,11 +25,37 @@ th {
  <script type="text/javascript" 
 	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript">
-
+	var flag=true;
+	function set_manager(){
+		var dept=$('#dept').val();
+		var pos=$('#position').val();
+		if(dept>0 && pos!=''){
+			$.ajax({
+	 			type: 'POST',
+	 			url: '${pageContext.request.contextPath}/manager/set_manager',
+	 			data: {position:pos, deptno:dept},
+	 			success: function(result){
+	 				$('#manager').empty();
+	 				var str='';
+	 				for(var i=0;i<result.length;i++){
+	 					str+="<option value="+result[i].empno+">"+result[i].ename+" "+result[i].position+"</option>"
+	 				}
+	 				$('#manager').append(str);
+	 				if(flag){
+	 					$("#manager").val("${vo.manager}").prop("selected", true);
+	 					flag=false;
+	 				}
+	 			}
+	 		});
+		}
+	}
 	$(function() {
+		
 		$("#dept").val("${vo.deptno}").prop("selected", true);
 		$("#position").val("${vo.position}").prop("selected", true);
 		$("#bank").val("${vo.bank}").prop("selected", true);
+		set_manager();
+		
 		
  	   $( "#hiredate" ).datepicker({
  		  changeMonth: true, 
@@ -52,6 +78,7 @@ th {
  				ssn:$("#ssn").val(),
  				deptno:$("#dept option:selected").val(),
  				position:$("#position option:selected").val(),
+ 				manager:$("#manager option:selected").val(),
  				email:$("#email").val(),
  				phone:$("#mobile").val(),
  				address:$("#addr").val(),
@@ -139,7 +166,7 @@ th {
 							<option value="0" >-- 선택 --</option>
 					</c:if>
 					<c:if test="${vo.position!='사장' }">
-						<select id="dept" name="dept" class="form-control-static" style="width: 200px;">
+						<select id="dept" name="dept" class="form-control-static" style="width: 200px;" onchange='set_manager()'>
 							<option value="" >-- 선택 --</option>
 					</c:if>
 						<option value="10">잘했조</option>
@@ -158,7 +185,7 @@ th {
 							<option value="사장">사장</option>
 					</c:if>
 					<c:if test="${vo.position!='사장' }">
-						<select id="position" name="position" class="form-control-static" style="width: 200px;">
+						<select id="position" name="position" class="form-control-static" style="width: 200px;" onchange='set_manager()'>
 							<option value="">-- 선택 --</option>
 					</c:if>
 					
@@ -168,8 +195,13 @@ th {
 					</select>
 				</td>
 			</tr>
-				
-			
+			<c:if test="${vo.position!='사장' }">
+			<tr>
+				<th style="text-align: center;">직속상사 </th>
+				<td><select id='manager' name='manager' class='form-control-static' style="width: 200px;">
+					</select></td>
+			</tr>	
+			</c:if>
 						
 			<tr>
 				<th style="text-align: center;">이메일</th>

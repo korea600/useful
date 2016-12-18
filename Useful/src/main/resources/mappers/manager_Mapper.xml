@@ -61,7 +61,14 @@
   
   <!-- 사원세부사항수정 -->
   <update id="emp_update">
-  	update tbl_emp set ename=#{ename},phone=#{phone},address=#{address},hiredate=#{hiredate},deptno=#{deptno},position=#{position},account=#{account},bank=#{bank},email=#{email} where empno=#{empno} 
+  	update tbl_emp set
+  	ename=#{ename},phone=#{phone},address=#{address},
+  	hiredate=#{hiredate},deptno=#{deptno},position=#{position},
+  	account=#{account},bank=#{bank},email=#{email}
+  	  	<if test='position != "사장"'>
+	  		,manager=#{manager}
+	  	</if>
+  	 where empno=#{empno} 
   </update>
   
   <!-- 직속상사설정 -->
