@@ -239,12 +239,8 @@ function closeCal(y,m,d){
 				</tr>
 				<tr>
 				<td align="center"  bgcolor="#dae6f4">회의실 번호</td>
-				<td>
-				  <select name="roomno">
-				  <c:forEach items="${rooms}" var="MeetingRoomVO">
-				    <option value="${MeetingRoomVO.roomno }">${MeetingRoomVO.roomno }</option>
-				    </c:forEach>
-				  </select>
+				<td>${param.roomno }
+				 <input type='hidden' name='roomno' value=${param.roomno }>
 				</td>
 				</tr>
 				

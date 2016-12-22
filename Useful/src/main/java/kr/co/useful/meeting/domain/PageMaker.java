@@ -60,6 +60,7 @@ public class PageMaker {
 	   .queryParam("perPageNum", cri.getPerPageNum())//page 3& perpageNum=10
 	   .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
 	   .queryParam("keyword", ((SearchCriteria)cri).getKeyword())
+	   .queryParam("checked", ((SearchCriteria)cri).getChecked())
 	   .build();
      
 	   return uriComponents.toUriString();

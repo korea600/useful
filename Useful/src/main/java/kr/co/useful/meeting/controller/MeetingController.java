@@ -28,7 +28,7 @@ public class MeetingController {
 	@Inject
 	private MeetingService service;
 
-	// ì²«í™”ë©´---íšŒì˜ì‹¤ ì„ íƒ
+	// Ã¹È­¸é---È¸ÀÇ½Ç ¼±ÅÃ
 	@RequestMapping(value = "/meetingroom", method = RequestMethod.GET)
 	public void RoomList(Model model,  HttpServletRequest req) throws Exception {
 		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
@@ -36,10 +36,13 @@ public class MeetingController {
 		model.addAttribute("evo", evo);
 	}
 
-	// ê´€ë¦¬ì ì˜ˆì•½ê´€ë¦¬ë¦¬ìŠ¤íŠ¸
+	// °ü¸®ÀÚ ¿¹¾à°ü¸®¸®½ºÆ®
 	@RequestMapping(value = "/bookingHistory", method = RequestMethod.GET)
 	public void allList(@ModelAttribute("cri") SearchCriteria cri, String checked, Model model) throws Exception {
-		if(checked!=null && checked.equals("ì„ íƒ")) checked=null;
+		if(checked!=null){
+			if(checked.equals("¼±ÅÃ")||checked.equals(""))
+				checked=null;
+		}
 		model.addAttribute("list", service.allBooking2(checked, cri));
         
 		PageMaker maker = new PageMaker();
@@ -49,13 +52,15 @@ public class MeetingController {
 
 	}
 
-	// ë‚´ê°€ ì˜ˆì•½í•œ ë¦¬ìŠ¤íŠ¸
+	// ³»°¡ ¿¹¾àÇÑ ¸®½ºÆ®
 	@RequestMapping(value = "/myBooking", method = RequestMethod.GET)
 	public void myList(@ModelAttribute("cri") SearchCriteria cri, String checked, Model model, HttpServletRequest req) throws Exception {
 		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
 		int empno=evo.getEmpno();
-		if(checked!=null && checked.equals("ì„ íƒ"))
-			checked=null;
+		if(checked!=null){
+			if(checked.equals("¼±ÅÃ")||checked.equals(""))
+				checked=null;
+		}		
         
 		model.addAttribute("list", service.myBooking2(cri, empno, checked));
          
@@ -65,32 +70,32 @@ public class MeetingController {
    	 	model.addAttribute("pageMaker", maker);
 	}
 
-	// íšŒì˜ì‹¤ ë“±ë¡í¼
+	// È¸ÀÇ½Ç µî·ÏÆû
 	@RequestMapping(value = "/room_Input", method = RequestMethod.GET)
 	public void roomMakeGet() {}
 
-	// íšŒì˜ì‹¤ ë“±ë¡
+	// È¸ÀÇ½Ç µî·Ï
 	@RequestMapping(value = "/makeroom", method = RequestMethod.POST)
 	public String roomMakePost(MeetingRoomVO vo, RedirectAttributes attr) throws Exception {
 		service.regist(vo);
 		return "redirect:/meetingroom/meetingroom";
 	}
 
-	// ìƒì„¸ì—ì„œ ìˆ˜ì •
+	// »ó¼¼¿¡¼­ ¼öÁ¤
 	@RequestMapping(value = "/roomchange", method = RequestMethod.POST)
 	public String modifyPagePost(MeetingRoomVO vo, RedirectAttributes attr) throws Exception {
 		service.change(vo);
 		return "redirect:/meetingroom/meetingroom";
 	}
 
-	// íšŒì˜ì‹¤ ì‚­ì œ
+	// È¸ÀÇ½Ç »èÁ¦
 	@RequestMapping("/removeroom")
 	public String roomDelete(int roomno, RedirectAttributes attr) throws Exception {
 		service.remove(roomno);
 		return "redirect:/meetingroom/meetingroom";
 	}
 	
-	// ê° íšŒì˜ì‹¤ì— ëŒ€í•œ ë¦¬ìŠ¤íŠ¸ ---> í˜¸ì‹¤ì´ ê°™ì„ë•Œ
+	// °¢ È¸ÀÇ½Ç¿¡ ´ëÇÑ ¸®½ºÆ® ---> È£½ÇÀÌ °°À»¶§
 	@RequestMapping("/bookingList")
 	public String bookingList(@ModelAttribute("cri") SearchCriteria cri, int roomno, Model model ) throws Exception {
 		model.addAttribute("list", service.bookingOK(cri, roomno));
@@ -104,7 +109,7 @@ public class MeetingController {
 		return "/meetingroom/booking";
 	}
 
-	// ì˜ˆì•½í•˜ê¸°
+	// ¿¹¾àÇÏ±â
 	@RequestMapping(value = "/booking_Input", method = RequestMethod.GET)
 	public void reservationRoom(Model model, MeetingRoomVO vo, HttpServletRequest req) throws Exception {
 		EmpVO evo = (EmpVO) req.getSession().getAttribute("LoginUser");
@@ -112,21 +117,21 @@ public class MeetingController {
 		model.addAttribute("evo", evo);
 	}
 
-	// ì˜ˆì•½ëˆ„ë¥´ê¸°
+	// ¿¹¾à´©¸£±â
 	@RequestMapping(value = "/askBooking", method = RequestMethod.POST)
 	public @ResponseBody String reservation(MeetingVO vo,  HttpServletRequest req) throws Exception {
 		service.updateBooking(vo);
 		return "ok";
 	}
 
-	// ì˜ˆì•½ì·¨ì†Œ
+	// ¿¹¾àÃë¼Ò
 	@RequestMapping(value = "/cancel", method = RequestMethod.POST)
 	public String reservationConcel(int serial) throws Exception {
 		service.removeBooking(serial);
 		return "redirect:/meetingroom/bookingList";
 	}
 
-	//ë‚´ìš©í™•ì¸
+	//³»¿ëÈ®ÀÎ
 	@RequestMapping("/content_Check")
 	public void contentPresent(int serial, Model model)throws Exception{
 		MeetingVO vo=service.oneBooking(serial);

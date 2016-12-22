@@ -105,7 +105,7 @@ function changeType(){
 
 							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 								<li	<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-									<a href="myBooking${pageMaker.makeSearch(idx)}&roomno=${integer}">${idx}</a>
+									<a href="myBooking${pageMaker.makeSearch(idx)}">${idx}</a>
 								</li>
 							</c:forEach>
 

@@ -5,7 +5,16 @@ public class SearchCriteria extends Criteria{
 	private String searchType;//검색타입
 	private String keyword;//검색어
 	private int deptno;
+	private String checked;
 	
+	public String getChecked() {
+		return checked;
+	}
+
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
+
 	public SearchCriteria() {}
 	
 	public String getSearchType() {
